@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /oauth
+Disallow: /search
+Disallow: /slides
+Disallow: /not-found
+Disallow: /music-history

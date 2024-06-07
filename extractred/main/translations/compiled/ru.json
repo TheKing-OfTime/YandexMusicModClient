@@ -1,0 +1,4450 @@
+{
+    "about-app.app-name": [
+        {
+            "type": 0,
+            "value": "Яндекс Mузыка"
+        }
+    ],
+    "about-app.explicit-content": [
+        {
+            "type": 0,
+            "value": "Сервис Яндекс Музыка может содержать информацию, не&nbsp;предназначенную для&nbsp;несовершеннолетних"
+        }
+    ],
+    "album-errors.error-during-loading-album": [
+        {
+            "type": 0,
+            "value": "При загрузке альбома произошла ошибка"
+        }
+    ],
+    "album-errors.error-during-loading-similar-albums": [
+        {
+            "type": 0,
+            "value": "При загрузке похожих альбомов произошла ошибка"
+        }
+    ],
+    "artist-errors.error-during-loading-artist": [
+        {
+            "type": 0,
+            "value": "При загрузке артиста произошла ошибка"
+        }
+    ],
+    "authorization-messages.need-to-authorizate": [
+        {
+            "type": 0,
+            "value": "Сначала необходимо авторизоваться"
+        }
+    ],
+    "authorization.enter-button": [
+        {
+            "type": 0,
+            "value": "Войти"
+        }
+    ],
+    "authorization.enter-text": [
+        {
+            "type": 0,
+            "value": "Войдите и получите доступ к единой коллекции музыки на всех устройствах."
+        }
+    ],
+    "authorization.enter-title": [
+        {
+            "type": 0,
+            "value": "Войдите в аккаунт"
+        }
+    ],
+    "calendar.april-short": [
+        {
+            "type": 0,
+            "value": "апр"
+        }
+    ],
+    "calendar.august-short": [
+        {
+            "type": 0,
+            "value": "авг"
+        }
+    ],
+    "calendar.december-short": [
+        {
+            "type": 0,
+            "value": "дек"
+        }
+    ],
+    "calendar.february-short": [
+        {
+            "type": 0,
+            "value": "фев"
+        }
+    ],
+    "calendar.january-short": [
+        {
+            "type": 0,
+            "value": "янв"
+        }
+    ],
+    "calendar.july-short": [
+        {
+            "type": 0,
+            "value": "июл"
+        }
+    ],
+    "calendar.june-short": [
+        {
+            "type": 0,
+            "value": "июн"
+        }
+    ],
+    "calendar.march-short": [
+        {
+            "type": 0,
+            "value": "мар"
+        }
+    ],
+    "calendar.may-short": [
+        {
+            "type": 0,
+            "value": "май"
+        }
+    ],
+    "calendar.november-short": [
+        {
+            "type": 0,
+            "value": "ноя"
+        }
+    ],
+    "calendar.october-short": [
+        {
+            "type": 0,
+            "value": "окт"
+        }
+    ],
+    "calendar.september-short": [
+        {
+            "type": 0,
+            "value": "сен"
+        }
+    ],
+    "collection.collection-color": [
+        {
+            "type": 0,
+            "value": "У вашей музыки есть "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "цвет"
+                }
+            ],
+            "type": 8,
+            "value": "color"
+        }
+    ],
+    "collection.collection-color-description": [
+        {
+            "type": 0,
+            "value": "Добавили в Мою волну и Коллекцию цвет музыки, которая вас вдохновляет"
+        }
+    ],
+    "collection.collection-color-title": [
+        {
+            "type": 0,
+            "value": "Меняется вместе с вами"
+        }
+    ],
+    "collection.created-playlists-list": [
+        {
+            "type": 0,
+            "value": "Список моих плейлистов"
+        }
+    ],
+    "collection.liked-albums-list": [
+        {
+            "type": 0,
+            "value": "Список любимых альбомов"
+        }
+    ],
+    "collection.liked-artists-list": [
+        {
+            "type": 0,
+            "value": "Список любимых исполнителей"
+        }
+    ],
+    "collection.liked-playlists-list": [
+        {
+            "type": 0,
+            "value": "Список любимых плейлистов"
+        }
+    ],
+    "collection.your-created-playlists": [
+        {
+            "type": 0,
+            "value": "Вы собрали"
+        }
+    ],
+    "collection.your-liked-playlists": [
+        {
+            "type": 0,
+            "value": "Вам понравилось"
+        }
+    ],
+    "desktop-release-notes.5.0.15": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "13 марта 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Помните свой первый плеер? Он был кассетный или уже mp3? В этом обновлении тоже есть плеер, просим любить и нажимать!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Новый большой и красивый плеер можно раскрыть, нажав на обложку альбома в стандартном плеере"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Теперь можно увидеть все-все треки в чарте"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Поисковая строка научилась исправлять запросы с ошибками"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Теперь ошибки при загрузке главной страницы можно исправить — просто обновите страницу"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Сделали приложение ещё немного доступнее"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.0.16": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "20 марта 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Переходите на светлую сторону, устраивайте домашнюю вечеринку, следите за трендами — всё это можно сделать с нашим новым обновлением"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Мы добавили возможность создавать и редактировать плейлисты"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Теперь у нас есть светлая тема оформления — её можно выбрать в профиле"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Появился каталог подборок по жанрам, настроениям и занятиям от нашей редакции. Найти его можно и на главной странице во вкладке «Тренды», и в поиске"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.0.18": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "1 апреля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Разбежавшись, прыгаем прямо в новую версию приложения!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Моя волна появилась и в поиске. Введите любой жанр, настроение или занятие — и слушайте подходящие треки"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Добавили Нейромузыку во вкладку «Для вас»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё добавили кнопку для удаления плейлистов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В Коллекции стали видны будущие релизы любимых артистов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Убрали баги в плейлисте «Мне нравится», потому что они никому не нравятся"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.0.19": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "8 апреля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Вспышка, импульс, энергия — это всё про обновлённую Мою волну. Она научилась отражать ваш музыкальный мир"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Её цвета и форма зависят от треков в Коллекции и от музыки, которую вы слушаете прямо сейчас"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Если лайкнете трек в Моей волне, она ответит яркой вспышкой. Попробуйте — не сможете остановиться"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "От новой анимации тоже не оторваться. Но вы лучше отрывайтесь время от времени"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.0.20": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "12 апреля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "В этом обновлении мы научились удалять и дизлайкать. Чтобы потом снова добавлять и лайкать."
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Появилась возможность удалять треки из своих плейлистов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Теперь, когда вы ставите треку дизлайк в плеере, он сразу переключается на следующий"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Добавили на странице артиста раздел «Знакомое вам» с треками, которые вы уже слышали в Моей волне или добавили в Коллекцию"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.0.21": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "19 апреля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "«Да куда опять пропал тот плейлист! Ну этот, как его, забыл название!» Неприятно, но такого больше не случится — всё любимое будет под рукой"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В левой части экрана теперь можно закрепить что угодно: альбом, плейлист, артиста, Мою волну с нужной настройкой. Жмите на значок в правом верхнем углу обложки, и любимое больше не потеряется. Через контекстное меню закреплять тоже, кстати, можно"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё внутри ваших плейлистов появился поиск — через него удобно находить и добавлять новые треки"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.1.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "27 апреля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Кто-то ждёт новый альбом Kanye West, а кто-то — новый трек Ранеток. Мы все разные, но всем нам стало чуточку удобнее дожидаться любимой музыки: в Коллекции появился отдельный блок для будущих релизов, которые вы лайкнули"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.2.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "21 мая 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Этот релиз короткий, но яркий:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Добавили кнопку «Поделиться» на экраны альбомов и артистов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Починили баги в Моей волне"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Исправили кое-какие ошибки в дизайне"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Сделали приложение ещё чуть доступнее для незрячих и слабовидящих пользователей"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.3.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "3 июня 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Пока все бегают за обновками к лету, мы тоже кое-что обновили!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В профиле добавили раздел с настройками. Подсказки по горячим клавишам уже там. Дальше больше!"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "На главной странице появился блок с рекомендательными плейлистами по жанрам. Открывайте для себя новое и вспоминайте старое."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.4.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "7 июня 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Если расставить ноты в правильном порядке, получится музыка. А это обновление для тех, кто любит порядок в плейлистах"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Добавили возможность редактировать порядок треков в плейлистах. Просто переносите трек на нужное место в списке"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Сделали раздел с плейлистами в коллекции компактнее — теперь все плейлисты собраны на одной странице с удобной навигацией"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        },
+        {
+            "type": 0,
+            "value": "\n\n\n\n"
+        }
+    ],
+    "desktop.about": [
+        {
+            "type": 0,
+            "value": "О приложении"
+        }
+    ],
+    "desktop.app-version": [
+        {
+            "type": 0,
+            "value": "Версия приложения: "
+        },
+        {
+            "type": 1,
+            "value": "version"
+        }
+    ],
+    "desktop.app-version-short": [
+        {
+            "type": 0,
+            "value": "Версия "
+        },
+        {
+            "type": 1,
+            "value": "version"
+        }
+    ],
+    "desktop.check-for-updates": [
+        {
+            "type": 0,
+            "value": "Проверить обновления"
+        }
+    ],
+    "desktop.copy": [
+        {
+            "type": 0,
+            "value": "Скопировать"
+        }
+    ],
+    "desktop.cut": [
+        {
+            "type": 0,
+            "value": "Вырезать"
+        }
+    ],
+    "desktop.edit": [
+        {
+            "type": 0,
+            "value": "Правка"
+        }
+    ],
+    "desktop.hide-yandex-music": [
+        {
+            "type": 0,
+            "value": "Скрыть Яндекс Музыку"
+        }
+    ],
+    "desktop.on-update-available": [
+        {
+            "type": 0,
+            "value": "Доступна версия "
+        },
+        {
+            "type": 1,
+            "value": "version"
+        }
+    ],
+    "desktop.paste": [
+        {
+            "type": 0,
+            "value": "Вставить"
+        }
+    ],
+    "desktop.quit": [
+        {
+            "type": 0,
+            "value": "Закрыть приложение"
+        }
+    ],
+    "desktop.recommendations": [
+        {
+            "type": 0,
+            "value": "Правила рекомендаций"
+        }
+    ],
+    "desktop.redo": [
+        {
+            "type": 0,
+            "value": "Повторить"
+        }
+    ],
+    "desktop.release-notes-modal-title": [
+        {
+            "type": 0,
+            "value": "Что нового?"
+        }
+    ],
+    "desktop.select-all": [
+        {
+            "type": 0,
+            "value": "Выбрать все"
+        }
+    ],
+    "desktop.support": [
+        {
+            "type": 0,
+            "value": "Чат с поддержкой"
+        }
+    ],
+    "desktop.terms": [
+        {
+            "type": 0,
+            "value": "Пользовательское соглашение"
+        }
+    ],
+    "desktop.undo": [
+        {
+            "type": 0,
+            "value": "Отменить"
+        }
+    ],
+    "desktop.update": [
+        {
+            "type": 0,
+            "value": "Обновить"
+        }
+    ],
+    "drag-and-drop.failed-to-move": [
+        {
+            "type": 0,
+            "value": "Не удалось переместить трек"
+        }
+    ],
+    "drag-and-drop.playlist-move-instructions": [
+        {
+            "type": 0,
+            "value": "Чтобы переместить трек в плейлисте, нажмите клавишу Enter."
+        }
+    ],
+    "drag-and-drop.playlist-on-move": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " перемещен на позицию "
+        },
+        {
+            "type": 1,
+            "value": "index"
+        },
+        {
+            "type": 0,
+            "value": ". Для завершения перемещения нажмите клавишу Enter. Для отмены перемещения нажмите клавишу Esc."
+        }
+    ],
+    "drag-and-drop.playlist-on-move-cancel": [
+        {
+            "type": 0,
+            "value": "Перемещение трека отменено."
+        }
+    ],
+    "drag-and-drop.playlist-on-move-end": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " окончательно перемещен."
+        }
+    ],
+    "drag-and-drop.playlist-on-move-end-with-index": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " окончательно перемещен на позицию "
+        },
+        {
+            "type": 1,
+            "value": "index"
+        },
+        {
+            "type": 0,
+            "value": "."
+        }
+    ],
+    "drag-and-drop.playlist-on-move-fail": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " вышел за пределы зоны перемещения."
+        }
+    ],
+    "drag-and-drop.playlist-on-move-start": [
+        {
+            "type": 0,
+            "value": "Для перемещения выбран трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " на позиции "
+        },
+        {
+            "type": 1,
+            "value": "index"
+        },
+        {
+            "type": 0,
+            "value": "."
+        }
+    ],
+    "entity-names.album": [
+        {
+            "type": 0,
+            "value": "Альбом"
+        }
+    ],
+    "entity-names.album-name": [
+        {
+            "type": 0,
+            "value": "Альбом "
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        }
+    ],
+    "entity-names.albums": [
+        {
+            "type": 0,
+            "value": "Альбомы"
+        }
+    ],
+    "entity-names.albums-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "альбома"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "альбомов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "альбом"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "альбомов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "entity-names.albums-tracks-list": [
+        {
+            "type": 0,
+            "value": "Список треков альбома «"
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "entity-names.artist": [
+        {
+            "type": 0,
+            "value": "Артист"
+        }
+    ],
+    "entity-names.artist-albums-list": [
+        {
+            "type": 0,
+            "value": "Список альбомов артиста"
+        }
+    ],
+    "entity-names.artist-compilations-list": [
+        {
+            "type": 0,
+            "value": "Список сборников артиста"
+        }
+    ],
+    "entity-names.artist-name": [
+        {
+            "type": 0,
+            "value": "Артист "
+        },
+        {
+            "type": 1,
+            "value": "artistName"
+        }
+    ],
+    "entity-names.artist-playlist": [
+        {
+            "type": 0,
+            "value": "Плейлисты"
+        }
+    ],
+    "entity-names.artist-studio-albums-list": [
+        {
+            "type": 0,
+            "value": "Список студийных альбомов артиста"
+        }
+    ],
+    "entity-names.artist-tracks-list": [
+        {
+            "type": 0,
+            "value": "Список треков артиста"
+        }
+    ],
+    "entity-names.artists": [
+        {
+            "type": 0,
+            "value": "Исполнители"
+        }
+    ],
+    "entity-names.audiobook": [
+        {
+            "type": 0,
+            "value": "Аудиокнига"
+        }
+    ],
+    "entity-names.chart-tracks-list": [
+        {
+            "type": 0,
+            "value": "Список треков чарта"
+        }
+    ],
+    "entity-names.collection": [
+        {
+            "type": 0,
+            "value": "Коллекция"
+        }
+    ],
+    "entity-names.compilations": [
+        {
+            "type": 0,
+            "value": "Сборники"
+        }
+    ],
+    "entity-names.composer": [
+        {
+            "type": 0,
+            "value": "Композитор"
+        }
+    ],
+    "entity-names.concerts": [
+        {
+            "type": 0,
+            "value": "Концерты"
+        }
+    ],
+    "entity-names.created-playlists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "собранных плейлиста"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "собранных плейлистов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "собранный плейлист"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "собранных плейлистов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "entity-names.disk-number": [
+        {
+            "type": 0,
+            "value": "Диск "
+        },
+        {
+            "type": 1,
+            "value": "number"
+        }
+    ],
+    "entity-names.fairy-tale": [
+        {
+            "type": 0,
+            "value": "Аудиосказка"
+        }
+    ],
+    "entity-names.favourite-albums": [
+        {
+            "type": 0,
+            "value": "Любимые альбомы"
+        }
+    ],
+    "entity-names.favourite-playlists": [
+        {
+            "type": 0,
+            "value": "Любимые плейлисты"
+        }
+    ],
+    "entity-names.has-your-like": [
+        {
+            "type": 0,
+            "value": "Есть ваш лайк"
+        }
+    ],
+    "entity-names.liked-playlist": [
+        {
+            "type": 0,
+            "value": "Мне нравится"
+        }
+    ],
+    "entity-names.liked-playlists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "понравившихся плейлиста"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "понравившихся плейлистов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "понравившийся плейлист"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "понравившихся плейлистов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "entity-names.likes-counter": [
+        {
+            "type": 1,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайка"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайк"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        }
+    ],
+    "entity-names.likes-counter-empty": [
+        {
+            "type": 0,
+            "value": "Еще нет лайков"
+        }
+    ],
+    "entity-names.listeners-per-month": [
+        {
+            "style": null,
+            "type": 2,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателя"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателей"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушатель"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателей"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " в месяц"
+        }
+    ],
+    "entity-names.mixes": [
+        {
+            "type": 0,
+            "value": "Подборки"
+        }
+    ],
+    "entity-names.my-playlists": [
+        {
+            "type": 0,
+            "value": "Мои плейлисты"
+        }
+    ],
+    "entity-names.my-vibe": [
+        {
+            "type": 0,
+            "value": "Моя волна"
+        }
+    ],
+    "entity-names.new-albums": [
+        {
+            "type": 0,
+            "value": "Новые альбомы"
+        }
+    ],
+    "entity-names.new-albums-in-genre": [
+        {
+            "type": 0,
+            "value": "Новые альбомы в этом жанре"
+        }
+    ],
+    "entity-names.new-playlist": [
+        {
+            "type": 0,
+            "value": "Новый плейлист"
+        }
+    ],
+    "entity-names.number-of-more-artists": [
+        {
+            "type": 0,
+            "value": "и ещё "
+        },
+        {
+            "type": 1,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителя"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителей"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнитель"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителей"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        }
+    ],
+    "entity-names.number-of-tracks": [
+        {
+            "type": 1,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трека"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трек"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        }
+    ],
+    "entity-names.other-album-versions": [
+        {
+            "type": 0,
+            "value": "Другие версии альбома"
+        }
+    ],
+    "entity-names.other-albums-of-artist": [
+        {
+            "type": 0,
+            "value": "Другие альбомы исполнителя"
+        }
+    ],
+    "entity-names.playlist": [
+        {
+            "type": 0,
+            "value": "Плейлист"
+        }
+    ],
+    "entity-names.playlist-name": [
+        {
+            "type": 0,
+            "value": "Плейлист "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        }
+    ],
+    "entity-names.playlist-tracks-list": [
+        {
+            "type": 0,
+            "value": "Список треков плейлиста «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "entity-names.podcast": [
+        {
+            "type": 0,
+            "value": "Подкаст"
+        }
+    ],
+    "entity-names.podcast-last-episodes": [
+        {
+            "type": 0,
+            "value": "Последние выпуски"
+        }
+    ],
+    "entity-names.podcast-name": [
+        {
+            "type": 0,
+            "value": "Подкаст "
+        },
+        {
+            "type": 1,
+            "value": "podcastName"
+        }
+    ],
+    "entity-names.popular-albums": [
+        {
+            "type": 0,
+            "value": "Популярные альбомы"
+        }
+    ],
+    "entity-names.popular-among-users": [
+        {
+            "type": 0,
+            "value": "Популярно у слушателей"
+        }
+    ],
+    "entity-names.popular-artists": [
+        {
+            "type": 0,
+            "value": "Популярные исполнители"
+        }
+    ],
+    "entity-names.popular-playlists": [
+        {
+            "type": 0,
+            "value": "Популярные плейлисты"
+        }
+    ],
+    "entity-names.popular-tracks": [
+        {
+            "type": 0,
+            "value": "Популярные треки"
+        }
+    ],
+    "entity-names.recently-release": [
+        {
+            "type": 0,
+            "value": "Недавний релиз"
+        }
+    ],
+    "entity-names.season-number": [
+        {
+            "type": 0,
+            "value": "Сезон "
+        },
+        {
+            "type": 1,
+            "value": "number"
+        }
+    ],
+    "entity-names.similar-artists": [
+        {
+            "type": 0,
+            "value": "Похожие исполнители"
+        }
+    ],
+    "entity-names.similar-playlists": [
+        {
+            "type": 0,
+            "value": "Похожие плейлисты"
+        }
+    ],
+    "entity-names.singer": [
+        {
+            "type": 0,
+            "value": "Исполнитель"
+        }
+    ],
+    "entity-names.single": [
+        {
+            "type": 0,
+            "value": "Сингл"
+        }
+    ],
+    "entity-names.studio-albums": [
+        {
+            "type": 0,
+            "value": "Студийные альбомы"
+        }
+    ],
+    "entity-names.track": [
+        {
+            "type": 0,
+            "value": "Трек"
+        }
+    ],
+    "entity-names.track-name": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        }
+    ],
+    "entity-names.tracks": [
+        {
+            "type": 0,
+            "value": "Треки"
+        }
+    ],
+    "entity-names.tracks-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трека"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трек"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "entity-names.upcoming-album": [
+        {
+            "type": 0,
+            "value": "Скоро новый релиз"
+        }
+    ],
+    "entity-names.upcoming-album-date": [
+        {
+            "type": 0,
+            "value": "Выйдет "
+        },
+        {
+            "type": 1,
+            "value": "releaseDate"
+        }
+    ],
+    "entity-names.upcoming-album-name": [
+        {
+            "type": 0,
+            "value": "Предстоящий релиз "
+        },
+        {
+            "type": 1,
+            "value": "upcomingAlbumName"
+        }
+    ],
+    "entity-names.upcoming-album-play-disabled": [
+        {
+            "type": 0,
+            "value": "Для воспроизведения нужно дождаться предстоящего релиза"
+        }
+    ],
+    "entity-names.upcoming-albums": [
+        {
+            "type": 0,
+            "value": "Будущие релизы"
+        }
+    ],
+    "entity-names.upcoming-albums-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "будущих релиза"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "будущих релизов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "будущий релиз"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "будущих релизов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "entity-names.vibe-name": [
+        {
+            "type": 0,
+            "value": "Моя волна "
+        },
+        {
+            "type": 1,
+            "value": "vibeName"
+        }
+    ],
+    "error-messages.empty-artist-familiar-collection-title": [
+        {
+            "type": 0,
+            "value": "У вас пока нет треков исполнителя в Коллекции"
+        }
+    ],
+    "error-messages.empty-artist-familiar-vibe-title": [
+        {
+            "type": 0,
+            "value": "Вы пока не слушали в Моей волне треки исполнителя"
+        }
+    ],
+    "error-messages.empty-collection-albums-description": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки синглам и альбомам, чтобы увидеть их здесь"
+        }
+    ],
+    "error-messages.empty-collection-albums-title": [
+        {
+            "type": 0,
+            "value": "У вас нет альбомов в Коллекции"
+        }
+    ],
+    "error-messages.empty-collection-liked-playlists": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки плейлистам, и они появятся тут"
+        }
+    ],
+    "error-messages.empty-collection-playlist-description": [
+        {
+            "type": 0,
+            "value": "Треки можно найти через поиск"
+        }
+    ],
+    "error-messages.empty-collection-playlist-title": [
+        {
+            "type": 0,
+            "value": "Добавьте треки в плейлист"
+        }
+    ],
+    "error-messages.empty-collection-upcoming-albums-description": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки на странице любимых артистов и следите за их обновлениями"
+        }
+    ],
+    "error-messages.empty-collection-upcoming-albums-title": [
+        {
+            "type": 0,
+            "value": "У вас нет Будущих релизов в Коллекции"
+        }
+    ],
+    "error-messages.error-during-action": [
+        {
+            "type": 0,
+            "value": "При выполнении действия произошла ошибка"
+        }
+    ],
+    "error-messages.error-load-part-page": [
+        {
+            "type": 0,
+            "value": "Не удалось загрузить часть страницы"
+        }
+    ],
+    "error-messages.something-went-wrong": [
+        {
+            "type": 0,
+            "value": "Что-то пошло не так"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-album": [
+        {
+            "type": 0,
+            "value": "К альбому"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-artist": [
+        {
+            "type": 0,
+            "value": "К артисту"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-podcast": [
+        {
+            "type": 0,
+            "value": "К подкасту"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-track": [
+        {
+            "type": 0,
+            "value": "К треку"
+        }
+    ],
+    "extra-explicit.foreign-agent": [
+        {
+            "type": 0,
+            "value": "ИСПОЛНИТЕЛЬ ПРИЗНАН ИНОАГЕНТОМ"
+        }
+    ],
+    "extra-explicit.play-unavailable": [
+        {
+            "type": 0,
+            "value": "Воспроизведение недоступно"
+        }
+    ],
+    "extra-explicit.reject-unsafe-entity": [
+        {
+            "type": 0,
+            "value": "Не буду слушать"
+        }
+    ],
+    "footer.explicit-content": [
+        {
+            "type": 0,
+            "value": "Сервис Яндекс Музыка может содержать информацию, не&nbsp;предназначенную для&nbsp;несовершеннолетних"
+        }
+    ],
+    "footer.links-copyright-holders": [
+        {
+            "type": 0,
+            "value": "Правообладателям"
+        }
+    ],
+    "footer.links-help": [
+        {
+            "type": 0,
+            "value": "Справка"
+        }
+    ],
+    "footer.links-recommendation-rules": [
+        {
+            "type": 0,
+            "value": "Правила рекомендаций"
+        }
+    ],
+    "footer.links-terms": [
+        {
+            "type": 0,
+            "value": "Пользовательское соглашение"
+        }
+    ],
+    "footer.yandex-music": [
+        {
+            "type": 0,
+            "value": "Яндекс Музыка"
+        }
+    ],
+    "footer.yandex-project": [
+        {
+            "type": 0,
+            "value": "Проект компании Яндекс"
+        }
+    ],
+    "future-feature.message": [
+        {
+            "type": 0,
+            "value": "Функция в разработке, но скоро станет доступна."
+        }
+    ],
+    "interface-actions.add-track-to-playlist": [
+        {
+            "type": 0,
+            "value": "Добавить трек в плейлист"
+        }
+    ],
+    "interface-actions.cancel": [
+        {
+            "type": 0,
+            "value": "Отменить"
+        }
+    ],
+    "interface-actions.change": [
+        {
+            "type": 0,
+            "value": "Изменить"
+        }
+    ],
+    "interface-actions.close": [
+        {
+            "type": 0,
+            "value": "Закрыть"
+        }
+    ],
+    "interface-actions.close-my-vibe-settings": [
+        {
+            "type": 0,
+            "value": "Закрыть меню настроек"
+        }
+    ],
+    "interface-actions.configure-my-vibe": [
+        {
+            "type": 0,
+            "value": "Настроить"
+        }
+    ],
+    "interface-actions.confirm": [
+        {
+            "type": 0,
+            "value": "Понятно"
+        }
+    ],
+    "interface-actions.context-menu": [
+        {
+            "type": 0,
+            "value": "Контекстное меню"
+        }
+    ],
+    "interface-actions.copy-link": [
+        {
+            "type": 0,
+            "value": "Скопировать ссылку"
+        }
+    ],
+    "interface-actions.date-today": [
+        {
+            "type": 0,
+            "value": "Сегодня"
+        }
+    ],
+    "interface-actions.date-yesterday": [
+        {
+            "type": 0,
+            "value": "Вчера"
+        }
+    ],
+    "interface-actions.do-not-like": [
+        {
+            "type": 0,
+            "value": "Не нравится"
+        }
+    ],
+    "interface-actions.he-updated-playlist-date": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновил плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.he-updated-playlist-date-with-year": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновил плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.he-updated-playlist-today": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновил плейлист сегодня"
+        }
+    ],
+    "interface-actions.he-updated-playlist-yesterday": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновил плейлист вчера"
+        }
+    ],
+    "interface-actions.like": [
+        {
+            "type": 0,
+            "value": "Нравится"
+        }
+    ],
+    "interface-actions.my-vibe-context-settings": [
+        {
+            "type": 0,
+            "value": "По занятию"
+        }
+    ],
+    "interface-actions.my-vibe-settings": [
+        {
+            "type": 0,
+            "value": "Настроить Мою волну"
+        }
+    ],
+    "interface-actions.pin": [
+        {
+            "type": 0,
+            "value": "Закрепить"
+        }
+    ],
+    "interface-actions.playlist-made-for-date": [
+        {
+            "type": 0,
+            "value": "Cобран для "
+        },
+        {
+            "type": 1,
+            "value": "playlistReceiver"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.playlist-made-for-date-with-year": [
+        {
+            "type": 0,
+            "value": "Cобран для "
+        },
+        {
+            "type": 1,
+            "value": "playlistReceiver"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.playlist-made-for-today": [
+        {
+            "type": 0,
+            "value": "Cобран для "
+        },
+        {
+            "type": 1,
+            "value": "playlistReceiver"
+        },
+        {
+            "type": 0,
+            "value": " сегодня"
+        }
+    ],
+    "interface-actions.playlist-made-for-yesterday": [
+        {
+            "type": 0,
+            "value": "Cобран для "
+        },
+        {
+            "type": 1,
+            "value": "playlistReceiver"
+        },
+        {
+            "type": 0,
+            "value": " вчера"
+        }
+    ],
+    "interface-actions.reload-part-page": [
+        {
+            "type": 0,
+            "value": "Перезагрузить часть страницы"
+        }
+    ],
+    "interface-actions.reset-my-vibe-settings": [
+        {
+            "type": 0,
+            "value": "Сбросить"
+        }
+    ],
+    "interface-actions.reset-search-input": [
+        {
+            "type": 0,
+            "value": "Очистить поиск"
+        }
+    ],
+    "interface-actions.save": [
+        {
+            "type": 0,
+            "value": "Сохранить"
+        }
+    ],
+    "interface-actions.share": [
+        {
+            "type": 0,
+            "value": "Поделиться"
+        }
+    ],
+    "interface-actions.she-updated-playlist-date": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновила плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.she-updated-playlist-date-with-year": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновила плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.she-updated-playlist-today": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновила плейлист сегодня"
+        }
+    ],
+    "interface-actions.she-updated-playlist-yesterday": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " обновила плейлист вчера"
+        }
+    ],
+    "interface-actions.subscribe": [
+        {
+            "type": 0,
+            "value": "Подписаться на подкаст"
+        }
+    ],
+    "interface-actions.subscribed": [
+        {
+            "type": 0,
+            "value": "Вы подписаны"
+        }
+    ],
+    "interface-actions.unpin": [
+        {
+            "type": 0,
+            "value": "Открепить"
+        }
+    ],
+    "loading-messages.concert-is-loading": [
+        {
+            "type": 0,
+            "value": "Концерт загружается"
+        }
+    ],
+    "loading-messages.content-is-loading": [
+        {
+            "type": 0,
+            "value": "Контент загружается"
+        }
+    ],
+    "loading-messages.entity-is-loading": [
+        {
+            "type": 1,
+            "value": "entityName"
+        },
+        {
+            "type": 0,
+            "value": " загружается"
+        }
+    ],
+    "mixes.albums-list": [
+        {
+            "type": 0,
+            "value": "Список альбомов подборки «"
+        },
+        {
+            "type": 1,
+            "value": "genreName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "mixes.artists-list": [
+        {
+            "type": 0,
+            "value": "Список исполнителей подборки «"
+        },
+        {
+            "type": 1,
+            "value": "genreName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "mixes.playlists-list": [
+        {
+            "type": 0,
+            "value": "Список плейлистов подборки «"
+        },
+        {
+            "type": 1,
+            "value": "genreName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "music-history.album": [
+        {
+            "type": 0,
+            "value": "Альбом"
+        }
+    ],
+    "music-history.artist": [
+        {
+            "type": 0,
+            "value": "Исполнитель"
+        }
+    ],
+    "music-history.empty-title": [
+        {
+            "type": 0,
+            "value": "Тут найдётся всё, что вы слушали в последнее время"
+        }
+    ],
+    "music-history.my-vibe": [
+        {
+            "type": 0,
+            "value": "Моя волна"
+        }
+    ],
+    "music-history.playlist": [
+        {
+            "type": 0,
+            "value": "Плейлист"
+        }
+    ],
+    "music-history.search": [
+        {
+            "type": 0,
+            "value": "Результаты поиска"
+        }
+    ],
+    "music-history.shuffle": [
+        {
+            "type": 0,
+            "value": "Слушали вперемешку"
+        }
+    ],
+    "music-history.title": [
+        {
+            "type": 0,
+            "value": "История"
+        }
+    ],
+    "navigation.exit": [
+        {
+            "type": 0,
+            "value": "Закрыть"
+        }
+    ],
+    "navigation.feedback": [
+        {
+            "type": 0,
+            "value": "Обратная связь"
+        }
+    ],
+    "navigation.go-back": [
+        {
+            "type": 0,
+            "value": "Вернуться назад"
+        }
+    ],
+    "navigation.go-forward": [
+        {
+            "type": 0,
+            "value": "Вернуться вперед"
+        }
+    ],
+    "navigation.main-menu": [
+        {
+            "type": 0,
+            "value": "Главное меню"
+        }
+    ],
+    "navigation.page-collection": [
+        {
+            "type": 0,
+            "value": "Коллекция"
+        }
+    ],
+    "navigation.page-kinopoisk": [
+        {
+            "type": 0,
+            "value": "Кинопоиск"
+        }
+    ],
+    "navigation.page-main": [
+        {
+            "type": 0,
+            "value": "Главная"
+        }
+    ],
+    "navigation.page-non-music": [
+        {
+            "type": 0,
+            "value": "Подкасты и книги"
+        }
+    ],
+    "navigation.pins-list": [
+        {
+            "type": 0,
+            "value": "Закрепленное"
+        }
+    ],
+    "navigation.search": [
+        {
+            "type": 0,
+            "value": "Поиск"
+        }
+    ],
+    "notifications-info.added-to": [
+        {
+            "type": 0,
+            "value": "добавлен в"
+        }
+    ],
+    "notifications-info.added-to-playlist": [
+        {
+            "type": 0,
+            "value": "добавлен в плейлист «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "notifications-info.added-track-to-playlist": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в плейлист «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "notifications-info.album-link": [
+        {
+            "type": 0,
+            "value": "Ссылка на альбом"
+        }
+    ],
+    "notifications-info.artist-link": [
+        {
+            "type": 0,
+            "value": "Ссылка на артиста"
+        }
+    ],
+    "notifications-info.change-repeat-context": [
+        {
+            "type": 0,
+            "value": "Повтор списка воспроизведения включен"
+        }
+    ],
+    "notifications-info.change-repeat-none": [
+        {
+            "type": 0,
+            "value": "Повтор выключен"
+        }
+    ],
+    "notifications-info.change-repeat-track": [
+        {
+            "type": 0,
+            "value": "Повтор трека включен"
+        }
+    ],
+    "notifications-info.copied": [
+        {
+            "type": 0,
+            "value": "скопирована"
+        }
+    ],
+    "notifications-info.from-collection": [
+        {
+            "type": 0,
+            "value": "Коллекции"
+        }
+    ],
+    "notifications-info.my-vibe-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "закреплена в боковом меню"
+        }
+    ],
+    "notifications-info.my-vibe-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "удалена из бокового меню"
+        }
+    ],
+    "notifications-info.pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "закреплен в боковом меню"
+        }
+    ],
+    "notifications-info.playlist-link": [
+        {
+            "type": 0,
+            "value": "Ссылка на плейлист"
+        }
+    ],
+    "notifications-info.quality-changed": [
+        {
+            "type": 0,
+            "value": "Включено "
+        },
+        {
+            "type": 1,
+            "value": "quality"
+        },
+        {
+            "type": 0,
+            "value": " качество звука"
+        }
+    ],
+    "notifications-info.removed-from": [
+        {
+            "type": 0,
+            "value": "удален из"
+        }
+    ],
+    "notifications-info.removed-from-playlist": [
+        {
+            "type": 0,
+            "value": "удален из плейлиста"
+        }
+    ],
+    "notifications-info.shuffle-disabled": [
+        {
+            "type": 0,
+            "value": "Воспроизведение подряд"
+        }
+    ],
+    "notifications-info.shuffle-enabled": [
+        {
+            "type": 0,
+            "value": "Случайный порядок"
+        }
+    ],
+    "notifications-info.to-collection": [
+        {
+            "type": 0,
+            "value": "Коллекцию"
+        }
+    ],
+    "notifications-info.track-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Теперь трек сможет появляться в ваших рекомендациях"
+        }
+    ],
+    "notifications-info.track-link": [
+        {
+            "type": 0,
+            "value": "Ссылка на трек"
+        }
+    ],
+    "notifications-info.track-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Трек больше не будет появляться в ваших рекомендациях"
+        }
+    ],
+    "notifications-info.unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "удален из бокового меню"
+        }
+    ],
+    "onboarding.artist-donation-button": [
+        {
+            "type": 0,
+            "value": "Удвоим сумму вашего доната"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "за наш счёт"
+        }
+    ],
+    "onboarding.artist-donation-button-1": [
+        {
+            "type": 0,
+            "value": "Поддержите донатом"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "любимого артиста"
+        }
+    ],
+    "page-error.page-does-not-exist": [
+        {
+            "type": 0,
+            "value": "Страница не найдена"
+        }
+    ],
+    "page-error.page-does-not-exist-description": [
+        {
+            "type": 0,
+            "value": "Мы не нашли нужную страницу."
+        }
+    ],
+    "page-error.reload-page-button": [
+        {
+            "type": 0,
+            "value": "Обновить страницу"
+        }
+    ],
+    "page-error.restart-app-button": [
+        {
+            "type": 0,
+            "value": "Перезагрузить приложение"
+        }
+    ],
+    "page-error.try-to-reload-page": [
+        {
+            "type": 0,
+            "value": "Попробуйте обновить страницу."
+        }
+    ],
+    "page-error.try-to-restart-app": [
+        {
+            "type": 0,
+            "value": "Попробуйте перезагрузить приложение."
+        }
+    ],
+    "page.familiar-collection": [
+        {
+            "type": 0,
+            "value": "У вас в Коллекции"
+        }
+    ],
+    "page.familiar-vibe": [
+        {
+            "type": 0,
+            "value": "Слушали в Моей волне"
+        }
+    ],
+    "page.familiar-you": [
+        {
+            "type": 0,
+            "value": "Знакомое вам"
+        }
+    ],
+    "page.results-of-the-year": [
+        {
+            "type": 0,
+            "value": "Итоги года"
+        }
+    ],
+    "page.settings": [
+        {
+            "type": 0,
+            "value": "Настройки"
+        }
+    ],
+    "payment.buy": [
+        {
+            "type": 0,
+            "value": "Купить"
+        }
+    ],
+    "payment.min-price": [
+        {
+            "type": 0,
+            "value": "от "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        }
+    ],
+    "payment.offer-button": [
+        {
+            "type": 0,
+            "value": "Оформить подписку"
+        }
+    ],
+    "player-actions.audio-quality": [
+        {
+            "type": 0,
+            "value": "Настройки звука"
+        }
+    ],
+    "player-actions.audio-quality-hq": [
+        {
+            "type": 0,
+            "value": "Высокое"
+        }
+    ],
+    "player-actions.audio-quality-nq": [
+        {
+            "type": 0,
+            "value": "Оптимальное"
+        }
+    ],
+    "player-actions.cast": [
+        {
+            "type": 0,
+            "value": "Выбор устройства"
+        }
+    ],
+    "player-actions.fullscreen": [
+        {
+            "type": 0,
+            "value": "На весь экран"
+        }
+    ],
+    "player-actions.history": [
+        {
+            "type": 0,
+            "value": "Очередь"
+        }
+    ],
+    "player-actions.listen": [
+        {
+            "type": 0,
+            "value": "Слушать"
+        }
+    ],
+    "player-actions.lyrics": [
+        {
+            "type": 0,
+            "value": "Текст"
+        }
+    ],
+    "player-actions.next-track": [
+        {
+            "type": 0,
+            "value": "Следующая песня"
+        }
+    ],
+    "player-actions.pause": [
+        {
+            "type": 0,
+            "value": "Пауза"
+        }
+    ],
+    "player-actions.play": [
+        {
+            "type": 0,
+            "value": "Воспроизведение"
+        }
+    ],
+    "player-actions.previous-track": [
+        {
+            "type": 0,
+            "value": "Предыдущая песня"
+        }
+    ],
+    "player-actions.repeat": [
+        {
+            "type": 0,
+            "value": "Повтор"
+        }
+    ],
+    "player-actions.repeat-context": [
+        {
+            "type": 0,
+            "value": "Повтор списка воспроизведения"
+        }
+    ],
+    "player-actions.repeat-one": [
+        {
+            "type": 0,
+            "value": "Повтор трека"
+        }
+    ],
+    "player-actions.shuffle": [
+        {
+            "type": 0,
+            "value": "В случайном порядке"
+        }
+    ],
+    "player-actions.timecode-control": [
+        {
+            "type": 0,
+            "value": "Управление таймкодом"
+        }
+    ],
+    "player-actions.volume-control": [
+        {
+            "type": 0,
+            "value": "Управление громкостью"
+        }
+    ],
+    "player-actions.volume-off": [
+        {
+            "type": 0,
+            "value": "Выключить звук"
+        }
+    ],
+    "player-actions.volume-on": [
+        {
+            "type": 0,
+            "value": "Включить звук"
+        }
+    ],
+    "playing-now.album": [
+        {
+            "type": 0,
+            "value": "Альбом «"
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "playing-now.common": [
+        {
+            "type": 0,
+            "value": "Сейчас играет"
+        }
+    ],
+    "playing-now.playlist": [
+        {
+            "type": 0,
+            "value": "Плейлист «"
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "playlist-actions.add-description": [
+        {
+            "type": 0,
+            "value": "Добавить описание"
+        }
+    ],
+    "playlist-actions.add-poster": [
+        {
+            "type": 0,
+            "value": "Добавить обложку"
+        }
+    ],
+    "playlist-actions.add-track-to-playlist": [
+        {
+            "type": 0,
+            "value": "Добавить в плейлист"
+        }
+    ],
+    "playlist-actions.change-description": [
+        {
+            "type": 0,
+            "value": "Изменить описание"
+        }
+    ],
+    "playlist-actions.change-description-abbr": [
+        {
+            "type": 0,
+            "value": "Ред."
+        }
+    ],
+    "playlist-actions.change-poster": [
+        {
+            "type": 0,
+            "value": "Изменить обложку"
+        }
+    ],
+    "playlist-actions.change-title": [
+        {
+            "type": 0,
+            "value": "Изменить название"
+        }
+    ],
+    "playlist-actions.create-playlist": [
+        {
+            "type": 0,
+            "value": "Создать плейлист"
+        }
+    ],
+    "playlist-actions.enter-title": [
+        {
+            "type": 0,
+            "value": "Введите название"
+        }
+    ],
+    "playlist-actions.remove-from-playlist": [
+        {
+            "type": 0,
+            "value": "Удалить из плейлиста"
+        }
+    ],
+    "playlist-actions.remove-playlist": [
+        {
+            "type": 0,
+            "value": "Удалить плейлист"
+        }
+    ],
+    "playlist-errors.error-during-loading-playlist": [
+        {
+            "type": 0,
+            "value": "При загрузке плейлиста произошла ошибка"
+        }
+    ],
+    "playlist-errors.failed-add-track-to-playlist": [
+        {
+            "type": 0,
+            "value": "Трек не добавлен в плейлист, попробуйте снова"
+        }
+    ],
+    "playlist-errors.failed-to-change-description": [
+        {
+            "type": 0,
+            "value": "Не удалось изменить описание плейлиста"
+        }
+    ],
+    "playlist-errors.failed-to-change-poster": [
+        {
+            "type": 0,
+            "value": "Не удалось изменить обложку плейлиста"
+        }
+    ],
+    "playlist-errors.failed-to-change-title": [
+        {
+            "type": 0,
+            "value": "Не удалось изменить название плейлиста"
+        }
+    ],
+    "playlist-errors.failed-to-create-playlist": [
+        {
+            "type": 0,
+            "value": "Не удалось создать плейлист"
+        }
+    ],
+    "playlist-errors.failed-to-remove-playlist": [
+        {
+            "type": 0,
+            "value": "Не удалось удалить плейлист"
+        }
+    ],
+    "playlist-errors.failed-to-remove-track": [
+        {
+            "type": 0,
+            "value": "Не удалось удалить трек из плейлиста"
+        }
+    ],
+    "podcast-errors.error-during-loading-podcast": [
+        {
+            "type": 0,
+            "value": "При загрузке подкаста произошла ошибка"
+        }
+    ],
+    "podcast.age-limit": [
+        {
+            "type": 0,
+            "value": "Возрастное ограничение"
+        }
+    ],
+    "podcast.episodes-list": [
+        {
+            "type": 0,
+            "value": "Список эпизодов подкаста «"
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "podcast.last-episodes-list": [
+        {
+            "type": 0,
+            "value": "Список последних выпусков"
+        }
+    ],
+    "podcast.publisher-title": [
+        {
+            "type": 0,
+            "value": "Издатель"
+        }
+    ],
+    "podcast.publishers-title": [
+        {
+            "type": 0,
+            "value": "Издатели"
+        }
+    ],
+    "podcast.tab-about": [
+        {
+            "type": 0,
+            "value": "О подкасте"
+        }
+    ],
+    "podcast.tab-tracks": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "выпуска"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "выпусков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "выпуск"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "выпусков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "search-filters.album": [
+        {
+            "type": 0,
+            "value": "Альбомы"
+        }
+    ],
+    "search-filters.artist": [
+        {
+            "type": 0,
+            "value": "Исполнители"
+        }
+    ],
+    "search-filters.playlist": [
+        {
+            "type": 0,
+            "value": "Плейлисты"
+        }
+    ],
+    "search-filters.podcast": [
+        {
+            "type": 0,
+            "value": "Подкасты"
+        }
+    ],
+    "search-filters.top": [
+        {
+            "type": 0,
+            "value": "Топ"
+        }
+    ],
+    "search-filters.track": [
+        {
+            "type": 0,
+            "value": "Треки"
+        }
+    ],
+    "search-results.album": [
+        {
+            "type": 0,
+            "value": "Альбомы"
+        }
+    ],
+    "search-results.artist": [
+        {
+            "type": 0,
+            "value": "Исполнители"
+        }
+    ],
+    "search-results.best": [
+        {
+            "type": 0,
+            "value": "Лучшие результаты"
+        }
+    ],
+    "search-results.not-found-description": [
+        {
+            "type": 0,
+            "value": "Попробуйте написать по-другому"
+        }
+    ],
+    "search-results.not-found-title": [
+        {
+            "type": 0,
+            "value": "Ничего не нашли"
+        }
+    ],
+    "search-results.playlist": [
+        {
+            "type": 0,
+            "value": "Плейлисты"
+        }
+    ],
+    "search-results.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Подкасты и книги"
+        }
+    ],
+    "search.clear-history": [
+        {
+            "type": 0,
+            "value": "Очистить историю"
+        }
+    ],
+    "search.cleared-history": [
+        {
+            "type": 0,
+            "value": "История удалена"
+        }
+    ],
+    "search.corrected-text": [
+        {
+            "type": 0,
+            "value": "Возможно, вы искали "
+        },
+        {
+            "type": 1,
+            "value": "text"
+        }
+    ],
+    "search.history": [
+        {
+            "type": 0,
+            "value": "История"
+        }
+    ],
+    "search.history-empty": [
+        {
+            "type": 0,
+            "value": "История поиска пуста"
+        }
+    ],
+    "search.input-placeholder": [
+        {
+            "type": 0,
+            "value": "Трек, альбом, исполнитель"
+        }
+    ],
+    "search.search-catalog": [
+        {
+            "type": 0,
+            "value": "Поиск по каталогу"
+        }
+    ],
+    "search.track-placeholder": [
+        {
+            "type": 0,
+            "value": "Поиск трека"
+        }
+    ],
+    "settings.about-app": [
+        {
+            "type": 0,
+            "value": "О приложении"
+        }
+    ],
+    "settings.import-media": [
+        {
+            "type": 0,
+            "value": "Импорт медиатеки"
+        }
+    ],
+    "settings.import-media-description": [
+        {
+            "type": 0,
+            "value": "Перенесите плейлисты из других сервисов на Яндекс Музыку"
+        }
+    ],
+    "settings.preferences": [
+        {
+            "type": 0,
+            "value": "Уточнить предпочтения"
+        }
+    ],
+    "settings.preferences-description": [
+        {
+            "type": 0,
+            "value": "Если ваши музыкальные предпочтения поменялись, уточните это здесь"
+        }
+    ],
+    "settings.shortcuts": [
+        {
+            "type": 0,
+            "value": "Горячие клавиши"
+        }
+    ],
+    "shortcuts.like": [
+        {
+            "type": 0,
+            "value": "Лайк"
+        }
+    ],
+    "shortcuts.mute": [
+        {
+            "type": 0,
+            "value": "Отключить/включить звук"
+        }
+    ],
+    "shortcuts.next-track": [
+        {
+            "type": 0,
+            "value": "Переключить на следующий трек"
+        }
+    ],
+    "shortcuts.or": [
+        {
+            "type": 0,
+            "value": "или"
+        }
+    ],
+    "shortcuts.play-pause": [
+        {
+            "type": 0,
+            "value": "Включить музыку/поставить на паузу"
+        }
+    ],
+    "shortcuts.previous-track": [
+        {
+            "type": 0,
+            "value": "Переключить на предыдущий трек"
+        }
+    ],
+    "shortcuts.rewind": [
+        {
+            "type": 0,
+            "value": "Промотать назад"
+        }
+    ],
+    "shortcuts.skip-forward": [
+        {
+            "type": 0,
+            "value": "Промотать вперед"
+        }
+    ],
+    "shortcuts.switch-repeat-mode": [
+        {
+            "type": 0,
+            "value": "Переключение режима повтора"
+        }
+    ],
+    "shortcuts.switch-shuffle-mode": [
+        {
+            "type": 0,
+            "value": "Переключение режима («в случайном порядке»)"
+        }
+    ],
+    "shortcuts.unlike": [
+        {
+            "type": 0,
+            "value": "Дизлайк"
+        }
+    ],
+    "shortcuts.volume-down": [
+        {
+            "type": 0,
+            "value": "Уменьшить громкость"
+        }
+    ],
+    "shortcuts.volume-up": [
+        {
+            "type": 0,
+            "value": "Увеличить громкость"
+        }
+    ],
+    "sidebar.collapse": [
+        {
+            "type": 0,
+            "value": "Свернуть сайдбар"
+        }
+    ],
+    "sidebar.plus-badge": [
+        {
+            "type": 0,
+            "value": "Плюс"
+        }
+    ],
+    "sidebar.uncollapse": [
+        {
+            "type": 0,
+            "value": "Развернуть сайдбар"
+        }
+    ],
+    "slider.next-slide": [
+        {
+            "type": 0,
+            "value": "Следующий слайд"
+        }
+    ],
+    "slider.prev-slide": [
+        {
+            "type": 0,
+            "value": "Предыдущий слайд"
+        }
+    ],
+    "slides-stats.books": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "книги"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "книг"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "книга"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "книг"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.hours": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "часа"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "часов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "час"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "часов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.likes": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайка"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайк"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "лайков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.listeners": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателя"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателей"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушатель"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "слушателей"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.listenings": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "прослушивания"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "прослушиваний"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "прослушивание"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "прослушиваний"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.minutes": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минуты"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минута"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.minutes-with-books": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минуты"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минута"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " с книгами"
+        }
+    ],
+    "slides-stats.minutes-with-music": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минуты"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минута"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "минут"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " с Музыкой"
+        }
+    ],
+    "slides-stats.new-tracks": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "новых трека"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "новых треков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "новый трек"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "новых треков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.superfans": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "суперфана"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "суперфанов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "суперфан"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "суперфанов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "slides-stats.tracks": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трека"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "трек"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "треков"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
+    "track-modal.artist": [
+        {
+            "type": 0,
+            "value": "Исполнитель"
+        }
+    ],
+    "track-modal.artists": [
+        {
+            "type": 0,
+            "value": "Исполнители"
+        }
+    ],
+    "track-modal.composer": [
+        {
+            "type": 0,
+            "value": "Композитор"
+        }
+    ],
+    "track-modal.composers": [
+        {
+            "type": 0,
+            "value": "Композиторы"
+        }
+    ],
+    "track-modal.title": [
+        {
+            "type": 0,
+            "value": "О треке"
+        }
+    ],
+    "track-modal.track-name": [
+        {
+            "type": 0,
+            "value": "Название"
+        }
+    ],
+    "track-modal.version": [
+        {
+            "type": 0,
+            "value": "Версия"
+        }
+    ],
+    "track-title.error-not-found": [
+        {
+            "type": 0,
+            "value": "Трек недоступен"
+        }
+    ],
+    "track-title.podcast-not-found": [
+        {
+            "type": 0,
+            "value": "Подкаст недоступен"
+        }
+    ],
+    "trailer.listen-full-version": [
+        {
+            "type": 0,
+            "value": "Слушать полностью"
+        }
+    ],
+    "trailer.navigate": [
+        {
+            "type": 0,
+            "value": "Перейти"
+        }
+    ],
+    "trailer.title-album": [
+        {
+            "type": 0,
+            "value": "Трейлер альбома"
+        }
+    ],
+    "trailer.title-artist": [
+        {
+            "type": 0,
+            "value": "Трейлер исполнителя"
+        }
+    ],
+    "trailer.title-playlist": [
+        {
+            "type": 0,
+            "value": "Трейлер плейлиста"
+        }
+    ],
+    "trailer.title-track": [
+        {
+            "type": 0,
+            "value": "Трейлер трека"
+        }
+    ],
+    "vibe-actions.apply": [
+        {
+            "type": 0,
+            "value": "Применить настройку"
+        }
+    ],
+    "vibe-actions.aria-label-pause": [
+        {
+            "type": 0,
+            "value": "Пауза Моей волны"
+        }
+    ],
+    "vibe-actions.aria-label-play": [
+        {
+            "type": 0,
+            "value": "Воспроизведение Моей волны"
+        }
+    ],
+    "vibe-actions.aria-label-settings": [
+        {
+            "type": 0,
+            "value": "Настроить Мою волну"
+        }
+    ],
+    "vibe-actions.remove": [
+        {
+            "type": 0,
+            "value": "Снять настроку"
+        }
+    ],
+    "vibe-actions.reset-settings": [
+        {
+            "type": 0,
+            "value": "Сбросить настройки Моей волны"
+        }
+    ],
+    "vibe-actions.vibe-by-album": [
+        {
+            "type": 0,
+            "value": "Моя волна по альбому"
+        }
+    ],
+    "vibe-actions.vibe-by-artist": [
+        {
+            "type": 0,
+            "value": "Моя волна по артисту"
+        }
+    ],
+    "vibe-actions.vibe-by-playlist": [
+        {
+            "type": 0,
+            "value": "Моя волна по плейлисту"
+        }
+    ],
+    "vibe-actions.vibe-by-track": [
+        {
+            "type": 0,
+            "value": "Моя волна по треку"
+        }
+    ],
+    "vibe-errors.apply-vibe-setting": [
+        {
+            "type": 0,
+            "value": "При настройке Моей волны произошла ошибка"
+        }
+    ],
+    "vibe-errors.start-vibe": [
+        {
+            "type": 0,
+            "value": "При запуски Моей волны произошла ошибка"
+        }
+    ],
+    "welcome-page.beta-header": [
+        {
+            "type": 0,
+            "value": "Скоро здесь "
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "будет громко"
+        }
+    ],
+    "welcome-page.beta-text-short": [
+        {
+            "type": 0,
+            "value": "Возвращайтесь попозже"
+        }
+    ],
+    "welcome-page.not-auth-header": [
+        {
+            "type": 0,
+            "value": "Чтобы открыть приложение,"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "войдите в Плюс"
+        }
+    ],
+    "welcome-page.not-auth-text": [
+        {
+            "type": 0,
+            "value": "Бета-версия доступна только подписчикам"
+        }
+    ],
+    "welcome-page.offer-header": [
+        {
+            "type": 0,
+            "value": "У вас пока нет подписки Плюс"
+        }
+    ],
+    "welcome-page.offer-text": [
+        {
+            "type": 0,
+            "value": "Оформите подписку, чтобы получить доступ к приложению."
+        }
+    ],
+    "windows-menu.close": [
+        {
+            "type": 0,
+            "value": "Закрыть"
+        }
+    ],
+    "windows-menu.roll-up": [
+        {
+            "type": 0,
+            "value": "Свернуть"
+        }
+    ],
+    "windows-menu.unwrap": [
+        {
+            "type": 0,
+            "value": "Развернуть"
+        }
+    ],
+    "wizard.buttonText": [
+        {
+            "type": 0,
+            "value": "Выбрать исполнителей"
+        }
+    ],
+    "wizard.description": [
+        {
+            "type": 0,
+            "value": "Хотим узнать о вас больше, чтобы советовать подходящую музыку. Выберите любимых исполнителей, и рекомендации подстроятся под вас."
+        }
+    ],
+    "wizard.title": [
+        {
+            "type": 0,
+            "value": "Расскажите о себе"
+        }
+    ]
+}

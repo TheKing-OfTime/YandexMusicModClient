@@ -1,0 +1,16 @@
+{
+  "name": "lazy-val",
+  "version": "1.0.5",
+  "main": "out/main.js",
+  "author": "Vladimir Krivosheev",
+  "license": "MIT",
+  "repository": "develar/lazy-val",
+  "homepage": "https://github.com/develar/lazy-val",
+  "files": [
+    "out"
+  ],
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "typings": "./out/main.d.ts"
+}
