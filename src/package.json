@@ -11,7 +11,8 @@
         "electron-updater": "~6.1.4",
         "semver": "~7.5.4",
         "intl-messageformat": "~10.5.11",
-        "@formatjs/icu-messageformat-parser": "~2.7.6"
+        "@formatjs/icu-messageformat-parser": "~2.7.6",
+        "discord-rpc": "^4.0.1"
     },
     "devDependencies": {
         "@types/semver": "~7.5.6",

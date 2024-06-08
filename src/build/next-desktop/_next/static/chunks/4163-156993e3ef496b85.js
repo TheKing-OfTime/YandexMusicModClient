@@ -75,6 +75,7 @@
             isPlaying: e.status === C.Xz.PLAYING,
             status: e.status,
             track: e.track,
+            progress: e.progress,
           });
       };
       var p = n(75084),

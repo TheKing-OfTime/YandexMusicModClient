@@ -4463,6 +4463,7 @@
                           track:
                             v.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
+                          progress: v.state.playerState.progress.value?.played,
                         }));
                     }),
               s =

@@ -15,7 +15,8 @@ const states = {
   playing: { icon: "playing", name: "Playing" },
   paused: { icon: "paused", name: "Paused" },
   stopped: { icon: "paused", name: "Stopped" },
-  unknown: { icon: "paused", name: "Unknown" },
+  unknown: { icon: "logo", name: "Unknown" },
+  default: { icon: "logo", name: "Yandex Music" },
 };
 
 async function setActivity(
@@ -23,13 +24,15 @@ async function setActivity(
   trackName = "unknown",
   trackArtist = "unknown",
   trackAlbumAvatar = "logo",
-  trackDuration = undefined,
+  trackProgress = undefined,
+  trackDurationMs = undefined,
 ) {
   if (!rpc || !isReady) {
     return;
   }
 
-  let startTimestamp = new Date();
+  let startTimestamp = Date.now() - trackProgress * 1000;
+  let endTimestamp = startTimestamp + trackDurationMs;
   let stateKey = states[state]?.icon;
   let stateText = states[state]?.name;
 
@@ -42,6 +45,8 @@ async function setActivity(
     startTimestamp = undefined;
   }
 
+  endTimestamp = undefined;
+
   rpc
     .setActivity({
       type: 2,
@@ -52,6 +57,7 @@ async function setActivity(
       smallImageKey: stateKey,
       smallImageText: stateText,
       startTimestamp,
+      endTimestamp,
       instance: false,
     })
     .catch((e) => discordRichPresenceLogger.error(e));
@@ -62,12 +68,14 @@ rpc.on("ready", () => {
   discordRichPresenceLogger.info("Ready");
 });
 
+//rpc.on("close");
+
 rpc.login({ clientId }).catch((e) => {
   discordRichPresenceLogger.error(e);
 });
 
 const getArtist = (artistsArray) => {
-  let artistsLabel = artistsArray[0].name;
+  let artistsLabel = "by " + artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
     artistsLabel += ", " + artist.name;
@@ -76,7 +84,7 @@ const getArtist = (artistsArray) => {
 };
 
 const discordRichPresence = (playingState) => {
-  let title = playingState.track.title;
+  let title = playingState.track?.title;
   if (playingState.track.version) {
     title = playingState.track.title + ` (${playingState.track.version})`;
   }
@@ -87,7 +95,14 @@ const discordRichPresence = (playingState) => {
     "400x400",
   );
 
-  setActivity(playingState.status, title, artist, albumArt);
+  setActivity(
+    playingState.status,
+    title,
+    artist,
+    albumArt,
+    playingState.progress,
+    playingState.track.durationMs,
+  );
   discordRichPresenceLogger.info(
     "Rich Presence set to: " + playingState.status,
   );
