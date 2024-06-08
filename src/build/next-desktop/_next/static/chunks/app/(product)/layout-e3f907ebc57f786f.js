@@ -4437,7 +4437,14 @@
                           : null,
                       ),
                         i && n.setContextType(i),
-                        a && n.setContextId(a);
+                        a && n.setContextId(a),
+                        (0, ei.Pt)({
+                          status: "playing",
+                          track:
+                            v.state.queueState.currentEntity.value?.entity
+                              .entityData.meta,
+                          progress: 0,
+                        });
                     }),
               o =
                 null == v
@@ -4455,7 +4462,6 @@
                 null == v
                   ? void 0
                   : v.state.playerState.status.onChange((e) => {
-                      console.log(v.state.queueState.currentEntity.value);
                       e &&
                         (n.setStatus(e),
                         (0, ei.Pt)({

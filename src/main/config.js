@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyCommonConfig = exports.config = void 0;
 const package_json_1 = __importDefault(require("../package.json"));
 exports.config = {
-  enableDevTools: false,
+  enableDevTools: true,
   enableWebSecurity: true,
   enableAutoUpdate: true,
   bypassCSP: false,
