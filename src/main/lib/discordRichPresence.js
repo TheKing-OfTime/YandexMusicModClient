@@ -8,8 +8,30 @@ const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
 // Set this to your Client ID.
 const clientId = "1124055337234858005";
 
-const rpc = new DiscordRPC.Client({ transport: "ipc" });
+let rpc = undefined;
 let isReady = false;
+
+const initRPC = () => {
+  rpc = new DiscordRPC.Client({ transport: "ipc" });
+  isReady = false;
+
+  rpc.on("ready", () => {
+    isReady = true;
+    discordRichPresenceLogger.info("Ready");
+  });
+
+  rpc.on("close", (e) => {
+    isReady = false;
+    discordRichPresenceLogger.info("Closed");
+  });
+
+  rpc.on("error", (e) => {
+    isReady = false;
+    discordRichPresenceLogger.info("Error");
+  });
+};
+
+initRPC();
 
 const states = {
   playing: { icon: "playing", name: "Playing" },
@@ -28,7 +50,14 @@ async function setActivity(
   trackDurationMs = undefined,
 ) {
   if (!rpc || !isReady) {
-    return;
+    if (rpc) {
+      const connected = await tryReconnect();
+      if (!connected) {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   let startTimestamp = Date.now() - trackProgress * 1000;
@@ -61,18 +90,24 @@ async function setActivity(
       instance: false,
     })
     .catch((e) => discordRichPresenceLogger.error(e));
+
+  return true;
 }
 
-rpc.on("ready", () => {
-  isReady = true;
-  discordRichPresenceLogger.info("Ready");
-});
+const tryConnect = () => {
+  return rpc.login({ clientId }).catch((e) => {
+    discordRichPresenceLogger.error(e);
+  });
+};
 
-//rpc.on("close");
+const tryReconnect = () => {
+  initRPC();
+  return rpc.login({ clientId }).catch((e) => {
+    discordRichPresenceLogger.error(e);
+  });
+};
 
-rpc.login({ clientId }).catch((e) => {
-  discordRichPresenceLogger.error(e);
-});
+tryConnect();
 
 const getArtist = (artistsArray) => {
   let artistsLabel = "by " + artistsArray[0].name;
@@ -102,9 +137,20 @@ const discordRichPresence = (playingState) => {
     albumArt,
     playingState.progress,
     playingState.track.durationMs,
-  );
-  discordRichPresenceLogger.info(
-    "Rich Presence set to: " + playingState.status,
-  );
+  )
+    .then((activityStatus) => {
+      if (activityStatus) {
+        discordRichPresenceLogger.info(
+          "Rich Presence set to: " + playingState.status,
+        );
+      } else {
+        discordRichPresenceLogger.warn(
+          "Rich Presence set failed: RPC connection failed.",
+        );
+      }
+    })
+    .catch((e) =>
+      discordRichPresenceLogger.error("Rich Presence set failed: " + e),
+    );
 };
 exports.discordRichPresence = discordRichPresence;
