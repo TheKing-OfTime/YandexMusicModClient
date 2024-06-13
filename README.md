@@ -1,7 +1,6 @@
 # YandexMusicModClient
 ## This is a modification for Yandex Music Desktop application which unmodified version can be downloaded [here](https://music.yandex.com/download/)
-
-## YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
+### YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
 
 ## Install
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
