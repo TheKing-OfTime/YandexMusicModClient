@@ -49,6 +49,8 @@ async function setActivity(
   trackAlbumAvatar = "logo",
   trackProgress = undefined,
   trackDurationMs = undefined,
+  deepShareTrackUrl = undefined,
+  webShareTrackUrl = undefined,
 ) {
   if (!rpc || !isReady) {
     if (rpc) {
@@ -77,19 +79,34 @@ async function setActivity(
 
   endTimestamp = undefined;
 
+  let activityObject = {
+    type: 2,
+    details: trackName,
+    state: trackArtist,
+    largeImageKey: trackAlbumAvatar,
+    largeImageText: trackAlbum,
+    smallImageKey: stateKey,
+    smallImageText: stateText,
+    startTimestamp,
+    endTimestamp,
+    instance: false,
+  };
+
+  if (deepShareTrackUrl || webShareTrackUrl) {
+    activityObject.buttons = [
+      {
+        label: "Listen in Yandex Music Desktop",
+        url: deepShareTrackUrl,
+      },
+      {
+        label: "Listen in Yandex Music Web",
+        url: webShareTrackUrl,
+      },
+    ];
+  }
+
   rpc
-    .setActivity({
-      type: 2,
-      details: trackName,
-      state: trackArtist,
-      largeImageKey: trackAlbumAvatar,
-      largeImageText: trackAlbum,
-      smallImageKey: stateKey,
-      smallImageText: stateText,
-      startTimestamp,
-      endTimestamp,
-      instance: false,
-    })
+    .setActivity(activityObject)
     .catch((e) => discordRichPresenceLogger.error(e));
 
   return true;
@@ -139,6 +156,10 @@ const discordRichPresence = (playingState) => {
     "400x400",
   );
 
+  const shareTrackPath = `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`;
+  const deepShareTrackUrl = "yandexmusic://" + shareTrackPath;
+  const webShareTrackUrl = "https://music.yandex.ru/" + shareTrackPath;
+
   setActivity(
     playingState.status,
     title,
@@ -147,6 +168,8 @@ const discordRichPresence = (playingState) => {
     albumArt,
     playingState.progress,
     playingState.track.durationMs,
+    deepShareTrackUrl,
+    webShareTrackUrl,
   )
     .then((activityStatus) => {
       if (activityStatus) {
