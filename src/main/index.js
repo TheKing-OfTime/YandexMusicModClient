@@ -1,7 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
@@ -29,27 +31,28 @@ Logger_js_1.Logger.setupLogger();
 (0, singleInstance_js_1.checkForSingleInstance)();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
 (async () => {
-    const updater = (0, updater_js_1.getUpdater)();
-    await electron_1.app.whenReady();
-    (0, menu_js_1.setupMenu)();
-    const window = await (0, createWindow_js_1.createWindow)();
-    (0, safeRedirects_js_1.safeRedirects)(window);
-    (0, handleWindowLifecycleEvents_js_1.handleWindowLifecycleEvents)(window);
-    (0, handleWindowSessionEvents_js_1.handleWindowSessionEvents)(window);
-    (0, events_js_1.handleApplicationEvents)(window);
-    (0, handleExternalLink_js_1.handleExternalLink)(window);
-    (0, logWindowLifecycle_js_1.logWindowLifecycle)(window);
-    (0, handleDeeplink_js_1.handleDeeplink)(window);
-    (0, handleMetrikaRequests_js_1.handleMetrikaRequests)(window);
-    (0, handleCrash_js_1.handleCrash)();
-    await (0, loadURL_js_1.loadURL)(window);
-    if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
-        (0, customTitleBar_js_1.createCustomTitleBar)(window);
-    }
-    if (config_js_1.config.enableAutoUpdate) {
-        updater.start();
-        updater.onUpdate((version) => {
-            (0, events_js_1.sendUpdateAvailable)(window, version);
-        });
-    }
+  const updater = (0, updater_js_1.getUpdater)();
+  await electron_1.app.whenReady();
+  (0, menu_js_1.setupMenu)();
+  const window = await (0, createWindow_js_1.createWindow)();
+  (0, safeRedirects_js_1.safeRedirects)(window);
+  (0, handleWindowLifecycleEvents_js_1.handleWindowLifecycleEvents)(window);
+  (0, handleWindowSessionEvents_js_1.handleWindowSessionEvents)(window);
+  (0, events_js_1.handleApplicationEvents)(window);
+  (0, handleExternalLink_js_1.handleExternalLink)(window);
+  (0, logWindowLifecycle_js_1.logWindowLifecycle)(window);
+  (0, handleDeeplink_js_1.handleDeeplink)(window);
+  (0, handleMetrikaRequests_js_1.handleMetrikaRequests)(window);
+  //(0, handleCrash_js_1.taskBarExtension)(window);
+  (0, handleCrash_js_1.handleCrash)();
+  await (0, loadURL_js_1.loadURL)(window);
+  if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
+    (0, customTitleBar_js_1.createCustomTitleBar)(window);
+  }
+  if (config_js_1.config.enableAutoUpdate) {
+    updater.start();
+    updater.onUpdate((version) => {
+      (0, events_js_1.sendUpdateAvailable)(window, version);
+    });
+  }
 })();

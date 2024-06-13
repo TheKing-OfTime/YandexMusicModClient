@@ -45,6 +45,7 @@ async function setActivity(
   state,
   trackName = "unknown",
   trackArtist = "unknown",
+  trackAlbum = undefined,
   trackAlbumAvatar = "logo",
   trackProgress = undefined,
   trackDurationMs = undefined,
@@ -82,7 +83,7 @@ async function setActivity(
       details: trackName,
       state: trackArtist,
       largeImageKey: trackAlbumAvatar,
-      largeImageText: "Yandex Music",
+      largeImageText: trackAlbum,
       smallImageKey: stateKey,
       smallImageText: stateText,
       startTimestamp,
@@ -125,6 +126,14 @@ const discordRichPresence = (playingState) => {
   }
   const artist = getArtist(playingState.track.artists);
 
+  let album = playingState.track.albums?.[0]?.title;
+
+  if (title === album) {
+    album = undefined;
+  } else {
+    album = "on " + album;
+  }
+
   const albumArt = `https://${playingState.track.coverUri}`.replace(
     "%%",
     "400x400",
@@ -134,6 +143,7 @@ const discordRichPresence = (playingState) => {
     playingState.status,
     title,
     artist,
+    album,
     albumArt,
     playingState.progress,
     playingState.track.durationMs,
