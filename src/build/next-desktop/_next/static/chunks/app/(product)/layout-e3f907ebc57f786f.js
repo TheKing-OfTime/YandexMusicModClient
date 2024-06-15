@@ -4472,6 +4472,23 @@
                           progress: v.state.playerState.progress.value?.played,
                         }));
                     }),
+              seekTracker =
+                null == v
+                  ? void 0
+                  : v.state.playerState.event.onChange(() => {
+                      if (
+                        v.state.playerState.event.value === T.KX.SET_PROGRESS
+                      ) {
+                        (0, ei.Pt)({
+                          status: "playing",
+                          track:
+                            v.state.queueState.currentEntity.value?.entity
+                              .entityData.meta,
+                          progress:
+                            v.state.playerState.progress.value?.position,
+                        });
+                      }
+                    }),
               s =
                 null == v
                   ? void 0
@@ -4588,6 +4605,7 @@
               null == r || r(),
                 null == o || o(),
                 null == l || l(),
+                null == seekTracker || seekTracker(),
                 null == s || s(),
                 null == d || d(),
                 null == u || u(),
