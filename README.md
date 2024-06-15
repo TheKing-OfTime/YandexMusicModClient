@@ -3,6 +3,12 @@
 ### YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
 
 ## Install
+
+> [!WARNING]  
+> ### Installing the modification for an unsuitable client version can lead to unpredictable results.
+> Before installing, make sure that the client version and the version for which the modification was made coincide.
+> This can be checked on the Releases page
+
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
 1. Open command line
 2. Execute this two commands
@@ -14,11 +20,6 @@
 
 > [!NOTE]  
 > Relogin may be required after patch install.
-
-> [!WARNING]  
-> ### Installing the modification for an unsuitable client version can lead to unpredictable results.
-> Before installing, make sure that the client version and the version for which the modification was made coincide.
-> This can be checked on the Releases page
 
 ## Core features
 
@@ -34,7 +35,8 @@ Adds support for Discord Rich Presence
 ### Unblocked Devtools and DevPanel
 <details>
    <summary>Details</summary>
-Unblocking Devtools disables auto updates. So this feature distributes in separete release
+   
+Unblocking Devtools disables auto updates. So this feature distributes in separete [release](https://github.com/TheKing-OfTime/YandexMusicModClient/releases/tag/DiscordRPCxDevTools)
 
 ![electron_L6SeZLnSAH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/ae841087-d910-45e5-a007-3fd869a493e1)
 
