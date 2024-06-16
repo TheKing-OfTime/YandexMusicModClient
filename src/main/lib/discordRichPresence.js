@@ -10,10 +10,12 @@ const clientId = "1124055337234858005";
 
 let rpc = undefined;
 let isReady = false;
+let isListeningType = false;
 
 const initRPC = () => {
   rpc = new DiscordRPC.Client({ transport: "ipc" });
   isReady = false;
+  isListeningType = false;
 
   rpc.on("ready", () => {
     isReady = true;
@@ -40,6 +42,10 @@ const states = {
   unknown: { icon: "logo", name: "Unknown" },
   default: { icon: "logo", name: "Yandex Music" },
 };
+
+function silenceTypeCheck(activity) {
+  isListeningType = activity.type === 2;
+}
 
 async function setActivity(
   state,
@@ -76,9 +82,9 @@ async function setActivity(
   if (state !== "playing") {
     startTimestamp = undefined;
   }
-
-  endTimestamp = undefined;
-
+  if (!isListeningType || state !== "playing") {
+    endTimestamp = undefined;
+  }
   let activityObject = {
     type: 2,
     details: trackName,
@@ -107,6 +113,7 @@ async function setActivity(
 
   rpc
     .setActivity(activityObject)
+    .then((activity) => silenceTypeCheck(activity))
     .catch((e) => discordRichPresenceLogger.error(e));
 
   return true;
@@ -147,7 +154,7 @@ const discordRichPresence = (playingState) => {
 
   if (title === album) {
     album = undefined;
-  } else {
+  } else if (isListeningType) {
     album = "on " + album;
   }
 
