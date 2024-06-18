@@ -7,6 +7,8 @@ const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
 
 // Set this to your Client ID.
 const clientId = "1124055337234858005";
+const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
+const IS_DEEPLINKS_ROLLEDOUT = false;
 
 let rpc = undefined;
 let isReady = false;
@@ -99,16 +101,29 @@ async function setActivity(
   };
 
   if (deepShareTrackUrl || webShareTrackUrl) {
-    activityObject.buttons = [
-      {
-        label: "Listen in Yandex Music Desktop",
-        url: deepShareTrackUrl,
-      },
-      {
-        label: "Listen in Yandex Music Web",
-        url: webShareTrackUrl,
-      },
-    ];
+    if (!IS_DEEPLINKS_ROLLEDOUT) {
+      activityObject.buttons = [
+        {
+          label: "Listen in Yandex Music Desktop",
+          url: deepShareTrackUrl,
+        },
+        {
+          label: "Listen in Yandex Music Web",
+          url: webShareTrackUrl,
+        },
+      ];
+    } else {
+      activityObject.buttons = [
+        {
+          label: "Listen on Yandex Music",
+          url: webShareTrackUrl,
+        },
+        {
+          label: "Install from GitHub",
+          url: GITHUB_LINK,
+        },
+      ];
+    }
   }
 
   rpc
@@ -165,7 +180,10 @@ const discordRichPresence = (playingState) => {
 
   const shareTrackPath = `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`;
   const deepShareTrackUrl = "yandexmusic://" + shareTrackPath;
-  const webShareTrackUrl = "https://music.yandex.ru/" + shareTrackPath;
+  const webShareTrackUrl =
+    "https://music.yandex.ru/" +
+    shareTrackPath +
+    "?utm_source=discord&utm_medium=rich_presence_click";
 
   setActivity(
     playingState.status,
