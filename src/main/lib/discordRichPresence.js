@@ -13,6 +13,7 @@ const IS_DEEPLINKS_ROLLEDOUT = false;
 let rpc = undefined;
 let isReady = false;
 let isListeningType = false;
+let timeoutId = undefined;
 
 const initRPC = () => {
   rpc = new DiscordRPC.Client({ transport: "ipc" });
@@ -87,6 +88,21 @@ async function setActivity(
   if (!isListeningType || state !== "playing") {
     endTimestamp = undefined;
   }
+
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+    timeoutId = undefined;
+  }
+
+  if (state === "paused") {
+    timeoutId = setTimeout(
+      () => {
+        rpc.clearActivity();
+      },
+      15 * 60 * 1000,
+    );
+  }
+
   let activityObject = {
     type: 2,
     details: trackName,
