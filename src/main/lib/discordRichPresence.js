@@ -98,6 +98,7 @@ async function setActivity(
     timeoutId = setTimeout(
       () => {
         rpc.clearActivity();
+        timeoutId = undefined;
       },
       15 * 60 * 1000,
     );
