@@ -190,10 +190,13 @@ const discordRichPresence = (playingState) => {
     album = "on " + album;
   }
 
-  const albumArt = `https://${playingState.track.coverUri}`.replace(
-    "%%",
-    "400x400",
-  );
+  let albumArt = undefined;
+
+  if (playingState.track.coverUri)
+    albumArt = `https://${playingState.track.coverUri}`.replace(
+      "%%",
+      "400x400",
+    );
 
   const shareTrackPath = `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`;
   const deepShareTrackUrl = "yandexmusic://" + shareTrackPath;
