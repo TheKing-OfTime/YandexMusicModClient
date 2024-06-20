@@ -50,6 +50,18 @@ function silenceTypeCheck(activity) {
   isListeningType = activity.type === 2;
 }
 
+function string2Discord(string) {
+  if (!string) return;
+  if (string.length <= 1) {
+    string += "ㅤ";
+  }
+  if (string.length > 128) {
+    string = string.substring(0, 127);
+    string += "…";
+  }
+  return string;
+}
+
 async function setActivity(
   state,
   trackName = "unknown",
@@ -106,10 +118,10 @@ async function setActivity(
 
   let activityObject = {
     type: 2,
-    details: trackName,
-    state: trackArtist,
+    details: string2Discord(trackName),
+    state: string2Discord(trackArtist),
     largeImageKey: trackAlbumAvatar,
-    largeImageText: trackAlbum,
+    largeImageText: string2Discord(trackAlbum),
     smallImageKey: stateKey,
     smallImageText: stateText,
     startTimestamp,
