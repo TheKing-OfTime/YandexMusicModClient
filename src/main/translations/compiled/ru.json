@@ -189,116 +189,6 @@
             "value": "Вам понравилось"
         }
     ],
-    "desktop-release-notes.5.0.15": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "13 марта 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Помните свой первый плеер? Он был кассетный или уже mp3? В этом обновлении тоже есть плеер, просим любить и нажимать!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Новый большой и красивый плеер можно раскрыть, нажав на обложку альбома в стандартном плеере"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Теперь можно увидеть все-все треки в чарте"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Поисковая строка научилась исправлять запросы с ошибками"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Теперь ошибки при загрузке главной страницы можно исправить — просто обновите страницу"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Сделали приложение ещё немного доступнее"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.0.16": [
         {
             "children": [
@@ -985,10 +875,88 @@
             "value": "\n\n\n\n"
         }
     ],
+    "desktop-release-notes.5.5.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "20 июня 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Есть две новости, и обе хорошие:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
     "desktop.about": [
         {
             "type": 0,
             "value": "О приложении"
+        }
+    ],
+    "desktop.app-revision": [
+        {
+            "type": 0,
+            "value": "Код "
+        },
+        {
+            "type": 1,
+            "value": "revision"
         }
     ],
     "desktop.app-version": [
@@ -1049,10 +1017,6 @@
         {
             "type": 1,
             "value": "version"
-        },
-        {
-          "type":0,
-          "value":"Модификацию придётся установить заново"
         }
     ],
     "desktop.paste": [
@@ -2407,6 +2371,12 @@
             "value": "Нравится"
         }
     ],
+    "interface-actions.more-details": [
+        {
+            "type": 0,
+            "value": "Подробнее"
+        }
+    ],
     "interface-actions.my-vibe-context-settings": [
         {
             "type": 0,
@@ -2599,6 +2569,20 @@
         {
             "type": 0,
             "value": " обновила плейлист вчера"
+        }
+    ],
+    "interface-actions.speed": [
+        {
+            "type": 0,
+            "value": "Скорость воспроизведения "
+        },
+        {
+            "type": 1,
+            "value": "speed"
+        },
+        {
+            "type": 0,
+            "value": " "
         }
     ],
     "interface-actions.subscribe": [
@@ -3067,6 +3051,12 @@
             "value": "Настройки"
         }
     ],
+    "page.shelf": [
+        {
+            "type": 0,
+            "value": "Моя полка"
+        }
+    ],
     "payment.buy": [
         {
             "type": 0,
@@ -3357,6 +3347,56 @@
             "value": "Не удалось удалить трек из плейлиста"
         }
     ],
+    "plusbar.subscription-activation": [
+        {
+            "type": 0,
+            "value": "Активация подписки"
+        }
+    ],
+    "plusbar.text": [
+        {
+            "type": 0,
+            "value": "А ещё смотрите Кинопоиск"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "и"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "получайте кешбэк баллами "
+        }
+    ],
+    "plusbar.title": [
+        {
+            "type": 0,
+            "value": "Музыка начинается"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "подписки Яндекс Плюс"
+        }
+    ],
     "podcast-errors.error-during-loading-podcast": [
         {
             "type": 0,
@@ -3527,6 +3567,12 @@
         {
             "type": 0,
             "value": "Плейлисты"
+        }
+    ],
+    "search-results.podcast-episodes": [
+        {
+            "type": 0,
+            "value": "Выпуски подкастов"
         }
     ],
     "search-results.podcasts-and-books": [

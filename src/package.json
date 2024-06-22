@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.4.2",
+    "version": "5.5.0",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -24,8 +24,8 @@
         "@types/intl-messageformat": "~3.0.0"
     },
     "buildInfo": {
-        "VERSION": "5.4.2",
-        "BRANCH": "2d3ae7c76c7de4a981e7dad3433d35c576dd0523"
+        "VERSION": "5.5.0",
+        "BRANCH": "r14241485"
     },
     "common": {
         "UPDATE_POLL_INTERVAL": 1800000,
@@ -42,6 +42,15 @@
         "APP_ID": "ru.yandex.desktop.music",
         "COPYRIGHT": "Яндекс Музыка",
         "TRADEMARK": "Яндекс Музыка",
-        "DEEPLINK_PROTOCOL": "yandexmusic"
+        "DEEPLINK_PROTOCOL": "yandexmusic",
+        "SYSTEM_MENU_DEFAULT_LANGUAGE": "en",
+        "SYSTEM_MENU_LANGUAGES": [
+            "ru",
+            "en",
+            "hy",
+            "uz",
+            "kk",
+            "az"
+        ]
     }
 }

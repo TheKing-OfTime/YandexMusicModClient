@@ -19,7 +19,7 @@ const createApplicationMenu = () => {
     const template = [];
     if (node_os_1.default.platform() === platform_js_1.Platform.MACOS) {
         template.push({
-            label: config_js_1.config.meta.PRODUCT_NAME,
+            label: (0, i18n_js_1.formatMessage)({ id: 'about-app.app-name' }),
             submenu: [
                 {
                     label: (0, i18n_js_1.formatMessage)({ id: 'desktop.about' }),

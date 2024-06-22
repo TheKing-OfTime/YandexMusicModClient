@@ -6,27 +6,50 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatMessage = void 0;
 const electron_1 = require("electron");
 const intl_messageformat_1 = __importDefault(require("intl-messageformat"));
+const config_js_1 = require("../config.js");
 const ru_json_1 = __importDefault(require("../translations/compiled/ru.json"));
-var LANGUAGES;
-(function (LANGUAGES) {
-    LANGUAGES["RU"] = "ru";
-})(LANGUAGES || (LANGUAGES = {}));
-let translations = {
-    ru: ru_json_1.default
+const en_json_1 = __importDefault(require("../translations/compiled/en.json"));
+const hy_json_1 = __importDefault(require("../translations/compiled/hy.json"));
+const uz_json_1 = __importDefault(require("../translations/compiled/uz.json"));
+const kk_json_1 = __importDefault(require("../translations/compiled/kk.json"));
+const az_json_1 = __importDefault(require("../translations/compiled/az.json"));
+const DEFAULT_LANGUAGE = config_js_1.config.meta.SYSTEM_MENU_DEFAULT_LANGUAGE;
+const LANGUAGES = config_js_1.config.meta.SYSTEM_MENU_LANGUAGES;
+const TRANSLATIONS = {
+    en: en_json_1.default,
+    ru: ru_json_1.default,
+    hy: hy_json_1.default,
+    uz: uz_json_1.default,
+    kk: kk_json_1.default,
+    az: az_json_1.default
 };
-let lang = null;
-const getLanguage = () => {
-    const locale = electron_1.app.getLocale();
-    return [LANGUAGES.RU].includes(locale) ? locale : LANGUAGES.RU;
+const isSupportedLanguage = (language) => {
+    return LANGUAGES.includes(language);
 };
-const formatMessage = (params, values) => {
-    if (!lang) {
-        lang = getLanguage();
+const getLocaleLanguage = (locale) => {
+    let language;
+    try {
+        language = new Intl.Locale(locale).language;
     }
-    const value = translations[lang]?.[params.id];
+    catch {
+        language = '';
+    }
+    return language;
+};
+const getSystemLanguage = () => {
+    const supportedLanguage = electron_1.app.getPreferredSystemLanguages().map(getLocaleLanguage).find(isSupportedLanguage);
+    return supportedLanguage || DEFAULT_LANGUAGE;
+};
+let systemLanguage;
+const formatMessage = (params, values) => {
+    if (!systemLanguage) {
+        systemLanguage = getSystemLanguage();
+    }
+    const translations = TRANSLATIONS[systemLanguage];
+    const value = translations?.[params.id];
     let message = '';
     if (Array.isArray(value) || typeof value === 'string') {
-        message = new intl_messageformat_1.default(value, lang).format(values);
+        message = new intl_messageformat_1.default(value, systemLanguage).format(values);
     }
     return Array.isArray(message) ? message.join('') : message;
 };
