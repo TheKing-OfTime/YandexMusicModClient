@@ -1,7 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
@@ -11,6 +13,7 @@ const menu_js_1 = require("./lib/menu.js");
 const handleWindowLifecycleEvents_js_1 = require("./lib/handlers/handleWindowLifecycleEvents.js");
 const singleInstance_js_1 = require("./lib/singleInstance.js");
 const logWindowLifecycle_js_1 = require("./lib/logWindowLifecycle.js");
+const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const handleCrash_js_1 = require("./lib/handlers/handleCrash.js");
 const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
@@ -41,7 +44,7 @@ Logger_js_1.Logger.setupLogger();
   (0, logWindowLifecycle_js_1.logWindowLifecycle)(window);
   (0, handleDeeplink_js_1.handleDeeplink)(window);
   (0, handleMetrikaRequests_js_1.handleMetrikaRequests)(window);
-  //(0, handleCrash_js_1.taskBarExtension)(window);
+  (0, taskBarExtension_js_1.taskBarExtension)(window);
   (0, handleCrash_js_1.handleCrash)();
   await (0, loadURL_js_1.loadURL)(window);
   if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {

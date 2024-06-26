@@ -77,6 +77,8 @@
             status: e.status,
             track: e.track,
             progress: e.progress,
+            previousUnavailable: e.previousUnavailable,
+            nextUnavailable: e.nextUnavailable,
           });
       };
       var p = n(75084),

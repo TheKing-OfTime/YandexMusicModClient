@@ -4583,6 +4583,12 @@
                             v.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress: 0,
+                          previousUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveBackward,
+                          nextUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveForward,
                         });
                     }),
               l =
@@ -4610,6 +4616,12 @@
                               .entityData.meta,
                           progress:
                             v.state.playerState.progress.value?.position,
+                          previousUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveBackward,
+                          nextUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveForward,
                         }));
                     }),
               seekTracker =
@@ -4626,6 +4638,12 @@
                               .entityData.meta,
                           progress:
                             v.state.playerState.progress.value?.position,
+                          previousUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveBackward,
+                          nextUnavailable:
+                            !v.state.currentContext.value?.availableActions
+                              ?.moveForward,
                         });
                       }
                     }),
