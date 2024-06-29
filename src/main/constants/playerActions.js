@@ -5,6 +5,24 @@ var PlayerActions;
 (function (PlayerActions) {
   PlayerActions["PLAY"] = "PLAY";
   PlayerActions["PAUSE"] = "PAUSE";
+  PlayerActions["TOGGLE_PLAY"] = "TOGGLE_PLAY";
+
   PlayerActions["NEXT"] = "NEXT";
   PlayerActions["PREVIOUS"] = "PREVIOUS";
+
+  PlayerActions["TOGGLE_LIKE"] = "TOGGLE_LIKE";
+  PlayerActions["LIKE"] = "LIKE";
+  PlayerActions["LIKE_NONE"] = "LIKE_NONE";
+  PlayerActions["TOGGLE_DISLIKE"] = "TOGGLE_DISLIKE";
+  PlayerActions["DISLIKE"] = "DISLIKE";
+  PlayerActions["DISLIKE_NONE"] = "DISLIKE_NONE";
+
+  PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";
+  PlayerActions["REPEAT_NONE"] = "REPEAT_NONE";
+  PlayerActions["REPEAT_CONTEXT"] = "REPEAT_CONTEXT";
+  PlayerActions["REPEAT_ONE"] = "REPEAT_ONE";
+
+  PlayerActions["TOGGLE_SHUFFLE"] = "TOGGLE_SHUFFLE";
+  PlayerActions["SHUFFLE"] = "SHUFFLE";
+  PlayerActions["SHUFFLE_NONE"] = "SHUFFLE_NONE";
 })(PlayerActions || (exports.PlayerActions = PlayerActions = {}));

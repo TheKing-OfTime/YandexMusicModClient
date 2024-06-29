@@ -1791,12 +1791,13 @@
         null === (t = window.desktopEvents) ||
           void 0 === t ||
           t.send(i.BO.ON_PLAYER_STATE, {
+            isPrimaryDataChanged: e.isPrimaryDataChanged,
             isPlaying: e.status === m.Xz.PLAYING,
             status: e.status,
             track: e.track,
             progress: e.progress,
-            previousUnavailable: e.previousUnavailable,
-            nextUnavailable: e.nextUnavailable,
+            availableActions: e.availableActions,
+            actionsStore: e.actionsStore,
           });
       };
       var p = a(75084),

@@ -28,6 +28,15 @@ const loadAssets = () => {
   loadAsset("next", "Next");
   loadAsset("play", "Playing");
   loadAsset("pause", "Paused");
+  loadAsset("like", "Like");
+  loadAsset("liked", "Liked");
+  loadAsset("dislike", "Dislike");
+  loadAsset("disliked", "Disliked");
+  loadAsset("shuffle", "Shuffle");
+  loadAsset("shuffled", "Shuffled");
+  loadAsset("repeat", "Repeat");
+  loadAsset("repeated", "Repeated");
+  loadAsset("one_repeated", "One repeated");
   taskBarExtensionLogger.log("Assets loaded");
 };
 
@@ -37,16 +46,84 @@ const loadAsset = (name, fileName) => {
   );
 };
 
+const getActionsAvailabilityObject = (availableActions) => {
+  return {
+    previousUnavailable: !availableActions.moveBackward,
+    nextUnavailable: !availableActions.moveForward,
+    repeatUnavailable: !availableActions.repeat,
+    shuffleUnavailable: !availableActions.shuffle,
+  };
+};
+
+const getActionsStoreObject = (actionsStore) => {
+  return {
+    repeat: actionsStore.repeat,
+    shuffle: actionsStore.shuffle,
+    liked: actionsStore.isLiked,
+    disliked: actionsStore.isDisliked,
+  };
+};
+
 const clearTaskbarExtension = (window) => {
   taskBarExtensionLogger.log(window.setThumbarButtons([]));
 };
 
 const updateTaskbarExtension = (window) => {
-  let status = window.setThumbarButtons([
+  const availability = getActionsAvailabilityObject(
+    playerState.availableActions,
+  );
+  const store = getActionsStoreObject(playerState.actionsStore);
+
+  let repeatAsset = assets.repeat;
+  let nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_NONE;
+  switch (store.repeat) {
+    case "none":
+      repeatAsset = assets.repeat;
+      nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_CONTEXT;
+      break;
+    case "context":
+      repeatAsset = assets.repeated;
+      nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_ONE;
+      break;
+    case "one":
+      repeatAsset = assets.one_repeated;
+      nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_NONE;
+      break;
+  }
+
+  let buttons = [
+    {
+      tooltip: "Shuffle",
+      icon: store.shuffle ? assets.shuffled : assets.shuffle,
+      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Shuffle toggled");
+        events_js_1.sendPlayerAction(
+          window,
+          playerActions_js_1.PlayerActions.TOGGLE_SHUFFLE,
+        );
+      },
+    },
+    {
+      tooltip: "Dislike",
+      icon: store.disliked ? assets.disliked : assets.dislike,
+      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Dislike toggled");
+        events_js_1.sendPlayerAction(
+          window,
+          playerActions_js_1.PlayerActions.TOGGLE_DISLIKE,
+        );
+        events_js_1.sendPlayerAction(
+          window,
+          playerActions_js_1.PlayerActions.NEXT,
+        );
+      },
+    },
     {
       tooltip: "Previous",
       icon: assets.previous,
-      flags: playerState?.previousUnavailable ? ["disabled"] : undefined,
+      flags: availability.previousUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Previous");
         events_js_1.sendPlayerAction(
@@ -59,19 +136,17 @@ const updateTaskbarExtension = (window) => {
       tooltip: playerState?.isPlaying ? "Pause" : "Play",
       icon: playerState?.isPlaying ? assets.pause : assets.play,
       click() {
-        taskBarExtensionLogger.log("Play/Pause");
+        taskBarExtensionLogger.log("Play Toggled");
         events_js_1.sendPlayerAction(
           window,
-          playerState?.isPlaying
-            ? playerActions_js_1.PlayerActions.PAUSE
-            : playerActions_js_1.PlayerActions.PLAY,
+          playerActions_js_1.PlayerActions.TOGGLE_PLAY,
         );
       },
     },
     {
       tooltip: "Next",
       icon: assets.next,
-      flags: playerState?.nextUnavailable ? ["disabled"] : undefined,
+      flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Next");
         events_js_1.sendPlayerAction(
@@ -80,7 +155,37 @@ const updateTaskbarExtension = (window) => {
         );
       },
     },
-  ]);
+    {
+      tooltip: "Like",
+      icon: store.liked ? assets.liked : assets.like,
+      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Like toggled");
+        events_js_1.sendPlayerAction(
+          window,
+          playerActions_js_1.PlayerActions.TOGGLE_LIKE,
+        );
+      },
+    },
+    {
+      tooltip: "Repeat",
+      icon: repeatAsset,
+      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Like toggled");
+        events_js_1.sendPlayerAction(window, nextRepeatAction);
+      },
+    },
+  ];
+
+  if (availability.shuffleUnavailable) {
+    buttons.shift();
+  }
+  if (availability.repeatUnavailable) {
+    buttons.pop();
+  }
+
+  let status = window.setThumbarButtons(buttons);
 
   taskBarExtensionLogger.log(
     "ThumbarButtons set:",

@@ -4102,6 +4102,144 @@
           let t = this.prepareMetadata(e);
           window.navigator.mediaSession.metadata = new MediaMetadata(t);
         }
+        handleHostPlayerEvents(e) {
+          window.desktopEvents.on("PLAYER_ACTION", (data, action) => {
+            switch (action) {
+              case "PLAY":
+                e.play();
+                break;
+              case "PAUSE":
+                e.pause();
+                break;
+              case "TOGGLE_PLAY":
+                e.togglePause();
+                break;
+              case "PREVIOUS":
+                e.moveBackward();
+                break;
+              case "NEXT":
+                e.moveForward();
+                break;
+              case "TOGGLE_REPEAT":
+                e.queueController.playerQueue.toggleRepeat();
+                break;
+              case "REPEAT_NONE":
+                e.queueController.playerQueue.setRepeatMode("none");
+                break;
+              case "REPEAT_CONTEXT":
+                e.queueController.playerQueue.setRepeatMode("context");
+                break;
+              case "REPEAT_ONE":
+                e.queueController.playerQueue.setRepeatMode("one");
+                break;
+              case "TOGGLE_SHUFFLE":
+                e.toggleShuffle();
+                break;
+              case "TOGGLE_LIKE": {
+                e.contextController.entityFactory.likeStore.toggleTrackLike({
+                  entityId:
+                    e.playbackState.queueState.currentEntity.value?.entity
+                      .entityData.meta.id,
+                  albumId:
+                    e.playbackState.queueState.currentEntity.value?.entity
+                      .entityData.meta.albums[0].id,
+                  userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                });
+                (0, en.Pt)({
+                  status: "playing",
+                  track:
+                    e.playbackState.queueState.currentEntity.value?.entity
+                      .entityData.meta,
+                  progress: 0,
+                  availableActions: {
+                    moveBackward:
+                      e.playbackState.currentContext.value?.availableActions
+                        .moveBackward.value,
+                    moveForward:
+                      e.playbackState.currentContext.value?.availableActions
+                        .moveForward.value,
+                    repeat:
+                      e.playbackState.currentContext.value?.availableActions
+                        .repeat.value,
+                    shuffle:
+                      e.playbackState.currentContext.value?.availableActions
+                        .shuffle.value,
+                    speed:
+                      e.playbackState.currentContext.value?.availableActions
+                        .speed.value,
+                  },
+                  actionsStore: {
+                    repeat: e.playbackState.queueState.repeat.value,
+                    shuffle: e.playbackState.queueState.shuffle.value,
+                    isLiked:
+                      e.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.playbackState.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
+                      ),
+                    isDisliked:
+                      e.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.playbackState.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
+                      ),
+                  },
+                });
+                break;
+              }
+              case "TOGGLE_DISLIKE": {
+                e.playbackState.queueState.currentEntity.value?.entity.likeStore.toggleTrackDislike(
+                  {
+                    entityId:
+                      e.playbackState.queueState.currentEntity.value?.entity
+                        .entityData.meta.id,
+                    albumId:
+                      e.playbackState.queueState.currentEntity.value?.entity
+                        .entityData.meta.albums[0].id,
+                    userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                  },
+                );
+                (0, en.Pt)({
+                  status: "playing",
+                  track:
+                    e.playbackState.queueState.currentEntity.value?.entity
+                      .entityData.meta,
+                  progress: 0,
+                  availableActions: {
+                    moveBackward:
+                      e.playbackState.currentContext.value?.availableActions
+                        .moveBackward.value,
+                    moveForward:
+                      e.playbackState.currentContext.value?.availableActions
+                        .moveForward.value,
+                    repeat:
+                      e.playbackState.currentContext.value?.availableActions
+                        .repeat.value,
+                    shuffle:
+                      e.playbackState.currentContext.value?.availableActions
+                        .shuffle.value,
+                    speed:
+                      e.playbackState.currentContext.value?.availableActions
+                        .speed.value,
+                  },
+                  actionsStore: {
+                    repeat: e.playbackState.queueState.repeat.value,
+                    shuffle: e.playbackState.queueState.shuffle.value,
+                    isLiked:
+                      e.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.playbackState.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
+                      ),
+                    isDisliked:
+                      e.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.playbackState.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
+                      ),
+                  },
+                });
+                break;
+              }
+            }
+          });
+        }
         handlePlayerEvents(e) {
           let t, i;
           e.state.playerState.event.onChange(() => {
@@ -4160,6 +4298,7 @@
         apply(e) {
           let { playback: t } = e;
           this.isSupported() && this.handlePlayerEvents(t);
+          this.handleHostPlayerEvents(t);
         }
       }
       class $ {
@@ -4578,17 +4717,43 @@
                         i && n.setContextType(i),
                         a && n.setContextId(a),
                         (0, en.Pt)({
+                          isPrimaryDataChanged: true,
                           status: "playing",
                           track:
                             v.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress: 0,
-                          previousUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveBackward,
-                          nextUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveForward,
+                          availableActions: {
+                            moveBackward:
+                              v.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              v.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              v.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              v.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              v.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: v.state.queueState.repeat.value,
+                            shuffle: v.state.queueState.shuffle.value,
+                            isLiked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
                         });
                     }),
               l =
@@ -4610,18 +4775,44 @@
                       e &&
                         (n.setStatus(e),
                         (0, en.Pt)({
+                          isPrimaryDataChanged: true,
                           status: e,
                           track:
                             v.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress:
                             v.state.playerState.progress.value?.position,
-                          previousUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveBackward,
-                          nextUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveForward,
+                          availableActions: {
+                            moveBackward:
+                              v.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              v.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              v.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              v.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              v.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: v.state.queueState.repeat.value,
+                            shuffle: v.state.queueState.shuffle.value,
+                            isLiked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
                         }));
                     }),
               seekTracker =
@@ -4632,18 +4823,44 @@
                         v.state.playerState.event.value === S.KX.SET_PROGRESS
                       ) {
                         (0, en.Pt)({
+                          isPrimaryDataChanged: true,
                           status: "playing",
                           track:
                             v.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress:
                             v.state.playerState.progress.value?.position,
-                          previousUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveBackward,
-                          nextUnavailable:
-                            !v.state.currentContext.value?.availableActions
-                              ?.moveForward,
+                          availableActions: {
+                            moveBackward:
+                              v.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              v.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              v.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              v.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              v.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: v.state.queueState.repeat.value,
+                            shuffle: v.state.queueState.shuffle.value,
+                            isLiked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                v.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
                         });
                       }
                     }),
@@ -4681,6 +4898,46 @@
                                       ? void 0
                                       : e.availableActions.moveBackward.value);
                                   n.setCanMoveBackward(t);
+                                  (0, en.Pt)({
+                                    status: "playing",
+                                    track:
+                                      v.state.queueState.currentEntity.value
+                                        ?.entity.entityData.meta,
+                                    progress:
+                                      v.state.playerState.progress.value
+                                        ?.position,
+                                    availableActions: {
+                                      moveBackward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveBackward.value,
+                                      moveForward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveForward.value,
+                                      repeat:
+                                        v.state.currentContext.value
+                                          ?.availableActions.repeat.value,
+                                      shuffle:
+                                        v.state.currentContext.value
+                                          ?.availableActions.shuffle.value,
+                                      speed:
+                                        v.state.currentContext.value
+                                          ?.availableActions.speed.value,
+                                    },
+                                    actionsStore: {
+                                      repeat: v.state.queueState.repeat.value,
+                                      shuffle: v.state.queueState.shuffle.value,
+                                      isLiked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                      isDisliked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                    },
+                                  });
                                 })),
                         (t =
                           null == v
@@ -4698,6 +4955,46 @@
                                       ? void 0
                                       : e.availableActions.moveForward.value);
                                   n.setCanMoveForward(t);
+                                  (0, en.Pt)({
+                                    status: "playing",
+                                    track:
+                                      v.state.queueState.currentEntity.value
+                                        ?.entity.entityData.meta,
+                                    progress:
+                                      v.state.playerState.progress.value
+                                        ?.position,
+                                    availableActions: {
+                                      moveBackward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveBackward.value,
+                                      moveForward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveForward.value,
+                                      repeat:
+                                        v.state.currentContext.value
+                                          ?.availableActions.repeat.value,
+                                      shuffle:
+                                        v.state.currentContext.value
+                                          ?.availableActions.shuffle.value,
+                                      speed:
+                                        v.state.currentContext.value
+                                          ?.availableActions.speed.value,
+                                    },
+                                    actionsStore: {
+                                      repeat: v.state.queueState.repeat.value,
+                                      shuffle: v.state.queueState.shuffle.value,
+                                      isLiked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                      isDisliked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                    },
+                                  });
                                 })),
                         (i =
                           null == v
@@ -4718,6 +5015,46 @@
                                         : e.availableActions.repeat.value;
                                   "boolean" == typeof t &&
                                     n.setCanChangeRepeatMode(t);
+                                  (0, en.Pt)({
+                                    status: "playing",
+                                    track:
+                                      v.state.queueState.currentEntity.value
+                                        ?.entity.entityData.meta,
+                                    progress:
+                                      v.state.playerState.progress.value
+                                        ?.position,
+                                    availableActions: {
+                                      moveBackward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveBackward.value,
+                                      moveForward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveForward.value,
+                                      repeat:
+                                        v.state.currentContext.value
+                                          ?.availableActions.repeat.value,
+                                      shuffle:
+                                        v.state.currentContext.value
+                                          ?.availableActions.shuffle.value,
+                                      speed:
+                                        v.state.currentContext.value
+                                          ?.availableActions.speed.value,
+                                    },
+                                    actionsStore: {
+                                      repeat: v.state.queueState.repeat.value,
+                                      shuffle: v.state.queueState.shuffle.value,
+                                      isLiked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                      isDisliked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                    },
+                                  });
                                 })),
                         (a =
                           null == v
@@ -4737,6 +5074,46 @@
                                         ? void 0
                                         : e.availableActions.shuffle.value;
                                   "boolean" == typeof t && n.setCanShuffle(t);
+                                  (0, en.Pt)({
+                                    status: "playing",
+                                    track:
+                                      v.state.queueState.currentEntity.value
+                                        ?.entity.entityData.meta,
+                                    progress:
+                                      v.state.playerState.progress.value
+                                        ?.position,
+                                    availableActions: {
+                                      moveBackward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveBackward.value,
+                                      moveForward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveForward.value,
+                                      repeat:
+                                        v.state.currentContext.value
+                                          ?.availableActions.repeat.value,
+                                      shuffle:
+                                        v.state.currentContext.value
+                                          ?.availableActions.shuffle.value,
+                                      speed:
+                                        v.state.currentContext.value
+                                          ?.availableActions.speed.value,
+                                    },
+                                    actionsStore: {
+                                      repeat: v.state.queueState.repeat.value,
+                                      shuffle: v.state.queueState.shuffle.value,
+                                      isLiked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                      isDisliked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                    },
+                                  });
                                 })),
                         (r =
                           null == v
@@ -4758,6 +5135,46 @@
                                   "boolean" == typeof t &&
                                     (n.setCanSpeed(t),
                                     !t && v && v.setSpeed(1));
+                                  (0, en.Pt)({
+                                    status: "playing",
+                                    track:
+                                      v.state.queueState.currentEntity.value
+                                        ?.entity.entityData.meta,
+                                    progress:
+                                      v.state.playerState.progress.value
+                                        ?.position,
+                                    availableActions: {
+                                      moveBackward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveBackward.value,
+                                      moveForward:
+                                        v.state.currentContext.value
+                                          ?.availableActions.moveForward.value,
+                                      repeat:
+                                        v.state.currentContext.value
+                                          ?.availableActions.repeat.value,
+                                      shuffle:
+                                        v.state.currentContext.value
+                                          ?.availableActions.shuffle.value,
+                                      speed:
+                                        v.state.currentContext.value
+                                          ?.availableActions.speed.value,
+                                    },
+                                    actionsStore: {
+                                      repeat: v.state.queueState.repeat.value,
+                                      shuffle: v.state.queueState.shuffle.value,
+                                      isLiked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                      isDisliked:
+                                        v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                          v.state.queueState.currentEntity.value
+                                            ?.entity.entityData.meta.id,
+                                        ),
+                                    },
+                                  });
                                 }));
                     }),
               u =
@@ -4773,6 +5190,44 @@
                   : v.state.queueState.repeat.onChange(() => {
                       let e = v.state.queueState.repeat.value;
                       n.setRepeatMode(e), h.set(ed.BU.YmPlayerRepeatMode, e);
+                      (0, en.Pt)({
+                        status: "playing",
+                        track:
+                          v.state.queueState.currentEntity.value?.entity
+                            .entityData.meta,
+                        progress: v.state.playerState.progress.value?.position,
+                        availableActions: {
+                          moveBackward:
+                            v.state.currentContext.value?.availableActions
+                              .moveBackward.value,
+                          moveForward:
+                            v.state.currentContext.value?.availableActions
+                              .moveForward.value,
+                          repeat:
+                            v.state.currentContext.value?.availableActions
+                              .repeat.value,
+                          shuffle:
+                            v.state.currentContext.value?.availableActions
+                              .shuffle.value,
+                          speed:
+                            v.state.currentContext.value?.availableActions.speed
+                              .value,
+                        },
+                        actionsStore: {
+                          repeat: v.state.queueState.repeat.value,
+                          shuffle: v.state.queueState.shuffle.value,
+                          isLiked:
+                            v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                              v.state.queueState.currentEntity.value?.entity
+                                .entityData.meta.id,
+                            ),
+                          isDisliked:
+                            v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                              v.state.queueState.currentEntity.value?.entity
+                                .entityData.meta.id,
+                            ),
+                        },
+                      });
                     }),
               C =
                 null == v
@@ -4780,6 +5235,44 @@
                   : v.state.queueState.shuffle.onChange(() => {
                       let e = v.state.queueState.shuffle.value;
                       n.setShuffle(e), h.set(ed.BU.YmPlayerShuffle, e);
+                      (0, en.Pt)({
+                        status: "playing",
+                        track:
+                          v.state.queueState.currentEntity.value?.entity
+                            .entityData.meta,
+                        progress: v.state.playerState.progress.value?.position,
+                        availableActions: {
+                          moveBackward:
+                            v.state.currentContext.value?.availableActions
+                              .moveBackward.value,
+                          moveForward:
+                            v.state.currentContext.value?.availableActions
+                              .moveForward.value,
+                          repeat:
+                            v.state.currentContext.value?.availableActions
+                              .repeat.value,
+                          shuffle:
+                            v.state.currentContext.value?.availableActions
+                              .shuffle.value,
+                          speed:
+                            v.state.currentContext.value?.availableActions.speed
+                              .value,
+                        },
+                        actionsStore: {
+                          repeat: v.state.queueState.repeat.value,
+                          shuffle: v.state.queueState.shuffle.value,
+                          isLiked:
+                            v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                              v.state.queueState.currentEntity.value?.entity
+                                .entityData.meta.id,
+                            ),
+                          isDisliked:
+                            v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                              v.state.queueState.currentEntity.value?.entity
+                                .entityData.meta.id,
+                            ),
+                        },
+                      });
                     });
             return () => {
               null == o || o(),

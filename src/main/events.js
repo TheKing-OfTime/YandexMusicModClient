@@ -93,8 +93,10 @@ const handleApplicationEvents = (window) => {
   });
   electron_1.ipcMain.on(events_js_1.Events.ON_PLAYER_STATE, (event, args) => {
     eventsLogger.info(`Event received ${events_js_1.Events.ON_PLAYER_STATE}`);
-    (0, appSuspensionController_js_1.appSuspensionController)(args.isPlaying);
-    (0, discordRichPresence_js_1.discordRichPresence)(args);
+    if (args.isPrimaryDataChanged) {
+      (0, appSuspensionController_js_1.appSuspensionController)(args.isPlaying);
+      (0, discordRichPresence_js_1.discordRichPresence)(args);
+    }
     (0, taskBarExtension_js_1.onPlayerStateChange)(window, args);
   });
 };
