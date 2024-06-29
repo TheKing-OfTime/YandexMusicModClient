@@ -32,6 +32,16 @@ Adds support for Discord Rich Presence
 ![DiscordCanary_pY0zr8zq3P](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/7c308ef1-77a4-4f0c-9ed8-25c36ff3ccc6)
 </details>
 
+### Taskbar Extensions
+<details>
+   <summary>Details</summary>
+
+   
+Adds support for Taskbar Extensions
+![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
+
+</details>
+
 ### Unblocked Devtools and DevPanel
 <details>
    <summary>Details</summary>
