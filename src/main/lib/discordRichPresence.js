@@ -132,7 +132,7 @@ async function setActivity(
     if (!IS_DEEPLINKS_ROLLEDOUT) {
       activityObject.buttons = [
         {
-          label: "Listen in Yandex Music Desktop",
+          label: "Listen in Yandex Music App",
           url: deepShareTrackUrl,
         },
         {
