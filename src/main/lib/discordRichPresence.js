@@ -187,6 +187,9 @@ const getArtist = (artistsArray) => {
 };
 
 const discordRichPresence = (playingState) => {
+  if (playingState.status.startsWith("loading")) {
+    playingState.status = "playing";
+  }
   let title = playingState.track?.title;
   if (playingState.track.version) {
     title = playingState.track.title + ` (${playingState.track.version})`;

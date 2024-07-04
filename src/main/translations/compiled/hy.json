@@ -171,6 +171,12 @@
             "value": "Սիրելի կատարողների ցանկ"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "Սիրելի փոդքաստների և գրքերի ցանկ"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -187,88 +193,6 @@
         {
             "type": 0,
             "value": "Դուք հավանել եք"
-        }
-    ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. մարտի 20"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Անցեք լուսավոր կողմ, տանը երեկույթ կազմակերպեք, հետևեք միտումներին. այդ ամենը կարելի է անել մեր նոր թարմացմամբ"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Մենք հնարավորություն ենք ավելացրել՝ ստեղծելու և խմբագրելու երգացանկերը\n"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Այժմ դուք ունեք ձևավորման լուսավոր թեմա. այն կարելի է ընտրել պրոֆիլում"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Հայտնվել է ընտրանիների կատալոգ՝ ըստ ժանրերի, բնավորությունների և զբաղմունքների՝ մեր խմբագրության կողմից։ Այն կարելի է գտնել և՛ գլխավոր էջում՝ «Միտումներ» ներդիրում, և՛ որոնման մեջ"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.18": [
@@ -840,7 +764,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "20 июня 2024 г."
+                    "value": "2024 թ. հունիսի 20"
                 }
             ],
             "type": 8,
@@ -854,7 +778,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Есть две новости, и обе хорошие:"
+                    "value": "Ունենք երկու նորություն, երկուսն էլ լավն են."
                 }
             ],
             "type": 8,
@@ -874,7 +798,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                            "value": "«Ձեզ համար» բաժնում ավելացրել ենք ունկնդրումների պատմություն։ Այժմ Իմ ալիքի ոչ մի կատարում ընդմիշտ չի կորչի"
                         }
                     ],
                     "type": 8,
@@ -888,7 +812,103 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                            "value": "Նաև, արտիստների բաժիններում շատանում են «Աջակցել դոնատով» կոճակները։ Մի մոռացեք երաժշտության համար շնորհակալություն ասելու այս միջոցի մասին"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "2024 թ. հունիսի 26"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Այս թողարկման մեջ ամենուր փոդքաստներ են."
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Փոդքաստները հայտնվել են կողային ընտրացանկում"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Այժմ կարելի է փոդքաստներ որոնել"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Հավաքածուում նույնպես կան փոդքաստներ"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Երկար սպասված թարմացում Windows-ի օգտատերերի համար. հավելվածը կարելի է փոքրացնել՝ թողնելով դրա պատկերակը էկրանի ներքևում։ Գուցե այդ մասին փոդքա՞ստ էլ հայտնվի։"
                         }
                     ],
                     "type": 8,
@@ -1688,6 +1708,12 @@
             "value": "Փոդքաստ"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Թողարկում"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1702,6 +1728,12 @@
         {
             "type": 1,
             "value": "podcastName"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Պոդքասթներ"
         }
     ],
     "entity-names.popular-albums": [
@@ -1980,6 +2012,12 @@
             "value": "Ավելացրեք կատարումները երգացանկում"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Դուք Հավաքածուում չունեք փոդքաստներ և գրքեր"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2130,6 +2168,12 @@
             "value": "Փակել կարգավորումների ընտրացանկը"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Փակել ձայնի կարգավորման ընտրացանկը"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2170,6 +2214,12 @@
         {
             "type": 0,
             "value": "Դուր չի գալիս"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Հաջորդը"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2659,12 +2709,6 @@
             "value": "Գլխավոր"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Փոդքաստներ և գրքեր"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2675,6 +2719,24 @@
         {
             "type": 0,
             "value": "Որոնում"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " թողարկումն ավելացվել է «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» երգացանկ"
         }
     ],
     "notifications-info.added-to": [
@@ -2757,6 +2819,12 @@
             "value": "Հավաքածուներ"
         }
     ],
+    "notifications-info.from-my-shelf": [
+        {
+            "type": 0,
+            "value": "Իմ դարակի"
+        }
+    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
@@ -2779,6 +2847,18 @@
         {
             "type": 0,
             "value": "Երգացանկի հղում"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Այժմ թողարկումը կկարողանա հայտնվել ձեր առաջարկություններում"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Թողարկումն այլևս չի հայտնվի ձեր առաջարկություններում"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2819,6 +2899,12 @@
         {
             "type": 0,
             "value": "Հավաքածուում"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "Իմ դարակ"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2909,6 +2995,12 @@
             "value": "Փորձեք կրկին բեռնել հավելվածը։"
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Saved podcasts and books"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -2925,6 +3017,12 @@
         {
             "type": 0,
             "value": "Ձեզ ծանոթ"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Փոդքաստներ և գրքեր"
         }
     ],
     "page.results-of-the-year": [
@@ -2979,6 +3077,18 @@
             "value": "Բարձր"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Առավելագույն"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Ձայնի կարգավորումներ"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -3003,6 +3113,18 @@
             "value": "Հերթ"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "ААС ձևաչափով երաժշտություն"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "FLAC և այլ ձևաչափով երաժշտություն"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3019,6 +3141,12 @@
         {
             "type": 0,
             "value": "Հաջորդ երգ"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Нigh-Efficiency-ААС ձևաչափով երաժշտություն"
         }
     ],
     "player-actions.pause": [
@@ -3327,6 +3455,18 @@
         {
             "type": 0,
             "value": "Հրատարակիչներ"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "Մի կողմ եք դրել"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "Դուք վերջերս ունկնդրել եք"
         }
     ],
     "podcast.tab-about": [

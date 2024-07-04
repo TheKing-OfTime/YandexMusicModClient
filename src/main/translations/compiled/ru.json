@@ -171,6 +171,12 @@
             "value": "Список любимых исполнителей"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "Список любимых подкастов и книг"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -187,88 +193,6 @@
         {
             "type": 0,
             "value": "Вам понравилось"
-        }
-    ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "20 марта 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Переходите на светлую сторону, устраивайте домашнюю вечеринку, следите за трендами — всё это можно сделать с нашим новым обновлением"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Мы добавили возможность создавать и редактировать плейлисты"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Теперь у нас есть светлая тема оформления — её можно выбрать в профиле"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Появился каталог подборок по жанрам, настроениям и занятиям от нашей редакции. Найти его можно и на главной странице во вкладке «Тренды», и в поиске"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.18": [
@@ -929,6 +853,102 @@
                         {
                             "type": 0,
                             "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "3 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "В этом релизе куда ни посмотри — повсюду подкасты:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Подкасты появились в боковом меню"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Подкасты теперь можно искать в поиске"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В Коллекции тоже есть подкасты"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Долгожданное обновление для пользователей Windows: приложение можно сворачивать в трей. Кто знает, может об этом запишут подкаст?"
                         }
                     ],
                     "type": 8,
@@ -1804,6 +1824,12 @@
             "value": "Подкаст"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Выпуск"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1818,6 +1844,12 @@
         {
             "type": 1,
             "value": "podcastName"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Подкасты"
         }
     ],
     "entity-names.popular-albums": [
@@ -2108,6 +2140,12 @@
             "value": "Добавьте треки в плейлист"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "У вас нет подкастов и книг в Коллекции"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2117,7 +2155,7 @@
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
-            "value": "У вас нет Будущих релизов в Коллекции"
+            "value": "Ставьте лайки будущим релизам на страницах артистов, и они появятся тут"
         }
     ],
     "error-messages.error-during-action": [
@@ -2258,6 +2296,12 @@
             "value": "Закрыть меню настроек"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Закрыть меню настройки звука"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2298,6 +2342,12 @@
         {
             "type": 0,
             "value": "Не нравится"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Далее"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2763,12 +2813,6 @@
             "value": "Главная"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Подкасты и книги"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2779,6 +2823,28 @@
         {
             "type": 0,
             "value": "Поиск"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 0,
+            "value": "Выпуск "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в плейлист «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
         }
     ],
     "notifications-info.added-to": [
@@ -2865,16 +2931,38 @@
             "value": "Коллекции"
         }
     ],
+    "notifications-info.from-my-shelf": [
+        {
+            "type": 0,
+            "value": "Моей полки"
+        }
+    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
-            "value": "закреплена в боковом меню"
+            "value": "Моя Волна "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " закреплена в боковом меню"
         }
     ],
     "notifications-info.my-vibe-unpinned-from-menu": [
         {
             "type": 0,
-            "value": "удалена из бокового меню"
+            "value": "Моя Волна "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " удалена из бокового меню"
         }
     ],
     "notifications-info.pinned-in-menu": [
@@ -2887,6 +2975,18 @@
         {
             "type": 0,
             "value": "Ссылка на плейлист"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Теперь выпуск сможет появляться в ваших рекомендациях"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Выпуск больше не будет появляться в ваших рекомендациях"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2931,6 +3031,12 @@
         {
             "type": 0,
             "value": "Коллекцию"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "Мою полку"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -3021,6 +3127,12 @@
             "value": "Попробуйте перезагрузить приложение."
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Отложенные подкасты и книги"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -3037,6 +3149,12 @@
         {
             "type": 0,
             "value": "Знакомое вам"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Подкасты и книги"
         }
     ],
     "page.results-of-the-year": [
@@ -3091,6 +3209,18 @@
             "value": "Высокое"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Максимальное"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Настройки звука"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -3115,6 +3245,18 @@
             "value": "Очередь"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "Музыка в формате ААС"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "Музыка в формате FLAC и других"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3131,6 +3273,12 @@
         {
             "type": 0,
             "value": "Следующая песня"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Музыка в формате Нigh-Efficiency-ААС"
         }
     ],
     "player-actions.pause": [
@@ -3439,6 +3587,18 @@
         {
             "type": 0,
             "value": "Издатели"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "Вы отложили"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "Вы недавно слушали"
         }
     ],
     "podcast.tab-about": [

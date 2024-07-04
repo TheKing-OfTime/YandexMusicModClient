@@ -116,7 +116,7 @@ const updateTaskbarExtension = (window) => {
         );
         events_js_1.sendPlayerAction(
           window,
-          playerActions_js_1.PlayerActions.NEXT,
+          playerActions_js_1.PlayerActions.MOVE_FORWARD,
         );
       },
     },
@@ -128,7 +128,7 @@ const updateTaskbarExtension = (window) => {
         taskBarExtensionLogger.log("Previous");
         events_js_1.sendPlayerAction(
           window,
-          playerActions_js_1.PlayerActions.PREVIOUS,
+          playerActions_js_1.PlayerActions.MOVE_BACKWARD,
         );
       },
     },
@@ -151,7 +151,7 @@ const updateTaskbarExtension = (window) => {
         taskBarExtensionLogger.log("Next");
         events_js_1.sendPlayerAction(
           window,
-          playerActions_js_1.PlayerActions.NEXT,
+          playerActions_js_1.PlayerActions.MOVE_FORWARD,
         );
       },
     },

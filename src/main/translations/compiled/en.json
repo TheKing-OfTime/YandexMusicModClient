@@ -171,6 +171,12 @@
             "value": "Favorite artists list"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "List of favorite podcasts and books"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -189,94 +195,12 @@
             "value": "Playlists you liked"
         }
     ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "March 30, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Go to the light side, through a house party, and follow the latest trends — with our latest update!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "You can now create and edit playlists."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "You can now choose the light theme in your profile."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "There is now a catalog of selections by genre, mood, and activity from the editorial team. You can find it on the Home page in the Trends tab or in the search."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.0.18": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "April, 2024"
+                    "value": "April 1, 2024"
                 }
             ],
             "type": 8,
@@ -324,7 +248,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Neuromusic is now available on the For you button."
+                            "value": "Neuromusic is now available on the For You button."
                         }
                     ],
                     "type": 8,
@@ -338,7 +262,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Added the button to delete playlists."
+                            "value": "We also added the button to delete playlists"
                         }
                     ],
                     "type": 8,
@@ -366,7 +290,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Fixed the bugs in the My Favorites playlist because they're no one's favorites."
+                            "value": "We fixed the bugs in the My Favorites playlist because they're no one's favorites."
                         }
                     ],
                     "type": 8,
@@ -774,7 +698,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "We've added a settings section to the profile page. Tips for using hotkeys have already been available there. And it's just the beginning!"
+                            "value": "We've added the Settings section to the profile page. Tips for using hot keys are already there. And it's just the beginning!"
                         }
                     ],
                     "type": 8,
@@ -788,7 +712,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "We've also added a section with recommended playlists selected by genre to the home page. Discover new releases and enjoy your favorite music!"
+                            "value": "We've also added a section with recommended playlists by genre to the home page. Discover new releases and enjoy your favorite music!"
                         }
                     ],
                     "type": 8,
@@ -880,7 +804,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "20 июня 2024 г."
+                    "value": "June 20, 2024"
                 }
             ],
             "type": 8,
@@ -894,7 +818,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Есть две новости, и обе хорошие:"
+                    "value": "We have news, and the news is good!"
                 }
             ],
             "type": 8,
@@ -914,7 +838,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                            "value": "Added the listening history to the For You section. No track from My Vibe will ever be lost now."
                         }
                     ],
                     "type": 8,
@@ -928,7 +852,103 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                            "value": "More and more artist sections feature the Donate button. Use this chance to thank artists for their music."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "July 3, 2024"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "This update focuses on podcasts:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "You can now access podcasts from the side menu."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "You can now use search to look for podcasts."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "The Collection now also features podcasts."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "This is the feature Windows users have been waiting for: they can now minimize the application to system tray. Who knows, perhaps someone will make a podcast about it one day?"
                         }
                     ],
                     "type": 8,
@@ -1448,7 +1468,7 @@
     "entity-names.liked-playlist": [
         {
             "type": 0,
-            "value": "Favorites"
+            "value": "My Favorites"
         }
     ],
     "entity-names.liked-playlists-count": [
@@ -1732,6 +1752,12 @@
             "value": "Podcast"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Episode"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1746,6 +1772,12 @@
         {
             "type": 1,
             "value": "podcastName"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Podcasts"
         }
     ],
     "entity-names.popular-albums": [
@@ -2032,6 +2064,12 @@
             "value": "Add tracks to playlist"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "You have no podcasts and books in Collection"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2182,6 +2220,12 @@
             "value": "Close settings menu"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Close the volume setting menu"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2222,6 +2266,12 @@
         {
             "type": 0,
             "value": "I don't like it"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Next"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2304,7 +2354,7 @@
     "interface-actions.my-vibe-context-settings": [
         {
             "type": 0,
-            "value": "By mood"
+            "value": "By Mood"
         }
     ],
     "interface-actions.my-vibe-settings": [
@@ -2683,12 +2733,6 @@
             "value": "Home"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Podcasts and books"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2699,6 +2743,24 @@
         {
             "type": 0,
             "value": "Search"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " was added to "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
         }
     ],
     "notifications-info.added-to": [
@@ -2781,6 +2843,12 @@
             "value": "Collections"
         }
     ],
+    "notifications-info.from-my-shelf": [
+        {
+            "type": 0,
+            "value": "My Shelf"
+        }
+    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
@@ -2803,6 +2871,18 @@
         {
             "type": 0,
             "value": "Link to the playlist"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "This episode will now appear in your recommendations"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "This episode will no longer appear in your recommendations"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2843,6 +2923,12 @@
         {
             "type": 0,
             "value": "to My Collection"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "My Shelf"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2933,6 +3019,12 @@
             "value": "Try restarting the app."
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Saved podcasts and books"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -2949,6 +3041,12 @@
         {
             "type": 0,
             "value": "Known to you"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Podcasts and books"
         }
     ],
     "page.results-of-the-year": [
@@ -3003,6 +3101,18 @@
             "value": "High"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Maximum"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Sound settings"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -3027,6 +3137,18 @@
             "value": "Queue"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "Music in AAC"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "Music in FLAC and more formats"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3043,6 +3165,12 @@
         {
             "type": 0,
             "value": "Next song"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Music in Нigh-Efficiency-ААС"
         }
     ],
     "player-actions.pause": [
@@ -3347,6 +3475,18 @@
         {
             "type": 0,
             "value": "Publishers"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "You saved"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "You recently played"
         }
     ],
     "podcast.tab-about": [

@@ -9,7 +9,8 @@ const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
 const config_js_1 = require("./config.js");
 const handleExternalLink_js_1 = require("./lib/handlers/handleExternalLink.js");
-const menu_js_1 = require("./lib/menu.js");
+const systemMenu_js_1 = require("./lib/systemMenu.js");
+const tray_js_1 = require("./lib/tray.js");
 const handleWindowLifecycleEvents_js_1 = require("./lib/handlers/handleWindowLifecycleEvents.js");
 const singleInstance_js_1 = require("./lib/singleInstance.js");
 const logWindowLifecycle_js_1 = require("./lib/logWindowLifecycle.js");
@@ -34,8 +35,11 @@ Logger_js_1.Logger.setupLogger();
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
   await electron_1.app.whenReady();
-  (0, menu_js_1.setupMenu)();
+  (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
+  if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
+    (0, tray_js_1.setupTray)(window);
+  }
   (0, safeRedirects_js_1.safeRedirects)(window);
   (0, handleWindowLifecycleEvents_js_1.handleWindowLifecycleEvents)(window);
   (0, handleWindowSessionEvents_js_1.handleWindowSessionEvents)(window);
@@ -43,8 +47,8 @@ Logger_js_1.Logger.setupLogger();
   (0, handleExternalLink_js_1.handleExternalLink)(window);
   (0, logWindowLifecycle_js_1.logWindowLifecycle)(window);
   (0, handleDeeplink_js_1.handleDeeplink)(window);
-  (0, handleMetrikaRequests_js_1.handleMetrikaRequests)(window);
   (0, taskBarExtension_js_1.taskBarExtension)(window);
+  (0, handleMetrikaRequests_js_1.handleMetrikaRequests)(window);
   (0, handleCrash_js_1.handleCrash)();
   await (0, loadURL_js_1.loadURL)(window);
   if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {

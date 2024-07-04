@@ -175,6 +175,12 @@
             "value": "Сүйікті орындаушылардың тізімі"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "Сүйікті подкастар мен кітаптар тізімі"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -191,88 +197,6 @@
         {
             "type": 0,
             "value": "Сізге ұнағаны"
-        }
-    ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "20 наурыз 2024 ж."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Жарқын жаққа өтіңіз, үйде отырыс жасаңыз, трендтерді бақылап отырыңыз — осының бәрін біздің жаңа жаңартыммен жасауға болады"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Біз плейлистерді жасау және түзету мүмкіндігін қостық"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Енді бізде ашық түсті безендіру тақырыбы бар — оны профильден таңдауға болады"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Біздің редакция құрастырған жанрлар, көңіл-күйі мен әрекетке байланысты топтамалар каталогы пайда болды. Оны басты беттегі «Трендтер» қойындысынан да, іздеуден де табуға болады"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.18": [
@@ -844,7 +768,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "20 июня 2024 г."
+                    "value": "20 маусым 2024 ж."
                 }
             ],
             "type": 8,
@@ -852,13 +776,13 @@
         },
         {
             "type": 0,
-            "value": "\n"
+            "value": " "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "Есть две новости, и обе хорошие:"
+                    "value": "Екі жаңалық бар, екеуі де жақсы:"
                 }
             ],
             "type": 8,
@@ -866,19 +790,19 @@
         },
         {
             "type": 0,
-            "value": "\n"
+            "value": " "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "\n"
+                    "value": " "
                 },
                 {
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                            "value": "«Сіз үшін». Енді Менің толқынымдағы ешбір трек мәңгіге жоғалмайды"
                         }
                     ],
                     "type": 8,
@@ -886,13 +810,13 @@
                 },
                 {
                     "type": 0,
-                    "value": "\n"
+                    "value": " "
                 },
                 {
                     "children": [
                         {
                             "type": 0,
-                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                            "value": "Сонымен қатар әртістер бөлімінде «Донатпен қолдау» батырмалары көптеп көрінуде. Музыка үшін алғыс айтудың бұл әдісін ұмытпаңыз"
                         }
                     ],
                     "type": 8,
@@ -900,7 +824,103 @@
                 },
                 {
                     "type": 0,
-                    "value": "\n"
+                    "value": " "
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "26 маусым 2024 ж."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Бұл релизде толған подкаст:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": " "
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Подкастар бүйірлік мәзірде пайда болды"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": " "
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Подкастарды енді іздеу қызметінде іздеуге болады"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": " "
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Топтамада да подкастар бар"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": " "
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Windows пайдаланушылары үшін көптен күткен жаңартым: қосымша трейге жинап тастай алады Кім білсін, бәлкім, осы туралы подкаст жазатын шығар?"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": " "
                 }
             ],
             "type": 8,
@@ -1640,6 +1660,12 @@
             "value": "Подкаст"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Шығарылым"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1654,6 +1680,12 @@
         {
             "type": 0,
             "value": " подкасты"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Подкастар"
         }
     ],
     "entity-names.popular-albums": [
@@ -1912,6 +1944,12 @@
             "value": "Тректерді плейлистке қосыңыз"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Топтамада подкастар мен кітаптарыңыз жоқ"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2062,6 +2100,12 @@
             "value": "Баптаулар мәзірін жабу"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Дыбыс баптау мәзірін жабу"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2102,6 +2146,12 @@
         {
             "type": 0,
             "value": "Ұнамайды"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Келесі"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2575,12 +2625,6 @@
             "value": "Басты бет"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Подкастар мен кітаптар"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2591,6 +2635,24 @@
         {
             "type": 0,
             "value": "Іздеу"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " шығарылымы «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» плейлистіне қосылды"
         }
     ],
     "notifications-info.added-to": [
@@ -2673,6 +2735,12 @@
             "value": "Топтамалар"
         }
     ],
+    "notifications-info.from-my-shelf": [
+        {
+            "type": 0,
+            "value": "Менің сөремнің"
+        }
+    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
@@ -2695,6 +2763,18 @@
         {
             "type": 0,
             "value": "Link to the playlist"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Енді шығарылым ұсынымдарыңызда пайда болады"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Шығарылым енді ұсынымдарыңызда көрсетілмейді"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2735,6 +2815,12 @@
         {
             "type": 0,
             "value": "Топтаманы"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "Менің сөремді"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2825,6 +2911,12 @@
             "value": "Қолданбаны қайта жүктеп көріңіз."
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Кейінге қалдырылған подкастар мен кітаптар"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -2841,6 +2933,12 @@
         {
             "type": 0,
             "value": "Сізге таныс"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Подкастар мен кітаптар"
         }
     ],
     "page.results-of-the-year": [
@@ -2895,6 +2993,18 @@
             "value": "Жоғары"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Максималды"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Дыбыс баптаулары"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -2919,6 +3029,18 @@
             "value": "Кезек"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "ААС форматындағы музыка"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "FLAC және басқа форматтардағы музыка "
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -2935,6 +3057,12 @@
         {
             "type": 0,
             "value": "Келесі ән"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Нigh-Efficiency-ААС форматындағы музыка"
         }
     ],
     "player-actions.pause": [
@@ -3243,6 +3371,18 @@
         {
             "type": 0,
             "value": "Баспагерлер"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "Сіздің алып қойғаныңыз"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "Сіз жақында ғана тыңдадыңыз"
         }
     ],
     "podcast.tab-about": [

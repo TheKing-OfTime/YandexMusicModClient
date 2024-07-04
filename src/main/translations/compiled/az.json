@@ -175,6 +175,12 @@
             "value": "Sevimli ifaçıların siyahısı"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "Sevimli podkast və kitabların siyahısı"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -191,88 +197,6 @@
         {
             "type": 0,
             "value": "Bəyənmisiniz"
-        }
-    ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "20 mart 2024-cü il."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Qaranlıqdan çıxın, evdə şənlik təşkil edin, trendləri izləyin – bunlar hamısı bu yeniləmə ilə mümkündür"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Pleylistləri yaratmaq və redaktə etmək imkanı əlavə edilib"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "İndi açıq mövzu əlçatandır – onu profildə seçə bilərsiniz"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Redaksiyamızdan janr, əhval və məşğuliyyət üzrə kolleksiya kataloqu əlavə edilib. Onu əsas səhifədə \"Trendlər\" bölməsində və axtarışda tapa bilərsiniz"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.18": [
@@ -884,7 +808,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "20 июня 2024 г."
+                    "value": "20 iyun2024 г."
                 }
             ],
             "type": 8,
@@ -898,7 +822,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Есть две новости, и обе хорошие:"
+                    "value": "İki xəbər var, ikisi də yaxşıdır:"
                 }
             ],
             "type": 8,
@@ -918,7 +842,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                            "value": "\"Sizin üçün\" bölməsinə dinləmə tarixçəsi əlavə edilib. İndi heç bir trek Dalğamdan itməyəcək"
                         }
                     ],
                     "type": 8,
@@ -932,7 +856,103 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                            "value": "Həmçinin ifaçılar bölməsində daha çox \"İanə ilə dəstəklə\" düyməsi əlavə edilib. Musiqiyə görə bu təşəkkür üsulu barədə unutmayın"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "26 iyun 2024-cü il."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Bu buraxılışda podkastlar üstünlük təşkil edir:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Podkastlar artıq yan menyudadır"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Podkastları indi axtarışda axtarmaq olar"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Kolleksiyada da podkastlar var"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Windows istifadəçiləri üçün gözlənilən yeniləmə: tətbiqi aşağı yığışdırmaq olar. Bəlkə bu barədə podkast da olacaq?"
                         }
                     ],
                     "type": 8,
@@ -1724,6 +1744,12 @@
             "value": "Podkast"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Buraxılış"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1738,6 +1764,12 @@
         {
             "type": 0,
             "value": " podkastı"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Podkastlar"
         }
     ],
     "entity-names.popular-albums": [
@@ -2028,6 +2060,12 @@
             "value": "Trekləri pleylistə əlavə edin"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Kolleksiyada podkast və kitablarınız yoxdur"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2178,6 +2216,12 @@
             "value": "Parametrlər menyusunu bağla"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Səs parametrləri menyusunu bağla"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2218,6 +2262,12 @@
         {
             "type": 0,
             "value": "Bəyənmirəm"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Davam"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2699,12 +2749,6 @@
             "value": "Əsas"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Podkastlar və kitablar"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2715,6 +2759,24 @@
         {
             "type": 0,
             "value": "Axtarış"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " buraxılışı \""
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "\" pleylistinə əlavə edildi"
         }
     ],
     "notifications-info.added-to": [
@@ -2797,16 +2859,30 @@
             "value": "Kolleksiya"
         }
     ],
-    "notifications-info.my-vibe-pinned-in-menu": [
+    "notifications-info.from-my-shelf": [
         {
             "type": 0,
-            "value": "yan menyuda sabitləndi"
+            "value": "Rəfimdən"
+        }
+    ],
+    "notifications-info.my-vibe-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı Dalğam yan menyuda sabitləndi"
         }
     ],
     "notifications-info.my-vibe-unpinned-from-menu": [
         {
+            "type": 1,
+            "value": "entity"
+        },
+        {
             "type": 0,
-            "value": "yan menyudan silindi"
+            "value": " adlı Dalğam yan menyudan silindi"
         }
     ],
     "notifications-info.pinned-in-menu": [
@@ -2819,6 +2895,18 @@
         {
             "type": 0,
             "value": "Pleylistə keçid"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Artıq buraxılış tövsiyələrdə təklif edilə bilər"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Artıq buraxılış tövsiyələrdə təklif edilməyəcək"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2859,6 +2947,12 @@
         {
             "type": 0,
             "value": "Kolleksiya"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "Rəfimə"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2949,6 +3043,12 @@
             "value": "Tətbiqi yenidən başladın."
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Yaddaşda saxlanılmış podkast və kitablar"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -2965,6 +3065,12 @@
         {
             "type": 0,
             "value": "Bildiyiniz"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Podkastlar və kitablar"
         }
     ],
     "page.results-of-the-year": [
@@ -3019,6 +3125,18 @@
             "value": "Yüksək"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Maksimal"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Səs parametrləri"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -3043,6 +3161,18 @@
             "value": "Növbə"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "ААС formatında musiqi"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "FLAC və digər formatlarda musiqi"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3059,6 +3189,12 @@
         {
             "type": 0,
             "value": "Növbəti mahnı"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Нigh-Efficiency-ААС formatında musiqi"
         }
     ],
     "player-actions.pause": [
@@ -3359,6 +3495,18 @@
         {
             "type": 0,
             "value": "Naşirlər"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "Təxirə salınıb"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "Yenicə dinlənilib"
         }
     ],
     "podcast.tab-about": [

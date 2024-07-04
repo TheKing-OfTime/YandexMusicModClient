@@ -175,6 +175,12 @@
             "value": "Sevimli ijrochilar roʻyxati"
         }
     ],
+    "collection.liked-non-music-list": [
+        {
+            "type": 0,
+            "value": "Sevimli podkatlar va kitoblar roʻyxati"
+        }
+    ],
     "collection.liked-playlists-list": [
         {
             "type": 0,
@@ -191,88 +197,6 @@
         {
             "type": 0,
             "value": "Sizga yoqdi"
-        }
-    ],
-    "desktop-release-notes.5.0.16": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024-yil 20-mart"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Yorugʻ tarafga oʻting, uyda bazm uyushtiring, trendlarni kuzatib boring – bularning barchasini navbatdagi yangilanishlarimiz orqali bajarish mumkin"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Pleylistlar yaratish va ularni tahrirlash imkoniyatini kiritdik"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Endi bizda yorqin bezakli mavzu bor – uni profilda tanlash mumkin"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Tahririyatimiz tomonidan janrlar, kayfiyat va mashgʻulot booʻyicha termalar katalogi chiqarildi. Uni “Trendlar” varagʻidagi asosiy sahifada hamda qidiruvda topish mumkin"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.18": [
@@ -884,7 +808,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "20 июня 2024 г."
+                    "value": "2024-yil 20-iyun"
                 }
             ],
             "type": 8,
@@ -898,7 +822,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Есть две новости, и обе хорошие:"
+                    "value": "Ikkita yangilik bor va ikkalasi ham yaxshi xabar:"
                 }
             ],
             "type": 8,
@@ -918,7 +842,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили историю прослушивания в разделе «Для вас». Теперь ни один трек из Моей волны не исчезнет навсегда"
+                            "value": "“Siz uchun” boʻlimiga tinglash tarixi qoʻshildi. Endi Mening toʻlqinimdagi birorta tarona butunlay yoʻqolmaydi."
                         }
                     ],
                     "type": 8,
@@ -932,7 +856,103 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "А ещё всё больше кнопок «Поддержать донатом» появляется в разделах артистов. Не забывайте об этом способе сказать им спасибо за музыку"
+                            "value": "Ijrochilar boʻlimlarida yana koʻplab “Donat orqali yordam” tugmalari paydo boʻladi. Bu usulda ularga musiqa uchun minnatdorchilik bildirishni unutmang"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.6.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "2024-yil 26-iyun"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Bu relizda qayerga qaramang – hammayoqda podkastlar:"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Podkastlar yon menyuda paydo boʻldi"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Endi podkastlarni qidiruv orqali topish mumkin"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Termalarda ham podkastlar mavjud"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Windows foydalanuvchilari uchun uzoq kutilgan yangilanish: ilovani treyga ixchamlashtirish mumkin. Kim bilsin, balki bu haqida ham podkast olinar?"
                         }
                     ],
                     "type": 8,
@@ -1724,6 +1744,12 @@
             "value": "Podkast"
         }
     ],
+    "entity-names.podcast-episode": [
+        {
+            "type": 0,
+            "value": "Chiqarish"
+        }
+    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1738,6 +1764,12 @@
         {
             "type": 1,
             "value": "podcastName"
+        }
+    ],
+    "entity-names.podcasts": [
+        {
+            "type": 0,
+            "value": "Podkast"
         }
     ],
     "entity-names.popular-albums": [
@@ -2028,6 +2060,12 @@
             "value": "Treklarni pleylistga kiriting"
         }
     ],
+    "error-messages.empty-collection-podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Temalaringizda podkastlar va kitoblar yoʻq"
+        }
+    ],
     "error-messages.empty-collection-upcoming-albums-description": [
         {
             "type": 0,
@@ -2178,6 +2216,12 @@
             "value": "Sozlamalar menyusini yopish"
         }
     ],
+    "interface-actions.close-quality-settings": [
+        {
+            "type": 0,
+            "value": "Ovoz sozlamasi menyusini yopish"
+        }
+    ],
     "interface-actions.configure-my-vibe": [
         {
             "type": 0,
@@ -2218,6 +2262,12 @@
         {
             "type": 0,
             "value": "Yoqmaydi"
+        }
+    ],
+    "interface-actions.further": [
+        {
+            "type": 0,
+            "value": "Davom etish"
         }
     ],
     "interface-actions.he-updated-playlist-date": [
@@ -2699,12 +2749,6 @@
             "value": "Bosh sahifa"
         }
     ],
-    "navigation.page-non-music": [
-        {
-            "type": 0,
-            "value": "Podkastlar va kitoblar"
-        }
-    ],
     "navigation.pins-list": [
         {
             "type": 0,
@@ -2715,6 +2759,24 @@
         {
             "type": 0,
             "value": "Qidiruv"
+        }
+    ],
+    "notifications-info.added-podcast-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " relizi “"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "” pleylistiga qoʻshildi"
         }
     ],
     "notifications-info.added-to": [
@@ -2793,16 +2855,38 @@
             "value": "Termalar"
         }
     ],
+    "notifications-info.from-my-shelf": [
+        {
+            "type": 0,
+            "value": "Mening tokchalarim"
+        }
+    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
-            "value": "yon menyuga qadaldi"
+            "value": "Mening toʻlqinim "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " yon menyuga mahkamlandi"
         }
     ],
     "notifications-info.my-vibe-unpinned-from-menu": [
         {
             "type": 0,
-            "value": "yon menyudan olib tashlandi"
+            "value": "Mening toʻlqinim "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " yon menyudan oʻchirildi"
         }
     ],
     "notifications-info.pinned-in-menu": [
@@ -2815,6 +2899,18 @@
         {
             "type": 0,
             "value": "Pleylistga havola"
+        }
+    ],
+    "notifications-info.podcast-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Endi eshittirish sizning tavsiya etilganlaringizda paydo bo‘lishi mumkin"
+        }
+    ],
+    "notifications-info.podcast-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Eshittirish sizning tavsiya etilganlaringizda paydo bo‘lmaydi"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2855,6 +2951,12 @@
         {
             "type": 0,
             "value": "Termani"
+        }
+    ],
+    "notifications-info.to-my-shelf": [
+        {
+            "type": 0,
+            "value": "Mening tokchamga"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2945,6 +3047,12 @@
             "value": "Ilovani qayta ishga tushirib ko‘ring."
         }
     ],
+    "page.delayed-non-music": [
+        {
+            "type": 0,
+            "value": "Qoldirilgan podkastlar va kitoblar"
+        }
+    ],
     "page.familiar-collection": [
         {
             "type": 0,
@@ -2961,6 +3069,12 @@
         {
             "type": 0,
             "value": "Sizga tanish"
+        }
+    ],
+    "page.podcasts-and-books": [
+        {
+            "type": 0,
+            "value": "Podkastlar va kitoblar"
         }
     ],
     "page.results-of-the-year": [
@@ -3015,6 +3129,18 @@
             "value": "Yuqori"
         }
     ],
+    "player-actions.audio-quality-hq-plus": [
+        {
+            "type": 0,
+            "value": "[NDA] Maksimal"
+        }
+    ],
+    "player-actions.audio-quality-nda": [
+        {
+            "type": 0,
+            "value": "[NDA] Ovoz sozlamalari"
+        }
+    ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
@@ -3039,6 +3165,18 @@
             "value": "Navbat"
         }
     ],
+    "player-actions.hq-description": [
+        {
+            "type": 0,
+            "value": "AAC formatidagi musiqa"
+        }
+    ],
+    "player-actions.hq-plus-description": [
+        {
+            "type": 0,
+            "value": "FLAC va boshqa formatlardagi musiqa"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3055,6 +3193,12 @@
         {
             "type": 0,
             "value": "Keyingi tarona"
+        }
+    ],
+    "player-actions.nq-description": [
+        {
+            "type": 0,
+            "value": "Нigh-Efficiency-ААС formatidagi musiqa"
         }
     ],
     "player-actions.pause": [
@@ -3347,6 +3491,18 @@
         {
             "type": 0,
             "value": "Noshirlar"
+        }
+    ],
+    "podcast.shelf-liked-title": [
+        {
+            "type": 0,
+            "value": "Siz keyinga olib qo‘ydingiz"
+        }
+    ],
+    "podcast.shelf-recently-played-title": [
+        {
+            "type": 0,
+            "value": "Yaqinda tingladingiz"
         }
     ],
     "podcast.tab-about": [

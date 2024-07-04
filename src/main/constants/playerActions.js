@@ -7,8 +7,8 @@ var PlayerActions;
   PlayerActions["PAUSE"] = "PAUSE";
   PlayerActions["TOGGLE_PLAY"] = "TOGGLE_PLAY";
 
-  PlayerActions["NEXT"] = "NEXT";
-  PlayerActions["PREVIOUS"] = "PREVIOUS";
+  PlayerActions["MOVE_FORWARD"] = "MOVE_FORWARD";
+  PlayerActions["MOVE_BACKWARD"] = "MOVE_BACKWARD";
 
   PlayerActions["TOGGLE_LIKE"] = "TOGGLE_LIKE";
   PlayerActions["LIKE"] = "LIKE";

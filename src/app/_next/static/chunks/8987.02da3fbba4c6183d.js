@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[8987],{30518:function(n,e,t){t.d(e,{s:function(){return c}});var u=t(21535);let c=n=>u.env.NEXT_PUBLIC_USE_BFF?"".concat("https://next.qa.music.yandex.ru","/api"):n}}]);

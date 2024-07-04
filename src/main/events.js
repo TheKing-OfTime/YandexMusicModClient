@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendAnalyticsOnFirstLaunch =
   exports.sendOpenDeeplink =
-  exports.sendUpdateApplicationData =
+  exports.sendPlayerAction =
+  exports.sendRefreshApplicationData =
   exports.sendShowReleaseNotes =
   exports.sendUpdateAvailable =
   exports.handleApplicationEvents =
@@ -11,19 +12,25 @@ const electron_1 = require("electron");
 const events_js_1 = require("./constants/events.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
-const appSuspensionController_js_1 = require("./lib/appSuspensionController.js");
+const tray_js_1 = require("./lib/tray.js");
+const appSuspension_js_1 = require("./lib/appSuspension.js");
 const discordRichPresence_js_1 = require("./lib/discordRichPresence.js");
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const cookies_js_1 = require("./constants/cookies.js");
 const store_js_1 = require("./lib/store.js");
 const state_js_1 = require("./lib/state.js");
+const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const eventsLogger = new Logger_js_1.Logger("Events");
+const isBoolean = (value) => {
+  return typeof value === "boolean";
+};
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_MINIMIZE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_MINIMIZE);
     window.minimize();
+    (0, tray_js_1.updateTrayMenu)(window);
   });
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_MAXIMIZE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_MAXIMIZE);
@@ -32,20 +39,22 @@ const handleApplicationEvents = (window) => {
     } else {
       window.maximize();
     }
+    (0, tray_js_1.updateTrayMenu)(window);
   });
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_CLOSE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_CLOSE);
-    electron_1.app.quit();
+    if (state_js_1.state.player.isPlaying) {
+      (0, createWindow_js_1.toggleWindowVisibility)(window, false);
+    } else {
+      electron_1.app.quit();
+    }
   });
-  electron_1.ipcMain.on(events_js_1.Events.ON_UPDATE_INSTALL, () => {
-    eventsLogger.info("Event received", events_js_1.Events.ON_UPDATE_INSTALL);
+  electron_1.ipcMain.on(events_js_1.Events.INSTALL_UPDATE, () => {
+    eventsLogger.info("Event received", events_js_1.Events.INSTALL_UPDATE);
     updater.install();
   });
-  electron_1.ipcMain.on(events_js_1.Events.ON_APPLICATION_READY, () => {
-    eventsLogger.info(
-      "Event received",
-      events_js_1.Events.ON_APPLICATION_READY,
-    );
+  electron_1.ipcMain.on(events_js_1.Events.APPLICATION_READY, () => {
+    eventsLogger.info("Event received", events_js_1.Events.APPLICATION_READY);
     if (state_js_1.state.deeplink) {
       (0, handleDeeplink_js_1.navigateToDeeplink)(
         window,
@@ -66,13 +75,34 @@ const handleApplicationEvents = (window) => {
       window.setBackgroundColor(backgroundColor);
     },
   );
-  electron_1.ipcMain.on(events_js_1.Events.NEED_SHOW_RELEASE_NOTES, () => {
-    eventsLogger.info(
-      "Event received",
-      events_js_1.Events.NEED_SHOW_RELEASE_NOTES,
-    );
+  electron_1.ipcMain.on(events_js_1.Events.RELEASE_NOTES_READY, () => {
+    eventsLogger.info("Event received", events_js_1.Events.RELEASE_NOTES_READY);
     if ((0, store_js_1.needToShowReleaseNotes)()) {
       (0, exports.sendShowReleaseNotes)(window);
+    }
+  });
+  electron_1.ipcMain.on(events_js_1.Events.PLAYER_STATE, (event, data) => {
+    eventsLogger.info(
+      `Event received`,
+      events_js_1.Events.PLAYER_STATE,
+      data.isPlaying,
+      data.canMoveBackward,
+      data.canMoveForward,
+    );
+    if (isBoolean(data.isPlaying)) {
+      state_js_1.state.player.isPlaying = data.isPlaying;
+      (0, appSuspension_js_1.toggleAppSuspension)(data.isPlaying);
+    }
+    if (isBoolean(data.canMoveBackward)) {
+      state_js_1.state.player.canMoveBackward = data.canMoveBackward;
+    }
+    if (isBoolean(data.canMoveForward)) {
+      state_js_1.state.player.canMoveForward = data.canMoveForward;
+    }
+    (0, tray_js_1.updateTrayMenu)(window);
+    (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
+    if (data.isPrimaryDataChanged) {
+      (0, discordRichPresence_js_1.discordRichPresence)(data);
     }
   });
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
@@ -91,23 +121,11 @@ const handleApplicationEvents = (window) => {
       return;
     }
   });
-  electron_1.ipcMain.on(events_js_1.Events.ON_PLAYER_STATE, (event, args) => {
-    eventsLogger.info(`Event received ${events_js_1.Events.ON_PLAYER_STATE}`);
-    if (args.isPrimaryDataChanged) {
-      (0, appSuspensionController_js_1.appSuspensionController)(args.isPlaying);
-      (0, discordRichPresence_js_1.discordRichPresence)(args);
-    }
-    (0, taskBarExtension_js_1.onPlayerStateChange)(window, args);
-  });
 };
 exports.handleApplicationEvents = handleApplicationEvents;
 const sendUpdateAvailable = (window, version) => {
-  window.webContents.send(events_js_1.Events.ON_UPDATE_AVAILABLE, version);
-  eventsLogger.info(
-    "Event sent",
-    events_js_1.Events.ON_UPDATE_AVAILABLE,
-    version,
-  );
+  window.webContents.send(events_js_1.Events.UPDATE_AVAILABLE, version);
+  eventsLogger.info("Event sent", events_js_1.Events.UPDATE_AVAILABLE, version);
 };
 exports.sendUpdateAvailable = sendUpdateAvailable;
 const sendShowReleaseNotes = (window) => {
@@ -115,14 +133,19 @@ const sendShowReleaseNotes = (window) => {
   eventsLogger.info("Event sent", events_js_1.Events.SHOW_RELEASE_NOTES);
 };
 exports.sendShowReleaseNotes = sendShowReleaseNotes;
-const sendUpdateApplicationData = (window) => {
-  window.webContents.send(events_js_1.Events.UPDATE_APPLICATION_DATA);
-  eventsLogger.info("Event sent", events_js_1.Events.UPDATE_APPLICATION_DATA);
+const sendRefreshApplicationData = (window) => {
+  window.webContents.send(events_js_1.Events.REFRESH_APPLICATION_DATA);
+  eventsLogger.info("Event sent", events_js_1.Events.REFRESH_APPLICATION_DATA);
 };
-exports.sendUpdateApplicationData = sendUpdateApplicationData;
+exports.sendRefreshApplicationData = sendRefreshApplicationData;
+const sendPlayerAction = (window, action) => {
+  window.webContents.send(events_js_1.Events.PLAYER_ACTION, action);
+  eventsLogger.info("Event sent", events_js_1.Events.PLAYER_ACTION, action);
+};
+exports.sendPlayerAction = sendPlayerAction;
 const sendOpenDeeplink = (window, pathname) => {
-  window.webContents.send(events_js_1.Events.ON_HANDLE_DEEPLINK, pathname);
-  eventsLogger.info("Event sent", events_js_1.Events.ON_HANDLE_DEEPLINK);
+  window.webContents.send(events_js_1.Events.OPEN_DEEPLINK, pathname);
+  eventsLogger.info("Event sent", events_js_1.Events.OPEN_DEEPLINK);
 };
 exports.sendOpenDeeplink = sendOpenDeeplink;
 const sendAnalyticsOnFirstLaunch = (window) => {
@@ -130,9 +153,3 @@ const sendAnalyticsOnFirstLaunch = (window) => {
   eventsLogger.info("Event send", events_js_1.Events.FIRST_LAUNCH);
 };
 exports.sendAnalyticsOnFirstLaunch = sendAnalyticsOnFirstLaunch;
-
-const sendPlayerAction = (window, action) => {
-  window.webContents.send(events_js_1.Events.PLAYER_ACTION, action);
-  eventsLogger.info("Event send", events_js_1.Events.PLAYER_ACTION);
-};
-exports.sendPlayerAction = sendPlayerAction;

@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.5.0",
+    "version": "5.6.0",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -24,17 +24,17 @@
         "@types/intl-messageformat": "~3.0.0"
     },
     "buildInfo": {
-        "VERSION": "5.5.0",
-        "BRANCH": "r14241485"
+        "VERSION": "5.6.0",
+        "BRANCH": "release-5.6/4745673c"
     },
     "common": {
-        "UPDATE_POLL_INTERVAL": 1800000,
+        "SHOW_RELEASE_NOTES": true,
+        "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
+        "UPDATE_POLL_INTERVAL_MS": 1800000,
         "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",
         "SUPPORT_URL": "/user/ee219503-b69b-9484-405b-6877a510e13c",
         "TERMS_OF_USE_URL": "https://yandex.ru/legal/music_mobile_agreement/",
-        "RECOMMENDATIONS_URL": "https://music.yandex.ru/legal/recommendations/ru/#music",
-        "SHOW_RELEASE_NOTES": true,
-        "UPDATE_EVENT_INTERVAL_MINUTES": 10
+        "RECOMMENDATIONS_URL": "https://music.yandex.ru/legal/recommendations/ru/#music"
     },
     "meta": {
         "PRODUCT_NAME": "Yandex Music",
