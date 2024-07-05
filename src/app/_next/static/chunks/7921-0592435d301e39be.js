@@ -500,6 +500,7 @@
           [e],
         );
         (0, a.useEffect)(() => {
+          var e;
           return (
             null === (e = window.desktopEvents) ||
               void 0 === e ||
