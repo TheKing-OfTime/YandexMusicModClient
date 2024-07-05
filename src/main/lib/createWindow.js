@@ -14,10 +14,12 @@ const electron_1 = require("electron");
 const config_js_1 = require("../config.js");
 const state_js_1 = require("./state.js");
 const tray_js_1 = require("./tray.js");
+const taskBarExtension_js_1 = require("./taskBarExtension/taskBarExtension.js");
 const toggleWindowVisibility = (window, isVisible) => {
   if (isVisible) {
     window.show();
     window.setSkipTaskbar(false);
+    taskBarExtension_js_1.onPlayerStateChange(window, undefined);
     state_js_1.state.isWindowHidden = false;
   } else {
     window.hide();
@@ -27,6 +29,18 @@ const toggleWindowVisibility = (window, isVisible) => {
   (0, tray_js_1.updateTrayMenu)(window);
 };
 exports.toggleWindowVisibility = toggleWindowVisibility;
+const toggleWindowState = (window) => {
+  if (state_js_1.state.isWindowHidden) {
+    (0, exports.toggleWindowVisibility)(window, true);
+  } else if (window.isMinimized()) {
+    window.restore();
+    taskBarExtension_js_1.onPlayerStateChange(window, undefined);
+  } else {
+    window.minimize();
+  }
+  (0, tray_js_1.updateTrayMenu)(window);
+};
+exports.toggleWindowState = toggleWindowState;
 const createWindow = async () => {
   const window = new electron_1.BrowserWindow({
     show: false,
