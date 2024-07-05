@@ -38,6 +38,7 @@ Adds support for Discord Rich Presence
 
    
 Adds support for Taskbar Extensions
+
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
 
 </details>
