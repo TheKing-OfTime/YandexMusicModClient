@@ -1,6 +1,12 @@
 # YandexMusicModClient
 ## This is a modification for Yandex Music Desktop application which unmodified version can be downloaded [here](https://music.yandex.com/download/)
 ### YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
+<details>
+   <summary>Message for Yandex Music Staff</summary>
+   
+   Since you found my code usefull and copied some parts from [here](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/5384285a8de1101102fc21f593266807b38a304f#diff-c314348839e9fcfdd871cc449297e9cf3f9631701ff29758014ba11bf9200ba0) (more specifically PLAYER_ACTION event) and added it to vanilla client. You might want to hire me.
+   My work will be much more efficient if I work on the source code in a cozy office rather than with a minified & webpacked version of the code
+</details>
 
 ## Install
 
@@ -38,6 +44,7 @@ Adds support for Discord Rich Presence
 
    
 Adds support for Taskbar Extensions
+
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
 
 </details>
