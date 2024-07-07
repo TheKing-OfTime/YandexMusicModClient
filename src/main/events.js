@@ -101,9 +101,7 @@ const handleApplicationEvents = (window) => {
     }
     (0, tray_js_1.updateTrayMenu)(window);
     (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
-    if (data.isPrimaryDataChanged) {
-      (0, discordRichPresence_js_1.discordRichPresence)(data);
-    }
+    (0, discordRichPresence_js_1.discordRichPresence)(data);
   });
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
     eventsLogger.info("Event handle", events_js_1.Events.GET_PASSPORT_LOGIN);

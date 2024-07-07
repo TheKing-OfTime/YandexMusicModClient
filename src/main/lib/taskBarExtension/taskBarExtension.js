@@ -18,7 +18,7 @@ exports.taskBarExtension = taskBarExtension;
 
 const onPlayerStateChange = (window, newPlayerState) => {
   if (typeof newPlayerState !== "undefined") {
-    playerState = newPlayerState;
+    playerState = structuredClone(newPlayerState);
   }
   updateTaskbarExtension(window);
 };

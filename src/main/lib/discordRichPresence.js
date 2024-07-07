@@ -192,7 +192,7 @@ const tryReconnect = () => {
 tryConnect();
 
 const getArtist = (artistsArray) => {
-  if (!artistsArray?.[0]) return "loading";
+  if (!artistsArray?.[0]?.name) return "loading";
   let artistsLabel = "by " + artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
