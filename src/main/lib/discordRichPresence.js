@@ -14,6 +14,8 @@ let isReady = false;
 let isListeningType = false;
 let timeoutId = undefined;
 
+let previousActivity = undefined;
+
 const initRPC = () => {
   rpc = new DiscordRPC.Client({ transport: "ipc" });
   isReady = false;
@@ -59,6 +61,14 @@ function string2Discord(string) {
     string += "…";
   }
   return string;
+}
+
+function serializeActivity(activity) {
+  return JSON.stringify(activity);
+}
+
+function compareActivities(newActivity) {
+  return serializeActivity(newActivity) === serializeActivity(previousActivity);
 }
 
 async function setActivity(
@@ -154,6 +164,10 @@ async function setActivity(
     }
   }
 
+  if (compareActivities(activityObject)) return true;
+
+  previousActivity = activityObject;
+
   rpc
     .setActivity(activityObject)
     .then((activity) => silenceTypeCheck(activity))
@@ -178,6 +192,7 @@ const tryReconnect = () => {
 tryConnect();
 
 const getArtist = (artistsArray) => {
+  if (!artistsArray?.[0]) return "loading";
   let artistsLabel = "by " + artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
@@ -194,7 +209,8 @@ const discordRichPresence = (playingState) => {
   if (playingState.track.version) {
     title = playingState.track.title + ` (${playingState.track.version})`;
   }
-  const artist = getArtist(playingState.track.artists);
+
+  const artist = getArtist(playingState.track?.artists);
 
   let album = playingState.track.albums?.[0]?.title;
 

@@ -73,7 +73,7 @@ const clearTaskbarExtension = (window) => {
 
 const getTooltipString = () => {
   let title = playerState.track?.title;
-  if (playerState.track.version) {
+  if (playerState?.track?.version) {
     title = playerState.track.title + ` (${playerState.track.version})`;
   }
 
@@ -87,7 +87,8 @@ const getTooltipString = () => {
 };
 
 const getArtist = () => {
-  let artistsArray = playerState.track.artists;
+  let artistsArray = playerState.track?.artists;
+  if (!artistsArray?.[0]) return "loading";
   let artistsLabel = artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
