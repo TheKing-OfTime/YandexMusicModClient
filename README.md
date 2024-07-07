@@ -49,6 +49,17 @@ Adds support for Taskbar Extensions
 
 </details>
 
+### Unblocked Lossless quality (HQ+ in quality settings)
+<details>
+   <summary>Details</summary>
+   
+Unblocked Lossless quality (HQ+ in quality settings)
+
+![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
+
+
+</details>
+
 ### Unblocked Devtools and DevPanel
 <details>
    <summary>Details</summary>
