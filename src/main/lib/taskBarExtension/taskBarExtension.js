@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const events_js_1 = require("../../events");
+const config_js_1 = require("../../config");
 const playerActions_js_1 = require("../../constants/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
@@ -68,6 +69,31 @@ const getActionsStoreObject = (actionsStore) => {
 
 const clearTaskbarExtension = (window) => {
   taskBarExtensionLogger.log(window.setThumbarButtons([]));
+};
+
+const getTooltipString = () => {
+  let title = playerState.track?.title;
+  if (playerState.track.version) {
+    title = playerState.track.title + ` (${playerState.track.version})`;
+  }
+
+  return (
+    title +
+    " | " +
+    getArtist() +
+    " ― " +
+    config_js_1.config.meta.PRODUCT_NAME_LOCALIZED
+  );
+};
+
+const getArtist = () => {
+  let artistsArray = playerState.track.artists;
+  let artistsLabel = artistsArray[0].name;
+  artistsArray.shift();
+  artistsArray.forEach((artist) => {
+    artistsLabel += ", " + artist.name;
+  });
+  return artistsLabel;
 };
 
 const updateTaskbarExtension = (window) => {
@@ -187,10 +213,11 @@ const updateTaskbarExtension = (window) => {
     buttons.pop();
   }
 
-  let status = window.setThumbarButtons(buttons);
+  const taskButtonStatus = window.setThumbarButtons(buttons);
+  window.setThumbnailToolTip(getTooltipString());
 
   taskBarExtensionLogger.log(
     "ThumbarButtons set:",
-    status ? "success" : "failed",
+    taskButtonStatus ? "success" : "failed",
   );
 };
