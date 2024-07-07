@@ -27,7 +27,7 @@
 > [!NOTE]  
 > Relogin may be required after patch install.
 
-## Core features
+## Features
 
 ### Discord Rich Presence
 <details>
@@ -49,18 +49,19 @@ Adds support for Taskbar Extensions
 
 </details>
 
-### Unblocked Lossless quality (HQ+ in quality settings)
+### Lossless / HQ+ quality
 <details>
    <summary>Details</summary>
    
-Unblocked Lossless quality (HQ+ in quality settings)
+Unblockes Lossless quality (HQ+ in quality settings)
+> Currently there are a lot of tracks that don't have lossless version.
 
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
 
 
 </details>
 
-### Unblocked Devtools and DevPanel
+### Devtools & DevPanel
 <details>
    <summary>Details</summary>
    
