@@ -29,6 +29,9 @@
 > [!NOTE]  
 > Relogin may be required after patch install.
 
+> [!NOTE]  
+> Modification migration to 5.7.14 is not ready yet. 
+
 ## Features
 
 ### Discord Rich Presence
