@@ -1,6 +1,3 @@
-> [!NOTE]  
-> Modification migration to 5.7.14 is not ready yet. 
-
 # YandexMusicModClient
 [![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
 
@@ -64,7 +61,17 @@ Unblockes Lossless quality (HQ+ in quality settings)
 > Currently there are a lot of tracks that don't have lossless version.
 
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
+</details>
 
+### Sync Lyrics
+<details>
+   <summary>Details</summary>
+   
+Unblockes Sync Lyrics
+
+![image](https://github.com/user-attachments/assets/74eb500e-22e0-4541-bb46-758e57c82971)
+
+![image](https://github.com/user-attachments/assets/a5ed1b2d-3ff9-40d2-930f-b9ad3f5f727b)
 
 </details>
 
@@ -77,4 +84,5 @@ Unblocking Devtools disables auto updates. So this feature distributes in separe
 ![electron_L6SeZLnSAH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/ae841087-d910-45e5-a007-3fd869a493e1)
 
 ![electron_y6aOeckPLH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/4bde4785-9196-4ac6-ad3b-9ac5db5b61c8)
+
 </details>
