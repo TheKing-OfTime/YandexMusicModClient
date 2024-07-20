@@ -1096,7 +1096,7 @@
           p = d.layout !== u.t8.Mobile,
           f = d.platform === u.t4.MACOS,
           x = d.platform === u.t4.WINDOWS,
-          y = _.checkExperiment(u.pe.WebNextTrackAboutModal, "on");
+          y = true;
         return (0, i.jsxs)("div", {
           className: (0, o.W)(L().root, {
             [L().root_applicationPreserveTitleBar]: x,

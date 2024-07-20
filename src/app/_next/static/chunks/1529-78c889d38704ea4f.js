@@ -3190,9 +3190,7 @@
             z = k.get(d.BU.YmPlayerQuality),
             U = z ? V[z] : null,
             F = r.isAuthorized && !B,
-            W =
-              c.checkExperiment(d.pe.WebNextSyncLyrics, "on") &&
-              !(null == a ? void 0 : a.isNonMusic),
+            W = true && !(null == a ? void 0 : a.isNonMusic),
             Q = (0, d.RV)(),
             q = l.canSpeed && Q && T && (null == a ? void 0 : a.isNonMusic),
             G = (0, s.useMemo)(

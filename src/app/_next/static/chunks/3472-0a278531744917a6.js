@@ -2295,9 +2295,9 @@
           (0, m.ZP)(b);
           let F = !x.isUGC && !V,
             Y = V && R,
-            J = N.checkExperiment(m.pe.WebNextTrackAboutModal, "on") && !P,
+            J = true && !P,
             H =
-              N.checkExperiment(m.pe.WebNextSyncLyrics, "on") &&
+              true &&
               (null == E ? void 0 : E.hasSyncLyrics) &&
               T.modal.isOpened;
           return (0, a.jsxs)(c.v2, {
