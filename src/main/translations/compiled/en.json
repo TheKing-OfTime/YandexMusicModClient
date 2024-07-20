@@ -1,4 +1,10 @@
 {
+    "a11y-regions.player": [
+        {
+            "type": 0,
+            "value": "Player"
+        }
+    ],
     "about-app.app-name": [
         {
             "type": 0,
@@ -51,6 +57,12 @@
         {
             "type": 0,
             "value": "Log in to your account"
+        }
+    ],
+    "bar-bellow.section-name": [
+        {
+            "type": 0,
+            "value": "Banner"
         }
     ],
     "calendar.april-short": [
@@ -193,116 +205,6 @@
         {
             "type": 0,
             "value": "Playlists you liked"
-        }
-    ],
-    "desktop-release-notes.5.0.18": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "April 1, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Take a deep breath and dive into the new version of the app!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "My Vibe is now available in Search. Just enter a genre, mood, or activity — and listen to the tracks that suit it."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Neuromusic is now available on the For You button."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "We also added the button to delete playlists"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "You can now view upcoming releases of your favorite artists in My Collection."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "We fixed the bugs in the My Favorites playlist because they're no one's favorites."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.19": [
@@ -963,6 +865,88 @@
             "value": "ul"
         }
     ],
+    "desktop-release-notes.5.7.14": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "17 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
     "desktop.about": [
         {
             "type": 0,
@@ -1097,6 +1081,12 @@
         {
             "type": 0,
             "value": "Update"
+        }
+    ],
+    "donation.button-text": [
+        {
+            "type": 0,
+            "value": "Support the Artist"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -1293,6 +1283,16 @@
             "value": " track list"
         }
     ],
+    "entity-names.and-more-artists": [
+        {
+            "type": 1,
+            "value": "artists"
+        },
+        {
+            "type": 0,
+            "value": " and others"
+        }
+    ],
     "entity-names.artist": [
         {
             "type": 0,
@@ -1349,6 +1349,16 @@
         {
             "type": 0,
             "value": "Audiobook"
+        }
+    ],
+    "entity-names.authors": [
+        {
+            "type": 0,
+            "value": "Written by: "
+        },
+        {
+            "type": 1,
+            "value": "authors"
         }
     ],
     "entity-names.chart-tracks-list": [
@@ -1618,6 +1628,12 @@
             "value": "My Vibe"
         }
     ],
+    "entity-names.nda": [
+        {
+            "type": 0,
+            "value": "NDA"
+        }
+    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1752,12 +1768,6 @@
             "value": "Podcast"
         }
     ],
-    "entity-names.podcast-episode": [
-        {
-            "type": 0,
-            "value": "Episode"
-        }
-    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1850,10 +1860,26 @@
             "value": "Single"
         }
     ],
+    "entity-names.source": [
+        {
+            "type": 0,
+            "value": "Source: "
+        },
+        {
+            "type": 1,
+            "value": "source"
+        }
+    ],
     "entity-names.studio-albums": [
         {
             "type": 0,
             "value": "Studio albums"
+        }
+    ],
+    "entity-names.sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Music and lyrics"
         }
     ],
     "entity-names.track": [
@@ -1926,6 +1952,12 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "value"
+        }
+    ],
+    "entity-names.trailer": [
+        {
+            "type": 0,
+            "value": "Trailer"
         }
     ],
     "entity-names.upcoming-album": [
@@ -2079,7 +2111,7 @@
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
-            "value": "You have no Upcoming releases in the Collection"
+            "value": "Like the upcoming releases on the artists' pages, and they'll appear here"
         }
     ],
     "error-messages.error-during-action": [
@@ -2339,6 +2371,12 @@
             "value": " updated the playlist yesterday"
         }
     ],
+    "interface-actions.hide-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Hide Music and lyrics"
+        }
+    ],
     "interface-actions.like": [
         {
             "type": 0,
@@ -2361,6 +2399,12 @@
         {
             "type": 0,
             "value": "Tune My Vibe"
+        }
+    ],
+    "interface-actions.open-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Turn on Music and lyrics"
         }
     ],
     "interface-actions.pin": [
@@ -2691,12 +2735,6 @@
             "value": "Close"
         }
     ],
-    "navigation.feedback": [
-        {
-            "type": 0,
-            "value": "Feedback"
-        }
-    ],
     "navigation.go-back": [
         {
             "type": 0,
@@ -2721,12 +2759,6 @@
             "value": "Favorites"
         }
     ],
-    "navigation.page-kinopoisk": [
-        {
-            "type": 0,
-            "value": "Movies and Series"
-        }
-    ],
     "navigation.page-main": [
         {
             "type": 0,
@@ -2743,6 +2775,60 @@
         {
             "type": 0,
             "value": "Search"
+        }
+    ],
+    "non-music.audiobook-artist": [
+        {
+            "type": 0,
+            "value": "Narrator"
+        }
+    ],
+    "non-music.audiobook-artists": [
+        {
+            "type": 0,
+            "value": "Narrators"
+        }
+    ],
+    "non-music.audiobook-tab-about": [
+        {
+            "type": 0,
+            "value": "Book details"
+        }
+    ],
+    "non-music.audiobook-tab-tracks": [
+        {
+            "type": 0,
+            "value": "Chapters"
+        }
+    ],
+    "non-music.shelf-subscribe": [
+        {
+            "type": 0,
+            "value": "Save"
+        }
+    ],
+    "non-music.shelf-unsubscribe": [
+        {
+            "type": 0,
+            "value": "Remove from My Shelf"
+        }
+    ],
+    "notifications-info.added-audiobook-episode-to-playlist": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " was added to playlist "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
         }
     ],
     "notifications-info.added-podcast-episode-to-playlist": [
@@ -2769,20 +2855,6 @@
             "value": "added to"
         }
     ],
-    "notifications-info.added-to-playlist": [
-        {
-            "type": 0,
-            "value": "added to \""
-        },
-        {
-            "type": 1,
-            "value": "playlistName"
-        },
-        {
-            "type": 0,
-            "value": "\""
-        }
-    ],
     "notifications-info.added-track-to-playlist": [
         {
             "type": 0,
@@ -2801,16 +2873,304 @@
             "value": "playlistName"
         }
     ],
+    "notifications-info.album-added-to-collection": [
+        {
+            "type": 0,
+            "value": "Album "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.album-link": [
         {
             "type": 0,
             "value": "Link to the album"
         }
     ],
+    "notifications-info.album-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Album "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.album-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Album "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.album-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Album "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from the side menu"
+        }
+    ],
+    "notifications-info.artist-added-to-collection": [
+        {
+            "type": 0,
+            "value": "Artist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
             "value": "Link to the artist"
+        }
+    ],
+    "notifications-info.artist-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Artist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.artist-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Artist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.artist-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Artist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from the side menu"
+        }
+    ],
+    "notifications-info.audiobook-added-to-collection": [
+        {
+            "type": 0,
+            "value": "Audiobook "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-added-to-shelf": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "The chapter will now appear in your recommendations"
+        }
+    ],
+    "notifications-info.audiobook-episode-removed-from-shelf": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "The chapter will no longer appear in your recommendations"
+        }
+    ],
+    "notifications-info.audiobook-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Audiobook "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.audiobook-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Audiobook "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Audiobook "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from the side menu"
         }
     ],
     "notifications-info.change-repeat-context": [
@@ -2843,28 +3203,56 @@
             "value": "Collections"
         }
     ],
-    "notifications-info.from-my-shelf": [
-        {
-            "type": 0,
-            "value": "My Shelf"
-        }
-    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
-            "value": "pinned in the side menu"
+            "value": "My Vibe "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
         }
     ],
     "notifications-info.my-vibe-unpinned-from-menu": [
         {
             "type": 0,
-            "value": "removed from the side menu"
-        }
-    ],
-    "notifications-info.pinned-in-menu": [
+            "value": "My Vibe "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "pinned in the side menu"
+            "value": " was removed from the side menu"
+        }
+    ],
+    "notifications-info.playlist-added-to-collection": [
+        {
+            "type": 0,
+            "value": "Playlist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
         }
     ],
     "notifications-info.playlist-link": [
@@ -2873,16 +3261,192 @@
             "value": "Link to the playlist"
         }
     ],
+    "notifications-info.playlist-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Playlist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.playlist-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Playlist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.playlist-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Playlist "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.podcast-added-to-collection": [
+        {
+            "type": 0,
+            "value": "Podcast "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.podcast-episode-added-to-shelf": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.podcast-episode-available-in-recommendations": [
         {
             "type": 0,
             "value": "This episode will now appear in your recommendations"
         }
     ],
+    "notifications-info.podcast-episode-removed-from-shelf": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "My Shelf"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.podcast-episode-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "This episode will no longer appear in your recommendations"
+        }
+    ],
+    "notifications-info.podcast-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Podcast "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was pinned to the side menu"
+        }
+    ],
+    "notifications-info.podcast-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Podcast "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from your "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Collection"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.podcast-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Podcast "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from the side menu"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2899,12 +3463,6 @@
         {
             "type": 0,
             "value": "is removed from"
-        }
-    ],
-    "notifications-info.removed-from-playlist": [
-        {
-            "type": 0,
-            "value": "is removed from the playlist"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -2925,10 +3483,28 @@
             "value": "to My Collection"
         }
     ],
-    "notifications-info.to-my-shelf": [
+    "notifications-info.track-added-to-collection": [
         {
             "type": 0,
-            "value": "My Shelf"
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was added to "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "'My Favorites'"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2943,30 +3519,34 @@
             "value": "Link to the track"
         }
     ],
+    "notifications-info.track-removed-from-collection": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " was removed from "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "'My Favorites'"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.track-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Track will no longer appear in your recommendations"
-        }
-    ],
-    "notifications-info.unpinned-from-menu": [
-        {
-            "type": 0,
-            "value": "removed from the side menu"
-        }
-    ],
-    "onboarding.artist-donation-button": [
-        {
-            "type": 0,
-            "value": "We'll match"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "your donation"
         }
     ],
     "onboarding.artist-donation-button-1": [
@@ -3017,6 +3597,22 @@
         {
             "type": 0,
             "value": "Try restarting the app."
+        }
+    ],
+    "page.artist-pick-aria-label": [
+        {
+            "type": 1,
+            "value": "artistName"
+        },
+        {
+            "type": 0,
+            "value": " liked this"
+        }
+    ],
+    "page.artist-pick-subtitle": [
+        {
+            "type": 0,
+            "value": "Liked"
         }
     ],
     "page.delayed-non-music": [
@@ -4139,6 +4735,136 @@
             "value": "value"
         }
     ],
+    "time.duration": [
+        {
+            "type": 0,
+            "value": "Duration"
+        }
+    ],
+    "time.hours": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hour"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.minutes-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " minutes"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " minutes"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " minute"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " minutes"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "minutes"
+        }
+    ],
     "track-modal.artist": [
         {
             "type": 0,
@@ -4191,6 +4917,12 @@
         {
             "type": 0,
             "value": "Podcast unavailable"
+        }
+    ],
+    "trailer.button-aria-label": [
+        {
+            "type": 0,
+            "value": "Play trailer"
         }
     ],
     "trailer.listen-full-version": [
@@ -4299,6 +5031,24 @@
         {
             "type": 0,
             "value": "An error occurred when launching My Vibe"
+        }
+    ],
+    "warning-messages.can-break-accessibility": [
+        {
+            "type": 0,
+            "value": "Can break accessibility"
+        }
+    ],
+    "warning-messages.do-not-take-screenshots": [
+        {
+            "type": 0,
+            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
+        }
+    ],
+    "warning-messages.only-for-staff": [
+        {
+            "type": 0,
+            "value": "Только на стафф"
         }
     ],
     "welcome-page.beta-header": [

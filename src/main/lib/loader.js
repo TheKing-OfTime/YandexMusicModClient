@@ -59,8 +59,9 @@ const loader = (options) => {
     electron_1.app.on('ready', () => {
         electron_1.session.defaultSession.protocol.registerFileProtocol(serveOptions.protocol, fileProtocolHandler);
     });
-    return async (window) => {
-        await window.loadURL(`${serveOptions.protocol}://${serveOptions.hostname}`);
+    return async (window, path) => {
+        const pathname = path ? `/${path}` : '';
+        await window.loadURL(`${serveOptions.protocol}://${serveOptions.hostname}${pathname}`);
     };
 };
 exports.loader = loader;

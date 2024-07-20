@@ -39,13 +39,16 @@ class ErrorBooster {
                 await this.requestToClick(stringifiedPayload);
             }
             catch (error) {
-                this.logger.error('Error sending data to ErroBooster', error);
+                this.logSendingError(error);
             }
         }
         else {
             this.payloadsForSending.push(stringifiedPayload);
             this.scheduleRequest();
         }
+    }
+    logSendingError(error) {
+        this.logger.warn('Error sending data to ErrorBooster', error);
     }
     async requestToClick(body) {
         await this.httpClient.post(config_js_1.config.errorBooster.clickUrl, { body });
@@ -63,7 +66,7 @@ class ErrorBooster {
                     await this.requestToClick(batch.join('\r\n'));
                 }
                 catch (error) {
-                    this.logger.error('Error sending data to ErroBooster', error);
+                    this.logSendingError(error);
                     this.payloadsForSending.push(...batch);
                 }
             }

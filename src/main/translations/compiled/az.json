@@ -1,4 +1,10 @@
 {
+    "a11y-regions.player": [
+        {
+            "type": 0,
+            "value": "Pleyer"
+        }
+    ],
     "about-app.app-name": [
         {
             "type": 0,
@@ -51,6 +57,12 @@
         {
             "type": 0,
             "value": "Hesaba daxil ol"
+        }
+    ],
+    "bar-bellow.section-name": [
+        {
+            "type": 0,
+            "value": "Banner"
         }
     ],
     "calendar.april-short": [
@@ -197,116 +209,6 @@
         {
             "type": 0,
             "value": "Bəyənmisiniz"
-        }
-    ],
-    "desktop-release-notes.5.0.18": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "1 aprel 2024-cü il."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Tətbiqin yeni versiyasını qarşılayın!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Dalğam axtarışda da əlçatandır. İstənilən janrı, əhvalı və ya məşğuliyyəti daxil edin – uyğun trekləri dinləyin"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "\"Sizin üçün\" bölməsində Neyromusiqi əlavə etdik"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Həmçinin pleylistləri silmək üçün düymə əlavə etdik"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Kolleksiyada sevimli ifaçıların gələcək buraxılışları görünür"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "\"Bəyəndiklərim\" pleylistindəki xətaları aradan qaldırdıq"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.19": [
@@ -876,7 +778,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "26 iyun 2024-cü il."
+                    "value": "03 iyul 2024-cü il."
                 }
             ],
             "type": 8,
@@ -953,6 +855,88 @@
                         {
                             "type": 0,
                             "value": "Windows istifadəçiləri üçün gözlənilən yeniləmə: tətbiqi aşağı yığışdırmaq olar. Bəlkə bu barədə podkast da olacaq?"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.7.14": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "17 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
                         }
                     ],
                     "type": 8,
@@ -1101,6 +1085,12 @@
         {
             "type": 0,
             "value": "Yenilə"
+        }
+    ],
+    "donation.button-text": [
+        {
+            "type": 0,
+            "value": "İanə ilə dəstək ol"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -1281,6 +1271,16 @@
             "value": "\" albomundakı treklərin siyahısı"
         }
     ],
+    "entity-names.and-more-artists": [
+        {
+            "type": 1,
+            "value": "artists"
+        },
+        {
+            "type": 0,
+            "value": " və başqaları"
+        }
+    ],
     "entity-names.artist": [
         {
             "type": 0,
@@ -1337,6 +1337,16 @@
         {
             "type": 0,
             "value": "Audiokitab"
+        }
+    ],
+    "entity-names.authors": [
+        {
+            "type": 0,
+            "value": "Müəlliflər: "
+        },
+        {
+            "type": 1,
+            "value": "authors"
         }
     ],
     "entity-names.chart-tracks-list": [
@@ -1606,6 +1616,12 @@
             "value": "Dalğam"
         }
     ],
+    "entity-names.nda": [
+        {
+            "type": 0,
+            "value": "NDA"
+        }
+    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1744,12 +1760,6 @@
             "value": "Podkast"
         }
     ],
-    "entity-names.podcast-episode": [
-        {
-            "type": 0,
-            "value": "Buraxılış"
-        }
-    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1842,10 +1852,26 @@
             "value": "Sinql"
         }
     ],
+    "entity-names.source": [
+        {
+            "type": 0,
+            "value": "Mənbə: "
+        },
+        {
+            "type": 1,
+            "value": "source"
+        }
+    ],
     "entity-names.studio-albums": [
         {
             "type": 0,
             "value": "Studiya albomları"
+        }
+    ],
+    "entity-names.sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Mətn və musiqi"
         }
     ],
     "entity-names.track": [
@@ -1918,6 +1944,12 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "value"
+        }
+    ],
+    "entity-names.trailer": [
+        {
+            "type": 0,
+            "value": "Treyler"
         }
     ],
     "entity-names.upcoming-album": [
@@ -2075,7 +2107,7 @@
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
-            "value": "Kolleksiyada Gözlənilən buraxılışlar yoxdur"
+            "value": "İfaçıların səhifəsində gələcək buraxışları bəyənin və onlar burada görünəcək"
         }
     ],
     "error-messages.error-during-action": [
@@ -2343,6 +2375,12 @@
             "value": " dünən pleylisti yeniləyib"
         }
     ],
+    "interface-actions.hide-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Mətnli musiqini gizlət"
+        }
+    ],
     "interface-actions.like": [
         {
             "type": 0,
@@ -2365,6 +2403,12 @@
         {
             "type": 0,
             "value": "Dalğamı qur"
+        }
+    ],
+    "interface-actions.open-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Mətnli musiqini qoş"
         }
     ],
     "interface-actions.pin": [
@@ -2707,12 +2751,6 @@
             "value": "Bağla"
         }
     ],
-    "navigation.feedback": [
-        {
-            "type": 0,
-            "value": "Əks əlaqə"
-        }
-    ],
     "navigation.go-back": [
         {
             "type": 0,
@@ -2737,12 +2775,6 @@
             "value": "Kolleksiya"
         }
     ],
-    "navigation.page-kinopoisk": [
-        {
-            "type": 0,
-            "value": "Kinopoisk"
-        }
-    ],
     "navigation.page-main": [
         {
             "type": 0,
@@ -2759,6 +2791,60 @@
         {
             "type": 0,
             "value": "Axtarış"
+        }
+    ],
+    "non-music.audiobook-artist": [
+        {
+            "type": 0,
+            "value": "Qiraətçi"
+        }
+    ],
+    "non-music.audiobook-artists": [
+        {
+            "type": 0,
+            "value": "Qiraətçilər"
+        }
+    ],
+    "non-music.audiobook-tab-about": [
+        {
+            "type": 0,
+            "value": "Kitab haqqında"
+        }
+    ],
+    "non-music.audiobook-tab-tracks": [
+        {
+            "type": 0,
+            "value": "Başlıq"
+        }
+    ],
+    "non-music.shelf-subscribe": [
+        {
+            "type": 0,
+            "value": "Rəfə əlavə et"
+        }
+    ],
+    "non-music.shelf-unsubscribe": [
+        {
+            "type": 0,
+            "value": "Rəfdən çıxar"
+        }
+    ],
+    "notifications-info.added-audiobook-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " adlı fəsil \""
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "\" pleylistinə əlavə edildi"
         }
     ],
     "notifications-info.added-podcast-episode-to-playlist": [
@@ -2785,20 +2871,6 @@
             "value": "buraya əlavə edilib:"
         }
     ],
-    "notifications-info.added-to-playlist": [
-        {
-            "type": 0,
-            "value": "\""
-        },
-        {
-            "type": 1,
-            "value": "playlistName"
-        },
-        {
-            "type": 0,
-            "value": "\" pleylistinə əlavə edildi"
-        }
-    ],
     "notifications-info.added-track-to-playlist": [
         {
             "type": 1,
@@ -2817,16 +2889,280 @@
             "value": "\" pleylistinə əlavə edildi"
         }
     ],
+    "notifications-info.album-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı albom "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyaya"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
     "notifications-info.album-link": [
         {
             "type": 0,
             "value": "Alboma keçid"
         }
     ],
+    "notifications-info.album-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı albom yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.album-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı albom "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.album-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı albom yan menyudan silindi"
+        }
+    ],
+    "notifications-info.artist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı ifaçı "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyaya"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
             "value": "İfaçıya keçid"
+        }
+    ],
+    "notifications-info.artist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı ifaçı yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.artist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı ifaçı "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.artist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı ifaçı yan menyudan silindi"
+        }
+    ],
+    "notifications-info.audiobook-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı audiokitab "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimə"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
+    "notifications-info.audiobook-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı fəsil "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimə"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
+    "notifications-info.audiobook-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Artıq fəsil tövsiyələrdə təklif edilə bilər"
+        }
+    ],
+    "notifications-info.audiobook-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı fəsil "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimdən"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.audiobook-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Fəsil daha tövsiyələrinizdə görünməyəcək"
+        }
+    ],
+    "notifications-info.audiobook-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı audiokitab yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.audiobook-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı audiokitab "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimdən"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.audiobook-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı audiokitab yan menyudan silindi"
         }
     ],
     "notifications-info.change-repeat-context": [
@@ -2859,12 +3195,6 @@
             "value": "Kolleksiya"
         }
     ],
-    "notifications-info.from-my-shelf": [
-        {
-            "type": 0,
-            "value": "Rəfimdən"
-        }
-    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 1,
@@ -2885,10 +3215,28 @@
             "value": " adlı Dalğam yan menyudan silindi"
         }
     ],
-    "notifications-info.pinned-in-menu": [
+    "notifications-info.playlist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "yan menyuda sabitləndi"
+            "value": " adlı pleylist "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyaya"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
         }
     ],
     "notifications-info.playlist-link": [
@@ -2897,16 +3245,176 @@
             "value": "Pleylistə keçid"
         }
     ],
+    "notifications-info.playlist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı pleylist yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.playlist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı pleylist "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.playlist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı pleylist yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.podcast-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı podkast "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyaya"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
+    "notifications-info.podcast-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı buraxılış "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimə"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " əlavə edildi"
+        }
+    ],
     "notifications-info.podcast-episode-available-in-recommendations": [
         {
             "type": 0,
             "value": "Artıq buraxılış tövsiyələrdə təklif edilə bilər"
         }
     ],
+    "notifications-info.podcast-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı buraxılış "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Rəfimdən"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
     "notifications-info.podcast-episode-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Artıq buraxılış tövsiyələrdə təklif edilməyəcək"
+        }
+    ],
+    "notifications-info.podcast-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı podkast yan menyuda sabitləndi"
+        }
+    ],
+    "notifications-info.podcast-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı podkast "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Kolleksiyadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " silindi"
+        }
+    ],
+    "notifications-info.podcast-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı podkast yan menyudan silindi"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2923,12 +3431,6 @@
         {
             "type": 0,
             "value": "buradan silinib:"
-        }
-    ],
-    "notifications-info.removed-from-playlist": [
-        {
-            "type": 0,
-            "value": "pleylistdən silinib"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -2949,10 +3451,28 @@
             "value": "Kolleksiya"
         }
     ],
-    "notifications-info.to-my-shelf": [
+    "notifications-info.track-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "Rəfimə"
+            "value": " adlı trek "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\"Bəyənirəm\""
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " adlı pleylistə əlavə olunub"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2967,30 +3487,34 @@
             "value": "Trek keçidi"
         }
     ],
+    "notifications-info.track-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " adlı trek "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\"Bəyənirəm\""
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " adlı pleylistdən silinib"
+        }
+    ],
     "notifications-info.track-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Trek artıq tövsiyələrdə göstərilməyəcək"
-        }
-    ],
-    "notifications-info.unpinned-from-menu": [
-        {
-            "type": 0,
-            "value": "yan menyudan silindi"
-        }
-    ],
-    "onboarding.artist-donation-button": [
-        {
-            "type": 0,
-            "value": "İanə etdiyiniz məbləği öz hesabımıza"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "ikiqat artıracağıq"
         }
     ],
     "onboarding.artist-donation-button-1": [
@@ -3041,6 +3565,22 @@
         {
             "type": 0,
             "value": "Tətbiqi yenidən başladın."
+        }
+    ],
+    "page.artist-pick-aria-label": [
+        {
+            "type": 1,
+            "value": "artistName"
+        },
+        {
+            "type": 0,
+            "value": " adlı ifaçı bəyəndi"
+        }
+    ],
+    "page.artist-pick-subtitle": [
+        {
+            "type": 0,
+            "value": "Bəyənilib"
         }
     ],
     "page.delayed-non-music": [
@@ -4143,6 +4683,136 @@
             "value": "value"
         }
     ],
+    "time.duration": [
+        {
+            "type": 0,
+            "value": "Davametmə müddəti"
+        }
+    ],
+    "time.hours": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.minutes-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " dəqiqə"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " dəqiqə"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " dəqiqə"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " dəqiqə"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "minutes"
+        }
+    ],
     "track-modal.artist": [
         {
             "type": 0,
@@ -4195,6 +4865,12 @@
         {
             "type": 0,
             "value": "Podkast əlçatan deyil"
+        }
+    ],
+    "trailer.button-aria-label": [
+        {
+            "type": 0,
+            "value": "Treyleri başlat"
         }
     ],
     "trailer.listen-full-version": [
@@ -4303,6 +4979,24 @@
         {
             "type": 0,
             "value": "Dalğamı işə salarkən xəta baş verdi"
+        }
+    ],
+    "warning-messages.can-break-accessibility": [
+        {
+            "type": 0,
+            "value": "Əlçatanlıq pozula bilər"
+        }
+    ],
+    "warning-messages.do-not-take-screenshots": [
+        {
+            "type": 0,
+            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
+        }
+    ],
+    "warning-messages.only-for-staff": [
+        {
+            "type": 0,
+            "value": "Только на стафф"
         }
     ],
     "welcome-page.beta-header": [

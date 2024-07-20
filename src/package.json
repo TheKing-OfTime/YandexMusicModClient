@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.6.0",
+    "version": "5.7.14",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -20,12 +20,11 @@
         "@yandex-chats/signer": "~0.0.3",
         "electron": "~27.0.0",
         "electron-notarize": "~1.2.2",
-        "js-yaml": "~4.1.0",
-        "@types/intl-messageformat": "~3.0.0"
+        "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.6.0",
-        "BRANCH": "release-5.6/4745673c"
+        "VERSION": "5.7.14",
+        "BRANCH": "8f3df9f13bd75fcee58248541f427467937e69a5"
     },
     "common": {
         "SHOW_RELEASE_NOTES": true,

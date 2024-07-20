@@ -1,4 +1,10 @@
 {
+    "a11y-regions.player": [
+        {
+            "type": 0,
+            "value": "Pleyer"
+        }
+    ],
     "about-app.app-name": [
         {
             "type": 0,
@@ -51,6 +57,12 @@
         {
             "type": 0,
             "value": "Hisobga kiring"
+        }
+    ],
+    "bar-bellow.section-name": [
+        {
+            "type": 0,
+            "value": "Banner"
         }
     ],
     "calendar.april-short": [
@@ -197,116 +209,6 @@
         {
             "type": 0,
             "value": "Sizga yoqdi"
-        }
-    ],
-    "desktop-release-notes.5.0.18": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024-yil 1-aprel"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Yugurib kelib ilovaning yangi versiyasiga sakraymiz!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Mening toʻlqinim qidiruvda ham paydo boʻldi. Istalgan janr, kayfiyat yoki mashgʻulotni kiriting va mos treklarni tinglang"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "“Siz uchun” sahifasiga Neuromusic qoʻshildi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Pleylistlarni oʻchirish uchun tugma ham qoʻshildi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Kolleksiyada sevimli ijrochilarning kelgusi relizlari koʻrinadigan boʻldi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "“Menga yoqdi” pleylistidagi baglar olib tashlandi, chunku ular hech kimga yoqmaydi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.19": [
@@ -876,7 +778,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "2024-yil 26-iyun"
+                    "value": "2024-yil 3-iyul"
                 }
             ],
             "type": 8,
@@ -953,6 +855,88 @@
                         {
                             "type": 0,
                             "value": "Windows foydalanuvchilari uchun uzoq kutilgan yangilanish: ilovani treyga ixchamlashtirish mumkin. Kim bilsin, balki bu haqida ham podkast olinar?"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.7.14": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "17 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
                         }
                     ],
                     "type": 8,
@@ -1101,6 +1085,12 @@
         {
             "type": 0,
             "value": "Yangilash"
+        }
+    ],
+    "donation.button-text": [
+        {
+            "type": 0,
+            "value": "Donat yordamida dastaklash"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -1285,6 +1275,16 @@
             "value": "” albomi taronalari roʻyxati"
         }
     ],
+    "entity-names.and-more-artists": [
+        {
+            "type": 1,
+            "value": "artists"
+        },
+        {
+            "type": 0,
+            "value": " va boshqalar"
+        }
+    ],
     "entity-names.artist": [
         {
             "type": 0,
@@ -1341,6 +1341,16 @@
         {
             "type": 0,
             "value": "Audio-kitoblar"
+        }
+    ],
+    "entity-names.authors": [
+        {
+            "type": 0,
+            "value": "Mualliflar: "
+        },
+        {
+            "type": 1,
+            "value": "authors"
         }
     ],
     "entity-names.chart-tracks-list": [
@@ -1610,6 +1620,12 @@
             "value": "Mening to‘lqinim"
         }
     ],
+    "entity-names.nda": [
+        {
+            "type": 0,
+            "value": "NDA"
+        }
+    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1744,12 +1760,6 @@
             "value": "Podkast"
         }
     ],
-    "entity-names.podcast-episode": [
-        {
-            "type": 0,
-            "value": "Chiqarish"
-        }
-    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1842,10 +1852,26 @@
             "value": "Singl"
         }
     ],
+    "entity-names.source": [
+        {
+            "type": 0,
+            "value": "Manba: "
+        },
+        {
+            "type": 1,
+            "value": "source"
+        }
+    ],
     "entity-names.studio-albums": [
         {
             "type": 0,
             "value": "Studiya albomlari"
+        }
+    ],
+    "entity-names.sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Matnli musiqa"
         }
     ],
     "entity-names.track": [
@@ -1918,6 +1944,12 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "value"
+        }
+    ],
+    "entity-names.trailer": [
+        {
+            "type": 0,
+            "value": "Treyler"
         }
     ],
     "entity-names.upcoming-album": [
@@ -2075,7 +2107,7 @@
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
-            "value": "Sizda Termalarda Kelgusi relizlar yoʻq"
+            "value": "Ijrochilarning sahifalari kelgusi relizlariga layklar bosing va ular bu yerda koʻrinadi"
         }
     ],
     "error-messages.error-during-action": [
@@ -2343,6 +2375,12 @@
             "value": " kecha pleylistni yangiladi"
         }
     ],
+    "interface-actions.hide-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Matnli musiqani berkitish"
+        }
+    ],
     "interface-actions.like": [
         {
             "type": 0,
@@ -2365,6 +2403,12 @@
         {
             "type": 0,
             "value": "Mening toʻlqinimni sozlash"
+        }
+    ],
+    "interface-actions.open-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Matnli musiqani yoqish"
         }
     ],
     "interface-actions.pin": [
@@ -2707,12 +2751,6 @@
             "value": "Yopish"
         }
     ],
-    "navigation.feedback": [
-        {
-            "type": 0,
-            "value": "Bog‘lanish"
-        }
-    ],
     "navigation.go-back": [
         {
             "type": 0,
@@ -2737,12 +2775,6 @@
             "value": "Terma"
         }
     ],
-    "navigation.page-kinopoisk": [
-        {
-            "type": 0,
-            "value": "Kinopoisk"
-        }
-    ],
     "navigation.page-main": [
         {
             "type": 0,
@@ -2759,6 +2791,60 @@
         {
             "type": 0,
             "value": "Qidiruv"
+        }
+    ],
+    "non-music.audiobook-artist": [
+        {
+            "type": 0,
+            "value": "O‘quvchi"
+        }
+    ],
+    "non-music.audiobook-artists": [
+        {
+            "type": 0,
+            "value": "O‘quvchilar"
+        }
+    ],
+    "non-music.audiobook-tab-about": [
+        {
+            "type": 0,
+            "value": "Kitob haqida"
+        }
+    ],
+    "non-music.audiobook-tab-tracks": [
+        {
+            "type": 0,
+            "value": "Sarlavha"
+        }
+    ],
+    "non-music.shelf-subscribe": [
+        {
+            "type": 0,
+            "value": "Javonga olib qo‘yish"
+        }
+    ],
+    "non-music.shelf-unsubscribe": [
+        {
+            "type": 0,
+            "value": "Javondan olib tashlash"
+        }
+    ],
+    "notifications-info.added-audiobook-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " bobi “"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "” pleylistiga qoʻshildi"
         }
     ],
     "notifications-info.added-podcast-episode-to-playlist": [
@@ -2785,16 +2871,6 @@
             "value": "bunga kiritildi:"
         }
     ],
-    "notifications-info.added-to-playlist": [
-        {
-            "type": 1,
-            "value": "playlistName"
-        },
-        {
-            "type": 0,
-            "value": " pleylistiga qo‘shildi"
-        }
-    ],
     "notifications-info.added-track-to-playlist": [
         {
             "type": 1,
@@ -2813,16 +2889,280 @@
             "value": "» pleylistiga qoʻshildi"
         }
     ],
+    "notifications-info.album-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " albomi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termaga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
     "notifications-info.album-link": [
         {
             "type": 0,
             "value": "Albomga havola"
         }
     ],
+    "notifications-info.album-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " albomi yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.album-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " albomi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.album-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " albomi yon menyudan oʻchirildi"
+        }
+    ],
+    "notifications-info.artist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ijrochisi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termaga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
             "value": "Ijrochiga havola"
+        }
+    ],
+    "notifications-info.artist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ijrochisi yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.artist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ijrochisi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.artist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ijrochisi yon menyudan oʻchirildi"
+        }
+    ],
+    "notifications-info.audiobook-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " audio kitobi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
+    "notifications-info.audiobook-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " boʻlimi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
+    "notifications-info.audiobook-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Endi bob sizning tavsiyalaringizda chiqishi mumkin"
+        }
+    ],
+    "notifications-info.audiobook-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " boʻlimi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamdan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.audiobook-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Endi bu bob sizning tavsiyalaringizda chiqmaydi"
+        }
+    ],
+    "notifications-info.audiobook-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " audio kitobi yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.audiobook-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " audio kitobi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamdan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.audiobook-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " audio kitobi yon menyudan oʻchirildi"
         }
     ],
     "notifications-info.change-repeat-context": [
@@ -2855,12 +3195,6 @@
             "value": "Termalar"
         }
     ],
-    "notifications-info.from-my-shelf": [
-        {
-            "type": 0,
-            "value": "Mening tokchalarim"
-        }
-    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
             "type": 0,
@@ -2889,10 +3223,28 @@
             "value": " yon menyudan oʻchirildi"
         }
     ],
-    "notifications-info.pinned-in-menu": [
+    "notifications-info.playlist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "yon menyuga qadaldi"
+            "value": " pleylisti "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termaga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
         }
     ],
     "notifications-info.playlist-link": [
@@ -2901,16 +3253,176 @@
             "value": "Pleylistga havola"
         }
     ],
+    "notifications-info.playlist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " pleylisti yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.playlist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " pleylisti "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.playlist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " pleylisti yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.podcast-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " podkasti "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termaga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
+    "notifications-info.podcast-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " relizi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamga"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " qoʻshildi"
+        }
+    ],
     "notifications-info.podcast-episode-available-in-recommendations": [
         {
             "type": 0,
             "value": "Endi eshittirish sizning tavsiya etilganlaringizda paydo bo‘lishi mumkin"
         }
     ],
+    "notifications-info.podcast-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " relizi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Mening tokchamdan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
     "notifications-info.podcast-episode-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Eshittirish sizning tavsiya etilganlaringizda paydo bo‘lmaydi"
+        }
+    ],
+    "notifications-info.podcast-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " podkasti yon menyuga mahkamlandi"
+        }
+    ],
+    "notifications-info.podcast-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " podkasti "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Termadan"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.podcast-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " podkasti yon menyudan oʻchirildi"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2927,12 +3439,6 @@
         {
             "type": 0,
             "value": "bundan o‘chirildi:"
-        }
-    ],
-    "notifications-info.removed-from-playlist": [
-        {
-            "type": 0,
-            "value": "pleylistdan o‘chirildi"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -2953,10 +3459,28 @@
             "value": "Termani"
         }
     ],
-    "notifications-info.to-my-shelf": [
+    "notifications-info.track-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "Mening tokchamga"
+            "value": " taronasi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "“Menga yoqadi”"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " pleylistiga qo‘shildi"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2971,30 +3495,34 @@
             "value": "Trek havolasi"
         }
     ],
+    "notifications-info.track-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " taronasi "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "“Menga yoqadi”"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " pleylistidan oʻchirildi"
+        }
+    ],
     "notifications-info.track-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Trek endi tavsiyalaringizda chiqmaydi"
-        }
-    ],
-    "notifications-info.unpinned-from-menu": [
-        {
-            "type": 0,
-            "value": "yon menyudan olib tashlandi"
-        }
-    ],
-    "onboarding.artist-donation-button": [
-        {
-            "type": 0,
-            "value": "Xayriyangiz summasini oʻz hisobimizdan"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "ikki karra qilamiz"
         }
     ],
     "onboarding.artist-donation-button-1": [
@@ -3045,6 +3573,22 @@
         {
             "type": 0,
             "value": "Ilovani qayta ishga tushirib ko‘ring."
+        }
+    ],
+    "page.artist-pick-aria-label": [
+        {
+            "type": 1,
+            "value": "artistName"
+        },
+        {
+            "type": 0,
+            "value": " nomli ijrochiga yoqdi"
+        }
+    ],
+    "page.artist-pick-subtitle": [
+        {
+            "type": 0,
+            "value": "Yoqdi"
         }
     ],
     "page.delayed-non-music": [
@@ -4135,6 +4679,136 @@
             "value": "value"
         }
     ],
+    "time.duration": [
+        {
+            "type": 0,
+            "value": "Davomiyligi"
+        }
+    ],
+    "time.hours": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.minutes-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " daqiqa"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " daqiqa"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " daqiqa"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " daqiqa"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "minutes"
+        }
+    ],
     "track-modal.artist": [
         {
             "type": 0,
@@ -4187,6 +4861,12 @@
         {
             "type": 0,
             "value": "Podkast mavjud emas"
+        }
+    ],
+    "trailer.button-aria-label": [
+        {
+            "type": 0,
+            "value": "Treylerni ochish"
         }
     ],
     "trailer.listen-full-version": [
@@ -4295,6 +4975,24 @@
         {
             "type": 0,
             "value": "Mening to‘lqinimni ishga tushirishda xatolik yuz berdi"
+        }
+    ],
+    "warning-messages.can-break-accessibility": [
+        {
+            "type": 0,
+            "value": "Kirish imkoniyatini buzishi mumkin"
+        }
+    ],
+    "warning-messages.do-not-take-screenshots": [
+        {
+            "type": 0,
+            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
+        }
+    ],
+    "warning-messages.only-for-staff": [
+        {
+            "type": 0,
+            "value": "Только на стафф"
         }
     ],
     "welcome-page.beta-header": [

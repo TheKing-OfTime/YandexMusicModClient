@@ -1,4 +1,10 @@
 {
+    "a11y-regions.player": [
+        {
+            "type": 0,
+            "value": "Նվագարկիչ"
+        }
+    ],
     "about-app.app-name": [
         {
             "type": 0,
@@ -51,6 +57,12 @@
         {
             "type": 0,
             "value": "Մտեք հաշիվ"
+        }
+    ],
+    "bar-bellow.section-name": [
+        {
+            "type": 0,
+            "value": "Ազդերիզ"
         }
     ],
     "calendar.april-short": [
@@ -193,120 +205,6 @@
         {
             "type": 0,
             "value": "Դուք հավանել եք"
-        }
-    ],
-    "desktop-release-notes.5.0.18": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. ապրիլի 1"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Հավելվածը նոր տարբերակ ունի\n"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Իմ ալիքը հայտնվել է նաև որոնման մեջ։ Մուտքագրեք ցանկացած ժանր, տրամադրություն կամ զբաղմունք և լսեք համապատասխան կատարումներ"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "«Ձեզ համար» ներդիրում նեյրոերաժշտություն ենք ավելացրել"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Նաև կոճակ ենք ավելացրել երգացանկերի հեռացման համար"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Հավաքածուում այսուհետ երևում են սիրելի կատարողների ապագա թողարկումները"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "«Ինձ դուր է գալիս» երգացանկի վրիպակներն ենք վերացրել, քանի որ դրանք ոչ ոքի դուր չեն գալիս"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        },
-        {
-            "type": 0,
-            "value": "\n"
         }
     ],
     "desktop-release-notes.5.0.19": [
@@ -832,7 +730,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "2024 թ. հունիսի 26"
+                    "value": "2024 թ. հուլիսի 3"
                 }
             ],
             "type": 8,
@@ -908,7 +806,89 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Երկար սպասված թարմացում Windows-ի օգտատերերի համար. հավելվածը կարելի է փոքրացնել՝ թողնելով դրա պատկերակը էկրանի ներքևում։ Գուցե այդ մասին փոդքա՞ստ էլ հայտնվի։"
+                            "value": "Երկար սպասված թարմացում Windows-ի օգտատերերի համար։ Հավելվածը կարելի է փոքրացնել՝ էկրանի ներքևում թողնելով պատկերակը։ Գուցե այդ մասին փոդքա՞ստ էլ հայտնվի։"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.7.14": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "17 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
                         }
                     ],
                     "type": 8,
@@ -1061,6 +1041,12 @@
         {
             "type": 0,
             "value": "Թարմացնել"
+        }
+    ],
+    "donation.button-text": [
+        {
+            "type": 0,
+            "value": "Աջակցել դոնատով"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -1245,6 +1231,16 @@
             "value": "» ալբոմի կատարումների ցանկ"
         }
     ],
+    "entity-names.and-more-artists": [
+        {
+            "type": 1,
+            "value": "artists"
+        },
+        {
+            "type": 0,
+            "value": " և այլք"
+        }
+    ],
     "entity-names.artist": [
         {
             "type": 0,
@@ -1301,6 +1297,16 @@
         {
             "type": 0,
             "value": "Աուդիոգիրք"
+        }
+    ],
+    "entity-names.authors": [
+        {
+            "type": 0,
+            "value": "Հեղինակներ՝ "
+        },
+        {
+            "type": 1,
+            "value": "authors"
         }
     ],
     "entity-names.chart-tracks-list": [
@@ -1570,6 +1576,12 @@
             "value": "Իմ ալիքը"
         }
     ],
+    "entity-names.nda": [
+        {
+            "type": 0,
+            "value": "NDA"
+        }
+    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1708,12 +1720,6 @@
             "value": "Փոդքաստ"
         }
     ],
-    "entity-names.podcast-episode": [
-        {
-            "type": 0,
-            "value": "Թողարկում"
-        }
-    ],
     "entity-names.podcast-last-episodes": [
         {
             "type": 0,
@@ -1806,10 +1812,26 @@
             "value": "Սինգլ"
         }
     ],
+    "entity-names.source": [
+        {
+            "type": 0,
+            "value": "Աղբյուր՝ "
+        },
+        {
+            "type": 1,
+            "value": "source"
+        }
+    ],
     "entity-names.studio-albums": [
         {
             "type": 0,
             "value": "Ստուդիայում արված ալբոմներ"
+        }
+    ],
+    "entity-names.sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Երգերի բառեր"
         }
     ],
     "entity-names.track": [
@@ -1882,6 +1904,12 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "value"
+        }
+    ],
+    "entity-names.trailer": [
+        {
+            "type": 0,
+            "value": "Թրեյլեր"
         }
     ],
     "entity-names.upcoming-album": [
@@ -2027,7 +2055,7 @@
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
-            "value": "Դուք չունեք Ապագա թողարկումներ Հավաքածուում"
+            "value": "Արտիստների էջերում լայքեր դրեք ապագա թողարկումներին, և դրանք կհայտնվեն այստեղ"
         }
     ],
     "error-messages.error-during-action": [
@@ -2295,6 +2323,12 @@
             "value": "-ն երեկ թարմացրել է երգացանկը "
         }
     ],
+    "interface-actions.hide-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Թաքցնել երգերի բառերը"
+        }
+    ],
     "interface-actions.like": [
         {
             "type": 0,
@@ -2317,6 +2351,12 @@
         {
             "type": 0,
             "value": "Կարգավորել Իմ ալիքը"
+        }
+    ],
+    "interface-actions.open-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Ցույց տալ երգերի բառերը"
         }
     ],
     "interface-actions.pin": [
@@ -2667,12 +2707,6 @@
             "value": "Փակել"
         }
     ],
-    "navigation.feedback": [
-        {
-            "type": 0,
-            "value": "Հետադարձ կապ"
-        }
-    ],
     "navigation.go-back": [
         {
             "type": 0,
@@ -2697,12 +2731,6 @@
             "value": "Հավաքածու"
         }
     ],
-    "navigation.page-kinopoisk": [
-        {
-            "type": 0,
-            "value": "Kinopoisk"
-        }
-    ],
     "navigation.page-main": [
         {
             "type": 0,
@@ -2719,6 +2747,60 @@
         {
             "type": 0,
             "value": "Որոնում"
+        }
+    ],
+    "non-music.audiobook-artist": [
+        {
+            "type": 0,
+            "value": "Ասմունքող"
+        }
+    ],
+    "non-music.audiobook-artists": [
+        {
+            "type": 0,
+            "value": "Ասմունքողներ"
+        }
+    ],
+    "non-music.audiobook-tab-about": [
+        {
+            "type": 0,
+            "value": "Գրքի մասին"
+        }
+    ],
+    "non-music.audiobook-tab-tracks": [
+        {
+            "type": 0,
+            "value": "Վերնագիր"
+        }
+    ],
+    "non-music.shelf-subscribe": [
+        {
+            "type": 0,
+            "value": "Դնել դարակը"
+        }
+    ],
+    "non-music.shelf-unsubscribe": [
+        {
+            "type": 0,
+            "value": "Հեռացնել դարակից"
+        }
+    ],
+    "notifications-info.added-audiobook-episode-to-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " գլուխն ավելացվեց «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» ցանկում"
         }
     ],
     "notifications-info.added-podcast-episode-to-playlist": [
@@ -2745,20 +2827,6 @@
             "value": "ավելացվել է"
         }
     ],
-    "notifications-info.added-to-playlist": [
-        {
-            "type": 0,
-            "value": "ավելացվել է «"
-        },
-        {
-            "type": 1,
-            "value": "playlistName"
-        },
-        {
-            "type": 0,
-            "value": "» երգացանկում"
-        }
-    ],
     "notifications-info.added-track-to-playlist": [
         {
             "type": 1,
@@ -2777,16 +2845,248 @@
             "value": "» երգացանկ"
         }
     ],
+    "notifications-info.album-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ալբոմն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.album-link": [
         {
             "type": 0,
             "value": "Ալբոմի հղում"
         }
     ],
+    "notifications-info.album-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ալբոմն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.album-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ալբոմը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.album-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ալբոմը հեռացվեց կողային ընտրացանկից"
+        }
+    ],
+    "notifications-info.artist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " կատարողն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
             "value": "Կատարողի հղում"
+        }
+    ],
+    "notifications-info.artist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " կատարողն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.artist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " կատարողը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.artist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " կատարողը հեռացվեց կողային ընտրացանկից"
+        }
+    ],
+    "notifications-info.audiobook-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " աուդիոգիրքն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " գլուխն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Այժմ այս գլուխը կկարողանա հայտնվել ձեզ առաջարկվող բովանդակությունում"
+        }
+    ],
+    "notifications-info.audiobook-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " գլուխը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-episode-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Այս գլուխն այլևս չի հայտնվի ձեզ առաջարկվող բովանդակությունում"
+        }
+    ],
+    "notifications-info.audiobook-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " աուդիոգիրքն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.audiobook-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " աուդիոգիրքը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.audiobook-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " աուդիոգիրքը հեռացվեց կողային ընտրացանկից"
         }
     ],
     "notifications-info.change-repeat-context": [
@@ -2819,28 +3119,44 @@
             "value": "Հավաքածուներ"
         }
     ],
-    "notifications-info.from-my-shelf": [
-        {
-            "type": 0,
-            "value": "Իմ դարակի"
-        }
-    ],
     "notifications-info.my-vibe-pinned-in-menu": [
         {
+            "type": 1,
+            "value": "entity"
+        },
+        {
             "type": 0,
-            "value": "ամրացվեց կողային ընտրացանկում"
+            "value": " Իմ ալիքը ամրացվեց կողային ընտրացանկում"
         }
     ],
     "notifications-info.my-vibe-unpinned-from-menu": [
         {
-            "type": 0,
-            "value": "հեռացվեց կողային ընտրացանկից"
-        }
-    ],
-    "notifications-info.pinned-in-menu": [
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "ամրացվեց կողային ընտրացանկում"
+            "value": " Իմ ալիքը հեռացվեց կողային ընտրացանկից"
+        }
+    ],
+    "notifications-info.playlist-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
         }
     ],
     "notifications-info.playlist-link": [
@@ -2849,16 +3165,156 @@
             "value": "Երգացանկի հղում"
         }
     ],
+    "notifications-info.playlist-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.playlist-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.playlist-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.podcast-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " փոդքաստն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.podcast-episode-added-to-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " թողարկումն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակում"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.podcast-episode-available-in-recommendations": [
         {
             "type": 0,
             "value": "Այժմ թողարկումը կկարողանա հայտնվել ձեր առաջարկություններում"
         }
     ],
+    "notifications-info.podcast-episode-removed-from-shelf": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " թողարկումը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Իմ դարակից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
     "notifications-info.podcast-episode-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Թողարկումն այլևս չի հայտնվի ձեր առաջարկություններում"
+        }
+    ],
+    "notifications-info.podcast-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " փոդքաստն ամրացվեց կողային ընտրացանկում"
+        }
+    ],
+    "notifications-info.podcast-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " փոդքաստը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Հավաքածուից"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        }
+    ],
+    "notifications-info.podcast-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " փոդքաստը հեռացվեց կողային ընտրացանկից"
         }
     ],
     "notifications-info.quality-changed": [
@@ -2875,12 +3331,6 @@
         {
             "type": 0,
             "value": "հեռացվել է"
-        }
-    ],
-    "notifications-info.removed-from-playlist": [
-        {
-            "type": 0,
-            "value": "հեռացվել է երգացանկից"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -2901,10 +3351,28 @@
             "value": "Հավաքածուում"
         }
     ],
-    "notifications-info.to-my-shelf": [
+    "notifications-info.track-added-to-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
         {
             "type": 0,
-            "value": "Իմ դարակ"
+            "value": " կատարումն ավելացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "«Ինձ դուր է գալիս»"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկում"
         }
     ],
     "notifications-info.track-available-in-recommendations": [
@@ -2919,30 +3387,34 @@
             "value": "Կատարման հղում"
         }
     ],
+    "notifications-info.track-removed-from-collection": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " կատարումը հեռացվել է "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "«Ինձ դուր է գալիս»"
+                }
+            ],
+            "type": 8,
+            "value": "collection"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկից"
+        }
+    ],
     "notifications-info.track-unavailable-in-recommendations": [
         {
             "type": 0,
             "value": "Կատարումն այլևս չի հայտնվի ձեր առաջարկներում"
-        }
-    ],
-    "notifications-info.unpinned-from-menu": [
-        {
-            "type": 0,
-            "value": "հեռացվեց կողային ընտրացանկից"
-        }
-    ],
-    "onboarding.artist-donation-button": [
-        {
-            "type": 0,
-            "value": "Ձեր նվիրատվությունը կկրկնապատկենք"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "մեր հաշվին"
         }
     ],
     "onboarding.artist-donation-button-1": [
@@ -2993,6 +3465,26 @@
         {
             "type": 0,
             "value": "Փորձեք կրկին բեռնել հավելվածը։"
+        }
+    ],
+    "page.artist-pick-aria-label": [
+        {
+            "type": 0,
+            "value": "Դուր է եկել "
+        },
+        {
+            "type": 1,
+            "value": "artistName"
+        },
+        {
+            "type": 0,
+            "value": "-ին"
+        }
+    ],
+    "page.artist-pick-subtitle": [
+        {
+            "type": 0,
+            "value": "Լայքեր"
         }
     ],
     "page.delayed-non-music": [
@@ -4103,6 +4595,110 @@
             "value": "value"
         }
     ],
+    "time.duration": [
+        {
+            "type": 0,
+            "value": "Տևողություն"
+        }
+    ],
+    "time.hours": [
+        {
+            "offset": 0,
+            "options": {
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.minutes-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " րոպե"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " րոպե"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " րոպե"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " րոպե"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "minutes"
+        }
+    ],
     "track-modal.artist": [
         {
             "type": 0,
@@ -4155,6 +4751,12 @@
         {
             "type": 0,
             "value": "Փոդքաստն անհասանելի է"
+        }
+    ],
+    "trailer.button-aria-label": [
+        {
+            "type": 0,
+            "value": "Գործարկել թրեյլերը"
         }
     ],
     "trailer.listen-full-version": [
@@ -4263,6 +4865,24 @@
         {
             "type": 0,
             "value": "Իմ ալիքը մեկնարկելիս սխալ տեղի ունեցավ"
+        }
+    ],
+    "warning-messages.can-break-accessibility": [
+        {
+            "type": 0,
+            "value": "Կարող է խախտել հասանելիությունը"
+        }
+    ],
+    "warning-messages.do-not-take-screenshots": [
+        {
+            "type": 0,
+            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
+        }
+    ],
+    "warning-messages.only-for-staff": [
+        {
+            "type": 0,
+            "value": "Только на стафф"
         }
     ],
     "welcome-page.beta-header": [
