@@ -1,4 +1,9 @@
+> [!NOTE]  
+> Modification migration to 5.7.14 is not ready yet. 
+
 # YandexMusicModClient
+[![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
+
 ## This is a modification for Yandex Music Desktop application which unmodified version can be downloaded [here](https://music.yandex.com/download/)
 ### YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
 <details>
@@ -7,6 +12,7 @@
    Since you found my code usefull and copied some parts from [here](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/5384285a8de1101102fc21f593266807b38a304f#diff-c314348839e9fcfdd871cc449297e9cf3f9631701ff29758014ba11bf9200ba0) (more specifically PLAYER_ACTION event) and added it to vanilla client. You might want to hire me.
    My work will be much more efficient if I work on the source code in a cozy office rather than with a minified & webpacked version of the code
 </details>
+
 
 ## Install
 
@@ -26,6 +32,7 @@
 
 > [!NOTE]  
 > Relogin may be required after patch install.
+
 
 ## Features
 
