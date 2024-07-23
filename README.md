@@ -86,3 +86,11 @@ Unblocking Devtools disables auto updates. So this feature distributes in separe
 ![electron_y6aOeckPLH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/4bde4785-9196-4ac6-ad3b-9ac5db5b61c8)
 
 </details>
+
+## Support
+If you really enjoyed the new experience with this modification, you can support my work on it:
+<p align="left">
+   <a href="https://boosty.to/thekingoftime/donate">
+      <img width="285" alt="Support me on Boosty" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
+   </a>
+</p>
