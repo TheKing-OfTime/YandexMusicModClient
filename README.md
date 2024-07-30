@@ -63,17 +63,6 @@ Unblockes Lossless quality (HQ+ in quality settings)
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
 </details>
 
-### Sync Lyrics
-<details>
-   <summary>Details</summary>
-   
-Unblockes Sync Lyrics
-
-![image](https://github.com/user-attachments/assets/74eb500e-22e0-4541-bb46-758e57c82971)
-
-![image](https://github.com/user-attachments/assets/a5ed1b2d-3ff9-40d2-930f-b9ad3f5f727b)
-
-</details>
 
 ### Devtools & DevPanel
 <details>
