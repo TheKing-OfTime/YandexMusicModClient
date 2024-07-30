@@ -2976,7 +2976,7 @@
             D = w.get(d.BU.YmPlayerQuality),
             O = D ? T[D] : null,
             F = r.isAuthorized && !L,
-            W = c.checkExperiment(d.pe.WebNextSyncLyrics, "on"),
+            W = true,
             U = (0, d.RV)(),
             G = o.canSpeed && U && I && (null == i ? void 0 : i.isNonMusic),
             Z = (0, s.useMemo)(
@@ -4154,7 +4154,7 @@
               : null === (i = a.mainAlbum) || void 0 === i
                 ? void 0
                 : i.isNonMusic),
-          b = _.checkExperiment(d.pe.WebNextSyncLyrics, "on"),
+          b = true,
           C = (0, s.useMemo)(() => {
             var e;
             if (f) return;
@@ -4259,7 +4259,7 @@
             b = (0, s.useCallback)(() => {
               !(window.innerWidth > 480) &&
                 (null == _ ? void 0 : _.hasSyncLyrics) &&
-                m.checkExperiment(d.pe.WebNextSyncLyrics, "on") &&
+                true &&
                 (u.syncLyrics.isVisible
                   ? u.syncLyrics.setInvisible()
                   : u.syncLyrics.setVisible());

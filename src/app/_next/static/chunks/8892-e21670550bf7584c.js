@@ -2657,7 +2657,7 @@
             Q = G && M,
             ee = true && !V,
             et =
-              A.checkExperiment(_.pe.WebNextSyncLyrics, "on") &&
+              true &&
               (null == P ? void 0 : P.hasSyncLyrics) &&
               S.modal.isOpened,
             ei = G && V;
