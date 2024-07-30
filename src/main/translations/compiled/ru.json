@@ -195,6 +195,12 @@
             "value": "Список любимых плейлистов"
         }
     ],
+    "collection.my-dislikes": [
+        {
+            "type": 0,
+            "value": "Мои дизлайки"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -205,88 +211,6 @@
         {
             "type": 0,
             "value": "Вам понравилось"
-        }
-    ],
-    "desktop-release-notes.5.0.19": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "8 апреля 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Вспышка, импульс, энергия — это всё про обновлённую Мою волну. Она научилась отражать ваш музыкальный мир"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Её цвета и форма зависят от треков в Коллекции и от музыки, которую вы слушаете прямо сейчас"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Если лайкнете трек в Моей волне, она ответит яркой вспышкой. Попробуйте — не сможете остановиться"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "От новой анимации тоже не оторваться. Но вы лучше отрывайтесь время от времени"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.20": [
@@ -947,6 +871,74 @@
             "value": "ul"
         }
     ],
+    "desktop-release-notes.5.8.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "30 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
     "desktop.about": [
         {
             "type": 0,
@@ -1349,6 +1341,56 @@
             "value": "Исполнители"
         }
     ],
+    "entity-names.artists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителя"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителей"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнитель"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "исполнителей"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
     "entity-names.audiobook": [
         {
             "type": 0,
@@ -1589,6 +1631,12 @@
         {
             "type": 0,
             "value": "Еще нет лайков"
+        }
+    ],
+    "entity-names.list-is-empty": [
+        {
+            "type": 0,
+            "value": "Список пуст"
         }
     ],
     "entity-names.listeners-per-month": [
@@ -2178,16 +2226,22 @@
             "value": "У вас нет подкастов и книг в Коллекции"
         }
     ],
-    "error-messages.empty-collection-upcoming-albums-description": [
-        {
-            "type": 0,
-            "value": "Ставьте лайки на странице любимых артистов и следите за их обновлениями"
-        }
-    ],
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
             "value": "Ставьте лайки будущим релизам на страницах артистов, и они появятся тут"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-link": [
+        {
+            "type": 0,
+            "value": "Перейти к подкастам"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-title": [
+        {
+            "type": 0,
+            "value": "Начните слушать и лайкать подкасты, и они появятся тут"
         }
     ],
     "error-messages.error-during-action": [
@@ -2879,6 +2933,18 @@
         {
             "type": 0,
             "value": "Оглавление"
+        }
+    ],
+    "non-music.navigate-to-book-album": [
+        {
+            "type": 0,
+            "value": "Перейти к книге"
+        }
+    ],
+    "non-music.navigate-to-podcast-album": [
+        {
+            "type": 0,
+            "value": "Перейти к подкасту"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3845,12 +3911,6 @@
         {
             "type": 0,
             "value": "Слушать"
-        }
-    ],
-    "player-actions.lyrics": [
-        {
-            "type": 0,
-            "value": "Текст"
         }
     ],
     "player-actions.next-track": [
@@ -4997,6 +5057,12 @@
             "value": "Продолжительность"
         }
     ],
+    "time.finished": [
+        {
+            "type": 0,
+            "value": "Прослушано"
+        }
+    ],
     "time.hours": [
         {
             "offset": 0,
@@ -5059,6 +5125,126 @@
             "value": "hours"
         }
     ],
+    "time.hours-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " часа"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " часов"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Остался "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " час"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " часов"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталась"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Осталось"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "time"
+        }
+    ],
     "time.minutes-left": [
         {
             "offset": 0,
@@ -5119,6 +5305,68 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "minutes"
+        }
+    ],
+    "time.seconds-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " секунды"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " секунд"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " секунда"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " секунд"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "seconds"
         }
     ],
     "track-modal.artist": [

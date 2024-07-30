@@ -195,6 +195,12 @@
             "value": "Սիրելի երգաշարերի ցանկ"
         }
     ],
+    "collection.my-dislikes": [
+        {
+            "type": 0,
+            "value": "Իմ չհավանածները"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -205,88 +211,6 @@
         {
             "type": 0,
             "value": "Դուք հավանել եք"
-        }
-    ],
-    "desktop-release-notes.5.0.19": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ․ ապրիլի 8"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": " "
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Իմ ալիքը սովորել է արտացոլել ձեր երաժշտական աշխարհը"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": " "
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": " "
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Այժմ դրա գույներն ու ձևը կախված են Հավաքածուում եղած կատարումներից և այն երաժշտությունից, որը լսում եք հենց այս պահին"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": " "
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Եթե Իմ ալիքում որևէ կատարում լայքեք, այն կարձագանքի վառ բռնկումով։ Միայն փորձեք և այլևս չեք կարողանա կանգ առնել"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": " "
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Նոր անիմացիայից նույնպես հնարավոր չէ կտրվել"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": " "
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.20": [
@@ -826,7 +750,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "17 июля 2024 г."
+                    "value": "2024 թ. հուլիսի 17"
                 }
             ],
             "type": 8,
@@ -840,7 +764,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                    "value": "Այս թարմացման թեման մեկն է՝ ժանրերը։ Ավելի ճիշտ՝ 400-ից ավելի ժանրերը, որոնք այժմ Իմ ալիքում են։ Այդ ամենը հենց այնպես չէ, այլ որպեսզի ձեզ համար ավելի հեշտ լինի ուսումնասիրել երաժշտական ուղղությունները և բացահայտել եզակի արտիստների"
                 }
             ],
             "type": 8,
@@ -860,7 +784,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                            "value": "Մենք նաև ավելացրել ենք անհատական ժանրային առաջարկներ «Ավելի շատ բացահայտումներ» բաժնում՝ «Ձեզ համար» ներդիրում"
                         }
                     ],
                     "type": 8,
@@ -874,7 +798,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                            "value": "«Միտումներ» ներդիրում այժմ կա «Շաբաթվա ժանր» բաժինը. յուրաքանչյուր շաբաթ այնտեղ կհայտնվի 10 ժանրից կազմված ընտրանի՝ երաժշտական ուղղություններից մեկում"
                         }
                     ],
                     "type": 8,
@@ -888,7 +812,75 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
+                            "value": "«Ժանրեր» բաժնում հայտնվել է «Հանրաճանաչ» բլոկ, իսկ յուրաքանչյուր ժանրի էջում կա նկարագրություն, հիմնական ներկայացուցիչները, թեմատիկ Իմ ալիքը և նման ժանրեր"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.8.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "30 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
                         }
                     ],
                     "type": 8,
@@ -1293,6 +1285,40 @@
             "value": "Կատարողներ"
         }
     ],
+    "entity-names.artists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "կատարող"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "կատարող"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
     "entity-names.audiobook": [
         {
             "type": 0,
@@ -1517,6 +1543,12 @@
         {
             "type": 0,
             "value": "Դեռ հավանումներ չկան"
+        }
+    ],
+    "entity-names.list-is-empty": [
+        {
+            "type": 0,
+            "value": "Ցանկը դատարկ է"
         }
     ],
     "entity-names.listeners-per-month": [
@@ -2046,16 +2078,22 @@
             "value": "Դուք Հավաքածուում չունեք փոդքաստներ և գրքեր"
         }
     ],
-    "error-messages.empty-collection-upcoming-albums-description": [
-        {
-            "type": 0,
-            "value": "Լայքեր դրեք սիրելի կատարողների էջերում և հետևեք նրանց թարմացումներին"
-        }
-    ],
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
             "value": "Արտիստների էջերում լայքեր դրեք ապագա թողարկումներին, և դրանք կհայտնվեն այստեղ"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-link": [
+        {
+            "type": 0,
+            "value": "Անցնել փոդքաստներին"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-title": [
+        {
+            "type": 0,
+            "value": "Սկսեք լսել և լայքել փոդքաստները, և դրանք կհայտնվեն այստեղ"
         }
     ],
     "error-messages.error-during-action": [
@@ -2771,6 +2809,18 @@
         {
             "type": 0,
             "value": "Վերնագիր"
+        }
+    ],
+    "non-music.navigate-to-book-album": [
+        {
+            "type": 0,
+            "value": "Անցնել գրքին"
+        }
+    ],
+    "non-music.navigate-to-podcast-album": [
+        {
+            "type": 0,
+            "value": "Անցնել պոդքաստին"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3621,12 +3671,6 @@
         {
             "type": 0,
             "value": "Լսել"
-        }
-    ],
-    "player-actions.lyrics": [
-        {
-            "type": 0,
-            "value": "Տեքստ"
         }
     ],
     "player-actions.next-track": [
@@ -4601,6 +4645,12 @@
             "value": "Տևողություն"
         }
     ],
+    "time.finished": [
+        {
+            "type": 0,
+            "value": "Լսվել է"
+        }
+    ],
     "time.hours": [
         {
             "offset": 0,
@@ -4635,6 +4685,126 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "hours"
+        }
+    ],
+    "time.hours-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց "
+                        },
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " ժամ"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Մնաց"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "time"
         }
     ],
     "time.minutes-left": [
@@ -4697,6 +4867,68 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "minutes"
+        }
+    ],
+    "time.seconds-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " վայրկյան"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " վայրկյան"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " վայրկյան"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " վայրկյան"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "seconds"
         }
     ],
     "track-modal.artist": [

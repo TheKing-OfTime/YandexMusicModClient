@@ -195,6 +195,12 @@
             "value": "Favorite playlists list"
         }
     ],
+    "collection.my-dislikes": [
+        {
+            "type": 0,
+            "value": "My dislikes"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -205,88 +211,6 @@
         {
             "type": 0,
             "value": "Playlists you liked"
-        }
-    ],
-    "desktop-release-notes.5.0.19": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "April 8, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "The updated My Vibe is a flash, an impulse, a charge of energy. It can now reflect your music world!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Its colors and shape depend on tracks in My Collection and the music you're listening to right now."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "If you like a track in My Vibe, it'll light up. Try it! And then try to stop."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "The new animation is also something you won't be able to take your eyes off. But please do from time to time."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.20": [
@@ -870,7 +794,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "17 июля 2024 г."
+                    "value": "July 17, 2024"
                 }
             ],
             "type": 8,
@@ -884,7 +808,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                    "value": "This is a themed update, and the theme of this update is genre. Or rather, 400+ genres we taught My Vibe. We did this so that you can explore new musical styles and discover unusual artists"
                 }
             ],
             "type": 8,
@@ -904,7 +828,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                            "value": "We also added personal genre recommendations to the More Picks section in the For You tab."
                         }
                     ],
                     "type": 8,
@@ -918,7 +842,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                            "value": "The Trending tab now features the Genre of the Week category. Every week, you can check it out for a selection of 10 genres in a musical style."
                         }
                     ],
                     "type": 8,
@@ -932,7 +856,75 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
+                            "value": "We added the Popular block to the Genres section. Each genre page features a description, key representatives, themed My Vibe, and similar genres."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.8.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "30 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
                         }
                     ],
                     "type": 8,
@@ -1345,6 +1337,56 @@
             "value": "Artists"
         }
     ],
+    "entity-names.artists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "artists"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "artists"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "artist"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "artists"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
     "entity-names.audiobook": [
         {
             "type": 0,
@@ -1569,6 +1611,12 @@
         {
             "type": 0,
             "value": "No likes yet"
+        }
+    ],
+    "entity-names.list-is-empty": [
+        {
+            "type": 0,
+            "value": "The list is empty"
         }
     ],
     "entity-names.listeners-per-month": [
@@ -2102,16 +2150,22 @@
             "value": "You have no podcasts and books in Collection"
         }
     ],
-    "error-messages.empty-collection-upcoming-albums-description": [
-        {
-            "type": 0,
-            "value": "Like your favorite artists on their pages to follow their updates"
-        }
-    ],
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
             "value": "Like the upcoming releases on the artists' pages, and they'll appear here"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-link": [
+        {
+            "type": 0,
+            "value": "Go to podcasts"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-title": [
+        {
+            "type": 0,
+            "value": "Start listening to and liking podcasts, and they'll appear here"
         }
     ],
     "error-messages.error-during-action": [
@@ -2799,6 +2853,18 @@
         {
             "type": 0,
             "value": "Chapters"
+        }
+    ],
+    "non-music.navigate-to-book-album": [
+        {
+            "type": 0,
+            "value": "Go to book"
+        }
+    ],
+    "non-music.navigate-to-podcast-album": [
+        {
+            "type": 0,
+            "value": "Go to podcast"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3749,12 +3815,6 @@
         {
             "type": 0,
             "value": "Listen"
-        }
-    ],
-    "player-actions.lyrics": [
-        {
-            "type": 0,
-            "value": "Text"
         }
     ],
     "player-actions.next-track": [
@@ -4741,6 +4801,12 @@
             "value": "Duration"
         }
     ],
+    "time.finished": [
+        {
+            "type": 0,
+            "value": "Played"
+        }
+    ],
     "time.hours": [
         {
             "offset": 0,
@@ -4803,6 +4869,110 @@
             "value": "hours"
         }
     ],
+    "time.hours-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours left"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours left"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hour left"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " hours left"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Time left:"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Time left:"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Time left:"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Time left:"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "time"
+        }
+    ],
     "time.minutes-left": [
         {
             "offset": 0,
@@ -4863,6 +5033,68 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "minutes"
+        }
+    ],
+    "time.seconds-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " seconds"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " seconds"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " second"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " seconds"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "seconds"
         }
     ],
     "track-modal.artist": [

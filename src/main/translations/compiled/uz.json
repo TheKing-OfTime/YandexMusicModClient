@@ -199,6 +199,12 @@
             "value": "Sevimli pleylistlar roʻyxati"
         }
     ],
+    "collection.my-dislikes": [
+        {
+            "type": 0,
+            "value": "Mening dizlayklarim"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -209,88 +215,6 @@
         {
             "type": 0,
             "value": "Sizga yoqdi"
-        }
-    ],
-    "desktop-release-notes.5.0.19": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "8-aprel, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Chaqnoq, impuls, energiya – bularning hammasi yangilangan Mening toʻlqinimda. U sizning musiqiy olamingizni aks ettirishni boshladi"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Uning ranglari va shakli Termadagi treklar va siz ayni paytda tinglayotgan musiqaga bogʻliq"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Mening toʻlqinimda biror trekka layk bossangiz, u yorqin chaqnoq bilan javob beradi. Sinab koʻring – oʻzingizni tuta olmaysiz"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Yangi animatsiyadan ham koʻz uzolmaysiz. Lekin, vaqti-vaqti bilan tanaffus qilib turing"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.20": [
@@ -874,7 +798,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "17 июля 2024 г."
+                    "value": "2024-yil 17-iyul"
                 }
             ],
             "type": 8,
@@ -888,7 +812,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                    "value": "Bu yangilanishda mavzu bitta: janrlar. Aniqrogʻi, biz Mening toʻlqinimga oʻrgatgan 400+ janr. Bularning hammasi shunchaki emas, yangi musiqiy yoʻnalishlarni osonroq oʻrganishingiz va noyob ijrochilarni kashf qilishingiz uchun"
                 }
             ],
             "type": 8,
@@ -908,7 +832,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                            "value": "Shuningdek, “Siz uchun” sahifasidagi “Koʻproq kashfiyotlar” blokiga janr boʻyicha shaxsiy tavsiyalarni qoʻshdik"
                         }
                     ],
                     "type": 8,
@@ -922,7 +846,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                            "value": "“Trendlar” sahifasida endi “Hafta janri” rukni mavjud – har hafta u yerda musiqiy yoʻnalishlardan biridagi 10 ta janrdan biriga mansub terma paydo boʻladi"
                         }
                     ],
                     "type": 8,
@@ -936,7 +860,75 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
+                            "value": "“Janrlar” boʻlimida “Mashhurlar” bloki, har bir janr sahifasida esa – tavsif, asosiy vakillar, mavzulashgan Mening toʻlqinim va oʻxshash janrlar paydo boʻldi"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.8.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "30 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
                         }
                     ],
                     "type": 8,
@@ -1337,6 +1329,56 @@
             "value": "Ijrochilar"
         }
     ],
+    "entity-names.artists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta ijrochi"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta ijrochi"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta ijrochi"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta ijrochi"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
     "entity-names.audiobook": [
         {
             "type": 0,
@@ -1561,6 +1603,12 @@
         {
             "type": 0,
             "value": "Hali layklar yo‘q"
+        }
+    ],
+    "entity-names.list-is-empty": [
+        {
+            "type": 0,
+            "value": "Ro‘yxat bo‘sh"
         }
     ],
     "entity-names.listeners-per-month": [
@@ -2098,16 +2146,22 @@
             "value": "Temalaringizda podkastlar va kitoblar yoʻq"
         }
     ],
-    "error-messages.empty-collection-upcoming-albums-description": [
-        {
-            "type": 0,
-            "value": "Sevimli ijrochilarning sahifasiga layk bosing va ularning yangiliklarini kuzatib boring"
-        }
-    ],
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
             "value": "Ijrochilarning sahifalari kelgusi relizlariga layklar bosing va ular bu yerda koʻrinadi"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-link": [
+        {
+            "type": 0,
+            "value": "Podkastlarga oʻtish"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-title": [
+        {
+            "type": 0,
+            "value": "Podkastlarni tinglash va layk bosishni boshlang va ular bu yerda chiqadi"
         }
     ],
     "error-messages.error-during-action": [
@@ -2815,6 +2869,18 @@
         {
             "type": 0,
             "value": "Sarlavha"
+        }
+    ],
+    "non-music.navigate-to-book-album": [
+        {
+            "type": 0,
+            "value": "Kitobga o‘tish"
+        }
+    ],
+    "non-music.navigate-to-podcast-album": [
+        {
+            "type": 0,
+            "value": "Podkastga o‘tish"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3725,12 +3791,6 @@
         {
             "type": 0,
             "value": "Tinglash"
-        }
-    ],
-    "player-actions.lyrics": [
-        {
-            "type": 0,
-            "value": "Matn"
         }
     ],
     "player-actions.next-track": [
@@ -4685,6 +4745,12 @@
             "value": "Davomiyligi"
         }
     ],
+    "time.finished": [
+        {
+            "type": 0,
+            "value": "Tinglangan"
+        }
+    ],
     "time.hours": [
         {
             "offset": 0,
@@ -4747,6 +4813,110 @@
             "value": "hours"
         }
     ],
+    "time.hours-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat qoldi"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat qoldi"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat qoldi"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soat qoldi"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta qoldi"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta qoldi"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta qoldi"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ta qoldi"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "time"
+        }
+    ],
     "time.minutes-left": [
         {
             "offset": 0,
@@ -4807,6 +4977,68 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "minutes"
+        }
+    ],
+    "time.seconds-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soniya"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soniya"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soniya"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " soniya"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "seconds"
         }
     ],
     "track-modal.artist": [

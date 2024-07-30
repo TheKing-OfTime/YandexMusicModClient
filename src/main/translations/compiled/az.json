@@ -199,6 +199,12 @@
             "value": "Sevimli pleylistlərin siyahısı"
         }
     ],
+    "collection.my-dislikes": [
+        {
+            "type": 0,
+            "value": "Bəyənməmələrim"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -209,88 +215,6 @@
         {
             "type": 0,
             "value": "Bəyənmisiniz"
-        }
-    ],
-    "desktop-release-notes.5.0.19": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "8 aprel 2024-cü il."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Parlaq işıq, mpuls, enerji – yenilənmiş Dalğamı qarşılayın. O, musiqi dünyanızı əks etdirməyi öyrənib"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Onun rəngləri və forması Kolleksiyadakı treklərdən və hazırda dinlədiyiniz musiqidən asılıdır"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Dalğamda treki bəyənsəniz, o, parlaq işıqla reaksiya göstərəcək. Sınayın, dayana bilməyəcəksiniz"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Yeni animasiyada da möhtəşəmdir. Özünüz sınayın"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.20": [
@@ -874,7 +798,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "17 июля 2024 г."
+                    "value": "17 iyul 2024-cü il."
                 }
             ],
             "type": 8,
@@ -888,7 +812,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "У этого обновления тема одна: жанры. Точнее, 400+ жанров, которым мы обучили Мою волну. Всё это не просто так, а чтобы вам было легче изучать новые музыкальные направления и открывать редких артистов"
+                    "value": "Bu yeniləmənin bir mövzusu var: janrlar. Daha doğrusu, Dalğam funksiyasına öyrətdiyimiz 400+ janr. Bunu etməkdə məqsədimiz yeni musiqi istiqamətləri ilə tanış olmağınıza və hələ tanımadığınız ifaçıları kəşf etməyinizə kömək etməkdir"
                 }
             ],
             "type": 8,
@@ -908,7 +832,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Ещё мы добавили персональные жанровые рекомендации в блок «Больше открытий» во вкладке «Для вас»"
+                            "value": "Həmçinin \"Sizin üçün\" bölməsində \"Daha çox kəşf\" panelinə fərdi janr tövsiyələri əlavə edilib"
                         }
                     ],
                     "type": 8,
@@ -922,7 +846,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Во вкладке «Тренды» теперь есть рубрика «Жанр недели» — каждую неделю там будет появляться подборка из 10 жанров в одном из музыкальных направлений"
+                            "value": "\"Trendlər\" bölməsində artıq \"Həftənin janrı\" rubrikası var – hər həftə orada musiqi istiqamətlərinin birində 10 janrdan ibarət kolleksiya olacaq"
                         }
                     ],
                     "type": 8,
@@ -936,7 +860,75 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В разделе «Жанры» появился блок «Популярное», а на странице каждого жанра — описание, ключевые представители, тематическая Моя волна и похожие жанры"
+                            "value": "\"Janrlar\" bölməsinə \"Populyar\" paneli əlavə edilib, hər janrın səhifəsinə isə təsvir, əsas təmsilçilər, tematik Dalğam və bənzər janrlar əlavə edilib"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.8.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "30 июля 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
                         }
                     ],
                     "type": 8,
@@ -1333,6 +1325,56 @@
             "value": "İfaçılar"
         }
     ],
+    "entity-names.artists-count": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ifaçı"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ifaçı"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ifaçı"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "ifaçı"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "value"
+        }
+    ],
     "entity-names.audiobook": [
         {
             "type": 0,
@@ -1557,6 +1599,12 @@
         {
             "type": 0,
             "value": "Bəyənmə yoxdur"
+        }
+    ],
+    "entity-names.list-is-empty": [
+        {
+            "type": 0,
+            "value": "Siyahı boşdur"
         }
     ],
     "entity-names.listeners-per-month": [
@@ -2098,16 +2146,22 @@
             "value": "Kolleksiyada podkast və kitablarınız yoxdur"
         }
     ],
-    "error-messages.empty-collection-upcoming-albums-description": [
-        {
-            "type": 0,
-            "value": "Sevimli ifaçıların səhifəsində bəyənin və yenilikləri izləyin"
-        }
-    ],
     "error-messages.empty-collection-upcoming-albums-title": [
         {
             "type": 0,
             "value": "İfaçıların səhifəsində gələcək buraxışları bəyənin və onlar burada görünəcək"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-link": [
+        {
+            "type": 0,
+            "value": "Podkastlara keç"
+        }
+    ],
+    "error-messages.empty-shelf-liked-page-title": [
+        {
+            "type": 0,
+            "value": "Podkastları dinləyin və bəyənin, sonra onlar burada görünəcək"
         }
     ],
     "error-messages.error-during-action": [
@@ -2815,6 +2869,18 @@
         {
             "type": 0,
             "value": "Başlıq"
+        }
+    ],
+    "non-music.navigate-to-book-album": [
+        {
+            "type": 0,
+            "value": "Kitaba keç"
+        }
+    ],
+    "non-music.navigate-to-podcast-album": [
+        {
+            "type": 0,
+            "value": "Podkasta keçmək"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3717,12 +3783,6 @@
         {
             "type": 0,
             "value": "Dinlə"
-        }
-    ],
-    "player-actions.lyrics": [
-        {
-            "type": 0,
-            "value": "Mətn"
         }
     ],
     "player-actions.next-track": [
@@ -4689,6 +4749,12 @@
             "value": "Davametmə müddəti"
         }
     ],
+    "time.finished": [
+        {
+            "type": 0,
+            "value": "Dinlənilib"
+        }
+    ],
     "time.hours": [
         {
             "offset": 0,
@@ -4751,6 +4817,110 @@
             "value": "hours"
         }
     ],
+    "time.hours-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat qalıb"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat qalıb"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat qalıb"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saat qalıb"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "hours"
+        }
+    ],
+    "time.left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qalıb"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qalıb"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qalıb"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qalıb"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "time"
+        }
+    ],
     "time.minutes-left": [
         {
             "offset": 0,
@@ -4811,6 +4981,68 @@
             "pluralType": "cardinal",
             "type": 6,
             "value": "minutes"
+        }
+    ],
+    "time.seconds-left": [
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saniyə"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saniyə"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saniyə"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "style": null,
+                            "type": 2,
+                            "value": "seconds"
+                        },
+                        {
+                            "type": 0,
+                            "value": " saniyə"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "seconds"
         }
     ],
     "track-modal.artist": [
