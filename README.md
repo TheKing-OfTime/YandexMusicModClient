@@ -63,6 +63,17 @@ Unblockes Lossless quality (HQ+ in quality settings)
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
 </details>
 
+### Language Switcher
+<details>
+   <summary>Details</summary>
+   
+Unblockes Language Switcher
+> Currently there are a lot of tracks that don't have lossless version.
+
+![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
+
+</details>
+
 
 ### Devtools & DevPanel
 <details>
