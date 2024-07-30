@@ -51,19 +51,19 @@ const loadAsset = (name, fileName) => {
 
 const getActionsAvailabilityObject = (availableActions) => {
   return {
-    previousUnavailable: !availableActions.moveBackward,
-    nextUnavailable: !availableActions.moveForward,
-    repeatUnavailable: !availableActions.repeat,
-    shuffleUnavailable: !availableActions.shuffle,
+    previousUnavailable: !availableActions?.moveBackward,
+    nextUnavailable: !availableActions?.moveForward,
+    repeatUnavailable: !availableActions?.repeat,
+    shuffleUnavailable: !availableActions?.shuffle,
   };
 };
 
 const getActionsStoreObject = (actionsStore) => {
   return {
-    repeat: actionsStore.repeat,
-    shuffle: actionsStore.shuffle,
-    liked: actionsStore.isLiked,
-    disliked: actionsStore.isDisliked,
+    repeat: actionsStore?.repeat,
+    shuffle: actionsStore?.shuffle,
+    liked: actionsStore?.isLiked,
+    disliked: actionsStore?.isDisliked,
   };
 };
 
