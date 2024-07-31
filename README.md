@@ -68,7 +68,6 @@ Unblockes Lossless quality (HQ+ in quality settings)
    <summary>Details</summary>
    
 Unblockes Language Switcher
-> Currently there are a lot of tracks that don't have lossless version.
 
 ![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
 
