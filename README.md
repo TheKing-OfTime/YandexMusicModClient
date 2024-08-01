@@ -63,17 +63,16 @@ Unblockes Lossless quality (HQ+ in quality settings)
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
 </details>
 
-### Sync Lyrics
+### Language Switcher
 <details>
    <summary>Details</summary>
    
-Unblockes Sync Lyrics
+Unblockes Language Switcher
 
-![image](https://github.com/user-attachments/assets/74eb500e-22e0-4541-bb46-758e57c82971)
-
-![image](https://github.com/user-attachments/assets/a5ed1b2d-3ff9-40d2-930f-b9ad3f5f727b)
+![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
 
 </details>
+
 
 ### Devtools & DevPanel
 <details>
@@ -94,3 +93,13 @@ If you really enjoyed the new experience with this modification, you can support
       <img width="285" alt="Support me on Boosty" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
    </a>
 </p>
+
+## Sponsors
+Thanks a lot to the sponsors who allow me to actively work on this project.
+<p align="left">
+   <a href="https://github.com/SergheyUmca">
+      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
+   </a>
+</p>
+
+> This list updates manually.
