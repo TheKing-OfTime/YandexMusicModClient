@@ -93,3 +93,13 @@ If you really enjoyed the new experience with this modification, you can support
       <img width="285" alt="Support me on Boosty" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
    </a>
 </p>
+
+## Sponsors
+Thanks a lot to the sponsors who allow me to actively work on this project.
+<p align="left">
+   <a href="https://github.com/SergheyUmca">
+      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
+   </a>
+</p>
+
+> This list updates manually.
