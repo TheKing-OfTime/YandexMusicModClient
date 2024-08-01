@@ -5660,6 +5660,45 @@
                         ),
                           i && a.setContextType(i),
                           r && a.setContextId(r);
+                        (0, eM.Pt)({
+                          status: "playing",
+                          isPlaying: true,
+                          track:
+                            E.state.queueState.currentEntity.value?.entity
+                              .entityData.meta,
+                          progress: 0,
+                          availableActions: {
+                            moveBackward:
+                              E.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              E.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              E.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              E.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              E.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: E.state.queueState.repeat.value,
+                            shuffle: E.state.queueState.shuffle.value,
+                            isLiked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
+                        });
                       }),
                 l =
                   null == E
@@ -5679,7 +5718,97 @@
                     : E.state.playerState.status.onChange((e) => {
                         e &&
                           (a.setStatus(e),
-                          (0, eM.Pt)({ isPlaying: e === eH.Xz.PLAYING }));
+                          (0, eM.Pt)({
+                            status: e,
+                            isPlaying: e === eH.Xz.PLAYING,
+                            track:
+                              E.state.queueState.currentEntity.value?.entity
+                                .entityData.meta,
+                            progress:
+                              E.state.playerState.progress.value?.position,
+                            availableActions: {
+                              moveBackward:
+                                E.state.currentContext.value?.availableActions
+                                  .moveBackward.value,
+                              moveForward:
+                                E.state.currentContext.value?.availableActions
+                                  .moveForward.value,
+                              repeat:
+                                E.state.currentContext.value?.availableActions
+                                  .repeat.value,
+                              shuffle:
+                                E.state.currentContext.value?.availableActions
+                                  .shuffle.value,
+                              speed:
+                                E.state.currentContext.value?.availableActions
+                                  .speed.value,
+                            },
+                            actionsStore: {
+                              repeat: E.state.queueState.repeat.value,
+                              shuffle: E.state.queueState.shuffle.value,
+                              isLiked:
+                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                  E.state.queueState.currentEntity.value?.entity
+                                    .entityData.meta.id,
+                                ),
+                              isDisliked:
+                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                  E.state.queueState.currentEntity.value?.entity
+                                    .entityData.meta.id,
+                                ),
+                            },
+                          }));
+                      }),
+                seekTracker =
+                  null == v
+                    ? void 0
+                    : E.state.playerState.event.onChange(() => {
+                        if (
+                          E.state.playerState.event.value === N.KX.SET_PROGRESS
+                        ) {
+                          (0, eM.Pt)({
+                            isPrimaryDataChanged: true,
+                            status: E.state.playerState.status.value,
+                            isPlaying:
+                              E.state.playerState.status.value === "playing",
+                            track:
+                              E.state.queueState.currentEntity.value?.entity
+                                .entityData.meta,
+                            progress:
+                              E.state.playerState.progress.value?.position,
+                            availableActions: {
+                              moveBackward:
+                                E.state.currentContext.value?.availableActions
+                                  .moveBackward.value,
+                              moveForward:
+                                E.state.currentContext.value?.availableActions
+                                  .moveForward.value,
+                              repeat:
+                                E.state.currentContext.value?.availableActions
+                                  .repeat.value,
+                              shuffle:
+                                E.state.currentContext.value?.availableActions
+                                  .shuffle.value,
+                              speed:
+                                E.state.currentContext.value?.availableActions
+                                  .speed.value,
+                            },
+                            actionsStore: {
+                              repeat: E.state.queueState.repeat.value,
+                              shuffle: E.state.queueState.shuffle.value,
+                              isLiked:
+                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                  E.state.queueState.currentEntity.value?.entity
+                                    .entityData.meta.id,
+                                ),
+                              isDisliked:
+                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                  E.state.queueState.currentEntity.value?.entity
+                                    .entityData.meta.id,
+                                ),
+                            },
+                          });
+                        }
                       }),
                 d =
                   null == E
@@ -5718,7 +5847,58 @@
                                           : e.availableActions.moveBackward
                                               .value);
                                       a.setCanMoveBackward(t),
-                                        (0, eM.Pt)({ canMoveBackward: t });
+                                        (0, eM.Pt)({
+                                          canMoveBackward: t,
+                                          status:
+                                            E.state.playerState.status.value,
+                                          isPlaying:
+                                            E.state.playerState.status.value ===
+                                            "playing",
+                                          track:
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta,
+                                          progress:
+                                            E.state.playerState.progress.value
+                                              ?.position,
+                                          availableActions: {
+                                            moveBackward:
+                                              E.state.currentContext.value
+                                                ?.availableActions.moveBackward
+                                                .value,
+                                            moveForward:
+                                              E.state.currentContext.value
+                                                ?.availableActions.moveForward
+                                                .value,
+                                            repeat:
+                                              E.state.currentContext.value
+                                                ?.availableActions.repeat.value,
+                                            shuffle:
+                                              E.state.currentContext.value
+                                                ?.availableActions.shuffle
+                                                .value,
+                                            speed:
+                                              E.state.currentContext.value
+                                                ?.availableActions.speed.value,
+                                          },
+                                          actionsStore: {
+                                            repeat:
+                                              E.state.queueState.repeat.value,
+                                            shuffle:
+                                              E.state.queueState.shuffle.value,
+                                            isLiked:
+                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                                E.state.queueState.currentEntity
+                                                  .value?.entity.entityData.meta
+                                                  .id,
+                                              ),
+                                            isDisliked:
+                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                                E.state.queueState.currentEntity
+                                                  .value?.entity.entityData.meta
+                                                  .id,
+                                              ),
+                                          },
+                                        });
                                     },
                                   )),
                           (t =
@@ -5740,7 +5920,58 @@
                                           : e.availableActions.moveForward
                                               .value);
                                       a.setCanMoveForward(t),
-                                        (0, eM.Pt)({ canMoveForward: t });
+                                        (0, eM.Pt)({
+                                          canMoveForward: t,
+                                          status:
+                                            E.state.playerState.status.value,
+                                          isPlaying:
+                                            E.state.playerState.status.value ===
+                                            "playing",
+                                          track:
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta,
+                                          progress:
+                                            E.state.playerState.progress.value
+                                              ?.position,
+                                          availableActions: {
+                                            moveBackward:
+                                              E.state.currentContext.value
+                                                ?.availableActions.moveBackward
+                                                .value,
+                                            moveForward:
+                                              E.state.currentContext.value
+                                                ?.availableActions.moveForward
+                                                .value,
+                                            repeat:
+                                              E.state.currentContext.value
+                                                ?.availableActions.repeat.value,
+                                            shuffle:
+                                              E.state.currentContext.value
+                                                ?.availableActions.shuffle
+                                                .value,
+                                            speed:
+                                              E.state.currentContext.value
+                                                ?.availableActions.speed.value,
+                                          },
+                                          actionsStore: {
+                                            repeat:
+                                              E.state.queueState.repeat.value,
+                                            shuffle:
+                                              E.state.queueState.shuffle.value,
+                                            isLiked:
+                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                                E.state.queueState.currentEntity
+                                                  .value?.entity.entityData.meta
+                                                  .id,
+                                              ),
+                                            isDisliked:
+                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                                E.state.queueState.currentEntity
+                                                  .value?.entity.entityData.meta
+                                                  .id,
+                                              ),
+                                          },
+                                        });
                                     },
                                   )),
                           (i =
@@ -5762,6 +5993,52 @@
                                           : e.availableActions.repeat.value;
                                     "boolean" == typeof t &&
                                       a.setCanChangeRepeatMode(t);
+                                    (0, eM.Pt)({
+                                      status: E.state.playerState.status.value,
+                                      isPlaying:
+                                        E.state.playerState.status.value ===
+                                        "playing",
+                                      track:
+                                        E.state.queueState.currentEntity.value
+                                          ?.entity.entityData.meta,
+                                      progress:
+                                        E.state.playerState.progress.value
+                                          ?.position,
+                                      availableActions: {
+                                        moveBackward:
+                                          E.state.currentContext.value
+                                            ?.availableActions.moveBackward
+                                            .value,
+                                        moveForward:
+                                          E.state.currentContext.value
+                                            ?.availableActions.moveForward
+                                            .value,
+                                        repeat:
+                                          E.state.currentContext.value
+                                            ?.availableActions.repeat.value,
+                                        shuffle:
+                                          E.state.currentContext.value
+                                            ?.availableActions.shuffle.value,
+                                        speed:
+                                          E.state.currentContext.value
+                                            ?.availableActions.speed.value,
+                                      },
+                                      actionsStore: {
+                                        repeat: E.state.queueState.repeat.value,
+                                        shuffle:
+                                          E.state.queueState.shuffle.value,
+                                        isLiked:
+                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta.id,
+                                          ),
+                                        isDisliked:
+                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta.id,
+                                          ),
+                                      },
+                                    });
                                   })),
                           (r =
                             null == E
@@ -5781,6 +6058,52 @@
                                           ? void 0
                                           : e.availableActions.shuffle.value;
                                     "boolean" == typeof t && a.setCanShuffle(t);
+                                    (0, eM.Pt)({
+                                      status: E.state.playerState.status.value,
+                                      isPlaying:
+                                        E.state.playerState.status.value ===
+                                        "playing",
+                                      track:
+                                        E.state.queueState.currentEntity.value
+                                          ?.entity.entityData.meta,
+                                      progress:
+                                        E.state.playerState.progress.value
+                                          ?.position,
+                                      availableActions: {
+                                        moveBackward:
+                                          E.state.currentContext.value
+                                            ?.availableActions.moveBackward
+                                            .value,
+                                        moveForward:
+                                          E.state.currentContext.value
+                                            ?.availableActions.moveForward
+                                            .value,
+                                        repeat:
+                                          E.state.currentContext.value
+                                            ?.availableActions.repeat.value,
+                                        shuffle:
+                                          E.state.currentContext.value
+                                            ?.availableActions.shuffle.value,
+                                        speed:
+                                          E.state.currentContext.value
+                                            ?.availableActions.speed.value,
+                                      },
+                                      actionsStore: {
+                                        repeat: E.state.queueState.repeat.value,
+                                        shuffle:
+                                          E.state.queueState.shuffle.value,
+                                        isLiked:
+                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta.id,
+                                          ),
+                                        isDisliked:
+                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                            E.state.queueState.currentEntity
+                                              .value?.entity.entityData.meta.id,
+                                          ),
+                                      },
+                                    });
                                   })),
                           (o =
                             null == E
@@ -5817,6 +6140,47 @@
                     : E.state.queueState.repeat.onChange(() => {
                         let e = E.state.queueState.repeat.value;
                         a.setRepeatMode(e), h.set(eq.BU.YmPlayerRepeatMode, e);
+                        (0, eM.Pt)({
+                          status: E.state.playerState.status.value,
+                          isPlaying:
+                            E.state.playerState.status.value === "playing",
+                          track:
+                            E.state.queueState.currentEntity.value?.entity
+                              .entityData.meta,
+                          progress:
+                            E.state.playerState.progress.value?.position,
+                          availableActions: {
+                            moveBackward:
+                              E.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              E.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              E.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              E.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              E.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: E.state.queueState.repeat.value,
+                            shuffle: E.state.queueState.shuffle.value,
+                            isLiked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
+                        });
                       }),
                 C =
                   null == E
@@ -5824,12 +6188,54 @@
                     : E.state.queueState.shuffle.onChange(() => {
                         let e = E.state.queueState.shuffle.value;
                         a.setShuffle(e), h.set(eq.BU.YmPlayerShuffle, e);
+                        (0, eM.Pt)({
+                          status: E.state.playerState.status.value,
+                          isPlaying:
+                            E.state.playerState.status.value === "playing",
+                          track:
+                            E.state.queueState.currentEntity.value?.entity
+                              .entityData.meta,
+                          progress:
+                            E.state.playerState.progress.value?.position,
+                          availableActions: {
+                            moveBackward:
+                              E.state.currentContext.value?.availableActions
+                                .moveBackward.value,
+                            moveForward:
+                              E.state.currentContext.value?.availableActions
+                                .moveForward.value,
+                            repeat:
+                              E.state.currentContext.value?.availableActions
+                                .repeat.value,
+                            shuffle:
+                              E.state.currentContext.value?.availableActions
+                                .shuffle.value,
+                            speed:
+                              E.state.currentContext.value?.availableActions
+                                .speed.value,
+                          },
+                          actionsStore: {
+                            repeat: E.state.queueState.repeat.value,
+                            shuffle: E.state.queueState.shuffle.value,
+                            isLiked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                            isDisliked:
+                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                E.state.queueState.currentEntity.value?.entity
+                                  .entityData.meta.id,
+                              ),
+                          },
+                        });
                       });
               return () => {
                 null == n || n(),
                   null == l || l(),
                   null == s || s(),
                   null == d || d(),
+                  null == seekTracker || seekTracker(),
                   null == u || u(),
                   null == c || c(),
                   null == C || C();
