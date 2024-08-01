@@ -75,7 +75,9 @@ const handleWindowLifecycleEvents = (window) => {
     webContents.on('did-fail-load', (event, errorCode, errorDescription, validatedUrl) => {
         const message = `Failed to load ${validatedUrl}: ${errorDescription} (${errorCode})`;
         lifecycleLogger.error(message);
-        (0, loadURL_js_1.loadUnavailableErrorPage)(window);
+        if (errorCode <= -100) {
+            (0, loadURL_js_1.loadUnavailableErrorPage)(window);
+        }
     });
 };
 exports.handleWindowLifecycleEvents = handleWindowLifecycleEvents;

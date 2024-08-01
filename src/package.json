@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.8.2",
+    "version": "5.8.3",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -23,11 +23,11 @@
         "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.7.14",
-        "BRANCH": "8f3df9f13bd75fcee58248541f427467937e69a5"
+        "VERSION": "5.8.3",
+        "BRANCH": "b87b0cc31f294ee2d6957b17685960c7a642765f"
     },
     "common": {
-        "SHOW_RELEASE_NOTES": true,
+        "SHOW_RELEASE_NOTES": false,
         "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
         "UPDATE_POLL_INTERVAL_MS": 1800000,
         "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",
