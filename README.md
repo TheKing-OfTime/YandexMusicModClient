@@ -72,6 +72,16 @@ Unblockes Lossless quality (HQ+ in quality settings)
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
 </details>
 
+### Return dislike button
+<details>
+   <summary>Details</summary>
+   
+Returns dislike button on main player bar
+
+![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
+
+</details>
+
 ### Language Switcher
 <details>
    <summary>Details</summary>
