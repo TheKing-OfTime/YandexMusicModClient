@@ -99,7 +99,7 @@
 Если вам действительно понравился новый опыт использования Яндекс Музыки с этой модификацией, вы можете поддержать мою работу над ней:
 <p align="left">
    <a href="https://boosty.to/thekingoftime/donate">
-      <img width="285" alt="Поддержите меня на бусти" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
+      <img width="200" alt="Поддержите меня на бусти" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
    </a>
 </p>
 
@@ -114,4 +114,4 @@
    </a>
 </p>
 
-> Список обновляется в ручную
+> Список обновляется вручную
