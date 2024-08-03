@@ -5512,19 +5512,13 @@
                     transport: R.J7.RAW,
                     variables: {
                       get useNewCorrespondenceBetweenQualityParams() {
-                        return s.checkExperiment(
-                          eq.pe.WebNextEnableNewQuality,
-                          "on",
-                        );
+                        return true;
                       },
                     },
                   },
                   variables: {
                     get switchToStrmWithoutEncrypt() {
-                      return s.checkExperiment(
-                        eq.pe.WebNextSwitchToStrmWithoutEncrypt,
-                        "on",
-                      );
+                      return true;
                     },
                   },
                 }),
@@ -6248,7 +6242,7 @@
                 : (null == E || E.setVolume(1), a.setVolume(1));
             }, [h, E, a]);
           let y = (0, d.useCallback)(() => {
-            let e = s.checkExperiment(eq.pe.WebNextEnableNewQuality, "on");
+            let e = true;
             if (!c.hasPlus) return B.nJ.PREVIEW;
             let t = h.get(eq.BU.YmPlayerQuality);
             return (
