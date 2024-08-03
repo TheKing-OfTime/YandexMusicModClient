@@ -2958,7 +2958,12 @@
         K = i.n(q);
       let X = "player-region",
         $ = (0, o.Pi)((e) => {
-          let { className: t, entityMeta: i, onLikeClick: a } = e,
+          let {
+              className: t,
+              entityMeta: i,
+              onLikeClick: a,
+              onDislikeClick: onDislikeClick,
+            } = e,
             {
               user: r,
               sonataState: o,
@@ -3119,6 +3124,12 @@
                             className: K().likeButton,
                             isLiked: i.isLiked,
                             onClick: a,
+                            iconSize: "xs",
+                          }),
+                          (0, n.jsx)(E.Q1, {
+                            className: K().dislikeButton,
+                            isDisliked: i.isDisliked,
+                            onClick: onDislikeClick,
                             iconSize: "xs",
                           }),
                           (0, n.jsx)(M.hz, {
@@ -3342,6 +3353,7 @@
           );
           return (0, n.jsx)(m, {
             onLikeClick: o,
+            onDislikeClick: u,
             entityMeta: a.entityMeta,
             className: (0, l.W)(t, _().root),
           });
