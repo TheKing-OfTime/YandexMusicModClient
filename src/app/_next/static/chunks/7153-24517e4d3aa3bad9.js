@@ -3120,16 +3120,16 @@
                       F &&
                       (0, n.jsxs)(n.Fragment, {
                         children: [
-                          (0, n.jsx)(E.dJ, {
-                            className: K().likeButton,
-                            isLiked: i.isLiked,
-                            onClick: a,
-                            iconSize: "xs",
-                          }),
                           (0, n.jsx)(E.Q1, {
                             className: K().dislikeButton,
                             isDisliked: i.isDisliked,
                             onClick: onDislikeClick,
+                            iconSize: "xs",
+                          }),
+                          (0, n.jsx)(E.dJ, {
+                            className: K().likeButton,
+                            isLiked: i.isLiked,
+                            onClick: a,
                             iconSize: "xs",
                           }),
                           (0, n.jsx)(M.hz, {
