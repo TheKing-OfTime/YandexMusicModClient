@@ -11,7 +11,7 @@ const IS_DEEPLINKS_ROLLEDOUT = false;
 
 let rpc = undefined;
 let isReady = false;
-let isListeningType = false;
+let isListeningType = true;
 let timeoutId = undefined;
 
 let previousActivity = undefined;
@@ -47,7 +47,7 @@ const states = {
   default: { icon: "logo", name: "Yandex Music" },
 };
 
-function silenceTypeCheck(activity) {
+function silentTypeCheck(activity) {
   isListeningType = activity.type === 2;
 }
 
@@ -170,8 +170,11 @@ async function setActivity(
 
   rpc
     .setActivity(activityObject)
-    .then((activity) => silenceTypeCheck(activity))
-    .catch((e) => discordRichPresenceLogger.error(e));
+    .then((activity) => silentTypeCheck(activity))
+    .catch((e) => {
+      discordRichPresenceLogger.error(e);
+      isReady = false;
+    });
 
   return true;
 }
@@ -183,6 +186,7 @@ const tryConnect = () => {
 };
 
 const tryReconnect = () => {
+  rpc = null;
   initRPC();
   return rpc.login({ clientId }).catch((e) => {
     discordRichPresenceLogger.error(e);
