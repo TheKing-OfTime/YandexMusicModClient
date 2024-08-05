@@ -260,6 +260,7 @@
     --player-average-color-background,
     var(--ym-background-color-primary-enabled-player)
   );
+  transition: background-color var(--ym-duration-transition);
   overflow: hidden;
 }
 .FullscreenPlayerDesktop_header__OBhzq {
