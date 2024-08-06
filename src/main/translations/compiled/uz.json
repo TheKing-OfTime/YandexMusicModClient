@@ -175,6 +175,18 @@
             "value": "Pleylistlarim roʻyxati"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Taronalarni bu pleylistga kiritish uchun ularga layk bosing. Sevimlilarni topishga esa Mening toʻlqinim yordam beradi"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Bu yerda sevimli taronalaringiz chiqadi"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -205,6 +217,12 @@
             "value": "Mening dizlayklarim"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "Yangi ijro ro‘yxati"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -215,88 +233,6 @@
         {
             "type": 0,
             "value": "Sizga yoqdi"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024-yil 12-aprel"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Bu versiyada keyin yana qoʻshish va layk bosish uchun oʻchirish va dislayk bosishni oʻrgandik."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Oʻz pleylistlarimizdan treklarni oʻchirish imkoni paydo boʻldi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Endi pleyerdagi trekka dislayk bosganda u darhol keyingisiga oʻtadi"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Ijrochi sahifasiga siz Mening toʻlqinim orqali ilgari tinglagan yoki Kolleksiyaga qoʻshgan treklar mavjud “Sizga tanish” boʻlimini qoʻshdik"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -941,6 +877,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -2098,6 +2080,54 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "Sukut bo‘yicha"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Ekvalayzerni faolsizlantirish"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Oʻchiq"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Yoqish"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Ekvalayzerni yoqish"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "Yoniq"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "daraja"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Ekvalayzer"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -2110,6 +2140,12 @@
             "value": "Siz hali Mening to‘lqinimda ijrochining treklarini tinglamadingiz"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Albomlarga layk bosing va ular bu yerda aks etadi"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -2120,6 +2156,12 @@
         {
             "type": 0,
             "value": "Sizda Termalarda albomlar yoʻq"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "Ijrochilarga layk bosing va ular bu yerda aks etadi"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2138,6 +2180,12 @@
         {
             "type": 0,
             "value": "Treklarni pleylistga kiriting"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Podkastlarga layk bosing va ular bu yerda chiqadi"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2869,6 +2917,12 @@
         {
             "type": 0,
             "value": "Sarlavha"
+        }
+    ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "Bookmate opsiyasini faqat ilovada yoqish mumkin"
         }
     ],
     "non-music.navigate-to-book-album": [
@@ -3617,6 +3671,12 @@
             "value": "Kerakli sahifani topa olmadik."
         }
     ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Yangilash"
+        }
+    ],
     "page-error.reload-page-button": [
         {
             "type": 0,
@@ -4175,6 +4235,12 @@
         {
             "type": 0,
             "value": "Ijrochilar"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Audiokitoblar"
         }
     ],
     "search-filters.playlist": [
@@ -5065,22 +5131,16 @@
             "value": "Bastakorlar"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "Nashr haqida"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "Trek haqida"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Nomi"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Versiya"
         }
     ],
     "track-title.error-not-found": [
@@ -5101,6 +5161,12 @@
             "value": "Treylerni ochish"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Treylerni yopish"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -5111,6 +5177,24 @@
         {
             "type": 0,
             "value": "Kirish"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Tez orada tuzatamiz, keyinroq qayting"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "Treyler buzilgan"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Ekranni yangilang yoki keyinroq urining"
         }
     ],
     "trailer.title-album": [
@@ -5137,6 +5221,24 @@
             "value": "Tarona treyleri"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Yuklashni bekor qilish"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Tarona yuklanmoqda"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Trekni yuklash"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -5159,6 +5261,12 @@
         {
             "type": 0,
             "value": "Mening toʻlqinimni sozlash"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "Mening toʻlqinimni yoqish"
         }
     ],
     "vibe-actions.remove": [

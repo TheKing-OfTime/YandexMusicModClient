@@ -175,6 +175,18 @@
             "value": "Pleylistlərimin siyahısı"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Trekləri bu pleylistə əlavə etmək üçün onları bəyənin. Sevimli trekinizi Dalğam ilə tapın"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Sevimli trekləriniz burada göstəriləcək"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -205,6 +217,12 @@
             "value": "Bəyənməmələrim"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "Yeni pleylist"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -215,88 +233,6 @@
         {
             "type": 0,
             "value": "Bəyənmisiniz"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "12 aprel 2024-cü il."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Bu yeniləmədə silməyi və bəyənməməyi öyrənmişik. Sonra yenidən əlavə etmək və bəyənmək mümkündür."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Pleylistlərinizdən trekləri silmək imkanı əlavə edilib"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "İndi pleyerdə treki bəyənməyəndə o, dərhal növbətiyə keçir"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "İfaçının səhifəsində \"Eşitdiyiniz\" bölməsi əlavə edilib, burada Dalğamda eşitdiyiniz və ya Kolleksiyaya əlavə etdiyiniz treklər olacaq"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -941,6 +877,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -2098,6 +2080,54 @@
             "value": " Dalğam"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "Standart şəkildə"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Ekvalayzeri qeyri-aktiv et"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Qeyri-aktiv"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Yandır"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Ekvalayzeri aktiv-et"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "Aktiv"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "səviyyə"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Ekvalayzer"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -2110,6 +2140,12 @@
             "value": "Hələ ki Dalğamda ifaçının treklərini dinləməmisiniz"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Albomları bəyənin və onlar burada görünəcək"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -2120,6 +2156,12 @@
         {
             "type": 0,
             "value": "Kolleksiyada albom yoxdur"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "İfaçıları bəyənin və onlar burada görünəcək"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2138,6 +2180,12 @@
         {
             "type": 0,
             "value": "Trekləri pleylistə əlavə edin"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Podkastları bəyənin və onlar burada görünəcək"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2869,6 +2917,12 @@
         {
             "type": 0,
             "value": "Başlıq"
+        }
+    ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "Bookmate seçimini tətbiqdə aktiv etmək mümkündür"
         }
     ],
     "non-music.navigate-to-book-album": [
@@ -3609,6 +3663,12 @@
             "value": "Lazımi səhifə tapılmadı."
         }
     ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Yenilə"
+        }
+    ],
     "page-error.reload-page-button": [
         {
             "type": 0,
@@ -4175,6 +4235,12 @@
         {
             "type": 0,
             "value": "İfaçılar"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Audio kitablar"
         }
     ],
     "search-filters.playlist": [
@@ -5069,22 +5135,16 @@
             "value": "Bəstəkarlar"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "Buraxılış haqqında"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "Trek haqqında"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Adı"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Versiya"
         }
     ],
     "track-title.error-not-found": [
@@ -5105,6 +5165,12 @@
             "value": "Treyleri başlat"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Treyleri bağla"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -5115,6 +5181,24 @@
         {
             "type": 0,
             "value": "Keç"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Tezliklə düzələcək, daha sonra qayıdın"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "Treylerdə nasazlıq var"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Ekranı yeniləyin və ya daha sonra cəhd edin"
         }
     ],
     "trailer.title-album": [
@@ -5141,6 +5225,24 @@
             "value": "Trekin treyleri"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Yükləməni ləğv etmək"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Trek yüklənir"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Treki yükləmək"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -5163,6 +5265,12 @@
         {
             "type": 0,
             "value": "Dalğamı qur"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "\"Dalğam\"ı aktiv et"
         }
     ],
     "vibe-actions.remove": [

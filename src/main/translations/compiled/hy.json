@@ -171,6 +171,18 @@
             "value": "Իմ երգաշարերի ցանկ"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Հավանեք կատարումները, որպեսզի դրանք ավելացնեք այս երգացանկում։ Իսկ սիրվածները գտնելուն կօգնի Իմ ալիքը"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Այստեղ կհայտնվեն ձեր սիրելի կատարումները"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -201,6 +213,12 @@
             "value": "Իմ չհավանածները"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "Նոր երգացանկ"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -211,88 +229,6 @@
         {
             "type": 0,
             "value": "Դուք հավանել եք"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. ապրիլի 12"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Այս թարմացման մեջ մենք սովորել ենք հեռացնել և դիսլայք դնել։"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Այժմ կարող եք հեռացնել կատարումները երգացանկերից"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Հիմա, երբ որևէ կատարման դիսլայք եք դնում նվագարկչում, այն ավտոմատ անցնում է հաջորդին"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Կատարողի էջում ավելացրել ենք «Ձեզ ծանոթ» բաժինը՝ այն կատարումներով, որոնք դուք արդեն լսել եք Իմ ալիքում կամ ավելացրել Հավաքածուում"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -893,6 +829,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -2030,6 +2012,54 @@
             "value": " ալիքը"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "Կանխադրված"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Անջատել էկվալայզերը"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Անջատված"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Միացնել"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Միացնել էկվալայզերը"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "Միացված"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "մակարդակ"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Էկվալայզեր"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -2042,6 +2072,12 @@
             "value": "Դուք դեռ Իմ ալիքում չեք լսել կատարողի կատարումները"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Լայքել դրեք ալբոմներին, և դրանք կհայտնվեն այստեղ"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -2052,6 +2088,12 @@
         {
             "type": 0,
             "value": "Դուք ալբոմներ չունեք Հավաքածուում"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "Լայքեք կատարողներին, և նրանք կհայտնվեն այստեղ"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2070,6 +2112,12 @@
         {
             "type": 0,
             "value": "Ավելացրեք կատարումները երգացանկում"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Լայքեր դրեք փոդքաստներին, և դրանք կհայտնվեն այստեղ"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2811,6 +2859,12 @@
             "value": "Վերնագիր"
         }
     ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "Bookmate տարբերակը կարելի է միացնել հավելվածում"
+        }
+    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -3493,6 +3547,12 @@
             "value": "Մենք չգտանք անհրաժեշտ էջը։"
         }
     ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Թարմացնել"
+        }
+    ],
     "page-error.reload-page-button": [
         {
             "type": 0,
@@ -3634,7 +3694,7 @@
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
-            "value": "Optimal"
+            "value": "Balanced"
         }
     ],
     "player-actions.cast": [
@@ -4071,6 +4131,12 @@
         {
             "type": 0,
             "value": "Կատարողներ"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Աուդիոգրքեր"
         }
     ],
     "search-filters.playlist": [
@@ -4955,22 +5021,16 @@
             "value": "Երգահաններ"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "Թողարկման մասին"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "Կատարման մասին"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Անվանում"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Տարբերակ"
         }
     ],
     "track-title.error-not-found": [
@@ -4991,6 +5051,12 @@
             "value": "Գործարկել թրեյլերը"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Փակել թրեյլերը"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -5001,6 +5067,24 @@
         {
             "type": 0,
             "value": "Անցնել"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Շուտով կշտկվի, վերադարձեք ավելի ուշ"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "Թրեյլերը չի բեռնվում"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Թարմացրեք էկրանը կամ փորձեք ավելի ուշ"
         }
     ],
     "trailer.title-album": [
@@ -5027,6 +5111,24 @@
             "value": "Կատարման թրեյլեր"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Չեղարկել բեռնումը"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Բեռնում ենք կատարումը"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Բեռնել թրեկ"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -5049,6 +5151,12 @@
         {
             "type": 0,
             "value": "Կարգավորել Իմ ալիքը"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "Միացնել Իմ ալիքը"
         }
     ],
     "vibe-actions.remove": [

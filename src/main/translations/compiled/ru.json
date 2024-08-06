@@ -171,6 +171,18 @@
             "value": "Список моих плейлистов"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки трекам, чтобы добавить их в этот плейлист. А найти любимое поможет Моя волна"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Тут появятся ваши любимые треки"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -201,6 +213,12 @@
             "value": "Мои дизлайки"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "Новый плейлист"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -211,88 +229,6 @@
         {
             "type": 0,
             "value": "Вам понравилось"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "12 апреля 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "В этом обновлении мы научились удалять и дизлайкать. Чтобы потом снова добавлять и лайкать."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Появилась возможность удалять треки из своих плейлистов"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Теперь, когда вы ставите треку дизлайк в плеере, он сразу переключается на следующий"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Добавили на странице артиста раздел «Знакомое вам» с треками, которые вы уже слышали в Моей волне или добавили в Коллекцию"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -937,6 +873,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -2178,6 +2160,54 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "По умолчанию"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Выключить эквалайзер"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Выключен"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Включить"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Включить эквалайзер"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "Включен"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "уровень"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Эквалайзер"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -2190,6 +2220,12 @@
             "value": "Вы пока не слушали в Моей волне треки исполнителя"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки альбомам, и они появятся тут"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -2200,6 +2236,12 @@
         {
             "type": 0,
             "value": "У вас нет альбомов в Коллекции"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки исполнителям, и они появятся тут"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2218,6 +2260,12 @@
         {
             "type": 0,
             "value": "Добавьте треки в плейлист"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Ставьте лайки подкастам, и они появятся тут"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2935,6 +2983,12 @@
             "value": "Оглавление"
         }
     ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "Подключить опцию Букмейт можно в приложении"
+        }
+    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -3206,13 +3260,13 @@
         },
         {
             "type": 0,
-            "value": " добавлена на "
+            "value": " добавлена в "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "Мою полку"
+                    "value": "Коллекцию"
                 }
             ],
             "type": 8,
@@ -3230,13 +3284,13 @@
         },
         {
             "type": 0,
-            "value": " добавлена на "
+            "value": " добавлена в "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "Мою полку"
+                    "value": "Коллекцию"
                 }
             ],
             "type": 8,
@@ -3266,7 +3320,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Моей полки"
+                    "value": "Коллекции"
                 }
             ],
             "type": 8,
@@ -3310,7 +3364,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Моей полки"
+                    "value": "Коллекции"
                 }
             ],
             "type": 8,
@@ -3506,13 +3560,13 @@
         },
         {
             "type": 0,
-            "value": " добавлен на "
+            "value": " добавлен в "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "Мою полку"
+                    "value": "Коллекцию"
                 }
             ],
             "type": 8,
@@ -3542,7 +3596,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Моей полки"
+                    "value": "Коллекции"
                 }
             ],
             "type": 8,
@@ -3735,6 +3789,12 @@
         {
             "type": 0,
             "value": "Мы не нашли нужную страницу."
+        }
+    ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Обновить"
         }
     ],
     "page-error.reload-page-button": [
@@ -4311,6 +4371,12 @@
         {
             "type": 0,
             "value": "Исполнители"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Аудиокниги"
         }
     ],
     "search-filters.playlist": [
@@ -5393,22 +5459,16 @@
             "value": "Композиторы"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "О выпуске"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "О треке"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Название"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Версия"
         }
     ],
     "track-title.error-not-found": [
@@ -5429,6 +5489,12 @@
             "value": "Запустить трейлер"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Закрыть трейлер"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -5439,6 +5505,24 @@
         {
             "type": 0,
             "value": "Перейти"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Скоро починим, возвращайтесь позже"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "Трейлер сломался"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Обновите экран или попробуйте позже"
         }
     ],
     "trailer.title-album": [
@@ -5465,6 +5549,24 @@
             "value": "Трейлер трека"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Отменить загрузку"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Загружаем трек"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Загрузить трек"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -5487,6 +5589,12 @@
         {
             "type": 0,
             "value": "Настроить Мою волну"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "Включить Мою волну"
         }
     ],
     "vibe-actions.remove": [

@@ -175,6 +175,18 @@
             "value": "Плейлистерімнің тізімі"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Оларды осы плейлиске қосу үшін тректерге лайк қойыңыз. Ал сүйіктіні табуға Менің толқыным көмектеседі"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Мұнда сүйікті тректеріңіз шығады"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -205,6 +217,12 @@
             "value": "Менің дизлайктарым"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "Жаңа плейлист"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -215,88 +233,6 @@
         {
             "type": 0,
             "value": "Сізге ұнағаны"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "12 сәуір 2024 ж."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Бұл жаңартымда біз өшіріп және дизлайк басып үйрендік. Кейін қайтадан қосу және лайк басу үшін."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Өз плейлистеріңізден тректерді өшіріп тастау мүмкіндігі пайда болды"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Енді, сіз плеердегі трекке дизлайк басқан кезде, ол бірден келесі трекке ауысады"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Әртістің парақшасына «Сізге таныс» бөлімін қостық, онда сіз Менің толқыным арқылы тыңдаған немесе өз Топтамаңызға қосқан тректер болады"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -901,6 +837,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -1966,6 +1948,54 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "Әдепкі бойынша"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Эквалайзерді сөндіру"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Сөндірулі"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Включить"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Эквалайзерді қосу"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "Қосулы"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "деңгей"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Эквалайзер"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -1978,6 +2008,12 @@
             "value": "Сіз әзірге Менің толқынымда орындаушының тректерін естіген жоқсыз"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Альбомдарға лайк қойыңыз, олар осында шығады"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -1988,6 +2024,12 @@
         {
             "type": 0,
             "value": "Топтамаңызда альбом жоқ"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "Орындаушыларға лайк қойсаңыз, олар осында шығады"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2006,6 +2048,12 @@
         {
             "type": 0,
             "value": "Тректерді плейлистке қосыңыз"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Подкастарға лайк қойыңыз, олар осында шығады"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2729,6 +2777,12 @@
         {
             "type": 0,
             "value": "Мазмұны"
+        }
+    ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "Букмейт опциясын қосымшадан қосуға болады"
         }
     ],
     "non-music.navigate-to-book-album": [
@@ -3493,6 +3547,12 @@
             "value": "Біз қажетті парақшаны таба алмадық"
         }
     ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Жаңарту"
+        }
+    ],
     "page-error.reload-page-button": [
         {
             "type": 0,
@@ -4071,6 +4131,12 @@
         {
             "type": 0,
             "value": "Орындаушылар"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Аудиокітаптар"
         }
     ],
     "search-filters.playlist": [
@@ -4884,22 +4950,16 @@
             "value": "Композиторлар"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "Шығарылым туралы"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "Трек жайлы"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Атауы"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Нұсқасы"
         }
     ],
     "track-title.error-not-found": [
@@ -4920,6 +4980,12 @@
             "value": "Трейлерді іске қосу"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Трейлерді жабу"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -4930,6 +4996,24 @@
         {
             "type": 0,
             "value": "Өту"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Жақында жөндейміз, кейін оралыңыз"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "Трейлер сынып қалды"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Экранды жаңартыңыз немесе кейінірек байқап көріңіз"
         }
     ],
     "trailer.title-album": [
@@ -4956,6 +5040,24 @@
             "value": "Трек трейлері"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Жүктеуден бас тарту"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Тректі жүктеп жатырмыз"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Тректі жүктеу"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -4978,6 +5080,12 @@
         {
             "type": 0,
             "value": "Менің толқынымды баптау"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "Менің толқынымды қосу"
         }
     ],
     "vibe-actions.remove": [

@@ -171,6 +171,18 @@
             "value": "List of my playlists"
         }
     ],
+    "collection.empty-liked-tracks-text": [
+        {
+            "type": 0,
+            "value": "Like tracks to add them to this playlist. Find music you like with My Vibe"
+        }
+    ],
+    "collection.empty-liked-tracks-title": [
+        {
+            "type": 0,
+            "value": "Your favorite tracks will appear here"
+        }
+    ],
     "collection.liked-albums-list": [
         {
             "type": 0,
@@ -201,6 +213,12 @@
             "value": "My dislikes"
         }
     ],
+    "collection.new-playlist": [
+        {
+            "type": 0,
+            "value": "New playlist"
+        }
+    ],
     "collection.your-created-playlists": [
         {
             "type": 0,
@@ -211,88 +229,6 @@
         {
             "type": 0,
             "value": "Playlists you liked"
-        }
-    ],
-    "desktop-release-notes.5.0.20": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "April 12, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "In this update, we learnt to delete and dislike tracks — just to add and like new ones!"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "You can now delete tracks from your playlists."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Now, when you dislike a track in the player, it immediately moves on to the next track."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "The artists' pages now feature the \"Known to you\" section with the tracks you've already heard in My Vibe or added to your Collection."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.0.21": [
@@ -937,6 +873,52 @@
             ],
             "type": 8,
             "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.9.4": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "6 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНам нравится,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop.about": [
@@ -2102,6 +2084,54 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.default-preset": [
+        {
+            "type": 0,
+            "value": "Default"
+        }
+    ],
+    "equalizer.disable-equalizer": [
+        {
+            "type": 0,
+            "value": "Disable equalizer"
+        }
+    ],
+    "equalizer.disabled": [
+        {
+            "type": 0,
+            "value": "Off"
+        }
+    ],
+    "equalizer.enable": [
+        {
+            "type": 0,
+            "value": "Turn on"
+        }
+    ],
+    "equalizer.enable-equalizer": [
+        {
+            "type": 0,
+            "value": "Enable equalizer"
+        }
+    ],
+    "equalizer.enabled": [
+        {
+            "type": 0,
+            "value": "On"
+        }
+    ],
+    "equalizer.preamp-level": [
+        {
+            "type": 0,
+            "value": "level"
+        }
+    ],
+    "equalizer.title": [
+        {
+            "type": 0,
+            "value": "Equalizer"
+        }
+    ],
     "error-messages.empty-artist-familiar-collection-title": [
         {
             "type": 0,
@@ -2114,6 +2144,12 @@
             "value": "You haven't listened to the artist's tracks in My Vibe yet"
         }
     ],
+    "error-messages.empty-collection-albums": [
+        {
+            "type": 0,
+            "value": "Like albums, and they'll appear here"
+        }
+    ],
     "error-messages.empty-collection-albums-description": [
         {
             "type": 0,
@@ -2124,6 +2160,12 @@
         {
             "type": 0,
             "value": "You have no albums in My Collection"
+        }
+    ],
+    "error-messages.empty-collection-artists-title": [
+        {
+            "type": 0,
+            "value": "Like artists, and they'll appear here"
         }
     ],
     "error-messages.empty-collection-liked-playlists": [
@@ -2142,6 +2184,12 @@
         {
             "type": 0,
             "value": "Add tracks to playlist"
+        }
+    ],
+    "error-messages.empty-collection-podcasts": [
+        {
+            "type": 0,
+            "value": "Like podcasts, and they'll appear here"
         }
     ],
     "error-messages.empty-collection-podcasts-and-books": [
@@ -2853,6 +2901,12 @@
         {
             "type": 0,
             "value": "Chapters"
+        }
+    ],
+    "non-music.bookmate-unavailable": [
+        {
+            "type": 0,
+            "value": "You can enable the Bookmate option in the app"
         }
     ],
     "non-music.navigate-to-book-album": [
@@ -3641,6 +3695,12 @@
             "value": "Couldn't find the page."
         }
     ],
+    "page-error.reload": [
+        {
+            "type": 0,
+            "value": "Refresh"
+        }
+    ],
     "page-error.reload-page-button": [
         {
             "type": 0,
@@ -3778,7 +3838,7 @@
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
-            "value": "Optimal"
+            "value": "Balanced"
         }
     ],
     "player-actions.cast": [
@@ -4211,6 +4271,12 @@
         {
             "type": 0,
             "value": "Artists"
+        }
+    ],
+    "search-filters.book": [
+        {
+            "type": 0,
+            "value": "Audiobooks"
         }
     ],
     "search-filters.playlist": [
@@ -5121,22 +5187,16 @@
             "value": "Composers"
         }
     ],
+    "track-modal.podcast-title": [
+        {
+            "type": 0,
+            "value": "About the episode"
+        }
+    ],
     "track-modal.title": [
         {
             "type": 0,
             "value": "Track details"
-        }
-    ],
-    "track-modal.track-name": [
-        {
-            "type": 0,
-            "value": "Name"
-        }
-    ],
-    "track-modal.version": [
-        {
-            "type": 0,
-            "value": "Version"
         }
     ],
     "track-title.error-not-found": [
@@ -5157,6 +5217,12 @@
             "value": "Play trailer"
         }
     ],
+    "trailer.close": [
+        {
+            "type": 0,
+            "value": "Close trailer"
+        }
+    ],
     "trailer.listen-full-version": [
         {
             "type": 0,
@@ -5167,6 +5233,24 @@
         {
             "type": 0,
             "value": "Go"
+        }
+    ],
+    "trailer.not-found-description": [
+        {
+            "type": 0,
+            "value": "Soon we'll fix it! Come back later"
+        }
+    ],
+    "trailer.not-found-title": [
+        {
+            "type": 0,
+            "value": "The trailer is unavailable"
+        }
+    ],
+    "trailer.something-went-wrong-description": [
+        {
+            "type": 0,
+            "value": "Refresh the screen or try again later"
         }
     ],
     "trailer.title-album": [
@@ -5193,6 +5277,24 @@
             "value": "Track trailer"
         }
     ],
+    "ugc.cancel-upload": [
+        {
+            "type": 0,
+            "value": "Cancel upload"
+        }
+    ],
+    "ugc.track-uploading-pending-status": [
+        {
+            "type": 0,
+            "value": "Uploading track"
+        }
+    ],
+    "ugc.upload-track": [
+        {
+            "type": 0,
+            "value": "Upload track"
+        }
+    ],
     "vibe-actions.apply": [
         {
             "type": 0,
@@ -5215,6 +5317,12 @@
         {
             "type": 0,
             "value": "Set up My Vibe"
+        }
+    ],
+    "vibe-actions.play-vibe": [
+        {
+            "type": 0,
+            "value": "Play My Vibe"
         }
     ],
     "vibe-actions.remove": [
