@@ -3478,7 +3478,7 @@
                       (0, n.jsxs)(n.Fragment, {
                         children: [
                           (0, n.jsx)(E.Q1, {
-                            className: K().dislikeButton,
+                            className: X().dislikeButton,
                             isDisliked: i.isDisliked,
                             onClick: onDislikeClick,
                             iconSize: "xs",

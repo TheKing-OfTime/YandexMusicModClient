@@ -5820,37 +5820,37 @@
                           status: "playing",
                           isPlaying: true,
                           track:
-                            E.state.queueState.currentEntity.value?.entity
+                            y.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress: 0,
                           availableActions: {
                             moveBackward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveBackward.value,
                             moveForward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveForward.value,
                             repeat:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .repeat.value,
                             shuffle:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .shuffle.value,
                             speed:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .speed.value,
                           },
                           actionsStore: {
-                            repeat: E.state.queueState.repeat.value,
-                            shuffle: E.state.queueState.shuffle.value,
+                            repeat: y.state.queueState.repeat.value,
+                            shuffle: y.state.queueState.shuffle.value,
                             isLiked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                             isDisliked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                           },
@@ -5878,38 +5878,38 @@
                             status: e,
                             isPlaying: e === eH.Xz.PLAYING,
                             track:
-                              E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity
                                 .entityData.meta,
                             progress:
-                              E.state.playerState.progress.value?.position,
+                              y.state.playerState.progress.value?.position,
                             availableActions: {
                               moveBackward:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .moveBackward.value,
                               moveForward:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .moveForward.value,
                               repeat:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .repeat.value,
                               shuffle:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .shuffle.value,
                               speed:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .speed.value,
                             },
                             actionsStore: {
-                              repeat: E.state.queueState.repeat.value,
-                              shuffle: E.state.queueState.shuffle.value,
+                              repeat: y.state.queueState.repeat.value,
+                              shuffle: y.state.queueState.shuffle.value,
                               isLiked:
-                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                  E.state.queueState.currentEntity.value?.entity
+                                y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                  y.state.queueState.currentEntity.value?.entity
                                     .entityData.meta.id,
                                 ),
                               isDisliked:
-                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                  E.state.queueState.currentEntity.value?.entity
+                                y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                  y.state.queueState.currentEntity.value?.entity
                                     .entityData.meta.id,
                                 ),
                             },
@@ -5918,48 +5918,48 @@
                 seekTracker =
                   null == v
                     ? void 0
-                    : E.state.playerState.event.onChange(() => {
+                    : y.state.playerState.event.onChange(() => {
                         if (
-                          E.state.playerState.event.value === N.KX.SET_PROGRESS
+                          y.state.playerState.event.value === N.KX.SET_PROGRESS
                         ) {
                           (0, eM.Pt)({
                             isPrimaryDataChanged: true,
-                            status: E.state.playerState.status.value,
+                            status: y.state.playerState.status.value,
                             isPlaying:
-                              E.state.playerState.status.value === "playing",
+                              y.state.playerState.status.value === "playing",
                             track:
-                              E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity
                                 .entityData.meta,
                             progress:
-                              E.state.playerState.progress.value?.position,
+                              y.state.playerState.progress.value?.position,
                             availableActions: {
                               moveBackward:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .moveBackward.value,
                               moveForward:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .moveForward.value,
                               repeat:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .repeat.value,
                               shuffle:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .shuffle.value,
                               speed:
-                                E.state.currentContext.value?.availableActions
+                                y.state.currentContext.value?.availableActions
                                   .speed.value,
                             },
                             actionsStore: {
-                              repeat: E.state.queueState.repeat.value,
-                              shuffle: E.state.queueState.shuffle.value,
+                              repeat: y.state.queueState.repeat.value,
+                              shuffle: y.state.queueState.shuffle.value,
                               isLiked:
-                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                  E.state.queueState.currentEntity.value?.entity
+                                y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                  y.state.queueState.currentEntity.value?.entity
                                     .entityData.meta.id,
                                 ),
                               isDisliked:
-                                E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                  E.state.queueState.currentEntity.value?.entity
+                                y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                  y.state.queueState.currentEntity.value?.entity
                                     .entityData.meta.id,
                                 ),
                             },
@@ -6006,50 +6006,50 @@
                                         (0, eM.Pt)({
                                           canMoveBackward: t,
                                           status:
-                                            E.state.playerState.status.value,
+                                            y.state.playerState.status.value,
                                           isPlaying:
-                                            E.state.playerState.status.value ===
+                                            y.state.playerState.status.value ===
                                             "playing",
                                           track:
-                                            E.state.queueState.currentEntity
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta,
                                           progress:
-                                            E.state.playerState.progress.value
+                                            y.state.playerState.progress.value
                                               ?.position,
                                           availableActions: {
                                             moveBackward:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.moveBackward
                                                 .value,
                                             moveForward:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.moveForward
                                                 .value,
                                             repeat:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.repeat.value,
                                             shuffle:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.shuffle
                                                 .value,
                                             speed:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.speed.value,
                                           },
                                           actionsStore: {
                                             repeat:
-                                              E.state.queueState.repeat.value,
+                                              y.state.queueState.repeat.value,
                                             shuffle:
-                                              E.state.queueState.shuffle.value,
+                                              y.state.queueState.shuffle.value,
                                             isLiked:
-                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                                E.state.queueState.currentEntity
+                                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                                y.state.queueState.currentEntity
                                                   .value?.entity.entityData.meta
                                                   .id,
                                               ),
                                             isDisliked:
-                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                                E.state.queueState.currentEntity
+                                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                                y.state.queueState.currentEntity
                                                   .value?.entity.entityData.meta
                                                   .id,
                                               ),
@@ -6079,50 +6079,50 @@
                                         (0, eM.Pt)({
                                           canMoveForward: t,
                                           status:
-                                            E.state.playerState.status.value,
+                                            y.state.playerState.status.value,
                                           isPlaying:
-                                            E.state.playerState.status.value ===
+                                            y.state.playerState.status.value ===
                                             "playing",
                                           track:
-                                            E.state.queueState.currentEntity
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta,
                                           progress:
-                                            E.state.playerState.progress.value
+                                            y.state.playerState.progress.value
                                               ?.position,
                                           availableActions: {
                                             moveBackward:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.moveBackward
                                                 .value,
                                             moveForward:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.moveForward
                                                 .value,
                                             repeat:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.repeat.value,
                                             shuffle:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.shuffle
                                                 .value,
                                             speed:
-                                              E.state.currentContext.value
+                                              y.state.currentContext.value
                                                 ?.availableActions.speed.value,
                                           },
                                           actionsStore: {
                                             repeat:
-                                              E.state.queueState.repeat.value,
+                                              y.state.queueState.repeat.value,
                                             shuffle:
-                                              E.state.queueState.shuffle.value,
+                                              y.state.queueState.shuffle.value,
                                             isLiked:
-                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                                E.state.queueState.currentEntity
+                                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                                y.state.queueState.currentEntity
                                                   .value?.entity.entityData.meta
                                                   .id,
                                               ),
                                             isDisliked:
-                                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                                E.state.queueState.currentEntity
+                                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                                y.state.queueState.currentEntity
                                                   .value?.entity.entityData.meta
                                                   .id,
                                               ),
@@ -6150,47 +6150,47 @@
                                     "boolean" == typeof t &&
                                       a.setCanChangeRepeatMode(t);
                                     (0, eM.Pt)({
-                                      status: E.state.playerState.status.value,
+                                      status: y.state.playerState.status.value,
                                       isPlaying:
-                                        E.state.playerState.status.value ===
+                                        y.state.playerState.status.value ===
                                         "playing",
                                       track:
-                                        E.state.queueState.currentEntity.value
+                                        y.state.queueState.currentEntity.value
                                           ?.entity.entityData.meta,
                                       progress:
-                                        E.state.playerState.progress.value
+                                        y.state.playerState.progress.value
                                           ?.position,
                                       availableActions: {
                                         moveBackward:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.moveBackward
                                             .value,
                                         moveForward:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.moveForward
                                             .value,
                                         repeat:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.repeat.value,
                                         shuffle:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.shuffle.value,
                                         speed:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.speed.value,
                                       },
                                       actionsStore: {
-                                        repeat: E.state.queueState.repeat.value,
+                                        repeat: y.state.queueState.repeat.value,
                                         shuffle:
-                                          E.state.queueState.shuffle.value,
+                                          y.state.queueState.shuffle.value,
                                         isLiked:
-                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                            E.state.queueState.currentEntity
+                                          y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta.id,
                                           ),
                                         isDisliked:
-                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                            E.state.queueState.currentEntity
+                                          y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta.id,
                                           ),
                                       },
@@ -6215,47 +6215,47 @@
                                           : e.availableActions.shuffle.value;
                                     "boolean" == typeof t && a.setCanShuffle(t);
                                     (0, eM.Pt)({
-                                      status: E.state.playerState.status.value,
+                                      status: y.state.playerState.status.value,
                                       isPlaying:
-                                        E.state.playerState.status.value ===
+                                        y.state.playerState.status.value ===
                                         "playing",
                                       track:
-                                        E.state.queueState.currentEntity.value
+                                        y.state.queueState.currentEntity.value
                                           ?.entity.entityData.meta,
                                       progress:
-                                        E.state.playerState.progress.value
+                                        y.state.playerState.progress.value
                                           ?.position,
                                       availableActions: {
                                         moveBackward:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.moveBackward
                                             .value,
                                         moveForward:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.moveForward
                                             .value,
                                         repeat:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.repeat.value,
                                         shuffle:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.shuffle.value,
                                         speed:
-                                          E.state.currentContext.value
+                                          y.state.currentContext.value
                                             ?.availableActions.speed.value,
                                       },
                                       actionsStore: {
-                                        repeat: E.state.queueState.repeat.value,
+                                        repeat: y.state.queueState.repeat.value,
                                         shuffle:
-                                          E.state.queueState.shuffle.value,
+                                          y.state.queueState.shuffle.value,
                                         isLiked:
-                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                            E.state.queueState.currentEntity
+                                          y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta.id,
                                           ),
                                         isDisliked:
-                                          E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                            E.state.queueState.currentEntity
+                                          y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                            y.state.queueState.currentEntity
                                               .value?.entity.entityData.meta.id,
                                           ),
                                       },
@@ -6297,42 +6297,42 @@
                         let e = y.state.queueState.repeat.value;
                         a.setRepeatMode(e), v.set(ek.BU.YmPlayerRepeatMode, e);
                         (0, eM.Pt)({
-                          status: E.state.playerState.status.value,
+                          status: y.state.playerState.status.value,
                           isPlaying:
-                            E.state.playerState.status.value === "playing",
+                            y.state.playerState.status.value === "playing",
                           track:
-                            E.state.queueState.currentEntity.value?.entity
+                            y.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress:
-                            E.state.playerState.progress.value?.position,
+                            y.state.playerState.progress.value?.position,
                           availableActions: {
                             moveBackward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveBackward.value,
                             moveForward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveForward.value,
                             repeat:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .repeat.value,
                             shuffle:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .shuffle.value,
                             speed:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .speed.value,
                           },
                           actionsStore: {
-                            repeat: E.state.queueState.repeat.value,
-                            shuffle: E.state.queueState.shuffle.value,
+                            repeat: y.state.queueState.repeat.value,
+                            shuffle: y.state.queueState.shuffle.value,
                             isLiked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                             isDisliked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                           },
@@ -6345,42 +6345,42 @@
                         let e = y.state.queueState.shuffle.value;
                         a.setShuffle(e), v.set(ek.BU.YmPlayerShuffle, e);
                         (0, eM.Pt)({
-                          status: E.state.playerState.status.value,
+                          status: y.state.playerState.status.value,
                           isPlaying:
-                            E.state.playerState.status.value === "playing",
+                            y.state.playerState.status.value === "playing",
                           track:
-                            E.state.queueState.currentEntity.value?.entity
+                            y.state.queueState.currentEntity.value?.entity
                               .entityData.meta,
                           progress:
-                            E.state.playerState.progress.value?.position,
+                            y.state.playerState.progress.value?.position,
                           availableActions: {
                             moveBackward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveBackward.value,
                             moveForward:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .moveForward.value,
                             repeat:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .repeat.value,
                             shuffle:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .shuffle.value,
                             speed:
-                              E.state.currentContext.value?.availableActions
+                              y.state.currentContext.value?.availableActions
                                 .speed.value,
                           },
                           actionsStore: {
-                            repeat: E.state.queueState.repeat.value,
-                            shuffle: E.state.queueState.shuffle.value,
+                            repeat: y.state.queueState.repeat.value,
+                            shuffle: y.state.queueState.shuffle.value,
                             isLiked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                             isDisliked:
-                              E.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                E.state.queueState.currentEntity.value?.entity
+                              y.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                y.state.queueState.currentEntity.value?.entity
                                   .entityData.meta.id,
                               ),
                           },
