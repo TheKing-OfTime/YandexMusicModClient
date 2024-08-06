@@ -6406,7 +6406,7 @@
           let f = (0, d.useCallback)(() => {
             if (C) return B.nJ.PREVIEW;
             if (h) return B.nJ.NQ;
-            let e = s.checkExperiment(ek.pe.WebNextEnableNewQuality, "on"),
+            let e = true,
               t = v.get(ek.BU.YmPlayerQuality);
             return (
               ((e || t !== B.nJ.HQ_PLUS) && t) ||

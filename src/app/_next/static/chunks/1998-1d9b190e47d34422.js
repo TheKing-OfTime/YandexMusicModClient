@@ -1907,7 +1907,7 @@
           h = a.layout === x.t8.Mobile,
           v =
             d.checkExperiment(x.pe.WebNextEntityTrailer, "on") &&
-            d.checkExperiment(x.pe.WebNextSwitchToStrmWithoutEncrypt, "on") &&
+            true &&
             t.hasTrailer;
         (0, x.ZP)(r);
         let p = (0, s.useCallback)(() => {

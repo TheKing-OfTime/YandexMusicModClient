@@ -701,7 +701,7 @@
           m = s.layout === h.t8.Mobile,
           p =
             c.checkExperiment(h.pe.WebNextEntityTrailer, "on") &&
-            c.checkExperiment(h.pe.WebNextSwitchToStrmWithoutEncrypt, "on") &&
+            true &&
             t.hasTrailer;
         (0, h.ZP)(n);
         let v = (0, l.useCallback)(() => {
@@ -3330,12 +3330,12 @@
             T = !k,
             I = c.checkExperiment(d.pe.WebNextPodcastPage, "on"),
             V =
-              c.checkExperiment(d.pe.WebNextEnableNewQuality, "on") &&
-              c.checkExperiment(d.pe.WebNextSwitchToStrmWithoutEncrypt, "on"),
+              true &&
+              true,
             D = L.get(d.BU.YmPlayerQuality),
             O = D ? R[D] : null,
             F = r.isAuthorized && !k,
-            W = c.checkExperiment(d.pe.WebNextSyncLyrics, "on"),
+            W = true,
             U = (0, d.RV)(),
             G = o.canSpeed && U && I && (null == i ? void 0 : i.isNonMusic),
             Q = (0, s.useMemo)(
@@ -4526,7 +4526,7 @@
               : null === (i = a.mainAlbum) || void 0 === i
                 ? void 0
                 : i.isNonMusic),
-          C = _.checkExperiment(d.pe.WebNextSyncLyrics, "on"),
+          C = true,
           b = (0, s.useMemo)(() => {
             var e;
             if (f) return;
@@ -4631,7 +4631,7 @@
             C = (0, s.useCallback)(() => {
               !(window.innerWidth > 480) &&
                 (null == _ ? void 0 : _.hasSyncLyrics) &&
-                m.checkExperiment(d.pe.WebNextSyncLyrics, "on") &&
+                true &&
                 (u.syncLyrics.isVisible
                   ? u.syncLyrics.setInvisible()
                   : u.syncLyrics.setVisible());
