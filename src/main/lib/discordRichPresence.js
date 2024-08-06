@@ -52,7 +52,7 @@ function silentTypeCheck(activity) {
 }
 
 function string2Discord(string) {
-  if (!string) return;
+  if (!string) return string;
   if (string.length <= 1) {
     string += "ㅤ";
   }
@@ -74,7 +74,7 @@ function compareActivities(newActivity) {
 async function setActivity(
   state,
   trackName = "unknown",
-  trackArtist = "unknown",
+  trackArtist = undefined,
   trackAlbum = undefined,
   trackAlbumAvatar = "logo",
   trackProgress = undefined,
@@ -180,12 +180,14 @@ async function setActivity(
 }
 
 const tryConnect = () => {
+  rpc.clearActivity();
   return rpc.login({ clientId }).catch((e) => {
     discordRichPresenceLogger.error(e);
   });
 };
 
 const tryReconnect = () => {
+  rpc.clearActivity();
   rpc = null;
   initRPC();
   return rpc.login({ clientId }).catch((e) => {
@@ -196,7 +198,7 @@ const tryReconnect = () => {
 tryConnect();
 
 const getArtist = (artistsArray) => {
-  if (!artistsArray?.[0]?.name) return "loading";
+  if (!artistsArray?.[0]?.name) return undefined;
   let artistsLabel = "by " + artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
