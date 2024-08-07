@@ -126,6 +126,11 @@ const sendUpdateAvailable = (window, version) => {
   eventsLogger.info("Event sent", events_js_1.Events.UPDATE_AVAILABLE, version);
 };
 exports.sendUpdateAvailable = sendUpdateAvailable;
+const sendModUpdateAvailable = (window, currVersion, newVersion) => {
+    window.webContents.send(events_js_1.Events.MOD_UPDATE_AVAILABLE, currVersion, newVersion);
+    eventsLogger.info("Event sent", events_js_1.Events.MOD_UPDATE_AVAILABLE, currVersion, newVersion);
+};
+exports.sendModUpdateAvailable = sendModUpdateAvailable;
 const sendShowReleaseNotes = (window) => {
   window.webContents.send(events_js_1.Events.SHOW_RELEASE_NOTES);
   eventsLogger.info("Event sent", events_js_1.Events.SHOW_RELEASE_NOTES);

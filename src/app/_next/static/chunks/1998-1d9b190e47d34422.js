@@ -954,6 +954,50 @@
             message: h,
           });
         },
+          modUpdateToast = (e) => {
+              let { version: t, formatMessage: n, closeToast: r } = e,
+                  u = (0, i.useCallback)(() => {
+                      window.location.reload()
+                      null == r || r();
+                  }, [r]),
+                  h = (0, i.useMemo)(
+                      () =>
+                          (0, o.jsxs)("div", {
+                              className: m().message,
+                              children: [
+                                  (0, o.jsx)(d.Caption, {
+                                      className: m().text,
+                                      variant: "div",
+                                      type: "controls",
+                                      size: "m",
+                                      children: n(
+                                          { id: "desktop.on-mod-update-available" },
+                                          { version: t },
+                                      ),
+                                  }),
+                                  (0, o.jsx)(a.z, {
+                                      className: m().button,
+                                      onClick: u,
+                                      variant: "default",
+                                      color: "secondary",
+                                      size: "xs",
+                                      radius: "xxxl",
+                                      children: (0, o.jsx)(d.Caption, {
+                                          variant: "div",
+                                          type: "controls",
+                                          size: "m",
+                                          children: n({ id: "desktop.update" }),
+                                      }),
+                                  }),
+                              ],
+                          }),
+                      [n, u, t],
+                  );
+              return (0, o.jsx)(c.Yj, {
+                  className: (0, l.W)(m().root, m().important),
+                  message: h,
+              });
+          },
         v = () => {
           let { formatMessage: e } = (0, r.Z)(),
             { notify: t } = (0, s.d$)(),
@@ -967,6 +1011,22 @@
                   }));
               },
               [e, n, t],
+            ),
+            modUpdateCallback = (0, i.useCallback)(
+                (i, r, newVersion) => {
+                    n.current !== r &&
+                    ((n.current = r),
+                        t(
+                            (0, o.jsx)(modUpdateToast, {
+                                formatMessage: e,
+                                version: `${r} -> ${newVersion}`,
+                            }),
+                            {
+                                containerId: s.W$.APPLICATION_UPDATE,
+                            },
+                        ));
+                },
+                [e, n, t],
             );
           (0, i.useEffect)(() => {
             var e;
@@ -982,6 +1042,20 @@
               }
             );
           }, [l]);
+          (0, i.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(s.BO.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
+                var e;
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(s.BO.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     17256: function (e, t, n) {

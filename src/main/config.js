@@ -25,6 +25,10 @@ exports.config = {
     clickUrl: "https://yandex.ru/clck/click",
     clickErrorCounter: "690.2354",
   },
+  modification: {
+      version: "1.9.0",
+      branch: "DiscordRPCxDevTools"
+  },
 };
 const applyCommonConfig = (commonConfig) => {
   Object.assign(exports.config.common, commonConfig ?? {});

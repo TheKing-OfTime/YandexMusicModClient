@@ -19,6 +19,7 @@ const handleCrash_js_1 = require("./lib/handlers/handleCrash.js");
 const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const updater_js_1 = require("./lib/updater.js");
+const modUpdater_js_1 = require("./lib/modUpdater.js");
 const events_js_1 = require("./events.js");
 const handleUncaughtException_js_1 = require("./lib/handlers/handleUncaughtException.js");
 const customTitleBar_js_1 = require("./lib/customTitleBar.js");
@@ -34,6 +35,7 @@ Logger_js_1.Logger.setupLogger();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
+  const modUpdater = new modUpdater_js_1;
   await electron_1.app.whenReady();
   (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
@@ -58,6 +60,10 @@ Logger_js_1.Logger.setupLogger();
     updater.start();
     updater.onUpdate((version) => {
       (0, events_js_1.sendUpdateAvailable)(window, version);
+    });
+    modUpdater.start();
+    modUpdater.onUpdate((currVersion, newVersion) => {
+      (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
     });
   }
 })();
