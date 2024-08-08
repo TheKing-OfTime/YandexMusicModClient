@@ -48,6 +48,20 @@
 
    
 Adds support for Discord Rich Presence
+
+<details>
+   <summary>Settings</summary>
+   
+      "discordRPC": {
+			"enable": true or false,                         //Enables or disables disocrd RPC
+			"applicationIDForRPC": "1124055337234858005",    //ID of ypur custom application for discord RPC
+			"showButtons": true or false,                    //Enables or disables all buttons in discord Status 
+			"overrideDeepLinksExperiment": true or false,    //Enables or disables split web and desktop buttons into one button
+			"showGitHubButton": true or false                //Enables or disables Github button if overrideDeepLinksExperiment set to true
+      }
+      
+</details>
+
 ![DiscordCanary_pY0zr8zq3P](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/7c308ef1-77a4-4f0c-9ed8-25c36ff3ccc6)
 </details>
 
@@ -57,6 +71,15 @@ Adds support for Discord Rich Presence
 
    
 Adds support for Taskbar Extensions
+
+<details>
+   <summary>Settings</summary>
+      
+      "taskBarExtensions": {
+			"enable": true or false //Enables or disables Taskbar Extensions
+		}
+      
+</details>
 
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
 
@@ -97,13 +120,20 @@ Unblockes Language Switcher
 <details>
    <summary>Details</summary>
    
-Unblocking Devtools disables auto updates. So this feature distributes in separete [release](https://github.com/TheKing-OfTime/YandexMusicModClient/releases/tag/DiscordRPCxDevTools)
+Devtools are disabled by default. To enable them you need modify `%appdata%\YandexMusic\config.json`:
+
+Change `"enableDevTools": false` to `"enableDevTools": true`
 
 ![electron_L6SeZLnSAH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/ae841087-d910-45e5-a007-3fd869a493e1)
 
 ![electron_y6aOeckPLH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/4bde4785-9196-4ac6-ad3b-9ac5db5b61c8)
 
 </details>
+
+## Settings
+Settings can be found in `%appdata%\YandexMusic\config.json`
+
+In app UI for settings will be soon™ 
 
 ## Support
 If you really enjoyed the new experience with this modification, you can support my work on it:
