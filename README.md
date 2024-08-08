@@ -131,7 +131,8 @@ Change `"enableDevTools": false` to `"enableDevTools": true`
 </details>
 
 ## Settings
-Settings can be found in %appdata%\YandexMusic\config.json
+Settings can be found in `%appdata%\YandexMusic\config.json`
+
 In app UI for settings will be soon™ 
 
 ## Support
