@@ -46,6 +46,19 @@
 <details>
    <summary>Подробнее</summary>
 
+<details>
+   <summary>Settings</summary>
+   
+      "discordRPC": {
+			"enable": true or false,                         //Включает или отключает disocrd RPC
+			"applicationIDForRPC": "1124055337234858005",    //ID пользовательского приложения ypur для discord RPC
+			"showButtons": true or false,                    //Включает или отключает все кнопки в состоянии discord 
+			"overrideDeepLinksExperiment": true or false,    //Включает или отключает разделение веб-кнопок и кнопок рабочего стола на одну кнопку
+			"showGitHubButton": true or false                //Включает или отключает кнопку Github, если для параметра overrideDeepLinksExperiment установлено значение true
+      }
+      
+</details>
+
    
 Добавляет поддержку отображения текущего трека как статуса в Discord
 ![DiscordCanary_pY0zr8zq3P](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/7c308ef1-77a4-4f0c-9ed8-25c36ff3ccc6)
@@ -57,6 +70,15 @@
 
    
 Добавляет поддержку расширений панели задач (Taskbar Extensions)
+
+<details>
+   <summary>Settings</summary>
+      
+      "taskBarExtensions": {
+			"enable": true or false //Включает или отключает расширения панели задач
+		}
+      
+</details>
 
 ![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
 
@@ -97,13 +119,19 @@
 <details>
    <summary>Подробнее</summary>
    
-Разблокировка Devtools отключает автоматическое обновление. Поэтому, данная функция устанавливается отдельно. [release](https://github.com/TheKing-OfTime/YandexMusicModClient/releases/tag/DiscordRPCxDevTools)
+Devtools по умолчанию отключены. Чтобы включить их, вам необходимо изменить `%appdata%\YandexMusic\config.json`:
+
+Измените `"enableDevTools": false` на `"enableDevTools": true`
 
 ![electron_L6SeZLnSAH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/ae841087-d910-45e5-a007-3fd869a493e1)
 
 ![electron_y6aOeckPLH](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/4bde4785-9196-4ac6-ad3b-9ac5db5b61c8)
 
 </details>
+
+## Настройки
+Настройки можно найти в `%appdata%\YandexMusic\config.json`
+Настройки внутри приложения появятся скоро™ 
 
 ## Поддержка
 Если вам действительно понравился новый опыт использования Яндекс Музыки с этой модификацией, вы можете поддержать мою работу над ней:
