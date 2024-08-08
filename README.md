@@ -54,7 +54,7 @@ Adds support for Discord Rich Presence
    
       "discordRPC": {
 			"enable": true or false,                         //Enables or disables disocrd RPC
-			"applicationIDForRPC": "1124055337234858005",    //ID of ypur custom application for discord RPC
+			"applicationIDForRPC": "1124055337234858005",    //ID of your custom application for discord RPC
 			"showButtons": true or false,                    //Enables or disables all buttons in discord Status 
 			"overrideDeepLinksExperiment": true or false,    //Enables or disables split web and desktop buttons into one button
 			"showGitHubButton": true or false                //Enables or disables Github button if overrideDeepLinksExperiment set to true
@@ -77,7 +77,7 @@ Adds support for Taskbar Extensions
       
       "taskBarExtensions": {
 			"enable": true or false //Enables or disables Taskbar Extensions
-		}
+      }
       
 </details>
 
