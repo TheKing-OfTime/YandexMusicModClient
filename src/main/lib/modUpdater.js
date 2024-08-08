@@ -40,9 +40,6 @@ class ModUpdater {
         if (!url) return;
 
         await this.downloadFile(url, APP_ASAR_PATH);
-        this.onModUpdateListeners.forEach((listener) => {
-            listener(currentVersion, this.latestVersion);
-        });
     }
 
     async checkForUpdates() {
@@ -61,6 +58,9 @@ class ModUpdater {
         const buffer = await res.buffer();
         await writeFile(path, buffer);
         this.logger.log("Downloaded. Restart to apply changes");
+        this.onModUpdateListeners.forEach((listener) => {
+            listener(currentVersion, this.latestVersion);
+        });
     }
 
     onUpdate(listener) {
