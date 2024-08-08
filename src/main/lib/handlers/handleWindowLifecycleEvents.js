@@ -13,6 +13,7 @@ const platform_js_1 = require("../../constants/platform.js");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const events_js_1 = require("../../events.js");
 const config_js_1 = require("../../config.js");
+const store_js_1 = require("../store.js");
 const lifecycleLogger = new Logger_js_1.Logger('WindowLifecycle');
 const checkAndUpdateApplicationData = (window) => {
     const diff = Date.now() - state_js_1.state.lastWindowBlurredOrHiddenTime;
@@ -53,6 +54,10 @@ const handleWindowLifecycleEvents = (window) => {
     window.on('restore', () => {
         checkAndUpdateApplicationData(window);
     });
+    window.on('resized', () => {
+        const sizes = window.getSize();
+        store_js_1.setWindowDimensions(sizes[0], sizes[1]);
+    })
     window.on('close', (event) => {
         if (node_os_1.default.platform() !== platform_js_1.Platform.MACOS) {
             return;

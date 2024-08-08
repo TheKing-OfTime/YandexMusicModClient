@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Logger_js_1 = require("../packages/logger/Logger.js");
+const store_js_1 = require("./store.js");
 const DiscordRPC = require("discord-rpc");
 const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
 
-// Set this to your Client ID.
-const clientId = "1124055337234858005";
+const settings = store_js_1.getModFeatures()?.discordRPC;
+
+const clientId = settings?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
-const IS_DEEPLINKS_ROLLEDOUT = false;
+const IS_DEEPLINKS_ROLLEDOUT = settings?.overrideDeepLinksExperiment ?? false;
 
 let rpc = undefined;
 let isReady = false;
@@ -82,6 +84,7 @@ async function setActivity(
   deepShareTrackUrl = undefined,
   webShareTrackUrl = undefined,
 ) {
+  if (!(settings?.enable ?? true)) return;
   if (!rpc || !isReady) {
     if (rpc) {
       const connected = await tryReconnect();
@@ -138,7 +141,10 @@ async function setActivity(
     instance: false,
   };
 
-  if (deepShareTrackUrl || webShareTrackUrl) {
+  if (
+    (deepShareTrackUrl || webShareTrackUrl) &&
+    (settings?.showButtons ?? true)
+  ) {
     if (!IS_DEEPLINKS_ROLLEDOUT) {
       activityObject.buttons = [
         {
@@ -150,7 +156,7 @@ async function setActivity(
           url: webShareTrackUrl,
         },
       ];
-    } else {
+    } else if (settings?.showGitHubButton ?? true) {
       activityObject.buttons = [
         {
           label: "Listen on Yandex Music",
@@ -159,6 +165,13 @@ async function setActivity(
         {
           label: "Install from GitHub",
           url: GITHUB_LINK,
+        },
+      ];
+    } else {
+      activityObject.buttons = [
+        {
+          label: "Listen on Yandex Music",
+          url: webShareTrackUrl,
         },
       ];
     }

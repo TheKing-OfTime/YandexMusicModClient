@@ -48,7 +48,7 @@
               : {}),
             enabled: !0,
           },
-          dev: { panel: !0 },
+          dev: { panel: window.IS_DEVTOOLS_ENABLED },
           tvm: { enabled: (0, s.s)(e) },
           oldWebHost: "music.yandex.".concat(r.M),
           afisha: {

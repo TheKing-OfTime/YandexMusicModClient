@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyCommonConfig = exports.config = void 0;
 const package_json_1 = __importDefault(require("../package.json"));
 exports.config = {
-  enableDevTools: true,
+  enableDevTools: false,
   enableWebSecurity: true,
   enableAutoUpdate: true,
   bypassCSP: false,
@@ -26,8 +26,8 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-      version: "1.10.0",
-      branch: "DiscordRPCxDevTools"
+      version: "1.11.0",
+      branch: "onlyDiscordRPC"
   },
 };
 const applyCommonConfig = (commonConfig) => {

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
 const config_js_1 = require("../config.js");
+const store_js_1 = require("./store.js");
 const getInitialTheme_js_1 = require("./getInitialTheme.js");
 const theme_js_1 = require("../constants/theme.js");
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
@@ -26,6 +27,7 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
         return electron_1.ipcRenderer.invoke(name, ...args);
     }
 });
+electron_1.contextBridge.exposeInMainWorld('IS_DEVTOOLS_ENABLED', Boolean(store_js_1.getDevtoolsEnabled()))
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {

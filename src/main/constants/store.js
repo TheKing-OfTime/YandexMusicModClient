@@ -5,4 +5,7 @@ var StoreKeys;
 (function (StoreKeys) {
     StoreKeys["VERSION"] = "version";
     StoreKeys["HAS_RECENLTY_LAUNCHED"] = "hasRecentlyLaunched";
+    StoreKeys["WINDOW_DIMENSIONS"] = "windowDimensions";
+    StoreKeys["MOD_FEATURES"] = "modFeatures";
+    StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
 })(StoreKeys || (exports.StoreKeys = StoreKeys = {}));

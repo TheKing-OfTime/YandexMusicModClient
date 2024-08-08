@@ -8,6 +8,7 @@ const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
 const updater_js_1 = require("./updater.js");
 const config_js_1 = require("../config.js");
+const store_js_1 = require('./store.js');
 const platform_js_1 = require("../constants/platform.js");
 const i18n_js_1 = require("./i18n.js");
 const createSupportChatUrl = () => {
@@ -104,7 +105,7 @@ const createContextMenu = () => {
             ]
         });
     }
-    if (config_js_1.config.enableDevTools) {
+    if (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()) {
         const debugMenu = [
             {
                 role: 'reload'

@@ -21,7 +21,7 @@
           var e, t;
           return {
             client: "YandexMusicWeb/1.0",
-            dev: { panel: !0 },
+            dev: { panel: window.IS_DEVTOOLS_ENABLED },
             logger: {
               uaDisabled: (e = !!s.env.SERVER_UNIFIED_AGENT_DISABLED),
               uaServerAddress:

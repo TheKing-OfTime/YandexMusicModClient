@@ -15,6 +15,7 @@ const config_js_1 = require("../config.js");
 const state_js_1 = require("./state.js");
 const tray_js_1 = require("./tray.js");
 const taskBarExtension_js_1 = require("./taskBarExtension/taskBarExtension.js");
+const store_js_1 = require('./store.js');
 const toggleWindowVisibility = (window, isVisible) => {
   if (isVisible) {
     window.show();
@@ -41,6 +42,9 @@ const toggleWindowState = (window) => {
   (0, tray_js_1.updateTrayMenu)(window);
 };
 exports.toggleWindowState = toggleWindowState;
+
+const dimensions = store_js_1.getWindowDimensions()
+
 const createWindow = async () => {
   const window = new electron_1.BrowserWindow({
     show: false,
@@ -52,10 +56,10 @@ const createWindow = async () => {
     },
     minWidth: 768,
     minHeight: 650,
-    width: 1280,
-    height: 800,
+    width: dimensions?.width ?? 1280,
+    height: dimensions?.height ?? 800,
     webPreferences: {
-      devTools: config_js_1.config.enableDevTools,
+      devTools: (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()),
       webSecurity: config_js_1.config.enableWebSecurity,
       nodeIntegrationInWorker: true,
       nodeIntegration: false,

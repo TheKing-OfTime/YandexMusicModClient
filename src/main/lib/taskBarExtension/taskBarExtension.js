@@ -3,10 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const events_js_1 = require("../../events");
 const config_js_1 = require("../../config");
+const store_js_1 = require("../store.js");
 const playerActions_js_1 = require("../../constants/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
+const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
 let assets = {};
 
@@ -17,6 +19,7 @@ const taskBarExtension = (window) => {
 exports.taskBarExtension = taskBarExtension;
 
 const onPlayerStateChange = (window, newPlayerState) => {
+  if (!(settings?.enable ?? true)) return;
   if (typeof newPlayerState !== "undefined") {
     playerState = structuredClone(newPlayerState);
   }

@@ -7,6 +7,7 @@ var __importDefault =
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const node_os_1 = __importDefault(require("node:os"));
+const store_js_1 = require("./lib/store.js");
 const config_js_1 = require("./config.js");
 const handleExternalLink_js_1 = require("./lib/handlers/handleExternalLink.js");
 const systemMenu_js_1 = require("./lib/systemMenu.js");
@@ -30,6 +31,7 @@ const safeRedirects_js_1 = require("./lib/safeRedirects.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const handleWindowSessionEvents_js_1 = require("./lib/handlers/handleWindowSessionEvents.js");
 Logger_js_1.Logger.setupLogger();
+(0, store_js_1.init)();
 (0, handleUncaughtException_js_1.handleUncaughtException)();
 (0, singleInstance_js_1.checkForSingleInstance)();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
