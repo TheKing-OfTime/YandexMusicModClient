@@ -2908,7 +2908,7 @@
             S = (0, s.useRef)(null),
             w = N.checkExperiment(d.pe.WebNextEqualizer, "on"),
             P = N.checkExperiment(d.pe.WebNextEnableNewQuality, "on"),
-            L = N.checkExperiment(d.pe.WebNextEnableNewQuality, "prod"),
+            L = true,
             k = P || L,
             M = (0, s.useMemo)(() => {
               let e = c({ id: "player-actions.audio-quality" });

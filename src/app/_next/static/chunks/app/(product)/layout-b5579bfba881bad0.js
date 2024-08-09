@@ -6354,7 +6354,7 @@
             if (c) return X.nJ.NQ;
             let e =
                 l.checkExperiment(ez.pe.WebNextEnableNewQuality, "on") ||
-                l.checkExperiment(ez.pe.WebNextEnableNewQuality, "prod"),
+                true,
               t = h.get(ez.BU.YmPlayerQuality);
             return (
               ((e || t !== X.nJ.HQ_PLUS) && t) ||
