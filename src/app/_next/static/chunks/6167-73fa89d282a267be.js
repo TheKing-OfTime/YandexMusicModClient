@@ -823,6 +823,50 @@
             message: p,
           });
         },
+          modUpdateToast  = (e) => {
+              let { version: t, formatMessage: n, closeToast: i } = e,
+                  d = (0, l.useCallback)(() => {
+                      window.location.reload()
+                      null == i || i();
+                  }, [i]),
+                  p = (0, l.useMemo)(
+                      () =>
+                          (0, o.jsxs)("div", {
+                              className: _().message,
+                              children: [
+                                  (0, o.jsx)(u.Caption, {
+                                      className: _().text,
+                                      variant: "div",
+                                      type: "controls",
+                                      size: "m",
+                                      children: n(
+                                          { id: "desktop.on-mod-update-available" },
+                                          { version: t },
+                                      ),
+                                  }),
+                                  (0, o.jsx)(r.z, {
+                                      className: _().button,
+                                      onClick: d,
+                                      variant: "default",
+                                      color: "secondary",
+                                      size: "xs",
+                                      radius: "xxxl",
+                                      children: (0, o.jsx)(u.Caption, {
+                                          variant: "div",
+                                          type: "controls",
+                                          size: "m",
+                                          children: n({ id: "desktop.update" }),
+                                      }),
+                                  }),
+                              ],
+                          }),
+                      [n, d, t],
+                  );
+              return (0, o.jsx)(c.Yj, {
+                  className: (0, s.W)(_().root, _().important),
+                  message: p,
+              });
+          },
         f = () => {
           let { formatMessage: e } = (0, i.Z)(),
             { notify: t } = (0, a.d$)(),
@@ -834,6 +878,22 @@
                   t((0, o.jsx)(p, { formatMessage: e, version: i }), {
                     containerId: a.W$.IMPORTANT,
                   }));
+              },
+              [e, n, t],
+            ),
+            modUpdateCallback = (0, l.useCallback)(
+              (l, i, newVersion) => {
+                n.current !== i &&
+                  ((n.current = i),
+                  t(
+                    (0, o.jsx)(modUpdateToast, {
+                      formatMessage: e,
+                      version: `${i} -> ${newVersion}`,
+                    }),
+                    {
+                      containerId: a.W$.APPLICATION_UPDATE,
+                    },
+                  ));
               },
               [e, n, t],
             );
@@ -851,6 +911,20 @@
               }
             );
           }, [s]);
+          (0, i.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(a.BO.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
+                var e;
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(a.BO.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     17256: function (e, t, n) {
