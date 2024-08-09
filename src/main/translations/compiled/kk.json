@@ -59,7 +59,7 @@
             "value": "Аккаунтқа кіріңіз"
         }
     ],
-    "bar-bellow.section-name": [
+    "bar-below.section-name": [
         {
             "type": 0,
             "value": "Баннер"
@@ -235,74 +235,6 @@
             "value": "Сізге ұнағаны"
         }
     ],
-    "desktop-release-notes.5.0.21": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "19 сәуір 2024 ж."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": " "
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "«Сол плейлист тағы қайда жоғалып кетті! Атын ұмытып тұрғанымды қарашы!» Мұндайға енді жол берілмейді — ұнатқаныңыздың бәрі көз алдыңызда болады"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": " "
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": " "
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Экранның сол жақ бөлігінде енді кез келген нәрсені бекітіп қоюға болады: альбом, плейлист, әнші, қажетті баптауы бар Менің толқыным. Мұқабаның жоғарғы оң жақ бөлігіндегі белгішеге бассаңыз, ұнатқаныңыз енді жоғалмайды."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": " "
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Плейлистердің ішінде іздеу пайда болды — оның көмегімен жаңа тректерді табу және қосқан ыңғайлы"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": " "
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.1.2": [
         {
             "children": [
@@ -327,6 +259,52 @@
             ],
             "type": 8,
             "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.10.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "9 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nДрифтуем на поворотах обновлений,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.2.2": [
@@ -776,7 +754,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "30 июля 2024 г."
+                    "value": "30 шілде 2024 ж."
                 }
             ],
             "type": 8,
@@ -784,13 +762,13 @@
         },
         {
             "type": 0,
-            "value": "\n"
+            "value": " "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                    "value": "Енді жаңа мектеп (бұрынғысын да) рэперлері мәтіндерін оңай түсінесіз — компьютерге арналған қосымшада Мәтіндік музыка пайда болды! Және тағы бірдеңе бар, қазір бәрін айтып береміз"
                 }
             ],
             "type": 8,
@@ -798,19 +776,19 @@
         },
         {
             "type": 0,
-            "value": "\n"
+            "value": " "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "\n"
+                    "value": " "
                 },
                 {
                     "children": [
                         {
                             "type": 0,
-                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                            "value": "Әдеттегі плеерден Мәтіндік музыканы, ал үлкен плеерден тректің мәтінмәндік мәзірі арқылы ашыңыз. Мәтін ән айтылып жатқанда экранда айналып тұрады"
                         }
                     ],
                     "type": 8,
@@ -818,21 +796,17 @@
                 },
                 {
                     "type": 0,
-                    "value": "\n"
+                    "value": " "
                 },
                 {
                     "children": [
                         {
                             "type": 0,
-                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
+                            "value": "Подкастарда да көптеген нәрсе өзгертілді: шығарылымдарды тыңдау прогресін қостық, әдемілік орнатып, багтарды түзеттік"
                         }
                     ],
                     "type": 8,
                     "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
                 }
             ],
             "type": 8,
@@ -1025,6 +999,12 @@
         {
             "type": 0,
             "value": "Донатпен қолдау"
+        }
+    ],
+    "donation.support-button": [
+        {
+            "type": 0,
+            "value": "Қолдау көрсету"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -1948,6 +1928,58 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.amp-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "dB"
+        }
+    ],
+    "equalizer.bass-and-treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "ТЖ және ЖЖ күшеюі"
+        }
+    ],
+    "equalizer.bass-boost-preset": [
+        {
+            "type": 0,
+            "value": "ТЖ күшеюі"
+        }
+    ],
+    "equalizer.classical-preset": [
+        {
+            "type": 0,
+            "value": "Классикалық музыка"
+        }
+    ],
+    "equalizer.club-preset": [
+        {
+            "type": 0,
+            "value": "Клубтық музыка"
+        }
+    ],
+    "equalizer.concert-preset": [
+        {
+            "type": 0,
+            "value": "Концерт"
+        }
+    ],
+    "equalizer.custom-preset": [
+        {
+            "type": 0,
+            "value": "Өз баптауы"
+        }
+    ],
+    "equalizer.dance-preset": [
+        {
+            "type": 0,
+            "value": "Танцевальная"
+        }
+    ],
     "equalizer.default-preset": [
         {
             "type": 0,
@@ -1984,16 +2016,92 @@
             "value": "Қосулы"
         }
     ],
+    "equalizer.frequency-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "k"
+        }
+    ],
+    "equalizer.large-hall-preset": [
+        {
+            "type": 0,
+            "value": "Үлкен зал"
+        }
+    ],
+    "equalizer.party-preset": [
+        {
+            "type": 0,
+            "value": "Сауық кеші"
+        }
+    ],
+    "equalizer.pop-preset": [
+        {
+            "type": 0,
+            "value": "Поп"
+        }
+    ],
     "equalizer.preamp-level": [
         {
             "type": 0,
             "value": "деңгей"
         }
     ],
+    "equalizer.reggae-preset": [
+        {
+            "type": 0,
+            "value": "Регги"
+        }
+    ],
+    "equalizer.rock-preset": [
+        {
+            "type": 0,
+            "value": "Рок-музыка"
+        }
+    ],
+    "equalizer.ska-preset": [
+        {
+            "type": 0,
+            "value": "Ска"
+        }
+    ],
+    "equalizer.soft-preset": [
+        {
+            "type": 0,
+            "value": "Жағымды дыбыс"
+        }
+    ],
+    "equalizer.soft-rock-preset": [
+        {
+            "type": 0,
+            "value": "Софт-рок"
+        }
+    ],
+    "equalizer.speakers-preset": [
+        {
+            "type": 0,
+            "value": "Ноутбук бағандары"
+        }
+    ],
+    "equalizer.techno-preset": [
+        {
+            "type": 0,
+            "value": "Техно"
+        }
+    ],
     "equalizer.title": [
         {
             "type": 0,
             "value": "Эквалайзер"
+        }
+    ],
+    "equalizer.treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "ЖЖ күшеюі"
         }
     ],
     "error-messages.empty-artist-familiar-collection-title": [
@@ -2086,6 +2194,12 @@
             "value": "Әрекетті орындау кезінде қате туындады"
         }
     ],
+    "error-messages.error-during-initial-loading": [
+        {
+            "type": 0,
+            "value": "Бастаған кезде деректердің бір бөлігін ала алмадық"
+        }
+    ],
     "error-messages.error-load-part-page": [
         {
             "type": 0,
@@ -2108,6 +2222,12 @@
         {
             "type": 0,
             "value": "Әртіске өту"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-audiobook": [
+        {
+            "type": 0,
+            "value": "Аудиокітапқа өту"
         }
     ],
     "extra-explicit.confirm-unsafe-podcast": [
@@ -2357,6 +2477,18 @@
             "value": "Ұнайды"
         }
     ],
+    "interface-actions.mark-listened": [
+        {
+            "type": 0,
+            "value": "Тыңдалды деп белгілеу"
+        }
+    ],
+    "interface-actions.mark-non-listened": [
+        {
+            "type": 0,
+            "value": "Тыңдалмады деп белгілеу"
+        }
+    ],
     "interface-actions.more-details": [
         {
             "type": 0,
@@ -2373,6 +2505,12 @@
         {
             "type": 0,
             "value": "Менің толқынымды баптау"
+        }
+    ],
+    "interface-actions.open-lyrics": [
+        {
+            "type": 0,
+            "value": "Әннің мәтінін көрсету"
         }
     ],
     "interface-actions.open-sync-lyrics": [
@@ -2767,6 +2905,20 @@
             "value": "Оқушылар"
         }
     ],
+    "non-music.audiobook-list": [
+        {
+            "type": 0,
+            "value": "«"
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "» аудиокітабының мазмұны"
+        }
+    ],
     "non-music.audiobook-tab-about": [
         {
             "type": 0,
@@ -3046,7 +3198,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Менің сөреме"
+                    "value": "Топтамаға"
                 }
             ],
             "type": 8,
@@ -3070,7 +3222,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Менің сөреме"
+                    "value": "Топтамаға"
                 }
             ],
             "type": 8,
@@ -3100,7 +3252,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Менің сөремнен"
+                    "value": "Топтамадан"
                 }
             ],
             "type": 8,
@@ -3140,7 +3292,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Менің сөремнен"
+                    "value": "Топтамадан"
                 }
             ],
             "type": 8,
@@ -3673,28 +3825,52 @@
             "value": "Дыбыс баптаулары"
         }
     ],
+    "player-actions.audio-quality-economical": [
+        {
+            "type": 0,
+            "value": "Үнемді"
+        }
+    ],
+    "player-actions.audio-quality-economical-description": [
+        {
+            "type": 0,
+            "value": "Баяу интернет үшін"
+        }
+    ],
     "player-actions.audio-quality-hq": [
         {
             "type": 0,
             "value": "Жоғары"
         }
     ],
-    "player-actions.audio-quality-hq-plus": [
+    "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "[NDA] Максималды"
+            "value": "Керемет"
         }
     ],
-    "player-actions.audio-quality-nda": [
+    "player-actions.audio-quality-maximum-description": [
         {
             "type": 0,
-            "value": "[NDA] Дыбыс баптаулары"
+            "value": "Lossless және жоғары сапалы басқа форматтардағы музыка — шексіз интернет пен жақсы акустика үшін"
         }
     ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
             "value": "Оңтайлы"
+        }
+    ],
+    "player-actions.audio-quality-optimal": [
+        {
+            "type": 0,
+            "value": "Оңтайлы"
+        }
+    ],
+    "player-actions.audio-quality-optimal-description": [
+        {
+            "type": 0,
+            "value": "Тұрақты интернет үшін"
         }
     ],
     "player-actions.cast": [
@@ -3715,18 +3891,6 @@
             "value": "Кезек"
         }
     ],
-    "player-actions.hq-description": [
-        {
-            "type": 0,
-            "value": "ААС форматындағы музыка"
-        }
-    ],
-    "player-actions.hq-plus-description": [
-        {
-            "type": 0,
-            "value": "FLAC және басқа форматтардағы музыка "
-        }
-    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3737,12 +3901,6 @@
         {
             "type": 0,
             "value": "Келесі ән"
-        }
-    ],
-    "player-actions.nq-description": [
-        {
-            "type": 0,
-            "value": "Нigh-Efficiency-ААС форматындағы музыка"
         }
     ],
     "player-actions.pause": [
@@ -4926,28 +5084,10 @@
             "value": "seconds"
         }
     ],
-    "track-modal.artist": [
+    "track-modal.audiobook-title": [
         {
             "type": 0,
-            "value": "Орындаушы"
-        }
-    ],
-    "track-modal.artists": [
-        {
-            "type": 0,
-            "value": "Орындаушылар"
-        }
-    ],
-    "track-modal.composer": [
-        {
-            "type": 0,
-            "value": "Сазгер"
-        }
-    ],
-    "track-modal.composers": [
-        {
-            "type": 0,
-            "value": "Композиторлар"
+            "value": "Тарау туралы"
         }
     ],
     "track-modal.podcast-title": [
@@ -4960,6 +5100,12 @@
         {
             "type": 0,
             "value": "Трек жайлы"
+        }
+    ],
+    "track-title.audiobook-not-found": [
+        {
+            "type": 0,
+            "value": "Аудиокітап қолжетімсіз"
         }
     ],
     "track-title.error-not-found": [

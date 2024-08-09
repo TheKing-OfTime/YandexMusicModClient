@@ -59,7 +59,7 @@
             "value": "Hesaba daxil ol"
         }
     ],
-    "bar-bellow.section-name": [
+    "bar-below.section-name": [
         {
             "type": 0,
             "value": "Banner"
@@ -235,74 +235,6 @@
             "value": "Bəyənmisiniz"
         }
     ],
-    "desktop-release-notes.5.0.21": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "19 aprel 2024-cü il."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\"Bu pleylist yenə hara yox olub! Adı yadımdan çıxıb!\" Belə xoşagəlməz hallarla artıq rastlaşmayacaqsınız – sevimlilər əlinizin altında olacaq"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Ekranın son tərəfində istədiyinizi sabitləyə bilərsiniz: albom, pleylist, ifaçı, lazımi parametrlərlə Dalğam. Üzlüyün yuxarı sağ tərəfində işarəyə basın və sevimliləri heç vaxt itirməyin. Kontekt menyusu vasitəsilə də sabitləmək mümkündür"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Həmçinin pleylistlərinizin içində axtarış əlavə edilib – onun vasitəsilə yeni trekləri tapmaq və əlavə etmək rahatdır"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.1.2": [
         {
             "children": [
@@ -327,6 +259,52 @@
             ],
             "type": 8,
             "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.10.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "9 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nДрифтуем на поворотах обновлений,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.2.2": [
@@ -816,7 +794,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "30 июля 2024 г."
+                    "value": "30 iyul 2024-cü il."
                 }
             ],
             "type": 8,
@@ -830,7 +808,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                    "value": "İndi yeni və köhnə üsulla ifa edən repçilərin mətnlərini aydın başa düşəcəksiniz – kompüter üçün tətbiqdə Musiqi mətni funksiyası əlavə edilib! Digər yeniliklər də var"
                 }
             ],
             "type": 8,
@@ -850,7 +828,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                            "value": "Musiqi mətni funksiyasını adi pleyerdən açın, böyük pleyerdən isə trekin kontekst menyusundan aça bilərsiniz. Mahnı irəlilədikcə mətn ekranda göstəriləcək"
                         }
                     ],
                     "type": 8,
@@ -864,7 +842,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
+                            "value": "Podkastlar ilə bağlı da düzəlişlər var: buraxılışların dinlənilməsi üzrə gedişat əlavə edilib, daha xoş dizayn yaradılıb, nasazlıqlar aradan qaldırılıb"
                         }
                     ],
                     "type": 8,
@@ -1065,6 +1043,12 @@
         {
             "type": 0,
             "value": "İanə ilə dəstək ol"
+        }
+    ],
+    "donation.support-button": [
+        {
+            "type": 0,
+            "value": "Support"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -2080,6 +2064,58 @@
             "value": " Dalğam"
         }
     ],
+    "equalizer.amp-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "dB"
+        }
+    ],
+    "equalizer.bass-and-treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "ZT və YT-nin gücləndirilməsi"
+        }
+    ],
+    "equalizer.bass-boost-preset": [
+        {
+            "type": 0,
+            "value": "Zəif tezliklərin gücləndirilməsi"
+        }
+    ],
+    "equalizer.classical-preset": [
+        {
+            "type": 0,
+            "value": "Klassik musiqi"
+        }
+    ],
+    "equalizer.club-preset": [
+        {
+            "type": 0,
+            "value": "Klub musiqisi"
+        }
+    ],
+    "equalizer.concert-preset": [
+        {
+            "type": 0,
+            "value": "Konsert"
+        }
+    ],
+    "equalizer.custom-preset": [
+        {
+            "type": 0,
+            "value": "Öz parametri"
+        }
+    ],
+    "equalizer.dance-preset": [
+        {
+            "type": 0,
+            "value": "Rəqs musiqisi"
+        }
+    ],
     "equalizer.default-preset": [
         {
             "type": 0,
@@ -2116,16 +2152,92 @@
             "value": "Aktiv"
         }
     ],
+    "equalizer.frequency-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "k"
+        }
+    ],
+    "equalizer.large-hall-preset": [
+        {
+            "type": 0,
+            "value": "Böyük zal"
+        }
+    ],
+    "equalizer.party-preset": [
+        {
+            "type": 0,
+            "value": "Şənlik"
+        }
+    ],
+    "equalizer.pop-preset": [
+        {
+            "type": 0,
+            "value": "Pop"
+        }
+    ],
     "equalizer.preamp-level": [
         {
             "type": 0,
             "value": "səviyyə"
         }
     ],
+    "equalizer.reggae-preset": [
+        {
+            "type": 0,
+            "value": "Reggi"
+        }
+    ],
+    "equalizer.rock-preset": [
+        {
+            "type": 0,
+            "value": "Rok"
+        }
+    ],
+    "equalizer.ska-preset": [
+        {
+            "type": 0,
+            "value": "Ska"
+        }
+    ],
+    "equalizer.soft-preset": [
+        {
+            "type": 0,
+            "value": "Həzin səslənmə"
+        }
+    ],
+    "equalizer.soft-rock-preset": [
+        {
+            "type": 0,
+            "value": "Soft-rok"
+        }
+    ],
+    "equalizer.speakers-preset": [
+        {
+            "type": 0,
+            "value": "Noutbuk dinamikləri"
+        }
+    ],
+    "equalizer.techno-preset": [
+        {
+            "type": 0,
+            "value": "Texno"
+        }
+    ],
     "equalizer.title": [
         {
             "type": 0,
             "value": "Ekvalayzer"
+        }
+    ],
+    "equalizer.treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "YT-nin gücləndirilməsi"
         }
     ],
     "error-messages.empty-artist-familiar-collection-title": [
@@ -2218,6 +2330,12 @@
             "value": "Əməliyyat yerinə yetirilərkən xətabaş verdi"
         }
     ],
+    "error-messages.error-during-initial-loading": [
+        {
+            "type": 0,
+            "value": "İşə salındıqda bəzi məlumatları əldə etmək mümkün olmadı"
+        }
+    ],
     "error-messages.error-load-part-page": [
         {
             "type": 0,
@@ -2240,6 +2358,12 @@
         {
             "type": 0,
             "value": "İfaçıya keç"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-audiobook": [
+        {
+            "type": 0,
+            "value": "Audiokitaba keç"
         }
     ],
     "extra-explicit.confirm-unsafe-podcast": [
@@ -2489,6 +2613,18 @@
             "value": "Bəyənirəm"
         }
     ],
+    "interface-actions.mark-listened": [
+        {
+            "type": 0,
+            "value": "Dinlənilmiş kimi işarələ"
+        }
+    ],
+    "interface-actions.mark-non-listened": [
+        {
+            "type": 0,
+            "value": "Dinlənilməmiş kimi işarələ"
+        }
+    ],
     "interface-actions.more-details": [
         {
             "type": 0,
@@ -2505,6 +2641,12 @@
         {
             "type": 0,
             "value": "Dalğamı qur"
+        }
+    ],
+    "interface-actions.open-lyrics": [
+        {
+            "type": 0,
+            "value": "Mahnının mətnini"
         }
     ],
     "interface-actions.open-sync-lyrics": [
@@ -2905,6 +3047,20 @@
         {
             "type": 0,
             "value": "Qiraətçilər"
+        }
+    ],
+    "non-music.audiobook-list": [
+        {
+            "type": 0,
+            "value": "\""
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "\" adlı audiokitabın mündəricatı"
         }
     ],
     "non-music.audiobook-tab-about": [
@@ -3785,28 +3941,52 @@
             "value": "Səs parametrləri"
         }
     ],
+    "player-actions.audio-quality-economical": [
+        {
+            "type": 0,
+            "value": "Ekonom"
+        }
+    ],
+    "player-actions.audio-quality-economical-description": [
+        {
+            "type": 0,
+            "value": "Zəif internet üçün"
+        }
+    ],
     "player-actions.audio-quality-hq": [
         {
             "type": 0,
             "value": "Yüksək"
         }
     ],
-    "player-actions.audio-quality-hq-plus": [
+    "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "[NDA] Maksimal"
+            "value": "Əla"
         }
     ],
-    "player-actions.audio-quality-nda": [
+    "player-actions.audio-quality-maximum-description": [
         {
             "type": 0,
-            "value": "[NDA] Səs parametrləri"
+            "value": "Lossless və digər yüksək keyfiyyətli formatlarda musiqi – limitsiz internet və yaxşı akustika üçün"
         }
     ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
             "value": "Optimal"
+        }
+    ],
+    "player-actions.audio-quality-optimal": [
+        {
+            "type": 0,
+            "value": "Optimal"
+        }
+    ],
+    "player-actions.audio-quality-optimal-description": [
+        {
+            "type": 0,
+            "value": "Stabil internet üçün"
         }
     ],
     "player-actions.cast": [
@@ -3827,18 +4007,6 @@
             "value": "Növbə"
         }
     ],
-    "player-actions.hq-description": [
-        {
-            "type": 0,
-            "value": "ААС formatında musiqi"
-        }
-    ],
-    "player-actions.hq-plus-description": [
-        {
-            "type": 0,
-            "value": "FLAC və digər formatlarda musiqi"
-        }
-    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3849,12 +4017,6 @@
         {
             "type": 0,
             "value": "Növbəti mahnı"
-        }
-    ],
-    "player-actions.nq-description": [
-        {
-            "type": 0,
-            "value": "Нigh-Efficiency-ААС formatında musiqi"
         }
     ],
     "player-actions.pause": [
@@ -5111,28 +5273,10 @@
             "value": "seconds"
         }
     ],
-    "track-modal.artist": [
+    "track-modal.audiobook-title": [
         {
             "type": 0,
-            "value": "İfaçı"
-        }
-    ],
-    "track-modal.artists": [
-        {
-            "type": 0,
-            "value": "İfaçılar"
-        }
-    ],
-    "track-modal.composer": [
-        {
-            "type": 0,
-            "value": "Bəstəkar"
-        }
-    ],
-    "track-modal.composers": [
-        {
-            "type": 0,
-            "value": "Bəstəkarlar"
+            "value": "Fəsil haqqında"
         }
     ],
     "track-modal.podcast-title": [
@@ -5145,6 +5289,12 @@
         {
             "type": 0,
             "value": "Trek haqqında"
+        }
+    ],
+    "track-title.audiobook-not-found": [
+        {
+            "type": 0,
+            "value": "Audiokitab əlçatan deyil"
         }
     ],
     "track-title.error-not-found": [

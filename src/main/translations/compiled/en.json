@@ -59,7 +59,7 @@
             "value": "Log in to your account"
         }
     ],
-    "bar-bellow.section-name": [
+    "bar-below.section-name": [
         {
             "type": 0,
             "value": "Banner"
@@ -231,74 +231,6 @@
             "value": "Playlists you liked"
         }
     ],
-    "desktop-release-notes.5.0.21": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "April 19, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\"Where on Earth is that playlist? What was its name again?\" Don't worry, this will never happen again. All your favorite stuff will always be at hand."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "You can now pin anything you like in the left part of the screen: an album, a playlist, an artist, or My Vibe with special settings. Tap the icon in the upper-right corner of the cover to make sure you never lose any of the stuff you like. By the way, you can also pin it via the context menu."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Your playlists now also have Search: use it to look for and add new tracks."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.1.2": [
         {
             "children": [
@@ -323,6 +255,52 @@
             ],
             "type": 8,
             "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.10.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "9 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nДрифтуем на поворотах обновлений,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.2.2": [
@@ -812,7 +790,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "30 июля 2024 г."
+                    "value": "July 30, 2024"
                 }
             ],
             "type": 8,
@@ -826,7 +804,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                    "value": "Rapping along to your favorite old- and new school tracks has never been easier: the Music and lyrics feature has been added to the PC application!"
                 }
             ],
             "type": 8,
@@ -846,7 +824,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                            "value": "Access Music and lyrics from the standard player or via the track's context menu from the big player. The lyrics will appear on the screen as you play the song."
                         }
                     ],
                     "type": 8,
@@ -860,7 +838,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
+                            "value": "Podcasts didn't escape our attention either: we added episode listening progress, enhanced the design, and fixed some bugs."
                         }
                     ],
                     "type": 8,
@@ -1061,6 +1039,12 @@
         {
             "type": 0,
             "value": "Support the Artist"
+        }
+    ],
+    "donation.support-button": [
+        {
+            "type": 0,
+            "value": "Support"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -2084,6 +2068,58 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.amp-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "dB"
+        }
+    ],
+    "equalizer.bass-and-treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "Enhanced bass and treble"
+        }
+    ],
+    "equalizer.bass-boost-preset": [
+        {
+            "type": 0,
+            "value": "Enhanced bass"
+        }
+    ],
+    "equalizer.classical-preset": [
+        {
+            "type": 0,
+            "value": "Classical Music"
+        }
+    ],
+    "equalizer.club-preset": [
+        {
+            "type": 0,
+            "value": "Club music"
+        }
+    ],
+    "equalizer.concert-preset": [
+        {
+            "type": 0,
+            "value": "Live"
+        }
+    ],
+    "equalizer.custom-preset": [
+        {
+            "type": 0,
+            "value": "Custom settings"
+        }
+    ],
+    "equalizer.dance-preset": [
+        {
+            "type": 0,
+            "value": "Dance music"
+        }
+    ],
     "equalizer.default-preset": [
         {
             "type": 0,
@@ -2120,16 +2156,92 @@
             "value": "On"
         }
     ],
+    "equalizer.frequency-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "k"
+        }
+    ],
+    "equalizer.large-hall-preset": [
+        {
+            "type": 0,
+            "value": "Large Hall"
+        }
+    ],
+    "equalizer.party-preset": [
+        {
+            "type": 0,
+            "value": "Partying"
+        }
+    ],
+    "equalizer.pop-preset": [
+        {
+            "type": 0,
+            "value": "Pop"
+        }
+    ],
     "equalizer.preamp-level": [
         {
             "type": 0,
             "value": "level"
         }
     ],
+    "equalizer.reggae-preset": [
+        {
+            "type": 0,
+            "value": "Reggae"
+        }
+    ],
+    "equalizer.rock-preset": [
+        {
+            "type": 0,
+            "value": "Rock"
+        }
+    ],
+    "equalizer.ska-preset": [
+        {
+            "type": 0,
+            "value": "Ska"
+        }
+    ],
+    "equalizer.soft-preset": [
+        {
+            "type": 0,
+            "value": "Soft"
+        }
+    ],
+    "equalizer.soft-rock-preset": [
+        {
+            "type": 0,
+            "value": "Soft rock"
+        }
+    ],
+    "equalizer.speakers-preset": [
+        {
+            "type": 0,
+            "value": "Laptop speakers"
+        }
+    ],
+    "equalizer.techno-preset": [
+        {
+            "type": 0,
+            "value": "Techno"
+        }
+    ],
     "equalizer.title": [
         {
             "type": 0,
             "value": "Equalizer"
+        }
+    ],
+    "equalizer.treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "Enhanced treble"
         }
     ],
     "error-messages.empty-artist-familiar-collection-title": [
@@ -2222,6 +2334,12 @@
             "value": "Something went wrong when performing the action"
         }
     ],
+    "error-messages.error-during-initial-loading": [
+        {
+            "type": 0,
+            "value": "Couldn't fetch some data when launching"
+        }
+    ],
     "error-messages.error-load-part-page": [
         {
             "type": 0,
@@ -2244,6 +2362,12 @@
         {
             "type": 0,
             "value": "To artist"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-audiobook": [
+        {
+            "type": 0,
+            "value": "To audiobook"
         }
     ],
     "extra-explicit.confirm-unsafe-podcast": [
@@ -2485,6 +2609,18 @@
             "value": "Like"
         }
     ],
+    "interface-actions.mark-listened": [
+        {
+            "type": 0,
+            "value": "Mark as played"
+        }
+    ],
+    "interface-actions.mark-non-listened": [
+        {
+            "type": 0,
+            "value": "Mark as unplayed"
+        }
+    ],
     "interface-actions.more-details": [
         {
             "type": 0,
@@ -2501,6 +2637,12 @@
         {
             "type": 0,
             "value": "Tune My Vibe"
+        }
+    ],
+    "interface-actions.open-lyrics": [
+        {
+            "type": 0,
+            "value": "Show lyrics"
         }
     ],
     "interface-actions.open-sync-lyrics": [
@@ -2891,6 +3033,20 @@
             "value": "Narrators"
         }
     ],
+    "non-music.audiobook-list": [
+        {
+            "type": 0,
+            "value": "\""
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "\" audiobook chapters"
+        }
+    ],
     "non-music.audiobook-tab-about": [
         {
             "type": 0,
@@ -3168,13 +3324,13 @@
         },
         {
             "type": 0,
-            "value": " was added to "
+            "value": " was added to your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3192,13 +3348,13 @@
         },
         {
             "type": 0,
-            "value": " was added to "
+            "value": " was added to your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3222,13 +3378,13 @@
         },
         {
             "type": 0,
-            "value": " was removed from "
+            "value": " was removed from your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3266,13 +3422,13 @@
         },
         {
             "type": 0,
-            "value": " was removed from "
+            "value": " was removed from your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3468,13 +3624,13 @@
         },
         {
             "type": 0,
-            "value": " was added to "
+            "value": " was added to your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3498,13 +3654,13 @@
         },
         {
             "type": 0,
-            "value": " was removed from "
+            "value": " was removed from your "
         },
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "My Shelf"
+                    "value": "Collection"
                 }
             ],
             "type": 8,
@@ -3817,28 +3973,52 @@
             "value": "Sound settings"
         }
     ],
+    "player-actions.audio-quality-economical": [
+        {
+            "type": 0,
+            "value": "Efficient"
+        }
+    ],
+    "player-actions.audio-quality-economical-description": [
+        {
+            "type": 0,
+            "value": "For slow internet"
+        }
+    ],
     "player-actions.audio-quality-hq": [
         {
             "type": 0,
             "value": "High"
         }
     ],
-    "player-actions.audio-quality-hq-plus": [
+    "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "[NDA] Maximum"
+            "value": "Very High"
         }
     ],
-    "player-actions.audio-quality-nda": [
+    "player-actions.audio-quality-maximum-description": [
         {
             "type": 0,
-            "value": "[NDA] Sound settings"
+            "value": "Music in lossless and other high quality formats for unlimited internet and good acoustic systems"
         }
     ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
             "value": "Balanced"
+        }
+    ],
+    "player-actions.audio-quality-optimal": [
+        {
+            "type": 0,
+            "value": "Balanced"
+        }
+    ],
+    "player-actions.audio-quality-optimal-description": [
+        {
+            "type": 0,
+            "value": "For stable internet"
         }
     ],
     "player-actions.cast": [
@@ -3859,18 +4039,6 @@
             "value": "Queue"
         }
     ],
-    "player-actions.hq-description": [
-        {
-            "type": 0,
-            "value": "Music in AAC"
-        }
-    ],
-    "player-actions.hq-plus-description": [
-        {
-            "type": 0,
-            "value": "Music in FLAC and more formats"
-        }
-    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3881,12 +4049,6 @@
         {
             "type": 0,
             "value": "Next song"
-        }
-    ],
-    "player-actions.nq-description": [
-        {
-            "type": 0,
-            "value": "Music in Нigh-Efficiency-ААС"
         }
     ],
     "player-actions.pause": [
@@ -5163,28 +5325,10 @@
             "value": "seconds"
         }
     ],
-    "track-modal.artist": [
+    "track-modal.audiobook-title": [
         {
             "type": 0,
-            "value": "Artist"
-        }
-    ],
-    "track-modal.artists": [
-        {
-            "type": 0,
-            "value": "Artists"
-        }
-    ],
-    "track-modal.composer": [
-        {
-            "type": 0,
-            "value": "Music"
-        }
-    ],
-    "track-modal.composers": [
-        {
-            "type": 0,
-            "value": "Composers"
+            "value": "About the chapter"
         }
     ],
     "track-modal.podcast-title": [
@@ -5197,6 +5341,12 @@
         {
             "type": 0,
             "value": "Track details"
+        }
+    ],
+    "track-title.audiobook-not-found": [
+        {
+            "type": 0,
+            "value": "This audiobook is unavailable"
         }
     ],
     "track-title.error-not-found": [

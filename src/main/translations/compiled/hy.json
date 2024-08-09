@@ -59,7 +59,7 @@
             "value": "Մտեք հաշիվ"
         }
     ],
-    "bar-bellow.section-name": [
+    "bar-below.section-name": [
         {
             "type": 0,
             "value": "Ազդերիզ"
@@ -231,74 +231,6 @@
             "value": "Դուք հավանել եք"
         }
     ],
-    "desktop-release-notes.5.0.21": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. ապրիլի 19"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "«Էլի կորավ այդ երգացանկը։ Անունն էլ մոռացել եմ»։ Տհաճ է, չէ՞։ Բայց նման բան այլևս չի լինի։ Այսուհետ ձեր բոլոր սիրելի երգացանկերը ձեռքի տակ կլինեն"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Էկրանի ձախ կողմում այժմ կարելի է ամրացնել ցանկացած բան՝ ալբոմ, երգացանկ, կատարող, Իմ ալիքը՝ անհրաժեշտ կարգավորմամբ։ Սեղմեք կազմի վերևի աջ անկյունի պատկերակը, և սիրելի երգերն այլևս երբեք չեն կորչի։ Ի դեպ, կոնտեքստային ընտրացանկով նույնպես կարելի է ամրացնել"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Երգացանկերի ներսում նաև որոնում կհայտնվի. դրա միջոցով հարմար է գտնել և ավելացնել նոր կատարումներ"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.1.2": [
         {
             "children": [
@@ -323,6 +255,52 @@
             ],
             "type": 8,
             "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.10.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "9 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nДрифтуем на поворотах обновлений,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.2.2": [
@@ -768,7 +746,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "30 июля 2024 г."
+                    "value": "2024 թ. հունիսի 30"
                 }
             ],
             "type": 8,
@@ -782,7 +760,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Теперь вы точно разберётесь в текстах рэперов новой школы (и старой тоже) — в приложении для компьютера появилась Текстомузыка! И кое-что ещё, сейчас всё расскажем"
+                    "value": "Այժմ վերջապես կհասկանաք նոր (և հին) դպրոցի ռեփերների տեքստերը։ Համակարգչի համար նախատեսված հավելվածում նոր գործառույթ է հայտնվել՝ Տեքստ-երաժշտություն։ Եվ մեկ այլ նորույթ, որի մասին հիմա կպատմենք"
                 }
             ],
             "type": 8,
@@ -802,7 +780,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Открывайте Текстомузыку из обычного плеера, а из большого плеера — через контекстное меню трека. Текст будет прокручиваться на экране по ходу песни"
+                            "value": "Բացեք Տեքստ-երաժշտությունը սովորական նվագարկչից, իսկ մեծ նվագարկչից՝ երգի կոնտեքստային ընտրացանկի միջոցով։ Երգի ընթացքում տեքստը կհայտնվի էկրանին"
                         }
                     ],
                     "type": 8,
@@ -816,7 +794,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "В подкастах тоже приятные доработки: добавили прогресс прослушивания выпусков, навели красоты, починили баги"
+                            "value": "Փոդքաստներում նույնպես հաճելի փոփոխություններ կան։ Ավելացրել ենք թողարկումների ունկնդրման առաջընթացը, գեղեցկացրել ենք, շտկել բագերը"
                         }
                     ],
                     "type": 8,
@@ -1021,6 +999,12 @@
         {
             "type": 0,
             "value": "Աջակցել դոնատով"
+        }
+    ],
+    "donation.support-button": [
+        {
+            "type": 0,
+            "value": "Աջակցել"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -2012,6 +1996,58 @@
             "value": " ալիքը"
         }
     ],
+    "equalizer.amp-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "dB"
+        }
+    ],
+    "equalizer.bass-and-treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "ՑՀ և ԲՀ ուժեղացում"
+        }
+    ],
+    "equalizer.bass-boost-preset": [
+        {
+            "type": 0,
+            "value": "Ցածր հաճախությունների (ՑՀ) ուժեղացում"
+        }
+    ],
+    "equalizer.classical-preset": [
+        {
+            "type": 0,
+            "value": "Դասական երաժշտություն"
+        }
+    ],
+    "equalizer.club-preset": [
+        {
+            "type": 0,
+            "value": "Ակումբային երաժշտություն"
+        }
+    ],
+    "equalizer.concert-preset": [
+        {
+            "type": 0,
+            "value": "Համերգ"
+        }
+    ],
+    "equalizer.custom-preset": [
+        {
+            "type": 0,
+            "value": "Սեփական կարգավորում"
+        }
+    ],
+    "equalizer.dance-preset": [
+        {
+            "type": 0,
+            "value": "Պարային երաժշտություն"
+        }
+    ],
     "equalizer.default-preset": [
         {
             "type": 0,
@@ -2048,16 +2084,92 @@
             "value": "Միացված"
         }
     ],
+    "equalizer.frequency-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "k"
+        }
+    ],
+    "equalizer.large-hall-preset": [
+        {
+            "type": 0,
+            "value": "Մեծ դահլիճ"
+        }
+    ],
+    "equalizer.party-preset": [
+        {
+            "type": 0,
+            "value": "Երեկույթ"
+        }
+    ],
+    "equalizer.pop-preset": [
+        {
+            "type": 0,
+            "value": "⚡ Փոփ"
+        }
+    ],
     "equalizer.preamp-level": [
         {
             "type": 0,
             "value": "մակարդակ"
         }
     ],
+    "equalizer.reggae-preset": [
+        {
+            "type": 0,
+            "value": "Ռեգգի"
+        }
+    ],
+    "equalizer.rock-preset": [
+        {
+            "type": 0,
+            "value": "Ռոք"
+        }
+    ],
+    "equalizer.ska-preset": [
+        {
+            "type": 0,
+            "value": "Սկա"
+        }
+    ],
+    "equalizer.soft-preset": [
+        {
+            "type": 0,
+            "value": "Մեղմ հնչում"
+        }
+    ],
+    "equalizer.soft-rock-preset": [
+        {
+            "type": 0,
+            "value": "Սոֆթ-ռոք"
+        }
+    ],
+    "equalizer.speakers-preset": [
+        {
+            "type": 0,
+            "value": "Նոութբուքի դինամիկներ"
+        }
+    ],
+    "equalizer.techno-preset": [
+        {
+            "type": 0,
+            "value": "Տեխնո"
+        }
+    ],
     "equalizer.title": [
         {
             "type": 0,
             "value": "Էկվալայզեր"
+        }
+    ],
+    "equalizer.treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "Բարձր հաճախությունների (ԲՀ) ուժեղացում"
         }
     ],
     "error-messages.empty-artist-familiar-collection-title": [
@@ -2150,6 +2262,12 @@
             "value": "Գործողությունը կատարելիս սխալ առաջացավ"
         }
     ],
+    "error-messages.error-during-initial-loading": [
+        {
+            "type": 0,
+            "value": "Մեկնարկի ժամանակ տվյալների մի մասը չհաջողվեց ստանալ"
+        }
+    ],
     "error-messages.error-load-part-page": [
         {
             "type": 0,
@@ -2172,6 +2290,12 @@
         {
             "type": 0,
             "value": "Անցնել կատարողին"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-audiobook": [
+        {
+            "type": 0,
+            "value": "Բացել աուդիոգիրքը"
         }
     ],
     "extra-explicit.confirm-unsafe-podcast": [
@@ -2421,6 +2545,18 @@
             "value": "Դուր է գալիս"
         }
     ],
+    "interface-actions.mark-listened": [
+        {
+            "type": 0,
+            "value": "Նշել որպես ունկնդրած"
+        }
+    ],
+    "interface-actions.mark-non-listened": [
+        {
+            "type": 0,
+            "value": "Նշել որպես չունկնդրած"
+        }
+    ],
     "interface-actions.more-details": [
         {
             "type": 0,
@@ -2437,6 +2573,12 @@
         {
             "type": 0,
             "value": "Կարգավորել Իմ ալիքը"
+        }
+    ],
+    "interface-actions.open-lyrics": [
+        {
+            "type": 0,
+            "value": "Ցուցադրել երգի տեքստը"
         }
     ],
     "interface-actions.open-sync-lyrics": [
@@ -2845,6 +2987,20 @@
         {
             "type": 0,
             "value": "Ասմունքողներ"
+        }
+    ],
+    "non-music.audiobook-list": [
+        {
+            "type": 0,
+            "value": "«"
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "» աուդիոգրքի բովանդակացանկը"
         }
     ],
     "non-music.audiobook-tab-about": [
@@ -3673,28 +3829,52 @@
             "value": "Ձայնի կարգավորումներ"
         }
     ],
+    "player-actions.audio-quality-economical": [
+        {
+            "type": 0,
+            "value": "Խնայողական"
+        }
+    ],
+    "player-actions.audio-quality-economical-description": [
+        {
+            "type": 0,
+            "value": "Դանդաղ ինտերնետի համար"
+        }
+    ],
     "player-actions.audio-quality-hq": [
         {
             "type": 0,
             "value": "Բարձր"
         }
     ],
-    "player-actions.audio-quality-hq-plus": [
+    "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "[NDA] Առավելագույն"
+            "value": "Հիանալի"
         }
     ],
-    "player-actions.audio-quality-nda": [
+    "player-actions.audio-quality-maximum-description": [
         {
             "type": 0,
-            "value": "[NDA] Ձայնի կարգավորումներ"
+            "value": "lossless և այլ բարձրորակ ձևաչափերով երաժշտություն՝ անսահմանափակ ինտերնետի և լավ ակուստիկայի համար"
         }
     ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
             "value": "Balanced"
+        }
+    ],
+    "player-actions.audio-quality-optimal": [
+        {
+            "type": 0,
+            "value": "Օպտիմալ"
+        }
+    ],
+    "player-actions.audio-quality-optimal-description": [
+        {
+            "type": 0,
+            "value": "Կայուն ինտերնետի համար"
         }
     ],
     "player-actions.cast": [
@@ -3715,18 +3895,6 @@
             "value": "Հերթ"
         }
     ],
-    "player-actions.hq-description": [
-        {
-            "type": 0,
-            "value": "ААС ձևաչափով երաժշտություն"
-        }
-    ],
-    "player-actions.hq-plus-description": [
-        {
-            "type": 0,
-            "value": "FLAC և այլ ձևաչափով երաժշտություն"
-        }
-    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3737,12 +3905,6 @@
         {
             "type": 0,
             "value": "Հաջորդ երգ"
-        }
-    ],
-    "player-actions.nq-description": [
-        {
-            "type": 0,
-            "value": "Нigh-Efficiency-ААС ձևաչափով երաժշտություն"
         }
     ],
     "player-actions.pause": [
@@ -4997,28 +5159,10 @@
             "value": "seconds"
         }
     ],
-    "track-modal.artist": [
+    "track-modal.audiobook-title": [
         {
             "type": 0,
-            "value": "Կատարող"
-        }
-    ],
-    "track-modal.artists": [
-        {
-            "type": 0,
-            "value": "Կատարողներ"
-        }
-    ],
-    "track-modal.composer": [
-        {
-            "type": 0,
-            "value": "Կոմպոզիտոր"
-        }
-    ],
-    "track-modal.composers": [
-        {
-            "type": 0,
-            "value": "Երգահաններ"
+            "value": "Գլխի մասին"
         }
     ],
     "track-modal.podcast-title": [
@@ -5031,6 +5175,12 @@
         {
             "type": 0,
             "value": "Կատարման մասին"
+        }
+    ],
+    "track-title.audiobook-not-found": [
+        {
+            "type": 0,
+            "value": "Աուդիոգիրքն անհասանելի է"
         }
     ],
     "track-title.error-not-found": [

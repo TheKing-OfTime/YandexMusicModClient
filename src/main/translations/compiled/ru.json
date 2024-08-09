@@ -59,7 +59,7 @@
             "value": "Войдите в аккаунт"
         }
     ],
-    "bar-bellow.section-name": [
+    "bar-below.section-name": [
         {
             "type": 0,
             "value": "Баннер"
@@ -231,74 +231,6 @@
             "value": "Вам понравилось"
         }
     ],
-    "desktop-release-notes.5.0.21": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "19 апреля 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "«Да куда опять пропал тот плейлист! Ну этот, как его, забыл название!» Неприятно, но такого больше не случится — всё любимое будет под рукой"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "В левой части экрана теперь можно закрепить что угодно: альбом, плейлист, артиста, Мою волну с нужной настройкой. Жмите на значок в правом верхнем углу обложки, и любимое больше не потеряется. Через контекстное меню закреплять тоже, кстати, можно"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Ещё внутри ваших плейлистов появился поиск — через него удобно находить и добавлять новые треки"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
     "desktop-release-notes.5.1.2": [
         {
             "children": [
@@ -323,6 +255,52 @@
             ],
             "type": 8,
             "value": "p"
+        }
+    ],
+    "desktop-release-notes.5.10.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "9 августа 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nДрифтуем на поворотах обновлений,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.2.2": [
@@ -1061,6 +1039,12 @@
         {
             "type": 0,
             "value": "Поддержать донатом"
+        }
+    ],
+    "donation.support-button": [
+        {
+            "type": 0,
+            "value": "Поддержать"
         }
     ],
     "drag-and-drop.failed-to-move": [
@@ -2160,6 +2144,58 @@
             "value": "vibeName"
         }
     ],
+    "equalizer.amp-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "dB"
+        }
+    ],
+    "equalizer.bass-and-treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "Усиление НЧ и ВЧ"
+        }
+    ],
+    "equalizer.bass-boost-preset": [
+        {
+            "type": 0,
+            "value": "Усиление НЧ"
+        }
+    ],
+    "equalizer.classical-preset": [
+        {
+            "type": 0,
+            "value": "Классическая музыка"
+        }
+    ],
+    "equalizer.club-preset": [
+        {
+            "type": 0,
+            "value": "Клубная музыка"
+        }
+    ],
+    "equalizer.concert-preset": [
+        {
+            "type": 0,
+            "value": "Концерт"
+        }
+    ],
+    "equalizer.custom-preset": [
+        {
+            "type": 0,
+            "value": "Своя настройка"
+        }
+    ],
+    "equalizer.dance-preset": [
+        {
+            "type": 0,
+            "value": "Танцевальная музыка"
+        }
+    ],
     "equalizer.default-preset": [
         {
             "type": 0,
@@ -2196,16 +2232,92 @@
             "value": "Включен"
         }
     ],
+    "equalizer.frequency-label": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "k"
+        }
+    ],
+    "equalizer.large-hall-preset": [
+        {
+            "type": 0,
+            "value": "Большой зал"
+        }
+    ],
+    "equalizer.party-preset": [
+        {
+            "type": 0,
+            "value": "Вечеринка"
+        }
+    ],
+    "equalizer.pop-preset": [
+        {
+            "type": 0,
+            "value": "Поп"
+        }
+    ],
     "equalizer.preamp-level": [
         {
             "type": 0,
             "value": "уровень"
         }
     ],
+    "equalizer.reggae-preset": [
+        {
+            "type": 0,
+            "value": "Регги"
+        }
+    ],
+    "equalizer.rock-preset": [
+        {
+            "type": 0,
+            "value": "Рок"
+        }
+    ],
+    "equalizer.ska-preset": [
+        {
+            "type": 0,
+            "value": "Ска"
+        }
+    ],
+    "equalizer.soft-preset": [
+        {
+            "type": 0,
+            "value": "Мягкое звучание"
+        }
+    ],
+    "equalizer.soft-rock-preset": [
+        {
+            "type": 0,
+            "value": "Софт-рок"
+        }
+    ],
+    "equalizer.speakers-preset": [
+        {
+            "type": 0,
+            "value": "Колонки ноутбука"
+        }
+    ],
+    "equalizer.techno-preset": [
+        {
+            "type": 0,
+            "value": "Техно"
+        }
+    ],
     "equalizer.title": [
         {
             "type": 0,
             "value": "Эквалайзер"
+        }
+    ],
+    "equalizer.treble-boost-preset": [
+        {
+            "type": 0,
+            "value": "Усиление ВЧ"
         }
     ],
     "error-messages.empty-artist-familiar-collection-title": [
@@ -2298,6 +2410,12 @@
             "value": "При выполнении действия произошла ошибка"
         }
     ],
+    "error-messages.error-during-initial-loading": [
+        {
+            "type": 0,
+            "value": "Не удалось получить часть данных при старте"
+        }
+    ],
     "error-messages.error-load-part-page": [
         {
             "type": 0,
@@ -2320,6 +2438,12 @@
         {
             "type": 0,
             "value": "К артисту"
+        }
+    ],
+    "extra-explicit.confirm-unsafe-audiobook": [
+        {
+            "type": 0,
+            "value": "К аудиокниге"
         }
     ],
     "extra-explicit.confirm-unsafe-podcast": [
@@ -2561,6 +2685,18 @@
             "value": "Нравится"
         }
     ],
+    "interface-actions.mark-listened": [
+        {
+            "type": 0,
+            "value": "Отметить прослушанным"
+        }
+    ],
+    "interface-actions.mark-non-listened": [
+        {
+            "type": 0,
+            "value": "Отметить непрослушанным"
+        }
+    ],
     "interface-actions.more-details": [
         {
             "type": 0,
@@ -2577,6 +2713,12 @@
         {
             "type": 0,
             "value": "Настроить Мою волну"
+        }
+    ],
+    "interface-actions.open-lyrics": [
+        {
+            "type": 0,
+            "value": "Показать текст песни"
         }
     ],
     "interface-actions.open-sync-lyrics": [
@@ -2969,6 +3111,20 @@
         {
             "type": 0,
             "value": "Чтецы"
+        }
+    ],
+    "non-music.audiobook-list": [
+        {
+            "type": 0,
+            "value": "Оглавление аудиокниги «"
+        },
+        {
+            "type": 1,
+            "value": "albumName"
+        },
+        {
+            "type": 0,
+            "value": "»"
         }
     ],
     "non-music.audiobook-tab-about": [
@@ -3913,28 +4069,52 @@
             "value": "Настройки звука"
         }
     ],
+    "player-actions.audio-quality-economical": [
+        {
+            "type": 0,
+            "value": "Экономичное"
+        }
+    ],
+    "player-actions.audio-quality-economical-description": [
+        {
+            "type": 0,
+            "value": "Для медленного интернета"
+        }
+    ],
     "player-actions.audio-quality-hq": [
         {
             "type": 0,
             "value": "Высокое"
         }
     ],
-    "player-actions.audio-quality-hq-plus": [
+    "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "[NDA] Максимальное"
+            "value": "Превосходное"
         }
     ],
-    "player-actions.audio-quality-nda": [
+    "player-actions.audio-quality-maximum-description": [
         {
             "type": 0,
-            "value": "[NDA] Настройки звука"
+            "value": "Музыка в lossless и других высококачественных форматах — для безлимитного интернета и хорошей акустики"
         }
     ],
     "player-actions.audio-quality-nq": [
         {
             "type": 0,
             "value": "Оптимальное"
+        }
+    ],
+    "player-actions.audio-quality-optimal": [
+        {
+            "type": 0,
+            "value": "Оптимальное"
+        }
+    ],
+    "player-actions.audio-quality-optimal-description": [
+        {
+            "type": 0,
+            "value": "Для стабильного интернета"
         }
     ],
     "player-actions.cast": [
@@ -3955,18 +4135,6 @@
             "value": "Очередь"
         }
     ],
-    "player-actions.hq-description": [
-        {
-            "type": 0,
-            "value": "Музыка в формате ААС"
-        }
-    ],
-    "player-actions.hq-plus-description": [
-        {
-            "type": 0,
-            "value": "Музыка в формате FLAC и других"
-        }
-    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -3977,12 +4145,6 @@
         {
             "type": 0,
             "value": "Следующая песня"
-        }
-    ],
-    "player-actions.nq-description": [
-        {
-            "type": 0,
-            "value": "Музыка в формате Нigh-Efficiency-ААС"
         }
     ],
     "player-actions.pause": [
@@ -5435,28 +5597,10 @@
             "value": "seconds"
         }
     ],
-    "track-modal.artist": [
+    "track-modal.audiobook-title": [
         {
             "type": 0,
-            "value": "Исполнитель"
-        }
-    ],
-    "track-modal.artists": [
-        {
-            "type": 0,
-            "value": "Исполнители"
-        }
-    ],
-    "track-modal.composer": [
-        {
-            "type": 0,
-            "value": "Композитор"
-        }
-    ],
-    "track-modal.composers": [
-        {
-            "type": 0,
-            "value": "Композиторы"
+            "value": "О главе"
         }
     ],
     "track-modal.podcast-title": [
@@ -5469,6 +5613,12 @@
         {
             "type": 0,
             "value": "О треке"
+        }
+    ],
+    "track-title.audiobook-not-found": [
+        {
+            "type": 0,
+            "value": "Аудиокнига недоступна"
         }
     ],
     "track-title.error-not-found": [
