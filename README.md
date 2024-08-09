@@ -29,7 +29,7 @@
 
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
 1. Open command line
-2. Execute this two commands
+2. Execute this command
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
    ```
