@@ -46,11 +46,11 @@
    <summary>Подробнее</summary>
 
 <details>
-   <summary>Settings</summary>
+   <summary>Настройки</summary>
    
       "discordRPC": {
 			"enable": true or false,                         //Включает или отключает disocrd RPC
-			"applicationIDForRPC": "1124055337234858005",    //ID пользовательского приложения ypur для discord RPC
+			"applicationIDForRPC": "1124055337234858005",    //ID пользовательского приложения вашего для discord RPC
 			"showButtons": true or false,                    //Включает или отключает все кнопки в состоянии discord 
 			"overrideDeepLinksExperiment": true or false,    //Включает или отключает разделение веб-кнопок и кнопок рабочего стола на одну кнопку
 			"showGitHubButton": true or false                //Включает или отключает кнопку Github, если для параметра overrideDeepLinksExperiment установлено значение true
@@ -71,7 +71,7 @@
 Добавляет поддержку расширений панели задач (Taskbar Extensions)
 
 <details>
-   <summary>Settings</summary>
+   <summary>Настройки</summary>
       
       "taskBarExtensions": {
 			"enable": true or false //Включает или отключает расширения панели задач
