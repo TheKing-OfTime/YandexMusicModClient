@@ -27,6 +27,11 @@ const isBoolean = (value) => {
 };
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
+  electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
+    eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
+    electron_1.app.relaunch()
+    electron_1.app.exit()
+  });
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_MINIMIZE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_MINIMIZE);
     window.minimize();
@@ -127,8 +132,17 @@ const sendUpdateAvailable = (window, version) => {
 };
 exports.sendUpdateAvailable = sendUpdateAvailable;
 const sendModUpdateAvailable = (window, currVersion, newVersion) => {
-    window.webContents.send(events_js_1.Events.MOD_UPDATE_AVAILABLE, currVersion, newVersion);
-    eventsLogger.info("Event sent", events_js_1.Events.MOD_UPDATE_AVAILABLE, currVersion, newVersion);
+  window.webContents.send(
+    events_js_1.Events.MOD_UPDATE_AVAILABLE,
+    currVersion,
+    newVersion,
+  );
+  eventsLogger.info(
+    "Event sent",
+    events_js_1.Events.MOD_UPDATE_AVAILABLE,
+    currVersion,
+    newVersion,
+  );
 };
 exports.sendModUpdateAvailable = sendModUpdateAvailable;
 const sendShowReleaseNotes = (window) => {

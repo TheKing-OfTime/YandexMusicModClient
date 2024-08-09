@@ -19,4 +19,5 @@ var Events;
   Events["OPEN_DEEPLINK"] = "OPEN_DEEPLINK";
   Events["FIRST_LAUNCH"] = "FIRST_LAUNCH";
   Events["APPLICATION_THEME"] = "APPLICATION_THEME";
+  Events["APPLICATION_RESTART"] = "APPLICATION_RESTART";
 })(Events || (exports.Events = Events = {}));

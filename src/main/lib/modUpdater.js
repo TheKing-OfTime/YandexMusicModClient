@@ -1,9 +1,14 @@
 const fetch = require("node-fetch");
+const exec = require("child_process").exec;
+const promisify = require("util").promisify;
 const fsPromise = require("fs").promises;
 const path = require("path");
 const semver = require("semver");
 const Logger_js_1 = require("../packages/logger/Logger.js");
 const config_js_1 = require("../config.js");
+
+const execPromise = promisify(exec);
+
 
 const UPDATE_CHECK_URL = `https://api.github.com/repos/TheKing-OfTime/YandexMusicModClient/releases/tags/${config_js_1.config.modification.branch}`;
 const APP_ASAR_PATH = path.join(
@@ -52,7 +57,7 @@ class ModUpdater {
       this.onModUpdateListeners.forEach((listener) => {
         listener(currentVersion, this.latestVersion);
       });
-    }, 2000);
+    }, 5000);
   }
 
   async checkForUpdates() {
@@ -72,9 +77,10 @@ class ModUpdater {
   }
 
   async downloadFile(url, path) {
-    const res = await fetch(url);
-    const buffer = await res.buffer();
-    await fsPromise.writeFile(path, buffer);
+    //const res = await fetch(url);
+    //const buffer = await res.buffer();
+    //await fsPromise.writeFile(path, buffer);
+    await execPromise(`curl -L -s ${url} > ${path}`)
     this.logger.log("Downloaded. Restart to apply changes");
   }
 

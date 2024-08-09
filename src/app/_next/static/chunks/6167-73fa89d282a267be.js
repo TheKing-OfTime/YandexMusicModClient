@@ -826,7 +826,10 @@
           modUpdateToast  = (e) => {
               let { version: t, formatMessage: n, closeToast: i } = e,
                   d = (0, l.useCallback)(() => {
-                      window.location.reload()
+                      var e;
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.send(a.BO.APPLICATION_RESTART),
                       null == i || i();
                   }, [i]),
                   p = (0, l.useMemo)(
