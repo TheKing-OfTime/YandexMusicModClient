@@ -891,7 +891,7 @@
                       version: `${i} -> ${newVersion}`,
                     }),
                     {
-                      containerId: a.W$.APPLICATION_UPDATE,
+                      containerId: a.W$.IMPORTANT,
                     },
                   ));
               },
@@ -911,7 +911,7 @@
               }
             );
           }, [s]);
-          (0, i.useEffect)(() => {
+          (0, l.useEffect)(() => {
             var e;
             return (
               null === (e = window.desktopEvents) ||
