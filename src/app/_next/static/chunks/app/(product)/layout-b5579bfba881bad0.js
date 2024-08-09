@@ -6172,14 +6172,14 @@
                   null == A
                     ? void 0
                     : A.state.playerState.status.onChange((e) => {
-                        e && (n.setStatus(e), sendPlayerStateDefault(v));
+                        e && (n.setStatus(e), sendPlayerStateDefault(A));
                       }),
                 seekTracker =
                   null == A
                     ? void 0
-                    : E.state.playerState.event.onChange(() => {
+                    : A.state.playerState.event.onChange(() => {
                         if (
-                          E.state.playerState.event.value === N.KX.SET_PROGRESS
+                          A.state.playerState.event.value === O.KX.SET_PROGRESS
                         ) {
                           sendPlayerStateDefault(A);
                         }
