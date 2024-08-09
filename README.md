@@ -31,8 +31,7 @@
 1. Open command line
 2. Execute this two commands
    ```bat
-   cd %localappdata%/Programs/YandexMusic/resources/
-   curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > app.asar
+   curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
    ```
 3. Done!
 
