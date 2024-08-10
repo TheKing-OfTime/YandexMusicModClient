@@ -28,6 +28,8 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
     }
 });
 electron_1.contextBridge.exposeInMainWorld('IS_DEVTOOLS_ENABLED', Boolean(store_js_1.getDevtoolsEnabled()))
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_INTENSITY_COEFFICIENT', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.intensityCoefficient)
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_MAX_FPS', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.maxFPS)
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {

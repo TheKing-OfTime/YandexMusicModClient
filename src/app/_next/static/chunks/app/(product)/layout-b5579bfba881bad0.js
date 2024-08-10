@@ -5632,16 +5632,17 @@
             (this.analyserNode.fftSize =
               null !== (r = null == i ? void 0 : i.fftSize) && void 0 !== r
                 ? r
-                : 32),
+                : 4096),
             (this.analyserNode.smoothingTimeConstant =
               null !== (o = null == i ? void 0 : i.smoothingTimeConstant) &&
               void 0 !== o
                 ? o
-                : 0.9),
+                : 0.6),
             t.connect(this.analyserNode),
             this.analyserNode.connect(this.audioContext.destination),
             (this.bufferLength = this.analyserNode.frequencyBinCount),
             (this.spectrum = new Uint8Array(this.bufferLength));
+            console.log(this.analyserNode.fftSize, this.analyserNode.smoothingTimeConstant);
         }
       }
       ((s = v || (v = {})).SUSPENDED = "suspended"),

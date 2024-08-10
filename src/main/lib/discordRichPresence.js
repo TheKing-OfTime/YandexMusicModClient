@@ -34,8 +34,10 @@ const initRPC = () => {
   });
 
   rpc.on("error", (e) => {
-    isReady = false;
-    discordRichPresenceLogger.info("Error");
+    if(e.name === 'Could not connect') {
+      isReady = false;
+    }
+    discordRichPresenceLogger.info("Error", e.name);
   });
 };
 
@@ -186,7 +188,8 @@ async function setActivity(
     .then((activity) => silentTypeCheck(activity))
     .catch((e) => {
       discordRichPresenceLogger.error(e);
-      isReady = false;
+      //console.log(e.name);
+      //isReady = false;
     });
 
   return true;

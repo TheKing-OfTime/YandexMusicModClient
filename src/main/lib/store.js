@@ -33,16 +33,32 @@ const init = () => {
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
     },
-    taskBarExtensions: { enable: true },
+    taskBarExtensions: {
+        enable: true
+    },
+    vibeAnimationEnhancement: {
+        maxFPS: 25,
+        intensityCoefficient: 1,
+    }
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
 };
 exports.init = init;
 
 const initField = (fieldKey, defaultValue) => {
+  if (typeof defaultValue === "object" && defaultValue !== null) {
+    console.log("Object found checking if values inited");
+    for (let key in defaultValue) {
+      initField(`${fieldKey}.${key}`, defaultValue[key]);
+    }
+    return;
+  }
   if (typeof store.get(fieldKey) === "undefined") {
     store.set(fieldKey, defaultValue);
+    console.log("Inited", fieldKey, "to", defaultValue);
+    return;
   }
+    console.log(fieldKey, "is already inited");
 };
 
 const needToShowReleaseNotes = () => {
