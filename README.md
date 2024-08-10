@@ -117,6 +117,24 @@ Unblockes Language Switcher
 
 </details>
 
+### Enhanced Vibe Animation
+<details>
+   <summary>Details</summary>
+   
+Enhances Vibe Animation behavior. It better adapts to music. Also allows custom FPS of the animation rendering.
+<details>
+   <summary>Settings</summary>
+      
+      "vibeAnimationEnhancement": {
+            "maxFPS": 25,             // Max allowed FPS. DO NOT change this value below 25 or above 144
+            "intensityCoefficient": 1 // Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
+      }
+      
+</details>
+
+![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
+
+</details>
 
 ### Devtools & DevPanel
 <details>
