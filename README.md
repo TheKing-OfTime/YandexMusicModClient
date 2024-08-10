@@ -132,8 +132,6 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
       
 </details>
 
-![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
-
 </details>
 
 ### Devtools & DevPanel
