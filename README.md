@@ -164,6 +164,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/Lemon4ksan">
+      <img width="50" alt="Lemon4ksan" src="https://avatars.githubusercontent.com/u/122788290?v=4">
+   </a>
    <a href="https://github.com/SergheyUmca">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
    </a>
