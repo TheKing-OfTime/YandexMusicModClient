@@ -132,6 +132,15 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
       
 </details>
 
+before:
+
+https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
+
+after:
+
+https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
+
+
 </details>
 
 ### Devtools & DevPanel
