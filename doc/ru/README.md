@@ -122,7 +122,7 @@
    
 Улучшает поведение анимации Моей Волны. Она начинает лучше адаптируется к музыке. Также позволяет настраивать частоту кадров в секунду при рендеринге анимации.
 <details>
-   <summary>Settings</summary>
+   <summary>Настройки</summary>
       
       "vibeAnimationEnhancement": {
             "maxFPS": 25,             // Максимально допустимая частота кадров в секунду. НЕ изменяйте это значение ниже 25 или выше 144
@@ -130,6 +130,15 @@
       }
       
 </details>
+
+До:
+
+https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
+
+После:
+
+https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
+
 </details>
 
 ### Devtools & Панель Разработчика
