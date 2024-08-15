@@ -126,9 +126,9 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
    <summary>Settings</summary>
       
       "vibeAnimationEnhancement": {
-	    "maxFPS": 25,              	// Max allowed FPS. DO NOT change this value below 25 or above 144
+	    "maxFPS": 25,              	// Max allowed FPS. Defalut 25. Recommended 25 - 144. Don't set this value below 1
 	    "intensityCoefficient": 1, 	// Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
-	    "linearDeBoost": 5,		// Coefficient of separation of peaks in the track from the main track. Default 5. Recommend 2 - 8. If 1 disables libear deboost.
+	    "linearDeBoost": 5,		// Separation coefficient of track peaks from the main track. Default 5. Recommended 2 - 8. If 1 disables libear deboost.
 	    "playOnAnyEntity": false,	// If enabled Animation plays even if not My Vibe used as track source.
 	    "disableRendering": false	// Disables rendedring of the animation. Use only if you feel significant fps drops. Else try adjust maxFPS value.
       }
