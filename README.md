@@ -2,6 +2,9 @@
 [![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total?label=Downloads)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
 
 <p align="left">
+	<a href="https://discord.gg/HGNKDxwHEH">
+      <img height="35.48" alt="Сервер" src="https://github.com/user-attachments/assets/b7c8a272-b48c-411f-aca3-6512086a9a18">
+   </a>
    <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/">
       <img width="96" alt="English" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/En_Badge_Highlighted.png">
    </a>
@@ -114,6 +117,31 @@ Unblockes Language Switcher
 
 </details>
 
+### Enhanced Vibe Animation
+<details>
+   <summary>Details</summary>
+   
+Enhances Vibe Animation behavior. It better adapts to music. Also allows custom FPS of the animation rendering.
+<details>
+   <summary>Settings</summary>
+      
+      "vibeAnimationEnhancement": {
+            "maxFPS": 25,             // Max allowed FPS. DO NOT change this value below 25 or above 144
+            "intensityCoefficient": 1 // Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
+      }
+      
+</details>
+
+before:
+
+https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
+
+after:
+
+https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
+
+
+</details>
 
 ### Devtools & DevPanel
 <details>
@@ -145,8 +173,14 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/Lemon4ksan">
+      <img width="50" alt="Lemon4ksan" src="https://avatars.githubusercontent.com/u/122788290?v=4">
+   </a>
    <a href="https://github.com/SergheyUmca">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
+   </a>
+   <a href="https://github.com/schwarzalexey">
+      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
    </a>
    <a href="https://github.com/Diramix">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">

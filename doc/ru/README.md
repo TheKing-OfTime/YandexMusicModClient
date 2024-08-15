@@ -2,6 +2,9 @@
 [![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total?label=Загрузок)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
 
 <p align="left">
+	<a href="https://discord.gg/HGNKDxwHEH">
+      <img height="35.48" alt="Сервер" src="https://github.com/user-attachments/assets/b7c8a272-b48c-411f-aca3-6512086a9a18">
+   </a>
    <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/">
       <img width="96" alt="English" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/En_Badge.png">
    </a>
@@ -113,6 +116,30 @@
 
 </details>
 
+### Улучшенная анимация Моей Волны
+<details>
+   <summary>Подробнее</summary>
+   
+Улучшает поведение анимации Моей Волны. Она начинает лучше адаптируется к музыке. Также позволяет настраивать частоту кадров в секунду при рендеринге анимации.
+<details>
+   <summary>Настройки</summary>
+      
+      "vibeAnimationEnhancement": {
+            "maxFPS": 25,             // Максимально допустимая частота кадров в секунду. НЕ изменяйте это значение ниже 25 или выше 144
+            "intensityCoefficient": 1 // Чувствительность музыкального анализа. Значение по умолчанию 1; Рекомендуемое: 0,5 - 2; При значении 0 отключается улучшение анимации (почти :D)
+      }
+      
+</details>
+
+До:
+
+https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
+
+После:
+
+https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
+
+</details>
 
 ### Devtools & Панель Разработчика
 <details>
@@ -144,8 +171,14 @@ Devtools по умолчанию отключены. Чтобы включить
 ## Спонсоры
 Большое спасибо спонсорам, которые позволяют мне активно работать над этим проектом.
 <p align="left">
+   <a href="https://github.com/Lemon4ksan">
+      <img width="50" alt="Lemon4ksan" src="https://avatars.githubusercontent.com/u/122788290?v=4">
+   </a>
    <a href="https://github.com/SergheyUmca">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
+   </a>
+   <a href="https://github.com/schwarzalexey">
+      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
    </a>
    <a href="https://github.com/Diramix">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
