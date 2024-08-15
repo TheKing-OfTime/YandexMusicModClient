@@ -30,6 +30,9 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
 electron_1.contextBridge.exposeInMainWorld('IS_DEVTOOLS_ENABLED', Boolean(store_js_1.getDevtoolsEnabled()))
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_INTENSITY_COEFFICIENT', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.intensityCoefficient)
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_MAX_FPS', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.maxFPS)
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_LINEAR_DEBOOST', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.linearDeBoost)
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_PLAY_ON_ANY_ENTITY', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.playOnAnyEntity)
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_DISABLE_RENDERING', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.disableRendering)
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {

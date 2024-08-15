@@ -224,6 +224,7 @@
           );
         }
         render() {
+          if( window.VIBE_ANIMATION_DISABLE_RENDERING ?? false ) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -458,11 +459,11 @@
             this.updateTime(e),
             t)
           ) {
-            let i = t.getAverageFrequencies({ low: 0, high: 500 }),
-              a = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              n = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
-            let intensity = ((i + a + n) / 3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
-            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            let i = t.getAverageFrequencies({ low: 0, high: 450 }),
+              a = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              n = t.getAverageFrequencies({ low: 5e3, high: 16e3 });
+            let intensity = (((i + a + n)/3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1));
+            console.debug(this.trackEnergy.value, this.energy.value, intensity);
             this.energy.update(this.trackEnergy.value + intensity);
             this.energy.next(e),
             this.trackEnergy.next(e),
@@ -500,12 +501,12 @@
             a._(
               this,
               "energy",
-              new s.DynamicValue(l.DEFAULT_ENERGY, l.DEFAULT_ENERGY, 1e3),
+              new s.DynamicValue(l.DEFAULT_ENERGY, l.DEFAULT_ENERGY, 100),
             ),
             a._(
               this,
               "trackEnergy",
-              new s.DynamicValue(l.DEFAULT_ENERGY, l.DEFAULT_ENERGY, 1),
+              new s.DynamicValue(l.DEFAULT_ENERGY, l.DEFAULT_ENERGY, 1e3),
             ),
             a._(this, "time", Math.floor(3600 * Math.random())),
             a._(this, "color", void 0),
@@ -653,7 +654,7 @@
             { sonataState: P, user: S } = (0, u.oR)(),
             { theme: E } = (0, u.Fg)(),
             k = (0, u.jp)(),
-            N = P.status === c.Xz.PLAYING && P.contextType === s.Ak.Vibe;
+            N = P.status === c.Xz.PLAYING && (P.contextType === s.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, l.useEffect)(() => {
               if (b.current) {

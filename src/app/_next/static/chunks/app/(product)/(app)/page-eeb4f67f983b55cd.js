@@ -375,6 +375,7 @@
           );
         }
         render() {
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -583,6 +584,7 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
+          this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -600,7 +602,8 @@
         }
         update(e, t) {
           if (
-            (this.energy.next(e),
+            (this.trackEnergy.next(e),
+            this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -608,10 +611,17 @@
             this.updateTime(e),
             t)
           ) {
-            let n = t.getAverageFrequencies({ low: 0, high: 250 }),
-              i = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              o = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
-            this.audioLowRatio.next(e),
+            let n = t.getAverageFrequencies({ low: 0, high: 450 }),
+              i = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              o = t.getAverageFrequencies({ low: 5e3, high: 16e3 });
+            let intensity =
+              ((n + i + o) / 3) *
+              (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
+            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(this.trackEnergy.value + intensity);
+            this.energy.next(e),
+              this.trackEnergy.next(e),
+              this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
@@ -645,6 +655,11 @@
             i._(
               this,
               "energy",
+              new a.DynamicValue(r.DEFAULT_ENERGY, r.DEFAULT_ENERGY, 1e2),
+            ),
+            i._(
+              this,
+              "trackEnergy",
               new a.DynamicValue(r.DEFAULT_ENERGY, r.DEFAULT_ENERGY, 1e3),
             ),
             i._(this, "time", Math.floor(3600 * Math.random())),
@@ -793,7 +808,10 @@
             { sonataState: S, user: E } = (0, u.oR)(),
             { theme: T } = (0, u.Fg)(),
             R = (0, u.jp)(),
-            A = S.status === d.Xz.PLAYING && S.contextType === a.Ak.Vibe;
+            A =
+              S.status === d.Xz.PLAYING &&
+              (S.contextType === a.Ak.Vibe ||
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, r.useEffect)(() => {
               if (g.current) {
@@ -842,7 +860,7 @@
                 A
                   ? null === (s = x.current) ||
                     void 0 === s ||
-                    s.playAnimation({ hue: l, collectionHue: h, energy: 20 })
+                    s.playAnimation({ hue: l, collectionHue: h, energy: d })
                   : null === (a = x.current) ||
                     void 0 === a ||
                     a.idleAnimation();

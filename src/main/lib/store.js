@@ -39,6 +39,9 @@ const init = () => {
     vibeAnimationEnhancement: {
         maxFPS: 25,
         intensityCoefficient: 1,
+        linearDeBoost: 2,
+        playOnAnyEntity: false,
+        disableRendering: false
     }
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);

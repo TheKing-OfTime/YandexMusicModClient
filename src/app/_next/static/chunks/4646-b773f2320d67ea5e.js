@@ -417,6 +417,7 @@
           );
         }
         render() {
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -650,14 +651,16 @@
             this.updateTime(e),
             t)
           ) {
-            let n = t.getAverageFrequencies({ low: 0, high: 500 }),
-              i = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              o = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
-            let intensity = ((n + i + o) / 3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
+            let n = t.getAverageFrequencies({ low: 0, high: 450 }),
+              i = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              o = t.getAverageFrequencies({ low: 5e3, high: 16e3 });
+            let intensity =
+              ((n + i + o) / 3) *
+              (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
             //console.debug(this.trackEnergy.value, this.energy.value, intensity);
             this.energy.update(this.trackEnergy.value + intensity);
             this.energy.next(e),
-            this.trackEnergy.next(e),
+              this.trackEnergy.next(e),
               this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
@@ -692,13 +695,13 @@
             i._(
               this,
               "energy",
+              new s.DynamicValue(a.DEFAULT_ENERGY, a.DEFAULT_ENERGY, 1e2),
+            ),
+            i._(
+              this,
+              "trackEnergy",
               new s.DynamicValue(a.DEFAULT_ENERGY, a.DEFAULT_ENERGY, 1e3),
             ),
-              i._(
-                  this,
-                  "trackEnergy",
-                  new s.DynamicValue(a.DEFAULT_ENERGY, a.DEFAULT_ENERGY, 1),
-              ),
             i._(this, "time", Math.floor(3600 * Math.random())),
             i._(this, "color", void 0),
             i._(this, "rotation", [
@@ -2879,7 +2882,10 @@
             { sonataState: k, user: S } = (0, d.oR)(),
             { theme: T } = (0, d.Fg)(),
             E = (0, d.jp)(),
-            N = k.status === u.Xz.PLAYING && k.contextType === s.Ak.Vibe;
+            N =
+              k.status === u.Xz.PLAYING &&
+              (k.contextType === s.Ak.Vibe ||
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, a.useEffect)(() => {
               if (b.current) {
