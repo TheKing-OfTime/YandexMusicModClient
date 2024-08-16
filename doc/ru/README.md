@@ -186,6 +186,9 @@ Devtools по умолчанию отключены. Чтобы включить
    <a href="https://github.com/Diramix">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
    </a>
+   <a href="https://github.com/trigger-off">
+      <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/71810229?v=4">
+   </a>
 </p>
 
 > Список обновляется вручную
