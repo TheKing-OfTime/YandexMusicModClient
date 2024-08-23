@@ -182,7 +182,7 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
       <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/71810229?v=4">
    </a>
    <a href="https://github.com/Baduga">
-      <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/69755854?v=4">
+      <img width="50" alt="Baduga" src="https://avatars.githubusercontent.com/u/69755854?v=4">
    </a>
 </p>
 
