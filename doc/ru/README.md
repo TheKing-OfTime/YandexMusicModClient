@@ -86,16 +86,6 @@
 
 </details>
 
-### Качество Lossless / HQ+
-<details>
-   <summary>Подробнее</summary>
-   
-Разблокирует качество Lossless (HQ + в настройках качества)
-> В настоящее время существует множество треков, у которых нет HQ+ качества.
-
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
-</details>
-
 ### Возврат кнопки дизлайка
 <details>
    <summary>Подробнее</summary>
