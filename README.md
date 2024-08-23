@@ -87,16 +87,6 @@ Adds support for Taskbar Extensions
 
 </details>
 
-### Lossless / HQ+ quality
-<details>
-   <summary>Details</summary>
-   
-Unblockes Lossless quality (HQ+ in quality settings)
-> Currently there are a lot of tracks that don't have lossless version.
-
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
-</details>
-
 ### Return dislike button
 <details>
    <summary>Details</summary>
