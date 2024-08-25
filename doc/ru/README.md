@@ -96,6 +96,26 @@
 
 </details>
 
+### Отображение качества трека
+<details>
+   <summary>Подробнее</summary>
+   
+Отображает качество либо кодек текущего трека
+
+<details>
+   <summary>Настройки</summary>
+      
+	"playerBarEnhancement": {
+		"showCodecInsteadOfQualityMark": true //Показать кодек вместо качества
+	}
+      
+</details>
+
+![image](https://github.com/user-attachments/assets/da143017-b9ff-4faf-91dc-b9ccc81b1e2f)
+![image](https://github.com/user-attachments/assets/3e5b6fb2-fbd3-4e04-880c-f1e556d8c4ef)
+
+</details>
+
 ### Переключатель локализации
 <details>
    <summary>Подробнее</summary>
