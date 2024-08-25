@@ -3208,182 +3208,208 @@
                   : null,
               [a, O, F],
             );
-          return (0, r.jsxs)("section", {
-            style: U,
-            className: (0, l.W)(ee().root, { [ee().root_disabled]: !a }, i),
-            onDoubleClick: Q,
-            "aria-labelledby": et,
-            ...(0, v.BA)(v.QM.player.PLAYERBAR_DESKTOP),
-            children: [
-              (0, r.jsx)(b.y, {
-                children: (0, r.jsx)(g.Heading, {
-                  variant: "h3",
-                  id: et,
-                  children: (0, r.jsx)(p.Z, { id: "a11y-regions.player" }),
-                }),
-              }),
-              (0, r.jsxs)("div", {
-                className: ee().info,
-                children: [
-                  (0, r.jsx)("div", {
-                    className: ee().infoCard,
-                    children:
-                      a &&
-                      (0, r.jsxs)(r.Fragment, {
-                        children: [
-                          (0, r.jsxs)(C.Paper, {
-                            radius: "s",
-                            className: ee().coverContainer,
-                            children: [
-                              (0, r.jsx)(I.BE, {
-                                className: ee().cover,
-                                src: a.coverUri,
-                                size: 100,
-                                fit: "cover",
-                                withAvatarReplace: !0,
-                              }),
-                              E &&
-                                (0, r.jsxs)(f.u, {
-                                  placement: "top",
-                                  offsetOptions: 4,
-                                  children: [
-                                    (0, r.jsx)(V, {
-                                      ariaLabel: P({
-                                        id: "player-actions.fullscreen",
-                                      }),
-                                      onClick: _.showFullscreenPlayerModal,
-                                    }),
-                                    (0, r.jsx)(f._v, {
-                                      children: (0, r.jsx)(p.Z, {
-                                        id: "player-actions.fullscreen",
-                                      }),
-                                    }),
-                                  ],
-                                }),
-                            ],
-                          }),
-                          (0, r.jsx)("div", {
-                            className: ee().description,
-                            children: H,
-                          }),
-                        ],
-                      }),
+          const qualityMap = { lq: "LQ", nq: "NQ", hq: "HQ", lossless: "HQ+" };
+          const codecMap = { mp3: "MP3","he-aac": "HE-AAC", aac: "AAC", flac: "FLAC" };
+          let theState = (0, d.R$)();
+          let [downloadInfo, setDownloadInfo] = (0, s.useState)(
+            theState?.state?.queueState?.currentEntity?.value?.entity
+              ?.mediaSource?.downloadInfo,
+          );
+          return (
+            (0, s.useEffect)(() => {
+              const timer = setTimeout(() => {
+                let fDownloadInfo =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSource?.downloadInfo;
+                if (fDownloadInfo) {
+                  setDownloadInfo(fDownloadInfo);
+                }
+              }, 400);
+              return () => {
+                null == timer || clearTimeout(timer);
+              };
+            }),
+            (0, r.jsxs)("section", {
+              style: U,
+              className: (0, l.W)(ee().root, { [ee().root_disabled]: !a }, i),
+              onDoubleClick: Q,
+              "aria-labelledby": et,
+              ...(0, v.BA)(v.QM.player.PLAYERBAR_DESKTOP),
+              children: [
+                (0, r.jsx)(b.y, {
+                  children: (0, r.jsx)(g.Heading, {
+                    variant: "h3",
+                    id: et,
+                    children: (0, r.jsx)(p.Z, { id: "a11y-regions.player" }),
                   }),
-                  (0, r.jsx)("div", {
-                    className: ee().infoButtons,
-                    onDoubleClick: G,
-                    children:
-                      a &&
-                      R &&
+                }),
+                (0, r.jsxs)("div", {
+                  className: ee().info,
+                  children: [
+                    (0, r.jsx)("div", {
+                      className: ee().infoCard,
+                      children:
+                        a &&
+                        (0, r.jsxs)(r.Fragment, {
+                          children: [
+                            (0, r.jsxs)(C.Paper, {
+                              radius: "s",
+                              className: ee().coverContainer,
+                              children: [
+                                (0, r.jsx)(I.BE, {
+                                  className: ee().cover,
+                                  src: a.coverUri,
+                                  size: 100,
+                                  fit: "cover",
+                                  withAvatarReplace: !0,
+                                }),
+                                E &&
+                                  (0, r.jsxs)(f.u, {
+                                    placement: "top",
+                                    offsetOptions: 4,
+                                    children: [
+                                      (0, r.jsx)(V, {
+                                        ariaLabel: P({
+                                          id: "player-actions.fullscreen",
+                                        }),
+                                        onClick: _.showFullscreenPlayerModal,
+                                      }),
+                                      (0, r.jsx)(f._v, {
+                                        children: (0, r.jsx)(p.Z, {
+                                          id: "player-actions.fullscreen",
+                                        }),
+                                      }),
+                                    ],
+                                  }),
+                              ],
+                            }),
+                            (0, r.jsx)("div", {
+                              className: ee().description,
+                              children: H,
+                            }),
+                          ],
+                        }),
+                    }),
+                    (0, r.jsx)("div", {
+                      className: ee().infoButtons,
+                      onDoubleClick: G,
+                      children:
+                        a &&
+                        R &&
+                        (0, r.jsxs)(r.Fragment, {
+                          children: [
+                            (0, r.jsx)(I.Q1, {
+                              className: ee().dislikeButton,
+                              isLiked: a.isDisliked,
+                              onClick: onDislikeClick,
+                              iconSize: "xs",
+                            }),
+                            (0, r.jsx)(I.dJ, {
+                              className: ee().likeButton,
+                              isLiked: a.isLiked,
+                              onClick: n,
+                              iconSize: "xs",
+                            }),
+                            (0, r.jsx)(B.hz, {
+                              track: a,
+                              placement: "top",
+                              open: N,
+                              onOpenChange: j,
+                              reference: (0, r.jsx)(x.z, {
+                                size: "s",
+                                variant: "text",
+                                withRipple: !1,
+                                radius: "round",
+                                "aria-label": P({
+                                  id: "interface-actions.context-menu",
+                                }),
+                                icon: (0, r.jsx)(h.J, {
+                                  size: "xs",
+                                  variant: "more",
+                                }),
+                                ...(0, v.BA)(
+                                  v.QM.player
+                                    .PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
+                                ),
+                              }),
+                            }),
+                          ],
+                        }),
+                    }),
+                  ],
+                }),
+                (0, r.jsxs)("div", {
+                  className: ee().sonata,
+                  children: [
+                    (0, r.jsx)(A.WP, { isMobile: !1, entityMeta: a }),
+                    !c.isGenerativeContext &&
+                      (0, r.jsx)(k, {
+                        disabled: !a,
+                        isMobile: !1,
+                        isFullscreen: !1,
+                      }),
+                  ],
+                }),
+                (0, r.jsxs)("div", {
+                  className: ee().meta,
+                  children: [
+                    !c.isGenerativeContext &&
                       (0, r.jsxs)(r.Fragment, {
                         children: [
-                          (0, r.jsx)(I.Q1, {
-                            className: ee().dislikeButton,
-                            isLiked: a.isDisliked,
-                            onClick: onDislikeClick,
-                            iconSize: "xs",
-                          }),
-                          (0, r.jsx)(I.dJ, {
-                            className: ee().likeButton,
-                            isLiked: a.isLiked,
-                            onClick: n,
-                            iconSize: "xs",
-                          }),
-                          (0, r.jsx)(B.hz, {
-                            track: a,
-                            placement: "top",
-                            open: N,
-                            onOpenChange: j,
-                            reference: (0, r.jsx)(x.z, {
-                              size: "s",
-                              variant: "text",
-                              withRipple: !1,
+                          W && (0, r.jsx)(I.t5, { iconSize: "l" }),
+                          Z,
+                          (0, r.jsx)(I.wx, {
+                            title: P({ id: "player-actions.history" }),
+                            description: P({ id: "future-feature.message" }),
+                            children: (0, r.jsx)(x.z, {
                               radius: "round",
-                              "aria-label": P({
-                                id: "interface-actions.context-menu",
-                              }),
+                              size: "xxxs",
+                              variant: "text",
+                              disabled: !0,
+                              "aria-hidden": !0,
+                              withRipple: !1,
+                              "aria-label": P({ id: "player-actions.history" }),
                               icon: (0, r.jsx)(h.J, {
+                                variant: "queue",
                                 size: "xs",
-                                variant: "more",
                               }),
                               ...(0, v.BA)(
-                                v.QM.player
-                                  .PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
+                                v.QM.player.PLAYERBAR_DESKTOP_PLAY_QUEUE_BUTTON,
                               ),
                             }),
                           }),
+                          (0, r.jsx)(X, {
+                            placement: "bottom",
+                            open: S,
+                            onOpenChange: w,
+                            reference: (0, r.jsx)(x.z, {
+                              className: ee().settingsButton,
+                              radius: "round",
+                              size: "xxxs",
+                              variant: "text",
+                              withRipple: !1,
+                              "aria-label": P({
+                                id: "player-actions.audio-quality",
+                              }),
+                              children:
+                                (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                  ? codecMap[downloadInfo?.codec]
+                                  : qualityMap[downloadInfo?.quality]) ??
+                                (0, r.jsx)(h.J, {
+                                  variant: "settings",
+                                  size: "xs",
+                                }),
+                              ...(0, v.BA)(v.QM.player.SOUND_QUALITY_BUTTON),
+                            }),
+                          }),
                         ],
                       }),
-                  }),
-                ],
-              }),
-              (0, r.jsxs)("div", {
-                className: ee().sonata,
-                children: [
-                  (0, r.jsx)(A.WP, { isMobile: !1, entityMeta: a }),
-                  !c.isGenerativeContext &&
-                    (0, r.jsx)(k, {
-                      disabled: !a,
-                      isMobile: !1,
-                      isFullscreen: !1,
-                    }),
-                ],
-              }),
-              (0, r.jsxs)("div", {
-                className: ee().meta,
-                children: [
-                  !c.isGenerativeContext &&
-                    (0, r.jsxs)(r.Fragment, {
-                      children: [
-                        W && (0, r.jsx)(I.t5, { iconSize: "l" }),
-                        Z,
-                        (0, r.jsx)(I.wx, {
-                          title: P({ id: "player-actions.history" }),
-                          description: P({ id: "future-feature.message" }),
-                          children: (0, r.jsx)(x.z, {
-                            radius: "round",
-                            size: "xxxs",
-                            variant: "text",
-                            disabled: !0,
-                            "aria-hidden": !0,
-                            withRipple: !1,
-                            "aria-label": P({ id: "player-actions.history" }),
-                            icon: (0, r.jsx)(h.J, {
-                              variant: "queue",
-                              size: "xs",
-                            }),
-                            ...(0, v.BA)(
-                              v.QM.player.PLAYERBAR_DESKTOP_PLAY_QUEUE_BUTTON,
-                            ),
-                          }),
-                        }),
-                        (0, r.jsx)(X, {
-                          placement: "bottom",
-                          open: S,
-                          onOpenChange: w,
-                          reference: (0, r.jsx)(x.z, {
-                            className: ee().settingsButton,
-                            radius: "round",
-                            size: "xxxs",
-                            variant: "text",
-                            withRipple: !1,
-                            "aria-label": P({
-                              id: "player-actions.audio-quality",
-                            }),
-                            icon: (0, r.jsx)(h.J, {
-                              variant: "settings",
-                              size: "xs",
-                            }),
-                            ...(0, v.BA)(v.QM.player.SOUND_QUALITY_BUTTON),
-                          }),
-                        }),
-                      ],
-                    }),
-                  (0, r.jsx)(M.F, {}),
-                ],
-              }),
-            ],
-          });
+                    (0, r.jsx)(M.F, {}),
+                  ],
+                }),
+              ],
+            })
+          );
         });
       var ea = i(83249),
         en = i.n(ea);

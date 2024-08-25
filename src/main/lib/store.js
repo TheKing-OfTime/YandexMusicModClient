@@ -34,15 +34,18 @@ const init = () => {
       showGitHubButton: true,
     },
     taskBarExtensions: {
-        enable: true
+      enable: true,
     },
     vibeAnimationEnhancement: {
-        maxFPS: 25,
-        intensityCoefficient: 1,
-        linearDeBoost: 2,
-        playOnAnyEntity: false,
-        disableRendering: false
-    }
+      maxFPS: 25,
+      intensityCoefficient: 1,
+      linearDeBoost: 2,
+      playOnAnyEntity: false,
+      disableRendering: false,
+    },
+    playerBarEnhancement: {
+      showCodecInsteadOfQualityMark: false,
+    },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
 };
@@ -61,7 +64,7 @@ const initField = (fieldKey, defaultValue) => {
     console.log("Inited", fieldKey, "to", defaultValue);
     return;
   }
-    console.log(fieldKey, "is already inited");
+  console.log(fieldKey, "is already inited");
 };
 
 const needToShowReleaseNotes = () => {

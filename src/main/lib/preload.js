@@ -33,6 +33,11 @@ electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_MAX_FPS', store_js_1.
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_LINEAR_DEBOOST', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.linearDeBoost)
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_PLAY_ON_ANY_ENTITY', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.playOnAnyEntity)
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_DISABLE_RENDERING', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.disableRendering)
+electron_1.contextBridge.exposeInMainWorld(
+  "SHOW_CODEC_INSTEAD_OF_QUALITY_MARK",
+  store_js_1.getModFeatures()?.playerBarEnhancement
+    ?.showCodecInsteadOfQualityMark,
+);
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
