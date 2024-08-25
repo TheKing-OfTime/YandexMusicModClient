@@ -86,16 +86,6 @@
 
 </details>
 
-### Качество Lossless / HQ+
-<details>
-   <summary>Подробнее</summary>
-   
-Разблокирует качество Lossless (HQ + в настройках качества)
-> В настоящее время существует множество треков, у которых нет HQ+ качества.
-
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
-</details>
-
 ### Возврат кнопки дизлайка
 <details>
    <summary>Подробнее</summary>
@@ -125,8 +115,11 @@
    <summary>Настройки</summary>
       
       "vibeAnimationEnhancement": {
-            "maxFPS": 25,             // Максимально допустимая частота кадров в секунду. НЕ изменяйте это значение ниже 25 или выше 144
-            "intensityCoefficient": 1 // Чувствительность музыкального анализа. Значение по умолчанию 1; Рекомендуемое: 0,5 - 2; При значении 0 отключается улучшение анимации (почти :D)
+	    "maxFPS": 25,             	// Максимально допустимая частота кадров в секунду. По умолчанию: 25. Рекомендуемое: 25 - 144. Не устанавливайте значание меньше 1
+	    "intensityCoefficient": 1, 	// Чувствительность музыкального анализа. По умолчанию: 1; Рекомендуемое: 0,5 - 2; При значении 0 отключается улучшение анимации (почти :D)
+	    "linearDeBoost": 5,		// Коэффициент выделения пиков в треке от основного трека. По умолчанию: 5. Рекомендуемое: 2 - 8. Если 1, отключает разделение пиков.
+	    "playOnAnyEntity": false,	// Если включено, анимация воспроизводится, даже если источник трека не Моя Волна.
+	    "disableRendering": false	// Отключает воспроизведение анимации. Используйте, только если почувствуете значительное падение кадров в секунду. В противном случае подберите оптимальное значение параметра maxFPS для вашей системы.
       }
       
 </details>
@@ -182,6 +175,15 @@ Devtools по умолчанию отключены. Чтобы включить
    </a>
    <a href="https://github.com/Diramix">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
+   </a>
+   <a href="https://github.com/trigger-off">
+      <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/71810229?v=4">
+   </a>
+   <a href="https://github.com/Baduga">
+      <img width="50" alt="Baduga" src="https://avatars.githubusercontent.com/u/69755854?v=4">
+   </a>
+   <a href="https://github.com/LazyMind">
+      <img width="50" alt="LazyMind" src="https://avatars.githubusercontent.com/u/87148057?v=4">
    </a>
 </p>
 

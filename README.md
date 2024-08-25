@@ -87,16 +87,6 @@ Adds support for Taskbar Extensions
 
 </details>
 
-### Lossless / HQ+ quality
-<details>
-   <summary>Details</summary>
-   
-Unblockes Lossless quality (HQ+ in quality settings)
-> Currently there are a lot of tracks that don't have lossless version.
-
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/63e37d35-71b4-46a8-b77e-4c4689e3d081)
-</details>
-
 ### Return dislike button
 <details>
    <summary>Details</summary>
@@ -126,8 +116,11 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
    <summary>Settings</summary>
       
       "vibeAnimationEnhancement": {
-            "maxFPS": 25,             // Max allowed FPS. DO NOT change this value below 25 or above 144
-            "intensityCoefficient": 1 // Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
+	    "maxFPS": 25,              	// Max allowed FPS. Defalut 25. Recommended 25 - 144. Don't set this value below 1
+	    "intensityCoefficient": 1, 	// Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
+	    "linearDeBoost": 5,		// Separation coefficient of track peaks from the main track. Default 5. Recommended 2 - 8. If 1 disables libear deboost.
+	    "playOnAnyEntity": false,	// If enabled Animation plays even if not My Vibe used as track source.
+	    "disableRendering": false	// Disables rendedring of the animation. Use only if you feel significant fps drops. Else try adjust maxFPS value.
       }
       
 </details>
@@ -180,10 +173,19 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
    </a>
    <a href="https://github.com/schwarzalexey">
-      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
+      <img width="50" alt="schwarzalexey" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
    </a>
    <a href="https://github.com/Diramix">
-      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
+      <img width="50" alt="Diramix" src="https://avatars.githubusercontent.com/u/79011730?v=4">
+   </a>
+   <a href="https://github.com/trigger-off">
+      <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/71810229?v=4">
+   </a>
+   <a href="https://github.com/Baduga">
+      <img width="50" alt="Baduga" src="https://avatars.githubusercontent.com/u/69755854?v=4">
+   </a>
+   <a href="https://github.com/LazyMind">
+      <img width="50" alt="LazyMind" src="https://avatars.githubusercontent.com/u/87148057?v=4">
    </a>
 </p>
 
