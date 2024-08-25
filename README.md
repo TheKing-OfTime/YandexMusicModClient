@@ -97,6 +97,26 @@ Returns dislike button on main player bar
 
 </details>
 
+### Track quality display
+<details>
+   <summary>Details</summary>
+   
+Displayes track quality or codec
+
+<details>
+   <summary>Settings</summary>
+      
+	"playerBarEnhancement": {
+		"showCodecInsteadOfQualityMark": true //Show codec instead of quality mark
+	}
+      
+</details>
+
+![image](https://github.com/user-attachments/assets/da143017-b9ff-4faf-91dc-b9ccc81b1e2f)
+![image](https://github.com/user-attachments/assets/3e5b6fb2-fbd3-4e04-880c-f1e556d8c4ef)
+
+</details>
+
 ### Language Switcher
 <details>
    <summary>Details</summary>
