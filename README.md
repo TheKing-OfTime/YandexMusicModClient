@@ -31,7 +31,7 @@
 > This can be checked on the Releases page
 
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
-1. Open command line
+1. Open command line (Win + R -> cmd -> Enter)
 2. Execute this command
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
