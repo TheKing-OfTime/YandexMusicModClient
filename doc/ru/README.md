@@ -31,7 +31,7 @@
 > Это можно сделать на странице релиза.
 
 0. Загрузите последнюю версию клиента Яндекс музыки с официального сайта https://music.yandex.com/download/
-1. Откройте командную строку
+1. Откройте командную строку (Win + R -> cmd -> Enter)
 2. Выполните эту команду
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
