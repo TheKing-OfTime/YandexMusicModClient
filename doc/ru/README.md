@@ -205,6 +205,9 @@ Devtools по умолчанию отключены. Чтобы включить
    <a href="https://github.com/LazyMind">
       <img width="50" alt="LazyMind" src="https://avatars.githubusercontent.com/u/87148057?v=4">
    </a>
+   <a href="https://github.com/Schelchki">
+      <img width="50" alt="Schelchki" src="https://avatars.githubusercontent.com/u/162707132?v=4">
+   </a>
 </p>
 
 > Список обновляется вручную
