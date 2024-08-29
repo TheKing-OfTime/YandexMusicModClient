@@ -31,7 +31,7 @@
 > This can be checked on the Releases page
 
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
-1. Open command line
+1. Open command line (Win + R -> cmd -> Enter)
 2. Execute this command
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
@@ -94,6 +94,26 @@ Adds support for Taskbar Extensions
 Returns dislike button on main player bar
 
 ![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
+
+</details>
+
+### Track quality display
+<details>
+   <summary>Details</summary>
+   
+Displayes track quality or codec
+
+<details>
+   <summary>Settings</summary>
+      
+	"playerBarEnhancement": {
+		"showCodecInsteadOfQualityMark": true //Show codec instead of quality mark
+	}
+      
+</details>
+
+![image](https://github.com/user-attachments/assets/da143017-b9ff-4faf-91dc-b9ccc81b1e2f)
+![image](https://github.com/user-attachments/assets/3e5b6fb2-fbd3-4e04-880c-f1e556d8c4ef)
 
 </details>
 
@@ -186,6 +206,9 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
    </a>
    <a href="https://github.com/LazyMind">
       <img width="50" alt="LazyMind" src="https://avatars.githubusercontent.com/u/87148057?v=4">
+   </a>
+   <a href="https://github.com/Schelchki">
+      <img width="50" alt="Schelchki" src="https://avatars.githubusercontent.com/u/162707132?v=4">
    </a>
 </p>
 

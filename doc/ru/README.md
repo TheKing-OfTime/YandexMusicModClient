@@ -31,7 +31,7 @@
 > Это можно сделать на странице релиза.
 
 0. Загрузите последнюю версию клиента Яндекс музыки с официального сайта https://music.yandex.com/download/
-1. Откройте командную строку
+1. Откройте командную строку (Win + R -> cmd -> Enter)
 2. Выполните эту команду
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
@@ -93,6 +93,26 @@
 Возвращает кнопку дизлайка в плеер на главной.
 
 ![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
+
+</details>
+
+### Отображение качества трека
+<details>
+   <summary>Подробнее</summary>
+   
+Отображает качество либо кодек текущего трека
+
+<details>
+   <summary>Настройки</summary>
+      
+	"playerBarEnhancement": {
+		"showCodecInsteadOfQualityMark": true //Показать кодек вместо качества
+	}
+      
+</details>
+
+![image](https://github.com/user-attachments/assets/da143017-b9ff-4faf-91dc-b9ccc81b1e2f)
+![image](https://github.com/user-attachments/assets/3e5b6fb2-fbd3-4e04-880c-f1e556d8c4ef)
 
 </details>
 
@@ -184,6 +204,9 @@ Devtools по умолчанию отключены. Чтобы включить
    </a>
    <a href="https://github.com/LazyMind">
       <img width="50" alt="LazyMind" src="https://avatars.githubusercontent.com/u/87148057?v=4">
+   </a>
+   <a href="https://github.com/Schelchki">
+      <img width="50" alt="Schelchki" src="https://avatars.githubusercontent.com/u/162707132?v=4">
    </a>
 </p>
 
