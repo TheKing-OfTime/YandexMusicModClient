@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.14.0",
+    "version": "5.15.0",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -24,8 +24,8 @@
         "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.14.0",
-        "BRANCH": "r14732927"
+        "VERSION": "5.15.0",
+        "BRANCH": "r14783001"
     },
     "common": {
         "SHOW_RELEASE_NOTES": true,

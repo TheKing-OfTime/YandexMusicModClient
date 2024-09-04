@@ -17,6 +17,12 @@
             "value": "Сервис Яндекс Музыка может содержать информацию, не&nbsp;предназначенную для&nbsp;несовершеннолетних"
         }
     ],
+    "advert.banner": [
+        {
+            "type": 0,
+            "value": "Баннер"
+        }
+    ],
     "album-errors.error-during-loading-album": [
         {
             "type": 0,
@@ -231,32 +237,6 @@
             "value": "Вам понравилось"
         }
     ],
-    "desktop-release-notes.5.1.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "27 апреля 2024 г."
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Кто-то ждёт новый альбом Kanye West, а кто-то — новый трек Ранеток. Мы все разные, но всем нам стало чуточку удобнее дожидаться любимой музыки: в Коллекции появился отдельный блок для будущих релизов, которые вы лайкнули"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        }
-    ],
     "desktop-release-notes.5.10.2": [
         {
             "children": [
@@ -303,12 +283,12 @@
             "value": "\nкоманда Яндекс Музыки"
         }
     ],
-    "desktop-release-notes.5.2.2": [
+    "desktop-release-notes.5.13.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "21 мая 2024 г."
+                    "value": "21 августа 2024 г."
                 }
             ],
             "type": 8,
@@ -322,7 +302,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Этот релиз короткий, но яркий:"
+                    "value": "Как нас слышно? Теперь превосходно: мы добавили Lossless. Этот аудиоформат максимально точно передаёт оригинальную запись, позволяя вам услышать каждый инструмент и оттенок голоса в студийном качестве"
                 }
             ],
             "type": 8,
@@ -342,7 +322,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Добавили кнопку «Поделиться» на экраны альбомов и артистов"
+                            "value": "Чтобы включить Lossless, нажмите на шестерёнку в плеере и выберите «Превосходное» в настройках качества звука"
                         }
                     ],
                     "type": 8,
@@ -356,35 +336,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Починили баги в Моей волне"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Исправили кое-какие ошибки в дизайне"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Сделали приложение ещё чуть доступнее для незрячих и слабовидящих пользователей"
+                            "value": "Для полноценного погружения потребуется качественная проводная акустика"
                         }
                     ],
                     "type": 8,
@@ -399,12 +351,12 @@
             "value": "ul"
         }
     ],
-    "desktop-release-notes.5.3.2": [
+    "desktop-release-notes.5.14.0": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "3 июня 2024 г."
+                    "value": "28 августа 2024 г."
                 }
             ],
             "type": 8,
@@ -418,7 +370,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Пока все бегают за обновками к лету, мы тоже кое-что обновили!"
+                    "value": "Выбираем весёлое настроение в Моей волне! Какой повод? Мы снова справились со всеми багами — теперь ничто не помешает вам открывать новую музыку"
                 }
             ],
             "type": 8,
@@ -429,42 +381,66 @@
             "value": "\n"
         },
         {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nНастроены на лучшее,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
+        }
+    ],
+    "desktop-release-notes.5.15.0": [
+        {
             "children": [
                 {
                     "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "В профиле добавили раздел с настройками. Подсказки по горячим клавишам уже там. Дальше больше!"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "На главной странице появился блок с рекомендательными плейлистами по жанрам. Открывайте для себя новое и вспоминайте старое."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
+                    "value": "4 сентября 2024 г."
                 }
             ],
             "type": 8,
-            "value": "ul"
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nБыстрее, громче, сильнее,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nкоманда Яндекс Музыки"
         }
     ],
     "desktop-release-notes.5.4.2": [
@@ -1363,6 +1339,16 @@
             "value": "Аудиокнига"
         }
     ],
+    "entity-names.audiobook-name": [
+        {
+            "type": 0,
+            "value": "Аудиокнига "
+        },
+        {
+            "type": 1,
+            "value": "bookName"
+        }
+    ],
     "entity-names.authors": [
         {
             "type": 0,
@@ -1373,10 +1359,34 @@
             "value": "authors"
         }
     ],
+    "entity-names.chart-down": [
+        {
+            "type": 0,
+            "value": "Позиция в чарте опустилась"
+        }
+    ],
+    "entity-names.chart-new": [
+        {
+            "type": 0,
+            "value": "Новый в чарте"
+        }
+    ],
+    "entity-names.chart-same": [
+        {
+            "type": 0,
+            "value": "Позиция в чарте не изменилась"
+        }
+    ],
     "entity-names.chart-tracks-list": [
         {
             "type": 0,
             "value": "Список треков чарта"
+        }
+    ],
+    "entity-names.chart-up": [
+        {
+            "type": 0,
+            "value": "Позиция в чарте поднялась"
         }
     ],
     "entity-names.collection": [
@@ -1848,6 +1858,12 @@
             "value": "»"
         }
     ],
+    "entity-names.playlists-list": [
+        {
+            "type": 0,
+            "value": "Список плейлистов"
+        }
+    ],
     "entity-names.podcast": [
         {
             "type": 0,
@@ -1962,16 +1978,16 @@
             "value": "Студийные альбомы"
         }
     ],
-    "entity-names.sync-lyrics": [
-        {
-            "type": 0,
-            "value": "Текстомузыка"
-        }
-    ],
     "entity-names.track": [
         {
             "type": 0,
             "value": "Трек"
+        }
+    ],
+    "entity-names.track-in-playlist": [
+        {
+            "type": 0,
+            "value": "Уже есть в этом плейлисте"
         }
     ],
     "entity-names.track-name": [
@@ -2284,6 +2300,34 @@
             "value": "Ска"
         }
     ],
+    "equalizer.slider-frequency-label": [
+        {
+            "type": 0,
+            "value": "Изменить децибелы на частоте "
+        },
+        {
+            "type": 1,
+            "value": "label"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " децибел"
+        }
+    ],
+    "equalizer.slider-preamp-label": [
+        {
+            "type": 0,
+            "value": "Коэффициент предусиления"
+        }
+    ],
     "equalizer.soft-preset": [
         {
             "type": 0,
@@ -2422,6 +2466,12 @@
             "value": "Не удалось загрузить часть страницы"
         }
     ],
+    "error-messages.error-load-wizard": [
+        {
+            "type": 0,
+            "value": "Произошла ошибка. Возвращайтесь к выбору исполнителей позже."
+        }
+    ],
     "error-messages.something-went-wrong": [
         {
             "type": 0,
@@ -2474,6 +2524,20 @@
         {
             "type": 0,
             "value": "Не буду слушать"
+        }
+    ],
+    "faq.title": [
+        {
+            "type": 0,
+            "value": "Ответы на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "частые вопросы"
         }
     ],
     "footer.explicit-content": [
@@ -2606,71 +2670,6 @@
         {
             "type": 0,
             "value": "Далее"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновил плейлист "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"d MMMM\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновил плейлист "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"d MMMM y\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.he-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновил плейлист сегодня"
-        }
-    ],
-    "interface-actions.he-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновил плейлист вчера"
         }
     ],
     "interface-actions.hide-sync-lyrics": [
@@ -2844,71 +2843,6 @@
             "value": "Поделиться"
         }
     ],
-    "interface-actions.she-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновила плейлист "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"d MMMM\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.she-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновила плейлист "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"d MMMM y\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.she-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновила плейлист сегодня"
-        }
-    ],
-    "interface-actions.she-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " обновила плейлист вчера"
-        }
-    ],
     "interface-actions.speed": [
         {
             "type": 0,
@@ -2939,6 +2873,207 @@
         {
             "type": 0,
             "value": "Открепить"
+        }
+    ],
+    "interface-actions.updated-playlist-date": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновила"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-date-with-year": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновила"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " плейлист "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-today": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновила"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " плейлист сегодня"
+        }
+    ],
+    "interface-actions.updated-playlist-yesterday": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновила"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "обновил"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " плейлист вчера"
         }
     ],
     "loading-messages.concert-is-loading": [
@@ -3678,7 +3813,7 @@
         },
         {
             "type": 0,
-            "value": " закреплен в боковом меню"
+            "value": " удален из бокового меню"
         }
     ],
     "notifications-info.podcast-added-to-collection": [
@@ -3831,10 +3966,76 @@
             "value": " качество звука"
         }
     ],
+    "notifications-info.removed-audiobook-episode-from-playlist": [
+        {
+            "type": 0,
+            "value": "Глава "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " удалена из плейлиста «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
     "notifications-info.removed-from": [
         {
             "type": 0,
             "value": "удален из"
+        }
+    ],
+    "notifications-info.removed-podcast-episode-from-playlist": [
+        {
+            "type": 0,
+            "value": "Выпуск "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " удален из плейлиста «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
+        }
+    ],
+    "notifications-info.removed-track-from-playlist": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " удален из плейлиста «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "»"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -4063,6 +4264,914 @@
             "value": "Оформить подписку"
         }
     ],
+    "payment.plus-offer-button": [
+        {
+            "type": 0,
+            "value": "По подписке на Плюс"
+        }
+    ],
+    "paywall-footer.cashback-terms-link": [
+        {
+            "type": 0,
+            "value": "Условия кешбэка"
+        }
+    ],
+    "paywall-footer.privileges-terms-link": [
+        {
+            "type": 0,
+            "value": "Условия привилегий"
+        }
+    ],
+    "paywall-footer.promotion-terms-link": [
+        {
+            "type": 0,
+            "value": "Условия акции"
+        }
+    ],
+    "paywall-footer.subscription-terms-link": [
+        {
+            "type": 0,
+            "value": "Условия подписки"
+        }
+    ],
+    "paywall-footer.support-link": [
+        {
+            "type": 0,
+            "value": "Служба поддержки"
+        }
+    ],
+    "paywall.faq-answer-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "Не переживайте, мы напишем письмо на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "вашу почту за"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "дня до"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "первого списания"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "Подписку можно отменить в любой момент. Вот как это сделать:"
+        },
+        {
+            "type": 1,
+            "value": "steps"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1": [
+        {
+            "type": 0,
+            "value": "Откройте страницу "
+        },
+        {
+            "type": 1,
+            "value": "link"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1-link": [
+        {
+            "type": 0,
+            "value": "Управление подпиской"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-2": [
+        {
+            "type": 0,
+            "value": "Нажмите «Отменить подписку»"
+        }
+    ],
+    "paywall.faq-answer-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "Скачивайте приложение Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Музыки"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "—"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "через"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "него тоже можно активировать Плюс"
+        }
+    ],
+    "paywall.faq-answer-without-card-binding": [
+        {
+            "type": 0,
+            "value": "Нет, к"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунту должна быть привязана карта. Не беспокойтесь за"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "списания, их не будет до"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "конца пробного периода. Когда вы привяжете новую карту к"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунту, с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "неё спишется и тут"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "же вернётся небольшая сумма — так мы проверяем, что с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "картой всё в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "порядке"
+        }
+    ],
+    "paywall.faq-question-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "Боюсь забыть отменить подписку до"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "конца пробного периода"
+        }
+    ],
+    "paywall.faq-question-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "Смогу"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ли я отключить подписку до"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "конца пробного периода?"
+        }
+    ],
+    "paywall.faq-question-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "Не"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "хочу вводить данные карты на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сайте в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "браузере. Где я ещё могу оформить подписку?"
+        }
+    ],
+    "paywall.faq-question-without-card-binding": [
+        {
+            "type": 0,
+            "value": "Можно ли включить пробный период, не привязывая банковскую карту?"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-channels": [
+        {
+            "type": 0,
+            "value": "Откройте доступ"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "к"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сотням телеканалов"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-exclusive": [
+        {
+            "type": 0,
+            "value": "Смотрите"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "эксклюзивы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Кинопоиска"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-movies": [
+        {
+            "type": 0,
+            "value": "Выбирайте из"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "тысяч"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "фильмов и"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сериалов"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-sport": [
+        {
+            "type": 0,
+            "value": "Следите"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "за"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "спортивными"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "трансляциями"
+        }
+    ],
+    "paywall.kinopoisk-part-title": [
+        {
+            "type": 0,
+            "value": "Кинопоиск"
+        }
+    ],
+    "paywall.more-info": [
+        {
+            "type": 0,
+            "value": "Что входит в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "подписку"
+        }
+    ],
+    "paywall.music-on-many-devices": [
+        {
+            "type": 0,
+            "value": "Музыка на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "разных устройствах с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "подпиской Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюс"
+        }
+    ],
+    "paywall.music-part-benefit-books": [
+        {
+            "type": 0,
+            "value": "Слушайте книги"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "опцией Букмейт"
+        }
+    ],
+    "paywall.music-part-benefit-books-alternative": [
+        {
+            "type": 0,
+            "value": "Слушайте аудиокниги"
+        }
+    ],
+    "paywall.music-part-benefit-many-devices": [
+        {
+            "type": 0,
+            "value": "Включайте на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "разных"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "устройствах"
+        }
+    ],
+    "paywall.music-part-benefit-playlists": [
+        {
+            "type": 0,
+            "value": "Создавайте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "свои плейлисты"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Коллекции"
+        }
+    ],
+    "paywall.music-part-benefit-recommendations": [
+        {
+            "type": 0,
+            "value": "Получайте рекомендации"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "интересам"
+        }
+    ],
+    "paywall.music-part-benefit-without-internet": [
+        {
+            "type": 0,
+            "value": "Слушайте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "без"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "интернета"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "отличном качестве"
+        }
+    ],
+    "paywall.music-part-title": [
+        {
+            "type": 0,
+            "value": "Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Музыка"
+        }
+    ],
+    "paywall.open-plus-benefits": [
+        {
+            "type": 0,
+            "value": "Откройте все плюсы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "одной подписке"
+        }
+    ],
+    "paywall.plus-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Кешбэк баллами"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сервисах Яндекса"
+        }
+    ],
+    "paywall.plus-benefit-kinopoisk": [
+        {
+            "type": 0,
+            "value": "Фильмы и"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сериалы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "на"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Кинопоиске"
+        }
+    ],
+    "paywall.plus-benefit-music": [
+        {
+            "type": 0,
+            "value": "Музыка и"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "подкасты"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "без рекламы"
+        }
+    ],
+    "paywall.plus-part-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Получайте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "кешбэк баллами"
+        }
+    ],
+    "paywall.plus-part-benefit-daily": [
+        {
+            "type": 0,
+            "value": "Открывайте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "подарки в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Дейли"
+        }
+    ],
+    "paywall.plus-part-benefit-family": [
+        {
+            "type": 0,
+            "value": "Добавляйте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "близких"
+        }
+    ],
+    "paywall.plus-part-benefit-plus-city": [
+        {
+            "type": 0,
+            "value": "Играйте"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Сити"
+        }
+    ],
+    "paywall.plus-part-title": [
+        {
+            "type": 0,
+            "value": "Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюс"
+        }
+    ],
+    "paywall.recommendations-on-devices": [
+        {
+            "type": 0,
+            "value": "Слушайте рекомендации по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "вашим интересам там, где удобно"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Глава "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлена в конец очереди"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Глава "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлена в начало очереди"
+        }
+    ],
+    "play-queue.play-last": [
+        {
+            "type": 0,
+            "value": "Добавить в конец очереди"
+        }
+    ],
+    "play-queue.play-next": [
+        {
+            "type": 0,
+            "value": "Играть следующим"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Выпуск "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в конец очереди"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Выпуск "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в начало очереди"
+        }
+    ],
+    "play-queue.title": [
+        {
+            "type": 0,
+            "value": "Очередь воспроизведения"
+        }
+    ],
+    "play-queue.track-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в конец очереди"
+        }
+    ],
+    "play-queue.track-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Трек "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " добавлен в начало очереди"
+        }
+    ],
     "player-actions.audio-quality": [
         {
             "type": 0,
@@ -4127,12 +5236,6 @@
         {
             "type": 0,
             "value": "На весь экран"
-        }
-    ],
-    "player-actions.history": [
-        {
-            "type": 0,
-            "value": "Очередь"
         }
     ],
     "player-actions.listen": [
@@ -5693,6 +6796,12 @@
             "value": "Трейлер плейлиста"
         }
     ],
+    "trailer.title-single": [
+        {
+            "type": 0,
+            "value": "Трейлер сингла"
+        }
+    ],
     "trailer.title-track": [
         {
             "type": 0,
@@ -5795,6 +6904,20 @@
             "value": "При запуски Моей волны произошла ошибка"
         }
     ],
+    "vibe-freemium.available-in-plus": [
+        {
+            "type": 0,
+            "value": "Умная система рекомендаций найдёт ту самую музыку."
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Доступна в подписке Плюс, а также Кинопоиск и кешбэк баллами"
+        }
+    ],
     "warning-messages.can-break-accessibility": [
         {
             "type": 0,
@@ -5811,6 +6934,12 @@
         {
             "type": 0,
             "value": "Только на стафф"
+        }
+    ],
+    "warning-messages.update-your-browser": [
+        {
+            "type": 0,
+            "value": "Музыка может работать некорректно — обновите браузер\n"
         }
     ],
     "welcome-page.beta-header": [
@@ -5883,22 +7012,46 @@
             "value": "Развернуть"
         }
     ],
+    "wizard.button-done": [
+        {
+            "type": 0,
+            "value": "Готово"
+        }
+    ],
+    "wizard.button-little-more": [
+        {
+            "type": 0,
+            "value": "Осталось чуть-чуть"
+        }
+    ],
+    "wizard.button-one-more": [
+        {
+            "type": 0,
+            "value": "Еще один, и всё"
+        }
+    ],
+    "wizard.button-tune": [
+        {
+            "type": 0,
+            "value": "Настраиваем под вас"
+        }
+    ],
     "wizard.buttonText": [
         {
             "type": 0,
             "value": "Выбрать исполнителей"
         }
     ],
-    "wizard.description": [
+    "wizard.modal-text": [
         {
             "type": 0,
-            "value": "Хотим узнать о вас больше, чтобы советовать подходящую музыку. Выберите любимых исполнителей, и рекомендации подстроятся под вас."
+            "value": "Это поможет получить более точные и интересные рекомендации"
         }
     ],
-    "wizard.title": [
+    "wizard.modal-title": [
         {
             "type": 0,
-            "value": "Расскажите о себе"
+            "value": "Выберите любимых исполнителей"
         }
     ]
 }

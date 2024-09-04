@@ -17,6 +17,12 @@
             "value": "Yandex Music ծառայությունը կարող է պարունակել տեղեկություններ, որոնք նախատեսված չեն անչափահասների համար"
         }
     ],
+    "advert.banner": [
+        {
+            "type": 0,
+            "value": "Ազդերիզ"
+        }
+    ],
     "album-errors.error-during-loading-album": [
         {
             "type": 0,
@@ -231,38 +237,12 @@
             "value": "Դուք հավանել եք"
         }
     ],
-    "desktop-release-notes.5.1.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. ապրիլի 27"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Մեկը սպասում է Kanye West-ի նոր ալբոմին, մյուսը՝ «Ռանետկի» խմբի։ Մենք տարբեր ենք, բայց բոլորիս համար մի փոքր ավելի հարմար է դարձել սիրելի երաժշտությանը սպասելը, քանի որ Հավաքածուում առանձին բաժին է հայտնվել ձեր լայքած ապագա թողարկումների համար"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        }
-    ],
     "desktop-release-notes.5.10.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "9 августа 2024 г."
+                    "value": "2024 թ. օգոստոսի 9"
                 }
             ],
             "type": 8,
@@ -276,7 +256,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                    "value": "Գլխավոր էկրանին ֆոնկ ենք ավելացրել։ Անցեք նոր ներդիր, որպեսզի լսեք հիթեր և ժանրի նոր թողարկումներ, թերթեք երգացանկերը և դիտեք հոլովակները։ Ինչպես նաև դիտեք վիդեոէսսեներ, կարդացեք հարցազրույցներ կատարողների հետ և ստացեք խորհուրդներ հայտնի պրոդյուսերներից։ Ամբողջովին կընկղմվեք ժանրի մեջ"
                 }
             ],
             "type": 8,
@@ -292,7 +272,167 @@
         },
         {
             "type": 0,
-            "value": "\nДрифтуем на поворотах обновлений,\n"
+            "value": "\nՄիշտ պատրաստ թարմացումների,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nYandex Music-ի թիմ"
+        }
+    ],
+    "desktop-release-notes.5.13.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "2024 թ. օգոստոսի 21"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Մեր ձայնը լա՞վ է լսվում։ Այսուհետ՝ հիանալի է լսվելու, քանի որ ավելացրել ենք Lossless աուդիո ձևաչափը։ Այն առավելագույնս հստակ է փոխանցում ձայնագրության բնօրինակը՝ թույլ տալով յուրաքանչյուր գործիք և ձայնի երանգ լսել ստուդիայի որակով"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Lossless-ը միացնելու համար նվագարկչում սեղմեք շարժվանվի պատկերակը և ձայնի որակի կարգավորումներում ընտրեք «Հիանալի»"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Լիարժեք վայելելու համար կպահանջվի որակյալ լարային ակուստիկա"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.14.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "August 28, 2024"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Set Cheerful mood in My Vibe! Why? Because once again, we fixed all the bugs. Now nothing will stay in the way of discovering new music"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nCheerful and optimistic,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nYandex Music team"
+        }
+    ],
+    "desktop-release-notes.5.15.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "4 сентября 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nБыстрее, громче, сильнее,\n"
         },
         {
             "type": 1,
@@ -301,150 +441,6 @@
         {
             "type": 0,
             "value": "\nкоманда Яндекс Музыки"
-        }
-    ],
-    "desktop-release-notes.5.2.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. մայիսի 21"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Այս թողարկումը կարճ է, բայց տպավորիչ."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Ալբոմների և կատարողների էկրաններին ավելացվել է «Կիսվել» կոճակը"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Շտկվել են Իմ ալիքի վրիպակները"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Ուղղվել են դիզայնի որոշ սխալներ"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Հավելվածը մի փոքր ավելի հասանելի է դարձել կույր և տեսողական խնդիրներ ունեցող օգտատերերի համար"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
-    "desktop-release-notes.5.3.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "2024 թ. հունիսի 3"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Մինչ բոլորը թարմացնում են իրենց ամառային զգեստապահարանը, մենք նույնպես թարմացում ենք արել։"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "children": [
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Պրոֆիլում ավելացրել ենք կարգավորումներով բաժին։ Թեժ կոճակների մասին հուշումներն արդեն այնտեղ են։ Բայց սա ամենը չէ։"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Գլխավոր էջում հայտնվել է խորհուրդ տրվող երգացանկերով բաժին։ Բացահայտեք նորերը և վերհիշեք հները։"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.4.2": [
@@ -814,29 +810,29 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "6 августа 2024 г."
+                    "value": "2024 թ. օգոստոսի 6"
                 }
             ],
             "type": 8,
             "value": "date"
         },
         {
-            "type": 0,
-            "value": "\n"
-        },
-        {
             "children": [
                 {
                     "type": 0,
-                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                    "value": "«Ինձ դուր է գալիս». սա ոչ միայն երգացանկ է ձեր Հավաքածուում, այլև արձագանք հավելվածի նոր տարբերակին։ Եվ դա հասկանալի է։ Բագերը քչացել են, կայունությունը՝ մեծացել"
                 }
             ],
             "type": 8,
             "value": "p"
         },
         {
+            "type": 1,
+            "value": "br"
+        },
+        {
             "type": 0,
-            "value": "\n"
+            "value": "Մեզ դուր է գալիս,"
         },
         {
             "type": 1,
@@ -844,15 +840,7 @@
         },
         {
             "type": 0,
-            "value": "\nНам нравится,\n"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "Yandex Music-ի թիմ"
         }
     ],
     "desktop.about": [
@@ -1291,6 +1279,16 @@
             "value": "Աուդիոգիրք"
         }
     ],
+    "entity-names.audiobook-name": [
+        {
+            "type": 1,
+            "value": "bookName"
+        },
+        {
+            "type": 0,
+            "value": " աուդիոգիրք"
+        }
+    ],
     "entity-names.authors": [
         {
             "type": 0,
@@ -1301,10 +1299,34 @@
             "value": "authors"
         }
     ],
+    "entity-names.chart-down": [
+        {
+            "type": 0,
+            "value": "Հիթ շքերթում դիրքը իջել է"
+        }
+    ],
+    "entity-names.chart-new": [
+        {
+            "type": 0,
+            "value": "Նորույթ հիթ շքերթում"
+        }
+    ],
+    "entity-names.chart-same": [
+        {
+            "type": 0,
+            "value": "Հիթ շքերթում դիրքը չի փոխվել"
+        }
+    ],
     "entity-names.chart-tracks-list": [
         {
             "type": 0,
             "value": "Հիթ շքերթի կատարումների ցանկ"
+        }
+    ],
+    "entity-names.chart-up": [
+        {
+            "type": 0,
+            "value": "Հիթ շքերթում դիրքը բարձրացել է"
         }
     ],
     "entity-names.collection": [
@@ -1712,6 +1734,12 @@
             "value": "» երգաշարի կատարումների ցանկ"
         }
     ],
+    "entity-names.playlists-list": [
+        {
+            "type": 0,
+            "value": "Երգաշարերի ցանկ"
+        }
+    ],
     "entity-names.podcast": [
         {
             "type": 0,
@@ -1826,16 +1854,16 @@
             "value": "Ստուդիայում արված ալբոմներ"
         }
     ],
-    "entity-names.sync-lyrics": [
-        {
-            "type": 0,
-            "value": "Երգերի բառեր"
-        }
-    ],
     "entity-names.track": [
         {
             "type": 0,
             "value": "Կատարում"
+        }
+    ],
+    "entity-names.track-in-playlist": [
+        {
+            "type": 0,
+            "value": "Уже есть в этом плейлисте"
         }
     ],
     "entity-names.track-name": [
@@ -2136,6 +2164,42 @@
             "value": "Սկա"
         }
     ],
+    "equalizer.slider-frequency-label": [
+        {
+            "type": 0,
+            "value": "Փոփոխել դեցիբելները "
+        },
+        {
+            "type": 1,
+            "value": "label"
+        },
+        {
+            "type": 0,
+            "value": " հաճախականության վրա՝ "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " դեցիբել"
+        }
+    ],
+    "equalizer.slider-preamp-label": [
+        {
+            "type": 0,
+            "value": "Փոխել նախաուժեղարարի դեցիբելները՝ "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " դեցիբել"
+        }
+    ],
     "equalizer.soft-preset": [
         {
             "type": 0,
@@ -2274,6 +2338,12 @@
             "value": "Էջի մի մասը չհաջողվեց բեռնել"
         }
     ],
+    "error-messages.error-load-wizard": [
+        {
+            "type": 0,
+            "value": "Սխալ առաջացավ։ Վերադարձեք կատարողների ընտրությանը քիչ հետո։"
+        }
+    ],
     "error-messages.something-went-wrong": [
         {
             "type": 0,
@@ -2326,6 +2396,20 @@
         {
             "type": 0,
             "value": "Չեմ լսելու"
+        }
+    ],
+    "faq.title": [
+        {
+            "type": 0,
+            "value": "Հաճախ տրվող հարցերի"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "պատասխաններ"
         }
     ],
     "footer.explicit-content": [
@@ -2458,79 +2542,6 @@
         {
             "type": 0,
             "value": "Հաջորդը"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " օգտատերը թարմացրել է երգացանկը "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"MMMM d\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        },
-        {
-            "type": 0,
-            "value": "-ին"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " օգտատերը թարմացրել է երգացանկը "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"y MMMM d\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        },
-        {
-            "type": 0,
-            "value": "-ին"
-        }
-    ],
-    "interface-actions.he-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": "-ն այսօր թարմացրել է երգացանկը "
-        }
-    ],
-    "interface-actions.he-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": "-ն երեկ թարմացրել է երգացանկը "
         }
     ],
     "interface-actions.hide-sync-lyrics": [
@@ -2712,79 +2723,6 @@
             "value": "Կիսվել"
         }
     ],
-    "interface-actions.she-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " օգտատերը թարմացրել է երգացանկը "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"MMMM d\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        },
-        {
-            "type": 0,
-            "value": "-ին"
-        }
-    ],
-    "interface-actions.she-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " օգտատերը թարմացրել է երգացանկը "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"y MMMM d\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        },
-        {
-            "type": 0,
-            "value": "-ին"
-        }
-    ],
-    "interface-actions.she-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": "-ն այսօր թարմացրել է երգացանկը"
-        }
-    ],
-    "interface-actions.she-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": "-ն երեկ թարմացրել է երգացանկը"
-        }
-    ],
     "interface-actions.speed": [
         {
             "type": 0,
@@ -2815,6 +2753,207 @@
         {
             "type": 0,
             "value": "Անջատել"
+        }
+    ],
+    "interface-actions.updated-playlist-date": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " օգտատերը "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "օգտատերը թարմացրել է"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկը "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-date-with-year": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " օգտատերը "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "օգտատերը թարմացրել է"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկը "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-today": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " օգտատերը "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "օգտատերը թարմացրել է"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկը այսօր"
+        }
+    ],
+    "interface-actions.updated-playlist-yesterday": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " օգտատերը "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "թարմացրել է"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "օգտատերը թարմացրել է"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " երգացանկը երեկ"
         }
     ],
     "loading-messages.concert-is-loading": [
@@ -3250,7 +3389,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակում"
+                    "value": "Հավաքածուում"
                 }
             ],
             "type": 8,
@@ -3270,7 +3409,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակում"
+                    "value": "Հավաքածուում"
                 }
             ],
             "type": 8,
@@ -3296,7 +3435,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակից"
+                    "value": "Հավաքածուից"
                 }
             ],
             "type": 8,
@@ -3332,7 +3471,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակից"
+                    "value": "Հավաքածուից"
                 }
             ],
             "type": 8,
@@ -3462,7 +3601,7 @@
         },
         {
             "type": 0,
-            "value": " երգացանկն ամրացվեց կողային ընտրացանկում"
+            "value": " երգացանկը հեռացվել է կողային ընտրացանկից"
         }
     ],
     "notifications-info.podcast-added-to-collection": [
@@ -3498,7 +3637,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակում"
+                    "value": "Հավաքածուում"
                 }
             ],
             "type": 8,
@@ -3524,7 +3663,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Իմ դարակից"
+                    "value": "Հավաքածուից"
                 }
             ],
             "type": 8,
@@ -3587,10 +3726,64 @@
             "value": " sound quality on"
         }
     ],
+    "notifications-info.removed-audiobook-episode-from-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " գլուխը հեռացվել է «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» երգացանկից"
+        }
+    ],
     "notifications-info.removed-from": [
         {
             "type": 0,
             "value": "հեռացվել է"
+        }
+    ],
+    "notifications-info.removed-podcast-episode-from-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " թողարկումը հեռացվել է «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» երգացանկից"
+        }
+    ],
+    "notifications-info.removed-track-from-playlist": [
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " կատարումը հեռացվել է «"
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": "» երգացանկից"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -3823,6 +4016,826 @@
             "value": "Բաժանորդագրվել"
         }
     ],
+    "payment.plus-offer-button": [
+        {
+            "type": 0,
+            "value": "Plus-ի բաժանորդագրությամբ"
+        }
+    ],
+    "paywall-footer.cashback-terms-link": [
+        {
+            "type": 0,
+            "value": "Քեշբեքի պայմանները"
+        }
+    ],
+    "paywall-footer.privileges-terms-link": [
+        {
+            "type": 0,
+            "value": "Արտոնությունների պայմանները"
+        }
+    ],
+    "paywall-footer.promotion-terms-link": [
+        {
+            "type": 0,
+            "value": "Ակցիայի պայմանները"
+        }
+    ],
+    "paywall-footer.subscription-terms-link": [
+        {
+            "type": 0,
+            "value": "Բաժանորդագրության պայմանները"
+        }
+    ],
+    "paywall-footer.support-link": [
+        {
+            "type": 0,
+            "value": "Աջակցության ծառայություն"
+        }
+    ],
+    "paywall.faq-answer-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "Մի անհանգստացեք, մենք"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "առաջին ելքագրումից"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "օր շուտ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ձեր էլփոստին նամակ կուղարկենք"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "Բաժանորդագրությունը կարելի է չեղարկել ցանկացած պահի։ Ահա թե ինչպես՝ "
+        },
+        {
+            "type": 1,
+            "value": "steps"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1": [
+        {
+            "type": 0,
+            "value": "Բացեք էջը "
+        },
+        {
+            "type": 1,
+            "value": "link"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1-link": [
+        {
+            "type": 0,
+            "value": "Բաժանորդագրության կառավարում"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-2": [
+        {
+            "type": 0,
+            "value": "Սեղմեք «Չեղարկել բաժանորդագրությունը»"
+        }
+    ],
+    "paywall.faq-answer-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "Ներբեռնեք Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Music"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "հավելվածը. դրանով"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "կարող եք"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ակտիվացնել Plus-ը"
+        }
+    ],
+    "paywall.faq-answer-without-card-binding": [
+        {
+            "type": 0,
+            "value": "Ոչ, հաշվին"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "պետք է քարտ կցված լինի։ Մի անհանգստացեք ելքագրումների"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "համար. դրանք չեն լինի մինչև փորձաշրջանի"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ավարտը. Երբ հաշվին"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "նոր քարտ կցեք, դրանից"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "կելքագրվի և անմիջապես կվերադարձվի փոքր գումար. այդ կերպ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "մենք համոզվում ենք, որ քարտի հետ ամեն ինչ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "կարգին է"
+        }
+    ],
+    "paywall.faq-question-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "Վախենում եմ մոռանալ չեղարկել բաժանորդագրությունը"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "մինչև փորձաշրջանի ավարտը"
+        }
+    ],
+    "paywall.faq-question-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "Կկարողանա՞մ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "անջատել"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "բաժանորդագրությունը մինչև փորձաշրջանի ավարտը"
+        }
+    ],
+    "paywall.faq-question-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "Չեմ ուզում դիտարկիչով՝ կայքում մուտքագրել"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "քարտի"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "տվյալները։ Ուրիշ որտե՞ղ կարող եմ ձևակերպել բաժանորդագրությունը"
+        }
+    ],
+    "paywall.faq-question-without-card-binding": [
+        {
+            "type": 0,
+            "value": "Կարելի՞ է միացնել փորձաշրջանն առանց բանկային քարտ կցելու"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-channels": [
+        {
+            "type": 0,
+            "value": "Ստացեք հարյուրավոր"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "հեռուստաալիքների"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "հասանելիություն"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-exclusive": [
+        {
+            "type": 0,
+            "value": "Դիտեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Kinopoisk-ի էքսկլյուզիվներ"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-movies": [
+        {
+            "type": 0,
+            "value": "Ընտրեք"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "հազարավոր"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "ֆիլմերից"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "և սերիալներից"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-sport": [
+        {
+            "type": 0,
+            "value": "Հետևեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "սպորտային"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "հեռարձակումների"
+        }
+    ],
+    "paywall.kinopoisk-part-title": [
+        {
+            "type": 0,
+            "value": "Kinopoisk"
+        }
+    ],
+    "paywall.more-info": [
+        {
+            "type": 0,
+            "value": "Ինչ է մտնում"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "բաժանորդագրության մեջ"
+        }
+    ],
+    "paywall.music-on-many-devices": [
+        {
+            "type": 0,
+            "value": "Երաժշտություն տարբեր սարքերում՝ Yandex Plus-ի բաժանորդագրությամբ"
+        }
+    ],
+    "paywall.music-part-benefit-books": [
+        {
+            "type": 0,
+            "value": "Լսեք գրքեր"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Bookmate"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "տարբերակով"
+        }
+    ],
+    "paywall.music-part-benefit-books-alternative": [
+        {
+            "type": 0,
+            "value": "Լսեք աուդիոգրքեր"
+        }
+    ],
+    "paywall.music-part-benefit-many-devices": [
+        {
+            "type": 0,
+            "value": "Միացրեք"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "տարբեր"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "սարքերում"
+        }
+    ],
+    "paywall.music-part-benefit-playlists": [
+        {
+            "type": 0,
+            "value": "Ստեղծեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "ձեր երգացանկերը"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Հավաքածուում"
+        }
+    ],
+    "paywall.music-part-benefit-recommendations": [
+        {
+            "type": 0,
+            "value": "Ստացեք խորհուրդներ"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "ըստ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "հետաքրքրությունների"
+        }
+    ],
+    "paywall.music-part-benefit-without-internet": [
+        {
+            "type": 0,
+            "value": "Լսեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "առանց"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ինտերնետի,"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "գերազանց"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "որակով"
+        }
+    ],
+    "paywall.music-part-title": [
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Music"
+        }
+    ],
+    "paywall.open-plus-benefits": [
+        {
+            "type": 0,
+            "value": "Բացահայտեք բոլոր առավելությունները"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "մեկ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "բաժանորդագրությունում"
+        }
+    ],
+    "paywall.plus-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Միավորներով քեշբեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Yandex-ի"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ծառայություններում"
+        }
+    ],
+    "paywall.plus-benefit-kinopoisk": [
+        {
+            "type": 0,
+            "value": "Ֆիլմեր և"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "սերիալներ"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Kinopoisk-ում"
+        }
+    ],
+    "paywall.plus-benefit-music": [
+        {
+            "type": 0,
+            "value": "Երաժշտություն և"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "փոդքաստներ"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "առանց գովազդի"
+        }
+    ],
+    "paywall.plus-part-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Ստացեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "միավորներով քեշբեք"
+        }
+    ],
+    "paywall.plus-part-benefit-daily": [
+        {
+            "type": 0,
+            "value": "Բացահայտեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "նվերներ"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Daily-ում"
+        }
+    ],
+    "paywall.plus-part-benefit-family": [
+        {
+            "type": 0,
+            "value": "Ավելացրեք"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "մտերիմի"
+        }
+    ],
+    "paywall.plus-part-benefit-plus-city": [
+        {
+            "type": 0,
+            "value": "Խաղացեք"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plus"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "City-ում"
+        }
+    ],
+    "paywall.plus-part-title": [
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plus"
+        }
+    ],
+    "paywall.recommendations-on-devices": [
+        {
+            "type": 0,
+            "value": "Լսեք ըստ ձեր նախասիրությունների առաջարկվող երաժշտությունն այնտեղ, որտեղ ձեզ է հարմար"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
+    "play-queue.play-last": [
+        {
+            "type": 0,
+            "value": "Add to the end of the queue"
+        }
+    ],
+    "play-queue.play-next": [
+        {
+            "type": 0,
+            "value": "Play next"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
+    "play-queue.title": [
+        {
+            "type": 0,
+            "value": "Նվագարկման հերթ"
+        }
+    ],
+    "play-queue.track-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.track-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
     "player-actions.audio-quality": [
         {
             "type": 0,
@@ -3887,12 +4900,6 @@
         {
             "type": 0,
             "value": "Ամբողջ էկրանով մեկ"
-        }
-    ],
-    "player-actions.history": [
-        {
-            "type": 0,
-            "value": "Հերթ"
         }
     ],
     "player-actions.listen": [
@@ -5255,6 +6262,12 @@
             "value": "Երգացանկի թրեյլեր"
         }
     ],
+    "trailer.title-single": [
+        {
+            "type": 0,
+            "value": "Трейлер сингла"
+        }
+    ],
     "trailer.title-track": [
         {
             "type": 0,
@@ -5357,6 +6370,20 @@
             "value": "Իմ ալիքը մեկնարկելիս սխալ տեղի ունեցավ"
         }
     ],
+    "vibe-freemium.available-in-plus": [
+        {
+            "type": 0,
+            "value": "Առաջարկությունների խելացի համակարգը կգտնի երաժշտություն ձեր ճաշակով։"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Հասանելի է Plus-ի բաժանորդագրությունում, ինչպես և Kinopoisk ու միավորներով քեշբեք"
+        }
+    ],
     "warning-messages.can-break-accessibility": [
         {
             "type": 0,
@@ -5373,6 +6400,12 @@
         {
             "type": 0,
             "value": "Только на стафф"
+        }
+    ],
+    "warning-messages.update-your-browser": [
+        {
+            "type": 0,
+            "value": "Music-ը կարող է սխալ աշխատել. թարմացրեք դիտարկիչը\n"
         }
     ],
     "welcome-page.beta-header": [
@@ -5445,22 +6478,46 @@
             "value": "Ծավալել"
         }
     ],
+    "wizard.button-done": [
+        {
+            "type": 0,
+            "value": "Պատրաստ է"
+        }
+    ],
+    "wizard.button-little-more": [
+        {
+            "type": 0,
+            "value": "Բան չմնաց"
+        }
+    ],
+    "wizard.button-one-more": [
+        {
+            "type": 0,
+            "value": "Եվս մեկը, և վերջ"
+        }
+    ],
+    "wizard.button-tune": [
+        {
+            "type": 0,
+            "value": "Հարմարեցնում ենք ձեզ"
+        }
+    ],
     "wizard.buttonText": [
         {
             "type": 0,
             "value": "Ընտրել կատարողների"
         }
     ],
-    "wizard.description": [
+    "wizard.modal-text": [
         {
             "type": 0,
-            "value": "Ուզում ենք ավելին իմանալ ձեր մասին, որպեսզի խորհուրդ տանք համապատասխան երաժշտություն։ Ընտրեք սիրելի կատարողների, և առաջարկները կհարմարվեն ձեզ։"
+            "value": "Դա կօգնի ստանալ ավելի ճշգրիտ և հետաքրքիր խորհուրդներ"
         }
     ],
-    "wizard.title": [
+    "wizard.modal-title": [
         {
             "type": 0,
-            "value": "Պատմեք ձեր մասին"
+            "value": "Ընտրեք ձեր սիրելի կատարողներին"
         }
     ]
 }

@@ -17,6 +17,12 @@
             "value": "The Yandex Music service may contain information not suitable for minors"
         }
     ],
+    "advert.banner": [
+        {
+            "type": 0,
+            "value": "Banner"
+        }
+    ],
     "album-errors.error-during-loading-album": [
         {
             "type": 0,
@@ -231,38 +237,12 @@
             "value": "Playlists you liked"
         }
     ],
-    "desktop-release-notes.5.1.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "April 27, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Some are waiting for the new album by Kanye West, some hoping for a new track by Ranetki. We're all different. But waiting for our favorite music has become more convenient for each of us, because now your Collection features a special section for upcoming releases you liked"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        }
-    ],
     "desktop-release-notes.5.10.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "9 августа 2024 г."
+                    "value": "August 9, 2024"
                 }
             ],
             "type": 8,
@@ -276,7 +256,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Добавили фонка на главный экран: переходите в новую вкладку, чтобы слушать хиты и новые релизы жанра, листать плейлисты и смотреть клипы. А ещё смотрите видеоэссе, читайте интервью с исполнителями и получайте советы от именитых продюсеров — получается полное погружение в жанр"
+                    "value": "We've added phonk to the home screen: open a new tab to listen to the genre's hits and new releases, browse playlists, and watch videos. You can also check out video essays, read interviews with artists, and get tips from renowned producers — for a complete immersion in the genre."
                 }
             ],
             "type": 8,
@@ -292,7 +272,167 @@
         },
         {
             "type": 0,
-            "value": "\nДрифтуем на поворотах обновлений,\n"
+            "value": "\nDrifting through the sharp turns of updates,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nYandex Music team"
+        }
+    ],
+    "desktop-release-notes.5.13.2": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "August 21, 2024"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Can you hear us? Now it's excellent: we've added Lossless. This audio format preserves the original recording with the highest accuracy, letting you hear every instrument and vocal nuance in studio quality."
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "To enable Lossless, tap the gear icon in the player and select Excellent in the sound quality settings."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "For a fully immersive experience, you'll need a high-quality wired acoustic system."
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                }
+            ],
+            "type": 8,
+            "value": "ul"
+        }
+    ],
+    "desktop-release-notes.5.14.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "August 28, 2024"
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Set Cheerful mood in My Vibe! Why? Because once again, we fixed all the bugs. Now nothing will stay in the way of discovering new music"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nCheerful and optimistic,\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nYandex Music team"
+        }
+    ],
+    "desktop-release-notes.5.15.0": [
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "4 сентября 2024 г."
+                }
+            ],
+            "type": 8,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                }
+            ],
+            "type": 8,
+            "value": "p"
+        },
+        {
+            "type": 0,
+            "value": "\n"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "\nБыстрее, громче, сильнее,\n"
         },
         {
             "type": 1,
@@ -301,170 +441,6 @@
         {
             "type": 0,
             "value": "\nкоманда Яндекс Музыки"
-        }
-    ],
-    "desktop-release-notes.5.2.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "May 21, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "This release is minor but important. We:"
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Added the Share button to album and artist screens."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Fixed bugs in My Vibe."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Fixed some design errors."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "Made the app a bit more accessible for blind and visually impaired users."
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
-        }
-    ],
-    "desktop-release-notes.5.3.2": [
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "June 3, 2024"
-                }
-            ],
-            "type": 8,
-            "value": "date"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "Introducing a few updates as everyone seems to be looking for something new for summer."
-                }
-            ],
-            "type": 8,
-            "value": "p"
-        },
-        {
-            "type": 0,
-            "value": "\n"
-        },
-        {
-            "children": [
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "We've added the Settings section to the profile page. Tips for using hot keys are already there. And it's just the beginning!"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                },
-                {
-                    "children": [
-                        {
-                            "type": 0,
-                            "value": "We've also added a section with recommended playlists by genre to the home page. Discover new releases and enjoy your favorite music!"
-                        }
-                    ],
-                    "type": 8,
-                    "value": "li"
-                },
-                {
-                    "type": 0,
-                    "value": "\n"
-                }
-            ],
-            "type": 8,
-            "value": "ul"
         }
     ],
     "desktop-release-notes.5.4.2": [
@@ -858,7 +834,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "6 августа 2024 г."
+                    "value": "August 6, 2024"
                 }
             ],
             "type": 8,
@@ -872,7 +848,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Мне нравится — не только плейлист у вас в Коллекции, но и реакция на новую версию приложения. Оно и понятно: багов стало меньше, а стабильности — больше"
+                    "value": "When you like a track, it goes straight to My Favorites in your Collection. You'll love this app version too — it's more stable and has fewer bugs."
                 }
             ],
             "type": 8,
@@ -888,7 +864,7 @@
         },
         {
             "type": 0,
-            "value": "\nНам нравится,\n"
+            "value": "\nWe like it!\n"
         },
         {
             "type": 1,
@@ -896,7 +872,7 @@
         },
         {
             "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "\nYandex Music team"
         }
     ],
     "desktop.about": [
@@ -1359,6 +1335,16 @@
             "value": "Audiobook"
         }
     ],
+    "entity-names.audiobook-name": [
+        {
+            "type": 0,
+            "value": "Audio book "
+        },
+        {
+            "type": 1,
+            "value": "bookName"
+        }
+    ],
     "entity-names.authors": [
         {
             "type": 0,
@@ -1369,10 +1355,34 @@
             "value": "authors"
         }
     ],
+    "entity-names.chart-down": [
+        {
+            "type": 0,
+            "value": "Went down in the chart"
+        }
+    ],
+    "entity-names.chart-new": [
+        {
+            "type": 0,
+            "value": "New in the chart"
+        }
+    ],
+    "entity-names.chart-same": [
+        {
+            "type": 0,
+            "value": "Chart position didn't change"
+        }
+    ],
     "entity-names.chart-tracks-list": [
         {
             "type": 0,
             "value": "Chart track list"
+        }
+    ],
+    "entity-names.chart-up": [
+        {
+            "type": 0,
+            "value": "Went up in the chart"
         }
     ],
     "entity-names.collection": [
@@ -1776,6 +1786,12 @@
             "value": " track list"
         }
     ],
+    "entity-names.playlists-list": [
+        {
+            "type": 0,
+            "value": "List of playlists"
+        }
+    ],
     "entity-names.podcast": [
         {
             "type": 0,
@@ -1890,16 +1906,16 @@
             "value": "Studio albums"
         }
     ],
-    "entity-names.sync-lyrics": [
-        {
-            "type": 0,
-            "value": "Music and lyrics"
-        }
-    ],
     "entity-names.track": [
         {
             "type": 0,
             "value": "Track"
+        }
+    ],
+    "entity-names.track-in-playlist": [
+        {
+            "type": 0,
+            "value": "Уже есть в этом плейлисте"
         }
     ],
     "entity-names.track-name": [
@@ -2208,6 +2224,42 @@
             "value": "Ska"
         }
     ],
+    "equalizer.slider-frequency-label": [
+        {
+            "type": 0,
+            "value": "Adjust decibels at the frequency "
+        },
+        {
+            "type": 1,
+            "value": "label"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " decibels"
+        }
+    ],
+    "equalizer.slider-preamp-label": [
+        {
+            "type": 0,
+            "value": "Adjust preamp to "
+        },
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": " decibels"
+        }
+    ],
     "equalizer.soft-preset": [
         {
             "type": 0,
@@ -2346,6 +2398,12 @@
             "value": "Couldn't load part of the page"
         }
     ],
+    "error-messages.error-load-wizard": [
+        {
+            "type": 0,
+            "value": "An error occurred. Please choose artists later."
+        }
+    ],
     "error-messages.something-went-wrong": [
         {
             "type": 0,
@@ -2398,6 +2456,12 @@
         {
             "type": 0,
             "value": "Skip"
+        }
+    ],
+    "faq.title": [
+        {
+            "type": 0,
+            "value": "FAQ"
         }
     ],
     "footer.explicit-content": [
@@ -2530,71 +2594,6 @@
         {
             "type": 0,
             "value": "Next"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist on "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"d MMMM\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.he-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist on "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"d MMMM y\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.he-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist today"
-        }
-    ],
-    "interface-actions.he-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist yesterday"
         }
     ],
     "interface-actions.hide-sync-lyrics": [
@@ -2768,71 +2767,6 @@
             "value": "Share"
         }
     ],
-    "interface-actions.she-updated-playlist-date": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist on "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long"
-                },
-                "pattern": "\"d MMMM\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.she-updated-playlist-date-with-year": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist on "
-        },
-        {
-            "style": {
-                "parsedOptions": {
-                    "day": "numeric",
-                    "month": "long",
-                    "year": "numeric"
-                },
-                "pattern": "\"d MMMM y\"",
-                "type": 1
-            },
-            "type": 3,
-            "value": "updateDate"
-        }
-    ],
-    "interface-actions.she-updated-playlist-today": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist today"
-        }
-    ],
-    "interface-actions.she-updated-playlist-yesterday": [
-        {
-            "type": 1,
-            "value": "ownerName"
-        },
-        {
-            "type": 0,
-            "value": " updated the playlist yesterday"
-        }
-    ],
     "interface-actions.speed": [
         {
             "type": 0,
@@ -2859,6 +2793,207 @@
         {
             "type": 0,
             "value": "Unpin"
+        }
+    ],
+    "interface-actions.updated-playlist-date": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " the playlist on "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long"
+                },
+                "pattern": "\"d MMMM\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-date-with-year": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " the playlist on "
+        },
+        {
+            "style": {
+                "parsedOptions": {
+                    "day": "numeric",
+                    "month": "long",
+                    "year": "numeric"
+                },
+                "pattern": "\"d MMMM y\"",
+                "type": 1
+            },
+            "type": 3,
+            "value": "updateDate"
+        }
+    ],
+    "interface-actions.updated-playlist-today": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " the playlist today"
+        }
+    ],
+    "interface-actions.updated-playlist-yesterday": [
+        {
+            "type": 1,
+            "value": "ownerName"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "female": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "male": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "updated"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "gender"
+        },
+        {
+            "type": 0,
+            "value": " the playlist yesterday"
         }
     ],
     "loading-messages.concert-is-loading": [
@@ -3586,7 +3721,7 @@
         },
         {
             "type": 0,
-            "value": " was pinned to the side menu"
+            "value": " was removed from the side menu"
         }
     ],
     "notifications-info.podcast-added-to-collection": [
@@ -3735,10 +3870,76 @@
             "value": " sound quality on"
         }
     ],
+    "notifications-info.removed-audiobook-episode-from-playlist": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " removed from the "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": " playlist"
+        }
+    ],
     "notifications-info.removed-from": [
         {
             "type": 0,
             "value": "is removed from"
+        }
+    ],
+    "notifications-info.removed-podcast-episode-from-playlist": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " removed from the "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": " playlist"
+        }
+    ],
+    "notifications-info.removed-track-from-playlist": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "trackName"
+        },
+        {
+            "type": 0,
+            "value": " removed from the "
+        },
+        {
+            "type": 1,
+            "value": "playlistName"
+        },
+        {
+            "type": 0,
+            "value": " playlist"
         }
     ],
     "notifications-info.shuffle-disabled": [
@@ -3967,6 +4168,850 @@
             "value": "Subscribe"
         }
     ],
+    "payment.plus-offer-button": [
+        {
+            "type": 0,
+            "value": "With a Plus subscription"
+        }
+    ],
+    "paywall-footer.cashback-terms-link": [
+        {
+            "type": 0,
+            "value": "Cashback conditions"
+        }
+    ],
+    "paywall-footer.privileges-terms-link": [
+        {
+            "type": 0,
+            "value": "Privilege conditions"
+        }
+    ],
+    "paywall-footer.promotion-terms-link": [
+        {
+            "type": 0,
+            "value": "Promotion terms and conditions"
+        }
+    ],
+    "paywall-footer.subscription-terms-link": [
+        {
+            "type": 0,
+            "value": "Subscription terms"
+        }
+    ],
+    "paywall-footer.support-link": [
+        {
+            "type": 0,
+            "value": "Support"
+        }
+    ],
+    "paywall.faq-answer-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "Don't worry, we'll send you an"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "email 3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "days before your first payment"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "You can cancel your subscription at any time. To do this:"
+        },
+        {
+            "type": 1,
+            "value": "steps"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1": [
+        {
+            "type": 0,
+            "value": "Open the page "
+        },
+        {
+            "type": 1,
+            "value": "link"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-1-link": [
+        {
+            "type": 0,
+            "value": "Manage subscription"
+        }
+    ],
+    "paywall.faq-answer-cancel-until-end-step-2": [
+        {
+            "type": 0,
+            "value": "Tap Cancel subscription"
+        }
+    ],
+    "paywall.faq-answer-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "Download the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Music app and"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "use it to activate Plus"
+        }
+    ],
+    "paywall.faq-answer-without-card-binding": [
+        {
+            "type": 0,
+            "value": "No, a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "card must be linked to an"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "account. Don't worry about payments. You won't be charged until the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "end of the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "trial period. When you link a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "new card to your account, we charge a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "small amount of money and"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "then immediately refund it. This is just a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "confirmation payment to verify your card."
+        }
+    ],
+    "paywall.faq-question-afraid-forget-cancel": [
+        {
+            "type": 0,
+            "value": "I'm worried that I might forget to cancel my subscription before the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "end of the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "trial period"
+        }
+    ],
+    "paywall.faq-question-cancel-until-end": [
+        {
+            "type": 0,
+            "value": "Can I cancel my subscription before the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "trial period ends?"
+        }
+    ],
+    "paywall.faq-question-where-else-subscribe": [
+        {
+            "type": 0,
+            "value": "I don't want to enter my bank card data on the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "website in a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "browser. Where else can I purchase the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "subscription?"
+        }
+    ],
+    "paywall.faq-question-without-card-binding": [
+        {
+            "type": 0,
+            "value": "Can I sign up for the trial period without linking a bank card?"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-channels": [
+        {
+            "type": 0,
+            "value": "Unlock access"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "hundreds of TV channels"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-exclusive": [
+        {
+            "type": 0,
+            "value": "Watch"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "exclusive"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Kinopoisk releases"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-movies": [
+        {
+            "type": 0,
+            "value": "Choose from"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "thousands"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "of movies and"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "TV series"
+        }
+    ],
+    "paywall.kinopoisk-part-benefit-sport": [
+        {
+            "type": 0,
+            "value": "Watch"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "sports"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "streams"
+        }
+    ],
+    "paywall.kinopoisk-part-title": [
+        {
+            "type": 0,
+            "value": "Movies and Series"
+        }
+    ],
+    "paywall.more-info": [
+        {
+            "type": 0,
+            "value": "What's included in the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "subscription"
+        }
+    ],
+    "paywall.music-on-many-devices": [
+        {
+            "type": 0,
+            "value": "Music on different devices with the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plus subscription"
+        }
+    ],
+    "paywall.music-part-benefit-books": [
+        {
+            "type": 0,
+            "value": "Listen to books"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "with the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Bookmate option"
+        }
+    ],
+    "paywall.music-part-benefit-books-alternative": [
+        {
+            "type": 0,
+            "value": "Listen to audiobooks"
+        }
+    ],
+    "paywall.music-part-benefit-many-devices": [
+        {
+            "type": 0,
+            "value": "Play on"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "different"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "devices"
+        }
+    ],
+    "paywall.music-part-benefit-playlists": [
+        {
+            "type": 0,
+            "value": "Create"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "your own playlists"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "in "
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Collection"
+        }
+    ],
+    "paywall.music-part-benefit-recommendations": [
+        {
+            "type": 0,
+            "value": "Get interest-based"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "recommendations"
+        }
+    ],
+    "paywall.music-part-benefit-without-internet": [
+        {
+            "type": 0,
+            "value": "Listen"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "offline"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "in"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "high quality"
+        }
+    ],
+    "paywall.music-part-title": [
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Music"
+        }
+    ],
+    "paywall.open-plus-benefits": [
+        {
+            "type": 0,
+            "value": "Unlock all the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "advantages"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "in a"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "single subscription"
+        }
+    ],
+    "paywall.plus-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Bonus points"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "in"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Yandex services"
+        }
+    ],
+    "paywall.plus-benefit-kinopoisk": [
+        {
+            "type": 0,
+            "value": "Movies and"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "TV series"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "on"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Kinopoisk"
+        }
+    ],
+    "paywall.plus-benefit-music": [
+        {
+            "type": 0,
+            "value": "Ad-free music"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "and"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "podcasts"
+        }
+    ],
+    "paywall.plus-part-benefit-cashback": [
+        {
+            "type": 0,
+            "value": "Earn"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "bonus points"
+        }
+    ],
+    "paywall.plus-part-benefit-daily": [
+        {
+            "type": 0,
+            "value": "Unlock"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "gifts in Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Daily "
+        }
+    ],
+    "paywall.plus-part-benefit-family": [
+        {
+            "type": 0,
+            "value": "Add"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "family members"
+        }
+    ],
+    "paywall.plus-part-benefit-plus-city": [
+        {
+            "type": 0,
+            "value": "Play"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Plus"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "City"
+        }
+    ],
+    "paywall.plus-part-title": [
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plus"
+        }
+    ],
+    "paywall.recommendations-on-devices": [
+        {
+            "type": 0,
+            "value": "Listen to recommendations based on your interests wherever you want"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.audiobook-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Chapter "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
+    "play-queue.play-last": [
+        {
+            "type": 0,
+            "value": "Add to the end of the queue"
+        }
+    ],
+    "play-queue.play-next": [
+        {
+            "type": 0,
+            "value": "Play next"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.podcast-episode-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Episode "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
+    "play-queue.title": [
+        {
+            "type": 0,
+            "value": "Playback queue"
+        }
+    ],
+    "play-queue.track-will-be-played-last": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the end of the queue"
+        }
+    ],
+    "play-queue.track-will-be-played-next": [
+        {
+            "type": 0,
+            "value": "Track "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " added to the beginning of the queue"
+        }
+    ],
     "player-actions.audio-quality": [
         {
             "type": 0,
@@ -3994,7 +5039,7 @@
     "player-actions.audio-quality-maximum": [
         {
             "type": 0,
-            "value": "Very High"
+            "value": "Superb"
         }
     ],
     "player-actions.audio-quality-maximum-description": [
@@ -4031,12 +5076,6 @@
         {
             "type": 0,
             "value": "Full-screen"
-        }
-    ],
-    "player-actions.history": [
-        {
-            "type": 0,
-            "value": "Queue"
         }
     ],
     "player-actions.listen": [
@@ -5421,6 +6460,12 @@
             "value": "Playlist trailer"
         }
     ],
+    "trailer.title-single": [
+        {
+            "type": 0,
+            "value": "Трейлер сингла"
+        }
+    ],
     "trailer.title-track": [
         {
             "type": 0,
@@ -5523,6 +6568,20 @@
             "value": "An error occurred when launching My Vibe"
         }
     ],
+    "vibe-freemium.available-in-plus": [
+        {
+            "type": 0,
+            "value": "The smart recommendation system will find the right music."
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Available with the Plus subscription as well as Kinopoisk and cashback as bonus points"
+        }
+    ],
     "warning-messages.can-break-accessibility": [
         {
             "type": 0,
@@ -5539,6 +6598,12 @@
         {
             "type": 0,
             "value": "Только на стафф"
+        }
+    ],
+    "warning-messages.update-your-browser": [
+        {
+            "type": 0,
+            "value": "Yandex Music may work incorrectly. Please update your browser"
         }
     ],
     "welcome-page.beta-header": [
@@ -5611,22 +6676,46 @@
             "value": "Expand"
         }
     ],
+    "wizard.button-done": [
+        {
+            "type": 0,
+            "value": "Done"
+        }
+    ],
+    "wizard.button-little-more": [
+        {
+            "type": 0,
+            "value": "Just a little left"
+        }
+    ],
+    "wizard.button-one-more": [
+        {
+            "type": 0,
+            "value": "Just one more"
+        }
+    ],
+    "wizard.button-tune": [
+        {
+            "type": 0,
+            "value": "Personalizing"
+        }
+    ],
     "wizard.buttonText": [
         {
             "type": 0,
             "value": "Choose artists"
         }
     ],
-    "wizard.description": [
+    "wizard.modal-text": [
         {
             "type": 0,
-            "value": "We'd like to know more about you to recommend music you'll like. Please choose some artists that you like, and our recommendations will adjust to your taste."
+            "value": "This will make your recommendations more accurate and interesting"
         }
     ],
-    "wizard.title": [
+    "wizard.modal-title": [
         {
             "type": 0,
-            "value": "Tell us about yourself"
+            "value": "Select your favorite artists"
         }
     ]
 }
