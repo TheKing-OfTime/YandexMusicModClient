@@ -6646,6 +6646,92 @@
                 e2
               );
             }, [a, c, m, i, s, v, r.browserName, r.browserVersion, E, l, d]);
+          const sendPlayerStateDefault = (v) => {
+            (0, eK.Pt)({
+              status: v.state.playerState.status.value,
+              isPlaying: v.state.playerState.status.value === eY.Xz.PLAYING,
+              canMoveForward:
+                v.state.currentContext.value?.availableActions.moveForward
+                  .value,
+              canMoveBackward:
+                v.state.currentContext.value?.availableActions.moveBackward
+                  .value,
+              track:
+                v.state.queueState.currentEntity.value?.entity.entityData.meta,
+              progress: v.state.playerState.progress.value?.position,
+              availableActions: {
+                moveBackward:
+                  v.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                moveForward:
+                  v.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                repeat:
+                  v.state.currentContext.value?.availableActions.repeat.value,
+                shuffle:
+                  v.state.currentContext.value?.availableActions.shuffle.value,
+                speed:
+                  v.state.currentContext.value?.availableActions.speed.value,
+              },
+              actionsStore: {
+                repeat: v.state.queueState.repeat.value,
+                shuffle: v.state.queueState.shuffle.value,
+                isLiked:
+                  v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                    v.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+                isDisliked:
+                  v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                    v.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+              },
+            });
+          };
+          const sendPlayerStatePlaying = (v) => {
+            (0, eK.Pt)({
+              status: eY.Xz.PLAYING,
+              isPlaying: true,
+              canMoveForward:
+                v.state.currentContext.value?.availableActions.moveForward
+                  .value,
+              canMoveBackward:
+                v.state.currentContext.value?.availableActions.moveBackward
+                  .value,
+              track:
+                v.state.queueState.currentEntity.value?.entity.entityData.meta,
+              progress: v.state.playerState.progress.value?.position,
+              availableActions: {
+                moveBackward:
+                  v.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                moveForward:
+                  v.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                repeat:
+                  v.state.currentContext.value?.availableActions.repeat.value,
+                shuffle:
+                  v.state.currentContext.value?.availableActions.shuffle.value,
+                speed:
+                  v.state.currentContext.value?.availableActions.speed.value,
+              },
+              actionsStore: {
+                repeat: v.state.queueState.repeat.value,
+                shuffle: v.state.queueState.shuffle.value,
+                isLiked:
+                  v.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                    v.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+                isDisliked:
+                  v.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                    v.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+              },
+            });
+          };
           (0, eQ.A4)(p),
             (0, f.useEffect)(() => {
               let e, t, i, r, o;
@@ -6664,6 +6750,7 @@
                         ),
                           i && n.setContextType(i),
                           r && n.setContextId(r);
+                        sendPlayerStatePlaying(p);
                       }),
                 l =
                   null == p
@@ -6681,9 +6768,17 @@
                   null == p
                     ? void 0
                     : p.state.playerState.status.onChange((e) => {
-                        e &&
-                          (n.setStatus(e),
-                          (0, eQ.Pt)({ isPlaying: e === eX.Xz.PLAYING }));
+                        e && (n.setStatus(e), sendPlayerStateDefault(p));
+                      }),
+                seekTracker =
+                  null == p
+                    ? void 0
+                    : p.state.playerState.event.onChange(() => {
+                        if (
+                          p.state.playerState.event.value === D.KX.SET_PROGRESS
+                        ) {
+                          sendPlayerStateDefault(p);
+                        }
                       }),
                 d =
                   null == p
@@ -6722,7 +6817,7 @@
                                           : e.availableActions.moveBackward
                                               .value);
                                       n.setCanMoveBackward(t),
-                                        (0, eQ.Pt)({ canMoveBackward: t });
+                                        sendPlayerStateDefault(p);
                                     },
                                   )),
                           (t =
@@ -6744,7 +6839,7 @@
                                           : e.availableActions.moveForward
                                               .value);
                                       n.setCanMoveForward(t),
-                                        (0, eQ.Pt)({ canMoveForward: t });
+                                        sendPlayerStateDefault(p);
                                     },
                                   )),
                           (i =
@@ -6765,7 +6860,8 @@
                                           ? void 0
                                           : e.availableActions.repeat.value;
                                     "boolean" == typeof t &&
-                                      n.setCanChangeRepeatMode(t);
+                                      n.setCanChangeRepeatMode(t),
+                                      sendPlayerStateDefault(p);
                                   })),
                           (r =
                             null == p
@@ -6785,6 +6881,7 @@
                                           ? void 0
                                           : e.availableActions.shuffle.value;
                                     "boolean" == typeof t && n.setCanShuffle(t);
+                                    sendPlayerStateDefault(p);
                                   })),
                           (o =
                             null == p
@@ -6821,6 +6918,7 @@
                     : p.state.queueState.repeat.onChange(() => {
                         let e = p.state.queueState.repeat.value;
                         n.setRepeatMode(e), h.set(e$.BUb.YmPlayerRepeatMode, e);
+                        sendPlayerStateDefault(p);
                       }),
                 c =
                   null == p
@@ -6828,12 +6926,14 @@
                     : p.state.queueState.shuffle.onChange(() => {
                         let e = p.state.queueState.shuffle.value;
                         n.setShuffle(e), h.set(e$.BUb.YmPlayerShuffle, e);
+                        sendPlayerStateDefault(p);
                       });
               return () => {
                 null == a || a(),
                   null == l || l(),
                   null == s || s(),
                   null == d || d(),
+                  null == seekTracker || seekTracker(),
                   null == u || u(),
                   null == C || C(),
                   null == c || c();
