@@ -804,11 +804,11 @@
               isPlaying: n,
               canMoveBackward: s,
               canMoveForward: i,
-                status: e.status,
-                track: e.track,
-                progress: e.progress,
-                availableActions: e.availableActions,
-                actionsStore: e.actionsStore,
+              status: e.status,
+              track: e.track,
+              progress: e.progress,
+              availableActions: e.availableActions,
+              actionsStore: e.actionsStore,
             });
         };
       var m = n(43215),
@@ -977,6 +977,53 @@
             message: m,
           });
         },
+        modUpdateToast = (e) => {
+          let { version: t, formatMessage: n, closeToast: i } = e,
+            u = (0, s.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.send(r.BOn.APPLICATION_RESTART),
+                null == i || i();
+            }, [i]),
+            m = (0, s.useMemo)(
+              () =>
+                (0, o.jsxs)("div", {
+                  className: h().message,
+                  children: [
+                    (0, o.jsx)(d.Caption, {
+                      className: h().text,
+                      variant: "div",
+                      type: "controls",
+                      size: "m",
+                      children: n(
+                        { id: "desktop.on-mod-update-available" },
+                        { version: t },
+                      ),
+                    }),
+                    (0, o.jsx)(l.z, {
+                      className: h().button,
+                      onClick: u,
+                      variant: "default",
+                      color: "secondary",
+                      size: "xs",
+                      radius: "xxxl",
+                      children: (0, o.jsx)(d.Caption, {
+                        variant: "div",
+                        type: "controls",
+                        size: "m",
+                        children: n({ id: "desktop.update" }),
+                      }),
+                    }),
+                  ],
+                }),
+              [n, u, t],
+            );
+          return (0, o.jsx)(c.Yj, {
+            className: (0, a.W)(h().root, h().important),
+            message: m,
+          });
+        },
         v = () => {
           let { formatMessage: e } = (0, i.Z)(),
             { notify: t } = (0, r.d$W)(),
@@ -988,6 +1035,20 @@
                   t((0, o.jsx)(m, { formatMessage: e, version: i }), {
                     containerId: r.W$x.IMPORTANT,
                   }));
+              },
+              [e, n, t],
+            ),
+            modUpdateCallback = (0, s.useCallback)(
+              (s, i, newVersion) => {
+                t(
+                  (0, o.jsx)(modUpdateToast, {
+                    formatMessage: e,
+                    version: `${i} -> ${newVersion}`,
+                  }),
+                  {
+                    containerId: r.W$x.IMPORTANT,
+                  },
+                );
               },
               [e, n, t],
             );
@@ -1005,6 +1066,20 @@
               }
             );
           }, [a]);
+          (0, s.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
+                var e;
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     17256: function (e, t, n) {
@@ -1060,152 +1135,152 @@
             switch (n) {
               case "PLAY":
               case "PAUSE":
-                case "TOGGLE_PLAY":
-                    null == e || e.togglePause();
-                    break;
-                case "MOVE_BACKWARD":
-                    null == e || e.moveBackward();
-                    break;
-                case "MOVE_FORWARD":
-                    null == e || e.moveForward();
-                    break;
-                case "TOGGLE_REPEAT":
-                    null == e ||
-                    e.mainPlayback.queueController.playerQueue.toggleRepeat();
-                    break;
-                case "REPEAT_NONE":
-                    null == e ||
-                    e.mainPlayback.queueController.playerQueue.setRepeatMode(
-                        "none",
-                    );
-                    break;
-                case "REPEAT_CONTEXT":
-                    null == e ||
-                    e.mainPlayback.queueController.playerQueue.setRepeatMode(
-                        "context",
-                    );
-                    break;
-                case "REPEAT_ONE":
-                    null == e ||
-                    e.mainPlayback.queueController.playerQueue.setRepeatMode(
-                        "one",
-                    );
-                    break;
-                case "TOGGLE_SHUFFLE":
-                    null == e || e.toggleShuffle();
-                    break;
-                case "TOGGLE_LIKE": {
-                    null == e ||
-                    e.mainPlayback.contextController.entityFactory.likeStore.toggleTrackLike(
-                        {
-                            entityId:
-                            e.mainPlayback.playbackState.queueState.currentEntity
-                                .value?.entity.entityData.meta.id,
-                            albumId:
-                            e.mainPlayback.playbackState.queueState.currentEntity
-                                .value?.entity.entityData.meta.albums[0].id,
-                            userId: window.localStorage._ym_uid.replaceAll('"', ""),
-                        },
-                    );
-                    (0, eventPS.Pt)({
-                        status: e.state.playerState.status.value,
-                        isPlaying: e.state.playerState.status.value === "playing",
-                        track:
-                        e.state.queueState.currentEntity.value?.entity.entityData
-                            .meta,
-                        progress: 0,
-                        availableActions: {
-                            moveBackward:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.moveBackward.value,
-                            moveForward:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.moveForward.value,
-                            repeat:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.repeat.value,
-                            shuffle:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.shuffle.value,
-                            speed:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.speed.value,
-                        },
-                        actionsStore: {
-                            repeat:
-                            e.mainPlayback.playbackState.queueState.repeat.value,
-                            shuffle:
-                            e.mainPlayback.playbackState.queueState.shuffle.value,
-                            isLiked:
-                                e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                    e.mainPlayback.playbackState.queueState.currentEntity
-                                        .value?.entity.entityData.meta.id,
-                                ),
-                            isDisliked:
-                                e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                    e.mainPlayback.playbackState.queueState.currentEntity
-                                        .value?.entity.entityData.meta.id,
-                                ),
-                        },
-                    });
-                    break;
-                }
-                case "TOGGLE_DISLIKE": {
-                    null == e ||
-                    e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.toggleTrackDislike(
-                        {
-                            entityId:
-                            e.mainPlayback.playbackState.queueState.currentEntity
-                                .value?.entity.entityData.meta.id,
-                            albumId:
-                            e.mainPlayback.playbackState.queueState.currentEntity
-                                .value?.entity.entityData.meta.albums[0].id,
-                            userId: window.localStorage._ym_uid.replaceAll('"', ""),
-                        },
-                    );
-                    (0, eventPS.Pt)({
-                        status: e.state.playerState.status.value,
-                        isPlaying: e.state.playerState.status.value === "playing",
-                        track:
-                        e.mainPlayback.playbackState.queueState.currentEntity.value
-                            ?.entity.entityData.meta,
-                        progress: 0,
-                        availableActions: {
-                            moveBackward:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.moveBackward.value,
-                            moveForward:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.moveForward.value,
-                            repeat:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.repeat.value,
-                            shuffle:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.shuffle.value,
-                            speed:
-                            e.mainPlayback.playbackState.currentContext.value
-                                ?.availableActions.speed.value,
-                        },
-                        actionsStore: {
-                            repeat:
-                            e.mainPlayback.playbackState.queueState.repeat.value,
-                            shuffle:
-                            e.mainPlayback.playbackState.queueState.shuffle.value,
-                            isLiked:
-                                e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                                    e.mainPlayback.playbackState.queueState.currentEntity
-                                        .value?.entity.entityData.meta.id,
-                                ),
-                            isDisliked:
-                                e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                                    e.mainPlayback.playbackState.queueState.currentEntity
-                                        .value?.entity.entityData.meta.id,
-                                ),
-                        },
-                    });
-                    break;
-                }
+              case "TOGGLE_PLAY":
+                null == e || e.togglePause();
+                break;
+              case "MOVE_BACKWARD":
+                null == e || e.moveBackward();
+                break;
+              case "MOVE_FORWARD":
+                null == e || e.moveForward();
+                break;
+              case "TOGGLE_REPEAT":
+                null == e ||
+                  e.mainPlayback.queueController.playerQueue.toggleRepeat();
+                break;
+              case "REPEAT_NONE":
+                null == e ||
+                  e.mainPlayback.queueController.playerQueue.setRepeatMode(
+                    "none",
+                  );
+                break;
+              case "REPEAT_CONTEXT":
+                null == e ||
+                  e.mainPlayback.queueController.playerQueue.setRepeatMode(
+                    "context",
+                  );
+                break;
+              case "REPEAT_ONE":
+                null == e ||
+                  e.mainPlayback.queueController.playerQueue.setRepeatMode(
+                    "one",
+                  );
+                break;
+              case "TOGGLE_SHUFFLE":
+                null == e || e.toggleShuffle();
+                break;
+              case "TOGGLE_LIKE": {
+                null == e ||
+                  e.mainPlayback.contextController.entityFactory.likeStore.toggleTrackLike(
+                    {
+                      entityId:
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      albumId:
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.albums[0].id,
+                      userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                    },
+                  );
+                (0, eventPS.Pt)({
+                  status: e.state.playerState.status.value,
+                  isPlaying: e.state.playerState.status.value === "playing",
+                  track:
+                    e.state.queueState.currentEntity.value?.entity.entityData
+                      .meta,
+                  progress: 0,
+                  availableActions: {
+                    moveBackward:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.moveBackward.value,
+                    moveForward:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.moveForward.value,
+                    repeat:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.repeat.value,
+                    shuffle:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.shuffle.value,
+                    speed:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.speed.value,
+                  },
+                  actionsStore: {
+                    repeat:
+                      e.mainPlayback.playbackState.queueState.repeat.value,
+                    shuffle:
+                      e.mainPlayback.playbackState.queueState.shuffle.value,
+                    isLiked:
+                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      ),
+                    isDisliked:
+                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      ),
+                  },
+                });
+                break;
+              }
+              case "TOGGLE_DISLIKE": {
+                null == e ||
+                  e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.toggleTrackDislike(
+                    {
+                      entityId:
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      albumId:
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.albums[0].id,
+                      userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                    },
+                  );
+                (0, eventPS.Pt)({
+                  status: e.state.playerState.status.value,
+                  isPlaying: e.state.playerState.status.value === "playing",
+                  track:
+                    e.mainPlayback.playbackState.queueState.currentEntity.value
+                      ?.entity.entityData.meta,
+                  progress: 0,
+                  availableActions: {
+                    moveBackward:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.moveBackward.value,
+                    moveForward:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.moveForward.value,
+                    repeat:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.repeat.value,
+                    shuffle:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.shuffle.value,
+                    speed:
+                      e.mainPlayback.playbackState.currentContext.value
+                        ?.availableActions.speed.value,
+                  },
+                  actionsStore: {
+                    repeat:
+                      e.mainPlayback.playbackState.queueState.repeat.value,
+                    shuffle:
+                      e.mainPlayback.playbackState.queueState.shuffle.value,
+                    isLiked:
+                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      ),
+                    isDisliked:
+                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.mainPlayback.playbackState.queueState.currentEntity
+                          .value?.entity.entityData.meta.id,
+                      ),
+                  },
+                });
+                break;
+              }
             }
           },
           [e],
