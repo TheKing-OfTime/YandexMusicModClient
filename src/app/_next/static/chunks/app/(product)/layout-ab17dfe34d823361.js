@@ -6647,9 +6647,9 @@
               );
             }, [a, c, m, i, s, v, r.browserName, r.browserVersion, E, l, d]);
           const sendPlayerStateDefault = (v) => {
-            (0, eK.Pt)({
+            (0, eQ.Pt)({
               status: v.state.playerState.status.value,
-              isPlaying: v.state.playerState.status.value === eY.Xz.PLAYING,
+              isPlaying: v.state.playerState.status.value === D.Xz.PLAYING,
               canMoveForward:
                 v.state.currentContext.value?.availableActions.moveForward
                   .value,
@@ -6690,8 +6690,8 @@
             });
           };
           const sendPlayerStatePlaying = (v) => {
-            (0, eK.Pt)({
-              status: eY.Xz.PLAYING,
+            (0, eQ.Pt)({
+              status: D.Xz.PLAYING,
               isPlaying: true,
               canMoveForward:
                 v.state.currentContext.value?.availableActions.moveForward
