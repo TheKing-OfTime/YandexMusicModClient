@@ -821,7 +821,7 @@
             { sonataState: S, user: E } = (0, v.oR4)(),
             { theme: T } = (0, v.FgM)(),
             R = (0, v.jpI)(),
-            A = S.status === d.Xz.PLAYING && S.contextType === a.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
+            A = S.status === d.Xz.PLAYING && (S.contextType === a.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, r.useEffect)(() => {
               if (g.current) {
