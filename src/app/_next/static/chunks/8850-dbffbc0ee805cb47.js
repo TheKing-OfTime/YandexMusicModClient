@@ -3249,7 +3249,7 @@
             aac: "AAC",
             flac: "FLAC",
           };
-          let theState = (0, d.R$)();
+          let theState = (0, d.R$C)();
           let [downloadInfo, setDownloadInfo] = (0, s.useState)(
             theState?.state?.queueState?.currentEntity?.value?.entity
               ?.mediaSource?.downloadInfo,
@@ -3268,7 +3268,7 @@
                 null == timer || clearTimeout(timer);
               };
             }),
-            (0, r.jsxs)("section", {
+            (0, n.jsxs)("section", {
               style: W,
               className: (0, l.W)(ee().root, { [ee().root_disabled]: !a }, i),
               onDoubleClick: G,
@@ -3394,17 +3394,28 @@
                             placement: "bottom",
                             open: S,
                             onOpenChange: L,
-                            children:
-                              (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
-                                ? codecMap[downloadInfo?.codec]
-                                : qualityMap[downloadInfo?.quality]) ??
-                              (0, r.jsx)(h.J, {
-                                variant: "settings",
-                                size: "xs",
-                              }),
+                            icon: (0, n.jsx)(h.J, {
+                              variant: "settings",
+                              size: "xs",
+                            }),
                             size: "xxxs",
                             referenceClassName: ee().settingsButton,
                           }),
+                            (0, n.jsx)(T.wx, {
+                                title: 'Качество трека',
+                                description: downloadInfo?.bitrate !== 0
+                                    ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
+                                    : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
+                                children: (0, n.jsxs)("div", {
+                                    children: (0, n.jsxs)("span", {
+                                        className: ee().settingsButton,
+                                        children:
+                                            window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                                ? codecMap[downloadInfo?.codec]
+                                                : qualityMap[downloadInfo?.quality],
+                                    }),
+                                }),
+                            }),
                         ],
                       }),
                     (0, n.jsx)(P.F, {}),
