@@ -3108,7 +3108,12 @@
       let et = "player-region",
         ei = (0, o.Pi)((e) => {
           var t;
-          let { className: i, entityMeta: a, onLikeClick: r, onDislikeClick: onDislikeClick, } = e,
+          let {
+              className: i,
+              entityMeta: a,
+              onLikeClick: r,
+              onDislikeClick: onDislikeClick,
+            } = e,
             {
               user: o,
               sonataState: c,
@@ -3237,145 +3242,177 @@
                   : null,
               [a, D, O],
             );
-          return (0, n.jsxs)("section", {
-            style: W,
-            className: (0, l.W)(ee().root, { [ee().root_disabled]: !a }, i),
-            onDoubleClick: G,
-            "aria-labelledby": et,
-            ...(0, v.BA)(v.QM.player.PLAYERBAR_DESKTOP),
-            children: [
-              (0, n.jsx)(b.y, {
-                children: (0, n.jsx)(f.Heading, {
-                  variant: "h3",
-                  id: et,
-                  children: (0, n.jsx)(p.Z, { id: "a11y-regions.player" }),
+          const qualityMap = { lq: "LQ", nq: "NQ", hq: "HQ", lossless: "HQ+" };
+          const codecMap = {
+            mp3: "MP3",
+            "he-aac": "HE-AAC",
+            aac: "AAC",
+            flac: "FLAC",
+          };
+          let theState = (0, d.R$)();
+          let [downloadInfo, setDownloadInfo] = (0, s.useState)(
+            theState?.state?.queueState?.currentEntity?.value?.entity
+              ?.mediaSource?.downloadInfo,
+          );
+          return (
+            (0, s.useEffect)(() => {
+              const timer = setTimeout(() => {
+                let fDownloadInfo =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSource?.downloadInfo;
+                if (fDownloadInfo) {
+                  setDownloadInfo(fDownloadInfo);
+                }
+              }, 400);
+              return () => {
+                null == timer || clearTimeout(timer);
+              };
+            }),
+            (0, r.jsxs)("section", {
+              style: W,
+              className: (0, l.W)(ee().root, { [ee().root_disabled]: !a }, i),
+              onDoubleClick: G,
+              "aria-labelledby": et,
+              ...(0, v.BA)(v.QM.player.PLAYERBAR_DESKTOP),
+              children: [
+                (0, n.jsx)(b.y, {
+                  children: (0, n.jsx)(f.Heading, {
+                    variant: "h3",
+                    id: et,
+                    children: (0, n.jsx)(p.Z, { id: "a11y-regions.player" }),
+                  }),
                 }),
-              }),
-              (0, n.jsxs)("div", {
-                className: ee().info,
-                children: [
-                  (0, n.jsx)("div", {
-                    className: ee().infoCard,
-                    children:
-                      a &&
-                      (0, n.jsxs)(n.Fragment, {
-                        children: [
-                          (0, n.jsxs)(C.Paper, {
-                            radius: "s",
-                            className: ee().coverContainer,
-                            children: [
-                              (0, n.jsx)(T.BE, {
-                                className: ee().cover,
-                                src: a.coverUri,
-                                size: 100,
-                                fit: "cover",
-                                withAvatarReplace: !0,
-                              }),
-                              E &&
-                                (0, n.jsxs)(g.u, {
-                                  placement: "top",
-                                  offsetOptions: 4,
-                                  children: [
-                                    (0, n.jsx)(V, {
-                                      ariaLabel: A({
-                                        id: "player-actions.fullscreen",
-                                      }),
-                                      onClick: u.showFullscreenPlayerModal,
-                                    }),
-                                    (0, n.jsx)(g._v, {
-                                      children: (0, n.jsx)(p.Z, {
-                                        id: "player-actions.fullscreen",
-                                      }),
-                                    }),
-                                  ],
+                (0, n.jsxs)("div", {
+                  className: ee().info,
+                  children: [
+                    (0, n.jsx)("div", {
+                      className: ee().infoCard,
+                      children:
+                        a &&
+                        (0, n.jsxs)(n.Fragment, {
+                          children: [
+                            (0, n.jsxs)(C.Paper, {
+                              radius: "s",
+                              className: ee().coverContainer,
+                              children: [
+                                (0, n.jsx)(T.BE, {
+                                  className: ee().cover,
+                                  src: a.coverUri,
+                                  size: 100,
+                                  fit: "cover",
+                                  withAvatarReplace: !0,
                                 }),
-                            ],
-                          }),
-                          (0, n.jsx)("div", {
-                            className: ee().description,
-                            children: Z,
-                          }),
-                        ],
+                                E &&
+                                  (0, n.jsxs)(g.u, {
+                                    placement: "top",
+                                    offsetOptions: 4,
+                                    children: [
+                                      (0, n.jsx)(V, {
+                                        ariaLabel: A({
+                                          id: "player-actions.fullscreen",
+                                        }),
+                                        onClick: u.showFullscreenPlayerModal,
+                                      }),
+                                      (0, n.jsx)(g._v, {
+                                        children: (0, n.jsx)(p.Z, {
+                                          id: "player-actions.fullscreen",
+                                        }),
+                                      }),
+                                    ],
+                                  }),
+                              ],
+                            }),
+                            (0, n.jsx)("div", {
+                              className: ee().description,
+                              children: Z,
+                            }),
+                          ],
+                        }),
+                    }),
+                    (0, n.jsx)("div", {
+                      className: ee().infoButtons,
+                      onDoubleClick: F,
+                      children:
+                        a &&
+                        R &&
+                        (0, n.jsxs)(n.Fragment, {
+                          children: [
+                            (0, n.jsx)(T.Q1, {
+                              className: ee().dislikeButton,
+                              isLiked: a.isDisliked,
+                              onClick: onDislikeClick,
+                              iconSize: "xs",
+                            }),
+                            (0, n.jsx)(T.dJ, {
+                              className: ee().likeButton,
+                              isLiked: a.isLiked,
+                              onClick: r,
+                              iconSize: "xs",
+                            }),
+                            (0, n.jsx)(I.hz, {
+                              track: a,
+                              placement: "top",
+                              open: N,
+                              onOpenChange: j,
+                              icon: (0, n.jsx)(h.J, {
+                                size: "xs",
+                                variant: "more",
+                              }),
+                              size: "s",
+                              ...(0, v.BA)(
+                                v.QM.player
+                                  .PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
+                              ),
+                            }),
+                          ],
+                        }),
+                    }),
+                  ],
+                }),
+                (0, n.jsxs)("div", {
+                  className: ee().sonata,
+                  children: [
+                    (0, n.jsx)(M.WP, { isMobile: !1, entityMeta: a }),
+                    !c.isGenerativeContext &&
+                      (0, n.jsx)(k, {
+                        disabled: !a,
+                        isMobile: !1,
+                        isFullscreen: !1,
                       }),
-                  }),
-                  (0, n.jsx)("div", {
-                    className: ee().infoButtons,
-                    onDoubleClick: F,
-                    children:
-                      a &&
-                      R &&
+                  ],
+                }),
+                (0, n.jsxs)("div", {
+                  className: ee().meta,
+                  children: [
+                    !c.isGenerativeContext &&
                       (0, n.jsxs)(n.Fragment, {
                         children: [
-                          (0, n.jsx)(T.Q1, {
-                            className: ee().dislikeButton,
-                            isLiked: a.isDisliked,
-                            onClick: onDislikeClick,
-                            iconSize: "xs",
-                          }),
-                          (0, n.jsx)(T.dJ, {
-                            className: ee().likeButton,
-                            isLiked: a.isLiked,
-                            onClick: r,
-                            iconSize: "xs",
-                          }),
-                          (0, n.jsx)(I.hz, {
-                            track: a,
-                            placement: "top",
-                            open: N,
-                            onOpenChange: j,
-                            icon: (0, n.jsx)(h.J, {
-                              size: "xs",
-                              variant: "more",
-                            }),
-                            size: "s",
-                            ...(0, v.BA)(
-                              v.QM.player.PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
-                            ),
+                          z && (0, n.jsx)(T.t5, { iconSize: "l" }),
+                          U,
+                          Q,
+                          (0, n.jsx)(X, {
+                            placement: "bottom",
+                            open: S,
+                            onOpenChange: L,
+                            children:
+                              (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                ? codecMap[downloadInfo?.codec]
+                                : qualityMap[downloadInfo?.quality]) ??
+                              (0, r.jsx)(h.J, {
+                                variant: "settings",
+                                size: "xs",
+                              }),
+                            size: "xxxs",
+                            referenceClassName: ee().settingsButton,
                           }),
                         ],
                       }),
-                  }),
-                ],
-              }),
-              (0, n.jsxs)("div", {
-                className: ee().sonata,
-                children: [
-                  (0, n.jsx)(M.WP, { isMobile: !1, entityMeta: a }),
-                  !c.isGenerativeContext &&
-                    (0, n.jsx)(k, {
-                      disabled: !a,
-                      isMobile: !1,
-                      isFullscreen: !1,
-                    }),
-                ],
-              }),
-              (0, n.jsxs)("div", {
-                className: ee().meta,
-                children: [
-                  !c.isGenerativeContext &&
-                    (0, n.jsxs)(n.Fragment, {
-                      children: [
-                        z && (0, n.jsx)(T.t5, { iconSize: "l" }),
-                        U,
-                        Q,
-                        (0, n.jsx)(X, {
-                          placement: "bottom",
-                          open: S,
-                          onOpenChange: L,
-                          icon: (0, n.jsx)(h.J, {
-                            variant: "settings",
-                            size: "xs",
-                          }),
-                          size: "xxxs",
-                          referenceClassName: ee().settingsButton,
-                        }),
-                      ],
-                    }),
-                  (0, n.jsx)(P.F, {}),
-                ],
-              }),
-            ],
-          });
+                    (0, n.jsx)(P.F, {}),
+                  ],
+                }),
+              ],
+            })
+          );
         });
       var ea = i(83249),
         er = i.n(ea);
