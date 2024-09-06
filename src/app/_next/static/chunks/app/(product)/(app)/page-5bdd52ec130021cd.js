@@ -600,6 +600,7 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
+          this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -616,7 +617,8 @@
         }
         update(e, t) {
           if (
-            (this.energy.next(e),
+            (this.trackEnergy.next(e),
+            this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -624,9 +626,14 @@
             this.updateTime(e),
             t)
           ) {
-            let n = t.getAverageFrequencies({ low: 0, high: 250 }),
-              i = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              o = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
+            let n = t.getAverageFrequencies({ low: 0, high: 450 }),
+              i = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              o = t.getAverageFrequencies({ low: 5e3, high: 16e3 });
+            let intensity = (((i + a + n)/3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1));
+            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(this.trackEnergy.value + intensity);
+            this.energy.next(e),
+            this.trackEnergy.next(e),
             this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
@@ -663,6 +670,11 @@
               "energy",
               new a.DynamicValue(r.DEFAULT_ENERGY, r.DEFAULT_ENERGY, 1e3),
             ),
+              i._(
+                  this,
+                  "trackEnergy",
+                  new a.DynamicValue(r.DEFAULT_ENERGY, r.DEFAULT_ENERGY, 1e3),
+              ),
             i._(this, "time", Math.floor(3600 * Math.random())),
             i._(this, "color", void 0),
             i._(this, "rotation", [
@@ -809,7 +821,7 @@
             { sonataState: S, user: E } = (0, v.oR4)(),
             { theme: T } = (0, v.FgM)(),
             R = (0, v.jpI)(),
-            A = S.status === d.Xz.PLAYING && S.contextType === a.Ak.Vibe;
+            A = S.status === d.Xz.PLAYING && S.contextType === a.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, r.useEffect)(() => {
               if (g.current) {

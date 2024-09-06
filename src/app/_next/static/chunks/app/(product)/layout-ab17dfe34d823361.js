@@ -6074,25 +6074,46 @@
         }
       }
       class eF {
+          /**
+           * Normalize a dB value in the [0;1] range
+           */
+          _normalizedB(value) {
+              const isLinear = true,
+                  boost = isLinear ? 1 / (window.VIBE_ANIMATION_LINEAR_DEBOOST ?? 1) : 1,
+                  clamp = (val, min, max) =>
+                      val <= min ? min : val >= max ? max : val,
+                  dBToLinear = (val) => 10 ** (val / 20);
+
+              let maxValue = 255,
+                  minValue = 0;
+
+              if (!isLinear) {
+                  maxValue = dBToLinear(maxValue);
+                  minValue = dBToLinear(minValue);
+                  value = dBToLinear(value) ** boost;
+              }
+
+              return clamp(
+                  (value - minValue) / (maxValue - minValue) ** boost,
+                  0,
+                  1,
+              );
+          }
         getAverageFrequencies(e) {
           var t, i;
           let { low: r, high: o } = e,
-            a = Math.floor(
-              r / (this.audioContext.sampleRate / this.bufferLength),
-            ),
-            n = Math.floor(
-              o / (this.audioContext.sampleRate / this.bufferLength),
-            );
-          null === (t = this.analyserNode) ||
+              a = Math.floor( r * this.analyserNode.fftSize / this.audioContext.sampleRate ),
+              n = Math.floor( o * this.analyserNode.fftSize / this.audioContext.sampleRate );
+            null === (t = this.analyserNode) ||
             void 0 === t ||
             t.getByteFrequencyData(this.spectrum);
-          let l = 0,
-            s = 0;
-          for (let e = a; e <= n; e++)
-            (l +=
-              (null !== (i = this.spectrum[e]) && void 0 !== i ? i : 0) / 256),
-              s++;
-          return l / s;
+            let l = 0,
+                s = 0;
+            for (let e = a; e <= n; e++) {
+                l += this._normalizedB(this.spectrum[e]);
+                s++;
+            }
+            return l / s;
         }
         constructor(e, t, i) {
           var r, o;
@@ -6105,12 +6126,12 @@
             (this.analyserNode.fftSize =
               null !== (r = null == i ? void 0 : i.fftSize) && void 0 !== r
                 ? r
-                : 32),
+                : 2048),
             (this.analyserNode.smoothingTimeConstant =
               null !== (o = null == i ? void 0 : i.smoothingTimeConstant) &&
               void 0 !== o
                 ? o
-                : 0.9),
+                : 0.4),
             t.connect(this.analyserNode),
             this.analyserNode.connect(this.audioContext.destination),
             (this.bufferLength = this.analyserNode.frequencyBinCount),
