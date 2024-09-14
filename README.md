@@ -64,7 +64,8 @@ Adds support for Discord Rich Presence
       
 </details>
 
-![DiscordCanary_pY0zr8zq3P](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/7c308ef1-77a4-4f0c-9ed8-25c36ff3ccc6)
+![image](https://github.com/user-attachments/assets/dd793a12-d67c-4d9e-930a-00c7f7ce47c1)
+
 </details>
 
 ### Taskbar Extensions
