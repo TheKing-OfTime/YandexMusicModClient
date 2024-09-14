@@ -140,7 +140,7 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
 	    "intensityCoefficient": 1, 	// Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
 	    "linearDeBoost": 5,		// Separation coefficient of track peaks from the main track. Default 5. Recommended 2 - 8. If 1 disables libear deboost.
 	    "playOnAnyEntity": false,	// If enabled Animation plays even if not My Vibe used as track source.
-	    "disableRendering": false	// Disables rendedring of the animation. Use only if you feel significant fps drops. Else try adjust maxFPS value.
+	    "disableRendering": false	// Disables rendering of the animation. Use only if you feel significant fps drops. Else try adjust maxFPS value.
       }
       
 </details>
