@@ -63,7 +63,8 @@
 
    
 Добавляет поддержку отображения текущего трека как статуса в Discord
-![DiscordCanary_pY0zr8zq3P](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/7c308ef1-77a4-4f0c-9ed8-25c36ff3ccc6)
+![image](https://github.com/user-attachments/assets/ff3b0726-6f83-4849-bce6-c5eb31523efa)
+
 </details>
 
 ### Кнопки в превью панели задач
