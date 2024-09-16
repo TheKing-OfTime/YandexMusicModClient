@@ -236,7 +236,7 @@ const discordRichPresence = (playingState) => {
 
   let album = playingState.track.albums?.[0]?.title;
 
-  if (title === album) {
+  if (title === album || album === undefined) {
     album = undefined;
   } else if (isListeningType) {
     album = "on " + album;
