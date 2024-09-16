@@ -26,7 +26,7 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-      version: "1.14.1",
+      version: "1.14.2",
       branch: "onlyDiscordRPC"
   },
 };
