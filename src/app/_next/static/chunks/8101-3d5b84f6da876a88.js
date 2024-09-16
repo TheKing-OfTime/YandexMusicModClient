@@ -317,7 +317,7 @@
                 n.current !== i &&
                   ((n.current = i),
                   t(
-                    (0, r.jsx)(p, {
+                    (0, r.jsx)(modUpdateToast, {
                       formatMessage: e,
                       version: `${i} -> ${newVersion}`,
                     }),
