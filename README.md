@@ -59,7 +59,8 @@ Adds support for Discord Rich Presence
 			"applicationIDForRPC": "1124055337234858005",    //ID of your custom application for discord RPC
 			"showButtons": true or false,                    //Enables or disables all buttons in discord Status 
 			"overrideDeepLinksExperiment": true or false,    //Enables or disables split web and desktop buttons into one button
-			"showGitHubButton": true or false                //Enables or disables Github button if overrideDeepLinksExperiment set to true
+			"showGitHubButton": true or false,               //Enables or disables Github button if overrideDeepLinksExperiment set to true
+			"afkTimeout": 15,				 //Timeout for activity to be cleared if track paused. Value in minutes.
       }
       
 </details>
