@@ -582,6 +582,7 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
+          this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -598,7 +599,8 @@
         }
         update(e, t) {
           if (
-            (this.energy.next(e),
+            (this.trackEnergy.next(e),
+            this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -606,16 +608,21 @@
             this.updateTime(e),
             t)
           ) {
-            let i = t.getAverageFrequencies({ low: 0, high: 250 }),
-              n = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              a = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
+            let i = t.getAverageFrequencies({ low: 0, high: 450 }),
+              a = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              n = t.getAverageFrequencies({ low: 5e3, high: 16e3 });
+            let intensity = (((i + a + n)/3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1));
+            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(this.trackEnergy.value + intensity);
+            this.energy.next(e),
+            this.trackEnergy.next(e),
             this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
                 i * this.audioLowRatio.value,
-                n * this.audioMiddleRatio.value,
-                a * this.audioHighRatio.value,
+                a * this.audioMiddleRatio.value,
+                n * this.audioHighRatio.value,
               ]);
           }
         }
@@ -643,8 +650,13 @@
             n._(
               this,
               "energy",
-              new r.DynamicValue(s.DEFAULT_ENERGY, s.DEFAULT_ENERGY, 1e3),
+              new r.DynamicValue(s.DEFAULT_ENERGY, s.DEFAULT_ENERGY, 100),
             ),
+              n._(
+                  this,
+                  "trackEnergy",
+                  new r.DynamicValue(s.DEFAULT_ENERGY, s.DEFAULT_ENERGY, 1e3),
+              ),
             n._(this, "time", Math.floor(3600 * Math.random())),
             n._(this, "color", void 0),
             n._(this, "rotation", [
