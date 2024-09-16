@@ -32,6 +32,7 @@ const init = () => {
       showButtons: true,
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
+      afkTimeout: 15,
     },
     taskBarExtensions: {
       enable: true,

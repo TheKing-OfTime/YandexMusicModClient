@@ -126,7 +126,7 @@ async function setActivity(
         rpc.clearActivity();
         timeoutId = undefined;
       },
-      15 * 60 * 1000,
+      ((settings?.afkTimeout ?? 15) * 60 * 1000),
     );
   }
 
