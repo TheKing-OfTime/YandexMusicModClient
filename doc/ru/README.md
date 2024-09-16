@@ -56,7 +56,8 @@
 			"applicationIDForRPC": "1124055337234858005",    //ID пользовательского приложения вашего для discord RPC
 			"showButtons": true or false,                    //Включает или отключает все кнопки в состоянии discord 
 			"overrideDeepLinksExperiment": true or false,    //Включает или отключает разделение веб-кнопок и кнопок рабочего стола на одну кнопку
-			"showGitHubButton": true or false                //Включает или отключает кнопку Github, если для параметра overrideDeepLinksExperiment установлено значение true
+			"showGitHubButton": true or false,               //Включает или отключает кнопку Github, если для параметра overrideDeepLinksExperiment установлено значение true
+			"afkTimeout": 15,				 //Время в минутах через которое статус в дискорде пропадёт если трек был поставлен на паузу.
       }
       
 </details>
