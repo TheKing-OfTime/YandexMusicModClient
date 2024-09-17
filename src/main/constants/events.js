@@ -20,4 +20,5 @@ var Events;
   Events["FIRST_LAUNCH"] = "FIRST_LAUNCH";
   Events["APPLICATION_THEME"] = "APPLICATION_THEME";
   Events["APPLICATION_RESTART"] = "APPLICATION_RESTART";
+  Events["PROBABILITY_BUCKET"] = "PROBABILITY_BUCKET";
 })(Events || (exports.Events = Events = {}));

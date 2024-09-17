@@ -17,6 +17,18 @@
             "value": "Yandex Music ծառայությունը կարող է պարունակել տեղեկություններ, որոնք նախատեսված չեն անչափահասների համար"
         }
     ],
+    "ads.ad": [
+        {
+            "type": 0,
+            "value": "Գովազդ"
+        }
+    ],
+    "ads.learn-more": [
+        {
+            "type": 0,
+            "value": "Իմանալ ավելին"
+        }
+    ],
     "advert.banner": [
         {
             "type": 0,
@@ -356,7 +368,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "August 28, 2024"
+                    "value": "28 օգոստոսի, 2024 թ."
                 }
             ],
             "type": 8,
@@ -370,7 +382,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Set Cheerful mood in My Vibe! Why? Because once again, we fixed all the bugs. Now nothing will stay in the way of discovering new music"
+                    "value": "Ուրախ տրամադրություն ենք ընտրում Իմ ալիքում։ Ո՞րն է առիթը։ Մենք նորից վերացրել ենք բոլոր բագերը, և այժմ ոչինչ չի խանգարի ձեզ նոր երաժշտություն բացահայտել"
                 }
             ],
             "type": 8,
@@ -386,7 +398,7 @@
         },
         {
             "type": 0,
-            "value": "\nCheerful and optimistic,\n"
+            "value": "\nԼավագույնի մաղթանքով՝\n"
         },
         {
             "type": 1,
@@ -394,7 +406,7 @@
         },
         {
             "type": 0,
-            "value": "\nYandex Music team"
+            "value": "\nYandex Music-ի թիմ"
         }
     ],
     "desktop-release-notes.5.15.0": [
@@ -402,7 +414,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "4 сентября 2024 г."
+                    "value": "2024 թ. սեպտեմբերի 4"
                 }
             ],
             "type": 8,
@@ -416,7 +428,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                    "value": "Որոշ թարմացումներ հնարավոր չէ տեսնել, դրանք կարելի է միայն զգալ։ Ինչ-որ բաներ ավելի հարմար են դարձել, վրիպակներ են շտկվել։"
                 }
             ],
             "type": 8,
@@ -432,7 +444,7 @@
         },
         {
             "type": 0,
-            "value": "\nБыстрее, громче, сильнее,\n"
+            "value": "\nԱվելի արագ, ավելի բարձր, ավելի ուժեղ,\n"
         },
         {
             "type": 1,
@@ -440,51 +452,99 @@
         },
         {
             "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "\nYandex Music-ի թիմ"
         }
     ],
-    "desktop-release-notes.5.4.2": [
+    "desktop-release-notes.5.18.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "2024 թ. հունիսի 7"
+                    "value": "17 сентября 2024 г."
                 }
             ],
             "type": 8,
             "value": "date"
         },
         {
+            "type": 0,
+            "value": "\n"
+        },
+        {
             "children": [
                 {
                     "type": 0,
-                    "value": "Նոտաները ճիշտ դասավորելու դեպքում երաժշտություն կստացվի։ Իսկ այս թարմացումը նրանց համար է, ովքեր կարգ ու կանոն են սիրում երգացանկերում"
+                    "value": "Теперь вы не пропустите концерт любимого артиста! Мы о нём расскажем, и билет купить дадим. Рассказываем по порядку:"
                 }
             ],
             "type": 8,
             "value": "p"
         },
         {
+            "type": 0,
+            "value": "\n"
+        },
+        {
             "children": [
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
                 {
                     "children": [
                         {
                             "type": 0,
-                            "value": "Այժմ կարող եք խմբագրել կատարումների հերթականությունը երգացանկերում։ Պարզապես տեղափոխեք կատարումը ցանկի անհրաժեշտ տեղը։"
+                            "value": "Во вкладке «Для вас» появилась ваша персональная подборка концертов"
                         }
                     ],
                     "type": 8,
                     "value": "li"
                 },
                 {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
                     "children": [
                         {
                             "type": 0,
-                            "value": "Հավաքածուում երգացանկերով բաժինն ավելի կոմպակտ ենք դարձրել։ Այժմ երգացանկերը հավաքված են մեկ էջում՝ հարմար նավիգացիայով"
+                            "value": "Во вкладке «Тренды» мы собрали самые популярные концерты вашего города"
                         }
                     ],
                     "type": 8,
                     "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Билет на понравившийся концерт можно купить прямо в приложении. Нажмите на концерт в подборке и купите нужное количество билетов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "До конца месяца мы дарим 500 ₽ на первую покупку билетов от 3000 ₽ в Яндекс Музыке по промокоду MUSICLIVE"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
                 }
             ],
             "type": 8,
@@ -1863,7 +1923,7 @@
     "entity-names.track-in-playlist": [
         {
             "type": 0,
-            "value": "Уже есть в этом плейлисте"
+            "value": "Արդեն կա այս երգացանկում"
         }
     ],
     "entity-names.track-name": [
@@ -2189,15 +2249,7 @@
     "equalizer.slider-preamp-label": [
         {
             "type": 0,
-            "value": "Փոխել նախաուժեղարարի դեցիբելները՝ "
-        },
-        {
-            "type": 1,
-            "value": "value"
-        },
-        {
-            "type": 0,
-            "value": " դեցիբել"
+            "value": "Նախնական ուժեղացման գործակից"
         }
     ],
     "equalizer.soft-preset": [
@@ -3154,12 +3206,6 @@
             "value": "Վերնագիր"
         }
     ],
-    "non-music.bookmate-unavailable": [
-        {
-            "type": 0,
-            "value": "Bookmate տարբերակը կարելի է միացնել հավելվածում"
-        }
-    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -3882,6 +3928,20 @@
         {
             "type": 0,
             "value": "սիրելի կատարողին"
+        }
+    ],
+    "onboarding.trailer": [
+        {
+            "type": 0,
+            "value": "Ищите музыку по"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "лучшим отрывкам"
         }
     ],
     "page-error.page-does-not-exist": [
@@ -4736,70 +4796,54 @@
     ],
     "play-queue.audiobook-episode-will-be-played-last": [
         {
-            "type": 0,
-            "value": "Chapter "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the end of the queue"
+            "value": " գլուխն ավելացվել է հերթի վերջում"
         }
     ],
     "play-queue.audiobook-episode-will-be-played-next": [
         {
-            "type": 0,
-            "value": "Chapter "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the beginning of the queue"
+            "value": " գլուխն ավելացվել է հերթի սկզբում"
         }
     ],
     "play-queue.play-last": [
         {
             "type": 0,
-            "value": "Add to the end of the queue"
+            "value": "Ավելացնել հերթի վերջում"
         }
     ],
     "play-queue.play-next": [
         {
             "type": 0,
-            "value": "Play next"
+            "value": "Նվագարկել հաջորդիվ"
         }
     ],
     "play-queue.podcast-episode-will-be-played-last": [
         {
-            "type": 0,
-            "value": "Episode "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the end of the queue"
+            "value": " թողարկումն ավելացվել է հերթի վերջում"
         }
     ],
     "play-queue.podcast-episode-will-be-played-next": [
         {
-            "type": 0,
-            "value": "Episode "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the beginning of the queue"
+            "value": " թողարկումն ավելացվել է հերթի սկզբում"
         }
     ],
     "play-queue.title": [
@@ -4810,30 +4854,22 @@
     ],
     "play-queue.track-will-be-played-last": [
         {
-            "type": 0,
-            "value": "Track "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the end of the queue"
+            "value": " կատարումն ավելացվել է հերթի վերջում"
         }
     ],
     "play-queue.track-will-be-played-next": [
         {
-            "type": 0,
-            "value": "Track "
-        },
-        {
             "type": 1,
             "value": "title"
         },
         {
             "type": 0,
-            "value": " added to the beginning of the queue"
+            "value": " կատարումն ավելացվել է հերթի սկզբում"
         }
     ],
     "player-actions.audio-quality": [
@@ -4900,6 +4936,12 @@
         {
             "type": 0,
             "value": "Ամբողջ էկրանով մեկ"
+        }
+    ],
+    "player-actions.fullscreen-button": [
+        {
+            "type": 0,
+            "value": "Նվագարկիչն ամբողջ էկրանով մեկ"
         }
     ],
     "player-actions.listen": [
@@ -5068,6 +5110,18 @@
             "value": "Մուտքագրեք անվանումը"
         }
     ],
+    "playlist-actions.privacy": [
+        {
+            "type": 0,
+            "value": "Մասնավոր երգացանկ"
+        }
+    ],
+    "playlist-actions.privacy-label": [
+        {
+            "type": 0,
+            "value": "Փոխել երգացանկի գաղտնիության կարգավորումները"
+        }
+    ],
     "playlist-actions.remove-from-playlist": [
         {
             "type": 0,
@@ -5102,6 +5156,12 @@
         {
             "type": 0,
             "value": "Չհաջողվեց փոփոխել երգացանկի կազմը"
+        }
+    ],
+    "playlist-errors.failed-to-change-privacy-settings": [
+        {
+            "type": 0,
+            "value": "Չհաջողվեց փոփոխել գաղտնիության կարգավորումները"
         }
     ],
     "playlist-errors.failed-to-change-title": [
@@ -5470,6 +5530,12 @@
         {
             "type": 0,
             "value": "Թեժ ստեղներ"
+        }
+    ],
+    "shortcuts.fullscreen-player": [
+        {
+            "type": 0,
+            "value": "Բացել / փակել լիաէկրան նվագարկիչը"
         }
     ],
     "shortcuts.like": [
@@ -6265,7 +6331,7 @@
     "trailer.title-single": [
         {
             "type": 0,
-            "value": "Трейлер сингла"
+            "value": "Սինգլի թրեյլեր"
         }
     ],
     "trailer.title-track": [
@@ -6280,10 +6346,28 @@
             "value": "Չեղարկել բեռնումը"
         }
     ],
+    "ugc.repeat-upload": [
+        {
+            "type": 0,
+            "value": "Կրկնել բեռնումը"
+        }
+    ],
+    "ugc.track-uploading-error-status": [
+        {
+            "type": 0,
+            "value": "Բեռնման սխալ"
+        }
+    ],
     "ugc.track-uploading-pending-status": [
         {
             "type": 0,
             "value": "Բեռնում ենք կատարումը"
+        }
+    ],
+    "ugc.track-uploading-processing-status": [
+        {
+            "type": 0,
+            "value": "Մշակում ենք կատարումը"
         }
     ],
     "ugc.upload-track": [

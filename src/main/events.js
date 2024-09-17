@@ -59,7 +59,8 @@ const handleApplicationEvents = (window) => {
     updater.install();
   });
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_READY, () => {
-    eventsLogger.info("Event received", events_js_1.Events.APPLICATION_READY);
+        eventsLogger.info('Event received', events_js_1.Events.APPLICATION_READY);
+        (0, exports.sendProbabilityBucket)(window, updater.getProbabilityBucket());
     if (state_js_1.state.deeplink) {
       (0, handleDeeplink_js_1.navigateToDeeplink)(
         window,
@@ -126,6 +127,11 @@ const handleApplicationEvents = (window) => {
   });
 };
 exports.handleApplicationEvents = handleApplicationEvents;
+const sendProbabilityBucket = (window, bucket) => {
+    window.webContents.send(events_js_1.Events.PROBABILITY_BUCKET, bucket);
+    eventsLogger.info('Event sent', events_js_1.Events.PROBABILITY_BUCKET, bucket);
+};
+exports.sendProbabilityBucket = sendProbabilityBucket;
 const sendUpdateAvailable = (window, version) => {
   window.webContents.send(events_js_1.Events.UPDATE_AVAILABLE, version);
   eventsLogger.info("Event sent", events_js_1.Events.UPDATE_AVAILABLE, version);

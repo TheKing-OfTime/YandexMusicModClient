@@ -17,6 +17,18 @@
             "value": "The Yandex Music service may contain information not suitable for minors"
         }
     ],
+    "ads.ad": [
+        {
+            "type": 0,
+            "value": "Ads"
+        }
+    ],
+    "ads.learn-more": [
+        {
+            "type": 0,
+            "value": "Learn more"
+        }
+    ],
     "advert.banner": [
         {
             "type": 0,
@@ -402,7 +414,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "4 сентября 2024 г."
+                    "value": "September 4, 2024"
                 }
             ],
             "type": 8,
@@ -416,7 +428,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                    "value": "Some updates can't be seen but felt: some bugs disappeared, some functions became even more convenient. This is one of them!"
                 }
             ],
             "type": 8,
@@ -432,7 +444,7 @@
         },
         {
             "type": 0,
-            "value": "\nБыстрее, громче, сильнее,\n"
+            "value": "\nFaster, louder, stronger!\n"
         },
         {
             "type": 1,
@@ -440,15 +452,15 @@
         },
         {
             "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "\nYandex Music team"
         }
     ],
-    "desktop-release-notes.5.4.2": [
+    "desktop-release-notes.5.18.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "June 7, 2024"
+                    "value": "17 сентября 2024 г."
                 }
             ],
             "type": 8,
@@ -462,7 +474,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Notes in particular order turn into music. And this update is for those who like keeping their playlists in order."
+                    "value": "Теперь вы не пропустите концерт любимого артиста! Мы о нём расскажем, и билет купить дадим. Рассказываем по порядку:"
                 }
             ],
             "type": 8,
@@ -482,7 +494,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "You can now easily rearrange tracks in playlists: just drag them where you want."
+                            "value": "Во вкладке «Для вас» появилась ваша персональная подборка концертов"
                         }
                     ],
                     "type": 8,
@@ -496,7 +508,35 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "We've saved some space in the playlists section in the Collection. All your playlists are now displayed on a single page that's easy to navigate."
+                            "value": "Во вкладке «Тренды» мы собрали самые популярные концерты вашего города"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Билет на понравившийся концерт можно купить прямо в приложении. Нажмите на концерт в подборке и купите нужное количество билетов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "До конца месяца мы дарим 500 ₽ на первую покупку билетов от 3000 ₽ в Яндекс Музыке по промокоду MUSICLIVE"
                         }
                     ],
                     "type": 8,
@@ -509,10 +549,6 @@
             ],
             "type": 8,
             "value": "ul"
-        },
-        {
-            "type": 0,
-            "value": "\n\n\n\n"
         }
     ],
     "desktop-release-notes.5.5.0": [
@@ -1915,7 +1951,7 @@
     "entity-names.track-in-playlist": [
         {
             "type": 0,
-            "value": "Уже есть в этом плейлисте"
+            "value": "Already in this playlist"
         }
     ],
     "entity-names.track-name": [
@@ -2249,15 +2285,7 @@
     "equalizer.slider-preamp-label": [
         {
             "type": 0,
-            "value": "Adjust preamp to "
-        },
-        {
-            "type": 1,
-            "value": "value"
-        },
-        {
-            "type": 0,
-            "value": " decibels"
+            "value": "Preamp coefficient"
         }
     ],
     "equalizer.soft-preset": [
@@ -3194,12 +3222,6 @@
             "value": "Chapters"
         }
     ],
-    "non-music.bookmate-unavailable": [
-        {
-            "type": 0,
-            "value": "You can enable the Bookmate option in the app"
-        }
-    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -4038,6 +4060,20 @@
         {
             "type": 0,
             "value": "with a donation"
+        }
+    ],
+    "onboarding.trailer": [
+        {
+            "type": 0,
+            "value": "Ищите музыку по"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "лучшим отрывкам"
         }
     ],
     "page-error.page-does-not-exist": [
@@ -5078,6 +5114,12 @@
             "value": "Full-screen"
         }
     ],
+    "player-actions.fullscreen-button": [
+        {
+            "type": 0,
+            "value": "Fullscreen player"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -5244,6 +5286,18 @@
             "value": "Enter the name"
         }
     ],
+    "playlist-actions.privacy": [
+        {
+            "type": 0,
+            "value": "Private playlist"
+        }
+    ],
+    "playlist-actions.privacy-label": [
+        {
+            "type": 0,
+            "value": "Change playlist privacy settings"
+        }
+    ],
     "playlist-actions.remove-from-playlist": [
         {
             "type": 0,
@@ -5278,6 +5332,12 @@
         {
             "type": 0,
             "value": "Couldn't edit the cover image"
+        }
+    ],
+    "playlist-errors.failed-to-change-privacy-settings": [
+        {
+            "type": 0,
+            "value": "Couldn't change privacy settings"
         }
     ],
     "playlist-errors.failed-to-change-title": [
@@ -5642,6 +5702,12 @@
         {
             "type": 0,
             "value": "Hot keys"
+        }
+    ],
+    "shortcuts.fullscreen-player": [
+        {
+            "type": 0,
+            "value": "Open/close fullscreen player"
         }
     ],
     "shortcuts.like": [
@@ -6463,7 +6529,7 @@
     "trailer.title-single": [
         {
             "type": 0,
-            "value": "Трейлер сингла"
+            "value": "Single trailer"
         }
     ],
     "trailer.title-track": [
@@ -6478,10 +6544,28 @@
             "value": "Cancel upload"
         }
     ],
+    "ugc.repeat-upload": [
+        {
+            "type": 0,
+            "value": "Repeat uploading"
+        }
+    ],
+    "ugc.track-uploading-error-status": [
+        {
+            "type": 0,
+            "value": "Error uploading the track"
+        }
+    ],
     "ugc.track-uploading-pending-status": [
         {
             "type": 0,
             "value": "Uploading track"
+        }
+    ],
+    "ugc.track-uploading-processing-status": [
+        {
+            "type": 0,
+            "value": "Processing the track"
         }
     ],
     "ugc.upload-track": [

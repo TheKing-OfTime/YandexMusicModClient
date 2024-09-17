@@ -11,6 +11,7 @@ exports.config = {
   enableDevTools: false,
   enableWebSecurity: true,
   enableAutoUpdate: true,
+  enableUpdateByProbability: false,
   bypassCSP: false,
   buildPath: "app",
   appProtocol: "music-application",

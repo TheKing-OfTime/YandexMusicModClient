@@ -17,6 +17,18 @@
             "value": "Yandex Music xizmati voyaga yetmaganlar uchun moʻljallanmagan axborotni oʻz ichiga olishi mumkin"
         }
     ],
+    "ads.ad": [
+        {
+            "type": 0,
+            "value": "Reklama"
+        }
+    ],
+    "ads.learn-more": [
+        {
+            "type": 0,
+            "value": "Batafsil bilib olish"
+        }
+    ],
     "advert.banner": [
         {
             "type": 0,
@@ -406,7 +418,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "4 сентября 2024 г."
+                    "value": "2024-yil 4-sentabr"
                 }
             ],
             "type": 8,
@@ -420,7 +432,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                    "value": "Ayrim yangilanishlarni koʻrib boʻlmaydi, ularni faqat sezish mumkin: qayerdir qulayroq boʻladi, boshqa joyda muammo yoʻqoladi. Bu safar ham shunday boʻldi!"
                 }
             ],
             "type": 8,
@@ -436,7 +448,7 @@
         },
         {
             "type": 0,
-            "value": "\nБыстрее, громче, сильнее,\n"
+            "value": "\nTezroq, balandroq, kuchliroq,\n"
         },
         {
             "type": 1,
@@ -444,15 +456,15 @@
         },
         {
             "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "\nYandex Music jamoasi"
         }
     ],
-    "desktop-release-notes.5.4.2": [
+    "desktop-release-notes.5.18.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "2024-yil 7-iyun"
+                    "value": "17 сентября 2024 г."
                 }
             ],
             "type": 8,
@@ -466,7 +478,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Notalar toʻgʻri tartibda qoʻyib chiqilsa, musiqa hosil boʻladi. Bu yangilanish esa pleylistlardagi tartibni yoqtiruvchilar uchun"
+                    "value": "Теперь вы не пропустите концерт любимого артиста! Мы о нём расскажем, и билет купить дадим. Рассказываем по порядку:"
                 }
             ],
             "type": 8,
@@ -486,7 +498,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Pleylistlarda taronalar tartibini tahrirlash imkoniyati qoʻshildi. Shunchaki taronani roʻyxatdagi kerakli joyga koʻchiring"
+                            "value": "Во вкладке «Для вас» появилась ваша персональная подборка концертов"
                         }
                     ],
                     "type": 8,
@@ -500,7 +512,35 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Kolleksiyadagi pleylistlar boʻlimini ixchamlashtirdik – endi barcha pleylistlar qulay navigatsiyali bitta sahifaga jamlandi"
+                            "value": "Во вкладке «Тренды» мы собрали самые популярные концерты вашего города"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Билет на понравившийся концерт можно купить прямо в приложении. Нажмите на концерт в подборке и купите нужное количество билетов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "До конца месяца мы дарим 500 ₽ на первую покупку билетов от 3000 ₽ в Яндекс Музыке по промокоду MUSICLIVE"
                         }
                     ],
                     "type": 8,
@@ -513,10 +553,6 @@
             ],
             "type": 8,
             "value": "ul"
-        },
-        {
-            "type": 0,
-            "value": "\n\n\n\n"
         }
     ],
     "desktop-release-notes.5.5.0": [
@@ -2244,12 +2280,8 @@
     ],
     "equalizer.slider-preamp-label": [
         {
-            "type": 1,
-            "value": "value"
-        },
-        {
             "type": 0,
-            "value": " detsibel oldindan kuchaytirish detsibellarini oʻzgartirish"
+            "value": "Oldindan kuchaytirish koeffisiyenti"
         }
     ],
     "equalizer.soft-preset": [
@@ -3182,12 +3214,6 @@
             "value": "Sarlavha"
         }
     ],
-    "non-music.bookmate-unavailable": [
-        {
-            "type": 0,
-            "value": "Bookmate opsiyasini faqat ilovada yoqish mumkin"
-        }
-    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -3974,6 +4000,20 @@
         {
             "type": 0,
             "value": "xayriya bilan dastaklang"
+        }
+    ],
+    "onboarding.trailer": [
+        {
+            "type": 0,
+            "value": "Ищите музыку по"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "лучшим отрывкам"
         }
     ],
     "page-error.page-does-not-exist": [
@@ -4782,6 +4822,12 @@
             "value": "Butun ekranga"
         }
     ],
+    "player-actions.fullscreen-button": [
+        {
+            "type": 0,
+            "value": "Butun ekranga pleyer"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -4948,6 +4994,18 @@
             "value": "Nomini kiriting"
         }
     ],
+    "playlist-actions.privacy": [
+        {
+            "type": 0,
+            "value": "Maxfiy ijro ro‘yxati"
+        }
+    ],
+    "playlist-actions.privacy-label": [
+        {
+            "type": 0,
+            "value": "Pleylist maxfiyligi sozlamalarini oʻzgartirish"
+        }
+    ],
     "playlist-actions.remove-from-playlist": [
         {
             "type": 0,
@@ -4982,6 +5040,12 @@
         {
             "type": 0,
             "value": "Pleylist muqovasi oʻzgartirilmadi"
+        }
+    ],
+    "playlist-errors.failed-to-change-privacy-settings": [
+        {
+            "type": 0,
+            "value": "Maxfiylik sozlamalari oʻzgartirilmadi"
         }
     ],
     "playlist-errors.failed-to-change-title": [
@@ -5330,6 +5394,12 @@
         {
             "type": 0,
             "value": "Tezkor tugmalar"
+        }
+    ],
+    "shortcuts.fullscreen-player": [
+        {
+            "type": 0,
+            "value": "Butun ekranli pleyerni ochish / yopish"
         }
     ],
     "shortcuts.like": [
@@ -6150,10 +6220,28 @@
             "value": "Yuklashni bekor qilish"
         }
     ],
+    "ugc.repeat-upload": [
+        {
+            "type": 0,
+            "value": "Yuklashni takrorlash"
+        }
+    ],
+    "ugc.track-uploading-error-status": [
+        {
+            "type": 0,
+            "value": "Yuklashda xatolik"
+        }
+    ],
     "ugc.track-uploading-pending-status": [
         {
             "type": 0,
             "value": "Tarona yuklanmoqda"
+        }
+    ],
+    "ugc.track-uploading-processing-status": [
+        {
+            "type": 0,
+            "value": "Tarona qayta ishlanmoqda"
         }
     ],
     "ugc.upload-track": [

@@ -17,6 +17,18 @@
             "value": "Yandex Music xidməti yetkinlik yaşına çatmayanlar üçün nəzərdə tutulmayan məlumatlar ehtiva edə bilər"
         }
     ],
+    "ads.ad": [
+        {
+            "type": 0,
+            "value": "Reklam"
+        }
+    ],
+    "ads.learn-more": [
+        {
+            "type": 0,
+            "value": "Ətraflı məlumat"
+        }
+    ],
     "advert.banner": [
         {
             "type": 0,
@@ -406,7 +418,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "4 сентября 2024 г."
+                    "value": "4 sentyabr 2024-cü il."
                 }
             ],
             "type": 8,
@@ -420,7 +432,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Некоторые обновления нельзя увидеть, их можно только почувствовать: тут стало чуть удобнее, там баг пропал. В этот раз так и получилось!"
+                    "value": "Bəzi yeniləmələri hiss etmək lazımdır: daha rahat, daha təkmil. Bu dəfə məhz belədir!"
                 }
             ],
             "type": 8,
@@ -436,7 +448,7 @@
         },
         {
             "type": 0,
-            "value": "\nБыстрее, громче, сильнее,\n"
+            "value": "\nDaha sürətli, daha yüksək səsli, daha güclü,\n"
         },
         {
             "type": 1,
@@ -444,15 +456,15 @@
         },
         {
             "type": 0,
-            "value": "\nкоманда Яндекс Музыки"
+            "value": "\nYandex Music komandası"
         }
     ],
-    "desktop-release-notes.5.4.2": [
+    "desktop-release-notes.5.18.2": [
         {
             "children": [
                 {
                     "type": 0,
-                    "value": "7 iyun 2024-cü il."
+                    "value": "17 сентября 2024 г."
                 }
             ],
             "type": 8,
@@ -466,7 +478,7 @@
             "children": [
                 {
                     "type": 0,
-                    "value": "Notları düzgün qaydada sıraladıqda musiqi alınır. Bu yeniləmə də pleylistlərdə səliqə-səhmanı sevənlər üçündür"
+                    "value": "Теперь вы не пропустите концерт любимого артиста! Мы о нём расскажем, и билет купить дадим. Рассказываем по порядку:"
                 }
             ],
             "type": 8,
@@ -486,7 +498,7 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Pleylistlərdə treklərin sırasını redaktə etmək imkanı əlavə edilib. Sadəcə olaraq treki siyahıda lazımi olan yerə köçürün"
+                            "value": "Во вкладке «Для вас» появилась ваша персональная подборка концертов"
                         }
                     ],
                     "type": 8,
@@ -500,7 +512,35 @@
                     "children": [
                         {
                             "type": 0,
-                            "value": "Kolleksiyada pleylistlər bölməsi daha yığcamdər – indi bütün pleylistlər rahat naviqasiya ilə bir səhifədə toplanıb"
+                            "value": "Во вкладке «Тренды» мы собрали самые популярные концерты вашего города"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "Билет на понравившийся концерт можно купить прямо в приложении. Нажмите на концерт в подборке и купите нужное количество билетов"
+                        }
+                    ],
+                    "type": 8,
+                    "value": "li"
+                },
+                {
+                    "type": 0,
+                    "value": "\n"
+                },
+                {
+                    "children": [
+                        {
+                            "type": 0,
+                            "value": "До конца месяца мы дарим 500 ₽ на первую покупку билетов от 3000 ₽ в Яндекс Музыке по промокоду MUSICLIVE"
                         }
                     ],
                     "type": 8,
@@ -513,10 +553,6 @@
             ],
             "type": 8,
             "value": "ul"
-        },
-        {
-            "type": 0,
-            "value": "\n\n\n\n"
         }
     ],
     "desktop-release-notes.5.5.0": [
@@ -1907,7 +1943,7 @@
     "entity-names.track-in-playlist": [
         {
             "type": 0,
-            "value": "Уже есть в этом плейлисте"
+            "value": "Artıq bu pleylistdə var"
         }
     ],
     "entity-names.track-name": [
@@ -2240,12 +2276,8 @@
     ],
     "equalizer.slider-preamp-label": [
         {
-            "type": 1,
-            "value": "value"
-        },
-        {
             "type": 0,
-            "value": " desibel ilkin gücləndirmə desibelini dəyiş"
+            "value": "İlkin gücləndirmə əmsalı"
         }
     ],
     "equalizer.soft-preset": [
@@ -3186,12 +3218,6 @@
             "value": "Başlıq"
         }
     ],
-    "non-music.bookmate-unavailable": [
-        {
-            "type": 0,
-            "value": "Bookmate seçimini tətbiqdə aktiv etmək mümkündür"
-        }
-    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
@@ -3970,6 +3996,20 @@
         {
             "type": 0,
             "value": "ianə ilə dəstək olun"
+        }
+    ],
+    "onboarding.trailer": [
+        {
+            "type": 0,
+            "value": "Ищите музыку по"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "лучшим отрывкам"
         }
     ],
     "page-error.page-does-not-exist": [
@@ -4786,6 +4826,12 @@
             "value": "Tam ekran"
         }
     ],
+    "player-actions.fullscreen-button": [
+        {
+            "type": 0,
+            "value": "Tam ekran rejimində pleyer"
+        }
+    ],
     "player-actions.listen": [
         {
             "type": 0,
@@ -4952,6 +4998,18 @@
             "value": "Adı daxil edin"
         }
     ],
+    "playlist-actions.privacy": [
+        {
+            "type": 0,
+            "value": "Məxfi pleylist"
+        }
+    ],
+    "playlist-actions.privacy-label": [
+        {
+            "type": 0,
+            "value": "Pleylistin məxfilik parametrlərini dəyiş"
+        }
+    ],
     "playlist-actions.remove-from-playlist": [
         {
             "type": 0,
@@ -4986,6 +5044,12 @@
         {
             "type": 0,
             "value": "Pleylistin üzlüyünü dəyişmək mümkün olmadı"
+        }
+    ],
+    "playlist-errors.failed-to-change-privacy-settings": [
+        {
+            "type": 0,
+            "value": "Pleylistin məxfilik parametrlərini dəyişmək mümkün olmadı"
         }
     ],
     "playlist-errors.failed-to-change-title": [
@@ -5346,6 +5410,12 @@
         {
             "type": 0,
             "value": "Qısayol düymələri"
+        }
+    ],
+    "shortcuts.fullscreen-player": [
+        {
+            "type": 0,
+            "value": "Tam ekran pleylisti aç/bağla"
         }
     ],
     "shortcuts.like": [
@@ -6151,7 +6221,7 @@
     "trailer.title-single": [
         {
             "type": 0,
-            "value": "Трейлер сингла"
+            "value": "Sinqlın treyleri"
         }
     ],
     "trailer.title-track": [
@@ -6166,10 +6236,28 @@
             "value": "Yükləməni ləğv etmək"
         }
     ],
+    "ugc.repeat-upload": [
+        {
+            "type": 0,
+            "value": "Yükləməni təkrarla"
+        }
+    ],
+    "ugc.track-uploading-error-status": [
+        {
+            "type": 0,
+            "value": "Yükləmə xətası"
+        }
+    ],
     "ugc.track-uploading-pending-status": [
         {
             "type": 0,
             "value": "Trek yüklənir"
+        }
+    ],
+    "ugc.track-uploading-processing-status": [
+        {
+            "type": 0,
+            "value": "Trek emal edilir"
         }
     ],
     "ugc.upload-track": [
