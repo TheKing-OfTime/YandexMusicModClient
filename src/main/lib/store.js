@@ -55,6 +55,7 @@ const init = () => {
       WebNextEqualizer: 'on',
       WebNextTrackAboutModal: 'on',
       WebNextLanguageSwitcher: 'on',
+      WebNextUGC: 'on',
   });
 };
 exports.init = init;
