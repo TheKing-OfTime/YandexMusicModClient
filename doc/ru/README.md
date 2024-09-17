@@ -186,6 +186,9 @@ Devtools по умолчанию отключены. Чтобы включить
 ## Спонсоры
 Большое спасибо спонсорам, которые позволяют мне активно работать над этим проектом.
 <p align="left">
+   <a href="https://github.com/Dott-rus">
+      <img width="50" alt="Dott-rus" src="https://avatars.githubusercontent.com/u/78660260?v=4">
+   </a>
    <a href="https://github.com/Lemon4ksan">
       <img width="50" alt="Lemon4ksan" src="https://avatars.githubusercontent.com/u/122788290?v=4">
    </a>
