@@ -8,5 +8,6 @@ var StoreKeys;
     StoreKeys["WINDOW_DIMENSIONS"] = "windowDimensions";
     StoreKeys["MOD_FEATURES"] = "modFeatures";
     StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
+    StoreKeys["EXPERIMENT_OVERRIDES"] = "EXPERIMENT_OVERRIDES";
     StoreKeys["DEVICE_ID"] = "deviceId";
 })(StoreKeys || (exports.StoreKeys = StoreKeys = {}));

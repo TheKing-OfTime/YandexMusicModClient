@@ -51,6 +51,11 @@ const init = () => {
     },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
+  initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
+      WebNextEqualizer: 'on',
+      WebNextTrackAboutModal: 'on',
+      WebNextLanguageSwitcher: 'on',
+  });
 };
 exports.init = init;
 
@@ -143,3 +148,7 @@ const getModFeatures = () => {
   return store.get(store_js_1.StoreKeys.MOD_FEATURES);
 };
 exports.getModFeatures = getModFeatures;
+const getExperimentOverrides = () => {
+    return store.get(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES);
+};
+exports.getExperimentOverrides = getExperimentOverrides;

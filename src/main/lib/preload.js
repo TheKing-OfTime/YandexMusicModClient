@@ -38,6 +38,7 @@ electron_1.contextBridge.exposeInMainWorld(
   store_js_1.getModFeatures()?.playerBarEnhancement
     ?.showCodecInsteadOfQualityMark,
 );
+electron_1.contextBridge.exposeInMainWorld('EXPERIMENT_OVERRIDES', store_js_1.getExperimentOverrides())
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
