@@ -161,6 +161,7 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
       WebNextUGC: 'on',
 }
 ```
+</details>
 
 ### Devtools & Панель Разработчика
 <details>
