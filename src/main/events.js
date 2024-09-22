@@ -36,8 +36,9 @@ const handleApplicationEvents = (window) => {
         });
         if (canceled || !filePath || !downloadURL) return;
         const res = await fetch(downloadURL);
-        const buffer = await res.arrayBuffer();
+        const buffer = Buffer.from(await res.arrayBuffer());
         await fs.writeFile(filePath, buffer);
+        eventsLogger.info("Track downloaded", events_js_1.Events.DOWNLOAD_TRACK);
     });
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
