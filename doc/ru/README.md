@@ -153,6 +153,8 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
    
 Позволяет скачать текущий трек вам на ПК. Для этого нажмите на иконку качества/кодека трека. 
 
+</details>
+
 ### Эксперементы
 <details>
    <summary>Подробнее</summary>
