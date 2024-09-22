@@ -119,16 +119,6 @@ Displayes track quality or codec
 
 </details>
 
-### Language Switcher
-<details>
-   <summary>Details</summary>
-   
-Unblockes Language Switcher
-
-![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
-
-</details>
-
 ### Enhanced Vibe Animation
 <details>
    <summary>Details</summary>
@@ -155,6 +145,24 @@ after:
 
 https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
+
+</details>
+
+### Experiment overrides
+<details>
+   <summary>Details</summary>
+   
+Allows you to enable/disable any experiment in the app. To do so you need modify `%appdata%\YandexMusic\config.json`:
+
+By default overridden:
+```js
+{
+      WebNextEqualizer: 'on',
+      WebNextTrackAboutModal: 'on',
+      WebNextLanguageSwitcher: 'on',
+      WebNextUGC: 'on',
+}
+```
 
 </details>
 

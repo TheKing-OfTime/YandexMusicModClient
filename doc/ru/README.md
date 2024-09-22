@@ -118,16 +118,6 @@
 
 </details>
 
-### Переключатель локализации
-<details>
-   <summary>Подробнее</summary>
-   
-Разблокирует переключатель локализации
-
-![image](https://github.com/user-attachments/assets/0a283eaf-b745-4eeb-9cbe-990a75af76d7)
-
-</details>
-
 ### Улучшенная анимация Моей Волны
 <details>
    <summary>Подробнее</summary>
@@ -154,6 +144,23 @@ https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
 
 https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
+</details>
+
+### Эксперементы
+<details>
+   <summary>Подробнее</summary>
+   
+Позволяет включать/выключать эксперементы. Для этого вам нужно модифицировать `%appdata%\YandexMusic\config.json`:
+
+По умолчанию переопределены эти эксперементы:
+```js
+{
+      WebNextEqualizer: 'on',
+      WebNextTrackAboutModal: 'on',
+      WebNextLanguageSwitcher: 'on',
+      WebNextUGC: 'on',
+}
+```
 </details>
 
 ### Devtools & Панель Разработчика
