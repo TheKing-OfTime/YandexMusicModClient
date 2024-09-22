@@ -21,4 +21,5 @@ var Events;
   Events["APPLICATION_THEME"] = "APPLICATION_THEME";
   Events["APPLICATION_RESTART"] = "APPLICATION_RESTART";
   Events["PROBABILITY_BUCKET"] = "PROBABILITY_BUCKET";
+  Events["DOWNLOAD_TRACK"] = "DOWNLOAD_TRACK";
 })(Events || (exports.Events = Events = {}));

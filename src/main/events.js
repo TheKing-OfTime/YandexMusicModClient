@@ -9,6 +9,7 @@ exports.sendAnalyticsOnFirstLaunch =
   exports.handleApplicationEvents =
     void 0;
 const electron_1 = require("electron");
+const fs = require('fs').promises;
 const events_js_1 = require("./constants/events.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
@@ -27,6 +28,17 @@ const isBoolean = (value) => {
 };
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
+    electron_1.ipcMain.on(events_js_1.Events.DOWNLOAD_TRACK, async (event, data) => {
+        eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
+        const downloadURL = data.downloadURL;
+        const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
+          defaultPath: `${data.trackId}.${data.codec}`,
+        });
+        if (canceled || !filePath || !downloadURL) return;
+        const res = await fetch(downloadURL);
+        const buffer = await res.arrayBuffer();
+        await fs.writeFile(filePath, buffer);
+    });
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
     electron_1.app.relaunch()

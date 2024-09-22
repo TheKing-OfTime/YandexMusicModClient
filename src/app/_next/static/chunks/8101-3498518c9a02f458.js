@@ -46,6 +46,9 @@
         Tk: function () {
           return a.useReleaseNotes;
         },
+          sendDownloadTrack: function () {
+              return sendDownloadTrack;
+          },
       });
       var r = n(34152);
       let o = () => {
@@ -54,6 +57,12 @@
           void 0 === e ||
           e.send(r.BOn.APPLICATION_READY);
       };
+        let sendDownloadTrack = (e) => {
+            var t;
+            null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(r.BOn.DOWNLOAD_TRACK, {downloadURL: e.downloadURL, codec: e.codec, trackId: e.trackId});
+        };
       n(44928);
       var i = n(91021),
         l = n(22485),

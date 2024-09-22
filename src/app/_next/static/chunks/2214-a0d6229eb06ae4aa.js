@@ -3030,6 +3030,7 @@
         _ = i(2570),
         p = i(34152),
         v = i(75980),
+        electronBridge = i(78918),
         y = i.n(v);
       let x = (0, s.Pi)((e) => {
           let { className: t, data: i, mediaContent: a } = e,
@@ -3857,12 +3858,12 @@
                       N &&
                       (0, l.jsxs)(l.Fragment, {
                         children: [
-                            (0, l.jsx)(F.Q1, {
+                          (window.SHOW_DISLIKE_BUTTON ? (0, l.jsx)(F.Q1, {
                                 className: ec().dislikeButton,
                                 isDisliked: a.isDisliked,
                                 onClick: onDislikeClick,
                                 iconSize: "xs",
-                            }),
+                          }): undefined),
                           (0, l.jsx)(F.dJ, {
                             className: ec().likeButton,
                             isLiked: a.isLiked,
@@ -3926,8 +3927,13 @@
                                   ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
                                   : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
                               children: (0, l.jsxs)("div", {
+                                  className: ec().settingsButton,
+                                  onClick: () => {
+                                      electronBridge.sendDownloadTrack({downloadURL: downloadInfo?.url, codec: downloadInfo?.codec, trackId: downloadInfo?.trackId})
+                                  },
                                   children: (0, l.jsxs)("span", {
-                                      className: ec().settingsButton,
+                                      className: ec().settingsButton + ' NfB1qSw6DnoSwTr9I5mE',
+                                      style: {cursor: 'pointer'},
                                       children:
                                           window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
                                               ? codecMap[downloadInfo?.codec]

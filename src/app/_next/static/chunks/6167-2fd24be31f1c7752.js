@@ -618,6 +618,9 @@
         Tk: function () {
           return r.useReleaseNotes;
         },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
       });
       var o = n(34152);
       let l = () => {
@@ -625,6 +628,12 @@
         null === (e = window.desktopEvents) ||
           void 0 === e ||
           e.send(o.BOn.APPLICATION_READY);
+      };
+      let sendDownloadTrack = (e) => {
+        var t;
+        null === (t = window.desktopEvents) ||
+          void 0 === t ||
+          t.send(o.BOn.DOWNLOAD_TRACK, { downloadURL: e.downloadURL, codec: e.codec, trackId: e.trackId });
       };
       n(44928);
       var i = n(91021),

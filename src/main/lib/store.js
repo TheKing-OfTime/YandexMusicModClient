@@ -47,6 +47,7 @@ const init = () => {
       disableRendering: false,
     },
     playerBarEnhancement: {
+      showDislikeButton: true,
       showCodecInsteadOfQualityMark: false,
     },
   });
