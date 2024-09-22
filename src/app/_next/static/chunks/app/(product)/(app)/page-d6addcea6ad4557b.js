@@ -1022,7 +1022,7 @@
             { sonataState: S, user: E } = (0, u.oR4)(),
             { theme: T } = (0, u.FgM)(),
             R = (0, u.jpI)(),
-            V = S.status === d.Xz.PLAYING && S.contextType === a.Ak.Vibe;
+            V = S.status === d.Xz.PLAYING && (S.contextType === a.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, o.useEffect)(() => {
               if (g.current) {
