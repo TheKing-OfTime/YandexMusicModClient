@@ -13,7 +13,8 @@
         "intl-messageformat": "~10.5.11",
         "@formatjs/icu-messageformat-parser": "~2.7.6",
         "node-fetch": "^2.7.0",
-        "discord-rpc": "^4.0.1"
+        "discord-rpc": "^4.0.1",
+        "node-id3": "^0.2.6"
     },
     "devDependencies": {
         "@types/semver": "~7.5.6",

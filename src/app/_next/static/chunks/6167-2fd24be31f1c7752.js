@@ -633,7 +633,7 @@
         var t;
         null === (t = window.desktopEvents) ||
           void 0 === t ||
-          t.send(o.BOn.DOWNLOAD_TRACK, { downloadURL: e.downloadURL, codec: e.codec, trackId: e.trackId });
+          t.send(o.BOn.DOWNLOAD_TRACK, { downloadURL: e.downloadURL, codec: e.codec, trackId: e.trackId, track: e.track });
       };
       n(44928);
       var i = n(91021),

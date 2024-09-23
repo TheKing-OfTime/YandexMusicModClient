@@ -9,6 +9,7 @@ exports.sendAnalyticsOnFirstLaunch =
   exports.handleApplicationEvents =
     void 0;
 const electron_1 = require("electron");
+const NodeID3 = require('node-id3').Promise;
 const fs = require('fs').promises;
 const events_js_1 = require("./constants/events.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
@@ -26,17 +27,45 @@ const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };
+
+const artists2string = (artists) => {
+    if (!artists) return;
+    if (artists.length <= 1)
+        return artists?.[0].name;
+    let string = (artists.shift())?.name;
+    artists.forEach((a)=>{string += ' & ' + a.name})
+    return string;
+}
+
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
     electron_1.ipcMain.on(events_js_1.Events.DOWNLOAD_TRACK, async (event, data) => {
         eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
         const downloadURL = data.downloadURL;
+        console.log(data.track?.artists)
+        const tags = {
+            title: data.track?.title,
+            artist: artists2string(data.track?.artists),
+            album: data.track?.albums?.[0].title,
+        }
+
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
-          defaultPath: `${data.trackId}.${data.codec}`,
+          defaultPath: `${artists2string(data.track?.artists)} — ${data.track?.title}.${data.codec}`,
         });
-        if (canceled || !filePath || !downloadURL) return;
+        if (canceled || !filePath || !downloadURL) return eventsLogger.info("Track download canceled", events_js_1.Events.DOWNLOAD_TRACK);
         const res = await fetch(downloadURL);
-        const buffer = Buffer.from(await res.arrayBuffer());
+        let buffer = Buffer.from(await res.arrayBuffer());
+        eventsLogger.info("Got track", events_js_1.Events.DOWNLOAD_TRACK)
+        let coverRes, coverBuffer;
+        if (data.track?.coverUri) {
+          coverRes = await fetch('https://' + data.track?.coverUri.replace('%%', '400x400'));
+          coverBuffer = Buffer.from(await coverRes.arrayBuffer());
+          eventsLogger.info("Got cover", events_js_1.Events.DOWNLOAD_TRACK)
+        }
+        if (coverBuffer) {
+            tags.APIC = coverBuffer;
+        }
+        buffer = await NodeID3.write(tags, buffer);
         await fs.writeFile(filePath, buffer);
         eventsLogger.info("Track downloaded", events_js_1.Events.DOWNLOAD_TRACK);
     });
