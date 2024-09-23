@@ -779,9 +779,9 @@
         Tk: function () {
           return l.useReleaseNotes;
         },
-          sendDownloadTrack: function () {
-              return sendDownloadTrack;
-          },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
       });
       var o = n(34152);
       let s = () => {
@@ -790,12 +790,17 @@
           void 0 === e ||
           e.send(o.BOn.APPLICATION_READY);
       };
-        let sendDownloadTrack = (e) => {
-            var t;
-            null === (t = window.desktopEvents) ||
-            void 0 === t ||
-            t.send(o.BOn.DOWNLOAD_TRACK, {downloadURL: e.downloadURL, codec: e.codec, trackId: e.trackId, track: e.track});
-        };
+      let sendDownloadTrack = (e) => {
+        var t;
+        null === (t = window.desktopEvents) ||
+          void 0 === t ||
+          t.send(o.BOn.DOWNLOAD_TRACK, {
+            downloadURL: e.downloadURL,
+            codec: e.codec,
+            trackId: e.trackId,
+            track: e.track,
+          });
+      };
       n(44928);
       var i = n(91021),
         r = n(22485),
@@ -1191,17 +1196,15 @@
                 break;
               case "TOGGLE_LIKE": {
                 null == e ||
-                  e.factory.entityFactory.likeStore.toggleTrackLike(
-                    {
-                      entityId:
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
-                      albumId:
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.albums[0].id,
-                      userId: window.localStorage._ym_uid.replaceAll('"', ""),
-                    },
-                  );
+                  e.factory.entityFactory.likeStore.toggleTrackLike({
+                    entityId:
+                      e.state.queueState.currentEntity.value?.entity.entityData
+                        .meta.id,
+                    albumId:
+                      e.state.queueState.currentEntity.value?.entity.entityData
+                        .meta.albums[0].id,
+                    userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                  });
                 (0, eventPS.Pt)({
                   status: e.state.playerState.status.value,
                   isPlaying: e.state.playerState.status.value === "playing",
@@ -1211,35 +1214,33 @@
                   progress: 0,
                   availableActions: {
                     moveBackward:
-                      e.state.currentContext.value
-                        ?.availableActions.moveBackward.value,
+                      e.state.currentContext.value?.availableActions
+                        .moveBackward.value,
                     moveForward:
-                      e.state.currentContext.value
-                        ?.availableActions.moveForward.value,
+                      e.state.currentContext.value?.availableActions.moveForward
+                        .value,
                     repeat:
-                      e.state.currentContext.value
-                        ?.availableActions.repeat.value,
+                      e.state.currentContext.value?.availableActions.repeat
+                        .value,
                     shuffle:
-                      e.state.currentContext.value
-                        ?.availableActions.shuffle.value,
+                      e.state.currentContext.value?.availableActions.shuffle
+                        .value,
                     speed:
-                      e.state.currentContext.value
-                        ?.availableActions.speed.value,
+                      e.state.currentContext.value?.availableActions.speed
+                        .value,
                   },
                   actionsStore: {
-                    repeat:
-                      e.state.queueState.repeat.value,
-                    shuffle:
-                      e.state.queueState.shuffle.value,
+                    repeat: e.state.queueState.repeat.value,
+                    shuffle: e.state.queueState.shuffle.value,
                     isLiked:
                       e.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
+                        e.state.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
                       ),
                     isDisliked:
                       e.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
+                        e.state.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
                       ),
                   },
                 });
@@ -1247,55 +1248,51 @@
               }
               case "TOGGLE_DISLIKE": {
                 null == e ||
-                 e.factory.entityFactory.likeStore..toggleTrackDislike(
-                    {
-                      entityId:
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
-                      albumId:
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.albums[0].id,
-                      userId: window.localStorage._ym_uid.replaceAll('"', ""),
-                    },
-                  );
+                  e.factory.entityFactory.likeStore.toggleTrackDislike({
+                    entityId:
+                      e.state.queueState.currentEntity.value?.entity.entityData
+                        .meta.id,
+                    albumId:
+                      e.state.queueState.currentEntity.value?.entity.entityData
+                        .meta.albums[0].id,
+                    userId: window.localStorage._ym_uid.replaceAll('"', ""),
+                  });
                 (0, eventPS.Pt)({
                   status: e.state.playerState.status.value,
                   isPlaying: e.state.playerState.status.value === "playing",
                   track:
-                    e.state.queueState.currentEntity.value
-                      ?.entity.entityData.meta,
+                    e.state.queueState.currentEntity.value?.entity.entityData
+                      .meta,
                   progress: 0,
                   availableActions: {
                     moveBackward:
-                      e.state.currentContext.value
-                        ?.availableActions.moveBackward.value,
+                      e.state.currentContext.value?.availableActions
+                        .moveBackward.value,
                     moveForward:
-                      e.state.currentContext.value
-                        ?.availableActions.moveForward.value,
+                      e.state.currentContext.value?.availableActions.moveForward
+                        .value,
                     repeat:
-                      e.state.currentContext.value
-                        ?.availableActions.repeat.value,
+                      e.state.currentContext.value?.availableActions.repeat
+                        .value,
                     shuffle:
-                      e.state.currentContext.value
-                        ?.availableActions.shuffle.value,
+                      e.state.currentContext.value?.availableActions.shuffle
+                        .value,
                     speed:
-                      e.state.currentContext.value
-                        ?.availableActions.speed.value,
+                      e.state.currentContext.value?.availableActions.speed
+                        .value,
                   },
                   actionsStore: {
-                    repeat:
-                      e.state.queueState.repeat.value,
-                    shuffle:
-                      e.state.queueState.shuffle.value,
+                    repeat: e.state.queueState.repeat.value,
+                    shuffle: e.state.queueState.shuffle.value,
                     isLiked:
                       e.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
+                        e.state.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
                       ),
                     isDisliked:
                       e.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                        e.state.queueState.currentEntity
-                          .value?.entity.entityData.meta.id,
+                        e.state.queueState.currentEntity.value?.entity
+                          .entityData.meta.id,
                       ),
                   },
                 });
