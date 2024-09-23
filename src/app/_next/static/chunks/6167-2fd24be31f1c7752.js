@@ -1030,13 +1030,13 @@
                 break;
               case "TOGGLE_LIKE": {
                 null == e ||
-                  e.mainPlayback.contextController.entityFactory.likeStore.toggleTrackLike(
+                e.factory.entityFactory.likeStore.toggleTrackLike(
                     {
                       entityId:
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       albumId:
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.albums[0].id,
                       userId: window.localStorage._ym_uid.replaceAll('"', ""),
                     },
@@ -1050,34 +1050,34 @@
                   progress: 0,
                   availableActions: {
                     moveBackward:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.moveBackward.value,
                     moveForward:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.moveForward.value,
                     repeat:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.repeat.value,
                     shuffle:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.shuffle.value,
                     speed:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.speed.value,
                   },
                   actionsStore: {
                     repeat:
-                      e.mainPlayback.playbackState.queueState.repeat.value,
+                      e.state.queueState.repeat.value,
                     shuffle:
-                      e.mainPlayback.playbackState.queueState.shuffle.value,
+                      e.state.queueState.shuffle.value,
                     isLiked:
-                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                      e.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       ),
                     isDisliked:
-                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                      e.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       ),
                   },
@@ -1086,13 +1086,13 @@
               }
               case "TOGGLE_DISLIKE": {
                 null == e ||
-                  e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.toggleTrackDislike(
+                 e.factory.entityFactory.likeStore.toggleTrackDislike(
                     {
                       entityId:
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       albumId:
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.albums[0].id,
                       userId: window.localStorage._ym_uid.replaceAll('"', ""),
                     },
@@ -1101,39 +1101,39 @@
                   status: e.state.playerState.status.value,
                   isPlaying: e.state.playerState.status.value === "playing",
                   track:
-                    e.mainPlayback.playbackState.queueState.currentEntity.value
+                    e.state.queueState.currentEntity.value
                       ?.entity.entityData.meta,
                   progress: 0,
                   availableActions: {
                     moveBackward:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.moveBackward.value,
                     moveForward:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.moveForward.value,
                     repeat:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.repeat.value,
                     shuffle:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.shuffle.value,
                     speed:
-                      e.mainPlayback.playbackState.currentContext.value
+                      e.state.currentContext.value
                         ?.availableActions.speed.value,
                   },
                   actionsStore: {
                     repeat:
-                      e.mainPlayback.playbackState.queueState.repeat.value,
+                      e.state.queueState.repeat.value,
                     shuffle:
-                      e.mainPlayback.playbackState.queueState.shuffle.value,
+                      e.state.queueState.shuffle.value,
                     isLiked:
-                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                      e.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       ),
                     isDisliked:
-                      e.mainPlayback.playbackState.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                        e.mainPlayback.playbackState.queueState.currentEntity
+                      e.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                        e.state.queueState.currentEntity
                           .value?.entity.entityData.meta.id,
                       ),
                   },
