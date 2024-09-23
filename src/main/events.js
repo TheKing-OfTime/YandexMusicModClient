@@ -43,11 +43,11 @@ const handleApplicationEvents = (window) => {
         eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
         const downloadURL = data.downloadURL;
         const artistCombined = artists2string(data.track?.artists)
-        console.log(data.track?.artists)
+        console.log(data.track)
         const tags = {
             title: data.track?.title,
             artist: artistCombined,
-            album: data.track?.albums?.[0].title,
+            album: data.track?.albums?.[0]?.title,
         }
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
