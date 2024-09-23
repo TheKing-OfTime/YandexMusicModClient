@@ -42,15 +42,16 @@ const handleApplicationEvents = (window) => {
     electron_1.ipcMain.on(events_js_1.Events.DOWNLOAD_TRACK, async (event, data) => {
         eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
         const downloadURL = data.downloadURL;
+        const artistCombined = artists2string(data.track?.artists)
         console.log(data.track?.artists)
         const tags = {
             title: data.track?.title,
-            artist: artists2string(data.track?.artists),
+            artist: artistCombined,
             album: data.track?.albums?.[0].title,
         }
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
-          defaultPath: `${artists2string(data.track?.artists)} — ${data.track?.title}.${data.codec}`,
+          defaultPath: `${artistCombined} — ${data.track?.title}.${data.codec}`,
         });
         if (canceled || !filePath || !downloadURL) return eventsLogger.info("Track download canceled", events_js_1.Events.DOWNLOAD_TRACK);
         const res = await fetch(downloadURL);
