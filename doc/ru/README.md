@@ -108,6 +108,7 @@
    <summary>Настройки</summary>
       
 	"playerBarEnhancement": {
+  		"showDislikeButton": true //Включает или выключает отображение кнопки дизлайка в проигрывателе.
 		"showCodecInsteadOfQualityMark": true //Показать кодек вместо качества
 	}
       
@@ -143,6 +144,14 @@ https://github.com/user-attachments/assets/23a8da4d-3d6a-43c6-a5f5-965e065ed912
 После:
 
 https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
+
+</details>
+
+### Скачивание текущего трека
+<details>
+   <summary>Подробнее</summary>
+   
+Позволяет скачать текущий трек вам на ПК. Для этого нажмите на иконку качества/кодека трека. 
 
 </details>
 

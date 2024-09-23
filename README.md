@@ -109,6 +109,7 @@ Displayes track quality or codec
    <summary>Settings</summary>
       
 	"playerBarEnhancement": {
+ 		"showDislikeButton": true //Enabels or disabels Return dislike button feature
 		"showCodecInsteadOfQualityMark": true //Show codec instead of quality mark
 	}
       
@@ -145,6 +146,16 @@ after:
 
 https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
+
+</details>
+
+### Current track download
+<details>
+   <summary>Details</summary>
+   
+Allows download track that is currently playing. Click to the quality/codec icon to show download dialog.
+
+![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
 
 </details>
 
