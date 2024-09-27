@@ -25,8 +25,8 @@
         "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.19.4",
-        "BRANCH": "21f25a23cde9ed44c04785987e81f4270545f54d"
+        "VERSION": "5.20.2",
+        "BRANCH": "d90b513d5450daaf67bd7efe1099b5a02e803e10"
     },
     "common": {
         "SHOW_RELEASE_NOTES": true,
