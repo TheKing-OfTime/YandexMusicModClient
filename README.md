@@ -155,8 +155,6 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
    
 Allows download track that is currently playing. Click to the quality/codec icon to show download dialog.
 
-![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
-
 </details>
 
 ### Experiment overrides
@@ -207,6 +205,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/FaSSteR">
+      <img width="50" alt="FaSSteR" src="https://avatars.githubusercontent.com/u/50427367?v=4">
+   </a>
    <a href="https://github.com/Dott-rus">
       <img width="50" alt="Dott-rus" src="https://avatars.githubusercontent.com/u/78660260?v=4">
    </a>
