@@ -198,7 +198,7 @@ In app UI for settings will be soon™
 If you really enjoyed the new experience with this modification, you can support my work on it:
 <p align="left">
    <a href="https://boosty.to/thekingoftime/donate">
-      <img width="200" alt="Support me on Boosty" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
+      <img width="200" alt="Support me on Boosty" src="https://github.com/user-attachments/assets/7b341f16-6513-4138-a3c5-b5892b062f63">
    </a>
 </p>
 
