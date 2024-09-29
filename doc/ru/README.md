@@ -195,7 +195,7 @@ Devtools по умолчанию отключены. Чтобы включить
 Если вам действительно понравился новый опыт использования Яндекс Музыки с этой модификацией, вы можете поддержать мою работу над ней:
 <p align="left">
    <a href="https://boosty.to/thekingoftime/donate">
-      <img width="200" alt="Поддержите меня на бусти" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Support_Banner.png">
+      <img width="250" alt="Поддержите меня на бусти" src="https://github.com/user-attachments/assets/7b341f16-6513-4138-a3c5-b5892b062f63">
    </a>
 </p>
 
