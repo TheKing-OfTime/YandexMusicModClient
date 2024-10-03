@@ -6,15 +6,16 @@
     "author": "Яндекс Музыка",
     "main": "main/index.js",
     "dependencies": {
+        "@formatjs/icu-messageformat-parser": "~2.7.6",
+        "discord-rpc": "^4.0.1",
         "electron-log": "~5.0.0",
         "electron-store": "~8.1.0",
         "electron-updater": "~6.1.4",
-        "semver": "~7.5.4",
+        "fast-uri": "^3.0.2",
         "intl-messageformat": "~10.5.11",
-        "@formatjs/icu-messageformat-parser": "~2.7.6",
         "node-fetch": "^2.7.0",
-        "discord-rpc": "^4.0.1",
-        "node-id3": "^0.2.6"
+        "node-id3": "^0.2.6",
+        "semver": "~7.5.4"
     },
     "devDependencies": {
         "@types/semver": "~7.5.6",

@@ -10,10 +10,16 @@ const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
 const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
-let assets = {};
+let assets = {dark:{},light:{}};
+let systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
+
+electron_1.nativeTheme.on('updated', ()=>{
+  systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
+})
 
 const taskBarExtension = (window) => {
-  loadAssets();
+  loadAssets('dark');
+  loadAssets('light');
   //updateTaskbarExtension(window);
 };
 exports.taskBarExtension = taskBarExtension;
@@ -28,27 +34,27 @@ const onPlayerStateChange = (window, newPlayerState) => {
 
 exports.onPlayerStateChange = onPlayerStateChange;
 
-const loadAssets = () => {
-  taskBarExtensionLogger.log("Loading assets...");
-  loadAsset("previous", "Previous");
-  loadAsset("next", "Next");
-  loadAsset("play", "Playing");
-  loadAsset("pause", "Paused");
-  loadAsset("like", "Like");
-  loadAsset("liked", "Liked");
-  loadAsset("dislike", "Dislike");
-  loadAsset("disliked", "Disliked");
-  loadAsset("shuffle", "Shuffle");
-  loadAsset("shuffled", "Shuffled");
-  loadAsset("repeat", "Repeat");
-  loadAsset("repeated", "Repeated");
-  loadAsset("one_repeated", "One repeated");
-  taskBarExtensionLogger.log("Assets loaded");
+const loadAssets = (variant) => {
+  taskBarExtensionLogger.log(`Loading ${variant} assets...`);
+  loadAsset("previous", variant, "Previous");
+  loadAsset("next", variant, "Next");
+  loadAsset("play", variant, "Playing");
+  loadAsset("pause", variant, "Paused");
+  loadAsset("like", variant, "Like");
+  loadAsset("liked", variant, "Liked");
+  loadAsset("dislike", variant, "Dislike");
+  loadAsset("disliked", variant, "Disliked");
+  loadAsset("shuffle", variant, "Shuffle");
+  loadAsset("shuffled", variant, "Shuffled");
+  loadAsset("repeat", variant, "Repeat");
+  loadAsset("repeated", variant, "Repeated");
+  loadAsset("one_repeated", variant, "One repeated");
+  taskBarExtensionLogger.log("Assets loaded: " + variant);
 };
 
-const loadAsset = (name, fileName) => {
-  assets[name] = electron_1.nativeImage.createFromPath(
-    path.join(__dirname, `assets/${fileName}.png`),
+const loadAsset = (name, variant, fileName) => {
+  assets[variant][name] = electron_1.nativeImage.createFromPath(
+    path.join(__dirname, `assets/${variant}/${fileName}.png`),
   );
 };
 
@@ -106,19 +112,19 @@ const updateTaskbarExtension = (window) => {
   );
   const store = getActionsStoreObject(playerState.actionsStore);
 
-  let repeatAsset = assets.repeat;
+  let repeatAsset = assets[systemTheme].repeat;
   let nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_NONE;
   switch (store.repeat) {
     case "none":
-      repeatAsset = assets.repeat;
+      repeatAsset = assets[systemTheme].repeat;
       nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_CONTEXT;
       break;
     case "context":
-      repeatAsset = assets.repeated;
+      repeatAsset = assets[systemTheme].repeated;
       nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_ONE;
       break;
     case "one":
-      repeatAsset = assets.one_repeated;
+      repeatAsset = assets[systemTheme].one_repeated;
       nextRepeatAction = playerActions_js_1.PlayerActions.REPEAT_NONE;
       break;
   }
@@ -126,7 +132,7 @@ const updateTaskbarExtension = (window) => {
   let buttons = [
     {
       tooltip: "Shuffle",
-      icon: store.shuffle ? assets.shuffled : assets.shuffle,
+      icon: store.shuffle ? assets[systemTheme].shuffled : assets[systemTheme].shuffle,
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Shuffle toggled");
@@ -138,7 +144,7 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: "Dislike",
-      icon: store.disliked ? assets.disliked : assets.dislike,
+      icon: store.disliked ? assets[systemTheme].disliked : assets[systemTheme].dislike,
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Dislike toggled");
@@ -154,7 +160,7 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: "Previous",
-      icon: assets.previous,
+      icon: assets[systemTheme].previous,
       flags: availability.previousUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Previous");
@@ -166,7 +172,7 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: playerState?.isPlaying ? "Pause" : "Play",
-      icon: playerState?.isPlaying ? assets.pause : assets.play,
+      icon: playerState?.isPlaying ? assets[systemTheme].pause : assets[systemTheme].play,
       click() {
         taskBarExtensionLogger.log("Play Toggled");
         events_js_1.sendPlayerAction(
@@ -177,7 +183,7 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: "Next",
-      icon: assets.next,
+      icon: assets[systemTheme].next,
       flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Next");
@@ -189,7 +195,7 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: "Like",
-      icon: store.liked ? assets.liked : assets.like,
+      icon: store.liked ? assets[systemTheme].liked : assets[systemTheme].like,
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Like toggled");
