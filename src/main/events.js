@@ -43,7 +43,7 @@ const handleApplicationEvents = (window) => {
         eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
         const downloadURL = data.downloadURL;
         const artistCombined = artists2string(data.track?.artists)
-        console.log(data.track)
+        //console.log(data.track)
         const tags = {
             title: data.track?.title,
             artist: artistCombined,
@@ -54,8 +54,20 @@ const handleApplicationEvents = (window) => {
           defaultPath: `${artistCombined} — ${data.track?.title}.${data.codec}`,
         });
         if (canceled || !filePath || !downloadURL) return eventsLogger.info("Track download canceled", events_js_1.Events.DOWNLOAD_TRACK);
+        window.setProgressBar(0)
         const res = await fetch(downloadURL);
+
+        // const contentLength = parseInt(res.headers.get('content-length'), 10);
+        // let downloadedChunksLength = 0;
+        // res.on('data', (chunk) => {
+        //     downloadedChunksLength += chunk.length;
+        //     window.setProgressBar(downloadedChunksLength/contentLength);
+        // })
+
         let buffer = Buffer.from(await res.arrayBuffer());
+
+        window.setProgressBar(1.1)
+
         eventsLogger.info("Got track", events_js_1.Events.DOWNLOAD_TRACK)
         let coverRes, coverBuffer;
         if (data.track?.coverUri) {
@@ -66,9 +78,19 @@ const handleApplicationEvents = (window) => {
         if (coverBuffer) {
             tags.APIC = coverBuffer;
         }
+
         buffer = await NodeID3.write(tags, buffer);
+
+        window.setProgressBar(0.95)
+
         await fs.writeFile(filePath, buffer);
+
+        window.setProgressBar(1)
+
         eventsLogger.info("Track downloaded", events_js_1.Events.DOWNLOAD_TRACK);
+
+        setTimeout(() => {window.setProgressBar(-1)}, 1000)
+
     });
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
