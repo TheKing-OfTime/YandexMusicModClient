@@ -10,17 +10,17 @@ const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
 const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
-let assets = {dark:{},light:{}};
+let assets = { dark: {}, light: {} };
 let systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
 
-electron_1.nativeTheme.on('updated', ()=>{
-  systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
-})
-
 const taskBarExtension = (window) => {
-  loadAssets('dark');
-  loadAssets('light');
+  loadAssets("dark");
+  loadAssets("light");
   //updateTaskbarExtension(window);
+  electron_1.nativeTheme.on("updated", () => {
+    systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
+    updateTaskbarExtension(window);
+  });
 };
 exports.taskBarExtension = taskBarExtension;
 
@@ -132,7 +132,9 @@ const updateTaskbarExtension = (window) => {
   let buttons = [
     {
       tooltip: "Shuffle",
-      icon: store.shuffle ? assets[systemTheme].shuffled : assets[systemTheme].shuffle,
+      icon: store.shuffle
+        ? assets[systemTheme].shuffled
+        : assets[systemTheme].shuffle,
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Shuffle toggled");
@@ -144,7 +146,9 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: "Dislike",
-      icon: store.disliked ? assets[systemTheme].disliked : assets[systemTheme].dislike,
+      icon: store.disliked
+        ? assets[systemTheme].disliked
+        : assets[systemTheme].dislike,
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Dislike toggled");
@@ -172,7 +176,9 @@ const updateTaskbarExtension = (window) => {
     },
     {
       tooltip: playerState?.isPlaying ? "Pause" : "Play",
-      icon: playerState?.isPlaying ? assets[systemTheme].pause : assets[systemTheme].play,
+      icon: playerState?.isPlaying
+        ? assets[systemTheme].pause
+        : assets[systemTheme].play,
       click() {
         taskBarExtensionLogger.log("Play Toggled");
         events_js_1.sendPlayerAction(
