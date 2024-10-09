@@ -54,8 +54,8 @@ const init = () => {
         TOGGLE_PLAY: 'Ctrl+K',
         MOVE_FORWARD: 'Ctrl+L',
         MOVE_BACKWARD: 'Ctrl+J',
-        TOGGLE_REPEAT: 'Ctrl+R',
-        TOGGLE_SHUFFLE: 'Ctrl+S',
+        //TOGGLE_REPEAT: 'Ctrl+R',
+        //TOGGLE_SHUFFLE: 'Ctrl+S',
     }
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
