@@ -69,6 +69,28 @@ Adds support for Discord Rich Presence
 
 </details>
 
+### Global Shortcuts
+<details>
+   <summary>Details</summary>
+
+   
+Adds support for Global Shortcuts.
+
+Currently supported only this actions (I tried add more but others work pretty unstable due to horrible babel & webpack config on Yandex's end)
+
+<details>
+   <summary>Settings</summary>
+   
+	"globalShortcuts": {
+		"TOGGLE_PLAY": "Ctrl+K",
+		"MOVE_FORWARD": "Ctrl+L",
+		"MOVE_BACKWARD": "Ctrl+J"
+	}
+      
+</details>
+
+</details>
+
 ### Taskbar Extensions
 <details>
    <summary>Details</summary>
