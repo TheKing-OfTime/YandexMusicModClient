@@ -68,6 +68,28 @@
 
 </details>
 
+### Глобальные хоткеи
+<details>
+   <summary>Подробнее</summary>
+
+   
+Добавляет поддержку глобальных хоткеев.
+
+Пока что поддерживаются эти 3 действия (Я попробовал добавить другие но они работают слишком не стабильно из за того как сконфигурирован webpack и babel на стороне Яндекса)
+
+<details>
+   <summary>Настройки</summary>
+   
+	"globalShortcuts": {
+		"TOGGLE_PLAY": "Ctrl+K",
+		"MOVE_FORWARD": "Ctrl+L",
+		"MOVE_BACKWARD": "Ctrl+J"
+	}
+      
+</details>
+
+</details>
+
 ### Кнопки в превью панели задач
 <details>
    <summary>Подробнее</summary>
