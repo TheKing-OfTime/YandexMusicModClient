@@ -40,6 +40,14 @@ const artists2string = (artists) => {
 
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
+
+  if (store_js_1.getModFeatures?.globalShortcuts) {
+    const shortcuts = Object.entries(store_js_1.getModFeatures.globalShortcuts);
+    shortcuts.forEach(shortcut => {
+        electron_1.globalShortcut.register(shortcut[1], () => {sendPlayerAction(window, shortcut[0])})
+    })
+  }
+
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
     async (event, data) => {
@@ -103,6 +111,11 @@ const handleApplicationEvents = (window) => {
       }, 1000);
     },
   );
+
+    electron_1.app.on('will-quit', () => {
+        electron_1.globalShortcut.unregisterAll()
+    })
+
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
     electron_1.app.relaunch();
