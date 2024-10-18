@@ -35,6 +35,7 @@
 2. Выполните эту команду
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/download/onlyDiscordRPC/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
+   rmdir "%appdata%/YandexMusic/Local Storage/" /s
    ```
 3. Готово!
 
