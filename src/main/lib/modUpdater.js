@@ -10,14 +10,10 @@ const config_js_1 = require("../config.js");
 const execPromise = promisify(exec);
 
 
-const UPDATE_CHECK_URL = `https://api.github.com/repos/TheKing-OfTime/YandexMusicModClient/releases/tags/${config_js_1.config.modification.branch}`;
+const UPDATE_CHECK_URL = `https://api.github.com/repos/TheKing-OfTime/YandexMusicModClient/releases/latest`;
 const APP_ASAR_PATH = path.join(
   process.env.LOCALAPPDATA,
   "\\Programs\\YandexMusic\\resources\\app.asar",
-);
-const APP_ASAR_UPDATE_PATH = path.join(
-  process.env.LOCALAPPDATA,
-  "\\Programs\\YandexMusic\\resources\\update.asar",
 );
 const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);

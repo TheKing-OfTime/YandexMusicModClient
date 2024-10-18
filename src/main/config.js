@@ -27,8 +27,7 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-      version: "1.15.9",
-      branch: "onlyDiscordRPC"
+      version: "1.15.10",
   },
 };
 const applyCommonConfig = (commonConfig) => {
