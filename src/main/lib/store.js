@@ -22,6 +22,8 @@ const config_js_1 = require("../config.js");
 const generateDeviceId_js_1 = require("./generateDeviceId.js");
 const store = new electron_store_1.default();
 
+const ignoreValuesIn = [`${store_js_1.StoreKeys.MOD_FEATURES}.globalShortcuts`];
+
 const init = () => {
   initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
     width: 1280,
@@ -69,7 +71,7 @@ const init = () => {
 exports.init = init;
 
 const initField = (fieldKey, defaultValue) => {
-  if (typeof defaultValue === "object" && defaultValue !== null) {
+  if (typeof defaultValue === "object" && defaultValue !== null && !ignoreValuesIn.includes(fieldKey)) {
     console.log("Object found checking if values inited");
     for (let key in defaultValue) {
       initField(`${fieldKey}.${key}`, defaultValue[key]);

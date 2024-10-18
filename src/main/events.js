@@ -44,7 +44,7 @@ const handleApplicationEvents = (window) => {
   if (store_js_1.getModFeatures()?.globalShortcuts) {
     const shortcuts = Object.entries(store_js_1.getModFeatures().globalShortcuts);
     shortcuts.forEach(shortcut => {
-        electron_1.globalShortcut.register(shortcut[1], () => {sendPlayerAction(window, shortcut[0])})
+        if(shortcut[1]) electron_1.globalShortcut.register(shortcut[1], () => { sendPlayerAction(window, shortcut[0]) })
     })
   }
 
