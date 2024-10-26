@@ -240,6 +240,9 @@ Devtools по умолчанию отключены. Чтобы включить
    <a href="https://github.com/schwarzalexey">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
    </a>
+   <a href="https://github.com/dudoska">
+      <img width="50" alt="dudoska" src="https://avatars.githubusercontent.com/u/94677394?v=4">
+   </a>
    <a href="https://github.com/Diramix">
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
    </a>
