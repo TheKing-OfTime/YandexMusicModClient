@@ -6574,7 +6574,7 @@
           t.DEFAULT_HUE =
           t.MAX_FPS =
             void 0),
-        (t.MAX_FPS = 25),
+        (t.MAX_FPS=window.VIBE_ANIMATION_MAX_FPS ?? 25),
         (t.DEFAULT_HUE = 22.968),
         (t.DEFAULT_SATURATION = 1),
         (t.DEFAULT_LIGHTNESS = 0.5),
@@ -6743,6 +6743,7 @@
           );
         }
         render() {
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
