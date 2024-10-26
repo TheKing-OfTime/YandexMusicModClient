@@ -6,6 +6,8 @@ var __importDefault =
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDeviceId =
+  exports.getUuid =
+  exports.isRevisionChanged =
   exports.isFirstLaunch =
   exports.needToShowReleaseNotes =
   exports.getWindowDimensions =
@@ -14,12 +16,13 @@ exports.getDeviceId =
   exports.getModFeatures =
   exports.init =
     void 0;
+const uuid_1 = require("uuid");
 const semver_1 = require("semver");
 const electron_1 = require("electron");
 const electron_store_1 = __importDefault(require("electron-store"));
-const store_js_1 = require("../constants/store.js");
-const config_js_1 = require("../config.js");
 const generateDeviceId_js_1 = require("./generateDeviceId.js");
+const store_js_1 = require("../types/store.js");
+const config_js_1 = require("../config.js");
 const store = new electron_store_1.default();
 
 const ignoreValuesIn = [`${store_js_1.StoreKeys.MOD_FEATURES}.globalShortcuts`];
@@ -53,25 +56,29 @@ const init = () => {
       showCodecInsteadOfQualityMark: false,
     },
     globalShortcuts: {
-        TOGGLE_PLAY: 'Ctrl+K',
-        MOVE_FORWARD: 'Ctrl+L',
-        MOVE_BACKWARD: 'Ctrl+J',
-        //TOGGLE_REPEAT: 'Ctrl+R',
-        //TOGGLE_SHUFFLE: 'Ctrl+S',
-    }
+      TOGGLE_PLAY: "Ctrl+K",
+      MOVE_FORWARD: "Ctrl+L",
+      MOVE_BACKWARD: "Ctrl+J",
+      //TOGGLE_REPEAT: 'Ctrl+R',
+      //TOGGLE_SHUFFLE: 'Ctrl+S',
+    },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
-      WebNextEqualizer: 'on',
-      WebNextTrackAboutModal: 'on',
-      WebNextLanguageSwitcher: 'on',
-      WebNextUGC: 'on',
+    WebNextEqualizer: "on",
+    WebNextTrackAboutModal: "on",
+    WebNextLanguageSwitcher: "on",
+    WebNextUGC: "on",
   });
 };
 exports.init = init;
 
 const initField = (fieldKey, defaultValue) => {
-  if (typeof defaultValue === "object" && defaultValue !== null && !ignoreValuesIn.includes(fieldKey)) {
+  if (
+    typeof defaultValue === "object" &&
+    defaultValue !== null &&
+    !ignoreValuesIn.includes(fieldKey)
+  ) {
     console.log("Object found checking if values inited");
     for (let key in defaultValue) {
       initField(`${fieldKey}.${key}`, defaultValue[key]);
@@ -116,26 +123,40 @@ const isFirstLaunch = () => {
   return !hasRecentlyLaunched;
 };
 exports.isFirstLaunch = isFirstLaunch;
-
+const isRevisionChanged = (type, revision) => {
+    const storeRevision = store.get(type);
+    store.set(type, revision);
+    return storeRevision !== revision;
+};
+exports.isRevisionChanged = isRevisionChanged;
 exports.getDeviceId = (() => {
-    let cachedDeviceId;
-    return () => {
-        let deviceId;
-        if (cachedDeviceId) {
-            deviceId = cachedDeviceId;
-        }
-        else {
-            deviceId = store.get(store_js_1.StoreKeys.DEVICE_ID);
-            cachedDeviceId = deviceId;
-        }
-        if (!deviceId) {
-            deviceId = (0, generateDeviceId_js_1.generateDeviceId)();
-            cachedDeviceId = deviceId;
-            store.set(store_js_1.StoreKeys.DEVICE_ID, deviceId);
-        }
-        return String(deviceId);
-    };
+  let cachedDeviceId;
+  return () => {
+    let deviceId;
+    if (cachedDeviceId) {
+      deviceId = cachedDeviceId;
+    } else {
+      deviceId = store.get(store_js_1.StoreKeys.DEVICE_ID);
+      cachedDeviceId = deviceId;
+    }
+    if (!deviceId) {
+      deviceId = (0, generateDeviceId_js_1.generateDeviceId)();
+      cachedDeviceId = deviceId;
+      store.set(store_js_1.StoreKeys.DEVICE_ID, deviceId);
+    }
+    return String(deviceId);
+  };
 })();
+
+const getUuid = () => {
+    let uuid = store.get(store_js_1.StoreKeys.UUID);
+    if (!uuid) {
+        uuid = (0, uuid_1.v4)();
+        store.set(store_js_1.StoreKeys.UUID, uuid);
+    }
+    return uuid;
+};
+exports.getUuid = getUuid;
 
 const getWindowDimensions = () => {
   return store.get(store_js_1.StoreKeys.WINDOW_DIMENSIONS);
@@ -160,6 +181,6 @@ const getModFeatures = () => {
 };
 exports.getModFeatures = getModFeatures;
 const getExperimentOverrides = () => {
-    return store.get(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES);
+  return store.get(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES);
 };
 exports.getExperimentOverrides = getExperimentOverrides;

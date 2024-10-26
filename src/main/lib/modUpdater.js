@@ -53,7 +53,7 @@ class ModUpdater {
       this.onModUpdateListeners.forEach((listener) => {
         listener(currentVersion, this.latestVersion);
       });
-    }, 5000);
+    }, 15000);
   }
 
   async checkForUpdates() {

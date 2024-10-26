@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleDeeplink = exports.handleDeeplinkOnApplicationStartup = exports.navigateToDeeplink = exports.checkIsDeeplink = void 0;
 const electron_1 = require("electron");
+const state_js_1 = require("../state.js");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const config_js_1 = require("../../config.js");
-const state_js_1 = require("../state.js");
 const events_js_1 = require("../../events.js");
 let deeplinkUrl = null;
 const deeplinkLogger = new Logger_js_1.Logger('Deeplink');

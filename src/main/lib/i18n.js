@@ -9,19 +9,15 @@ const intl_messageformat_1 = __importDefault(require("intl-messageformat"));
 const config_js_1 = require("../config.js");
 const ru_json_1 = __importDefault(require("../translations/compiled/ru.json"));
 const en_json_1 = __importDefault(require("../translations/compiled/en.json"));
-const hy_json_1 = __importDefault(require("../translations/compiled/hy.json"));
 const uz_json_1 = __importDefault(require("../translations/compiled/uz.json"));
 const kk_json_1 = __importDefault(require("../translations/compiled/kk.json"));
-const az_json_1 = __importDefault(require("../translations/compiled/az.json"));
 const DEFAULT_LANGUAGE = config_js_1.config.meta.SYSTEM_MENU_DEFAULT_LANGUAGE;
 const LANGUAGES = config_js_1.config.meta.SYSTEM_MENU_LANGUAGES;
 const TRANSLATIONS = {
     en: en_json_1.default,
     ru: ru_json_1.default,
-    hy: hy_json_1.default,
     uz: uz_json_1.default,
-    kk: kk_json_1.default,
-    az: az_json_1.default
+    kk: kk_json_1.default
 };
 const isSupportedLanguage = (language) => {
     return LANGUAGES.includes(language);

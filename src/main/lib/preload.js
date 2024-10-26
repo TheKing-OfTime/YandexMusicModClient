@@ -1,18 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
-const node_os_1 = __importDefault(require("node:os"));
 const config_js_1 = require("../config.js");
 const store_js_1 = require("./store.js");
 const getInitialTheme_js_1 = require("./getInitialTheme.js");
-const theme_js_1 = require("../constants/theme.js");
+const deviceInfo_js_1 = require("./deviceInfo.js");
+const theme_js_1 = require("../types/theme.js");
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
+const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
 electron_1.contextBridge.exposeInMainWorld('VERSION', String(config_js_1.config.buildInfo.VERSION));
 electron_1.contextBridge.exposeInMainWorld('BRANCH', String(config_js_1.config.buildInfo.BRANCH));
-electron_1.contextBridge.exposeInMainWorld('PLATFORM', node_os_1.default.platform());
+electron_1.contextBridge.exposeInMainWorld('PLATFORM', deviceInfo.os);
+electron_1.contextBridge.exposeInMainWorld('DEVICE_INFO', deviceInfo);
 electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
     send(name, ...args) {
         electron_1.ipcRenderer.send(name, ...args);

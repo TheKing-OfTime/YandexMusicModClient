@@ -1,33 +1,31 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.24.1",
+    "version": "5.25.1",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
     "dependencies": {
-        "@formatjs/icu-messageformat-parser": "~2.7.6",
-        "discord-rpc": "^4.0.1",
-        "electron-log": "~5.0.0",
-        "electron-store": "~8.1.0",
-        "electron-updater": "~6.1.4",
-        "fast-uri": "^3.0.2",
-        "intl-messageformat": "~10.5.11",
-        "node-fetch": "^2.7.0",
-        "node-id3": "^0.2.6",
-        "semver": "~7.5.4"
+        "@formatjs/icu-messageformat-parser": "~2.7.8",
+        "electron-log": "~5.2.0",
+        "electron-store": "~8.2.0",
+        "electron-updater": "~6.3.4",
+        "intl-messageformat": "~10.5.14",
+        "semver": "~7.6.3",
+        "uuid": "~9.0.1",
+        "fast-uri": "^3.0.2"
     },
     "devDependencies": {
-        "@types/semver": "~7.5.6",
-        "@electron/fuses": "~1.6.2",
+        "@electron/fuses": "~1.8.0",
+        "@electron/notarize": "~2.4.0",
+        "@types/semver": "~7.5.8",
         "@yandex-chats/signer": "~0.0.3",
-        "electron": "~27.0.0",
-        "electron-notarize": "~1.2.2",
+        "electron": "~32.1.0",
         "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.24.1",
-        "BRANCH": "a5a148a02bd7bf7eebe71f317cb2b2540ba5e96b"
+        "VERSION": "5.25.1",
+        "BRANCH": "b202ba262e43bac47e5bcbc9f003381122d9546f"
     },
     "common": {
         "SHOW_RELEASE_NOTES": true,
@@ -49,10 +47,8 @@
         "SYSTEM_MENU_LANGUAGES": [
             "ru",
             "en",
-            "hy",
-            "uz",
             "kk",
-            "az"
+            "uz"
         ]
     }
 }

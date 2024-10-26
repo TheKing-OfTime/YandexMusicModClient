@@ -5,10 +5,11 @@ const semver = require("semver");
 const electron_1 = require("electron");
 const electron_updater_1 = require("electron-updater");
 const state_js_1 = require("./state.js");
-const config_js_1 = require("../config.js");
-const updateStatus_js_1 = require("../constants/updateStatus.js");
-const Logger_js_1 = require("../packages/logger/Logger.js");
 const store_js_1 = require("./store.js");
+const deviceInfo_js_1 = require("./deviceInfo.js");
+const config_js_1 = require("../config.js");
+const updateStatus_js_1 = require("../types/updateStatus.js");
+const Logger_js_1 = require("../packages/logger/Logger.js");
 const probabilityBuckets = {
     6: '0-5',
     26: '5-25',
@@ -35,9 +36,6 @@ class Updater {
         electron_updater_1.autoUpdater.on('error', (error) => {
             this.logger.error('Updater error', error);
     });
-        electron_updater_1.autoUpdater.on('checking-for-update', () => {
-            this.logger.log('Checking for update');
-    });
         electron_updater_1.autoUpdater.on('update-downloaded', (updateInfo) => {
             this.logger.log('Update downloaded', updateInfo.version);
             if (isVersionDeprecated()) {
@@ -60,13 +58,15 @@ class Updater {
         if (downloadPromise !== null) {
             return;
         }
+        (0, deviceInfo_js_1.logSystemMetrics)(true);
         if (isVersionDeprecated() || !config_js_1.config.enableUpdateByProbability) {
             this.downloadUpdate(cancellationToken, updateInfo.version);
       return;
     }
         if ('updateProbability' in updateInfo && config_js_1.config.enableUpdateByProbability) {
             this.logger.info(`Update probability: ${updateInfo.updateProbability}; checking with client value ${this.clientUpdateProbability}`);
-            if (this.clientUpdateProbability <= Number(updateInfo.updateProbability)) {
+            const updateProbability = Number(updateInfo.updateProbability);
+            if (this.clientUpdateProbability <= updateProbability && updateProbability > 0) {
                 this.downloadUpdate(cancellationToken, updateInfo.version);
             }
         }

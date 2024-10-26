@@ -8,7 +8,6 @@ const Logger_js_1 = require("../packages/logger/Logger.js");
 const singleInstanceLogger = new Logger_js_1.Logger('SingleInstance');
 const isFirstInstance = electron_1.app.requestSingleInstanceLock();
 const checkForSingleInstance = () => {
-    singleInstanceLogger.info('Single instance');
     if (isFirstInstance) {
         electron_1.app.on('second-instance', (event, commandLine) => {
             const [window] = electron_1.BrowserWindow.getAllWindows();

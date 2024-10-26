@@ -1,17 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendAnalyticsOnFirstLaunch =
-  exports.sendOpenDeeplink =
-  exports.sendPlayerAction =
-  exports.sendRefreshApplicationData =
-  exports.sendShowReleaseNotes =
-  exports.sendUpdateAvailable =
-  exports.handleApplicationEvents =
-    void 0;
+exports.sendAnalyticsOnFirstLaunch = exports.sendOpenDeeplink = exports.sendPlayerAction = exports.sendRefreshApplicationData = exports.sendUpdateAvailable = exports.sendLoadReleaseNotes = exports.sendProbabilityBucket = exports.handleApplicationEvents = void 0;
 const electron_1 = require("electron");
 const NodeID3 = require("node-id3").Promise;
 const fs = require("fs").promises;
-const events_js_1 = require("./constants/events.js");
+const events_js_1 = require("./types/events.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
 const tray_js_1 = require("./lib/tray.js");
@@ -23,7 +16,9 @@ const store_js_1 = require("./lib/store.js");
 const state_js_1 = require("./lib/state.js");
 const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
-const eventsLogger = new Logger_js_1.Logger("Events");
+const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
+const deviceInfo_js_1 = require("./lib/deviceInfo.js");
+const eventsLogger = new Logger_js_1.Logger('Events');
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };
@@ -147,14 +142,11 @@ const handleApplicationEvents = (window) => {
     eventsLogger.info("Event received", events_js_1.Events.INSTALL_UPDATE);
     updater.install();
   });
-  electron_1.ipcMain.on(events_js_1.Events.APPLICATION_READY, () => {
-    eventsLogger.info("Event received", events_js_1.Events.APPLICATION_READY);
-    (0, exports.sendProbabilityBucket)(window, updater.getProbabilityBucket());
+    electron_1.ipcMain.on(events_js_1.Events.APPLICATION_READY, async (event, language) => {
+        eventsLogger.info('Event received', events_js_1.Events.APPLICATION_READY);
+        (0, deviceInfo_js_1.logHardwareInfo)();
     if (state_js_1.state.deeplink) {
-      (0, handleDeeplink_js_1.navigateToDeeplink)(
-        window,
-        state_js_1.state.deeplink,
-      );
+            (0, handleDeeplink_js_1.navigateToDeeplink)(window, state_js_1.state.deeplink);
     }
     if (updater.latestAvailableVersion) {
       (0, exports.sendUpdateAvailable)(window, updater.latestAvailableVersion);
@@ -162,19 +154,17 @@ const handleApplicationEvents = (window) => {
     if ((0, store_js_1.isFirstLaunch)()) {
       (0, exports.sendAnalyticsOnFirstLaunch)(window);
     }
+        (0, exports.sendProbabilityBucket)(window, updater.getProbabilityBucket());
+        const releaseNotes = await (0, loadReleaseNotes_js_1.loadReleaseNotes)(language);
+        if (releaseNotes) {
+            (0, exports.sendLoadReleaseNotes)(window, (0, store_js_1.needToShowReleaseNotes)(), releaseNotes);
+        }
   });
   electron_1.ipcMain.on(
     events_js_1.Events.APPLICATION_THEME,
     (event, backgroundColor) => {
       eventsLogger.info("Event received", events_js_1.Events.APPLICATION_THEME);
       window.setBackgroundColor(backgroundColor);
-    },
-  );
-  electron_1.ipcMain.on(events_js_1.Events.RELEASE_NOTES_READY, () => {
-    eventsLogger.info("Event received", events_js_1.Events.RELEASE_NOTES_READY);
-    if ((0, store_js_1.needToShowReleaseNotes)()) {
-      (0, exports.sendShowReleaseNotes)(window);
-    }
   });
   electron_1.ipcMain.on(events_js_1.Events.PLAYER_STATE, (event, data) => {
     eventsLogger.info(
@@ -225,6 +215,11 @@ const sendProbabilityBucket = (window, bucket) => {
   );
 };
 exports.sendProbabilityBucket = sendProbabilityBucket;
+const sendLoadReleaseNotes = (window, needToShowReleaseNotes, releaseNotes) => {
+    window.webContents.send(events_js_1.Events.LOAD_RELEASE_NOTES, needToShowReleaseNotes, releaseNotes);
+    eventsLogger.info('Event sent', events_js_1.Events.LOAD_RELEASE_NOTES);
+};
+exports.sendLoadReleaseNotes = sendLoadReleaseNotes;
 const sendUpdateAvailable = (window, version) => {
   window.webContents.send(events_js_1.Events.UPDATE_AVAILABLE, version);
   eventsLogger.info("Event sent", events_js_1.Events.UPDATE_AVAILABLE, version);
