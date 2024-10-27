@@ -35,7 +35,6 @@
 2. Выполните эту команду
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
-   rmdir "%appdata%/YandexMusic/Local Storage/" /s
    ```
 3. Готово!
 
@@ -76,15 +75,17 @@
    
 Добавляет поддержку глобальных хоткеев.
 
-Пока что поддерживаются эти 3 действия (Я попробовал добавить другие но они работают слишком не стабильно из за того как сконфигурирован webpack и babel на стороне Яндекса)
-
 <details>
    <summary>Настройки</summary>
    
 	"globalShortcuts": {
 		"TOGGLE_PLAY": "Ctrl+K",
 		"MOVE_FORWARD": "Ctrl+L",
-		"MOVE_BACKWARD": "Ctrl+J"
+		"MOVE_BACKWARD": "Ctrl+J",
+		"TOGGLE_SHUFFLE": undefined,
+  		"REPEAT_NONE": undefined,
+    		"REPEAT_CONTEXT": undefined,
+      		"REPEAT_NONE": undefined,
 	}
       
 </details>
@@ -153,7 +154,7 @@
       "vibeAnimationEnhancement": {
 	    "maxFPS": 25,             	// Максимально допустимая частота кадров в секунду. По умолчанию: 25. Рекомендуемое: 25 - 144. Не устанавливайте значание меньше 1
 	    "intensityCoefficient": 1, 	// Чувствительность музыкального анализа. По умолчанию: 1; Рекомендуемое: 0,5 - 2; При значении 0 отключается улучшение анимации (почти :D)
-	    "linearDeBoost": 5,		// Коэффициент выделения пиков в треке от основного трека. По умолчанию: 5. Рекомендуемое: 2 - 8. Если 1, отключает разделение пиков.
+	    "linearDeBoost": 5,		// [УСТАРЕЛО] Коэффициент выделения пиков в треке от основного трека. По умолчанию: 5. Рекомендуемое: 2 - 8. Если 1, отключает разделение пиков.
 	    "playOnAnyEntity": false,	// Если включено, анимация воспроизводится, даже если источник трека не Моя Волна.
 	    "disableRendering": false	// Полностью отключает анимацию. Используйте только если почувствуете значительное падение кадров в секунду. В противном случае подберите оптимальное значение параметра maxFPS для вашей системы.
       }
@@ -182,17 +183,8 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 <details>
    <summary>Подробнее</summary>
    
-Позволяет включать/выключать эксперементы. Для этого вам нужно модифицировать `%appdata%\YandexMusic\config.json`:
+Позволяет включать/выключать эксперементы. Для этого вам нужно включить enableDevTools и использовать UI в приложении в dev панели:
 
-По умолчанию переопределены эти эксперементы:
-```js
-{
-      WebNextEqualizer: 'on',
-      WebNextTrackAboutModal: 'on',
-      WebNextLanguageSwitcher: 'on',
-      WebNextUGC: 'on',
-}
-```
 </details>
 
 ### Devtools & Панель Разработчика
