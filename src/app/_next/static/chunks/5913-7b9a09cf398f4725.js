@@ -728,6 +728,53 @@
             message: m,
           });
         },
+        modUpdateToast = (e) => {
+          let { version: t, formatMessage: o, closeToast: l } = e,
+            d = (0, a.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.send(i.BOn.APPLICATION_RESTART),
+                null == l || l();
+            }, [l]),
+            m = (0, a.useMemo)(
+              () =>
+                (0, n.jsxs)("div", {
+                  className: _().message,
+                  children: [
+                    (0, n.jsx)(c.Caption, {
+                      className: _().text,
+                      variant: "div",
+                      type: "controls",
+                      size: "m",
+                      children: o(
+                        { id: "desktop.on-mod-update-available" },
+                        { version: t },
+                      ),
+                    }),
+                    (0, n.jsx)(r.z, {
+                      className: _().button,
+                      onClick: d,
+                      variant: "default",
+                      color: "secondary",
+                      size: "xs",
+                      radius: "xxxl",
+                      children: (0, n.jsx)(c.Caption, {
+                        variant: "div",
+                        type: "controls",
+                        size: "m",
+                        children: o({ id: "desktop.update" }),
+                      }),
+                    }),
+                  ],
+                }),
+              [o, d, t],
+            );
+          return (0, n.jsx)(u.Yj, {
+            className: (0, s.W)(_().root, _().important),
+            message: m,
+          });
+        },
         h = () => {
           let { formatMessage: e } = (0, l.Z)(),
             { notify: t } = (0, i.d$W)(),
@@ -741,7 +788,23 @@
                   }));
               },
               [e, o, t],
-            );
+            ),
+          modUpdateCallback = (0, a.useCallback)(
+            (a, l, newVersion) => {
+              o.current !== l &&
+                ((o.current = l),
+                t(
+                  (0, n.jsx)(m, {
+                    formatMessage: e,
+                    version: `${l} -> ${newVersion}`,
+                  }),
+                  {
+                    containerId: i.W$x.IMPORTANT,
+                  },
+                ));
+            },
+            [e, o, t],
+          );
           (0, a.useEffect)(() => {
             var e;
             return (
@@ -756,6 +819,20 @@
               }
             );
           }, [s]);
+          (0, a.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
+                var e;
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     17256: function (e, t, o) {
