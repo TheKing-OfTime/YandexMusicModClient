@@ -60,16 +60,16 @@ const init = () => {
       MOVE_FORWARD: "Ctrl+L",
       MOVE_BACKWARD: "Ctrl+J",
       //TOGGLE_REPEAT: 'Ctrl+R',
-      //TOGGLE_SHUFFLE: 'Ctrl+S',
+      TOGGLE_SHUFFLE: 'Ctrl+S',
     },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
-  initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
-    WebNextEqualizer: "on",
-    WebNextTrackAboutModal: "on",
-    WebNextLanguageSwitcher: "on",
-    WebNextUGC: "on",
-  });
+  // initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
+  //   WebNextEqualizer: "on",
+  //   WebNextTrackAboutModal: "on",
+  //   WebNextLanguageSwitcher: "on",
+  //   WebNextUGC: "on",
+  // });
 };
 exports.init = init;
 
