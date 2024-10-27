@@ -35,7 +35,6 @@
 2. Execute this command
    ```bat
    curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
-   rmdir "%appdata%/YandexMusic/Local Storage/" /s
    ```
 3. Done!
 
