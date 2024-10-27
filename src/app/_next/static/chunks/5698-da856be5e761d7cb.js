@@ -13583,7 +13583,12 @@
       let ng = "player-region",
         nx = (0, v.Pi)((e) => {
           var t;
-          let { className: n, entityMeta: r, onLikeClick: i, onDislikeClick: onDislikeClick } = e,
+          let {
+              className: n,
+              entityMeta: r,
+              onLikeClick: i,
+              onDislikeClick: onDislikeClick,
+            } = e,
             {
               user: a,
               sonataState: o,
@@ -13877,36 +13882,44 @@
                           R,
                           M,
 
-                            (0, d.jsx)(y.wx, {
-                                title: "Качество трека",
-                                description:
-                                    downloadInfo?.bitrate !== 0
-                                        ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
-                                        : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
-                                children: (0, d.jsxs)("div", {
-                                    className: ny().settingsButton,
-                                    onClick: () => {
-                                        electronBridge.sendDownloadTrack({
-                                            downloadURL: downloadInfo?.url,
-                                            codec: downloadInfo?.codec,
-                                            trackId: downloadInfo?.trackId,
-                                            track: {
-                                                title: JSON.parse(JSON.stringify(r.title)),
-                                                artists: JSON.parse(JSON.stringify(r.artists)),
-                                                albums: JSON.parse(JSON.stringify(r.albums)),
-                                                coverUri: JSON.parse(JSON.stringify(r.coverUri)),
-                                            },
-                                        });
-                                    },
-                                    children: (0, d.jsxs)("span", {
-                                        className: ny().settingsButton + " NfB1qSw6DnoSwTr9I5mE",
-                                        style: { cursor: "pointer" },
-                                        children: window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
-                                            ? codecMap[downloadInfo?.codec]
-                                            : qualityMap[downloadInfo?.quality],
-                                    }),
-                                }),
+                          (0, d.jsx)(y.wx, {
+                            title: "Качество трека",
+                            description:
+                              downloadInfo?.bitrate !== 0
+                                ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
+                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
+                            children: (0, d.jsxs)("div", {
+                              className: ny().settingsButton,
+                              onClick: () => {
+                                electronBridge.sendDownloadTrack({
+                                  downloadURL: downloadInfo?.url,
+                                  codec: downloadInfo?.codec,
+                                  trackId: downloadInfo?.trackId,
+                                  track: {
+                                    title: JSON.parse(JSON.stringify(r.title)),
+                                    artists: JSON.parse(
+                                      JSON.stringify(r.artists),
+                                    ),
+                                    albums: JSON.parse(
+                                      JSON.stringify(r.albums),
+                                    ),
+                                    coverUri: JSON.parse(
+                                      JSON.stringify(r.coverUri),
+                                    ),
+                                  },
+                                });
+                              },
+                              children: (0, d.jsxs)("span", {
+                                className:
+                                  ny().settingsButton + " NfB1qSw6DnoSwTr9I5mE",
+                                style: { cursor: "pointer" },
+                                children:
+                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                    ? codecMap[downloadInfo?.codec]
+                                    : qualityMap[downloadInfo?.quality],
+                              }),
                             }),
+                          }),
 
                           (0, d.jsx)(tH, {
                             placement: "bottom",
@@ -14112,6 +14125,7 @@
             children: [
               (0, d.jsx)(f, {
                 onLikeClick: c,
+                onDislikeClick: v,
                 entityMeta: r.entityMeta,
                 className: (0, _.W)(t, nc().root),
               }),
