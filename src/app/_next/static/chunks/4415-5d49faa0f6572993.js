@@ -6574,7 +6574,7 @@
           t.DEFAULT_HUE =
           t.MAX_FPS =
             void 0),
-        (t.MAX_FPS=window.VIBE_ANIMATION_MAX_FPS ?? 25),
+        (t.MAX_FPS = window.VIBE_ANIMATION_MAX_FPS ?? 25),
         (t.DEFAULT_HUE = 22.968),
         (t.DEFAULT_SATURATION = 1),
         (t.DEFAULT_LIGHTNESS = 0.5),
@@ -6953,6 +6953,7 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
+          this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -6969,7 +6970,8 @@
         }
         update(e, t) {
           if (
-            (this.energy.next(e),
+            (this.trackEnergy.next(e),
+            this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -6977,10 +6979,17 @@
             this.updateTime(e),
             t)
           ) {
-            let n = t.getAverageFrequencies({ low: 0, high: 250 }),
-              r = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              i = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
-            this.audioLowRatio.next(e),
+            let n = t.getAverageFrequencies({ low: 0, high: 450 }),
+              r = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              i = t.getAverageFrequencies({ low: 5e3, high: 20e3 });
+            let intensity =
+              ((n + r * 10.2 + i * 33.3) / 25) *
+              (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
+            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(this.trackEnergy.value + intensity);
+            this.energy.next(e),
+              this.trackEnergy.next(e),
+              this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
@@ -7017,6 +7026,15 @@
               new s.DynamicValue(
                 a.DEFAULT_NOT_PLAYING_ENERGY,
                 a.DEFAULT_NOT_PLAYING_ENERGY,
+                250,
+              ),
+            ),
+            r._(
+              this,
+              "trackEnergy",
+              new s.DynamicValue(
+                a.DEFAULT_NOT_PLAYING_ENERGY,
+                a.DEFAULT_NOT_PLAYING_ENERGY,
                 1e3,
               ),
             ),
@@ -7031,9 +7049,9 @@
             r._(this, "audioLowRatio", new s.DynamicValue(0, 0, 1e3)),
             r._(this, "audioMiddleRatio", new s.DynamicValue(0, 0, 1e3)),
             r._(this, "audioHighRatio", new s.DynamicValue(0, 0, 1e3)),
-            r._(this, "reactTop", new s.DynamicValue(0, 0, 600)),
-            r._(this, "reactMiddle", new s.DynamicValue(0, 0, 600)),
-            r._(this, "reactBottom", new s.DynamicValue(0, 0, 600)),
+            r._(this, "reactTop", new s.DynamicValue(0, 0, 400)),
+            r._(this, "reactMiddle", new s.DynamicValue(0, 0, 400)),
+            r._(this, "reactBottom", new s.DynamicValue(0, 0, 400)),
             r._(this, "point", [0, 0]),
             r._(this, "interaction", 0),
             r._(this, "width", 0),
@@ -12246,7 +12264,10 @@
             { sonataState: S, user: E } = (0, p.oR4)(),
             { theme: N } = (0, p.FgM)(),
             A = (0, p.jpI)(),
-            O = S.status === f.Xz.PLAYING && (S.contextType === u.Ak.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
+            O =
+              S.status === f.Xz.PLAYING &&
+              (S.contextType === u.Ak.Vibe ||
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, l.useEffect)(() => {
               if (j.current) {
