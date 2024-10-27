@@ -539,7 +539,7 @@
           modUpdateCallback = (0, t.useCallback)(
             (t, i, newVersion) => {
                 n(
-                  (0, s.jsx)(c, {
+                  (0, s.jsx)(modUpdateToast, {
                     formatMessage: e,
                     version: `${i} -> ${newVersion}`,
                   }),
