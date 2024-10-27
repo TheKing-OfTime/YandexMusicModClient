@@ -477,14 +477,14 @@
         },
         modUpdateToast = (e) => {
           let { version: n, formatMessage: o, closeToast: i } = e,
-            h = (0, t.useCallback)(() => {
+            hmod = (0, t.useCallback)(() => {
               var e;
               null === (e = window.desktopEvents) ||
                 void 0 === e ||
-                e.send(r.BOn.INSTALL_UPDATE),
+                e.send(r.BOn.APPLICATION_RESTART),
                 null == i || i();
             }, [i]),
-            c = (0, t.useMemo)(
+            cmod = (0, t.useMemo)(
               () =>
                 (0, s.jsxs)("div", {
                   className: m().message,
@@ -501,7 +501,7 @@
                     }),
                     (0, s.jsx)(d.z, {
                       className: m().button,
-                      onClick: h,
+                      onClick: hmod,
                       variant: "default",
                       color: "secondary",
                       size: "xs",
@@ -515,11 +515,11 @@
                     }),
                   ],
                 }),
-              [o, h, n],
+              [o, hmod, n],
             );
           return (0, s.jsx)(v.Yj, {
             className: (0, l.W)(m().root, m().important),
-            message: c,
+            message: cmod,
           });
         },
         u = () => {
@@ -538,8 +538,6 @@
             ),
           modUpdateCallback = (0, t.useCallback)(
             (t, i, newVersion) => {
-              o.current !== i &&
-                ((o.current = i),
                 n(
                   (0, s.jsx)(c, {
                     formatMessage: e,
@@ -548,7 +546,7 @@
                   {
                     containerId: r.W$x.IMPORTANT,
                   },
-                ));
+                );
             },
             [e, o, n],
           );

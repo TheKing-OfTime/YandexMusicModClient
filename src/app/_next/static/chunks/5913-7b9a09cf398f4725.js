@@ -791,8 +791,6 @@
             ),
           modUpdateCallback = (0, a.useCallback)(
             (a, l, newVersion) => {
-              o.current !== l &&
-                ((o.current = l),
                 t(
                   (0, n.jsx)(m, {
                     formatMessage: e,
@@ -801,7 +799,7 @@
                   {
                     containerId: i.W$x.IMPORTANT,
                   },
-                ));
+                );
             },
             [e, o, t],
           );

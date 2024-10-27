@@ -405,6 +405,16 @@
             "value": "version"
         }
     ],
+  "desktop.on-mod-update-available": [
+    {
+      "type": 0,
+      "value": "Доступно обновление мода "
+    },
+    {
+      "type": 1,
+      "value": "version"
+    }
+  ],
     "desktop.paste": [
         {
             "type": 0,
