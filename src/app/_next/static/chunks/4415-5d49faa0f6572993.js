@@ -6982,6 +6982,7 @@
             let n = t.getAverageFrequencies({ low: 0, high: 450 }),
               r = t.getAverageFrequencies({ low: 400, high: 5e3 }),
               i = t.getAverageFrequencies({ low: 5e3, high: 20e3 });
+              // Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
             let intensity =
               ((n + r * 10.2 + i * 33.3) / 25) *
               (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
