@@ -154,7 +154,7 @@ Enhances Vibe Animation behavior. It better adapts to music. Also allows custom 
       "vibeAnimationEnhancement": {
 	    "maxFPS": 25,              	// Max allowed FPS. Defalut 25. Recommended 25 - 144. Don't set this value below 1
 	    "intensityCoefficient": 1, 	// Sensitivity of music analysis. Default 1, Recommended: 0.5 - 2. If set to 0 disables enhancement behavior (almost :D)
-	    "linearDeBoost": 5,		// Separation coefficient of track peaks from the main track. Default 5. Recommended 2 - 8. If 1 disables libear deboost.
+	    "linearDeBoost": 5,		// [DEPRECATED] Separation coefficient of track peaks from the main track. Default 5. Recommended 2 - 8. If 1 disables libear deboost.
 	    "playOnAnyEntity": false,	// If enabled Animation plays even if not My Vibe used as track source.
 	    "disableRendering": false	// Disables rendering of the animation. Use only if you feel significant fps drops. Else try adjust maxFPS value.
       }
@@ -184,17 +184,7 @@ Allows download track that is currently playing. Click to the quality/codec icon
 <details>
    <summary>Details</summary>
    
-Allows you to enable/disable any experiment in the app. To do so you need modify `%appdata%\YandexMusic\config.json`:
-
-By default overridden:
-```js
-{
-      WebNextEqualizer: 'on',
-      WebNextTrackAboutModal: 'on',
-      WebNextLanguageSwitcher: 'on',
-      WebNextUGC: 'on',
-}
-```
+Allows you to enable/disable any experiment in the app. To do so you need set `"enableDevTools": true` and then you'll see the button in the dev panel:
 
 </details>
 
