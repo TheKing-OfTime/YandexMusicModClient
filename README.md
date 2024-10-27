@@ -84,7 +84,11 @@ Currently supported only this actions (I tried add more but others work pretty u
 	"globalShortcuts": {
 		"TOGGLE_PLAY": "Ctrl+K",
 		"MOVE_FORWARD": "Ctrl+L",
-		"MOVE_BACKWARD": "Ctrl+J"
+		"MOVE_BACKWARD": "Ctrl+J",
+		"TOGGLE_SHUFFLE": undefined,
+  		"REPEAT_NONE": undefined,
+    		"REPEAT_CONTEXT": undefined,
+      		"REPEAT_NONE": undefined,
 	}
       
 </details>
