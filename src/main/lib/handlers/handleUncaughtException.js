@@ -5,7 +5,7 @@ const Logger_js_1 = require("../../packages/logger/Logger.js");
 const uncaughtExceptionLogger = new Logger_js_1.Logger('UncaughtException');
 const handleUncaughtException = () => {
     process.on('uncaughtException', (error) => {
-        uncaughtExceptionLogger.error(error);
+        uncaughtExceptionLogger.error(error, error.stack);
     });
     Logger_js_1.Logger.startCatching({
         showDialog: false,
