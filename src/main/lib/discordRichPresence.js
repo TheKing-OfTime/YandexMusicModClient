@@ -224,17 +224,18 @@ const getArtist = (artistsArray) => {
 };
 
 const discordRichPresence = (playingState) => {
+  if(!playingState.track) return undefined;
   if (playingState.status.startsWith("loading")) {
     playingState.status = "playing";
   }
   let title = playingState.track?.title;
-  if (playingState.track.version) {
+  if (playingState.track?.version) {
     title = playingState.track.title + ` (${playingState.track.version})`;
   }
 
   const artist = getArtist(playingState.track?.artists);
 
-  let album = playingState.track.albums?.[0]?.title;
+  let album = playingState.track?.albums?.[0]?.title;
 
   if (title === album || album === undefined) {
     album = undefined;
@@ -244,7 +245,7 @@ const discordRichPresence = (playingState) => {
 
   let albumArt = undefined;
 
-  if (playingState.track.coverUri)
+  if (playingState.track?.coverUri)
     albumArt = `https://${playingState.track.coverUri}`.replace(
       "%%",
       "400x400",
