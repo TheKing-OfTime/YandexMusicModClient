@@ -111,14 +111,14 @@ exports.needToShowReleaseNotes = needToShowReleaseNotes;
 const isFirstLaunch = () => {
   const storeVersion = store.get(store_js_1.StoreKeys.VERSION);
   const hasRecentlyLaunched = Boolean(
-    store.get(store_js_1.StoreKeys.HAS_RECENLTY_LAUNCHED),
+    store.get(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED),
   );
   if (storeVersion) {
-    store.set(store_js_1.StoreKeys.HAS_RECENLTY_LAUNCHED, true);
+    store.set(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
     return false;
   }
   if (!hasRecentlyLaunched) {
-    store.set(store_js_1.StoreKeys.HAS_RECENLTY_LAUNCHED, true);
+    store.set(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
   }
   return !hasRecentlyLaunched;
 };
