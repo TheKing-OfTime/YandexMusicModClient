@@ -520,7 +520,7 @@
               a._(
                   this,
                   "trackEnergy",
-                  new o.DynamicValue(o.DEFAULT_NOT_PLAYING_ENERGY, o.DEFAULT_NOT_PLAYING_ENERGY, 1e3),
+                  new s.DynamicValue(o.DEFAULT_NOT_PLAYING_ENERGY, o.DEFAULT_NOT_PLAYING_ENERGY, 1e3),
               ),
             a._(this, "time", Math.floor(3600 * Math.random())),
             a._(this, "color", void 0),
