@@ -37,6 +37,8 @@ const init = () => {
       enable: true,
       applicationIDForRPC: "1124055337234858005",
       showButtons: true,
+      showSmallIcon: true,
+      showAlbum: true,
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
       afkTimeout: 15,

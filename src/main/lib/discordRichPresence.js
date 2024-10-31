@@ -135,13 +135,19 @@ async function setActivity(
     details: string2Discord(trackName),
     state: string2Discord(trackArtist),
     largeImageKey: trackAlbumAvatar,
-    largeImageText: string2Discord(trackAlbum),
-    smallImageKey: stateKey,
-    smallImageText: stateText,
     startTimestamp,
     endTimestamp,
     instance: false,
   };
+
+  if(settings?.showSmallIcon ?? true) {
+      activityObject.smallImageKey = stateKey;
+      activityObject.smallImageText = stateText;
+  }
+
+  if(settings?.showAlbum ?? true) {
+      activityObject.largeImageText = string2Discord(trackAlbum);
+  }
 
   if (
     (deepShareTrackUrl || webShareTrackUrl) &&
