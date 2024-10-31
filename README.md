@@ -61,6 +61,8 @@ Adds support for Discord Rich Presence
 			"overrideDeepLinksExperiment": true or false,    //Enables or disables split web and desktop buttons into one button
 			"showGitHubButton": true or false,               //Enables or disables Github button if overrideDeepLinksExperiment set to true
 			"afkTimeout": 15,				 //Timeout for activity to be cleared if track paused. Value in minutes.
+			"showAlbum": true or false,                      //Enables or disables album string in discord Status 
+   			"showSmallIcon": true or false,                  //Enables or disables status icon in discord Status 
       }
       
 </details>
