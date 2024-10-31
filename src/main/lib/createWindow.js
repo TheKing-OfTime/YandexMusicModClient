@@ -50,6 +50,7 @@ const createWindow = async () => {
     show: false,
     center: true,
     titleBarStyle: "hidden",
+    backgroundColor: '#FFF',
     trafficLightPosition: {
       x: 16,
       y: 10,
