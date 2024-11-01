@@ -17754,13 +17754,14 @@
             (this.analyserNode.fftSize =
               null !== (r = null == n ? void 0 : n.fftSize) && void 0 !== r
                 ? r
-                : 1024),
-            (this.analyserNode.smoothingTimeConstant =
+                : 1024),                                                            // FFT или же Быстрое Преобразование Фурье работает таким образом что чем меньше размер выборки, то тем меньшую ценность несёт результат преобразований.
+            (this.analyserNode.smoothingTimeConstant =                              // Выборки не усредняют диапазон частот. При ванильной выборке в 32 результат можно считать случайным. По этому поднимаю до 1024. наглядно можно увидеть тут https://audiomotion.dev/demo/fluid.html
               null !== (i = null == n ? void 0 : n.smoothingTimeConstant) &&
               void 0 !== i
                 ? i
-                : 0.4),
-            t.connect(this.analyserNode),
+                : 0.4),                                                             // Ванильное сглаживание в 0.9 слишком затормаживает данные в результате. Они потом всё равно усредняются до 3 параметров (низкие средние и высокие частоты).
+            t.connect(this.analyserNode),                                           // Так что это значение можно снизить. Это даст более своевременную реакцию на изменения в спектрограмме трека.
+
             this.analyserNode.connect(this.audioContext.destination),
             (this.bufferLength = this.analyserNode.frequencyBinCount),
             (this.spectrum = new Uint8Array(this.bufferLength));
