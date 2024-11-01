@@ -19,7 +19,7 @@ const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);
 
 class ModUpdater {
-  latestVersion = null;
+  latestVersion = currentVersion;
   updaterId = null;
   onModUpdateListeners = [];
   logger;
@@ -53,15 +53,15 @@ class ModUpdater {
       this.onModUpdateListeners.forEach((listener) => {
         listener(currentVersion, this.latestVersion);
       });
-    }, 15000);
+    }, 5000);
   }
 
   async checkForUpdates() {
     const response = await fetch(UPDATE_CHECK_URL);
     const releaseData = await response.json();
-    this.latestVersion = releaseData.name;
-    if (semver.lt(currentVersion, this.latestVersion)) {
-      this.logger.log(
+    if (semver.lt(this.latestVersion, releaseData.name)) {
+        this.latestVersion = releaseData.name;
+        this.logger.log(
         "New version available:",
         currentVersion,
         "->",
