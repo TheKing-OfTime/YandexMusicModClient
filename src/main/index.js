@@ -58,7 +58,7 @@ Logger_js_1.Logger.setupLogger();
   if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
     (0, customTitleBar_js_1.createCustomTitleBar)(window);
   }
-  if (config_js_1.config.enableAutoUpdate) {
+  if (store_js_1.getAutoUpdatesEnabled() ?? config_js_1.config.enableAutoUpdate) {
     updater.start();
     updater.onUpdate((version) => {
       (0, events_js_1.sendUpdateAvailable)(window, version);
