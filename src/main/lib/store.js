@@ -37,7 +37,7 @@ const init = () => {
       enable: true,
       applicationIDForRPC: "1124055337234858005",
       showButtons: true,
-      showSmallIcon: true,
+      showSmallIcon: false,
       showAlbum: true,
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
@@ -66,6 +66,7 @@ const init = () => {
     },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
+  initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
   // initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
   //   WebNextEqualizer: "on",
   //   WebNextTrackAboutModal: "on",
@@ -177,6 +178,11 @@ const getDevtoolsEnabled = () => {
   return Boolean(store.get(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED));
 };
 exports.getDevtoolsEnabled = getDevtoolsEnabled;
+
+const getAutoUpdatesEnabled = () => {
+  return Boolean(store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES));
+};
+exports.getAutoUpdatesEnabled = getAutoUpdatesEnabled;
 
 const getModFeatures = () => {
   return store.get(store_js_1.StoreKeys.MOD_FEATURES);
