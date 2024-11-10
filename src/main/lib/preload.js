@@ -39,6 +39,14 @@ electron_1.contextBridge.exposeInMainWorld(
 );
 electron_1.contextBridge.exposeInMainWorld('SHOW_DISLIKE_BUTTON', store_js_1.getModFeatures()?.playerBarEnhancement?.showDislikeButton)
 electron_1.contextBridge.exposeInMainWorld('EXPERIMENT_OVERRIDES', store_js_1.getExperimentOverrides())
+electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
+    get(key) {
+        return store_js_1.get(key);
+    },
+    set(key, value) {
+        return store_js_1.set(key, value);
+    }
+})
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {

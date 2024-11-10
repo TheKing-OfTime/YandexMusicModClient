@@ -192,3 +192,13 @@ const getExperimentOverrides = () => {
   return store.get(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES);
 };
 exports.getExperimentOverrides = getExperimentOverrides;
+
+const get = (key) => {
+    return store.get(key);
+}
+exports.get = get;
+
+const set = (key, value) => {
+    return store.set(key, value);
+}
+exports.set = set;
