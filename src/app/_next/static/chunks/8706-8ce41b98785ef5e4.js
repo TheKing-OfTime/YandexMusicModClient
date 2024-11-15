@@ -19307,7 +19307,12 @@
       let nf = "player-region",
         nv = (0, _.Pi)((e) => {
           var t;
-          let { className: n, entityMeta: r, onLikeClick: i, onDislikeClick: onDislikeClick } = e,
+          let {
+              className: n,
+              entityMeta: r,
+              onLikeClick: i,
+              onDislikeClick: onDislikeClick,
+            } = e,
             {
               user: o,
               sonataState: a,
@@ -19483,153 +19488,200 @@
                   : null,
               [r, T, E, L],
             );
-          return (0, v.jsxs)("section", {
-            style: B,
-            className: (0, p.W)(nd().root, { [nd().root_disabled]: !r }, n),
-            onDoubleClick: R,
-            "aria-labelledby": nf,
-            ...(0, F.BA)(F.QM.player.PLAYERBAR_DESKTOP),
-            children: [
-              (0, v.jsx)(tM.y, {
-                children: (0, v.jsx)(b.Heading, {
-                  variant: "h3",
-                  id: nf,
-                  children: (0, v.jsx)(h.Z, { id: "a11y-regions.player" }),
+          const qualityMap = { lq: "LQ", nq: "NQ", hq: "HQ", lossless: "HQ+" };
+          const codecMap = {
+            mp3: "MP3",
+            "he-aac": "HE-AAC",
+            aac: "AAC",
+            flac: "FLAC",
+          };
+          let theState = (0, x.R$C)();
+          let [downloadInfo, setDownloadInfo] = (0, m.useState)(
+            theState?.state?.queueState?.currentEntity?.value?.entity
+              ?.mediaSourceData?.data,
+          );
+          return (
+            (0, m.useEffect)(() => {
+              const timer = setTimeout(() => {
+                let fDownloadInfo =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSourceData?.data;
+                if (fDownloadInfo) {
+                  setDownloadInfo(fDownloadInfo);
+                }
+              }, 400);
+              return () => {
+                null == timer || clearTimeout(timer);
+              };
+            }),
+            (0, v.jsxs)("section", {
+              style: B,
+              className: (0, p.W)(nd().root, { [nd().root_disabled]: !r }, n),
+              onDoubleClick: R,
+              "aria-labelledby": nf,
+              ...(0, F.BA)(F.QM.player.PLAYERBAR_DESKTOP),
+              children: [
+                (0, v.jsx)(tM.y, {
+                  children: (0, v.jsx)(b.Heading, {
+                    variant: "h3",
+                    id: nf,
+                    children: (0, v.jsx)(h.Z, { id: "a11y-regions.player" }),
+                  }),
                 }),
-              }),
-              (0, v.jsxs)("div", {
-                className: nd().info,
-                children: [
-                  (0, v.jsx)("div", {
-                    className: nd().infoCard,
-                    children:
-                      r &&
-                      !c.isAdvertShown &&
-                      (0, v.jsxs)(v.Fragment, {
-                        children: [
-                          (0, v.jsxs)(ty.Paper, {
-                            radius: "s",
-                            className: nd().coverContainer,
-                            ...(0, F.BA)(
-                              F.QM.player.PLAYERBAR_DESKTOP_COVER_CONTAINER,
-                            ),
-                            children: [
-                              (0, v.jsx)(j.BE, {
-                                className: nd().cover,
-                                src: r.coverUri,
-                                size: 100,
-                                fit: "cover",
-                                withAvatarReplace: !0,
-                              }),
-                              w &&
-                                (0, v.jsxs)(ni.u, {
-                                  placement: "top",
-                                  offsetOptions: 4,
-                                  children: [
-                                    (0, v.jsx)(nu, {
-                                      ariaLabel: k({
-                                        id: "player-actions.fullscreen-button",
-                                      }),
-                                      onClick: l.showFullscreenPlayerModal,
-                                    }),
-                                    (0, v.jsx)(ni._v, {
-                                      children: (0, v.jsx)(h.Z, {
-                                        id: "player-actions.fullscreen",
-                                      }),
-                                    }),
-                                  ],
+                (0, v.jsxs)("div", {
+                  className: nd().info,
+                  children: [
+                    (0, v.jsx)("div", {
+                      className: nd().infoCard,
+                      children:
+                        r &&
+                        !c.isAdvertShown &&
+                        (0, v.jsxs)(v.Fragment, {
+                          children: [
+                            (0, v.jsxs)(ty.Paper, {
+                              radius: "s",
+                              className: nd().coverContainer,
+                              ...(0, F.BA)(
+                                F.QM.player.PLAYERBAR_DESKTOP_COVER_CONTAINER,
+                              ),
+                              children: [
+                                (0, v.jsx)(j.BE, {
+                                  className: nd().cover,
+                                  src: r.coverUri,
+                                  size: 100,
+                                  fit: "cover",
+                                  withAvatarReplace: !0,
                                 }),
-                            ],
-                          }),
-                          (0, v.jsx)("div", {
-                            className: nd().description,
-                            children: Q,
-                          }),
-                        ],
+                                w &&
+                                  (0, v.jsxs)(ni.u, {
+                                    placement: "top",
+                                    offsetOptions: 4,
+                                    children: [
+                                      (0, v.jsx)(nu, {
+                                        ariaLabel: k({
+                                          id: "player-actions.fullscreen-button",
+                                        }),
+                                        onClick: l.showFullscreenPlayerModal,
+                                      }),
+                                      (0, v.jsx)(ni._v, {
+                                        children: (0, v.jsx)(h.Z, {
+                                          id: "player-actions.fullscreen",
+                                        }),
+                                      }),
+                                    ],
+                                  }),
+                              ],
+                            }),
+                            (0, v.jsx)("div", {
+                              className: nd().description,
+                              children: Q,
+                            }),
+                          ],
+                        }),
+                    }),
+                    (0, v.jsx)("div", {
+                      className: nd().infoButtons,
+                      onDoubleClick: O,
+                      children:
+                        r &&
+                        !A &&
+                        !c.isAdvertShown &&
+                        (0, v.jsxs)(v.Fragment, {
+                          children: [
+                            window.SHOW_DISLIKE_BUTTON
+                              ? (0, v.jsx)(j.Q1, {
+                                  className: nd().dislikeButton,
+                                  isDisliked: r.isDisliked,
+                                  onClick: onDislikeClick,
+                                  iconSize: "xs",
+                                })
+                              : undefined,
+                            (0, v.jsx)(j.dJ, {
+                              className: nd().likeButton,
+                              isLiked: r.isLiked,
+                              onClick: i,
+                              iconSize: "xs",
+                            }),
+                            (0, v.jsx)(M.hz, {
+                              track: r,
+                              placement: "top",
+                              open: f,
+                              onOpenChange: _,
+                              icon: (0, v.jsx)(U.Icon, {
+                                size: "xs",
+                                variant: "more",
+                              }),
+                              size: "s",
+                              ...(0, F.BA)(
+                                F.QM.player
+                                  .PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
+                              ),
+                            }),
+                          ],
+                        }),
+                    }),
+                  ],
+                }),
+                (0, v.jsxs)("div", {
+                  className: nd().sonata,
+                  children: [
+                    (0, v.jsx)(P.WP, { isMobile: !1, entityMeta: r }),
+                    !a.isGenerativeContext &&
+                      (0, v.jsx)($.Y, {
+                        disabled: !r,
+                        isMobile: !1,
+                        isFullscreen: !1,
                       }),
-                  }),
-                  (0, v.jsx)("div", {
-                    className: nd().infoButtons,
-                    onDoubleClick: O,
-                    children:
-                      r &&
-                      !A &&
+                  ],
+                }),
+                (0, v.jsxs)("div", {
+                  className: nd().meta,
+                  children: [
+                    !a.isGenerativeContext &&
                       !c.isAdvertShown &&
                       (0, v.jsxs)(v.Fragment, {
                         children: [
-                          window.SHOW_DISLIKE_BUTTON
-                            ? (0, v.jsx)(j.Q1, {
-                                className: nd().dislikeButton,
-                                isDisliked: r.isDisliked,
-                                onClick: onDislikeClick,
-                                iconSize: "xs",
-                              })
-                            : undefined,
-                          (0, v.jsx)(j.dJ, {
-                            className: nd().likeButton,
-                            isLiked: r.isLiked,
-                            onClick: i,
-                            iconSize: "xs",
-                          }),
-                          (0, v.jsx)(M.hz, {
-                            track: r,
-                            placement: "top",
-                            open: f,
-                            onOpenChange: _,
-                            icon: (0, v.jsx)(U.Icon, {
-                              size: "xs",
-                              variant: "more",
+                          I && (0, v.jsx)(j.t5, { iconSize: "l" }),
+                          D,
+                          W,
+                          (0, v.jsx)(j.wx, {
+                            title: "Качество трека",
+                            description:
+                              downloadInfo?.bitrate !== 0
+                                ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
+                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
+                            children: (0, v.jsxs)("div", {
+                              className: nd().settingsButton,
+                              children: (0, v.jsxs)("span", {
+                                className:
+                                  nd().settingsButton + " NfB1qSw6DnoSwTr9I5mE",
+                                style: { cursor: "pointer" },
+                                children:
+                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                    ? codecMap[downloadInfo?.codec]
+                                    : qualityMap[downloadInfo?.quality],
+                              }),
                             }),
-                            size: "s",
-                            ...(0, F.BA)(
-                              F.QM.player.PLAYERBAR_DESKTOP_CONTEXT_MENU_BUTTON,
-                            ),
+                          }),
+                          (0, v.jsx)(tq, {
+                            placement: "bottom",
+                            open: g,
+                            onOpenChange: C,
+                            icon: (0, v.jsx)(U.Icon, {
+                              variant: "settings",
+                              size: "xs",
+                            }),
+                            size: "xxxs",
+                            referenceClassName: nd().settingsButton,
                           }),
                         ],
                       }),
-                  }),
-                ],
-              }),
-              (0, v.jsxs)("div", {
-                className: nd().sonata,
-                children: [
-                  (0, v.jsx)(P.WP, { isMobile: !1, entityMeta: r }),
-                  !a.isGenerativeContext &&
-                    (0, v.jsx)($.Y, {
-                      disabled: !r,
-                      isMobile: !1,
-                      isFullscreen: !1,
-                    }),
-                ],
-              }),
-              (0, v.jsxs)("div", {
-                className: nd().meta,
-                children: [
-                  !a.isGenerativeContext &&
-                    !c.isAdvertShown &&
-                    (0, v.jsxs)(v.Fragment, {
-                      children: [
-                        I && (0, v.jsx)(j.t5, { iconSize: "l" }),
-                        D,
-                        W,
-                        (0, v.jsx)(tq, {
-                          placement: "bottom",
-                          open: g,
-                          onOpenChange: C,
-                          icon: (0, v.jsx)(U.Icon, {
-                            variant: "settings",
-                            size: "xs",
-                          }),
-                          size: "xxxs",
-                          referenceClassName: nd().settingsButton,
-                        }),
-                      ],
-                    }),
-                  (0, v.jsx)(no.F, {}),
-                ],
-              }),
-            ],
-          });
+                    (0, v.jsx)(no.F, {}),
+                  ],
+                }),
+              ],
+            })
+          );
         });
       var np = n(72045),
         n_ = n.n(np);
