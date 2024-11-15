@@ -2682,7 +2682,7 @@
               null !== (i = null == a ? void 0 : a.fftSize) && void 0 !== i
                 ? i
                 : 1024),                                                        // FFT или же Быстрое Преобразование Фурье работает таким образом что чем меньше размер выборки, то тем меньшую ценность несёт результат преобразований.
-            (this.analyserNode.smoothingTimeConstant =                          // Выборки не усредняют диапазон частот. При ванильной выборке в 32 результат можно считать случайным. По этому поднимаю до 1024. наглядно можно увидеть тут https://audiomotion.dev/demo/fluid.html
+            (this.analyserNode.smoothingTimeConstant =                          // Выборки не усредняют диапазон частот. При ванильной выборке в 32 результат можно считать случайным. По этому поднимаю до 1024. Наглядно можно увидеть тут https://audiomotion.dev/demo/fluid.html
               null !== (n = null == a ? void 0 : a.smoothingTimeConstant) &&
               void 0 !== n
                 ? n
