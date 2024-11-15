@@ -55,6 +55,8 @@ const handleWindowLifecycleEvents = (window) => {
         checkAndUpdateApplicationData(window);
     });
     window.on('resized', () => {
+        const sizesBefore = window.getSize();
+        window.setSize(Math.floor(sizesBefore[0]/2)*2,Math.floor(sizesBefore[1]/2)*2);                // Это довольно сомнительная реализация
         const sizes = window.getSize();
         store_js_1.setWindowDimensions(sizes[0], sizes[1]);
     })
