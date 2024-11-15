@@ -660,6 +660,7 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
+          this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -676,7 +677,8 @@
         }
         update(e, t) {
           if (
-            (this.energy.next(e),
+            (this.trackEnergy.next(e),
+            this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -684,10 +686,18 @@
             this.updateTime(e),
             t)
           ) {
-            let n = t.getAverageFrequencies({ low: 0, high: 250 }),
-              i = t.getAverageFrequencies({ low: 500, high: 2e3 }),
-              o = t.getAverageFrequencies({ low: 2e3, high: 4e3 });
-            this.audioLowRatio.next(e),
+            let n = t.getAverageFrequencies({ low: 0, high: 450 }),
+              i = t.getAverageFrequencies({ low: 400, high: 5e3 }),
+              o = t.getAverageFrequencies({ low: 5e3, high: 20e3 });
+            // Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
+            let intensity =
+              ((n + i * 10.2 + o * 33.3) / 25) *
+              (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
+            //console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(this.trackEnergy.value + intensity);
+            this.energy.next(e),
+              this.trackEnergy.update(e),
+              this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
@@ -721,6 +731,15 @@
             i._(
               this,
               "energy",
+              new l.DynamicValue(
+                r.DEFAULT_NOT_PLAYING_ENERGY,
+                r.DEFAULT_NOT_PLAYING_ENERGY,
+                250,
+              ),
+            ),
+            i._(
+              this,
+              "trackEnergy",
               new l.DynamicValue(
                 r.DEFAULT_NOT_PLAYING_ENERGY,
                 r.DEFAULT_NOT_PLAYING_ENERGY,
@@ -954,7 +973,7 @@
             { sonataState: A, user: R } = (0, m.oR4)(),
             { theme: C } = (0, m.FgM)(),
             I = (0, m.jpI)(),
-            L = A.status === u.Xz.PLAYING && A.contextType === h.A.Vibe;
+            L = A.status === u.Xz.PLAYING && (A.contextType === h.A.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, a.useEffect)(() => {
               if (y.current) {
