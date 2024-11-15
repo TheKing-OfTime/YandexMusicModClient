@@ -2681,13 +2681,13 @@
             (this.analyserNode.fftSize =
               null !== (i = null == a ? void 0 : a.fftSize) && void 0 !== i
                 ? i
-                : 1024),                                                        // FFT или же Быстрое Преобразование Фурье работает таким образом что чем меньше размер выборки, то тем меньшую ценность несёт результат преобразований.
-            (this.analyserNode.smoothingTimeConstant =                          // Выборки не усредняют диапазон частот. При ванильной выборке в 32 результат можно считать случайным. По этому поднимаю до 1024. Наглядно можно увидеть тут https://audiomotion.dev/demo/fluid.html
+                : 1024), // FFT или же Быстрое Преобразование Фурье работает таким образом что чем меньше размер выборки, то тем меньшую ценность несёт результат преобразований.
+            (this.analyserNode.smoothingTimeConstant = // Выборки не усредняют диапазон частот. При ванильной выборке в 32 результат можно считать случайным. По этому поднимаю до 1024. Наглядно можно увидеть тут https://audiomotion.dev/demo/fluid.html
               null !== (n = null == a ? void 0 : a.smoothingTimeConstant) &&
               void 0 !== n
                 ? n
-                : 0.4),                                                         // Ванильное сглаживание в 0.9 слишком затормаживает данные в результате. Они потом всё равно усредняются до 3 параметров (низкие средние и высокие частоты).
-            t.connect(this.analyserNode),                                       // Так что это значение можно снизить. Это даст более своевременную реакцию на изменения в спектрограмме трека.
+                : 0.4), // Ванильное сглаживание в 0.9 слишком затормаживает данные в результате. Они потом всё равно усредняются до 3 параметров (низкие средние и высокие частоты).
+            t.connect(this.analyserNode), // Так что это значение можно снизить. Это даст более своевременную реакцию на изменения в спектрограмме трека.
             this.analyserNode.connect(this.audioContext.destination),
             (this.bufferLength = this.analyserNode.frequencyBinCount),
             (this.spectrum = new Uint8Array(this.bufferLength));
@@ -9577,6 +9577,94 @@
               o,
               u,
             ]);
+
+          const sendPlayerStateDefault = (ve) => {
+            (0, iA.Pt)({
+              status: ve.state.playerState.status.value,
+              isPlaying: ve.state.playerState.status.value === ec.Xz.PLAYING,
+              canMoveForward:
+                ve.state.currentContext.value?.availableActions.moveForward
+                  .value,
+              canMoveBackward:
+                ve.state.currentContext.value?.availableActions.moveBackward
+                  .value,
+              track:
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+              progress: ve.state.playerState.progress.value?.position,
+              availableActions: {
+                moveBackward:
+                  ve.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                moveForward:
+                  ve.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                repeat:
+                  ve.state.currentContext.value?.availableActions.repeat.value,
+                shuffle:
+                  ve.state.currentContext.value?.availableActions.shuffle.value,
+                speed:
+                  ve.state.currentContext.value?.availableActions.speed.value,
+              },
+              actionsStore: {
+                repeat: ve.state.queueState.repeat.value,
+                shuffle: ve.state.queueState.shuffle.value,
+                isLiked:
+                  ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                    ve.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+                isDisliked:
+                  ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                    ve.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+              },
+            });
+          };
+          const sendPlayerStatePlaying = (ve) => {
+            (0, iA.Pt)({
+              status: ec.Xz.PLAYING,
+              isPlaying: true,
+              canMoveForward:
+                ve.state.currentContext.value?.availableActions.moveForward
+                  .value,
+              canMoveBackward:
+                ve.state.currentContext.value?.availableActions.moveBackward
+                  .value,
+              track:
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+              progress: ve.state.playerState.progress.value?.position,
+              availableActions: {
+                moveBackward:
+                  ve.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                moveForward:
+                  ve.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                repeat:
+                  ve.state.currentContext.value?.availableActions.repeat.value,
+                shuffle:
+                  ve.state.currentContext.value?.availableActions.shuffle.value,
+                speed:
+                  ve.state.currentContext.value?.availableActions.speed.value,
+              },
+              actionsStore: {
+                repeat: ve.state.queueState.repeat.value,
+                shuffle: ve.state.queueState.shuffle.value,
+                isLiked:
+                  ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                    ve.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+                isDisliked:
+                  ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                    ve.state.queueState.currentEntity.value?.entity.entityData
+                      .meta.id,
+                  ),
+              },
+            });
+          };
+
           (0, iA.A4)(C),
             (0, Z.useEffect)(() => {
               let e, t, a, i, n;
@@ -9604,6 +9692,7 @@
                             eu.A.Vibe && s.setPlaylistFilter(void 0);
                         }
                         n && s.setContextType(n), r && s.setContextId(r);
+                        sendPlayerStatePlaying(C);
                         let o = C.state.queueState.index.value;
                         C.state.queueState.order.value.length > 0 &&
                           "number" == typeof o &&
@@ -9638,9 +9727,18 @@
                   null == C
                     ? void 0
                     : C.state.playerState.status.onChange((e) => {
-                        e &&
-                          (s.setStatus(e),
-                          (0, iA.Pt)({ isPlaying: e === ec.Xz.PLAYING }));
+                        e && (s.setStatus(e), sendPlayerStateDefault(C));
+                      }),
+                seekTracker =
+                  null == C
+                    ? void 0
+                    : C.state.playerState.event.onChange(() => {
+                        if (
+                          C.state.playerState.event.value ===
+                            ec.KX.SET_PROGRESS
+                        ) {
+                          sendPlayerStateDefault(C);
+                        }
                       }),
                 u =
                   null == C
@@ -9679,7 +9777,7 @@
                                           : e.availableActions.moveBackward
                                               .value);
                                       s.setCanMoveBackward(t),
-                                        (0, iA.Pt)({ canMoveBackward: t });
+                                        sendPlayerStateDefault(C);
                                     },
                                   )),
                           (t =
@@ -9701,7 +9799,7 @@
                                           : e.availableActions.moveForward
                                               .value);
                                       s.setCanMoveForward(t),
-                                        (0, iA.Pt)({ canMoveForward: t });
+                                        sendPlayerStateDefault(C);
                                     },
                                   )),
                           (a =
@@ -9723,6 +9821,7 @@
                                           : e.availableActions.repeat.value;
                                     "boolean" == typeof t &&
                                       s.setCanChangeRepeatMode(t);
+                                    sendPlayerStateDefault(C);
                                   })),
                           (i =
                             null == C
@@ -9742,6 +9841,7 @@
                                           ? void 0
                                           : e.availableActions.shuffle.value;
                                     "boolean" == typeof t && s.setCanShuffle(t);
+                                    sendPlayerStateDefault(C);
                                   })),
                           (n =
                             null == C
@@ -9779,6 +9879,7 @@
                         let e = C.state.queueState.repeat.value;
                         s.setRepeatMode(e),
                           y.set(ix.BUb.YmPlayerRepeatMode, e, { expires: 365 });
+                        sendPlayerStateDefault(C);
                       }),
                 h =
                   null == C
@@ -9787,12 +9888,14 @@
                         let e = C.state.queueState.shuffle.value;
                         s.setShuffle(e),
                           y.set(ix.BUb.YmPlayerShuffle, e, { expires: 365 });
+                        sendPlayerStateDefault(C);
                       });
               return () => {
                 null == r || r(),
                   null == o || o(),
                   null == l || l(),
                   null == u || u(),
+                  null == seekTracker || seekTracker(),
                   null == d || d(),
                   null == m || m(),
                   null == h || h();
