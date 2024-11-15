@@ -13,4 +13,6 @@ var StoreKeys;
     StoreKeys["DEVICE_ID"] = "deviceId";
     StoreKeys["DEVICE_SOFTWARE_REVISION"] = "deviceSoftwareRevision";
     StoreKeys["DEVICE_CPU_REVISION"] = "deviceCpuRevision";
+    StoreKeys["TRACKS_AVAILABILITY_UPDATED_AT"] = "tracksAvailabilityUpdatedAt";
+    StoreKeys["REPOSITORY_META_UPDATED_AT"] = "repositoryMetaUpdatedAt";
 })(StoreKeys || (exports.StoreKeys = StoreKeys = {}));

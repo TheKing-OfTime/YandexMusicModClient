@@ -17,6 +17,12 @@
             "value": "The Yandex Music service may contain information not suitable for minors"
         }
     ],
+    "ads.about-advertiser": [
+        {
+            "type": 0,
+            "value": "About the advertiser"
+        }
+    ],
     "ads.ad": [
         {
             "type": 0,
@@ -111,6 +117,18 @@
         {
             "type": 0,
             "value": "Banner"
+        }
+    ],
+    "buy-subscription.already-in-plus": [
+        {
+            "type": 0,
+            "value": "I'm already a Yandex Plus member"
+        }
+    ],
+    "buy-subscription.listen-without-restrictions": [
+        {
+            "type": 0,
+            "value": "Listen to Yandex Music without restrictions"
         }
     ],
     "calendar.april-short": [
@@ -815,6 +833,12 @@
             "value": "authors"
         }
     ],
+    "entity-names.book": [
+        {
+            "type": 0,
+            "value": "Book"
+        }
+    ],
     "entity-names.chart-down": [
         {
             "type": 0,
@@ -825,6 +849,12 @@
         {
             "type": 0,
             "value": "New in the chart"
+        }
+    ],
+    "entity-names.chart-podcasts-list": [
+        {
+            "type": 0,
+            "value": "Chart podcast list"
         }
     ],
     "entity-names.chart-same": [
@@ -1548,6 +1578,12 @@
             "value": "Studio albums"
         }
     ],
+    "entity-names.text": [
+        {
+            "type": 0,
+            "value": "Text"
+        }
+    ],
     "entity-names.track": [
         {
             "type": 0,
@@ -2182,6 +2218,12 @@
             "value": "Change"
         }
     ],
+    "interface-actions.clear": [
+        {
+            "type": 0,
+            "value": "Clear"
+        }
+    ],
     "interface-actions.close": [
         {
             "type": 0,
@@ -2748,6 +2790,110 @@
             "value": "\" selection"
         }
     ],
+    "mobile-paywall.activate-promocode": [
+        {
+            "type": 0,
+            "value": "Activate the promo code"
+        }
+    ],
+    "mobile-paywall.benefit-my-vibe": [
+        {
+            "type": 0,
+            "value": "With personalized recommendations from"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe"
+        }
+    ],
+    "mobile-paywall.child-info": [
+        {
+            "type": 0,
+            "value": "Ask the owner of the parent"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "account to sign up for Plus"
+        }
+    ],
+    "mobile-paywall.first-payment": [
+        {
+            "type": 0,
+            "value": "First payment on "
+        },
+        {
+            "type": 1,
+            "value": "date"
+        }
+    ],
+    "mobile-paywall.payment-reminder": [
+        {
+            "type": 0,
+            "value": "We'll remind you 3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "days"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "before the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "payment"
+        }
+    ],
+    "mobile-paywall.title": [
+        {
+            "type": 0,
+            "value": "Enjoy music with your Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plus"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "subscription"
+        }
+    ],
     "music-history.album": [
         {
             "type": 0,
@@ -2880,6 +3026,12 @@
         {
             "type": 0,
             "value": "Chapters"
+        }
+    ],
+    "non-music.book-available-with-plus": [
+        {
+            "type": 0,
+            "value": "This book is available with the Plus option"
         }
     ],
     "non-music.continue-listen-landing-block-title": [
@@ -3714,6 +3866,88 @@
             "value": "Track will no longer appear in your recommendations"
         }
     ],
+    "offline.clear-memory": [
+        {
+            "type": 0,
+            "value": "Clear сache"
+        }
+    ],
+    "offline.clear-memory-description": [
+        {
+            "type": 0,
+            "value": "We'll only delete downloaded content and cache. This won't affect your recommendations or likes"
+        }
+    ],
+    "offline.delete-from-device": [
+        {
+            "type": 0,
+            "value": "Delete from device"
+        }
+    ],
+    "offline.download": [
+        {
+            "type": 0,
+            "value": "Download"
+        }
+    ],
+    "offline.download-progress": [
+        {
+            "type": 0,
+            "value": "Download progress"
+        }
+    ],
+    "offline.downloaded-track-list": [
+        {
+            "type": 0,
+            "value": "List of downloaded tracks"
+        }
+    ],
+    "offline.downloaded-tracks": [
+        {
+            "type": 0,
+            "value": "Downloaded tracks"
+        }
+    ],
+    "offline.downloading-progress": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "%"
+        }
+    ],
+    "offline.memory-cleared": [
+        {
+            "type": 0,
+            "value": "Device memory cleared"
+        }
+    ],
+    "offline.offline-mode": [
+        {
+            "type": 0,
+            "value": "Offline mode"
+        }
+    ],
+    "offline.offline-mode-description": [
+        {
+            "type": 0,
+            "value": "Download and listen without the internet"
+        }
+    ],
+    "offline.stop-downloading": [
+        {
+            "type": 0,
+            "value": "Stop download"
+        }
+    ],
+    "offline.track-downloaded": [
+        {
+            "type": 0,
+            "value": "Track downloaded"
+        }
+    ],
     "onboarding.artist-donation-button-1": [
         {
             "type": 0,
@@ -3726,6 +3960,390 @@
         {
             "type": 0,
             "value": "with a donation"
+        }
+    ],
+    "onboarding.authorize-to-add-to-collection": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account to add to Collection"
+        }
+    ],
+    "onboarding.authorize-to-change-quality": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account to adjust the sound quality"
+        }
+    ],
+    "onboarding.authorize-to-dislike": [
+        {
+            "type": 0,
+            "value": "Log in to your account to dislike"
+        }
+    ],
+    "onboarding.authorize-to-like": [
+        {
+            "type": 0,
+            "value": "Log in to your account to like"
+        }
+    ],
+    "onboarding.authorize-to-listen-full": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account to listen to the full track"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-activity": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "activity"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-album": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "album"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-artist": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "artist"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-genre": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "genre"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-mood": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "mood"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-playlist": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "playlist"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-track": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "to listen to My"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Vibe by"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "track"
+        }
+    ],
+    "onboarding.authorize-to-open-queue": [
+        {
+            "type": 0,
+            "value": "Log in to your account to open the queue"
+        }
+    ],
+    "onboarding.authorize-to-pin": [
+        {
+            "type": 0,
+            "value": "Log in to your account to pin in the"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "sidebar or menu"
+        }
+    ],
+    "onboarding.authorize-to-view-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Log"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "in to your account to view Music and lyrics"
         }
     ],
     "onboarding.trailer": [
@@ -5504,6 +6122,18 @@
             "value": "Manage time code"
         }
     ],
+    "player-actions.video-speed": [
+        {
+            "type": 0,
+            "value": "Speed"
+        }
+    ],
+    "player-actions.video-speed-normal": [
+        {
+            "type": 0,
+            "value": "Normal"
+        }
+    ],
     "player-actions.volume-control": [
         {
             "type": 0,
@@ -5554,6 +6184,24 @@
         {
             "type": 0,
             "value": "\""
+        }
+    ],
+    "playing-now.playlist-with-filter": [
+        {
+            "type": 0,
+            "value": "Playlist "
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": " filter: "
+        },
+        {
+            "type": 1,
+            "value": "filter"
         }
     ],
     "playlist-actions.add-description": [
@@ -5862,6 +6510,12 @@
         {
             "type": 0,
             "value": "Audiobooks"
+        }
+    ],
+    "search-filters.clip": [
+        {
+            "type": 0,
+            "value": "Videos"
         }
     ],
     "search-filters.playlist": [
@@ -6600,6 +7254,134 @@
             "value": "hours"
         }
     ],
+    "time.hours-minutes": [
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "hours"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "hours"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "hour"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "hours"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "hours"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "hours"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "minutes"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "minutes"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "minute"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "minutes"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "minutes"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "minutes"
+        }
+    ],
     "time.left": [
         {
             "offset": 0,
@@ -6776,6 +7558,18 @@
         {
             "type": 0,
             "value": "About the episode"
+        }
+    ],
+    "track-modal.read-more": [
+        {
+            "type": 0,
+            "value": "Read all"
+        }
+    ],
+    "track-modal.similar-tracks": [
+        {
+            "type": 0,
+            "value": "Similar tracks"
         }
     ],
     "track-modal.title": [

@@ -17,6 +17,12 @@
             "value": "Сервис Яндекс Музыка может содержать информацию, не&nbsp;предназначенную для&nbsp;несовершеннолетних"
         }
     ],
+    "ads.about-advertiser": [
+        {
+            "type": 0,
+            "value": "О рекламодателе"
+        }
+    ],
     "ads.ad": [
         {
             "type": 0,
@@ -111,6 +117,34 @@
         {
             "type": 0,
             "value": "Баннер"
+        }
+    ],
+    "buy-subscription.already-in-plus": [
+        {
+            "type": 0,
+            "value": "Я уже в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюсе"
+        }
+    ],
+    "buy-subscription.listen-without-restrictions": [
+        {
+            "type": 0,
+            "value": "Слушайте Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Музыку без ограничений"
         }
     ],
     "calendar.april-short": [
@@ -405,16 +439,6 @@
             "value": "version"
         }
     ],
-  "desktop.on-mod-update-available": [
-    {
-      "type": 0,
-      "value": "Доступно обновление мода "
-    },
-    {
-      "type": 1,
-      "value": "version"
-    }
-  ],
     "desktop.paste": [
         {
             "type": 0,
@@ -829,6 +853,12 @@
             "value": "authors"
         }
     ],
+    "entity-names.book": [
+        {
+            "type": 0,
+            "value": "Книга"
+        }
+    ],
     "entity-names.chart-down": [
         {
             "type": 0,
@@ -839,6 +869,12 @@
         {
             "type": 0,
             "value": "Новый в чарте"
+        }
+    ],
+    "entity-names.chart-podcasts-list": [
+        {
+            "type": 0,
+            "value": "Список подкастов чарта"
         }
     ],
     "entity-names.chart-same": [
@@ -1630,6 +1666,12 @@
             "value": "Студийные альбомы"
         }
     ],
+    "entity-names.text": [
+        {
+            "type": 0,
+            "value": "Текст"
+        }
+    ],
     "entity-names.track": [
         {
             "type": 0,
@@ -2276,6 +2318,12 @@
             "value": "Изменить"
         }
     ],
+    "interface-actions.clear": [
+        {
+            "type": 0,
+            "value": "Очистить"
+        }
+    ],
     "interface-actions.close": [
         {
             "type": 0,
@@ -2846,6 +2894,110 @@
             "value": "»"
         }
     ],
+    "mobile-paywall.activate-promocode": [
+        {
+            "type": 0,
+            "value": "Активировать промокод"
+        }
+    ],
+    "mobile-paywall.benefit-my-vibe": [
+        {
+            "type": 0,
+            "value": "С"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "персональными рекомендациями от"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Моей волны"
+        }
+    ],
+    "mobile-paywall.child-info": [
+        {
+            "type": 0,
+            "value": "Попросите владельца родительского"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунта подключить подписку Яндекс Плюс"
+        }
+    ],
+    "mobile-paywall.first-payment": [
+        {
+            "type": 0,
+            "value": "Первое списание "
+        },
+        {
+            "type": 1,
+            "value": "date"
+        }
+    ],
+    "mobile-paywall.payment-reminder": [
+        {
+            "type": 0,
+            "value": "Напомним о"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "списании за"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "3"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "дня"
+        }
+    ],
+    "mobile-paywall.title": [
+        {
+            "type": 0,
+            "value": "Музыка зазвучит с"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "подпиской Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюс"
+        }
+    ],
     "music-history.album": [
         {
             "type": 0,
@@ -2978,6 +3130,12 @@
         {
             "type": 0,
             "value": "Оглавление"
+        }
+    ],
+    "non-music.book-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Эта книга доступна с опцией Плюса"
         }
     ],
     "non-music.continue-listen-landing-block-title": [
@@ -3828,6 +3986,88 @@
             "value": "Трек больше не будет появляться в ваших рекомендациях"
         }
     ],
+    "offline.clear-memory": [
+        {
+            "type": 0,
+            "value": "Очистить память"
+        }
+    ],
+    "offline.clear-memory-description": [
+        {
+            "type": 0,
+            "value": "Удалим только скачанное и кэш. Это не повлияет на ваши рекомендации и лайки"
+        }
+    ],
+    "offline.delete-from-device": [
+        {
+            "type": 0,
+            "value": "Удалить с устройства"
+        }
+    ],
+    "offline.download": [
+        {
+            "type": 0,
+            "value": "Скачать"
+        }
+    ],
+    "offline.download-progress": [
+        {
+            "type": 0,
+            "value": "Прогресс скачивания"
+        }
+    ],
+    "offline.downloaded-track-list": [
+        {
+            "type": 0,
+            "value": "Список скачанных треков"
+        }
+    ],
+    "offline.downloaded-tracks": [
+        {
+            "type": 0,
+            "value": "Скачанные треки"
+        }
+    ],
+    "offline.downloading-progress": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "%"
+        }
+    ],
+    "offline.memory-cleared": [
+        {
+            "type": 0,
+            "value": "Память устройства очищена"
+        }
+    ],
+    "offline.offline-mode": [
+        {
+            "type": 0,
+            "value": "Офлайн-режим"
+        }
+    ],
+    "offline.offline-mode-description": [
+        {
+            "type": 0,
+            "value": "Слушайте скачанное без интернета"
+        }
+    ],
+    "offline.stop-downloading": [
+        {
+            "type": 0,
+            "value": "Остановить скачивание"
+        }
+    ],
+    "offline.track-downloaded": [
+        {
+            "type": 0,
+            "value": "Трек скачан"
+        }
+    ],
     "onboarding.artist-donation-button-1": [
         {
             "type": 0,
@@ -3840,6 +4080,398 @@
         {
             "type": 0,
             "value": "любимого артиста"
+        }
+    ],
+    "onboarding.authorize-to-add-to-collection": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы добавить в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Коллекцию"
+        }
+    ],
+    "onboarding.authorize-to-change-quality": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы настроить качество звука"
+        }
+    ],
+    "onboarding.authorize-to-dislike": [
+        {
+            "type": 0,
+            "value": "Войдите в аккаунт, чтобы поставить дизлайк"
+        }
+    ],
+    "onboarding.authorize-to-like": [
+        {
+            "type": 0,
+            "value": "Войдите в аккаунт, чтобы поставить лайк"
+        }
+    ],
+    "onboarding.authorize-to-listen-full": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы послушать трек полностью"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-activity": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "занятию"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-album": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "альбому"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-artist": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "артисту"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-genre": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "жанру"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-mood": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "настроению"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-playlist": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "плейлисту"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-track": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "послушать Мою"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "волну по"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "треку"
+        }
+    ],
+    "onboarding.authorize-to-open-queue": [
+        {
+            "type": 0,
+            "value": "Войдите в аккаунт, чтобы открыть очередь"
+        }
+    ],
+    "onboarding.authorize-to-pin": [
+        {
+            "type": 0,
+            "value": "Войдите в аккаунт, чтобы закрепить в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сайдбаре/меню"
+        }
+    ],
+    "onboarding.authorize-to-view-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Войдите в"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "аккаунт, чтобы посмотреть текстомузыку"
         }
     ],
     "onboarding.trailer": [
@@ -5698,6 +6330,18 @@
             "value": "Управление таймкодом"
         }
     ],
+    "player-actions.video-speed": [
+        {
+            "type": 0,
+            "value": "Скорость"
+        }
+    ],
+    "player-actions.video-speed-normal": [
+        {
+            "type": 0,
+            "value": "Обычная"
+        }
+    ],
     "player-actions.volume-control": [
         {
             "type": 0,
@@ -5748,6 +6392,24 @@
         {
             "type": 0,
             "value": "»"
+        }
+    ],
+    "playing-now.playlist-with-filter": [
+        {
+            "type": 0,
+            "value": "Плейлист «"
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": "» фильтр: "
+        },
+        {
+            "type": 1,
+            "value": "filter"
         }
     ],
     "playlist-actions.add-description": [
@@ -6060,6 +6722,12 @@
         {
             "type": 0,
             "value": "Аудиокниги"
+        }
+    ],
+    "search-filters.clip": [
+        {
+            "type": 0,
+            "value": "Клипы"
         }
     ],
     "search-filters.playlist": [
@@ -6970,6 +7638,134 @@
             "value": "hours"
         }
     ],
+    "time.hours-minutes": [
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "часа"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "часов"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "час"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "часов"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "hours"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "hours"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минуты"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минут"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минута"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минут"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "minutes"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "minutes"
+        }
+    ],
     "time.left": [
         {
             "offset": 0,
@@ -7146,6 +7942,18 @@
         {
             "type": 0,
             "value": "О выпуске"
+        }
+    ],
+    "track-modal.read-more": [
+        {
+            "type": 0,
+            "value": "Читать полностью"
+        }
+    ],
+    "track-modal.similar-tracks": [
+        {
+            "type": 0,
+            "value": "Похожие треки"
         }
     ],
     "track-modal.title": [

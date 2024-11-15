@@ -30,6 +30,7 @@ const handleUncaughtException_js_1 = require("./lib/handlers/handleUncaughtExcep
 const handleWindowSessionEvents_js_1 = require("./lib/handlers/handleWindowSessionEvents.js");
 const handleWindowReady_js_1 = require("./lib/handlers/handleWindowReady.js");
 const handleHeadersReceived_js_1 = require("./lib/handlers/handleHeadersReceived/handleHeadersReceived.js");
+const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks.js");
 Logger_js_1.Logger.setupLogger();
 (0, store_js_1.init)();
 (0, handleUncaughtException_js_1.handleUncaughtException)();
@@ -53,6 +54,7 @@ Logger_js_1.Logger.setupLogger();
   (0, handleDeeplink_js_1.handleDeeplink)(window);
   (0, taskBarExtension_js_1.taskBarExtension)(window);
   (0, handleHeadersReceived_js_1.handleHeadersReceived)(window);
+  (0, handleBackgroundTasks_js_1.handleBackgroundTasks)(window);
   (0, handleCrash_js_1.handleCrash)();
   await (0, loadURL_js_1.loadURL)(window);
   if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {

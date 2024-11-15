@@ -17,6 +17,12 @@
             "value": "Yandex Music xizmati voyaga yetmaganlar uchun moʻljallanmagan axborotni oʻz ichiga olishi mumkin"
         }
     ],
+    "ads.about-advertiser": [
+        {
+            "type": 0,
+            "value": "Reklama beruvchi haqida"
+        }
+    ],
     "ads.ad": [
         {
             "type": 0,
@@ -111,6 +117,34 @@
         {
             "type": 0,
             "value": "Banner"
+        }
+    ],
+    "buy-subscription.already-in-plus": [
+        {
+            "type": 0,
+            "value": "Men allaqachon"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Plusdaman"
+        }
+    ],
+    "buy-subscription.listen-without-restrictions": [
+        {
+            "type": 0,
+            "value": "Yandex"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Music ilovasini cheklovlarsiz tinglang"
         }
     ],
     "calendar.april-short": [
@@ -807,6 +841,12 @@
             "value": "authors"
         }
     ],
+    "entity-names.book": [
+        {
+            "type": 0,
+            "value": "Kitob"
+        }
+    ],
     "entity-names.chart-down": [
         {
             "type": 0,
@@ -817,6 +857,12 @@
         {
             "type": 0,
             "value": "Chartda yangi"
+        }
+    ],
+    "entity-names.chart-podcasts-list": [
+        {
+            "type": 0,
+            "value": "Chart podkastlari roʻyxati"
         }
     ],
     "entity-names.chart-same": [
@@ -1540,6 +1586,12 @@
             "value": "Studiya albomlari"
         }
     ],
+    "entity-names.text": [
+        {
+            "type": 0,
+            "value": "Matn"
+        }
+    ],
     "entity-names.track": [
         {
             "type": 0,
@@ -2178,6 +2230,12 @@
             "value": "O‘zgartirish"
         }
     ],
+    "interface-actions.clear": [
+        {
+            "type": 0,
+            "value": "Tozalash"
+        }
+    ],
     "interface-actions.close": [
         {
             "type": 0,
@@ -2740,6 +2798,54 @@
             "value": "” termasi pleylistlari roʻyxati"
         }
     ],
+    "mobile-paywall.activate-promocode": [
+        {
+            "type": 0,
+            "value": "Promo kodni faollashtirish"
+        }
+    ],
+    "mobile-paywall.benefit-my-vibe": [
+        {
+            "type": 0,
+            "value": "Mening toʻlqinimdagi shaxsiy tavsiyalar bilan"
+        }
+    ],
+    "mobile-paywall.child-info": [
+        {
+            "type": 0,
+            "value": "Ota-ona hisobi egasidan Yandex Plus"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "obunasini ulashini soʻrang"
+        }
+    ],
+    "mobile-paywall.first-payment": [
+        {
+            "type": 0,
+            "value": "Birinchi pul yechish sanasi: "
+        },
+        {
+            "type": 1,
+            "value": "date"
+        }
+    ],
+    "mobile-paywall.payment-reminder": [
+        {
+            "type": 0,
+            "value": "Pul yechish haqida 3 kun oldin eslatamiz"
+        }
+    ],
+    "mobile-paywall.title": [
+        {
+            "type": 0,
+            "value": "Yandex Plus obunasi bilan musiqa yangraydi"
+        }
+    ],
     "music-history.album": [
         {
             "type": 0,
@@ -2872,6 +2978,12 @@
         {
             "type": 0,
             "value": "Sarlavha"
+        }
+    ],
+    "non-music.book-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Bu kitob Plus opsiyasi bilan mavjud"
         }
     ],
     "non-music.continue-listen-landing-block-title": [
@@ -3654,6 +3766,88 @@
             "value": "Trek endi tavsiyalaringizda chiqmaydi"
         }
     ],
+    "offline.clear-memory": [
+        {
+            "type": 0,
+            "value": "Xotirani tozalash"
+        }
+    ],
+    "offline.clear-memory-description": [
+        {
+            "type": 0,
+            "value": "Faqat yuklab olinganlar va keshni o‘chiramiz. Bu tavsiyalaringiz va layklaringizga ta’sir qilmaydi"
+        }
+    ],
+    "offline.delete-from-device": [
+        {
+            "type": 0,
+            "value": "Qurilmadan o‘chirib tashlash"
+        }
+    ],
+    "offline.download": [
+        {
+            "type": 0,
+            "value": "Yuklab olish"
+        }
+    ],
+    "offline.download-progress": [
+        {
+            "type": 0,
+            "value": "Yuklab olish jarayoni"
+        }
+    ],
+    "offline.downloaded-track-list": [
+        {
+            "type": 0,
+            "value": "Yuklab olingan taronalar roʻyxati"
+        }
+    ],
+    "offline.downloaded-tracks": [
+        {
+            "type": 0,
+            "value": "Barcha yuklab olingan treklar"
+        }
+    ],
+    "offline.downloading-progress": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "%"
+        }
+    ],
+    "offline.memory-cleared": [
+        {
+            "type": 0,
+            "value": "Qurilma xotirasi tozalandi"
+        }
+    ],
+    "offline.offline-mode": [
+        {
+            "type": 0,
+            "value": "Oflayn rejim"
+        }
+    ],
+    "offline.offline-mode-description": [
+        {
+            "type": 0,
+            "value": "Yuklab olinganlarni internetsiz tinglang"
+        }
+    ],
+    "offline.stop-downloading": [
+        {
+            "type": 0,
+            "value": "Yuklab olishni to‘xtatish"
+        }
+    ],
+    "offline.track-downloaded": [
+        {
+            "type": 0,
+            "value": "Trek yuklandi"
+        }
+    ],
     "onboarding.artist-donation-button-1": [
         {
             "type": 0,
@@ -3666,6 +3860,342 @@
         {
             "type": 0,
             "value": "xayriya bilan dastaklang"
+        }
+    ],
+    "onboarding.authorize-to-add-to-collection": [
+        {
+            "type": 0,
+            "value": "Termaga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "qoʻshish uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-change-quality": [
+        {
+            "type": 0,
+            "value": "Tovush sifatini"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "sozlash uchun hisobga kiring"
+        }
+    ],
+    "onboarding.authorize-to-dislike": [
+        {
+            "type": 0,
+            "value": "Dizlayk qoʻyish uchun hisobga kiring"
+        }
+    ],
+    "onboarding.authorize-to-like": [
+        {
+            "type": 0,
+            "value": "Layk qoʻyish uchun hisobga kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-full": [
+        {
+            "type": 0,
+            "value": "Taronani toʻliq tinglash uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe": [
+        {
+            "type": 0,
+            "value": "Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-activity": [
+        {
+            "type": 0,
+            "value": "Mashgʻulot boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-album": [
+        {
+            "type": 0,
+            "value": "Albom boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-artist": [
+        {
+            "type": 0,
+            "value": "Ijrochi boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-genre": [
+        {
+            "type": 0,
+            "value": "Janr boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-mood": [
+        {
+            "type": 0,
+            "value": "Kayfiyat boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-playlist": [
+        {
+            "type": 0,
+            "value": "Pleylist boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-track": [
+        {
+            "type": 0,
+            "value": "Tarona boʻyicha Mening"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "toʻlqinimni tinglash"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
+        }
+    ],
+    "onboarding.authorize-to-open-queue": [
+        {
+            "type": 0,
+            "value": "Navbatni ochish uchun hisobga kiring"
+        }
+    ],
+    "onboarding.authorize-to-pin": [
+        {
+            "type": 0,
+            "value": "Yon"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "menyu/menyuga qadash uchun hisobga kiring"
+        }
+    ],
+    "onboarding.authorize-to-view-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Musiqa matnini ko‘rish uchun hisobga"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "kiring"
         }
     ],
     "onboarding.trailer": [
@@ -5136,6 +5666,18 @@
             "value": "Taymkod bilan boshqarish"
         }
     ],
+    "player-actions.video-speed": [
+        {
+            "type": 0,
+            "value": "Tezlik"
+        }
+    ],
+    "player-actions.video-speed-normal": [
+        {
+            "type": 0,
+            "value": "Oddiy"
+        }
+    ],
     "player-actions.volume-control": [
         {
             "type": 0,
@@ -5186,6 +5728,24 @@
         {
             "type": 0,
             "value": "” pleylisti"
+        }
+    ],
+    "playing-now.playlist-with-filter": [
+        {
+            "type": 0,
+            "value": "“"
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": "” pleylisti filtri: "
+        },
+        {
+            "type": 1,
+            "value": "filter"
         }
     ],
     "playlist-actions.add-description": [
@@ -5482,6 +6042,12 @@
         {
             "type": 0,
             "value": "Audiokitoblar"
+        }
+    ],
+    "search-filters.clip": [
+        {
+            "type": 0,
+            "value": "Kliplar"
         }
     ],
     "search-filters.playlist": [
@@ -6200,6 +6766,134 @@
             "value": "hours"
         }
     ],
+    "time.hours-minutes": [
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "soat"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "soat"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "soat"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "soat"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "hours"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "hours"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "few": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "daqiqa"
+                                        }
+                                    ]
+                                },
+                                "many": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "daqiqa"
+                                        }
+                                    ]
+                                },
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "daqiqa"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "daqiqa"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "minutes"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "minutes"
+        }
+    ],
     "time.left": [
         {
             "offset": 0,
@@ -6376,6 +7070,18 @@
         {
             "type": 0,
             "value": "Nashr haqida"
+        }
+    ],
+    "track-modal.read-more": [
+        {
+            "type": 0,
+            "value": "To‘liq o‘qish"
+        }
+    ],
+    "track-modal.similar-tracks": [
+        {
+            "type": 0,
+            "value": "O‘xshash treklar"
         }
     ],
     "track-modal.title": [

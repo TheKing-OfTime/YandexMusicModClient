@@ -5,7 +5,7 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDeviceId =
+exports.useCachedValue = exports.deviceId = exports.repositoryMetaUpdatedAt = exports.tracksAvailabilityUpdatedAt = exports.getDeviceId =
   exports.getUuid =
   exports.isRevisionChanged =
   exports.isFirstLaunch =
@@ -24,6 +24,23 @@ const generateDeviceId_js_1 = require("./generateDeviceId.js");
 const store_js_1 = require("../types/store.js");
 const config_js_1 = require("../config.js");
 const store = new electron_store_1.default();
+
+const useCachedValue = (key) => {
+    let cachedValue = null;
+    const get = () => {
+        if (cachedValue) {
+            return cachedValue;
+        }
+        cachedValue = store.get(key);
+        return cachedValue;
+    };
+    const set = (value) => {
+        cachedValue = value;
+        store.set(key, value);
+    };
+    return [get, set];
+};
+exports.useCachedValue = useCachedValue;
 
 const ignoreValuesIn = [`${store_js_1.StoreKeys.MOD_FEATURES}.globalShortcuts`];
 
@@ -132,25 +149,6 @@ const isRevisionChanged = (type, revision) => {
     return storeRevision !== revision;
 };
 exports.isRevisionChanged = isRevisionChanged;
-exports.getDeviceId = (() => {
-  let cachedDeviceId;
-  return () => {
-    let deviceId;
-    if (cachedDeviceId) {
-      deviceId = cachedDeviceId;
-    } else {
-      deviceId = store.get(store_js_1.StoreKeys.DEVICE_ID);
-      cachedDeviceId = deviceId;
-    }
-    if (!deviceId) {
-      deviceId = (0, generateDeviceId_js_1.generateDeviceId)();
-      cachedDeviceId = deviceId;
-      store.set(store_js_1.StoreKeys.DEVICE_ID, deviceId);
-    }
-    return String(deviceId);
-  };
-})();
-
 const getUuid = () => {
     let uuid = store.get(store_js_1.StoreKeys.UUID);
     if (!uuid) {
@@ -160,6 +158,21 @@ const getUuid = () => {
     return uuid;
 };
 exports.getUuid = getUuid;
+
+exports.deviceId = (0, exports.useCachedValue)(store_js_1.StoreKeys.DEVICE_ID);
+const getDeviceId = () => {
+    const [get, set] = exports.deviceId;
+    let deviceIdValue = get();
+    if (deviceIdValue) {
+        return String(deviceIdValue);
+    }
+    deviceIdValue = (0, generateDeviceId_js_1.generateDeviceId)();
+    set(deviceIdValue);
+    return String(deviceIdValue);
+};
+exports.getDeviceId = getDeviceId;
+exports.tracksAvailabilityUpdatedAt = (0, exports.useCachedValue)(store_js_1.StoreKeys.TRACKS_AVAILABILITY_UPDATED_AT);
+exports.repositoryMetaUpdatedAt = (0, exports.useCachedValue)(store_js_1.StoreKeys.REPOSITORY_META_UPDATED_AT);
 
 const getWindowDimensions = () => {
   return store.get(store_js_1.StoreKeys.WINDOW_DIMENSIONS);

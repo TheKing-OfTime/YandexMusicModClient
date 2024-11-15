@@ -1,6 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendAnalyticsOnFirstLaunch = exports.sendOpenDeeplink = exports.sendPlayerAction = exports.sendRefreshApplicationData = exports.sendUpdateAvailable = exports.sendLoadReleaseNotes = exports.sendProbabilityBucket = exports.handleApplicationEvents = void 0;
+exports.sendRefreshRepositoryMeta =
+  exports.sendRefreshTracksAvailability =
+  exports.sendAnalyticsOnFirstLaunch =
+  exports.sendOpenDeeplink =
+  exports.sendPlayerAction =
+  exports.sendRefreshApplicationData =
+  exports.sendUpdateAvailable =
+  exports.sendLoadReleaseNotes =
+  exports.sendProbabilityBucket =
+  exports.handleApplicationEvents =
+    void 0;
 const electron_1 = require("electron");
 const NodeID3 = require("node-id3").Promise;
 const fs = require("fs").promises;
@@ -18,7 +28,7 @@ const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
-const eventsLogger = new Logger_js_1.Logger('Events');
+const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };
@@ -37,10 +47,15 @@ const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
 
   if (store_js_1.getModFeatures()?.globalShortcuts) {
-    const shortcuts = Object.entries(store_js_1.getModFeatures().globalShortcuts);
-    shortcuts.forEach(shortcut => {
-        if(shortcut[1]) electron_1.globalShortcut.register(shortcut[1], () => { sendPlayerAction(window, shortcut[0]) })
-    })
+    const shortcuts = Object.entries(
+      store_js_1.getModFeatures().globalShortcuts,
+    );
+    shortcuts.forEach((shortcut) => {
+      if (shortcut[1])
+        electron_1.globalShortcut.register(shortcut[1], () => {
+          sendPlayerAction(window, shortcut[0]);
+        });
+    });
   }
 
   electron_1.ipcMain.on(
@@ -107,9 +122,9 @@ const handleApplicationEvents = (window) => {
     },
   );
 
-    electron_1.app.on('will-quit', () => {
-        electron_1.globalShortcut.unregisterAll()
-    })
+  electron_1.app.on("will-quit", () => {
+    electron_1.globalShortcut.unregisterAll();
+  });
 
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
@@ -142,29 +157,69 @@ const handleApplicationEvents = (window) => {
     eventsLogger.info("Event received", events_js_1.Events.INSTALL_UPDATE);
     updater.install();
   });
-    electron_1.ipcMain.on(events_js_1.Events.APPLICATION_READY, async (event, language) => {
-        eventsLogger.info('Event received', events_js_1.Events.APPLICATION_READY);
-        (0, deviceInfo_js_1.logHardwareInfo)();
-    if (state_js_1.state.deeplink) {
-            (0, handleDeeplink_js_1.navigateToDeeplink)(window, state_js_1.state.deeplink);
-    }
-    if (updater.latestAvailableVersion) {
-      (0, exports.sendUpdateAvailable)(window, updater.latestAvailableVersion);
-    }
-    if ((0, store_js_1.isFirstLaunch)()) {
-      (0, exports.sendAnalyticsOnFirstLaunch)(window);
-    }
-        (0, exports.sendProbabilityBucket)(window, updater.getProbabilityBucket());
-        const releaseNotes = await (0, loadReleaseNotes_js_1.loadReleaseNotes)(language);
-        if (releaseNotes) {
-            (0, exports.sendLoadReleaseNotes)(window, (0, store_js_1.needToShowReleaseNotes)(), releaseNotes);
-        }
-  });
+  electron_1.ipcMain.on(
+    events_js_1.Events.APPLICATION_READY,
+    async (event, language) => {
+      eventsLogger.info("Event received", events_js_1.Events.APPLICATION_READY);
+      (0, deviceInfo_js_1.logHardwareInfo)();
+      if (state_js_1.state.deeplink) {
+        (0, handleDeeplink_js_1.navigateToDeeplink)(
+          window,
+          state_js_1.state.deeplink,
+        );
+      }
+      if (updater.latestAvailableVersion) {
+        (0, exports.sendUpdateAvailable)(
+          window,
+          updater.latestAvailableVersion,
+        );
+      }
+      if ((0, store_js_1.isFirstLaunch)()) {
+        (0, exports.sendAnalyticsOnFirstLaunch)(window);
+      }
+      (0, exports.sendProbabilityBucket)(
+        window,
+        updater.getProbabilityBucket(),
+      );
+      const releaseNotes = await (0, loadReleaseNotes_js_1.loadReleaseNotes)(
+        language,
+      );
+      if (releaseNotes) {
+        (0, exports.sendLoadReleaseNotes)(
+          window,
+          (0, store_js_1.needToShowReleaseNotes)(),
+          releaseNotes,
+        );
+      }
+    },
+  );
   electron_1.ipcMain.on(
     events_js_1.Events.APPLICATION_THEME,
     (event, backgroundColor) => {
       eventsLogger.info("Event received", events_js_1.Events.APPLICATION_THEME);
       window.setBackgroundColor(backgroundColor);
+    },
+  );
+  electron_1.ipcMain.on(
+    events_js_1.Events.TRACKS_AVAILABILITY_UPDATED,
+    (event) => {
+      const [, setTracksAvailabilityUpdatedAt] =
+        store_js_1.tracksAvailabilityUpdatedAt;
+      eventsLogger.info(
+        "Event received",
+        events_js_1.Events.TRACKS_AVAILABILITY_UPDATED,
+      );
+      setTracksAvailabilityUpdatedAt(Date.now());
+    },
+  );
+  electron_1.ipcMain.on(events_js_1.Events.REPOSITORY_META_UPDATED, (event) => {
+    const [, setRepositoryMetaUpdatedAtStoreValue] =
+      store_js_1.repositoryMetaUpdatedAt;
+    eventsLogger.info(
+      "Event received",
+      events_js_1.Events.REPOSITORY_META_UPDATED,
+    );
+    setRepositoryMetaUpdatedAtStoreValue(Date.now());
   });
   electron_1.ipcMain.on(events_js_1.Events.PLAYER_STATE, (event, data) => {
     eventsLogger.info(
@@ -216,8 +271,12 @@ const sendProbabilityBucket = (window, bucket) => {
 };
 exports.sendProbabilityBucket = sendProbabilityBucket;
 const sendLoadReleaseNotes = (window, needToShowReleaseNotes, releaseNotes) => {
-    window.webContents.send(events_js_1.Events.LOAD_RELEASE_NOTES, needToShowReleaseNotes, releaseNotes);
-    eventsLogger.info('Event sent', events_js_1.Events.LOAD_RELEASE_NOTES);
+  window.webContents.send(
+    events_js_1.Events.LOAD_RELEASE_NOTES,
+    needToShowReleaseNotes,
+    releaseNotes,
+  );
+  eventsLogger.info("Event sent", events_js_1.Events.LOAD_RELEASE_NOTES);
 };
 exports.sendLoadReleaseNotes = sendLoadReleaseNotes;
 const sendUpdateAvailable = (window, version) => {
@@ -264,3 +323,16 @@ const sendAnalyticsOnFirstLaunch = (window) => {
   eventsLogger.info("Event send", events_js_1.Events.FIRST_LAUNCH);
 };
 exports.sendAnalyticsOnFirstLaunch = sendAnalyticsOnFirstLaunch;
+const sendRefreshTracksAvailability = (window) => {
+  window.webContents.send(events_js_1.Events.REFRESH_TRACKS_AVAILABILITY);
+  eventsLogger.info(
+    "Event sent",
+    events_js_1.Events.REFRESH_TRACKS_AVAILABILITY,
+  );
+};
+exports.sendRefreshTracksAvailability = sendRefreshTracksAvailability;
+const sendRefreshRepositoryMeta = (window) => {
+  window.webContents.send(events_js_1.Events.REFRESH_REPOSITORY_META);
+  eventsLogger.info("Event send", events_js_1.Events.REFRESH_REPOSITORY_META);
+};
+exports.sendRefreshRepositoryMeta = sendRefreshRepositoryMeta;

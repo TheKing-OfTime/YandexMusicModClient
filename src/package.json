@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "YandexMusic",
-    "version": "5.27.1",
+    "version": "5.28.4",
     "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
     "author": "Яндекс Музыка",
     "main": "main/index.js",
@@ -11,6 +11,7 @@
         "electron-store": "~8.2.0",
         "electron-updater": "~6.3.4",
         "intl-messageformat": "~10.5.14",
+        "node-cron": "~3.0.3",
         "semver": "~7.6.3",
         "uuid": "~9.0.1",
         "fast-uri": "^3.0.2"
@@ -18,17 +19,18 @@
     "devDependencies": {
         "@electron/fuses": "~1.8.0",
         "@electron/notarize": "~2.4.0",
+        "@types/node-cron": "~3.0.11",
         "@types/semver": "~7.5.8",
         "@yandex-chats/signer": "~0.0.3",
         "electron": "~32.1.0",
         "js-yaml": "~4.1.0"
     },
     "buildInfo": {
-        "VERSION": "5.27.1",
-        "BRANCH": "bb31626869998cbf4617d458382be5f50867b801"
+        "VERSION": "5.28.4",
+        "BRANCH": "925c3f192aff818436dbe84f75918010b24e3ffa"
     },
     "common": {
-        "SHOW_RELEASE_NOTES": true,
+        "SHOW_RELEASE_NOTES": false,
         "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
         "UPDATE_POLL_INTERVAL_MS": 1800000,
         "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",

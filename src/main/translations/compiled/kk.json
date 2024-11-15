@@ -17,6 +17,12 @@
             "value": "Яндекс Музыка қызметі кәмелетке&nbsp;толмағандарға арналған ақпаратты қамтуы&nbsp;мүмкін"
         }
     ],
+    "ads.about-advertiser": [
+        {
+            "type": 0,
+            "value": "Жарнама беруші туралы"
+        }
+    ],
     "ads.ad": [
         {
             "type": 0,
@@ -86,7 +92,7 @@
     "authorization.enter-subtitle": [
         {
             "type": 0,
-            "value": "To listen to music and podcasts without restrictions"
+            "value": "Музыка мен подкастарды шектеулерсіз тыңдау үшін"
         }
     ],
     "authorization.enter-text": [
@@ -104,13 +110,41 @@
     "authorization.enter-tooltip": [
         {
             "type": 0,
-            "value": "Log in to your account"
+            "value": "Аккаунтқа кіру"
         }
     ],
     "bar-below.section-name": [
         {
             "type": 0,
             "value": "Баннер"
+        }
+    ],
+    "buy-subscription.already-in-plus": [
+        {
+            "type": 0,
+            "value": "Мен бұрыннан"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюстемін"
+        }
+    ],
+    "buy-subscription.listen-without-restrictions": [
+        {
+            "type": 0,
+            "value": "Яндекс Музыканы"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "шектеусіз тыңдаңыз"
         }
     ],
     "calendar.april-short": [
@@ -775,6 +809,12 @@
             "value": "authors"
         }
     ],
+    "entity-names.book": [
+        {
+            "type": 0,
+            "value": "Кітап"
+        }
+    ],
     "entity-names.chart-down": [
         {
             "type": 0,
@@ -785,6 +825,12 @@
         {
             "type": 0,
             "value": "Чарттағы жаңа"
+        }
+    ],
+    "entity-names.chart-podcasts-list": [
+        {
+            "type": 0,
+            "value": "Чарт подкастарының тізімі"
         }
     ],
     "entity-names.chart-same": [
@@ -1480,6 +1526,12 @@
             "value": "Студиялық альбомдар"
         }
     ],
+    "entity-names.text": [
+        {
+            "type": 0,
+            "value": "Мәтін"
+        }
+    ],
     "entity-names.track": [
         {
             "type": 0,
@@ -2090,6 +2142,12 @@
             "value": "Өзгерту"
         }
     ],
+    "interface-actions.clear": [
+        {
+            "type": 0,
+            "value": "Мәтін өрісін тазарту"
+        }
+    ],
     "interface-actions.close": [
         {
             "type": 0,
@@ -2644,6 +2702,114 @@
             "value": "» топтамасы плейлистерінің тізімі"
         }
     ],
+    "mobile-paywall.activate-promocode": [
+        {
+            "type": 0,
+            "value": "Промокодты қалай белсендіруге болады"
+        }
+    ],
+    "mobile-paywall.benefit-my-vibe": [
+        {
+            "type": 0,
+            "value": "Менің толқынымның"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "дербес"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ұсынымдарымен"
+        }
+    ],
+    "mobile-paywall.child-info": [
+        {
+            "type": 0,
+            "value": "Ата-ана"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунты иесінен Яндекс Плюс жазылымын қосуын сұраңыз"
+        }
+    ],
+    "mobile-paywall.first-payment": [
+        {
+            "type": 0,
+            "value": "Алғашқы шегерім "
+        },
+        {
+            "type": 1,
+            "value": "date"
+        },
+        {
+            "type": 0,
+            "value": " күні болады"
+        }
+    ],
+    "mobile-paywall.payment-reminder": [
+        {
+            "type": 0,
+            "value": "Шегерім туралы"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "3 күн"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "бұрын"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "ескертеміз"
+        }
+    ],
+    "mobile-paywall.title": [
+        {
+            "type": 0,
+            "value": "Яндекс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "Плюс жазылымымен"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "музыка шырқай жөнеледі"
+        }
+    ],
     "music-history.album": [
         {
             "type": 0,
@@ -2776,6 +2942,12 @@
         {
             "type": 0,
             "value": "Мазмұны"
+        }
+    ],
+    "non-music.book-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Бұл кітап Плюс опциясымен қолжетімді"
         }
     ],
     "non-music.continue-listen-landing-block-title": [
@@ -3586,6 +3758,88 @@
             "value": "Енді трек сіздің ұсынымдарыңызда көрсетілмейтін болады"
         }
     ],
+    "offline.clear-memory": [
+        {
+            "type": 0,
+            "value": "Жадыны тазарту"
+        }
+    ],
+    "offline.clear-memory-description": [
+        {
+            "type": 0,
+            "value": "Тек жүктелгені мен кэшті жоямыз. Бұл ұсынымдарыңыз бен лайктарыңызға әсер етпейді"
+        }
+    ],
+    "offline.delete-from-device": [
+        {
+            "type": 0,
+            "value": "Құрылғыдан жою"
+        }
+    ],
+    "offline.download": [
+        {
+            "type": 0,
+            "value": "Жүктеу"
+        }
+    ],
+    "offline.download-progress": [
+        {
+            "type": 0,
+            "value": "Жүктеу прогресі"
+        }
+    ],
+    "offline.downloaded-track-list": [
+        {
+            "type": 0,
+            "value": "Жүктелген тректер тізімі"
+        }
+    ],
+    "offline.downloaded-tracks": [
+        {
+            "type": 0,
+            "value": "Жүктеп алынған тректер"
+        }
+    ],
+    "offline.downloading-progress": [
+        {
+            "type": 1,
+            "value": "value"
+        },
+        {
+            "type": 0,
+            "value": "%"
+        }
+    ],
+    "offline.memory-cleared": [
+        {
+            "type": 0,
+            "value": "Құрылғы жады тазартылды"
+        }
+    ],
+    "offline.offline-mode": [
+        {
+            "type": 0,
+            "value": "Офлайн-режим"
+        }
+    ],
+    "offline.offline-mode-description": [
+        {
+            "type": 0,
+            "value": "Жүктелгенді интернетсіз тыңдаңыз"
+        }
+    ],
+    "offline.stop-downloading": [
+        {
+            "type": 0,
+            "value": "Жүктеуді тоқтату"
+        }
+    ],
+    "offline.track-downloaded": [
+        {
+            "type": 0,
+            "value": "Трек жүктелді"
+        }
+    ],
     "onboarding.artist-donation-button-1": [
         {
             "type": 0,
@@ -3598,6 +3852,406 @@
         {
             "type": 0,
             "value": "донатпен қолдау көрсетіңіз"
+        }
+    ],
+    "onboarding.authorize-to-add-to-collection": [
+        {
+            "type": 0,
+            "value": "Коллекцияға қосу"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "үшін аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-change-quality": [
+        {
+            "type": 0,
+            "value": "Дыбыс"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сапасын баптау үшін аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-dislike": [
+        {
+            "type": 0,
+            "value": "Дизлайк басу үшін аккаунтқа кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-like": [
+        {
+            "type": 0,
+            "value": "Лайк басу үшін аккаунтқа кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-full": [
+        {
+            "type": 0,
+            "value": "Тректі толық тыңдау үшін аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe": [
+        {
+            "type": 0,
+            "value": "Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-activity": [
+        {
+            "type": 0,
+            "value": "Кәсібіңізге"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-album": [
+        {
+            "type": 0,
+            "value": "Альбомға"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-artist": [
+        {
+            "type": 0,
+            "value": "Әртіске"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-genre": [
+        {
+            "type": 0,
+            "value": "Жанрға"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-mood": [
+        {
+            "type": 0,
+            "value": "Көңіл-күйге"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-playlist": [
+        {
+            "type": 0,
+            "value": "Плейлистке"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-listen-vibe-by-track": [
+        {
+            "type": 0,
+            "value": "Трекке"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "сай Менің"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "толқынымды тыңдау үшін"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-open-queue": [
+        {
+            "type": 0,
+            "value": "Кезекті ашу үшін аккаунтқа кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-pin": [
+        {
+            "type": 0,
+            "value": "Сайдбарға/мәзірге"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "бекітіп қою үшін аккаунтқа кіріңіз"
+        }
+    ],
+    "onboarding.authorize-to-view-sync-lyrics": [
+        {
+            "type": 0,
+            "value": "Мәтін-музыканы қарау үшін аккаунтқа"
+        },
+        {
+            "type": 1,
+            "value": "nbsp"
+        },
+        {
+            "type": 0,
+            "value": "кіріңіз"
         }
     ],
     "onboarding.trailer": [
@@ -5336,6 +5990,18 @@
             "value": "Таймкодты басқару"
         }
     ],
+    "player-actions.video-speed": [
+        {
+            "type": 0,
+            "value": "Жылдамдығы"
+        }
+    ],
+    "player-actions.video-speed-normal": [
+        {
+            "type": 0,
+            "value": "Әдеттегі"
+        }
+    ],
     "player-actions.volume-control": [
         {
             "type": 0,
@@ -5386,6 +6052,24 @@
         {
             "type": 0,
             "value": "» плейлисті"
+        }
+    ],
+    "playing-now.playlist-with-filter": [
+        {
+            "type": 0,
+            "value": "«"
+        },
+        {
+            "type": 1,
+            "value": "title"
+        },
+        {
+            "type": 0,
+            "value": "» плейлисі, сүзгі: "
+        },
+        {
+            "type": 1,
+            "value": "filter"
         }
     ],
     "playlist-actions.add-description": [
@@ -5698,6 +6382,12 @@
         {
             "type": 0,
             "value": "Аудиокітаптар"
+        }
+    ],
+    "search-filters.clip": [
+        {
+            "type": 0,
+            "value": "Клиптер"
         }
     ],
     "search-filters.playlist": [
@@ -6407,6 +7097,102 @@
             "value": "hours"
         }
     ],
+    "time.hours-minutes": [
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "hours"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "сағат"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "сағат"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "hours"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "hours"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "options": {
+                "0": {
+                    "value": []
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 1,
+                            "value": "minutes"
+                        },
+                        {
+                            "type": 0,
+                            "value": " "
+                        },
+                        {
+                            "offset": 0,
+                            "options": {
+                                "one": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минут"
+                                        }
+                                    ]
+                                },
+                                "other": {
+                                    "value": [
+                                        {
+                                            "type": 0,
+                                            "value": "минут"
+                                        }
+                                    ]
+                                }
+                            },
+                            "pluralType": "cardinal",
+                            "type": 6,
+                            "value": "minutes"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "minutes"
+        }
+    ],
     "time.left": [
         {
             "offset": 0,
@@ -6515,6 +7301,18 @@
         {
             "type": 0,
             "value": "Шығарылым туралы"
+        }
+    ],
+    "track-modal.read-more": [
+        {
+            "type": 0,
+            "value": "Толық оқу"
+        }
+    ],
+    "track-modal.similar-tracks": [
+        {
+            "type": 0,
+            "value": "Ұқсас тректер"
         }
     ],
     "track-modal.title": [

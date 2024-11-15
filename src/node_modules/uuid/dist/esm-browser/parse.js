@@ -5,8 +5,8 @@ function parse(uuid) {
     throw TypeError('Invalid UUID');
   }
 
-  let v;
-  const arr = new Uint8Array(16); // Parse ########-....-....-....-............
+  var v;
+  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
 
   arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
   arr[1] = v >>> 16 & 0xff;

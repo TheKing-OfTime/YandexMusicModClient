@@ -5,19 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _native = _interopRequireDefault(require("./native.js"));
-
 var _rng = _interopRequireDefault(require("./rng.js"));
 
-var _stringify = require("./stringify.js");
+var _stringify = _interopRequireDefault(require("./stringify.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function v4(options, buf, offset) {
-  if (_native.default.randomUUID && !buf && !options) {
-    return _native.default.randomUUID();
-  }
-
   options = options || {};
 
   const rnds = options.random || (options.rng || _rng.default)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
@@ -36,7 +30,7 @@ function v4(options, buf, offset) {
     return buf;
   }
 
-  return (0, _stringify.unsafeStringify)(rnds);
+  return (0, _stringify.default)(rnds);
 }
 
 var _default = v4;
