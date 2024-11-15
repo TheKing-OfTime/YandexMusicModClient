@@ -797,6 +797,11 @@
               isPlaying: n,
               canMoveBackward: o,
               canMoveForward: l,
+              status: e.status,
+              track: e.track,
+              progress: e.progress,
+              availableActions: e.availableActions,
+              actionsStore: e.actionsStore,
             });
         };
       n(81422);
@@ -1076,20 +1081,20 @@
               },
               [e, n, t],
             ),
-          modUpdateCallback = (0, i.useCallback)(
-            (i, l, newVersion) => {
-              t(
-                (0, o.jsx)(modUpdateToast, {
-                  formatMessage: e,
-                  version: `${l} -> ${newVersion}`,
-                }),
-                {
-                  containerId: a.W$x.IMPORTANT,
-                },
-              );
-            },
-            [e, n, t],
-          );
+            modUpdateCallback = (0, i.useCallback)(
+              (i, l, newVersion) => {
+                t(
+                  (0, o.jsx)(modUpdateToast, {
+                    formatMessage: e,
+                    version: `${l} -> ${newVersion}`,
+                  }),
+                  {
+                    containerId: a.W$x.IMPORTANT,
+                  },
+                );
+              },
+              [e, n, t],
+            );
           (0, i.useEffect)(() => {
             var e;
             return (
@@ -1171,33 +1176,33 @@
         let t = (0, l.useCallback)(
           (t, n) => {
             switch (n) {
-                case "PLAY":
-                case "PAUSE":
-                case "TOGGLE_PLAY":
-                    null == e || e.togglePause();
-                    break;
-                case "MOVE_BACKWARD":
-                    null == e || e.moveBackward();
-                    break;
-                case "MOVE_FORWARD":
-                    null == e || e.moveForward();
-                    break;
-                // case "TOGGLE_REPEAT":
-                //     null == e ||
-                //     e.toggleRepeat();
-                //     break;
-                case "REPEAT_NONE":
-                    null == e || e.setRepeatMode("none");
-                    break;
-                case "REPEAT_CONTEXT":
-                    null == e || e.setRepeatMode("context");
-                    break;
-                case "REPEAT_ONE":
-                    null == e || e.setRepeatMode("one");
-                    break;
-                case "TOGGLE_SHUFFLE":
-                    null == e || e.toggleShuffle();
-                    break;
+              case "PLAY":
+              case "PAUSE":
+              case "TOGGLE_PLAY":
+                null == e || e.togglePause();
+                break;
+              case "MOVE_BACKWARD":
+                null == e || e.moveBackward();
+                break;
+              case "MOVE_FORWARD":
+                null == e || e.moveForward();
+                break;
+              // case "TOGGLE_REPEAT":
+              //     null == e ||
+              //     e.toggleRepeat();
+              //     break;
+              case "REPEAT_NONE":
+                null == e || e.setRepeatMode("none");
+                break;
+              case "REPEAT_CONTEXT":
+                null == e || e.setRepeatMode("context");
+                break;
+              case "REPEAT_ONE":
+                null == e || e.setRepeatMode("one");
+                break;
+              case "TOGGLE_SHUFFLE":
+                null == e || e.toggleShuffle();
+                break;
             }
           },
           [e],
