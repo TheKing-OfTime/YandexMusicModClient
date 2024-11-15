@@ -498,6 +498,53 @@
             message: c,
           });
         },
+        modUpdateToast = (e) => {
+          let { version: n, formatMessage: o, closeToast: r } = e,
+            u = (0, t.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.send(i.BOn.APPLICATION_RESTART),
+                null == r || r();
+            }, [r]),
+            c = (0, t.useMemo)(
+              () =>
+                (0, s.jsxs)("div", {
+                  className: h().message,
+                  children: [
+                    (0, s.jsx)(a.Caption, {
+                      className: h().text,
+                      variant: "div",
+                      type: "controls",
+                      size: "m",
+                      children: o(
+                        { id: "desktop.on-update-available" },
+                        { version: n },
+                      ),
+                    }),
+                    (0, s.jsx)(d.z, {
+                      className: h().button,
+                      onClick: u,
+                      variant: "default",
+                      color: "secondary",
+                      size: "xs",
+                      radius: "xxxl",
+                      children: (0, s.jsx)(a.Caption, {
+                        variant: "div",
+                        type: "controls",
+                        size: "m",
+                        children: o({ id: "desktop.update" }),
+                      }),
+                    }),
+                  ],
+                }),
+              [o, u, n],
+            );
+          return (0, s.jsx)(v.Yj, {
+            className: (0, l.W)(h().root, h().important),
+            message: c,
+          });
+        },
         m = () => {
           let { formatMessage: e } = (0, r.Z)(),
             { notify: n } = (0, i.d$W)(),
@@ -509,6 +556,20 @@
                   n((0, s.jsx)(c, { formatMessage: e, version: r }), {
                     containerId: i.W$x.IMPORTANT,
                   }));
+              },
+              [e, o, n],
+            ),
+            modUpdateCallback = (0, t.useCallback)(
+              (t, r, newVersion) => {
+                n(
+                  (0, s.jsx)(modUpdateToast, {
+                    formatMessage: e,
+                    version: `${r} -> ${newVersion}`,
+                  }),
+                  {
+                    containerId: i.W$x.IMPORTANT,
+                  },
+                );
               },
               [e, o, n],
             );
@@ -526,6 +587,20 @@
               }
             );
           }, [l]);
+          (0, t.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
+                var e;
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     80388: function (e, n, o) {
