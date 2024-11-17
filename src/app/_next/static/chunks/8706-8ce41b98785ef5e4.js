@@ -15692,7 +15692,8 @@
         x = n(20794),
         j = n(96235),
         C = n(5505),
-        k = n.n(C);
+        k = n.n(C),
+        electronBridge = n(65591);
       let A = (0, _.Pi)((e) => {
           let { className: t, data: n, mediaContent: r, linkClassName: i } = e,
             { settings: o } = (0, x.oR4)(),
@@ -19661,6 +19662,25 @@
                                     ? codecMap[downloadInfo?.codec]
                                     : qualityMap[downloadInfo?.quality],
                               }),
+                              onClick: () => {
+                                electronBridge.sendDownloadTrack({
+                                  downloadURL: downloadInfo?.url,
+                                  codec: downloadInfo?.codec,
+                                  trackId: downloadInfo?.trackId,
+                                  track: {
+                                    title: JSON.parse(JSON.stringify(r.title)),
+                                    artists: JSON.parse(
+                                      JSON.stringify(r.artists),
+                                    ),
+                                    albums: JSON.parse(
+                                      JSON.stringify(r.albums),
+                                    ),
+                                    coverUri: JSON.parse(
+                                      JSON.stringify(r.coverUri),
+                                    ),
+                                  },
+                                });
+                              },
                             }),
                           }),
                           (0, v.jsx)(tq, {

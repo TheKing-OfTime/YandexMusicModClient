@@ -253,6 +253,9 @@
         Tk: function () {
           return P.useReleaseNotes;
         },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
       });
       let s = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -270,6 +273,17 @@
         i = (e) => {
           let n = e === t.Q2A.Light ? "#FFFFFF" : "#000000";
           window.desktopEvents.send(t.BOn.APPLICATION_THEME, n);
+        },
+        sendDownloadTrack = (e) => {
+          var te;
+          null === (te = window.desktopEvents) ||
+            void 0 === te ||
+            te.send(t.BOn.DOWNLOAD_TRACK, {
+              downloadURL: e.downloadURL,
+              codec: e.codec,
+              trackId: e.trackId,
+              track: e.track,
+            });
         },
         l = (e) => {
           var n;
