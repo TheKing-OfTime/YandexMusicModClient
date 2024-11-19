@@ -19,11 +19,11 @@ const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);
 
 class ModUpdater {
-  latestVersion = currentVersion;
   updaterId = null;
   onModUpdateListeners = [];
   logger;
   constructor() {
+    this.latestVersion = currentVersion;
     this.logger = new Logger_js_1.Logger("ModUpdaterLogger");
     this.logger.log("Initializing");
   }
