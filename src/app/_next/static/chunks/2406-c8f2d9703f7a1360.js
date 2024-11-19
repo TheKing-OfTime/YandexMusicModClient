@@ -232,6 +232,7 @@
           );
         }
         render() {
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -471,12 +472,14 @@
               a = t.getAverageFrequencies({ low: 400, high: 5e3 }),
               n = t.getAverageFrequencies({ low: 5e3, high: 20e3 });
             // Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
-            let intensity = (((i + a * 10.2 + n * 33.3)/25) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1));
+            let intensity =
+              ((i + a * 10.2 + n * 33.3) / 25) *
+              (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
             //console.debug(this.trackEnergy.value, this.energy.value, intensity);
             this.energy.update(this.trackEnergy.value + intensity);
             this.energy.next(e),
-            this.trackEnergy.next(e),
-            this.audioLowRatio.next(e),
+              this.trackEnergy.next(e),
+              this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
@@ -517,9 +520,13 @@
               ),
             ),
             a._(
-                this,
-                "trackEnergy",
-                new s.DynamicValue(o.DEFAULT_NOT_PLAYING_ENERGY, o.DEFAULT_NOT_PLAYING_ENERGY, 1e3),
+              this,
+              "trackEnergy",
+              new s.DynamicValue(
+                o.DEFAULT_NOT_PLAYING_ENERGY,
+                o.DEFAULT_NOT_PLAYING_ENERGY,
+                1e3,
+              ),
             ),
             a._(this, "time", Math.floor(3600 * Math.random())),
             a._(this, "color", void 0),
@@ -687,7 +694,10 @@
             { sonataState: N, user: k } = (0, h.oR4)(),
             { theme: j } = (0, h.FgM)(),
             L = (0, h.jpI)(),
-            A = N.status === m.Xz.PLAYING && (N.contextType === d.A.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
+            A =
+              N.status === m.Xz.PLAYING &&
+              (N.contextType === d.A.Vibe ||
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, r.useEffect)(() => {
               if (f.current) {
@@ -2184,22 +2194,20 @@
             var e;
             return null === (e = o.items) || void 0 === e
               ? void 0
-              : e
-                  .slice(0, 10)
-                  .map((e, t) =>
-                    e
-                      ? (0, a.jsx)(
-                          h.rf,
-                          {
-                            album: e,
-                            contentLinesCount: 3,
-                            withLikesCount: !0,
-                            withAddition: !1,
-                          },
-                          null == e ? void 0 : e.id,
-                        )
-                      : (0, a.jsx)(C.hi, {}, "shimmer-".concat(t)),
-                  );
+              : e.slice(0, 10).map((e, t) =>
+                  e
+                    ? (0, a.jsx)(
+                        h.rf,
+                        {
+                          album: e,
+                          contentLinesCount: 3,
+                          withLikesCount: !0,
+                          withAddition: !1,
+                        },
+                        null == e ? void 0 : e.id,
+                      )
+                    : (0, a.jsx)(C.hi, {}, "shimmer-".concat(t)),
+                );
           }, [
             o.items,
             null === (e = o.items) || void 0 === e ? void 0 : e.length,

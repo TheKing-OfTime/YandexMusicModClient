@@ -451,6 +451,7 @@
           );
         }
         render() {
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -973,7 +974,10 @@
             { sonataState: A, user: R } = (0, m.oR4)(),
             { theme: C } = (0, m.FgM)(),
             I = (0, m.jpI)(),
-            L = A.status === u.Xz.PLAYING && (A.contextType === h.A.Vibe || window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
+            L =
+              A.status === u.Xz.PLAYING &&
+              (A.contextType === h.A.Vibe ||
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
           return (
             (0, a.useEffect)(() => {
               if (y.current) {
