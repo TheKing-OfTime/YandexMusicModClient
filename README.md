@@ -211,7 +211,9 @@ Change `"enableDevTools": false` to `"enableDevTools": true`
 Settings can be found in `%appdata%\YandexMusic\config.json`
 
 In app UI:
-![image](https://github.com/user-attachments/assets/a9574a29-f744-4f64-a093-61db4e3fade7)
+<p align="left">
+<img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/a9574a29-f744-4f64-a093-61db4e3fade7">
+</p>
 
 > [!NOTE]  
 > App restart required for settings apply.
