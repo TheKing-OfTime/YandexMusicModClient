@@ -526,6 +526,50 @@
           onAutoUpdatesToggle = (0, d.useCallback)(async (e) => {
             console.log("auto updates toggled. Value: ", e);
             window.nativeSettings.set("enableAutoUpdates", e);
+          }, []),
+          onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
+            console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.discordRPC.enable", e);
+          }, []),
+          onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.disableRendering",
+              e,
+            );
+          }, []),
+          onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.playOnAnyEntity. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+              e,
+            );
+          }, []),
+          onShowDislikeToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.showDislikeButton toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.showDislikeButton",
+              e,
+            );
+          }, []),
+          onShowCodecToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
+              e,
+            );
           }, []);
         return (0, n.jsxs)("ul", {
           className: H().root,
@@ -608,6 +652,56 @@
                   isChecked: h.settings.isChildModeEnabled,
                 }),
               }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(P, {
+                title: "Отображать текущий трек в Discord",
+                onChange: onDiscordStatusToggle,
+                isChecked: window.nativeSettings.get(
+                  "modFeatures.discordRPC.enable",
+                ),
+              }),
+            }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(P, {
+                title: "Отключить отрисовку анимации Волны",
+                onChange: onDisableVibeRenderingToggle,
+                isChecked: window.nativeSettings.get(
+                  "modFeatures.vibeAnimationEnhancement.disableRendering",
+                ),
+              }),
+            }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(P, {
+                title: "Реакция анимации моей волны на любые треки",
+                onChange: onPlayOnAnyEntityToggle,
+                isChecked: window.nativeSettings.get(
+                  "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+                ),
+              }),
+            }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(P, {
+                title: "Показывать кнопку дизлайка в основном плеере",
+                onChange: onShowDislikeToggle,
+                isChecked: window.nativeSettings.get(
+                  "modFeatures.playerBarEnhancement.showDislikeButton",
+                ),
+              }),
+            }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(P, {
+                title: "Показывать кодек вместо качества трека",
+                onChange: onShowCodecToggle,
+                isChecked: window.nativeSettings.get(
+                  "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
+                ),
+              }),
+            }),
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
