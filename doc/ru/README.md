@@ -85,9 +85,9 @@
 		"MOVE_FORWARD": "Ctrl+L",
 		"MOVE_BACKWARD": "Ctrl+J",
 		"TOGGLE_SHUFFLE": undefined,
-  		"REPEAT_NONE": undefined,
-    		"REPEAT_CONTEXT": undefined,
-      		"REPEAT_NONE": undefined,
+		"REPEAT_NONE": undefined,
+		"REPEAT_CONTEXT": undefined,
+		"REPEAT_NONE": undefined,
 	}
       
 </details>
