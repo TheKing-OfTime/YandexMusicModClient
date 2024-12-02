@@ -89,8 +89,8 @@ Currently supported only this actions (I tried add more but others work pretty u
 		"MOVE_BACKWARD": "Ctrl+J",
 		"TOGGLE_SHUFFLE": undefined,
   		"REPEAT_NONE": undefined,
-    		"REPEAT_CONTEXT": undefined,
-      		"REPEAT_NONE": undefined,
+  		"REPEAT_CONTEXT": undefined,
+  		"REPEAT_NONE": undefined,
 	}
       
 </details>
@@ -177,11 +177,11 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
-### Current track download
+### Download current track to a file
 <details>
    <summary>Details</summary>
    
-Allows download track that is currently playing. Click to the quality/codec icon to show download dialog.
+Allows download track that is currently playing into a file. Click to the quality/codec icon to show download dialog.
 
 </details>
 

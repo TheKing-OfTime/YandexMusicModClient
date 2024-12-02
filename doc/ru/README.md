@@ -85,9 +85,9 @@
 		"MOVE_FORWARD": "Ctrl+L",
 		"MOVE_BACKWARD": "Ctrl+J",
 		"TOGGLE_SHUFFLE": undefined,
-  		"REPEAT_NONE": undefined,
-    		"REPEAT_CONTEXT": undefined,
-      		"REPEAT_NONE": undefined,
+		"REPEAT_NONE": undefined,
+		"REPEAT_CONTEXT": undefined,
+		"REPEAT_NONE": undefined,
 	}
       
 </details>
@@ -173,11 +173,11 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
-### Скачивание текущего трека
+### Скачивание текущего трека в файл
 <details>
    <summary>Подробнее</summary>
    
-Позволяет скачать текущий трек вам на ПК. Для этого нажмите на иконку качества/кодека трека. 
+Позволяет скачать текущий трек вам на ПК. Нажмите на иконку качества/кодека трека чтобы выбрать путь для размещения файла. 
 
 </details>
 
