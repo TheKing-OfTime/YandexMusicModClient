@@ -655,7 +655,8 @@
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
-                title: "Отображать текущий трек в Discord",
+                title: "Discord RPC",
+                description: "Отображать текущий трек в Discord",
                 onChange: onDiscordStatusToggle,
                 isChecked: window.nativeSettings.get(
                   "modFeatures.discordRPC.enable",
@@ -675,7 +676,8 @@
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
-                title: "Реакция анимации моей волны на любые треки",
+                title: "Реакция анимации Волны на любые треки",
+                description: "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
                 onChange: onPlayOnAnyEntityToggle,
                 isChecked: window.nativeSettings.get(
                   "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
@@ -685,7 +687,8 @@
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
-                title: "Показывать кнопку дизлайка в основном плеере",
+                title: "Вернуть Дизлайк",
+                description: "Возвращает кнопку дизлайка в основном плеере",
                 onChange: onShowDislikeToggle,
                 isChecked: window.nativeSettings.get(
                   "modFeatures.playerBarEnhancement.showDislikeButton",
@@ -695,7 +698,8 @@
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
-                title: "Показывать кодек вместо качества трека",
+                title: "Отображать кодек",
+                description: "Отображает кодек вместо качества трека",
                 onChange: onShowCodecToggle,
                 isChecked: window.nativeSettings.get(
                   "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
@@ -706,6 +710,7 @@
               className: H().item,
               children: (0, n.jsx)(P, {
                 title: "Режим разработчика",
+                description: "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
                 onChange: onDevtoolsToggle,
                 isChecked: window.nativeSettings.get("enableDevTools"),
               }),
@@ -713,7 +718,8 @@
             (0, n.jsx)("li", {
               className: H().item,
               children: (0, n.jsx)(P, {
-                title: "Авто обновления",
+                title: "Обновлять автоматически",
+                description: "Управляет авто обновлениями как программы, так и модификации",
                 onChange: onAutoUpdatesToggle,
                 isChecked: window.nativeSettings.get("enableAutoUpdates"),
               }),
