@@ -677,7 +677,8 @@
               className: H().item,
               children: (0, n.jsx)(P, {
                 title: "Реакция анимации Волны на любые треки",
-                description: "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
+                description:
+                  "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
                 onChange: onPlayOnAnyEntityToggle,
                 isChecked: window.nativeSettings.get(
                   "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
@@ -710,7 +711,8 @@
               className: H().item,
               children: (0, n.jsx)(P, {
                 title: "Режим разработчика",
-                description: "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
+                description:
+                  "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
                 onChange: onDevtoolsToggle,
                 isChecked: window.nativeSettings.get("enableDevTools"),
               }),
@@ -719,7 +721,8 @@
               className: H().item,
               children: (0, n.jsx)(P, {
                 title: "Обновлять автоматически",
-                description: "Управляет авто обновлениями как программы, так и модификации",
+                description:
+                  "Управляет авто обновлениями как программы, так и модификации",
                 onChange: onAutoUpdatesToggle,
                 isChecked: window.nativeSettings.get("enableAutoUpdates"),
               }),

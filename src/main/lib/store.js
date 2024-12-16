@@ -75,11 +75,11 @@ const init = () => {
       showCodecInsteadOfQualityMark: false,
     },
     globalShortcuts: {
-      TOGGLE_PLAY: "Ctrl+K",
-      MOVE_FORWARD: "Ctrl+L",
-      MOVE_BACKWARD: "Ctrl+J",
+      TOGGLE_PLAY: "Ctrl+/",
+      MOVE_FORWARD: "Ctrl+,",
+      MOVE_BACKWARD: "Ctrl+.",
       //TOGGLE_REPEAT: 'Ctrl+R',
-      TOGGLE_SHUFFLE: 'Ctrl+S',
+      TOGGLE_SHUFFLE: 'Ctrl+\'',
     },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
