@@ -81,10 +81,10 @@
    <summary>Настройки</summary>
    
 	"globalShortcuts": {
-		"TOGGLE_PLAY": "Ctrl+K",
-		"MOVE_FORWARD": "Ctrl+L",
-		"MOVE_BACKWARD": "Ctrl+J",
-		"TOGGLE_SHUFFLE": undefined,
+		"TOGGLE_PLAY": "Ctrl+/",
+		"MOVE_FORWARD": "Ctrl+,",
+		"MOVE_BACKWARD": "Ctrl+.",
+		"TOGGLE_SHUFFLE": "Ctrl+\'",
 		"REPEAT_NONE": undefined,
 		"REPEAT_CONTEXT": undefined,
 		"REPEAT_NONE": undefined,
@@ -208,8 +208,9 @@ Devtools по умолчанию отключены. Чтобы включить
 
 Настройки внутри приложения:
 <p align="left">
-<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/a9574a29-f744-4f64-a093-61db4e3fade7">
+<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/89630ab8-a89c-41c3-983d-6352306398df">
 </p>
+
 
 > [!NOTE]  
 > Чтобы изменения настроек применились требуется перезапуск приложения.
