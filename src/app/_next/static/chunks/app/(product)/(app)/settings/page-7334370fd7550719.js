@@ -519,14 +519,29 @@
           A = (0, d.useCallback)(() => {
             s.open();
           }, [s]),
-          onDevtoolsToggle = (0, d.useCallback)(async (e) => {
-            console.log("devtools toggled. Value: ", e);
-            window.nativeSettings.set("enableDevTools", e);
-          }, []),
+          onDevtoolsToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("devtools toggled. Value: ", e);
+              window.nativeSettings.set("enableDevTools", e);
+              u(
+                (0, n.jsx)(_.Q, {
+                  error: "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: p.W$x.ERROR },
+              );
+            },
+            [u],
+          ),
           onAutoUpdatesToggle = (0, d.useCallback)(async (e) => {
             console.log("auto updates toggled. Value: ", e);
             window.nativeSettings.set("enableAutoUpdates", e);
-          }, []),
+            u(
+              (0, n.jsx)(_.Q, {
+                error: "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: p.W$x.ERROR },
+            );
+          }, [u]),
           onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
             console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
             window.nativeSettings.set("modFeatures.discordRPC.enable", e);
@@ -571,10 +586,10 @@
               e,
             );
           }, []),
-        onOpenMoreSettings = (0, d.useCallback)(async (e) => {
-          console.log("User navigated to config.json", e);
-          window.openConfigFile();
-        }, []);
+          onOpenMoreSettings = (0, d.useCallback)(async (e) => {
+            console.log("User navigated to config.json", e);
+            window.openConfigFile();
+          }, []);
         return (0, n.jsxs)("ul", {
           className: H().root,
           ...(0, l.BA)(l.QM.settings.SETTINGS_LIST),
@@ -735,8 +750,7 @@
               className: H().item,
               children: (0, n.jsx)(I, {
                 title: "Остальные настройки",
-                description:
-                  "Откроется config.json",
+                description: "Откроется config.json",
                 onClick: onOpenMoreSettings,
               }),
             }),
