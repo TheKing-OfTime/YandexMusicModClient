@@ -19589,7 +19589,7 @@
                         !c.isAdvertShown &&
                         (0, v.jsxs)(v.Fragment, {
                           children: [
-                            window.SHOW_DISLIKE_BUTTON
+                            window.SHOW_DISLIKE_BUTTON()
                               ? (0, v.jsx)(j.Q1, {
                                   className: nd().dislikeButton,
                                   isDisliked: r.isDisliked,
@@ -19658,7 +19658,7 @@
                                   nd().settingsButton + " NfB1qSw6DnoSwTr9I5mE",
                                 style: { cursor: "pointer" },
                                 children:
-                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK
+                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                     ? codecMap[downloadInfo?.codec]
                                     : qualityMap[downloadInfo?.quality],
                               }),

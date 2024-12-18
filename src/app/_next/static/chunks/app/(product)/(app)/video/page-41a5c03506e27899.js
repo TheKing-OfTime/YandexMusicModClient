@@ -442,7 +442,7 @@
           );
         }
         render() {
-          if (window.VIBE_ANIMATION_DISABLE_RENDERING ?? false) return;
+          if (window.VIBE_ANIMATION_DISABLE_RENDERING() ?? false) return;
           var e;
           let t =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
@@ -1705,7 +1705,7 @@
             A =
               C.status === v.Xz.PLAYING &&
               (C.contextType === u.A.Vibe ||
-                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY);
+                window.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY());
           return (
             (0, l.useEffect)(() => {
               if (x.current) {
