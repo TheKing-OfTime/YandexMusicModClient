@@ -260,6 +260,7 @@ const handleApplicationEvents = (window) => {
     }
   });
 };
+electron_1.ipcMain.handle('openConfigFile', async () => { return await electron_1.shell.openPath(electron_1.app.getPath('userData') + '/config.json') });
 exports.handleApplicationEvents = handleApplicationEvents;
 const sendProbabilityBucket = (window, bucket) => {
   window.webContents.send(events_js_1.Events.PROBABILITY_BUCKET, bucket);

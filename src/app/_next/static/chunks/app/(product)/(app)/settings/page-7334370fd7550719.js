@@ -570,7 +570,11 @@
               "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
               e,
             );
-          }, []);
+          }, []),
+        onOpenMoreSettings = (0, d.useCallback)(async (e) => {
+          console.log("User navigated to config.json", e);
+          window.openConfigFile();
+        }, []);
         return (0, n.jsxs)("ul", {
           className: H().root,
           ...(0, l.BA)(l.QM.settings.SETTINGS_LIST),
@@ -725,6 +729,15 @@
                   "Управляет авто обновлениями как программы, так и модификации",
                 onChange: onAutoUpdatesToggle,
                 isChecked: window.nativeSettings.get("enableAutoUpdates"),
+              }),
+            }),
+            (0, n.jsx)("li", {
+              className: H().item,
+              children: (0, n.jsx)(I, {
+                title: "Остальные настройки",
+                description:
+                  "Откроется config.json",
+                onClick: onOpenMoreSettings,
               }),
             }),
           ],

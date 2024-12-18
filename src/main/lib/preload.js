@@ -8,6 +8,7 @@ const deviceInfo_js_1 = require("./deviceInfo.js");
 const theme_js_1 = require("../types/theme.js");
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
 const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
+
 electron_1.contextBridge.exposeInMainWorld('VERSION', String(config_js_1.config.buildInfo.VERSION));
 electron_1.contextBridge.exposeInMainWorld('BRANCH', String(config_js_1.config.buildInfo.BRANCH));
 electron_1.contextBridge.exposeInMainWorld('PLATFORM', deviceInfo.os);
@@ -46,7 +47,8 @@ electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     set(key, value) {
         return store_js_1.set(key, value);
     }
-})
+});
+electron_1.contextBridge.exposeInMainWorld('openConfigFile', () => electron_1.ipcRenderer.invoke('openConfigFile'));
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
