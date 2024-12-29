@@ -1178,10 +1178,51 @@
           return s;
         },
       });
+
       var o,
         i,
         l = n(71859),
-        a = n(20794);
+        a = n(20794),
+      electronBridge = n(65591);
+      const sendPlayerStateDefault = (ve) => {
+        (0, electronBridge.Pt)({
+          status: ve.state.playerState.status.value,
+          isPlaying: ve.state.playerState.status.value === "playing",
+          canMoveForward:
+            ve.state.currentContext.value?.availableActions.moveForward.value,
+          canMoveBackward:
+            ve.state.currentContext.value?.availableActions.moveBackward.value,
+          track:
+            ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+          progress: ve.state.playerState.progress.value?.position,
+          availableActions: {
+            moveBackward:
+              ve.state.currentContext.value?.availableActions.moveBackward
+                .value,
+            moveForward:
+              ve.state.currentContext.value?.availableActions.moveForward.value,
+            repeat:
+              ve.state.currentContext.value?.availableActions.repeat.value,
+            shuffle:
+              ve.state.currentContext.value?.availableActions.shuffle.value,
+            speed: ve.state.currentContext.value?.availableActions.speed.value,
+          },
+          actionsStore: {
+            repeat: ve.state.queueState.repeat.value,
+            shuffle: ve.state.queueState.shuffle.value,
+            isLiked:
+              ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta
+                  .id,
+              ),
+            isDisliked:
+              ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta
+                  .id,
+              ),
+          },
+        });
+      };
       ((o = i || (i = {})).PLAY = "PLAY"),
         (o.PAUSE = "PAUSE"),
         (o.MOVE_BACKWARD = "MOVE_BACKWARD"),
@@ -1216,6 +1257,26 @@
                 break;
               case "TOGGLE_SHUFFLE":
                 null == e || e.toggleShuffle();
+                break;
+              case "TOGGLE_LIKE":
+                null == e ||
+                  e.factory.entityFactory.likeStore.toggleTrackLike({
+                    entityId:
+                      e.state.queueState.currentEntity.value.entity.entityData
+                        .meta.id,
+                    userId: "@me",
+                  });
+                sendPlayerStateDefault(e);
+                break;
+              case "TOGGLE_DISLIKE":
+                null == e ||
+                  e.factory.entityFactory.likeStore.toggleTrackDislike({
+                    entityId:
+                      e.state.queueState.currentEntity.value.entity.entityData
+                        .meta.id,
+                    userId: "@me",
+                  });
+                sendPlayerStateDefault(e);
                 break;
             }
           },
