@@ -173,6 +173,17 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
+### Информация о скачанных треках
+<details>
+   <summary>Подробнее</summary>
+   
+Добавляет информацию о скачанных треках на страницу настроек (количество скачанных треков и используемое хранилище для скачанных треков)
+
+![image](https://github.com/user-attachments/assets/d3ba9ada-941c-4bd2-8c53-dad54090bf4e)
+
+
+</details>
+
 ### Скачивание текущего трека в файл
 <details>
    <summary>Подробнее</summary>
