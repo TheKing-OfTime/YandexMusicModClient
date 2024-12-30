@@ -177,6 +177,17 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
+### Downloaded tracks info
+<details>
+   <summary>Details</summary>
+   
+Adds information about downloaded tracks to the settings page (tracks count and used storage for downloaded tracks)
+
+![image](https://github.com/user-attachments/assets/d3ba9ada-941c-4bd2-8c53-dad54090bf4e)
+
+
+</details>
+
 ### Download current track to a file
 <details>
    <summary>Details</summary>
