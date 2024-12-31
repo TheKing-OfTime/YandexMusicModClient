@@ -694,7 +694,7 @@
                   children: [
                     (0, n.jsx)(I, {
                       title: j({ id: "offline.clear-memory" }),
-                      description: `Скачан${downloadedTracksInfo.tracksCount === 1 ? "" : "о"} ${downloadedTracksInfo.tracksCount ?? "0"} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
+                      description: `Скачан${ downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? "" : "о"} ${downloadedTracksInfo.tracksCount ?? "0"} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
                       onClick: A,
                     }),
                     (0, n.jsx)(b, {}),
