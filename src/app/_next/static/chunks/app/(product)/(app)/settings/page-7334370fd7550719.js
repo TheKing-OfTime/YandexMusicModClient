@@ -646,8 +646,12 @@
                   if ("directory" === r.kind) {
                     forkSize += await getDownloadedTracksSize(r);
                   } else if ("file" === r.kind) {
-                    let t = await r.getFile();
-                    forkSize += t.size;
+                    try {
+                        let t = await r.getFile();
+                        forkSize += t.size;
+                    } catch (e) {
+                        console.warn("Track file is in use. Skipping...", e);
+                    }
                   }
                 }
                 return forkSize;
