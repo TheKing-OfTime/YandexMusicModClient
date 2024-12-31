@@ -180,6 +180,7 @@
           s = (0, p.pL3)(),
           l = (0, d.useCallback)(() => {
             s.clearAll().then(() => {
+              window.onDownloadedTracksDeleted();
               t.close(),
                 i(
                   (0, n.jsx)(_.Yj, {
@@ -647,10 +648,10 @@
                     forkSize += await getDownloadedTracksSize(r);
                   } else if ("file" === r.kind) {
                     try {
-                        let t = await r.getFile();
-                        forkSize += t.size;
+                      let t = await r.getFile();
+                      forkSize += t.size;
                     } catch (e) {
-                        console.warn("Track file is in use. Skipping...", e);
+                      console.warn("Track file is in use. Skipping...", e);
                     }
                   }
                 }
@@ -676,6 +677,13 @@
                 tracksSize: await getDownloadedTracksSize(fileStorage),
               });
             };
+
+            window.onDownloadedTracksDeleted = () => // That's a bad solution to update the info on clear memory modal close
+              setDownloadedTracksInfo({
+                tracksCount: 0,
+                tracksSize: 0,
+              });
+
             callfunc();
           }, []),
           (0, n.jsxs)("ul", {
@@ -698,7 +706,7 @@
                   children: [
                     (0, n.jsx)(I, {
                       title: j({ id: "offline.clear-memory" }),
-                      description: `Скачан${ downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? "" : "о"} ${downloadedTracksInfo.tracksCount ?? "0"} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
+                      description: `Скачан${downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? "" : "о"} ${downloadedTracksInfo.tracksCount ?? "0"} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
                       onClick: A,
                     }),
                     (0, n.jsx)(b, {}),
