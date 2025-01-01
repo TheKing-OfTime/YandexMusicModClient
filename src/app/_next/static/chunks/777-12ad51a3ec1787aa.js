@@ -9734,8 +9734,7 @@
                     ? void 0
                     : C.state.playerState.event.onChange(() => {
                         if (
-                          C.state.playerState.event.value ===
-                            ec.KX.SET_PROGRESS
+                          C.state.playerState.event.value === ec.KX.SET_PROGRESS
                         ) {
                           sendPlayerStateDefault(C);
                         }
@@ -10222,6 +10221,7 @@
           overwrittenExperimentsModal: {},
           buySubscriptionModal: { isOpened: !0 },
           clearMemoryModal: {},
+          discordRpcSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -12026,6 +12026,7 @@
           overwrittenExperimentsModal: C.KL,
           buySubscriptionModal: C.KL,
           clearMemoryModal: C.KL,
+          discordRpcSettingsModal: C.KL,
         });
       var eF = a(60661),
         eB = a(52203),

@@ -5,11 +5,10 @@ const store_js_1 = require("./store.js");
 const DiscordRPC = require("discord-rpc");
 const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
 
-const settings = store_js_1.getModFeatures()?.discordRPC;
+const settings = () => store_js_1.getModFeatures()?.discordRPC;
 
-const clientId = settings?.applicationIDForRPC ?? "1124055337234858005";
+const clientId = settings()?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
-const IS_DEEPLINKS_ROLLEDOUT = settings?.overrideDeepLinksExperiment ?? false;
 
 let rpc = undefined;
 let isReady = false;
@@ -86,7 +85,13 @@ async function setActivity(
   deepShareTrackUrl = undefined,
   webShareTrackUrl = undefined,
 ) {
-  if (!(settings?.enable ?? true)) return;
+  if (!(settings()?.enable ?? true)) {
+    if(previousActivity) {
+        rpc.clearActivity();
+        previousActivity = undefined;
+    }
+      return;
+  }
   if (!rpc || !isReady) {
     if (rpc) {
       const connected = await tryReconnect();
@@ -126,7 +131,7 @@ async function setActivity(
         rpc.clearActivity();
         timeoutId = undefined;
       },
-      ((settings?.afkTimeout ?? 15) * 60 * 1000),
+      ((settings()?.afkTimeout ?? 15) * 60 * 1000),
     );
   }
 
@@ -140,20 +145,20 @@ async function setActivity(
     instance: false,
   };
 
-  if(settings?.showSmallIcon ?? true) {
+  if(settings()?.showSmallIcon ?? true) {
       activityObject.smallImageKey = stateKey;
       activityObject.smallImageText = stateText;
   }
 
-  if(settings?.showAlbum ?? true) {
+  if(settings()?.showAlbum ?? true) {
       activityObject.largeImageText = string2Discord(trackAlbum);
   }
 
   if (
     (deepShareTrackUrl || webShareTrackUrl) &&
-    (settings?.showButtons ?? true)
+    (settings()?.showButtons ?? true)
   ) {
-    if (!IS_DEEPLINKS_ROLLEDOUT) {
+    if (!(settings()?.overrideDeepLinksExperiment ?? false)) {
       activityObject.buttons = [
         {
           label: "Listen in Yandex Music App",
@@ -164,7 +169,7 @@ async function setActivity(
           url: webShareTrackUrl,
         },
       ];
-    } else if (settings?.showGitHubButton ?? true) {
+    } else if (settings()?.showGitHubButton ?? true) {
       activityObject.buttons = [
         {
           label: "Listen on Yandex Music",

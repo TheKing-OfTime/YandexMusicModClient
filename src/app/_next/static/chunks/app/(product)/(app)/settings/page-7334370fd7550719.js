@@ -235,6 +235,150 @@
           ],
         });
       });
+
+      let discordRpcSettings = (0, s.Pi)(() => {
+        let { formatMessage: e } = (0, o.Z)(),
+          {
+            modals: { discordRpcSettingsModal: t },
+          } = (0, p.oR4)(),
+          { notify: i } = (0, p.d$W)(),
+          onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
+            console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.discordRPC.enable", e);
+          }, []),
+          onDiscordShowButtonsToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.discordRPC.showButtons toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set("modFeatures.discordRPC.showButtons", e);
+          }, []),
+          onDiscordOverrideDeepLinksExperimentToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log(
+                "modFeatures.discordRPC.overrideDeepLinksExperiment toggled. Value: ",
+                e,
+              );
+              window.nativeSettings.set(
+                "modFeatures.discordRPC.overrideDeepLinksExperiment",
+                e,
+              );
+            },
+            [],
+          ),
+          onDiscordShowGitHubButtonToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.discordRPC.showGitHubButton toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.discordRPC.showGitHubButton",
+              e,
+            );
+          }, []),
+          onDiscordShowSmallIconToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.discordRPC.showSmallIcon toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.discordRPC.showSmallIcon",
+              e,
+            );
+          }, []),
+          onDiscordShowAlbumToggle = (0, d.useCallback)(async (e) => {
+            console.log("modFeatures.discordRPC.showAlbum toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.discordRPC.showAlbum", e);
+          }, []);
+        return (0, n.jsxs)(h.u, {
+          className: f().root,
+          style: { "max-width": "500px" },
+          title: "Discord RPC",
+          headerClassName: O().modalHeader,
+          contentClassName: O().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: H().root,
+            style: { width: "466px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Включить интеграцию с Discord",
+                  onChange: onDiscordStatusToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.enable",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отображать кнопки",
+                  description: "Отображает кнопки-ссылки в статусе",
+                  onChange: onDiscordShowButtonsToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.showButtons",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отображать Альбом",
+                  description: "Отображать ли название альбома в статусе",
+                  onChange: onDiscordShowAlbumToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.showAlbum",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отображать маленькую иконку",
+                  description:
+                    "Отображать ли иконку статуса воспроизведения (Playing, Paused)",
+                  onChange: onDiscordShowSmallIconToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.showSmallIcon",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Переопределить эксперимент Глубоких ссылок",
+                  description:
+                    "Уберёт ссылку открывающую приложение т.к. это сделает ссылка на сайт",
+                  onChange: onDiscordOverrideDeepLinksExperimentToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.overrideDeepLinksExperiment",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отображать кнопку на Гитхаб",
+                  description:
+                    "Если предыдущий пункт включён, отображает кнопку установки мода",
+                  onChange: onDiscordShowGitHubButtonToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.overrideDeepLinksExperiment",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+
       var k = i(23974),
         S = i(15706),
         y = i(5951),
@@ -456,6 +600,7 @@
               shortcutsModal: t,
               aboutAppModal: i,
               clearMemoryModal: s,
+              discordRpcSettingsModal: discordRpcSettingsModal,
             },
             equalizer: a,
             experiments: r,
@@ -548,10 +693,6 @@
             },
             [u],
           ),
-          onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
-            console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
-            window.nativeSettings.set("modFeatures.discordRPC.enable", e);
-          }, []),
           onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
@@ -678,7 +819,8 @@
               });
             };
 
-            window.onDownloadedTracksDeleted = () => // That's a bad solution to update the info on clear memory modal close
+            window.onDownloadedTracksDeleted = () =>
+              // That's a bad solution to update the info on clear memory modal close
               setDownloadedTracksInfo({
                 tracksCount: 0,
                 tracksSize: 0,
@@ -770,14 +912,14 @@
                 }),
               (0, n.jsx)("li", {
                 className: H().item,
-                children: (0, n.jsx)(P, {
-                  title: "Discord RPC",
-                  description: "Отображать текущий трек в Discord",
-                  onChange: onDiscordStatusToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.discordRPC.enable",
-                  ),
-                }),
+                children: [
+                  (0, n.jsx)(I, {
+                    title: "Discord RPC",
+                    description: "Настройки интеграции с Discord",
+                    onClick: discordRpcSettingsModal.open,
+                  }),
+                  (0, n.jsx)(discordRpcSettings, {}),
+                ],
               }),
               (0, n.jsx)("li", {
                 className: H().item,
