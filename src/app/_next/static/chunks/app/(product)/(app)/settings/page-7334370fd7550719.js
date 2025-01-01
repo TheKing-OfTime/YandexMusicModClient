@@ -804,7 +804,7 @@
                 for await (let r of t.values()) {
                   if ("directory" === r.kind && r.name === "tracks") {
                     trackCount = await getDownloadedTracksCount(r);
-                  } else if ("file" === r.kind && /^\d+$/.test(r.name)) {
+                  } else if ("file" === r.kind && r.name.endsWith(".crswap")) {
                     trackCount += 1;
                   }
                 }
