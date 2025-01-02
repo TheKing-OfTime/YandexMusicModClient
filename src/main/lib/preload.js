@@ -38,7 +38,8 @@ electron_1.contextBridge.exposeInMainWorld(
   store_js_1.getModFeatures()?.playerBarEnhancement
     ?.showCodecInsteadOfQualityMark,
 );
-electron_1.contextBridge.exposeInMainWorld('SHOW_DISLIKE_BUTTON', () =>store_js_1.getModFeatures()?.playerBarEnhancement?.showDislikeButton)
+electron_1.contextBridge.exposeInMainWorld('SHOW_DISLIKE_BUTTON', () => store_js_1.getModFeatures()?.playerBarEnhancement?.showDislikeButton)
+electron_1.contextBridge.exposeInMainWorld('ALWAYS_SHOW_PLAYER_TIMESTAMPS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.alwaysShowPlayerTimestamps)
 electron_1.contextBridge.exposeInMainWorld('EXPERIMENT_OVERRIDES', store_js_1.getExperimentOverrides())
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     get(key) {

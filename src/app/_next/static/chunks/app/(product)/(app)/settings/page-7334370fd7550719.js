@@ -379,6 +379,97 @@
         });
       });
 
+      let playerBarEnhancementsSettings = (0, s.Pi)(() => {
+        let { formatMessage: e } = (0, o.Z)(),
+          {
+            modals: { playerBarEnhancementsSettingsModal: t },
+          } = (0, p.oR4)(),
+          { notify: i } = (0, p.d$W)(),
+          onShowDislikeToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.showDislikeButton toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.showDislikeButton",
+              e,
+            );
+          }, []),
+          onShowCodecToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
+              e,
+            );
+          }, []),
+          onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
+              e,
+            );
+          }, []);
+        return (0, n.jsx)(h.u, {
+          className: f().root,
+          style: { "max-width": "500px" },
+          title: "Улучшения панели плеера",
+          headerClassName: O().modalHeader,
+          contentClassName: O().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: H().root,
+            style: { width: "466px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Вернуть Дизлайк",
+                  description: "Возвращает кнопку дизлайка на панель плеера",
+                  onChange: onShowDislikeToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.showDislikeButton",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отображать кодек",
+                  description: "Отображает кодек вместо качества трека",
+                  onChange: onShowCodecToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Всегда отображать временные метки",
+                  description:
+                    "Отображает временные метки независимо от положения курсора",
+                  onChange: onAlwaysShowPlayerTimestampsToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+
       var k = i(23974),
         S = i(15706),
         y = i(5951),
@@ -601,6 +692,8 @@
               aboutAppModal: i,
               clearMemoryModal: s,
               discordRpcSettingsModal: discordRpcSettingsModal,
+              playerBarEnhancementsSettingsModal:
+                playerBarEnhancementsSettingsModal,
             },
             equalizer: a,
             experiments: r,
@@ -945,25 +1038,14 @@
               }),
               (0, n.jsx)("li", {
                 className: H().item,
-                children: (0, n.jsx)(P, {
-                  title: "Вернуть Дизлайк",
-                  description: "Возвращает кнопку дизлайка в основном плеере",
-                  onChange: onShowDislikeToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.playerBarEnhancement.showDislikeButton",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: H().item,
-                children: (0, n.jsx)(P, {
-                  title: "Отображать кодек",
-                  description: "Отображает кодек вместо качества трека",
-                  onChange: onShowCodecToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
-                  ),
-                }),
+                children: [
+                  (0, n.jsx)(I, {
+                    title: "Улучшения панели плеера",
+                    description: "Настройки элементов на панели плеера",
+                    onClick: playerBarEnhancementsSettingsModal.open,
+                  }),
+                  (0, n.jsx)(playerBarEnhancementsSettings, {}),
+                ],
               }),
               (0, n.jsx)("li", {
                 className: H().item,

@@ -73,6 +73,7 @@ const init = () => {
     playerBarEnhancement: {
       showDislikeButton: true,
       showCodecInsteadOfQualityMark: false,
+      alwaysShowPlayerTimestamps: false,
     },
     globalShortcuts: {
       TOGGLE_PLAY: "Ctrl+/",

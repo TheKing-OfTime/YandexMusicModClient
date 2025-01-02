@@ -12381,7 +12381,7 @@
         v = n(39939),
         p = n.n(v);
       let _ = (e) => {
-          let { value: t, variant: n, className: o } = e,
+          let { value: t, variant: n, className: o, style } = e,
             a =
               "start" === n
                 ? l.bG.changeTimecode.TIMECODE_TIME_START
@@ -12392,6 +12392,7 @@
             size: "s",
             type: "entity",
             weight: "medium",
+            style: style,
             ...(0, l.BA)(a),
             children: t,
           });
@@ -12488,6 +12489,9 @@
                   (0, r.jsx)(_, {
                     value: (0, u.gf)(Math.round(j), Math.round(k)),
                     variant: "start",
+                    style: window.ALWAYS_SHOW_PLAYER_TIMESTAMPS()
+                      ? { opacity: 1 }
+                      : undefined,
                     className: d().timecode,
                   }),
                 (0, r.jsx)(s.i, {
@@ -12515,6 +12519,9 @@
                   (0, r.jsx)(_, {
                     value: (0, u.gf)(Math.round(k), Math.round(k)),
                     variant: "end",
+                    style: window.ALWAYS_SHOW_PLAYER_TIMESTAMPS()
+                      ? { opacity: 1 }
+                      : undefined,
                     className: d().timecode,
                   }),
               ],

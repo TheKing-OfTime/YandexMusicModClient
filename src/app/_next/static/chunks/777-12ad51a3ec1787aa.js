@@ -10222,6 +10222,7 @@
           buySubscriptionModal: { isOpened: !0 },
           clearMemoryModal: {},
           discordRpcSettingsModal: {},
+          playerBarEnhancementsSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -12027,6 +12028,7 @@
           buySubscriptionModal: C.KL,
           clearMemoryModal: C.KL,
           discordRpcSettingsModal: C.KL,
+          playerBarEnhancementsSettingsModal: C.KL,
         });
       var eF = a(60661),
         eB = a(52203),
