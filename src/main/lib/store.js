@@ -198,7 +198,8 @@ const getAutoUpdatesEnabled = () => {
 exports.getAutoUpdatesEnabled = getAutoUpdatesEnabled;
 
 const getModFeatures = () => {
-  return store.get(store_js_1.StoreKeys.MOD_FEATURES);
+  const [get] = exports.useCachedValue(store_js_1.StoreKeys.MOD_FEATURES);
+    return get();
 };
 exports.getModFeatures = getModFeatures;
 const getExperimentOverrides = () => {
