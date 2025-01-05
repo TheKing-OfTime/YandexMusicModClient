@@ -76,7 +76,13 @@ class ModUpdater {
     //const res = await fetch(url);
     //const buffer = await res.buffer();
     //await fsPromise.writeFile(path, buffer);
-    await execPromise(`curl -L -s ${url} > ${path}`)
+    try {
+        await execPromise(`curl -L -s ${url} > ${path}`)
+    } catch (error) {
+        this.logger.log("Download failed: ", error, "\nRetrying with --ssl-no-revoke...");
+        await execPromise(`curl -L --ssl-no-revoke -s ${url} > ${path}`)
+    }
+
     this.logger.log("Downloaded. Restart to apply changes");
   }
 
