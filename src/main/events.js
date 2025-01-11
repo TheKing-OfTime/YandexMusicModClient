@@ -97,7 +97,7 @@ const handleApplicationEvents = (window) => {
       let coverRes, coverBuffer;
       if (data.track?.coverUri) {
         coverRes = await fetch(
-          "https://" + data.track?.coverUri.replace("%%", "400x400"),
+          "https://" + data.track?.coverUri.replace("%%", "1000x1000"),
         );
         coverBuffer = Buffer.from(await coverRes.arrayBuffer());
         eventsLogger.info("Got cover", events_js_1.Events.DOWNLOAD_TRACK);
