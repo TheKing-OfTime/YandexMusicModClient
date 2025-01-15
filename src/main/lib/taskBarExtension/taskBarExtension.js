@@ -155,10 +155,7 @@ const updateTaskbarExtension = (window) => {
         events_js_1.sendPlayerAction(
           window,
           playerActions_js_1.PlayerActions.TOGGLE_DISLIKE,
-        );
-        events_js_1.sendPlayerAction(
-          window,
-          playerActions_js_1.PlayerActions.MOVE_FORWARD,
+
         );
       },
     },

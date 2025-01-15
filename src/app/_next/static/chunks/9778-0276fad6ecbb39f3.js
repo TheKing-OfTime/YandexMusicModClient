@@ -1183,7 +1183,8 @@
         i,
         l = n(71859),
         a = n(20794),
-      electronBridge = n(65591);
+        electronBridge = n(65591),
+        feedbackApi = n(44022);
       const sendPlayerStateDefault = (ve) => {
         (0, electronBridge.Pt)({
           status: ve.state.playerState.status.value,
@@ -1228,8 +1229,14 @@
         (o.MOVE_BACKWARD = "MOVE_BACKWARD"),
         (o.MOVE_FORWARD = "MOVE_FORWARD");
       let s = (e) => {
+        let { sonataState: sonataState } = (0, a.oR4)(),
+          onLikeClick = (0, feedbackApi.SB)(sonataState.entityMeta),
+          onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
+
         let t = (0, l.useCallback)(
-          (t, n) => {
+          (t, n, nonce=1) => {
+            if(window.playerActionEventDedupeNonce === nonce) return;
+            if(nonce) window.playerActionEventDedupeNonce = nonce;
             switch (n) {
               case "PLAY":
               case "PAUSE":
@@ -1259,23 +1266,11 @@
                 null == e || e.toggleShuffle();
                 break;
               case "TOGGLE_LIKE":
-                null == e ||
-                  e.factory.entityFactory.likeStore.toggleTrackLike({
-                    entityId:
-                      e.state.queueState.currentEntity.value.entity.entityData
-                        .meta.id,
-                    userId: "@me",
-                  });
+                null == e || onLikeClick(sonataState.entityMeta);
                 sendPlayerStateDefault(e);
                 break;
               case "TOGGLE_DISLIKE":
-                null == e ||
-                  e.factory.entityFactory.likeStore.toggleTrackDislike({
-                    entityId:
-                      e.state.queueState.currentEntity.value.entity.entityData
-                        .meta.id,
-                    userId: "@me",
-                  });
+                null == e || onDislikeClick(sonataState.entityMeta);
                 sendPlayerStateDefault(e);
                 break;
             }

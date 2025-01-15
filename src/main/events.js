@@ -310,8 +310,8 @@ const sendRefreshApplicationData = (window) => {
 };
 exports.sendRefreshApplicationData = sendRefreshApplicationData;
 const sendPlayerAction = (window, action) => {
-  window.webContents.send(events_js_1.Events.PLAYER_ACTION, action);
-  eventsLogger.info("Event sent", events_js_1.Events.PLAYER_ACTION, action);
+  window.webContents.send(events_js_1.Events.PLAYER_ACTION, action, Date.now());
+  eventsLogger.info("Event sent", events_js_1.Events.PLAYER_ACTION, action, Date.now());
 };
 exports.sendPlayerAction = sendPlayerAction;
 const sendOpenDeeplink = (window, pathname) => {
