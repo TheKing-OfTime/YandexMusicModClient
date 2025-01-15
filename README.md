@@ -240,6 +240,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/xab4er">
+      <img width="50" alt="xab4er" src="https://avatars.githubusercontent.com/u/60750449?v=4">
+   </a>
    <a href="https://github.com/foreA-adoxid">
       <img width="50" alt="foreA-adoxid" src="https://avatars.githubusercontent.com/u/72875762?v=4">
    </a>
