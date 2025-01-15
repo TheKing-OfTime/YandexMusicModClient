@@ -17,13 +17,13 @@ const APP_ASAR_PATH = path.join(
 );
 const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);
+let latestVersion = currentVersion;
 
 class ModUpdater {
   updaterId = null;
   onModUpdateListeners = [];
   logger;
   constructor() {
-    this.latestVersion = currentVersion;
     this.logger = new Logger_js_1.Logger("ModUpdaterLogger");
     this.logger.log("Initializing");
   }
@@ -51,7 +51,7 @@ class ModUpdater {
     //await this.renameFile(APP_ASAR_UPDATE_PATH, APP_ASAR_PATH);
     setTimeout(() => {                                      //That's disgusting fix. I know...
       this.onModUpdateListeners.forEach((listener) => {
-        listener(currentVersion, this.latestVersion);
+        listener(currentVersion, latestVersion);
       });
     }, 5000);
   }
@@ -59,13 +59,13 @@ class ModUpdater {
   async checkForUpdates() {
     const response = await fetch(UPDATE_CHECK_URL);
     const releaseData = await response.json();
-    if (semver.lt(this.latestVersion, releaseData.name)) {
-        this.latestVersion = releaseData.name;
+    if (semver.lt(latestVersion, releaseData.name)) {
+        latestVersion = releaseData.name;
         this.logger.log(
         "New version available:",
         currentVersion,
         "->",
-        this.latestVersion,
+        latestVersion,
       );
       return releaseData.assets[0].browser_download_url;
     }
