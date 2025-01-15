@@ -246,6 +246,9 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
    <a href="https://github.com/foreA-adoxid">
       <img width="50" alt="foreA-adoxid" src="https://avatars.githubusercontent.com/u/72875762?v=4">
    </a>
+   <a href="https://github.com/Maks1mio">
+      <img width="50" alt="Maks1mio" src="https://avatars.githubusercontent.com/u/44835662?v=4">
+   </a>
    <a href="https://github.com/FaSSteR">
       <img width="50" alt="FaSSteR" src="https://avatars.githubusercontent.com/u/50427367?v=4">
    </a>
