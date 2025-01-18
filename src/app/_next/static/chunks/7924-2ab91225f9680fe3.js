@@ -2754,7 +2754,7 @@
           g = (0, m.C)(e);
         return (0, a.useCallback)(
           async (newE) => {
-            e = newE ?? e;
+            e = newE?.toggleDislike ? newE : e;
             if (e) {
               let l = i.modal.isOpened ? d.W$x.FULLSCREEN_INFO : d.W$x.INFO,
                 m = i.modal.isOpened ? d.W$x.FULLSCREEN_ERROR : d.W$x.ERROR;
@@ -2840,7 +2840,7 @@
           _ = (0, d.R$C)();
         return (0, a.useCallback)(
           async (newE = undefined) => {
-            e = newE ?? e;
+            e = newE?.toggleLike ? newE : e;
             if (e) {
               let a = i.modal.isOpened ? d.W$x.FULLSCREEN_INFO : d.W$x.INFO,
                 l = i.modal.isOpened ? d.W$x.FULLSCREEN_ERROR : d.W$x.ERROR;
