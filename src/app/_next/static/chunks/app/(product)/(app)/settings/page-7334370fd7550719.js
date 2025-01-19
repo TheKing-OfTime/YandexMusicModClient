@@ -755,7 +755,7 @@
             : j({ id: "equalizer.disabled" }),
           z = (0, d.useMemo)(
             () =>
-              `${j({ id: "desktop.app-version-short" }, { version: e })} Мод ${window.MOD_VERSION}`,
+              `${j({ id: "desktop.app-version-short" }, { version: e })} / Мод ${window.MOD_VERSION}`,
             [!0, j, e],
           ),
           T = (0, d.useMemo)(
