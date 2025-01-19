@@ -15,6 +15,7 @@ const electron_1 = require("electron");
 const NodeID3 = require("node-id3").Promise;
 const fs = require("fs").promises;
 const events_js_1 = require("./types/events.js");
+const playerActions_js_1 = require("./types/playerActions.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
 const tray_js_1 = require("./lib/tray.js");
@@ -53,7 +54,8 @@ const handleApplicationEvents = (window) => {
     shortcuts.forEach((shortcut) => {
       if (shortcut[1])
         electron_1.globalShortcut.register(shortcut[1], () => {
-          sendPlayerAction(window, shortcut[0]);
+          const actions = shortcut[0].split(" ");
+          actions.forEach(action => { sendPlayerAction(window, playerActions_js_1.PlayerActions[action]); });
         });
     });
   }
