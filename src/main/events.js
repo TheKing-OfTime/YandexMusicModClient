@@ -290,6 +290,7 @@ const sendModUpdateAvailable = (window, currVersion, newVersion) => {
     events_js_1.Events.MOD_UPDATE_AVAILABLE,
     currVersion,
     newVersion,
+    Date.now()
   );
   eventsLogger.info(
     "Event sent",

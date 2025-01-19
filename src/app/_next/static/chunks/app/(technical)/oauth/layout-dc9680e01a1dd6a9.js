@@ -578,7 +578,13 @@
               [e, o, n],
             ),
             modUpdateCallback = (0, t.useCallback)(
-              (t, r, newVersion) => {
+              (t, r, newVersion, dedupeTimestamp = 0) => {
+                if (
+                  window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
+                )
+                  return;
+                if (dedupeTimestamp)
+                  window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
                 n(
                   (0, s.jsx)(modUpdateToast, {
                     formatMessage: e,

@@ -1096,7 +1096,13 @@
               [e, n, t],
             ),
             modUpdateCallback = (0, i.useCallback)(
-              (i, l, newVersion) => {
+              (i, l, newVersion, dedupeTimestamp = 0) => {
+                if (
+                  window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
+                )
+                  return;
+                if (dedupeTimestamp)
+                  window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
                 t(
                   (0, o.jsx)(modUpdateToast, {
                     formatMessage: e,
@@ -1234,9 +1240,9 @@
           onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
 
         let t = (0, l.useCallback)(
-          (t, n, nonce=1) => {
-            if(window.playerActionEventDedupeNonce === nonce) return;
-            if(nonce) window.playerActionEventDedupeNonce = nonce;
+          (t, n, nonce = 1) => {
+            if (window.playerActionEventDedupeNonce === nonce) return;
+            if (nonce) window.playerActionEventDedupeNonce = nonce;
             switch (n) {
               case "PLAY":
               case "PAUSE":
