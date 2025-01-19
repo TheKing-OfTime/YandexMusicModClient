@@ -88,6 +88,8 @@
 		"REPEAT_NONE": undefined,
 		"REPEAT_CONTEXT": undefined,
 		"REPEAT_NONE": undefined,
+  		"TOGGLE_LIKE": undefined,
+  		"TOGGLE_DISLIKE": undefined,
 	}
       
 </details>
