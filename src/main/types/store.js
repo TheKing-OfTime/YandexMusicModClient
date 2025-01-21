@@ -10,6 +10,7 @@ var StoreKeys;
     StoreKeys["MOD_FEATURES"] = "modFeatures";
     StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
     StoreKeys["ENABLE_AUTO_UPDATES"] = "enableAutoUpdates";
+    StoreKeys["DEFAULT_EXPERIMENT_OVERRIDES"] = "defaultExperimentOverrides";
     StoreKeys["DEVICE_ID"] = "deviceId";
     StoreKeys["DEVICE_SOFTWARE_REVISION"] = "deviceSoftwareRevision";
     StoreKeys["DEVICE_CPU_REVISION"] = "deviceCpuRevision";

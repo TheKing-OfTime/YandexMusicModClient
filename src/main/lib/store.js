@@ -85,12 +85,14 @@ const init = () => {
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
-  // initField(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES, {
-  //   WebNextEqualizer: "on",
-  //   WebNextTrackAboutModal: "on",
-  //   WebNextLanguageSwitcher: "on",
-  //   WebNextUGC: "on",
-  // });
+  initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, {
+      WebNextTrackLyrics: 'on',
+      WebNextEnableNewQuality: 'prod',
+      WebNextEntityTrailer: 'on',
+      WebNextWizard: 'on',
+      WebNextTrailerAlbumFullQueueStart: 'on',
+      WebNextEnableYnison: 'default',
+  });
 };
 exports.init = init;
 
@@ -203,10 +205,16 @@ const getModFeatures = () => {
     return get();
 };
 exports.getModFeatures = getModFeatures;
-const getExperimentOverrides = () => {
-  return store.get(store_js_1.StoreKeys.EXPERIMENT_OVERRIDES);
+const getDefaultExperimentOverrides = async () => {
+  try {
+      const remoteDefaultExperimentOverrides = await fetch('https://ymmc-api.artem-matvienko0.workers.dev/experiments/overrides/default');
+      if(remoteDefaultExperimentOverrides.status === 200) return await remoteDefaultExperimentOverrides.json();
+  } catch (e) {
+      console.log('Failed to fetch remote default experiment overrides. Using local one', e);
+  }
+  return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
 };
-exports.getExperimentOverrides = getExperimentOverrides;
+exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 
 const get = (key) => {
     return store.get(key);
