@@ -209,6 +209,7 @@ const getDefaultExperimentOverrides = async () => {
   try {
       const remoteDefaultExperimentOverrides = await fetch('https://ymmc-api.artem-matvienko0.workers.dev/experiments/overrides/default');
       if(remoteDefaultExperimentOverrides.status === 200) return await remoteDefaultExperimentOverrides.json();
+      return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
   } catch (e) {
       console.log('Failed to fetch remote default experiment overrides. Using local one', e);
       return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
