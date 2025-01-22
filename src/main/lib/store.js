@@ -211,8 +211,8 @@ const getDefaultExperimentOverrides = async () => {
       if(remoteDefaultExperimentOverrides.status === 200) return await remoteDefaultExperimentOverrides.json();
   } catch (e) {
       console.log('Failed to fetch remote default experiment overrides. Using local one', e);
+      return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
   }
-  return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 

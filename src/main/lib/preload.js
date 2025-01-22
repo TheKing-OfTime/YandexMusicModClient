@@ -7,7 +7,12 @@ const getInitialTheme_js_1 = require("./getInitialTheme.js");
 const deviceInfo_js_1 = require("./deviceInfo.js");
 const theme_js_1 = require("../types/theme.js");
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
+const {getDefaultExperimentOverrides} = require('./store');
 const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
+let defaultExperimentOverrides;
+getDefaultExperimentOverrides().then((overrides) => {
+    defaultExperimentOverrides = overrides;
+})
 
 electron_1.contextBridge.exposeInMainWorld('VERSION', String(config_js_1.config.buildInfo.VERSION));
 electron_1.contextBridge.exposeInMainWorld('MOD_VERSION', String(config_js_1.config.modification.version));
@@ -41,7 +46,7 @@ electron_1.contextBridge.exposeInMainWorld(
 );
 electron_1.contextBridge.exposeInMainWorld('SHOW_DISLIKE_BUTTON', () => store_js_1.getModFeatures()?.playerBarEnhancement?.showDislikeButton);
 electron_1.contextBridge.exposeInMainWorld('ALWAYS_SHOW_PLAYER_TIMESTAMPS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.alwaysShowPlayerTimestamps);
-electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', store_js_1.getDefaultExperimentOverrides());
+electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', () => defaultExperimentOverrides);
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     get(key) {
         return store_js_1.get(key);
