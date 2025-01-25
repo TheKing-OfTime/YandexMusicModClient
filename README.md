@@ -284,6 +284,9 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
    <a href="https://github.com/Schelchki">
       <img width="50" alt="Schelchki" src="https://avatars.githubusercontent.com/u/162707132?v=4">
    </a>
+   <a href="https://github.com/entaneey">
+      <img width="50" alt="entaneey" src="https://avatars.githubusercontent.com/u/195827686?v=4">
+   </a>
 </p>
 
 > This list updates manually.
