@@ -525,7 +525,7 @@
                 children: (0, n.jsx)(P, {
                   title: "Запускать свернутым",
                   description:
-                    "Если включено, приложение запустится свернутым. Независимо от настроек автозапуска",
+                    "Если включено, приложение запустится свернутым в трей",
                   onChange: onStartMinimizedToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.windowBehavior.startMinimized",
