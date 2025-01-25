@@ -43,12 +43,12 @@ const toggleWindowState = (window) => {
 };
 exports.toggleWindowState = toggleWindowState;
 
-const dimensions = store_js_1.getWindowDimensions()
+const dimensions = (store_js_1.getModFeatures()?.windowBehavior?.saveWindowDimensionsOnRestart ?? true) ? store_js_1.getWindowDimensions() : undefined
+const position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
 
 const createWindow = async () => {
   const window = new electron_1.BrowserWindow({
     show: false,
-    center: true,
     titleBarStyle: "hidden",
     backgroundColor: '#FFF',
     trafficLightPosition: {
@@ -59,6 +59,7 @@ const createWindow = async () => {
     minHeight: 650,
     width: dimensions?.width ?? 1280,
     height: dimensions?.height ?? 800,
+    ...(position ? { x: position.x, y: position.y } : { center: true }),
     webPreferences: {
       devTools: (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()),
       webSecurity: config_js_1.config.enableWebSecurity,
@@ -70,6 +71,7 @@ const createWindow = async () => {
     },
   });
   window.once("ready-to-show", () => {
+    if (store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false) return;
     (0, exports.toggleWindowVisibility)(window, true);
   });
   return window;

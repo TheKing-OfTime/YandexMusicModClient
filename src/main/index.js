@@ -36,6 +36,10 @@ Logger_js_1.Logger.setupLogger();
 (0, handleUncaughtException_js_1.handleUncaughtException)();
 (0, singleInstance_js_1.checkForSingleInstance)();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
+electron_1.app.setLoginItemSettings({
+    openAtLogin: store_js_1.getModFeatures()?.windowBehavior?.autoLaunchOnSystemStartup ?? false,
+    path: electron_1.app.getPath("exe")
+});
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
   const modUpdater = new modUpdater_js_1;

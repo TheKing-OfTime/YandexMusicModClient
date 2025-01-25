@@ -12,6 +12,8 @@ exports.useCachedValue = exports.deviceId = exports.repositoryMetaUpdatedAt = ex
   exports.needToShowReleaseNotes =
   exports.getWindowDimensions =
   exports.setWindowDimensions =
+  exports.getWindowPosition =
+  exports.setWindowPosition =
   exports.getDevtoolsEnabled =
   exports.getModFeatures =
   exports.init =
@@ -49,6 +51,10 @@ const init = () => {
     width: 1280,
     height: 800,
   });
+  initField(store_js_1.StoreKeys.WINDOW_POSITION, {
+    x: 0,
+    y: 0,
+  });
   initField(store_js_1.StoreKeys.MOD_FEATURES, {
     discordRPC: {
       enable: true,
@@ -74,6 +80,13 @@ const init = () => {
       showDislikeButton: true,
       showCodecInsteadOfQualityMark: false,
       alwaysShowPlayerTimestamps: false,
+    },
+    windowBehavior: {
+        saveWindowDimensionsOnRestart: true,
+        saveWindowPositionOnRestart: false,
+        autoLaunchOnSystemStartup: false,
+        minimizeToTray: true,
+        startMinimized: false,
     },
     globalShortcuts: {
       TOGGLE_PLAY: "Ctrl+/",
@@ -189,6 +202,19 @@ const setWindowDimensions = (width, height) => {
   });
 };
 exports.setWindowDimensions = setWindowDimensions;
+
+const getWindowPosition = () => {
+    return store.get(store_js_1.StoreKeys.WINDOW_POSITION);
+};
+exports.getWindowPosition = getWindowPosition;
+
+const setWindowPosition = (x, y) => {
+    return store.set(store_js_1.StoreKeys.WINDOW_POSITION, {
+        x: x,
+        y: y,
+    });
+};
+exports.setWindowPosition = setWindowPosition;
 
 const getDevtoolsEnabled = () => {
   return Boolean(store.get(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED));

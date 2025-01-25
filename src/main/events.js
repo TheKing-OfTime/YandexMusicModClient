@@ -149,7 +149,7 @@ const handleApplicationEvents = (window) => {
   });
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_CLOSE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_CLOSE);
-    if (state_js_1.state.player.isPlaying) {
+    if (store_js_1.getModFeatures()?.windowBehavior?.minimizeToTray ?? state_js_1.state.player.isPlaying) {
       (0, createWindow_js_1.toggleWindowVisibility)(window, false);
     } else {
       electron_1.app.quit();

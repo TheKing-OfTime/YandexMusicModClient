@@ -59,7 +59,11 @@ const handleWindowLifecycleEvents = (window) => {
         window.setSize(Math.floor(sizesBefore[0]/2)*2,Math.floor(sizesBefore[1]/2)*2);                // Это довольно сомнительная реализация
         const sizes = window.getSize();
         store_js_1.setWindowDimensions(sizes[0], sizes[1]);
-    })
+    });
+    window.on('moved', () => {
+        const position = window.getPosition();
+        store_js_1.setWindowPosition(position[0], position[1]);
+    });
     window.on('close', (event) => {
         if (node_os_1.default.platform() !== platform_js_1.Platform.MACOS) {
             return;

@@ -7,6 +7,7 @@ var StoreKeys;
     StoreKeys["HAS_RECENTLY_LAUNCHED"] = "hasRecentlyLaunched";
     StoreKeys["UUID"] = "uuid";
     StoreKeys["WINDOW_DIMENSIONS"] = "windowDimensions";
+    StoreKeys["WINDOW_POSITION"] = "windowPosition";
     StoreKeys["MOD_FEATURES"] = "modFeatures";
     StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
     StoreKeys["ENABLE_AUTO_UPDATES"] = "enableAutoUpdates";
