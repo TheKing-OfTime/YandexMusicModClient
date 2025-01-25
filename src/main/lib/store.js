@@ -82,18 +82,18 @@ const init = () => {
       alwaysShowPlayerTimestamps: false,
     },
     windowBehavior: {
-        saveWindowDimensionsOnRestart: true,
-        saveWindowPositionOnRestart: false,
-        autoLaunchOnSystemStartup: false,
-        minimizeToTrayOnWindowClose: true,
-        startMinimized: false,
+      saveWindowDimensionsOnRestart: true,
+      saveWindowPositionOnRestart: false,
+      autoLaunchOnSystemStartup: false,
+      minimizeToTrayOnWindowClose: true,
+      startMinimized: false,
     },
     globalShortcuts: {
       TOGGLE_PLAY: "Ctrl+/",
       MOVE_FORWARD: "Ctrl+,",
       MOVE_BACKWARD: "Ctrl+.",
       //TOGGLE_REPEAT: 'Ctrl+R',
-      TOGGLE_SHUFFLE: 'Ctrl+\'',
+      TOGGLE_SHUFFLE: "Ctrl+'",
     },
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
