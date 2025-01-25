@@ -416,6 +416,127 @@
         });
       });
 
+      let windowBehaviorSettings = (0, s.Pi)(() => {
+        let { formatMessage: e } = (0, o.Z)(),
+          {
+            modals: { windowBehaviorSettingsModal: t },
+          } = (0, p.oR4)(),
+          { notify: i } = (0, p.d$W)(),
+          onSaveWindowDimensionsToggle = (0, d.useCallback)(async (e) => {
+            console.log("saveWindowDimensionsOnRestart toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.saveWindowDimensionsOnRestart",
+              e,
+            );
+          }, []),
+          onSaveWindowPositionToggle = (0, d.useCallback)(async (e) => {
+            console.log("saveWindowPositionOnRestart toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.saveWindowPositionOnRestart",
+              e,
+            );
+          }, []),
+          onMinimizeToTrayOnWindowCloseToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("minimizeToTrayOnWindowClose toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.windowBehavior.minimizeToTrayOnWindowClose",
+                e,
+              );
+            },
+            [],
+          ),
+          onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(async (e) => {
+            console.log("autoLaunchOnSystemStartup toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
+              e,
+            );
+          }, []),
+          onStartMinimizedToggle = (0, d.useCallback)(async (e) => {
+            console.log("startMinimized toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.startMinimized",
+              e,
+            );
+          }, []);
+        return (0, n.jsx)(h.u, {
+          className: f().root,
+          style: { "max-width": "550px" },
+          title: "Поведение окна",
+          headerClassName: O().modalHeader,
+          contentClassName: O().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: H().root,
+            style: { width: "466px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Сохранять размер окна",
+                  description: "Сохраняет размер окна при перезапуске",
+                  onChange: onSaveWindowDimensionsToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.saveWindowDimensionsOnRestart",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Сохранять положение окна",
+                  description: "Сохраняет положение окна при перезапуске",
+                  onChange: onSaveWindowPositionToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.saveWindowPositionOnRestart",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: 'Сворачивать в трей по "крестику"',
+                  description:
+                    "Если включено, свернётся в трей. Иначе приложение закроется полностью",
+                  onChange: onMinimizeToTrayOnWindowCloseToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.minimizeToTrayOnWindowClose",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Запускать приложение при старте системы",
+                  onChange: onAutoLaunchOnSystemStartupToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: (0, n.jsx)(P, {
+                  title: "Запускать свернутым",
+                  description:
+                    "Если включено, приложение запустится свернутым. Независимо от настроек автозапуска",
+                  onChange: onStartMinimizedToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.startMinimized",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+
       let playerBarEnhancementsSettings = (0, s.Pi)(() => {
         let { formatMessage: e } = (0, o.Z)(),
           {
@@ -731,6 +852,7 @@
               discordRpcSettingsModal: discordRpcSettingsModal,
               playerBarEnhancementsSettingsModal:
                 playerBarEnhancementsSettingsModal,
+              windowBehaviorSettingsModal: windowBehaviorSettingsModal,
             },
             equalizer: a,
             experiments: r,
@@ -1083,6 +1205,17 @@
                     onClick: playerBarEnhancementsSettingsModal.open,
                   }),
                   (0, n.jsx)(playerBarEnhancementsSettings, {}),
+                ],
+              }),
+              (0, n.jsx)("li", {
+                className: H().item,
+                children: [
+                  (0, n.jsx)(I, {
+                    title: "Поведение окна",
+                    description: "Настройки поведения окна приложения",
+                    onClick: windowBehaviorSettingsModal.open,
+                  }),
+                  (0, n.jsx)(windowBehaviorSettings, {}),
                 ],
               }),
               (0, n.jsx)("li", {

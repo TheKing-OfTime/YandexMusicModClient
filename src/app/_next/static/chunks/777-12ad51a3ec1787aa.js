@@ -10223,6 +10223,7 @@
           clearMemoryModal: {},
           discordRpcSettingsModal: {},
           playerBarEnhancementsSettingsModal: {},
+          windowBehaviorSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -12029,6 +12030,7 @@
           clearMemoryModal: C.KL,
           discordRpcSettingsModal: C.KL,
           playerBarEnhancementsSettingsModal: C.KL,
+            windowBehaviorSettingsModal: C.KL,
         });
       var eF = a(60661),
         eB = a(52203),
