@@ -71,8 +71,7 @@ const createWindow = async () => {
     },
   });
   window.once("ready-to-show", () => {
-    if (store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false) return;
-    (0, exports.toggleWindowVisibility)(window, true);
+    (0, exports.toggleWindowVisibility)(window, !(store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false));
   });
   return window;
 };

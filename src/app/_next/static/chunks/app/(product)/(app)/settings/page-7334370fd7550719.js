@@ -452,7 +452,14 @@
               "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
               e,
             );
-          }, []),
+              i(
+                (0, n.jsx)(_.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: p.W$x.ERROR },
+              );
+          }, [i]),
           onStartMinimizedToggle = (0, d.useCallback)(async (e) => {
             console.log("startMinimized toggled. Value: ", e);
             window.nativeSettings.set(
@@ -474,7 +481,7 @@
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsx)("ul", {
             className: H().root,
-            style: { width: "466px" },
+            style: { width: "514px" },
             children: [
               (0, n.jsx)("li", {
                 className: H().item,
