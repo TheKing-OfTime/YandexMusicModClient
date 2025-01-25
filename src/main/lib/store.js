@@ -85,7 +85,7 @@ const init = () => {
         saveWindowDimensionsOnRestart: true,
         saveWindowPositionOnRestart: false,
         autoLaunchOnSystemStartup: false,
-        minimizeToTray: true,
+        minimizeToTrayOnWindowClose: true,
         startMinimized: false,
     },
     globalShortcuts: {
