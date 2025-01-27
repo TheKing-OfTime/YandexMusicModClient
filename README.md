@@ -287,6 +287,9 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
    <a href="https://github.com/entaneey">
       <img width="50" alt="entaneey" src="https://avatars.githubusercontent.com/u/195827686?v=4">
    </a>
+   <a href="https://github.com/saqura1337">
+      <img width="50" alt="saqura1337" src="https://avatars.githubusercontent.com/u/68153864?v=4">
+   </a>
 </p>
 
 > This list updates manually.
