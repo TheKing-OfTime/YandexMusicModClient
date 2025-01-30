@@ -119,6 +119,12 @@
             "value": "Баннер"
         }
     ],
+    "buy-subscription.activate": [
+        {
+            "type": 0,
+            "value": "Подключить"
+        }
+    ],
     "buy-subscription.already-in-plus": [
         {
             "type": 0,
@@ -145,6 +151,12 @@
         {
             "type": 0,
             "value": "Музыку без ограничений"
+        }
+    ],
+    "buy-subscription.music-and-films-and-other": [
+        {
+            "type": 0,
+            "value": "Музыка, кино и многое другое"
         }
     ],
     "calendar.april-short": [
@@ -333,20 +345,6 @@
         {
             "type": 0,
             "value": "чтобы слушать любимые треки без рекламы"
-        }
-    ],
-    "crackdown.plus": [
-        {
-            "type": 0,
-            "value": "Яндекс"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "Плюс"
         }
     ],
     "crackdown.title": [
@@ -627,6 +625,12 @@
         {
             "type": 0,
             "value": "Альбом"
+        }
+    ],
+    "entity-names.album-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Этот альбом доступен с опцией Плюса"
         }
     ],
     "entity-names.album-name": [
@@ -995,6 +999,12 @@
             "value": "number"
         }
     ],
+    "entity-names.editor-feature-is-show": [
+        {
+            "type": 0,
+            "value": "Уже показывается"
+        }
+    ],
     "entity-names.fairy-tale": [
         {
             "type": 0,
@@ -1017,6 +1027,12 @@
         {
             "type": 0,
             "value": "Есть ваш лайк"
+        }
+    ],
+    "entity-names.liked-artist": [
+        {
+            "type": 0,
+            "value": "Вам понравились"
         }
     ],
     "entity-names.liked-playlist": [
@@ -1220,12 +1236,6 @@
             "value": "Моя волна"
         }
     ],
-    "entity-names.nda": [
-        {
-            "type": 0,
-            "value": "NDA"
-        }
-    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1285,6 +1295,56 @@
                         {
                             "type": 0,
                             "value": "книг"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        }
+    ],
+    "entity-names.number-of-chapters": [
+        {
+            "type": 1,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "главы"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "глав"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "глава"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "глав"
                         }
                     ]
                 }
@@ -1650,6 +1710,12 @@
             "value": "Сингл"
         }
     ],
+    "entity-names.single-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Этот сингл доступен с опцией Плюса"
+        }
+    ],
     "entity-names.source": [
         {
             "type": 0,
@@ -1666,10 +1732,26 @@
             "value": "Студийные альбомы"
         }
     ],
+    "entity-names.tags": [
+        {
+            "type": 0,
+            "value": "Теги: "
+        },
+        {
+            "type": 1,
+            "value": "tags"
+        }
+    ],
     "entity-names.text": [
         {
             "type": 0,
             "value": "Текст"
+        }
+    ],
+    "entity-names.top-artists": [
+        {
+            "type": 0,
+            "value": "Ваш топ месяца"
         }
     ],
     "entity-names.track": [
@@ -1692,6 +1774,62 @@
         {
             "type": 1,
             "value": "trackName"
+        }
+    ],
+    "entity-names.track-type": [
+        {
+            "options": {
+                "audiobook": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Глава"
+                        }
+                    ]
+                },
+                "comment": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Выпуск"
+                        }
+                    ]
+                },
+                "fairy_tale": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Глава"
+                        }
+                    ]
+                },
+                "music": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Трек"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Трек"
+                        }
+                    ]
+                },
+                "podcast_episode": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Выпуск"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "type"
         }
     ],
     "entity-names.tracks": [
@@ -2238,6 +2376,146 @@
             "value": "Не буду слушать"
         }
     ],
+    "family.about": [
+        {
+            "type": 0,
+            "value": "Подробнее о подписке"
+        }
+    ],
+    "family.about1": [
+        {
+            "type": 0,
+            "value": "Больше о подписке"
+        }
+    ],
+    "family.accept": [
+        {
+            "type": 0,
+            "value": "Принять"
+        }
+    ],
+    "family.go-to-music": [
+        {
+            "type": 0,
+            "value": "К музыке"
+        }
+    ],
+    "family.info-description": [
+        {
+            "type": 0,
+            "value": "Слушайте музыку и пользуйтесь другими"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "преимуществами Плюса вместе"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "с близкими в семейной подписке"
+        }
+    ],
+    "family.info-title": [
+        {
+            "type": 0,
+            "value": "Вас приглашают"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "в Яндекс Плюс"
+        }
+    ],
+    "family.invitation-error-description": [
+        {
+            "type": 0,
+            "value": "Возможно, приглашение отменили или в подписке пользователя, который вас приглашал, заняты все места"
+        }
+    ],
+    "family.invitation-error-title": [
+        {
+            "type": 0,
+            "value": "Приглашение недействительно"
+        }
+    ],
+    "family.later": [
+        {
+            "type": 0,
+            "value": "Позже"
+        }
+    ],
+    "family.reject": [
+        {
+            "type": 0,
+            "value": "Отклонить"
+        }
+    ],
+    "family.retry": [
+        {
+            "type": 0,
+            "value": "Повторить"
+        }
+    ],
+    "family.subscription-error-description": [
+        {
+            "type": 0,
+            "value": "Попробуйте связаться с тем, кто вас приглашал, или подключите свой Плюс, чтобы послушать музыку прямо сейчас"
+        }
+    ],
+    "family.subscription-error-title": [
+        {
+            "type": 0,
+            "value": "Подписка недоступна"
+        }
+    ],
+    "family.success-description": [
+        {
+            "type": 0,
+            "value": "Вам доступны Музыка, Кинопоиск"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "и кешбэк баллами в сервисах Яндекса"
+        }
+    ],
+    "family.success-title": [
+        {
+            "type": 0,
+            "value": "Теперь вы в Плюсе!"
+        }
+    ],
+    "family.terms": [
+        {
+            "type": 0,
+            "value": "Условия подписки"
+        }
+    ],
+    "family.unknown-error-description": [
+        {
+            "type": 0,
+            "value": "Точно не знаем, в чём дело. Проверьте интернет и попробуйте ещё раз"
+        }
+    ],
+    "family.unknown-error-title": [
+        {
+            "type": 0,
+            "value": "Не удалось принять приглашение"
+        }
+    ],
     "faq.title": [
         {
             "type": 0,
@@ -2264,6 +2542,12 @@
             "value": "Правообладателям"
         }
     ],
+    "footer.links-download-desktop": [
+        {
+            "type": 0,
+            "value": "Скачать приложение"
+        }
+    ],
     "footer.links-help": [
         {
             "type": 0,
@@ -2273,7 +2557,7 @@
     "footer.links-recommendation-rules": [
         {
             "type": 0,
-            "value": "Правила рекомендаций"
+            "value": "Правила рекомендаций (РФ)"
         }
     ],
     "footer.links-terms": [
@@ -2366,6 +2650,12 @@
             "value": "Контекстное меню"
         }
     ],
+    "interface-actions.copy-iframe": [
+        {
+            "type": 0,
+            "value": "HTML-код"
+        }
+    ],
     "interface-actions.copy-link": [
         {
             "type": 0,
@@ -2396,10 +2686,22 @@
             "value": "Редактировать"
         }
     ],
+    "interface-actions.editorial-tools": [
+        {
+            "type": 0,
+            "value": "Инструменты редакции"
+        }
+    ],
     "interface-actions.further": [
         {
             "type": 0,
             "value": "Далее"
+        }
+    ],
+    "interface-actions.go-to-collection": [
+        {
+            "type": 0,
+            "value": "Перейти в Коллекцию"
         }
     ],
     "interface-actions.hide-sync-lyrics": [
@@ -2454,6 +2756,24 @@
         {
             "type": 0,
             "value": "Настроить Мою волну"
+        }
+    ],
+    "interface-actions.navigate-to-album": [
+        {
+            "type": 0,
+            "value": "Перейти к альбому"
+        }
+    ],
+    "interface-actions.navigate-to-artist": [
+        {
+            "type": 0,
+            "value": "Перейти к исполнителю"
+        }
+    ],
+    "interface-actions.navigate-to-artists": [
+        {
+            "type": 0,
+            "value": "Перейти к исполнителям"
         }
     ],
     "interface-actions.open-lyrics": [
@@ -2589,6 +2909,24 @@
         {
             "type": 0,
             "value": "Поделиться"
+        }
+    ],
+    "interface-actions.show-duplicates": [
+        {
+            "type": 0,
+            "value": "Показать дубликаты"
+        }
+    ],
+    "interface-actions.show-genres": [
+        {
+            "type": 0,
+            "value": "Показать жанры"
+        }
+    ],
+    "interface-actions.show-majors": [
+        {
+            "type": 0,
+            "value": "Показать majors"
         }
     ],
     "interface-actions.speed": [
@@ -2824,10 +3162,40 @@
             "value": " плейлист вчера"
         }
     ],
+    "interface-actions.xlsx-download": [
+        {
+            "type": 0,
+            "value": "Скачать Excel-файл"
+        }
+    ],
     "kids.for-kids": [
         {
             "type": 0,
             "value": "Детям"
+        }
+    ],
+    "lite-version.description": [
+        {
+            "type": 0,
+            "value": "Визуальные эффекты и анимации будут загружаться в облегчённом формате"
+        }
+    ],
+    "lite-version.go-to-settings": [
+        {
+            "type": 0,
+            "value": "К настройкам"
+        }
+    ],
+    "lite-version.notification-title": [
+        {
+            "type": 0,
+            "value": "Включена lite-версия"
+        }
+    ],
+    "lite-version.title": [
+        {
+            "type": 0,
+            "value": "Включить lite-версию"
         }
     ],
     "loading-messages.concert-is-loading": [
@@ -2892,110 +3260,6 @@
         {
             "type": 0,
             "value": "»"
-        }
-    ],
-    "mobile-paywall.activate-promocode": [
-        {
-            "type": 0,
-            "value": "Активировать промокод"
-        }
-    ],
-    "mobile-paywall.benefit-my-vibe": [
-        {
-            "type": 0,
-            "value": "С"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "персональными рекомендациями от"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "Моей волны"
-        }
-    ],
-    "mobile-paywall.child-info": [
-        {
-            "type": 0,
-            "value": "Попросите владельца родительского"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "аккаунта подключить подписку Яндекс Плюс"
-        }
-    ],
-    "mobile-paywall.first-payment": [
-        {
-            "type": 0,
-            "value": "Первое списание "
-        },
-        {
-            "type": 1,
-            "value": "date"
-        }
-    ],
-    "mobile-paywall.payment-reminder": [
-        {
-            "type": 0,
-            "value": "Напомним о"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "списании за"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "3"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "дня"
-        }
-    ],
-    "mobile-paywall.title": [
-        {
-            "type": 0,
-            "value": "Музыка зазвучит с"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "подпиской Яндекс"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "Плюс"
         }
     ],
     "music-history.album": [
@@ -3144,16 +3408,40 @@
             "value": "Продолжить слушать"
         }
     ],
+    "non-music.fairy-tale-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Эта сказка доступна с опцией Плюса"
+        }
+    ],
+    "non-music.fairytale-tab-about": [
+        {
+            "type": 0,
+            "value": "О сказке"
+        }
+    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
             "value": "Перейти к книге"
         }
     ],
+    "non-music.navigate-to-clip": [
+        {
+            "type": 0,
+            "value": "Перейти к клипу"
+        }
+    ],
     "non-music.navigate-to-podcast-album": [
         {
             "type": 0,
             "value": "Перейти к подкасту"
+        }
+    ],
+    "non-music.podcast-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Этот подкаст доступен с опцией Плюса"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3346,6 +3634,12 @@
             "value": "collection"
         }
     ],
+    "notifications-info.artist-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Теперь исполнитель будет появляться в ваших рекомендациях"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
@@ -3388,6 +3682,12 @@
             ],
             "type": 8,
             "value": "collection"
+        }
+    ],
+    "notifications-info.artist-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Исполнитель больше не появится в ваших рекомендациях"
         }
     ],
     "notifications-info.artist-unpinned-from-menu": [
@@ -3564,10 +3864,44 @@
             "value": "скопирована"
         }
     ],
+    "notifications-info.fairytale-pinned-in-menu": [
+        {
+            "type": 0,
+            "value": "Сказка "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " закреплена в боковом меню"
+        }
+    ],
+    "notifications-info.fairytale-unpinned-from-menu": [
+        {
+            "type": 0,
+            "value": "Сказка "
+        },
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " удалена из бокового меню"
+        }
+    ],
     "notifications-info.from-collection": [
         {
             "type": 0,
             "value": "Коллекции"
+        }
+    ],
+    "notifications-info.html-code-copied": [
+        {
+            "type": 0,
+            "value": "HTML-код скопирован"
         }
     ],
     "notifications-info.my-vibe-pinned-in-menu": [
@@ -3986,6 +4320,18 @@
             "value": "Трек больше не будет появляться в ваших рекомендациях"
         }
     ],
+    "notifications-info.xlsx-loading": [
+        {
+            "type": 0,
+            "value": "Формирование Excel-файла"
+        }
+    ],
+    "notifications-info.xlsx-success": [
+        {
+            "type": 0,
+            "value": "Excel-файл успешно скачан"
+        }
+    ],
     "offline.clear-memory": [
         {
             "type": 0,
@@ -4004,16 +4350,34 @@
             "value": "Удалить с устройства"
         }
     ],
+    "offline.disable-offline-mode": [
+        {
+            "type": 0,
+            "value": "Выключить офлайн-режим"
+        }
+    ],
     "offline.download": [
         {
             "type": 0,
             "value": "Скачать"
         }
     ],
+    "offline.download-for-offline": [
+        {
+            "type": 0,
+            "value": "Скачивайте музыку для офлайн-доступа"
+        }
+    ],
     "offline.download-progress": [
         {
             "type": 0,
             "value": "Прогресс скачивания"
+        }
+    ],
+    "offline.downloaded-empty": [
+        {
+            "type": 0,
+            "value": "У вас нет скачанного"
         }
     ],
     "offline.downloaded-track-list": [
@@ -4038,10 +4402,22 @@
             "value": "%"
         }
     ],
+    "offline.listen-downloaded-content": [
+        {
+            "type": 0,
+            "value": "Сейчас вы можете слушать только скачанное"
+        }
+    ],
     "offline.memory-cleared": [
         {
             "type": 0,
             "value": "Память устройства очищена"
+        }
+    ],
+    "offline.no-internet-connection": [
+        {
+            "type": 0,
+            "value": "Нет интернета"
         }
     ],
     "offline.offline-mode": [
@@ -4056,10 +4432,22 @@
             "value": "Слушайте скачанное без интернета"
         }
     ],
+    "offline.offline-mode-enabled": [
+        {
+            "type": 0,
+            "value": "Офлайн-режим включён"
+        }
+    ],
     "offline.stop-downloading": [
         {
             "type": 0,
             "value": "Остановить скачивание"
+        }
+    ],
+    "offline.track-download-error": [
+        {
+            "type": 0,
+            "value": "При скачивании трека произошла ошибка"
         }
     ],
     "offline.track-downloaded": [
@@ -4474,6 +4862,20 @@
             "value": "аккаунт, чтобы посмотреть текстомузыку"
         }
     ],
+    "onboarding.rewind-trailer": [
+        {
+            "type": 0,
+            "value": "Включайте трейлер"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "года"
+        }
+    ],
     "onboarding.trailer": [
         {
             "type": 0,
@@ -4735,13 +5137,13 @@
     "page-error.page-does-not-exist": [
         {
             "type": 0,
-            "value": "Страница не найдена"
+            "value": "Ничего не нашлось"
         }
     ],
     "page-error.page-does-not-exist-description": [
         {
             "type": 0,
-            "value": "Мы не нашли нужную страницу."
+            "value": "Попробуйте поискать в этом разделе"
         }
     ],
     "page-error.reload": [
@@ -4838,10 +5240,28 @@
             "value": "Моя полка"
         }
     ],
+    "payment.album-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Слушать альбом"
+        }
+    ],
+    "payment.books-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Слушать книгу"
+        }
+    ],
     "payment.buy": [
         {
             "type": 0,
             "value": "Купить"
+        }
+    ],
+    "payment.fairy-tale-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Слушать сказку"
         }
     ],
     "payment.min-price": [
@@ -4860,16 +5280,28 @@
             "value": "Оформить подписку"
         }
     ],
-    "payment.plus-offer-button": [
+    "payment.podcast-offer-button-title": [
         {
             "type": 0,
-            "value": "По подписке на Плюс"
+            "value": "Слушать подкаст"
+        }
+    ],
+    "payment.single-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Слушать сингл"
         }
     ],
     "payment.try-button": [
         {
             "type": 0,
             "value": "Попробовать"
+        }
+    ],
+    "payment.yandex-plus-offer-button": [
+        {
+            "type": 0,
+            "value": "По подписке Яндекс Плюс"
         }
     ],
     "paywall-footer.cashback-terms-link": [
@@ -6138,6 +6570,12 @@
             "value": " удалён из очереди"
         }
     ],
+    "play-queue.repeat-list": [
+        {
+            "type": 0,
+            "value": "Повтор списка"
+        }
+    ],
     "play-queue.title": [
         {
             "type": 0,
@@ -6204,12 +6642,6 @@
             "value": "Стабильное звучание при медленном интернете"
         }
     ],
-    "player-actions.audio-quality-hq": [
-        {
-            "type": 0,
-            "value": "Высокое"
-        }
-    ],
     "player-actions.audio-quality-maximum": [
         {
             "type": 0,
@@ -6220,12 +6652,6 @@
         {
             "type": 0,
             "value": "Музыка в lossless и других высококачественных форматах для быстрого интернета и хорошей акустики"
-        }
-    ],
-    "player-actions.audio-quality-nq": [
-        {
-            "type": 0,
-            "value": "Оптимальное"
         }
     ],
     "player-actions.audio-quality-optimal": [
@@ -6490,16 +6916,22 @@
             "value": "Удалить плейлист"
         }
     ],
-    "playlist-errors.error-during-loading-playlist": [
-        {
-            "type": 0,
-            "value": "При загрузке плейлиста произошла ошибка"
-        }
-    ],
     "playlist-errors.failed-add-track-to-playlist": [
         {
             "type": 0,
             "value": "Трек не добавлен в плейлист, попробуйте снова"
+        }
+    ],
+    "playlist-errors.failed-download-xlsx": [
+        {
+            "type": 0,
+            "value": "Excel-файл не удалось скачать"
+        }
+    ],
+    "playlist-errors.failed-part-tracks-download-xlsx": [
+        {
+            "type": 0,
+            "value": "Excel-файл скачан, но часть треков не удалось загрузить"
         }
     ],
     "playlist-errors.failed-to-change-description": [
@@ -6706,6 +7138,12 @@
             "value": "value"
         }
     ],
+    "rewind.button-title": [
+        {
+            "type": 0,
+            "value": "Итоги года — 2024"
+        }
+    ],
     "search-filters.album": [
         {
             "type": 0,
@@ -6770,6 +7208,12 @@
         {
             "type": 0,
             "value": "Лучшие результаты"
+        }
+    ],
+    "search-results.clip": [
+        {
+            "type": 0,
+            "value": "Клипы"
         }
     ],
     "search-results.not-found-description": [
@@ -6842,6 +7286,12 @@
             "value": "Трек, альбом, исполнитель"
         }
     ],
+    "search.recent-requests-fallback": [
+        {
+            "type": 0,
+            "value": "Здесь будут ваши недавние запросы"
+        }
+    ],
     "search.search-catalog": [
         {
             "type": 0,
@@ -6900,6 +7350,32 @@
         {
             "type": 0,
             "value": "Показывать раздел «Детям»"
+        }
+    ],
+    "share.iframe-copy": [
+        {
+            "type": 0,
+            "value": "Скопировать"
+        }
+    ],
+    "share.iframe-listen": [
+        {
+            "type": 0,
+            "value": "Слушайте "
+        },
+        {
+            "type": 1,
+            "value": "html"
+        },
+        {
+            "type": 0,
+            "value": " на Яндекс Музыке"
+        }
+    ],
+    "share.iframe-modal-title": [
+        {
+            "type": 0,
+            "value": "Настройте размер и скопируйте код на сайт"
         }
     ],
     "shortcuts.fullscreen-player": [
@@ -6992,10 +7468,88 @@
             "value": "Свернуть сайдбар"
         }
     ],
+    "sidebar.download-app": [
+        {
+            "type": 0,
+            "value": "Скачать приложение"
+        }
+    ],
+    "sidebar.download-app-formatted": [
+        {
+            "type": 0,
+            "value": "Музыка на "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "десктопе"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
+    "sidebar.download-macos": [
+        {
+            "type": 0,
+            "value": "Скачать приложение для MacOS"
+        }
+    ],
+    "sidebar.download-macos-formatted": [
+        {
+            "type": 0,
+            "value": "Музыка на "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "MacOS"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
+    "sidebar.download-windows": [
+        {
+            "type": 0,
+            "value": "Скачать приложение для Windows"
+        }
+    ],
+    "sidebar.download-windows-formatted": [
+        {
+            "type": 0,
+            "value": "Музыка на "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Windows"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
     "sidebar.plus-badge": [
         {
             "type": 0,
             "value": "Плюс"
+        }
+    ],
+    "sidebar.rewind-description": [
+        {
+            "type": 0,
+            "value": "Ваш 2024"
+        }
+    ],
+    "sidebar.rewind-title": [
+        {
+            "type": 0,
+            "value": "Итоги года"
         }
     ],
     "sidebar.uncollapse": [
@@ -7014,476 +7568,6 @@
         {
             "type": 0,
             "value": "Предыдущий слайд"
-        }
-    ],
-    "slides-stats.books": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "книги"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "книг"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "книга"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "книг"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.hours": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "часа"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "часов"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "час"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "часов"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.likes": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "лайка"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "лайков"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "лайк"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "лайков"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.listeners": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "слушателя"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "слушателей"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "слушатель"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "слушателей"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.listenings": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "прослушивания"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "прослушиваний"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "прослушивание"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "прослушиваний"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.minutes": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минуты"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минута"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.minutes-with-books": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минуты"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минута"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        },
-        {
-            "type": 0,
-            "value": " с книгами"
-        }
-    ],
-    "slides-stats.minutes-with-music": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минуты"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минута"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "минут"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        },
-        {
-            "type": 0,
-            "value": " с Музыкой"
-        }
-    ],
-    "slides-stats.new-tracks": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "новых трека"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "новых треков"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "новый трек"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "новых треков"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.superfans": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "суперфана"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "суперфанов"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "суперфан"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "суперфанов"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.tracks": [
-        {
-            "offset": 0,
-            "options": {
-                "few": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "трека"
-                        }
-                    ]
-                },
-                "many": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "треков"
-                        }
-                    ]
-                },
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "трек"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "треков"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
         }
     ],
     "time.duration": [
@@ -7550,7 +7634,7 @@
                         },
                         {
                             "type": 0,
-                            "value": " часов"
+                            "value": " часа"
                         }
                     ]
                 }
@@ -7932,10 +8016,64 @@
             "value": "seconds"
         }
     ],
+    "track-modal.album-heading": [
+        {
+            "options": {
+                "audiobook": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Книга"
+                        }
+                    ]
+                },
+                "fairy_tale": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Сказка"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Альбом"
+                        }
+                    ]
+                },
+                "podcast": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Подкаст"
+                        }
+                    ]
+                },
+                "single": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Сингл"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "type"
+        }
+    ],
     "track-modal.audiobook-title": [
         {
             "type": 0,
             "value": "О главе"
+        }
+    ],
+    "track-modal.clip-title": [
+        {
+            "type": 0,
+            "value": "О клипе"
         }
     ],
     "track-modal.podcast-title": [
@@ -8026,36 +8164,6 @@
         {
             "type": 0,
             "value": "Обновите экран или попробуйте позже"
-        }
-    ],
-    "trailer.title-album": [
-        {
-            "type": 0,
-            "value": "Трейлер альбома"
-        }
-    ],
-    "trailer.title-artist": [
-        {
-            "type": 0,
-            "value": "Трейлер исполнителя"
-        }
-    ],
-    "trailer.title-playlist": [
-        {
-            "type": 0,
-            "value": "Трейлер плейлиста"
-        }
-    ],
-    "trailer.title-single": [
-        {
-            "type": 0,
-            "value": "Трейлер сингла"
-        }
-    ],
-    "trailer.title-track": [
-        {
-            "type": 0,
-            "value": "Трейлер трека"
         }
     ],
     "ugc.cancel-upload": [
@@ -8250,18 +8358,6 @@
             "value": "Может нарушить доступность"
         }
     ],
-    "warning-messages.do-not-take-screenshots": [
-        {
-            "type": 0,
-            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
-        }
-    ],
-    "warning-messages.only-for-staff": [
-        {
-            "type": 0,
-            "value": "Только на стафф"
-        }
-    ],
     "warning-messages.update-your-browser": [
         {
             "type": 0,
@@ -8291,7 +8387,7 @@
     "welcome-page.not-auth-header": [
         {
             "type": 0,
-            "value": "Чтобы открыть приложение,"
+            "value": "Войдите в аккаунт, "
         },
         {
             "type": 1,
@@ -8299,13 +8395,13 @@
         },
         {
             "type": 0,
-            "value": "войдите в Плюс"
+            "value": "чтобы открыть приложение"
         }
     ],
     "welcome-page.not-auth-text": [
         {
             "type": 0,
-            "value": "Бета-версия доступна только подписчикам"
+            "value": "Яндекс Музыка доступна по подписке Плюс"
         }
     ],
     "welcome-page.offer-header": [

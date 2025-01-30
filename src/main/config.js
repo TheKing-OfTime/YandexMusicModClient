@@ -27,7 +27,7 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-      version: "1.19.0",
+      version: "1.20.0",
   },
 };
 const applyCommonConfig = (commonConfig) => {

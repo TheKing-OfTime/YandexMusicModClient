@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupSystemMenu = void 0;
 const electron_1 = require("electron");
-const node_os_1 = __importDefault(require("node:os"));
+const deviceInfo_js_1 = require("./deviceInfo.js");
 const updater_js_1 = require("./updater.js");
 const config_js_1 = require("../config.js");
 const store_js_1 = require('./store.js');
@@ -18,7 +18,7 @@ const createSupportChatUrl = () => {
 const createContextMenu = () => {
     const updater = (0, updater_js_1.getUpdater)();
     const template = [];
-    if (node_os_1.default.platform() === platform_js_1.Platform.MACOS) {
+    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.MACOS) {
         template.push({
             label: (0, i18n_js_1.formatMessage)({ id: 'about-app.app-name' }),
             submenu: [

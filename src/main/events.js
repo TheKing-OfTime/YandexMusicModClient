@@ -29,7 +29,8 @@ const createWindow_js_1 = require("./lib/createWindow.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
-const eventsLogger = new Logger_js_1.Logger("Events");
+const platform_js_1 = require("./types/platform.js");
+const eventsLogger = new Logger_js_1.Logger('Events');
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };

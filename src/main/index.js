@@ -1,18 +1,13 @@
 "use strict";
-var __importDefault =
-  (this && this.__importDefault) ||
-  function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
-  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
-const node_os_1 = __importDefault(require("node:os"));
-const store_js_1 = require("./lib/store.js");
 const config_js_1 = require("./config.js");
 const platform_js_1 = require("./types/platform.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const systemMenu_js_1 = require("./lib/systemMenu.js");
 const tray_js_1 = require("./lib/tray.js");
+const store_js_1 = require("./lib/store.js");
+const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const singleInstance_js_1 = require("./lib/singleInstance.js");
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const createWindow_js_1 = require("./lib/createWindow.js");
@@ -46,7 +41,7 @@ electron_1.app.setLoginItemSettings({
   await electron_1.app.whenReady();
   (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
-  if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
+    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
     (0, tray_js_1.setupTray)(window);
   }
   (0, safeRedirects_js_1.safeRedirects)(window);
@@ -61,7 +56,7 @@ electron_1.app.setLoginItemSettings({
   (0, handleBackgroundTasks_js_1.handleBackgroundTasks)(window);
   (0, handleCrash_js_1.handleCrash)();
   await (0, loadURL_js_1.loadURL)(window);
-  if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
+    if ([platform_js_1.Platform.WINDOWS, platform_js_1.Platform.LINUX].includes(deviceInfo_js_1.devicePlatform)) {
     (0, customTitleBar_js_1.createCustomTitleBar)(window);
   }
   if (store_js_1.getAutoUpdatesEnabled() ?? config_js_1.config.enableAutoUpdate) {

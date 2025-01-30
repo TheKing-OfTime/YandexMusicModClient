@@ -11,6 +11,7 @@ const Logger_js_1 = require("../packages/logger/Logger.js");
 const store_js_1 = require("./store.js");
 const store_js_2 = require("../types/store.js");
 const deviceInfoLogger = new Logger_js_1.Logger('DeviceInfo');
+exports.devicePlatform = (0, node_os_1.platform)();
 const toMB = (bytes) => {
     return Math.round(bytes / 1024 / 1024);
 };
@@ -61,7 +62,7 @@ const getOs = () => {
         release: (0, node_os_1.release)(),
         arch: (0, node_os_1.arch)(),
         version: (0, node_os_1.version)(),
-        platform: (0, node_os_1.platform)(),
+        platform: exports.devicePlatform,
         machine: (0, node_os_1.machine)()
     };
 };
@@ -141,7 +142,7 @@ const getDeviceInfo = () => {
         manufacturer: '',
         model: '',
         uuid: (0, store_js_1.getUuid)(),
-        os: (0, node_os_1.platform)(),
+        os: exports.devicePlatform,
         os_version: '',
         device_id: (0, store_js_1.getDeviceId)(),
         clid: 0

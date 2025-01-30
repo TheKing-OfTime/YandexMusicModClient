@@ -146,9 +146,7 @@ const needToShowReleaseNotes = () => {
 exports.needToShowReleaseNotes = needToShowReleaseNotes;
 const isFirstLaunch = () => {
   const storeVersion = store.get(store_js_1.StoreKeys.VERSION);
-  const hasRecentlyLaunched = Boolean(
-    store.get(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED),
-  );
+    const hasRecentlyLaunched = Boolean(store.get(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED));
   if (storeVersion) {
     store.set(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
     return false;

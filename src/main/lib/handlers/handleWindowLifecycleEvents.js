@@ -1,20 +1,18 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleWindowLifecycleEvents = void 0;
 const electron_1 = require("electron");
-const node_os_1 = __importDefault(require("node:os"));
 const state_js_1 = require("../state.js");
 const createWindow_js_1 = require("../createWindow.js");
 const loadURL_js_1 = require("../loadURL.js");
+const deviceInfo_js_1 = require("../deviceInfo.js");
 const platform_js_1 = require("../../types/platform.js");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const events_js_1 = require("../../events.js");
 const config_js_1 = require("../../config.js");
 const store_js_1 = require("../store.js");
 const lifecycleLogger = new Logger_js_1.Logger('WindowLifecycle');
+const USER_ID_IFRAME_URL_REGEXP = /^https:\/\/yandex.\w{2,3}\/user-id/;
 const checkAndUpdateApplicationData = (window) => {
     const diff = Date.now() - state_js_1.state.lastWindowBlurredOrHiddenTime;
     if (diff >= config_js_1.config.common.REFRESH_EVENT_TRIGGER_TIME_MS) {
@@ -32,7 +30,7 @@ const handleWindowLifecycleEvents = (window) => {
         state_js_1.state.willQuit = true;
     });
     electron_1.app.on('window-all-closed', () => {
-        if (node_os_1.default.platform() === platform_js_1.Platform.WINDOWS) {
+        if ([platform_js_1.Platform.WINDOWS, platform_js_1.Platform.LINUX].includes(deviceInfo_js_1.devicePlatform)) {
             electron_1.app.quit();
         }
     });
@@ -65,7 +63,7 @@ const handleWindowLifecycleEvents = (window) => {
         store_js_1.setWindowPosition(position[0], position[1]);
     });
     window.on('close', (event) => {
-        if (node_os_1.default.platform() !== platform_js_1.Platform.MACOS) {
+        if (deviceInfo_js_1.devicePlatform !== platform_js_1.Platform.MACOS) {
             return;
         }
         if (state_js_1.state.willQuit) {
@@ -86,7 +84,7 @@ const handleWindowLifecycleEvents = (window) => {
     webContents.on('did-fail-load', (event, errorCode, errorDescription, validatedUrl) => {
         const message = `Failed to load ${validatedUrl}: ${errorDescription} (${errorCode})`;
         lifecycleLogger.error(message);
-        if (errorCode <= -100) {
+        if (errorCode <= -100 && !USER_ID_IFRAME_URL_REGEXP.test(validatedUrl)) {
             (0, loadURL_js_1.loadUnavailableErrorPage)(window);
         }
     });

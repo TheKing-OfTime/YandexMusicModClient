@@ -14,6 +14,8 @@ const electron_1 = require("electron");
 const config_js_1 = require("../config.js");
 const state_js_1 = require("./state.js");
 const tray_js_1 = require("./tray.js");
+const deviceInfo_js_1 = require("./deviceInfo.js");
+const platform_js_1 = require("../types/platform.js");
 const taskBarExtension_js_1 = require("./taskBarExtension/taskBarExtension.js");
 const store_js_1 = require('./store.js');
 const toggleWindowVisibility = (window, isVisible) => {
@@ -47,8 +49,10 @@ const dimensions = (store_js_1.getModFeatures()?.windowBehavior?.saveWindowDimen
 const position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
 
 const createWindow = async () => {
+    const withFrame = [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.MACOS].includes(deviceInfo_js_1.devicePlatform);
   const window = new electron_1.BrowserWindow({
     show: false,
+    frame: withFrame,
     titleBarStyle: "hidden",
     backgroundColor: '#FFF',
     trafficLightPosition: {

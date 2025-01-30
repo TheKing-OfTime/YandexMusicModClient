@@ -119,6 +119,12 @@
             "value": "Banner"
         }
     ],
+    "buy-subscription.activate": [
+        {
+            "type": 0,
+            "value": "Ulanish"
+        }
+    ],
     "buy-subscription.already-in-plus": [
         {
             "type": 0,
@@ -145,6 +151,12 @@
         {
             "type": 0,
             "value": "Music ilovasini cheklovlarsiz tinglang"
+        }
+    ],
+    "buy-subscription.music-and-films-and-other": [
+        {
+            "type": 0,
+            "value": "Musiqa, kino va yana boshqalar"
         }
     ],
     "calendar.april-short": [
@@ -337,20 +349,6 @@
         {
             "type": 0,
             "value": "obunasini ulang"
-        }
-    ],
-    "crackdown.plus": [
-        {
-            "type": 0,
-            "value": "Yandex"
-        },
-        {
-            "type": 1,
-            "value": "nbsp"
-        },
-        {
-            "type": 0,
-            "value": "Plus"
         }
     ],
     "crackdown.title": [
@@ -615,6 +613,12 @@
         {
             "type": 0,
             "value": "Albom"
+        }
+    ],
+    "entity-names.album-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Bu albom Plus opsiyasi bilan mavjud"
         }
     ],
     "entity-names.album-name": [
@@ -983,6 +987,12 @@
             "value": "-disk"
         }
     ],
+    "entity-names.editor-feature-is-show": [
+        {
+            "type": 0,
+            "value": "Allaqachon ko‘rsatilmoqda"
+        }
+    ],
     "entity-names.fairy-tale": [
         {
             "type": 0,
@@ -1005,6 +1015,12 @@
         {
             "type": 0,
             "value": "Laykingiz bor"
+        }
+    ],
+    "entity-names.liked-artist": [
+        {
+            "type": 0,
+            "value": "Sizga yoqdi"
         }
     ],
     "entity-names.liked-playlist": [
@@ -1176,12 +1192,6 @@
             "value": "Mening to‘lqinim"
         }
     ],
-    "entity-names.nda": [
-        {
-            "type": 0,
-            "value": "NDA"
-        }
-    ],
     "entity-names.new-albums": [
         {
             "type": 0,
@@ -1241,6 +1251,56 @@
                         {
                             "type": 0,
                             "value": "ta kitob"
+                        }
+                    ]
+                }
+            },
+            "pluralType": "cardinal",
+            "type": 6,
+            "value": "counter"
+        }
+    ],
+    "entity-names.number-of-chapters": [
+        {
+            "type": 1,
+            "value": "counter"
+        },
+        {
+            "type": 0,
+            "value": " "
+        },
+        {
+            "offset": 0,
+            "options": {
+                "few": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "bob"
+                        }
+                    ]
+                },
+                "many": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "bob"
+                        }
+                    ]
+                },
+                "one": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "bob"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "bob"
                         }
                     ]
                 }
@@ -1570,6 +1630,12 @@
             "value": "Singl"
         }
     ],
+    "entity-names.single-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Bu singl Plus opsiyasi bilan mavjud"
+        }
+    ],
     "entity-names.source": [
         {
             "type": 0,
@@ -1586,10 +1652,26 @@
             "value": "Studiya albomlari"
         }
     ],
+    "entity-names.tags": [
+        {
+            "type": 0,
+            "value": "Teglar: "
+        },
+        {
+            "type": 1,
+            "value": "tags"
+        }
+    ],
     "entity-names.text": [
         {
             "type": 0,
             "value": "Matn"
+        }
+    ],
+    "entity-names.top-artists": [
+        {
+            "type": 0,
+            "value": "Sizning oylik top"
         }
     ],
     "entity-names.track": [
@@ -1612,6 +1694,62 @@
         {
             "type": 0,
             "value": " treki"
+        }
+    ],
+    "entity-names.track-type": [
+        {
+            "options": {
+                "audiobook": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Bob"
+                        }
+                    ]
+                },
+                "comment": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qism"
+                        }
+                    ]
+                },
+                "fairy_tale": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Bob"
+                        }
+                    ]
+                },
+                "music": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Trek"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Trek"
+                        }
+                    ]
+                },
+                "podcast_episode": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Qism"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "type"
         }
     ],
     "entity-names.tracks": [
@@ -2158,6 +2296,146 @@
             "value": "Tinglamayman"
         }
     ],
+    "family.about": [
+        {
+            "type": 0,
+            "value": "Obuna haqida batafsil"
+        }
+    ],
+    "family.about1": [
+        {
+            "type": 0,
+            "value": "Obuna haqida batafsil"
+        }
+    ],
+    "family.accept": [
+        {
+            "type": 0,
+            "value": "Qabul qilish"
+        }
+    ],
+    "family.go-to-music": [
+        {
+            "type": 0,
+            "value": "Musiqani ochish"
+        }
+    ],
+    "family.info-description": [
+        {
+            "type": 0,
+            "value": "Oilaviy obunada musiqa tinglang va yaqinlar bilan birga"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "Plusning boshqa afzalliklaridan"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "foydalaning"
+        }
+    ],
+    "family.info-title": [
+        {
+            "type": 0,
+            "value": "Sizni Yandex Plusga"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "taklif qilishmoqda"
+        }
+    ],
+    "family.invitation-error-description": [
+        {
+            "type": 0,
+            "value": "Ehtimol, taklif bekor qilingan yoki\nsizni taklif qilgan foydalanuvchining obunasida hamma joylar band"
+        }
+    ],
+    "family.invitation-error-title": [
+        {
+            "type": 0,
+            "value": "Taklif haqiqiy emas"
+        }
+    ],
+    "family.later": [
+        {
+            "type": 0,
+            "value": "Keyinroq"
+        }
+    ],
+    "family.reject": [
+        {
+            "type": 0,
+            "value": "Rad etish"
+        }
+    ],
+    "family.retry": [
+        {
+            "type": 0,
+            "value": "Takrorlash"
+        }
+    ],
+    "family.subscription-error-description": [
+        {
+            "type": 0,
+            "value": "Sizni taklif qilgan foydalanuvchi bilan aloqaga chiqishga urining yoki musiqani hoziroq tinglash uchun oʻz Plusingizni yoqing"
+        }
+    ],
+    "family.subscription-error-title": [
+        {
+            "type": 0,
+            "value": "Obuna mavjud emas"
+        }
+    ],
+    "family.success-description": [
+        {
+            "type": 0,
+            "value": "Siz Yandex Music, Kinopoisk"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "va Yandex xizmati ballar bilan keshbekdan foydalanishingiz mumkin"
+        }
+    ],
+    "family.success-title": [
+        {
+            "type": 0,
+            "value": "Siz endi Plus’dasiz!"
+        }
+    ],
+    "family.terms": [
+        {
+            "type": 0,
+            "value": "Obuna shartlari"
+        }
+    ],
+    "family.unknown-error-description": [
+        {
+            "type": 0,
+            "value": "Muammo nimada ekanligini aniq bilmaymiz. Internetni tekshiring va qayta urinib ko‘ring"
+        }
+    ],
+    "family.unknown-error-title": [
+        {
+            "type": 0,
+            "value": "Taklifni qabul qilib bo‘lmadi"
+        }
+    ],
     "faq.title": [
         {
             "type": 0,
@@ -2174,6 +2452,12 @@
         {
             "type": 0,
             "value": "Mualliflik huquqi egalari"
+        }
+    ],
+    "footer.links-download-desktop": [
+        {
+            "type": 0,
+            "value": "Ilovani yuklab olish"
         }
     ],
     "footer.links-help": [
@@ -2278,6 +2562,12 @@
             "value": "Kontekst menyusi"
         }
     ],
+    "interface-actions.copy-iframe": [
+        {
+            "type": 0,
+            "value": "HTML-kod"
+        }
+    ],
     "interface-actions.copy-link": [
         {
             "type": 0,
@@ -2308,10 +2598,22 @@
             "value": "Tahrirlash"
         }
     ],
+    "interface-actions.editorial-tools": [
+        {
+            "type": 0,
+            "value": "Tahririyat vositalari"
+        }
+    ],
     "interface-actions.further": [
         {
             "type": 0,
             "value": "Davom etish"
+        }
+    ],
+    "interface-actions.go-to-collection": [
+        {
+            "type": 0,
+            "value": "Termaga kirish"
         }
     ],
     "interface-actions.hide-sync-lyrics": [
@@ -2366,6 +2668,24 @@
         {
             "type": 0,
             "value": "Mening toʻlqinimni sozlash"
+        }
+    ],
+    "interface-actions.navigate-to-album": [
+        {
+            "type": 0,
+            "value": "Albomga oʻtish"
+        }
+    ],
+    "interface-actions.navigate-to-artist": [
+        {
+            "type": 0,
+            "value": "Ijrochiga oʻtish"
+        }
+    ],
+    "interface-actions.navigate-to-artists": [
+        {
+            "type": 0,
+            "value": "Ijrochilarga o‘tish"
         }
     ],
     "interface-actions.open-lyrics": [
@@ -2501,6 +2821,24 @@
         {
             "type": 0,
             "value": "Ulashish"
+        }
+    ],
+    "interface-actions.show-duplicates": [
+        {
+            "type": 0,
+            "value": "Takrorlarni chiqarish"
+        }
+    ],
+    "interface-actions.show-genres": [
+        {
+            "type": 0,
+            "value": "Janrlarni koʻrsatish"
+        }
+    ],
+    "interface-actions.show-majors": [
+        {
+            "type": 0,
+            "value": "Majors chiqarish"
         }
     ],
     "interface-actions.speed": [
@@ -2728,10 +3066,40 @@
             "value": "gender"
         }
     ],
+    "interface-actions.xlsx-download": [
+        {
+            "type": 0,
+            "value": "Excel-faylni yuklab olish"
+        }
+    ],
     "kids.for-kids": [
         {
             "type": 0,
             "value": "Bolalar uchun"
+        }
+    ],
+    "lite-version.description": [
+        {
+            "type": 0,
+            "value": "Vizual effektlar va animatsiyalar yengillashtirilgan formatda yuklanadi"
+        }
+    ],
+    "lite-version.go-to-settings": [
+        {
+            "type": 0,
+            "value": "Sozlamalar"
+        }
+    ],
+    "lite-version.notification-title": [
+        {
+            "type": 0,
+            "value": "Lite versiya yoqilgan"
+        }
+    ],
+    "lite-version.title": [
+        {
+            "type": 0,
+            "value": "Lite versiyani yoqish"
         }
     ],
     "loading-messages.concert-is-loading": [
@@ -2796,54 +3164,6 @@
         {
             "type": 0,
             "value": "” termasi pleylistlari roʻyxati"
-        }
-    ],
-    "mobile-paywall.activate-promocode": [
-        {
-            "type": 0,
-            "value": "Promo kodni faollashtirish"
-        }
-    ],
-    "mobile-paywall.benefit-my-vibe": [
-        {
-            "type": 0,
-            "value": "Mening toʻlqinimdagi shaxsiy tavsiyalar bilan"
-        }
-    ],
-    "mobile-paywall.child-info": [
-        {
-            "type": 0,
-            "value": "Ota-ona hisobi egasidan Yandex Plus"
-        },
-        {
-            "type": 1,
-            "value": "br"
-        },
-        {
-            "type": 0,
-            "value": "obunasini ulashini soʻrang"
-        }
-    ],
-    "mobile-paywall.first-payment": [
-        {
-            "type": 0,
-            "value": "Birinchi pul yechish sanasi: "
-        },
-        {
-            "type": 1,
-            "value": "date"
-        }
-    ],
-    "mobile-paywall.payment-reminder": [
-        {
-            "type": 0,
-            "value": "Pul yechish haqida 3 kun oldin eslatamiz"
-        }
-    ],
-    "mobile-paywall.title": [
-        {
-            "type": 0,
-            "value": "Yandex Plus obunasi bilan musiqa yangraydi"
         }
     ],
     "music-history.album": [
@@ -2992,16 +3312,40 @@
             "value": "Tinglashda davom etish"
         }
     ],
+    "non-music.fairy-tale-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Bu ertak Plus opsiyasi bilan mavjud"
+        }
+    ],
+    "non-music.fairytale-tab-about": [
+        {
+            "type": 0,
+            "value": "Ertak haqida"
+        }
+    ],
     "non-music.navigate-to-book-album": [
         {
             "type": 0,
             "value": "Kitobga o‘tish"
         }
     ],
+    "non-music.navigate-to-clip": [
+        {
+            "type": 0,
+            "value": "Klipga oʻtish"
+        }
+    ],
     "non-music.navigate-to-podcast-album": [
         {
             "type": 0,
             "value": "Podkastga o‘tish"
+        }
+    ],
+    "non-music.podcast-available-with-plus": [
+        {
+            "type": 0,
+            "value": "Bu podkast Plus opsiyasi bilan mavjud"
         }
     ],
     "non-music.shelf-subscribe": [
@@ -3174,6 +3518,12 @@
             "value": " qoʻshildi"
         }
     ],
+    "notifications-info.artist-available-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Endi bu ijrochi tavsiyalaringizda chiqib turadi"
+        }
+    ],
     "notifications-info.artist-link": [
         {
             "type": 0,
@@ -3212,6 +3562,12 @@
         {
             "type": 0,
             "value": " oʻchirildi"
+        }
+    ],
+    "notifications-info.artist-unavailable-in-recommendations": [
+        {
+            "type": 0,
+            "value": "Endi bu ijrochi tavsiyalaringizda chiqib qolmaydi"
         }
     ],
     "notifications-info.artist-unpinned-from-menu": [
@@ -3376,10 +3732,36 @@
             "value": "nusxalandi"
         }
     ],
+    "notifications-info.fairytale-pinned-in-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ertagi yon menyuga qadaldi"
+        }
+    ],
+    "notifications-info.fairytale-unpinned-from-menu": [
+        {
+            "type": 1,
+            "value": "entity"
+        },
+        {
+            "type": 0,
+            "value": " ertagi yon menyudan olib tashlandi"
+        }
+    ],
     "notifications-info.from-collection": [
         {
             "type": 0,
             "value": "Termalar"
+        }
+    ],
+    "notifications-info.html-code-copied": [
+        {
+            "type": 0,
+            "value": "HTML-kod nusxalandi"
         }
     ],
     "notifications-info.my-vibe-pinned-in-menu": [
@@ -3766,6 +4148,18 @@
             "value": "Trek endi tavsiyalaringizda chiqmaydi"
         }
     ],
+    "notifications-info.xlsx-loading": [
+        {
+            "type": 0,
+            "value": "Excel-faylni shakllantirish"
+        }
+    ],
+    "notifications-info.xlsx-success": [
+        {
+            "type": 0,
+            "value": "Excel-fayl muvaffaqiyatli yuklab olindi"
+        }
+    ],
     "offline.clear-memory": [
         {
             "type": 0,
@@ -3784,16 +4178,34 @@
             "value": "Qurilmadan o‘chirib tashlash"
         }
     ],
+    "offline.disable-offline-mode": [
+        {
+            "type": 0,
+            "value": "Oflayn rejimni faolsizlantirish"
+        }
+    ],
     "offline.download": [
         {
             "type": 0,
             "value": "Yuklab olish"
         }
     ],
+    "offline.download-for-offline": [
+        {
+            "type": 0,
+            "value": "Oflayn kirish uchun musiqa yuklab oling"
+        }
+    ],
     "offline.download-progress": [
         {
             "type": 0,
             "value": "Yuklab olish jarayoni"
+        }
+    ],
+    "offline.downloaded-empty": [
+        {
+            "type": 0,
+            "value": "Taronalar yuklab olinmagan"
         }
     ],
     "offline.downloaded-track-list": [
@@ -3818,10 +4230,22 @@
             "value": "%"
         }
     ],
+    "offline.listen-downloaded-content": [
+        {
+            "type": 0,
+            "value": "Hozir faqat yuklanganlarni eshita olasiz"
+        }
+    ],
     "offline.memory-cleared": [
         {
             "type": 0,
             "value": "Qurilma xotirasi tozalandi"
+        }
+    ],
+    "offline.no-internet-connection": [
+        {
+            "type": 0,
+            "value": "Internetga ulanmagan"
         }
     ],
     "offline.offline-mode": [
@@ -3836,10 +4260,22 @@
             "value": "Yuklab olinganlarni internetsiz tinglang"
         }
     ],
+    "offline.offline-mode-enabled": [
+        {
+            "type": 0,
+            "value": "Oflayn rejim yoqilgan"
+        }
+    ],
     "offline.stop-downloading": [
         {
             "type": 0,
             "value": "Yuklab olishni to‘xtatish"
+        }
+    ],
+    "offline.track-download-error": [
+        {
+            "type": 0,
+            "value": "Taronani yuklab olishda xatolik yuz berdi"
         }
     ],
     "offline.track-downloaded": [
@@ -4198,6 +4634,20 @@
             "value": "kiring"
         }
     ],
+    "onboarding.rewind-trailer": [
+        {
+            "type": 0,
+            "value": "Yil treylerini"
+        },
+        {
+            "type": 1,
+            "value": "br"
+        },
+        {
+            "type": 0,
+            "value": "yoqing"
+        }
+    ],
     "onboarding.trailer": [
         {
             "type": 0,
@@ -4465,7 +4915,7 @@
     "page-error.page-does-not-exist-description": [
         {
             "type": 0,
-            "value": "Kerakli sahifani topa olmadik."
+            "value": "Shu boʻlimdan qidirib koʻring"
         }
     ],
     "page-error.reload": [
@@ -4562,10 +5012,28 @@
             "value": "Mening javonim"
         }
     ],
+    "payment.album-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Albomni tinglash"
+        }
+    ],
+    "payment.books-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Kitob tinglash"
+        }
+    ],
     "payment.buy": [
         {
             "type": 0,
             "value": "Xarid qilish"
+        }
+    ],
+    "payment.fairy-tale-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Ertakni tinglash"
         }
     ],
     "payment.min-price": [
@@ -4584,16 +5052,28 @@
             "value": "Obunani rasmiylashtirish"
         }
     ],
-    "payment.plus-offer-button": [
+    "payment.podcast-offer-button-title": [
         {
             "type": 0,
-            "value": "Plus obunasi"
+            "value": "Podkastni tinglash"
+        }
+    ],
+    "payment.single-offer-button-title": [
+        {
+            "type": 0,
+            "value": "Singlni tinglash"
         }
     ],
     "payment.try-button": [
         {
             "type": 0,
             "value": "Sinab ko‘rish"
+        }
+    ],
+    "payment.yandex-plus-offer-button": [
+        {
+            "type": 0,
+            "value": "Yandex Plus obunasi boʻyicha"
         }
     ],
     "paywall-footer.cashback-terms-link": [
@@ -5486,6 +5966,12 @@
             "value": " soni navbatdan olib tashlandi"
         }
     ],
+    "play-queue.repeat-list": [
+        {
+            "type": 0,
+            "value": "Ro‘yxatni takrorlash"
+        }
+    ],
     "play-queue.title": [
         {
             "type": 0,
@@ -5540,12 +6026,6 @@
             "value": "Sekin internetda ham barqaror ijro"
         }
     ],
-    "player-actions.audio-quality-hq": [
-        {
-            "type": 0,
-            "value": "Yuqori"
-        }
-    ],
     "player-actions.audio-quality-maximum": [
         {
             "type": 0,
@@ -5556,12 +6036,6 @@
         {
             "type": 0,
             "value": "Musiqa lossless va boshqa yuqori sifatli formatlar ijrosi yuqori tezlikdagi internet va yaxshi akustika uchun mo‘ljallangan"
-        }
-    ],
-    "player-actions.audio-quality-nq": [
-        {
-            "type": 0,
-            "value": "Optimal"
         }
     ],
     "player-actions.audio-quality-optimal": [
@@ -5826,16 +6300,22 @@
             "value": "Pleylistni oʻchirish"
         }
     ],
-    "playlist-errors.error-during-loading-playlist": [
-        {
-            "type": 0,
-            "value": "Pleylistni yuklashda xatolik yuz berdi"
-        }
-    ],
     "playlist-errors.failed-add-track-to-playlist": [
         {
             "type": 0,
             "value": "Trek pleylistga qo‘shilmadi, qayta urining"
+        }
+    ],
+    "playlist-errors.failed-download-xlsx": [
+        {
+            "type": 0,
+            "value": "Excel-fayl yuklab olinmadi"
+        }
+    ],
+    "playlist-errors.failed-part-tracks-download-xlsx": [
+        {
+            "type": 0,
+            "value": "Excel fayl yuklab olindi, biroq treklarning bir qismi yuklab olinmadi"
         }
     ],
     "playlist-errors.failed-to-change-description": [
@@ -6026,6 +6506,12 @@
             "value": "value"
         }
     ],
+    "rewind.button-title": [
+        {
+            "type": 0,
+            "value": "2024-yil yakunlari"
+        }
+    ],
     "search-filters.album": [
         {
             "type": 0,
@@ -6090,6 +6576,12 @@
         {
             "type": 0,
             "value": "Eng yaxshi natijalar"
+        }
+    ],
+    "search-results.clip": [
+        {
+            "type": 0,
+            "value": "Kliplar"
         }
     ],
     "search-results.not-found-description": [
@@ -6162,6 +6654,12 @@
             "value": "Trek, albom, ijrochi"
         }
     ],
+    "search.recent-requests-fallback": [
+        {
+            "type": 0,
+            "value": "Bu yerda oxirgi soʻrovlaringiz boʻladi"
+        }
+    ],
     "search.search-catalog": [
         {
             "type": 0,
@@ -6220,6 +6718,28 @@
         {
             "type": 0,
             "value": "“Bolalar uchun” ruknini chiqarish"
+        }
+    ],
+    "share.iframe-copy": [
+        {
+            "type": 0,
+            "value": "Nusxa olish"
+        }
+    ],
+    "share.iframe-listen": [
+        {
+            "type": 1,
+            "value": "html"
+        },
+        {
+            "type": 0,
+            "value": " – Yandex Music ilovasida tinglang"
+        }
+    ],
+    "share.iframe-modal-title": [
+        {
+            "type": 0,
+            "value": "O‘lchamni sozlang va kodni saytga nusxalang"
         }
     ],
     "shortcuts.fullscreen-player": [
@@ -6312,10 +6832,88 @@
             "value": "Yon panelni kichraytirish"
         }
     ],
+    "sidebar.download-app": [
+        {
+            "type": 0,
+            "value": "Ilovani yuklab olish"
+        }
+    ],
+    "sidebar.download-app-formatted": [
+        {
+            "type": 0,
+            "value": "Yandex Music "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "desktopda"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
+    "sidebar.download-macos": [
+        {
+            "type": 0,
+            "value": "MacOS uchun ilovani yuklab olish"
+        }
+    ],
+    "sidebar.download-macos-formatted": [
+        {
+            "type": 0,
+            "value": "Yandex Music "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "MacOSʼda"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
+    "sidebar.download-windows": [
+        {
+            "type": 0,
+            "value": "Windows uchun ilovani yuklab olish"
+        }
+    ],
+    "sidebar.download-windows-formatted": [
+        {
+            "type": 0,
+            "value": "Yandex Music "
+        },
+        {
+            "children": [
+                {
+                    "type": 0,
+                    "value": "Windowsʼda"
+                }
+            ],
+            "type": 8,
+            "value": "span"
+        }
+    ],
     "sidebar.plus-badge": [
         {
             "type": 0,
             "value": "Plus"
+        }
+    ],
+    "sidebar.rewind-description": [
+        {
+            "type": 0,
+            "value": "Sizning 2024"
+        }
+    ],
+    "sidebar.rewind-title": [
+        {
+            "type": 0,
+            "value": "Yil sarhisobi"
         }
     ],
     "sidebar.uncollapse": [
@@ -6334,300 +6932,6 @@
         {
             "type": 0,
             "value": "Avvalgi slayd"
-        }
-    ],
-    "slides-stats.books": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta kitob"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta kitob"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.hours": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "soat"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "soat"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.likes": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta layk"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta layk"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.listeners": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "tinglovchi"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "tinglovchi"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.listenings": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta tinglash"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta tinglash"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.minutes": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.minutes-with-books": [
-        {
-            "type": 0,
-            "value": "Kitoblar bilan "
-        },
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.minutes-with-music": [
-        {
-            "type": 0,
-            "value": "Music bilan "
-        },
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "daqiqa"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.new-tracks": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta yangi trek"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta yangi trek"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.superfans": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta supermuxlis"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta supermuxlis"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
-        }
-    ],
-    "slides-stats.tracks": [
-        {
-            "offset": 0,
-            "options": {
-                "one": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta trek"
-                        }
-                    ]
-                },
-                "other": {
-                    "value": [
-                        {
-                            "type": 0,
-                            "value": "ta trek"
-                        }
-                    ]
-                }
-            },
-            "pluralType": "cardinal",
-            "type": 6,
-            "value": "value"
         }
     ],
     "time.duration": [
@@ -7060,10 +7364,64 @@
             "value": "seconds"
         }
     ],
+    "track-modal.album-heading": [
+        {
+            "options": {
+                "audiobook": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Kitob"
+                        }
+                    ]
+                },
+                "fairy_tale": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Ertak"
+                        }
+                    ]
+                },
+                "other": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Albom"
+                        }
+                    ]
+                },
+                "podcast": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Podkast"
+                        }
+                    ]
+                },
+                "single": {
+                    "value": [
+                        {
+                            "type": 0,
+                            "value": "Singl"
+                        }
+                    ]
+                }
+            },
+            "type": 5,
+            "value": "type"
+        }
+    ],
     "track-modal.audiobook-title": [
         {
             "type": 0,
             "value": "Boʻlim haqida"
+        }
+    ],
+    "track-modal.clip-title": [
+        {
+            "type": 0,
+            "value": "Klip haqida"
         }
     ],
     "track-modal.podcast-title": [
@@ -7154,36 +7512,6 @@
         {
             "type": 0,
             "value": "Ekranni yangilang yoki keyinroq urining"
-        }
-    ],
-    "trailer.title-album": [
-        {
-            "type": 0,
-            "value": "Albom treyleri"
-        }
-    ],
-    "trailer.title-artist": [
-        {
-            "type": 0,
-            "value": "Ijrochining treyleri"
-        }
-    ],
-    "trailer.title-playlist": [
-        {
-            "type": 0,
-            "value": "Pleylist treyleri"
-        }
-    ],
-    "trailer.title-single": [
-        {
-            "type": 0,
-            "value": "Tarona treyleri"
-        }
-    ],
-    "trailer.title-track": [
-        {
-            "type": 0,
-            "value": "Tarona treyleri"
         }
     ],
     "ugc.cancel-upload": [
@@ -7378,18 +7706,6 @@
             "value": "Kirish imkoniyatini buzishi mumkin"
         }
     ],
-    "warning-messages.do-not-take-screenshots": [
-        {
-            "type": 0,
-            "value": "Вы в числе первых, кто видит обновленную веб-версию Яндекс Музыки. Сейчас это всё под NDA. Пожалуйста, не делайте скриншоты"
-        }
-    ],
-    "warning-messages.only-for-staff": [
-        {
-            "type": 0,
-            "value": "Только на стафф"
-        }
-    ],
     "warning-messages.update-your-browser": [
         {
             "type": 0,
@@ -7419,7 +7735,7 @@
     "welcome-page.not-auth-header": [
         {
             "type": 0,
-            "value": "Bu ilovani ochish uchun"
+            "value": "Ilovani ochish uchun"
         },
         {
             "type": 1,
@@ -7427,13 +7743,13 @@
         },
         {
             "type": 0,
-            "value": "Plus hisobingizga kiring"
+            "value": "hisobingizga kiring"
         }
     ],
     "welcome-page.not-auth-text": [
         {
             "type": 0,
-            "value": "Beta versiya faqat obunachilar uchun ochiq"
+            "value": "Yandex Music xizmati Plus obunasi bilan ishlaydi"
         }
     ],
     "welcome-page.offer-header": [
