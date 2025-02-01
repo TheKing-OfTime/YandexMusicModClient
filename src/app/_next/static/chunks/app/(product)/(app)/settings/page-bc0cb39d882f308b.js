@@ -987,6 +987,10 @@
             console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
             window.nativeSettings.set("modFeatures.discordRPC.enable", e);
           }, []),
+          onDiscordFromYnisonToggle = (0, d.useCallback)(async (e) => {
+            console.log("modFeatures.discordRPC.fromYnison toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.discordRPC.fromYnison", e);
+          }, []),
           onDiscordShowButtonsToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.discordRPC.showButtons toggled. Value: ",
@@ -1054,6 +1058,18 @@
                   onChange: onDiscordStatusToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.enable",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Использовать Ynison [ALPHA]",
+                  description:
+                    "Использует данные о воспроизведении с других устройств",
+                  onChange: onDiscordFromYnisonToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.discordRPC.fromYnison",
                   ),
                 }),
               }),
@@ -1634,7 +1650,8 @@
               window.nativeSettings.set("enableDevTools", e);
               g(
                 (0, n.jsx)(p.Q, {
-                  error: "Для применения этой настройки требуется перезапуск приложения",
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
                 }),
                 { containerId: _.W$x.ERROR },
               );
@@ -1645,12 +1662,13 @@
             async (e) => {
               console.log("auto updates toggled. Value: ", e);
               window.nativeSettings.set("enableAutoUpdates", e);
-                g(
-                    (0, n.jsx)(p.Q, {
-                        error: "Для применения этой настройки требуется перезапуск приложения",
-                    }),
-                    { containerId: _.W$x.ERROR },
-                );
+              g(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
             },
             [u],
           ),
@@ -1739,237 +1757,239 @@
               return "треков";
             }
           };
-        return ((0, d.useEffect)(() => {
+        return (
+          (0, d.useEffect)(() => {
             let callfunc = async () => {
-                const getDownloadedTracksSize = async (t) => {
-                    let forkSize = 0;
-                    for await (let r of t.values()) {
-                        if ("directory" === r.kind) {
-                            forkSize += await getDownloadedTracksSize(r);
-                        } else if ("file" === r.kind) {
-                            try {
-                                let t = await r.getFile();
-                                forkSize += t.size;
-                            } catch (e) {
-                                console.warn("Track file is in use. Skipping...", e);
-                            }
-                        }
+              const getDownloadedTracksSize = async (t) => {
+                let forkSize = 0;
+                for await (let r of t.values()) {
+                  if ("directory" === r.kind) {
+                    forkSize += await getDownloadedTracksSize(r);
+                  } else if ("file" === r.kind) {
+                    try {
+                      let t = await r.getFile();
+                      forkSize += t.size;
+                    } catch (e) {
+                      console.warn("Track file is in use. Skipping...", e);
                     }
-                    return forkSize;
-                };
+                  }
+                }
+                return forkSize;
+              };
 
-                const getDownloadedTracksCount = async (t) => {
-                    let trackCount = 0;
-                    for await (let r of t.values()) {
-                        if ("directory" === r.kind && r.name === "tracks") {
-                            trackCount = await getDownloadedTracksCount(r);
-                        } else if ("file" === r.kind && !r.name.endsWith(".crswap")) {
-                            trackCount += 1;
-                        }
-                    }
-                    return trackCount;
-                };
+              const getDownloadedTracksCount = async (t) => {
+                let trackCount = 0;
+                for await (let r of t.values()) {
+                  if ("directory" === r.kind && r.name === "tracks") {
+                    trackCount = await getDownloadedTracksCount(r);
+                  } else if ("file" === r.kind && !r.name.endsWith(".crswap")) {
+                    trackCount += 1;
+                  }
+                }
+                return trackCount;
+              };
 
-                const fileStorage = await window.navigator.storage.getDirectory();
+              const fileStorage = await window.navigator.storage.getDirectory();
 
-                setDownloadedTracksInfo({
-                    tracksCount: await getDownloadedTracksCount(fileStorage),
-                    tracksSize: await getDownloadedTracksSize(fileStorage),
-                });
+              setDownloadedTracksInfo({
+                tracksCount: await getDownloadedTracksCount(fileStorage),
+                tracksSize: await getDownloadedTracksSize(fileStorage),
+              });
             };
 
             window.onDownloadedTracksDeleted = () =>
-                // That's a bad solution to update the info on clear memory modal close
-                setDownloadedTracksInfo({
-                    tracksCount: 0,
-                    tracksSize: 0,
-                });
+              // That's a bad solution to update the info on clear memory modal close
+              setDownloadedTracksInfo({
+                tracksCount: 0,
+                tracksSize: 0,
+              });
 
             callfunc();
-        }, []),
-        (0, n.jsxs)("ul", {
-          className: Z().root,
-          ...(0, s.BA)(s.QM.settings.SETTINGS_LIST),
-          children: [
-            k &&
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: C({ id: "offline.offline-mode" }),
-                  description: C({ id: "offline.offline-mode-description" }),
-                  onChange: z,
-                  isChecked: f.isOfflineModeEnabled,
+          }, []),
+          (0, n.jsxs)("ul", {
+            className: Z().root,
+            ...(0, s.BA)(s.QM.settings.SETTINGS_LIST),
+            children: [
+              k &&
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(P, {
+                    title: C({ id: "offline.offline-mode" }),
+                    description: C({ id: "offline.offline-mode-description" }),
+                    onChange: z,
+                    isChecked: f.isOfflineModeEnabled,
+                  }),
                 }),
-              }),
-            k &&
-              (0, n.jsxs)("li", {
-                className: Z().item,
-                children: [
-                  (0, n.jsx)(S, {
-                    title: C({ id: "offline.clear-memory" }),
+              k &&
+                (0, n.jsxs)("li", {
+                  className: Z().item,
+                  children: [
+                    (0, n.jsx)(S, {
+                      title: C({ id: "offline.clear-memory" }),
                       description: `Скачан${downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? "" : "о"} ${downloadedTracksInfo.tracksCount ?? "0"} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
-                    onClick: L,
+                      onClick: L,
+                    }),
+                    (0, n.jsx)(y, {}),
+                  ],
+                }),
+              M &&
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(P, {
+                    title: C({ id: "lite-version.title" }),
+                    description: C({ id: "lite-version.description" }),
+                    onChange: R,
+                    isChecked: x.isLiteVersionModeEnabled,
                   }),
-                  (0, n.jsx)(y, {}),
+                }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(S, {
+                  title: C({ id: "settings.preferences" }),
+                  description: C({ id: "settings.preferences-description" }),
+                  onClick: a.modal.open,
+                }),
+              }),
+              N &&
+                (0, n.jsxs)("li", {
+                  className: Z().item,
+                  children: [
+                    (0, n.jsx)(S, {
+                      title: C({ id: "equalizer.title" }),
+                      description: E,
+                      onClick: h.modal.open,
+                      descriptionProps: (0, s.BA)(
+                        s.QM.settings.SETTINGS_EQUALIZER_BUTTON_DESCRIPTION,
+                      ),
+                      ...(0, s.BA)(s.QM.settings.SETTINGS_EQUALIZER_BUTTON),
+                    }),
+                    (0, n.jsx)(u.Qk, {}),
+                  ],
+                }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(O, {
+                  title: C({ id: "settings.import-media" }),
+                  description: C({ id: "settings.import-media-description" }),
+                  link: b,
+                }),
+              }),
+              (0, n.jsxs)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: C({ id: "settings.shortcuts" }),
+                    onClick: t.open,
+                  }),
+                  (0, n.jsx)(H, {}),
                 ],
               }),
-            M &&
+              w &&
+                (0, n.jsxs)("li", {
+                  className: Z().item,
+                  children: [
+                    (0, n.jsx)(S, {
+                      title: C({ id: "settings.about-app" }),
+                      description: w,
+                      onClick: o.open,
+                    }),
+                    (0, n.jsx)(v, {}),
+                  ],
+                }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: C({ id: "lite-version.title" }),
-                  description: C({ id: "lite-version.description" }),
-                  onChange: R,
-                  isChecked: x.isLiteVersionModeEnabled,
+                  title: C({ id: "settings.show-child-section" }),
+                  onChange: T,
+                  isChecked: c.settings.isChildModeEnabled,
                 }),
               }),
-            (0, n.jsx)("li", {
-              className: Z().item,
-              children: (0, n.jsx)(S, {
-                title: C({ id: "settings.preferences" }),
-                description: C({ id: "settings.preferences-description" }),
-                onClick: a.modal.open,
-              }),
-            }),
-            N &&
-              (0, n.jsxs)("li", {
+              (0, n.jsx)("li", {
                 className: Z().item,
                 children: [
                   (0, n.jsx)(S, {
-                    title: C({ id: "equalizer.title" }),
-                    description: E,
-                    onClick: h.modal.open,
-                    descriptionProps: (0, s.BA)(
-                      s.QM.settings.SETTINGS_EQUALIZER_BUTTON_DESCRIPTION,
-                    ),
-                    ...(0, s.BA)(s.QM.settings.SETTINGS_EQUALIZER_BUTTON),
+                    title: "Discord RPC",
+                    description: "Настройки интеграции с Discord",
+                    onClick: discordRpcSettingsModal.open,
                   }),
-                  (0, n.jsx)(u.Qk, {}),
+                  (0, n.jsx)(discordRpcSettings, {}),
                 ],
               }),
-            (0, n.jsx)("li", {
-              className: Z().item,
-              children: (0, n.jsx)(O, {
-                title: C({ id: "settings.import-media" }),
-                description: C({ id: "settings.import-media-description" }),
-                link: b,
-              }),
-            }),
-            (0, n.jsxs)("li", {
-              className: Z().item,
-              children: [
-                (0, n.jsx)(S, {
-                  title: C({ id: "settings.shortcuts" }),
-                  onClick: t.open,
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отключить отрисовку анимации Волны",
+                  onChange: onDisableVibeRenderingToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.disableRendering",
+                  ),
                 }),
-                (0, n.jsx)(H, {}),
-              ],
-            }),
-            w &&
-              (0, n.jsxs)("li", {
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Реакция анимации Волны на любые треки",
+                  description:
+                    "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
+                  onChange: onPlayOnAnyEntityToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
                 className: Z().item,
                 children: [
                   (0, n.jsx)(S, {
-                    title: C({ id: "settings.about-app" }),
-                    description: w,
-                    onClick: o.open,
+                    title: "Улучшения панели плеера",
+                    description: "Настройки элементов на панели плеера",
+                    onClick: playerBarEnhancementsSettingsModal.open,
                   }),
-                  (0, n.jsx)(v, {}),
+                  (0, n.jsx)(playerBarEnhancementsSettings, {}),
                 ],
               }),
-            (0, n.jsx)("li", {
-              className: Z().item,
-              children: (0, n.jsx)(P, {
-                title: C({ id: "settings.show-child-section" }),
-                onChange: T,
-                isChecked: c.settings.isChildModeEnabled,
-              }),
-            }),
               (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: [
-                      (0, n.jsx)(S, {
-                          title: "Discord RPC",
-                          description: "Настройки интеграции с Discord",
-                          onClick: discordRpcSettingsModal.open,
-                      }),
-                      (0, n.jsx)(discordRpcSettings, {}),
-                  ],
-              }),
-              (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: (0, n.jsx)(P, {
-                      title: "Отключить отрисовку анимации Волны",
-                      onChange: onDisableVibeRenderingToggle,
-                      isChecked: window.nativeSettings.get(
-                          "modFeatures.vibeAnimationEnhancement.disableRendering",
-                      ),
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: "Поведение окна",
+                    description: "Настройки поведения окна приложения",
+                    onClick: windowBehaviorSettingsModal.open,
                   }),
+                  (0, n.jsx)(windowBehaviorSettings, {}),
+                ],
               }),
               (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: (0, n.jsx)(P, {
-                      title: "Реакция анимации Волны на любые треки",
-                      description:
-                          "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
-                      onChange: onPlayOnAnyEntityToggle,
-                      isChecked: window.nativeSettings.get(
-                          "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
-                      ),
-                  }),
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Режим разработчика",
+                  description:
+                    "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
+                  onChange: onDevtoolsToggle,
+                  isChecked: window.nativeSettings.get("enableDevTools"),
+                }),
               }),
               (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: [
-                      (0, n.jsx)(S, {
-                          title: "Улучшения панели плеера",
-                          description: "Настройки элементов на панели плеера",
-                          onClick: playerBarEnhancementsSettingsModal.open,
-                      }),
-                      (0, n.jsx)(playerBarEnhancementsSettings, {}),
-                  ],
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Обновлять автоматически",
+                  description:
+                    "Управляет авто обновлениями как программы, так и модификации",
+                  onChange: onAutoUpdatesToggle,
+                  isChecked: window.nativeSettings.get("enableAutoUpdates"),
+                }),
               }),
               (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: [
-                      (0, n.jsx)(S, {
-                          title: "Поведение окна",
-                          description: "Настройки поведения окна приложения",
-                          onClick: windowBehaviorSettingsModal.open,
-                      }),
-                      (0, n.jsx)(windowBehaviorSettings, {}),
-                  ],
+                className: Z().item,
+                children: (0, n.jsx)(S, {
+                  title: "Остальные настройки",
+                  description: "Откроется config.json",
+                  onClick: onOpenMoreSettings,
+                }),
               }),
-              (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: (0, n.jsx)(P, {
-                      title: "Режим разработчика",
-                      description:
-                          "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
-                      onChange: onDevtoolsToggle,
-                      isChecked: window.nativeSettings.get("enableDevTools"),
-                  }),
-              }),
-              (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: (0, n.jsx)(P, {
-                      title: "Обновлять автоматически",
-                      description:
-                          "Управляет авто обновлениями как программы, так и модификации",
-                      onChange: onAutoUpdatesToggle,
-                      isChecked: window.nativeSettings.get("enableAutoUpdates"),
-                  }),
-              }),
-              (0, n.jsx)("li", {
-                  className: Z().item,
-                  children: (0, n.jsx)(S, {
-                      title: "Остальные настройки",
-                      description: "Откроется config.json",
-                      onClick: onOpenMoreSettings,
-                  }),
-              }),
-          ],
-        }));
+            ],
+          })
+        );
       });
       var U = o(21016),
         W = o(99787),

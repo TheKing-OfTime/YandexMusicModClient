@@ -84,6 +84,7 @@ async function setActivity(
   trackDurationMs = undefined,
   deepShareTrackUrl = undefined,
   webShareTrackUrl = undefined,
+  currentDevice = undefined,
 ) {
   if (!(settings()?.enable ?? true)) {
     if(previousActivity) {
@@ -107,6 +108,8 @@ async function setActivity(
   let endTimestamp = startTimestamp + trackDurationMs;
   let stateKey = states[state]?.icon;
   let stateText = states[state]?.name;
+
+  stateText += " on " + (currentDevice?.info?.type ?? "DESKTOP");
 
   if (!states[state]) {
     stateKey = states.unknown?.icon;
@@ -194,6 +197,7 @@ async function setActivity(
 
   previousActivity = activityObject;
 
+  discordRichPresenceLogger.log(activityObject)
   rpc
     .setActivity(activityObject)
     .then((activity) => silentTypeCheck(activity))
@@ -232,6 +236,39 @@ const getArtist = (artistsArray) => {
     artistsLabel += ", " + artist.name;
   });
   return artistsLabel;
+};
+
+const fromYnisonState = (ynisonState) => {
+    if(!settings().fromYnison) return;
+    let partialPlayerState = {};
+    let currentTrackData = ynisonState?.rawData?.player_state?.player_queue?.playable_list[ynisonState?.rawData?.player_state?.player_queue?.current_playable_index];
+    if (!currentTrackData) return;
+    partialPlayerState.track = {
+      title: currentTrackData?.title,
+      coverUri: currentTrackData?.cover_url_optional,
+      id: currentTrackData?.playable_id,
+      ...(currentTrackData.album_id_optional
+        ? { albums: [{ id: currentTrackData.album_id_optional }] }
+        : undefined),
+      durationMs: parseInt(ynisonState?.rawData?.player_state?.status?.duration_ms)
+    };
+    partialPlayerState.progress = parseInt(ynisonState?.rawData?.player_state?.status?.progress_ms);
+    partialPlayerState.status = ynisonState?.rawData?.player_state?.status?.paused
+      ? "paused"
+      : "playing";
+
+    partialPlayerState.devices = ynisonState?.rawData?.devices
+
+    let currentDevice = undefined;
+
+    ynisonState?.rawData?.devices.forEach(device => {if (device?.info?.device_id && (device?.info?.device_id === ynisonState?.rawData?.active_device_id_optional)) currentDevice = device})
+
+    partialPlayerState.currentDevice = currentDevice
+
+    if (partialPlayerState.progress && partialPlayerState.progress !== 0) partialPlayerState.progress = Math.round(partialPlayerState.progress / 1000)
+
+    discordRichPresenceLogger.log(ynisonState, partialPlayerState);
+    discordRichPresence(partialPlayerState);
 };
 
 const discordRichPresence = (playingState) => {
@@ -279,6 +316,7 @@ const discordRichPresence = (playingState) => {
     playingState.track.durationMs,
     deepShareTrackUrl,
     webShareTrackUrl,
+    playingState.currentDevice
   )
     .then((activityStatus) => {
       if (activityStatus) {
@@ -296,3 +334,4 @@ const discordRichPresence = (playingState) => {
     );
 };
 exports.discordRichPresence = discordRichPresence;
+exports.fromYnisonState = fromYnisonState;

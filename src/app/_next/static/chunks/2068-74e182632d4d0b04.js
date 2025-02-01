@@ -534,6 +534,9 @@
           sendDownloadTrack: function () {
               return sendDownloadTrack;
           },
+          sendYnisonState: function () {
+              return sendYnisonState;
+          },
       });
       let n = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -577,6 +580,14 @@
                 progress: e.progress,
                 availableActions: e.availableActions,
                 actionsStore: e.actionsStore,
+            });
+        },
+        sendYnisonState = (e) => {
+            var t;
+            null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(i.BOn.YNISON_STATE, {
+                rawData: e.rawData
             });
         };
       o(83301);

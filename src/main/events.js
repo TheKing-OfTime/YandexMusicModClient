@@ -30,7 +30,7 @@ const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
-const eventsLogger = new Logger_js_1.Logger('Events');
+const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };
@@ -56,7 +56,9 @@ const handleApplicationEvents = (window) => {
       if (shortcut[1])
         electron_1.globalShortcut.register(shortcut[1], () => {
           const actions = shortcut[0].split(" ");
-          actions.forEach(action => { sendPlayerAction(window, playerActions_js_1.PlayerActions[action]); });
+          actions.forEach((action) => {
+            sendPlayerAction(window, playerActions_js_1.PlayerActions[action]);
+          });
         });
     });
   }
@@ -150,7 +152,11 @@ const handleApplicationEvents = (window) => {
   });
   electron_1.ipcMain.on(events_js_1.Events.WINDOW_CLOSE, () => {
     eventsLogger.info("Event received", events_js_1.Events.WINDOW_CLOSE);
-    if (store_js_1.getModFeatures()?.windowBehavior?.minimizeToTrayOnWindowClose ?? state_js_1.state.player.isPlaying) {
+    if (
+      store_js_1.getModFeatures()?.windowBehavior
+        ?.minimizeToTrayOnWindowClose ??
+      state_js_1.state.player.isPlaying
+    ) {
       (0, createWindow_js_1.toggleWindowVisibility)(window, false);
     } else {
       electron_1.app.quit();
@@ -246,6 +252,14 @@ const handleApplicationEvents = (window) => {
     (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
     (0, discordRichPresence_js_1.discordRichPresence)(data);
   });
+  electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
+    eventsLogger.info(
+      `Event received`,
+      events_js_1.Events.YNISON_STATE,
+    );
+    if (store_js_1.getModFeatures)
+    (0, discordRichPresence_js_1.fromYnisonState)(data);
+  });
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
     eventsLogger.info("Event handle", events_js_1.Events.GET_PASSPORT_LOGIN);
     try {
@@ -263,7 +277,11 @@ const handleApplicationEvents = (window) => {
     }
   });
 };
-electron_1.ipcMain.handle('openConfigFile', async () => { return await electron_1.shell.openPath(electron_1.app.getPath('userData') + '/config.json') });
+electron_1.ipcMain.handle("openConfigFile", async () => {
+  return await electron_1.shell.openPath(
+    electron_1.app.getPath("userData") + "/config.json",
+  );
+});
 exports.handleApplicationEvents = handleApplicationEvents;
 const sendProbabilityBucket = (window, bucket) => {
   window.webContents.send(events_js_1.Events.PROBABILITY_BUCKET, bucket);
@@ -293,7 +311,7 @@ const sendModUpdateAvailable = (window, currVersion, newVersion) => {
     events_js_1.Events.MOD_UPDATE_AVAILABLE,
     currVersion,
     newVersion,
-    Date.now()
+    Date.now(),
   );
   eventsLogger.info(
     "Event sent",
@@ -315,7 +333,12 @@ const sendRefreshApplicationData = (window) => {
 exports.sendRefreshApplicationData = sendRefreshApplicationData;
 const sendPlayerAction = (window, action) => {
   window.webContents.send(events_js_1.Events.PLAYER_ACTION, action, Date.now());
-  eventsLogger.info("Event sent", events_js_1.Events.PLAYER_ACTION, action, Date.now());
+  eventsLogger.info(
+    "Event sent",
+    events_js_1.Events.PLAYER_ACTION,
+    action,
+    Date.now(),
+  );
 };
 exports.sendPlayerAction = sendPlayerAction;
 const sendOpenDeeplink = (window, pathname) => {

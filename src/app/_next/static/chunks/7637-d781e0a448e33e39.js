@@ -7371,6 +7371,7 @@
             });
         }
       }
+      let electronBridge = a(35308);
       class ac {
         apply(e) {
           if (!this.variables.enableYnisonConnection) return;
@@ -7408,8 +7409,7 @@
                   V.DISCONNECTED ||
                 this.ynisonConnect(),
                 document.hidden &&
-                  t.state.playerState.status.value !== eE.Xz.PLAYING &&
-                  this.ynisonDisconnect();
+                  t.state.playerState.status.value !== eE.Xz.PLAYING //&& this.ynisonDisconnect();
             }),
             this.ynisonConnect();
         }
@@ -7422,6 +7422,7 @@
         }
         onMessageRecieved(e, t) {
           var a;
+          if (this.deviceConfig.device_id !== e.rawData.player_state.status.version.device_id) electronBridge.sendYnisonState(e);
           e.rawData.rid ===
           (null === (a = this.playbackToYnisonController) || void 0 === a
             ? void 0

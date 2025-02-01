@@ -277,6 +277,9 @@
           sendDownloadTrack: function () {
               return sendDownloadTrack;
           },
+          sendYnisonState: function () {
+              return sendYnisonState;
+          },
       });
       let s = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -319,7 +322,15 @@
                 availableActions: e.availableActions,
                 actionsStore: e.actionsStore,
             });
-        };
+        },
+          sendYnisonState = (e) => {
+              var t;
+              null === (t = window.desktopEvents) ||
+              void 0 === t ||
+              t.send(i.BOn.YNISON_STATE, {
+                  rawData: e.rawData
+              });
+          };
       o(83301);
       var d = o(76627),
         a = o(61533),

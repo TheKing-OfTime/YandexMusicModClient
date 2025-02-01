@@ -58,6 +58,7 @@ const init = () => {
   initField(store_js_1.StoreKeys.MOD_FEATURES, {
     discordRPC: {
       enable: true,
+      fromYnison: false,
       applicationIDForRPC: "1124055337234858005",
       showButtons: true,
       showSmallIcon: false,
