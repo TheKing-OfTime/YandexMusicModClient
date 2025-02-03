@@ -257,7 +257,6 @@ const handleApplicationEvents = (window) => {
       `Event received`,
       events_js_1.Events.YNISON_STATE,
     );
-    if (store_js_1.getModFeatures)
     (0, discordRichPresence_js_1.fromYnisonState)(data);
   });
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
