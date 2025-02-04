@@ -10,7 +10,7 @@ const handleUncaughtException = () => {
     Logger_js_1.Logger.startCatching({
         showDialog: false,
         onError({ error }) {
-            uncaughtExceptionLogger.error('UncaughtException log from handleUncaughtException', error);
+            uncaughtExceptionLogger.error('UncaughtException log from handleUncaughtException', error, error.stack);
         }
     });
 };

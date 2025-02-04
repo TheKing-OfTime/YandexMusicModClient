@@ -27841,6 +27841,8 @@
         (o.INSTALL_UPDATE = "INSTALL_UPDATE"),
         (o.DOWNLOAD_TRACK = "DOWNLOAD_TRACK"),
         (o.MOD_UPDATE_AVAILABLE = "MOD_UPDATE_AVAILABLE"),
+        (o.INSTALL_MOD_UPDATE = "INSTALL_MOD_UPDATE"),
+        (o.PROGRESS_BAR_CHANGE = "PROGRESS_BAR_CHANGE"),
         (o.APPLICATION_RESTART = "APPLICATION_RESTART"),
         (o.UPDATE_AVAILABLE = "UPDATE_AVAILABLE"),
         (o.APPLICATION_READY = "APPLICATION_READY"),
@@ -32575,6 +32577,7 @@
             coverClassName: m,
             closeButton: v,
             withDefaultCloseButton: g = !0,
+            children: inhertChildren
           } = e,
           { formatMessage: h } = (0, a.Z)();
         return (0, n.jsxs)(u.Paper, {
@@ -32588,6 +32591,7 @@
               }),
               ...(0, s.BA)(s.r9.NOTIFICATION_TEXT),
               children: [
+                ...(inhertChildren ? inhertChildren : []),
                 (0, i.isValidElement)(d) &&
                   (0, n.jsx)(u.Paper, {
                     className: (0, o.W)(f().cover, m),

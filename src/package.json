@@ -1,57 +1,61 @@
 {
-    "private": true,
-    "name": "YandexMusic",
-    "version": "5.37.1",
-    "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
-    "author": "Яндекс Музыка <music@support.yandex.ru>",
-    "homepage": "https://music.yandex.ru/download/",
-    "main": "main/index.js",
-    "dependencies": {
-        "@formatjs/icu-messageformat-parser": "~2.7.8",
-        "electron-log": "~5.2.0",
-        "electron-store": "~8.2.0",
-        "electron-updater": "~6.3.4",
-        "intl-messageformat": "~10.5.14",
-        "node-cron": "~3.0.3",
-        "semver": "~7.6.3",
-        "uuid": "~9.0.1",
-        "fast-uri": "^3.0.2"
-    },
-    "devDependencies": {
-        "@electron/fuses": "~1.8.0",
-        "@electron/notarize": "~2.4.0",
-        "@types/node-cron": "~3.0.11",
-        "@types/semver": "~7.5.8",
-        "@yandex-chats/signer": "~0.0.3",
-        "electron": "~32.1.0",
-        "js-yaml": "~4.1.0"
-    },
-    "buildInfo": {
-        "VERSION": "5.37.1",
-        "BRANCH": "r15780153"
-    },
-    "common": {
-        "SHOW_RELEASE_NOTES": false,
-        "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
-        "UPDATE_POLL_INTERVAL_MS": 1800000,
-        "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",
-        "SUPPORT_URL": "/user/ee219503-b69b-9484-405b-6877a510e13c",
-        "TERMS_OF_USE_URL": "https://yandex.ru/legal/music_mobile_agreement/",
-        "RECOMMENDATIONS_URL": "https://music.yandex.ru/legal/recommendations/ru/#music"
-    },
-    "meta": {
-        "PRODUCT_NAME": "Yandex Music",
-        "PRODUCT_NAME_LOCALIZED": "Яндекс Музыка",
-        "APP_ID": "ru.yandex.desktop.music",
-        "COPYRIGHT": "Яндекс Музыка",
-        "TRADEMARK": "Яндекс Музыка",
-        "DEEPLINK_PROTOCOL": "yandexmusic",
-        "SYSTEM_MENU_DEFAULT_LANGUAGE": "en",
-        "SYSTEM_MENU_LANGUAGES": [
-            "ru",
-            "en",
-            "kk",
-            "uz"
-        ]
-    }
+  "private": true,
+  "name": "YandexMusic",
+  "version": "5.37.1",
+  "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
+  "author": "Яндекс Музыка <music@support.yandex.ru>",
+  "homepage": "https://music.yandex.ru/download/",
+  "main": "main/index.js",
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "~2.7.8",
+    "axios": "^1.7.9",
+    "discord-rpc": "^4.0.1",
+    "electron-log": "~5.2.0",
+    "electron-store": "~8.2.0",
+    "electron-updater": "~6.3.4",
+    "fast-uri": "^3.0.2",
+    "intl-messageformat": "~10.5.14",
+    "node-cron": "~3.0.3",
+    "node-id3": "^0.2.6",
+    "original-fs": "^1.2.0",
+    "semver": "~7.6.3",
+    "uuid": "~9.0.1"
+  },
+  "devDependencies": {
+    "@electron/fuses": "~1.8.0",
+    "@electron/notarize": "~2.4.0",
+    "@types/node-cron": "~3.0.11",
+    "@types/semver": "~7.5.8",
+    "@yandex-chats/signer": "~0.0.3",
+    "electron": "~32.1.0",
+    "js-yaml": "~4.1.0"
+  },
+  "buildInfo": {
+    "VERSION": "5.37.1",
+    "BRANCH": "r15780153"
+  },
+  "common": {
+    "SHOW_RELEASE_NOTES": false,
+    "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
+    "UPDATE_POLL_INTERVAL_MS": 1800000,
+    "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",
+    "SUPPORT_URL": "/user/ee219503-b69b-9484-405b-6877a510e13c",
+    "TERMS_OF_USE_URL": "https://yandex.ru/legal/music_mobile_agreement/",
+    "RECOMMENDATIONS_URL": "https://music.yandex.ru/legal/recommendations/ru/#music"
+  },
+  "meta": {
+    "PRODUCT_NAME": "Yandex Music",
+    "PRODUCT_NAME_LOCALIZED": "Яндекс Музыка",
+    "APP_ID": "ru.yandex.desktop.music",
+    "COPYRIGHT": "Яндекс Музыка",
+    "TRADEMARK": "Яндекс Музыка",
+    "DEEPLINK_PROTOCOL": "yandexmusic",
+    "SYSTEM_MENU_DEFAULT_LANGUAGE": "en",
+    "SYSTEM_MENU_LANGUAGES": [
+      "ru",
+      "en",
+      "kk",
+      "uz"
+    ]
+  }
 }

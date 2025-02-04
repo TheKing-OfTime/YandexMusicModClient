@@ -275,12 +275,12 @@
         Tk: function () {
           return P.useReleaseNotes;
         },
-          sendDownloadTrack: function () {
-              return sendDownloadTrack;
-          },
-          sendYnisonState: function () {
-              return sendYnisonState;
-          },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
+        sendYnisonState: function () {
+          return sendYnisonState;
+        },
       });
       let s = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -294,17 +294,18 @@
           null === (n = window.desktopEvents) ||
             void 0 === n ||
             n.send(t.BOn.APPLICATION_READY, e);
-        },sendDownloadTrack = (e) => {
-              var t;
-              null === (t = window.desktopEvents) ||
-              void 0 === t ||
-              t.send(i.BOn.DOWNLOAD_TRACK, {
-                  downloadURL: e.downloadURL,
-                  codec: e.codec,
-                  trackId: e.trackId,
-                  track: e.track,
-              });
-          },
+        },
+        sendDownloadTrack = (e) => {
+          var t;
+          null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(i.BOn.DOWNLOAD_TRACK, {
+              downloadURL: e.downloadURL,
+              codec: e.codec,
+              trackId: e.trackId,
+              track: e.track,
+            });
+        },
         r = (e) => {
           let n = e === t.Q2A.Light ? "#FFFFFF" : "#000000";
           window.desktopEvents.send(t.BOn.APPLICATION_THEME, n);
@@ -317,21 +318,22 @@
             n.send(t.BOn.PLAYER_STATE, {
               isPlaying: o,
               canMoveBackward: s,
-              canMoveForward: i,status: e.status,
-                track: e.track,
-                progress: e.progress,
-                availableActions: e.availableActions,
-                actionsStore: e.actionsStore,
+              canMoveForward: i,
+              status: e.status,
+              track: e.track,
+              progress: e.progress,
+              availableActions: e.availableActions,
+              actionsStore: e.actionsStore,
             });
         },
-          sendYnisonState = (e) => {
-              var t;
-              null === (t = window.desktopEvents) ||
-              void 0 === t ||
-              t.send(i.BOn.YNISON_STATE, {
-                  rawData: e.rawData
-              });
-          };
+        sendYnisonState = (e) => {
+          var t;
+          null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(i.BOn.YNISON_STATE, {
+              rawData: e.rawData,
+            });
+        };
       o(83301);
       var d = o(76627),
         a = o(61533),
@@ -548,52 +550,118 @@
             message: c,
           });
         },
-          modUpdateToast = (e) => {
-            let { version: n, formatMessage: o, closeToast: i } = e,
-                u = (0, t.useCallback)(() => {
-                    var e;
-                    null === (e = window.desktopEvents) ||
+        modUpdateToast = (e) => {
+          let { version: n, formatMessage: o, closeToast: i } = e,
+            [getProgress, setProgress] = (0, t.useState)(-1),
+            u = (0, t.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.send(r.BOn.APPLICATION_RESTART),
+                null == i || i();
+            }, [i]),
+            callModUpdateInstall = (0, t.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.send(r.BOn.INSTALL_MOD_UPDATE);
+            }, [i]),
+            formattedMessages = (progressValue) => {
+              let message = o({ id: "offline.download" });
+              if (progressValue < 0) {
+                message = o({ id: "offline.download" });
+              } else if (progressValue >= 0 && progressValue <= 100) {
+                message = "Скачивание…";
+              } else if (progressValue > 100) {
+                message = "Установить";
+              }
+              return message;
+            },
+            c = (0, t.useMemo)(
+              () =>
+                (0, s.jsxs)("div", {
+                  className: h().message,
+                  children: [
+                    (0, s.jsx)(a.Caption, {
+                      className: h().text,
+                      variant: "div",
+                      type: "controls",
+                      size: "m",
+                      children: o(
+                        { id: "desktop.on-mod-update-available" },
+                        { version: n },
+                      ),
+                    }),
+                    (0, s.jsx)(d.z, {
+                      className: h().button,
+                      onClick: getProgress <= 100 ? callInstallModUpdate : u,
+                      variant: "default",
+                      color: "secondary",
+                      disabled: getProgress <= 100 && getProgress >= 0,
+                      size: "xs",
+                      radius: "xxxl",
+                      children: (0, s.jsx)(a.Caption, {
+                        variant: "div",
+                        type: "controls",
+                        size: "m",
+                        children: formattedMessages(getProgress),
+                      }),
+                    }),
+                  ],
+                }),
+              [o, u, n, getProgress],
+            ),
+            progressBarUpdate = (0, t.useCallback)(
+              (event, elementType, progress, dedupeTimestamp = 0) => {
+                if (
+                  window.dedupeNonces &&
+                  window.dedupeNonces[elementType] === dedupeTimestamp
+                )
+                  return;
+                if (!window.dedupeNonces) window.dedupeNonces = {};
+                if (dedupeTimestamp)
+                  window.dedupeNonces[elementType] = dedupeTimestamp;
+                setProgress(progress);
+              },
+              [setProgress],
+            );
+          return (
+            (0, t.useEffect)(() => {
+              var e;
+              return (
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.on(r.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate),
+                () => {
+                  var e;
+                  null === (e = window.desktopEvents) ||
                     void 0 === e ||
-                    e.send(r.BOn.APPLICATION_RESTART),
-                    null == i || i();
-                }, [i]),
-                c = (0, t.useMemo)(
-                    () =>
-                        (0, s.jsxs)("div", {
-                            className: h().message,
-                            children: [
-                                (0, s.jsx)(a.Caption, {
-                                    className: h().text,
-                                    variant: "div",
-                                    type: "controls",
-                                    size: "m",
-                                    children: o(
-                                        { id: "desktop.on-mod-update-available" },
-                                        { version: n },
-                                    ),
-                                }),
-                                (0, s.jsx)(d.z, {
-                                    className: h().button,
-                                    onClick: u,
-                                    variant: "default",
-                                    color: "secondary",
-                                    size: "xs",
-                                    radius: "xxxl",
-                                    children: (0, s.jsx)(a.Caption, {
-                                        variant: "div",
-                                        type: "controls",
-                                        size: "m",
-                                        children: o({ id: "desktop.update" }),
-                                    }),
-                                }),
-                            ],
-                        }),
-                    [o, u, n],
-                );
-            return (0, s.jsx)(v.Yj, {
-                className: (0, l.W)(h().root, h().important),
-                message: c,
-            });
+                    e.off(r.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate);
+                }
+              );
+            }, [progressBarUpdate]),
+            (0, s.jsx)(v.Yj, {
+              className: (0, l.W)(h().root, h().important),
+              message: c,
+              children: [
+                (0, s.jsx)("div", {
+                  className: "qaIScXjx1qyXuaIHXQIo ZcpulvHgF_wsgzB7Hye9",
+                  style: {
+                    overflow: "hidden",
+                    "margin-left": "-16px",
+                    "margin-top": "-6px",
+                    position: "absolute",
+                    width: (500 * getProgress) / 100 + "px",
+                    height: "50px",
+                    "background-color": "rgb(255 255 255 / 10%)",
+                    "z-index": 1,
+                    opacity: getProgress <= 100 ? 0.1 : 0,
+                    transition: "opacity 0.3s linear 0.5s",
+                  },
+                }),
+              ],
+            })
+          );
         },
         m = () => {
           let { formatMessage: e } = (0, i.Z)(),
@@ -610,18 +678,24 @@
               [e, o, n],
             ),
             modUpdateCallback = (0, t.useCallback)(
-                (t, i, newVersion, dedupeTimestamp = 0) => {
-                    if (
-                        window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
-                    )
-                        return;
-                    if (dedupeTimestamp)
-                        window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
-                        n((0, s.jsx)(modUpdateToast, { formatMessage: e, version: `${i} -> ${newVersion}` }), {
-                            containerId: r.W$x.IMPORTANT,
-                        });
-                },
-                [e, o, n],
+              (t, i, newVersion, dedupeTimestamp = 0) => {
+                if (
+                  window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
+                )
+                  return;
+                if (dedupeTimestamp)
+                  window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
+                n(
+                  (0, s.jsx)(modUpdateToast, {
+                    formatMessage: e,
+                    version: `${i} -> ${newVersion}`,
+                  }),
+                  {
+                    containerId: r.W$x.IMPORTANT,
+                  },
+                );
+              },
+              [e, o, n],
             );
           (0, t.useEffect)(() => {
             var e;
@@ -637,20 +711,20 @@
               }
             );
           }, [l]);
-            (0, t.useEffect)(() => {
+          (0, t.useEffect)(() => {
+            var e;
+            return (
+              null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+              () => {
                 var e;
-                return (
-                    null === (e = window.desktopEvents) ||
-                    void 0 === e ||
-                    e.on(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
-                        () => {
-                            var e;
-                            null === (e = window.desktopEvents) ||
-                            void 0 === e ||
-                            e.off(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
-                        }
-                );
-            }, [modUpdateCallback]);
+                null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.off(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+              }
+            );
+          }, [modUpdateCallback]);
         };
     },
     11413: function (e, n, o) {
@@ -696,63 +770,64 @@
         t,
         i = o(91207),
         r = o(58997),
-          electronBridge = o(35308),
-          feedbackApi = o(26382);
-        const sendPlayerStateDefault = (ve) => {
-            (0, electronBridge.Pt)({
-                status: ve.state.playerState.status.value,
-                isPlaying: ve.state.playerState.status.value === "playing",
-                canMoveForward:
-                ve.state.currentContext.value?.availableActions.moveForward.value,
-                canMoveBackward:
-                ve.state.currentContext.value?.availableActions.moveBackward.value,
-                track:
-                ve.state.queueState.currentEntity.value?.entity.entityData.meta,
-                progress: ve.state.playerState.progress.value?.position,
-                availableActions: {
-                    moveBackward:
-                    ve.state.currentContext.value?.availableActions.moveBackward
-                        .value,
-                    moveForward:
-                    ve.state.currentContext.value?.availableActions.moveForward.value,
-                    repeat:
-                    ve.state.currentContext.value?.availableActions.repeat.value,
-                    shuffle:
-                    ve.state.currentContext.value?.availableActions.shuffle.value,
-                    speed: ve.state.currentContext.value?.availableActions.speed.value,
-                },
-                actionsStore: {
-                    repeat: ve.state.queueState.repeat.value,
-                    shuffle: ve.state.queueState.shuffle.value,
-                    isLiked:
-                        ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
-                            ve.state.queueState.currentEntity.value?.entity.entityData.meta
-                                .id,
-                        ),
-                    isDisliked:
-                        ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
-                            ve.state.queueState.currentEntity.value?.entity.entityData.meta
-                                .id,
-                        ),
-                },
-            });
-        };
+        electronBridge = o(35308),
+        feedbackApi = o(26382);
+      const sendPlayerStateDefault = (ve) => {
+        (0, electronBridge.Pt)({
+          status: ve.state.playerState.status.value,
+          isPlaying: ve.state.playerState.status.value === "playing",
+          canMoveForward:
+            ve.state.currentContext.value?.availableActions.moveForward.value,
+          canMoveBackward:
+            ve.state.currentContext.value?.availableActions.moveBackward.value,
+          track:
+            ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+          progress: ve.state.playerState.progress.value?.position,
+          availableActions: {
+            moveBackward:
+              ve.state.currentContext.value?.availableActions.moveBackward
+                .value,
+            moveForward:
+              ve.state.currentContext.value?.availableActions.moveForward.value,
+            repeat:
+              ve.state.currentContext.value?.availableActions.repeat.value,
+            shuffle:
+              ve.state.currentContext.value?.availableActions.shuffle.value,
+            speed: ve.state.currentContext.value?.availableActions.speed.value,
+          },
+          actionsStore: {
+            repeat: ve.state.queueState.repeat.value,
+            shuffle: ve.state.queueState.shuffle.value,
+            isLiked:
+              ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta
+                  .id,
+              ),
+            isDisliked:
+              ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta
+                  .id,
+              ),
+          },
+        });
+      };
       ((s = t || (t = {})).PLAY = "PLAY"),
         (s.PAUSE = "PAUSE"),
         (s.MOVE_BACKWARD = "MOVE_BACKWARD"),
         (s.MOVE_FORWARD = "MOVE_FORWARD");
       let l = (e) => {
-          let { sonataState: sonataState } = (0, r.oR4)(),
-              onLikeClick = (0, feedbackApi.SB)(sonataState.entityMeta),
-              onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
+        let { sonataState: sonataState } = (0, r.oR4)(),
+          onLikeClick = (0, feedbackApi.SB)(sonataState.entityMeta),
+          onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
         let n = (0, i.useCallback)(
           (n, o, nonce = 1) => {
-              if (window.playerActionEventDedupeNonce === nonce) return;
-              if (nonce) window.playerActionEventDedupeNonce = nonce;
+            if (window.playerActionEventDedupeNonce === nonce) return;
+            if (nonce) window.playerActionEventDedupeNonce = nonce;
             switch (o) {
               case "PLAY":
               case "PAUSE":
-                case "TOGGLE_PLAY":v
+              case "TOGGLE_PLAY":
+                v;
                 null == e || e.togglePause();
                 break;
               case "MOVE_BACKWARD":
@@ -760,26 +835,26 @@
                 break;
               case "MOVE_FORWARD":
                 null == e || e.moveForward();
-                case "REPEAT_NONE":
-                    null == e || e.setRepeatMode("none");
-                    break;
-                case "REPEAT_CONTEXT":
-                    null == e || e.setRepeatMode("context");
-                    break;
-                case "REPEAT_ONE":
-                    null == e || e.setRepeatMode("one");
-                    break;
-                case "TOGGLE_SHUFFLE":
-                    null == e || e.toggleShuffle();
-                    break;
-                case "TOGGLE_LIKE":
-                    null == e || onLikeClick(sonataState.entityMeta);
-                    sendPlayerStateDefault(e);
-                    break;
-                case "TOGGLE_DISLIKE":
-                    null == e || onDislikeClick(sonataState.entityMeta);
-                    sendPlayerStateDefault(e);
-                    break;
+              case "REPEAT_NONE":
+                null == e || e.setRepeatMode("none");
+                break;
+              case "REPEAT_CONTEXT":
+                null == e || e.setRepeatMode("context");
+                break;
+              case "REPEAT_ONE":
+                null == e || e.setRepeatMode("one");
+                break;
+              case "TOGGLE_SHUFFLE":
+                null == e || e.toggleShuffle();
+                break;
+              case "TOGGLE_LIKE":
+                null == e || onLikeClick(sonataState.entityMeta);
+                sendPlayerStateDefault(e);
+                break;
+              case "TOGGLE_DISLIKE":
+                null == e || onDislikeClick(sonataState.entityMeta);
+                sendPlayerStateDefault(e);
+                break;
             }
           },
           [e],

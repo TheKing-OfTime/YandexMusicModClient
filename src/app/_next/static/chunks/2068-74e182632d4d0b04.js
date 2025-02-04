@@ -765,7 +765,7 @@
               var e;
               null === (e = window.desktopEvents) ||
                 void 0 === e ||
-                e.send(s.BOn.APPLICATION_RESTART),
+                e.send(s.BOn.INSTALL_UPDATE),
                 null == a || a();
             }, [a]),
             h = (0, i.useMemo)(
@@ -808,13 +808,33 @@
         },
           modUpdateToast = (e) => {
               let { version: t, formatMessage: o, closeToast: a } = e,
+                  [getProgress, setProgress] = (0, i.useState)(-1),
                   d = (0, i.useCallback)(() => {
                       var e;
                       null === (e = window.desktopEvents) ||
                       void 0 === e ||
-                      e.send(s.BOn.INSTALL_UPDATE),
+                      e.send(s.BOn.APPLICATION_RESTART),
                       null == a || a();
                   }, [a]),
+                  callInstallModUpdate = (0, i.useCallback)(() => {
+                      var e;
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.send(s.BOn.INSTALL_MOD_UPDATE)
+                  }, [a]),
+
+                  formattedMessages = (progressValue) => {
+                        let message = o({ id: "offline.download" })
+                        if (progressValue < 0) {
+                            message = o({ id: "offline.download" });
+                        } else if (progressValue >= 0 && progressValue <= 100) {
+                            message = 'Скачивание…';
+                        } else if (progressValue > 100) {
+                            message = 'Установить';
+                        }
+                        return message;
+                  },
+
                   h = (0, i.useMemo)(
                       () =>
                           (0, n.jsxs)("div", {
@@ -832,26 +852,69 @@
                                   }),
                                   (0, n.jsx)(r.z, {
                                       className: _().button,
-                                      onClick: d,
+                                      onClick: getProgress <= 100 ? callInstallModUpdate : d,
                                       variant: "default",
                                       color: "secondary",
                                       size: "xs",
                                       radius: "xxxl",
+                                      disabled: getProgress <= 100 && getProgress >= 0,
                                       children: (0, n.jsx)(c.Caption, {
                                           variant: "div",
                                           type: "controls",
                                           size: "m",
-                                          children: o({ id: "desktop.update" }),
+                                          children: formattedMessages(getProgress),
                                       }),
                                   }),
                               ],
                           }),
-                      [o, d, t],
-                  );
-              return (0, n.jsx)(u.Yj, {
+                      [o, d, t, getProgress],
+                  ),
+                    progressBarUpdate = (0, i.useCallback)(
+                        (event, elementType, progress, dedupeTimestamp = 0) => {
+                            if (window.dedupeNonces && window.dedupeNonces[elementType] === dedupeTimestamp)
+                                return;
+                            if (!window.dedupeNonces) window.dedupeNonces = {};
+                            if (dedupeTimestamp)
+                                window.dedupeNonces[elementType] = dedupeTimestamp;
+                            setProgress(progress);
+                        },
+                        [setProgress],
+                    );
+              return (
+                  (0, i.useEffect)(() => {
+                      var e;
+                      return (
+                          null === (e = window.desktopEvents) ||
+                          void 0 === e ||
+                          e.on(s.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate),
+                              () => {
+                                  var e;
+                                  null === (e = window.desktopEvents) ||
+                                  void 0 === e ||
+                                  e.off(s.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate);
+                              }
+                      );
+                  }, [progressBarUpdate]),
+                  (0, n.jsx)(u.Yj, {
                   className: (0, l.W)(_().root, _().important),
                   message: h,
-              });
+                  children: [(0, n.jsx)('div', {
+                      className: "qaIScXjx1qyXuaIHXQIo ZcpulvHgF_wsgzB7Hye9",
+                      style: {
+                          overflow: 'hidden',
+                          'margin-left': '-16px',
+                          'margin-top': '-6px',
+                          position: 'absolute',
+                          width: (500 * getProgress / 100) + 'px',
+                          height: '50px',
+                          'background-color': 'rgb(255 255 255)',
+                          opacity: getProgress <= 100 ? 0.1 : 0,
+                          'z-index': 1,
+                          transition: 'opacity 0.3s linear 0.5s',
+                      }
+                  })]
+              })
+              );
           },
         p = () => {
           let { formatMessage: e } = (0, a.Z)(),

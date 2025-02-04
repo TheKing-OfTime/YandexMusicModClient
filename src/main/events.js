@@ -30,6 +30,7 @@ const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
+const modUpdater_js_1 = require("./lib/modUpdater.js");
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
@@ -44,6 +45,10 @@ const artists2string = (artists) => {
   });
   return string;
 };
+
+function sleep(ms) {
+    return new Promise(res => setTimeout(res, ms));
+}
 
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
@@ -259,6 +264,18 @@ const handleApplicationEvents = (window) => {
     );
     (0, discordRichPresence_js_1.fromYnisonState)(data);
   });
+    electron_1.ipcMain.on(events_js_1.Events.INSTALL_MOD_UPDATE, async (event, data) => {
+        eventsLogger.info(
+            `Event received`,
+            events_js_1.Events.INSTALL_MOD_UPDATE,
+        );
+
+        let callback = (progressRenderer, progressWindow) => {
+            sendProgressBarChange(window, "modUpdateToast", progressRenderer*100);
+            window.setProgressBar(progressWindow);
+        }
+        await (0, modUpdater_js_1.getModUpdater)().onUpdateInstall(callback)
+    });
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
     eventsLogger.info("Event handle", events_js_1.Events.GET_PASSPORT_LOGIN);
     try {
@@ -320,6 +337,21 @@ const sendModUpdateAvailable = (window, currVersion, newVersion) => {
   );
 };
 exports.sendModUpdateAvailable = sendModUpdateAvailable;
+const sendProgressBarChange = (window, elementType, progress) => {
+    window.webContents.send(
+        events_js_1.Events.PROGRESS_BAR_CHANGE,
+        elementType,
+        progress,
+        Date.now(),
+    );
+    eventsLogger.info(
+        "Event sent",
+        events_js_1.Events.PROGRESS_BAR_CHANGE,
+        elementType,
+        progress,
+    );
+};
+exports.sendProgressBarChange = sendProgressBarChange;
 const sendShowReleaseNotes = (window) => {
   window.webContents.send(events_js_1.Events.SHOW_RELEASE_NOTES);
   eventsLogger.info("Event sent", events_js_1.Events.SHOW_RELEASE_NOTES);

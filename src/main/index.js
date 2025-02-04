@@ -37,7 +37,7 @@ electron_1.app.setLoginItemSettings({
 });
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
-  const modUpdater = new modUpdater_js_1;
+  const modUpdater = (0, modUpdater_js_1.getModUpdater)();
   await electron_1.app.whenReady();
   (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
@@ -65,7 +65,7 @@ electron_1.app.setLoginItemSettings({
       (0, events_js_1.sendUpdateAvailable)(window, version);
     });
     modUpdater.start();
-    modUpdater.onUpdate((currVersion, newVersion) => {
+    modUpdater.onUpdateAvailable((currVersion, newVersion) => {
       (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
     });
   }
