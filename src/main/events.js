@@ -30,6 +30,7 @@ const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
+const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
@@ -58,7 +59,7 @@ const handleApplicationEvents = (window) => {
       store_js_1.getModFeatures().globalShortcuts,
     );
     shortcuts.forEach((shortcut) => {
-      if (shortcut[1])
+      if (shortcut[1] && isAccelerator(shortcut[1]))
         electron_1.globalShortcut.register(shortcut[1], () => {
           const actions = shortcut[0].split(" ");
           actions.forEach((action) => {

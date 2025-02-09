@@ -10,6 +10,7 @@
     "@formatjs/icu-messageformat-parser": "~2.7.8",
     "axios": "^1.7.9",
     "discord-rpc": "^4.0.1",
+    "electron-is-accelerator": "^0.2.0",
     "electron-log": "~5.2.0",
     "electron-store": "~8.2.0",
     "electron-updater": "~6.3.4",
@@ -31,11 +32,11 @@
     "js-yaml": "~4.1.0"
   },
   "buildInfo": {
-        "VERSION": "5.38.5",
-        "BRANCH": "f80792a62bd1fa14ff5f814d0ac372e039e46d76"
+    "VERSION": "5.38.5",
+    "BRANCH": "f80792a62bd1fa14ff5f814d0ac372e039e46d76"
   },
   "common": {
-        "SHOW_RELEASE_NOTES": true,
+    "SHOW_RELEASE_NOTES": true,
     "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
     "UPDATE_POLL_INTERVAL_MS": 1800000,
     "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",
