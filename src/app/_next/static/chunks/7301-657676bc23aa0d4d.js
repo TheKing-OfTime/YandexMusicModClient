@@ -9825,9 +9825,9 @@
                           (0, _.jsx)(N.wx, {
                             title: "Качество трека",
                             description:
-                              downloadInfo?.bitrate !== 0
+                                downloadInfo ? (downloadInfo?.bitrate !== 0
                                 ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
-                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`,
+                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`) : 'Не удалось получить качество трека',
                             children: (0, _.jsxs)("div", {
                               className: "eQt33MLDiQ6DRSuLaYEp",
                               children: (0, _.jsxs)("span", {
@@ -9839,9 +9839,9 @@
                                     "var(--ym-controls-color-secondary-text-enabled)",
                                 },
                                 children:
-                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                  (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                     ? codecMap[downloadInfo?.codec]
-                                    : qualityMap[downloadInfo?.quality],
+                                    : qualityMap[downloadInfo?.quality]) ?? "NONE",
                               }),
                               onClick: () => {
                                 electronBridge.sendDownloadTrack({
