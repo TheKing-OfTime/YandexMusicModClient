@@ -3669,8 +3669,12 @@
           [y, h] = (0, o.useState)(!1),
           { formatMessage: g } = (0, a.Z)(),
           x = (0, v.C)(e);
-        return (0, d.W)(async (newE) => {
+        return (0, d.W)(async (newE, actionSubtype) => {
             e = newE?.toggleDislike ? newE : e;
+          if(actionSubtype) {
+              if(actionSubtype === 'DISLIKE' && e.isDisliked) return;
+              if(actionSubtype === 'DISLIKE_NONE' && !e.isDisliked) return;
+          }
           if (e) {
             let a = i.modal.isOpened ? c.W$x.FULLSCREEN_INFO : c.W$x.INFO,
               d = i.modal.isOpened ? c.W$x.FULLSCREEN_ERROR : c.W$x.ERROR;
@@ -3752,8 +3756,12 @@
           [p, _] = (0, o.useState)(!1),
           { formatMessage: y } = (0, a.Z)(),
           h = (0, c.R$C)();
-        return (0, d.W)(async (newE) => {
+        return (0, d.W)(async (newE, actionSubtype) => {
             e = newE?.toggleLike ? newE : e;
+            if(actionSubtype) {
+                if(actionSubtype === 'LIKE' && e.isLiked) return;
+                if(actionSubtype === 'LIKE_NONE' && !e.isLiked) return;
+            }
           if (e) {
             let o = i.modal.isOpened ? c.W$x.FULLSCREEN_INFO : c.W$x.INFO,
               a = i.modal.isOpened ? c.W$x.FULLSCREEN_ERROR : c.W$x.ERROR;

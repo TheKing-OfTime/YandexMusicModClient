@@ -1094,11 +1094,15 @@
                     null == e || e.toggleShuffle();
                     break;
                 case "TOGGLE_LIKE":
-                    null == e || onLikeClick(sonataState.entityMeta);
+                case "LIKE":
+                case "LIKE_NONE":
+                    null == e || onLikeClick(sonataState.entityMeta, o);
                     sendPlayerStateDefault(e);
                     break;
+                case "DISLIKE":
+                case "DISLIKE_NONE":
                 case "TOGGLE_DISLIKE":
-                    null == e || onDislikeClick(sonataState.entityMeta);
+                    null == e || onDislikeClick(sonataState.entityMeta, o);
                     sendPlayerStateDefault(e);
                     break;
             }
