@@ -76,6 +76,7 @@ const init = () => {
       linearDeBoost: 2,
       playOnAnyEntity: false,
       disableRendering: false,
+      autoLaunchOnAppStartup: false,
     },
     playerBarEnhancement: {
       showDislikeButton: true,

@@ -11675,6 +11675,7 @@
           clearMemoryModal: {},
             discordRpcSettingsModal: {},
             playerBarEnhancementsSettingsModal: {},
+            vibeBehaviorEnhancementsSettingsModal: {},
             windowBehaviorSettingsModal: {},
         },
         landing: {
@@ -13538,6 +13539,7 @@
         clearMemoryModal: _.KL,
           discordRpcSettingsModal: _.KL,
           playerBarEnhancementsSettingsModal: _.KL,
+          vibeBehaviorEnhancementsSettingsModal: _.KL,
           windowBehaviorSettingsModal: _.KL,
       });
       var eB = a(84597),

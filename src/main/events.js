@@ -48,7 +48,7 @@ const artists2string = (artists) => {
 };
 
 function sleep(ms) {
-    return new Promise(res => setTimeout(res, ms));
+  return new Promise((res) => setTimeout(res, ms));
 }
 
 const handleApplicationEvents = (window) => {
@@ -196,6 +196,20 @@ const handleApplicationEvents = (window) => {
         window,
         updater.getProbabilityBucket(),
       );
+
+      if (
+        store_js_1.getModFeatures()?.vibeAnimationEnhancement
+          ?.autoLaunchOnAppStartup &&
+        !state_js_1.state.player.isPlaying
+      ) {
+        setTimeout(() => {
+          (0, exports.sendPlayerAction)(
+            window,
+            playerActions_js_1.PlayerActions.TOGGLE_PLAY,
+          );
+        }, 2000);
+      }
+
       const releaseNotes = await (0, loadReleaseNotes_js_1.loadReleaseNotes)(
         language,
       );
@@ -259,24 +273,24 @@ const handleApplicationEvents = (window) => {
     (0, discordRichPresence_js_1.discordRichPresence)(data);
   });
   electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
-    eventsLogger.info(
-      `Event received`,
-      events_js_1.Events.YNISON_STATE,
-    );
+    eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
     (0, discordRichPresence_js_1.fromYnisonState)(data);
   });
-    electron_1.ipcMain.on(events_js_1.Events.INSTALL_MOD_UPDATE, async (event, data) => {
-        eventsLogger.info(
-            `Event received`,
-            events_js_1.Events.INSTALL_MOD_UPDATE,
-        );
+  electron_1.ipcMain.on(
+    events_js_1.Events.INSTALL_MOD_UPDATE,
+    async (event, data) => {
+      eventsLogger.info(
+        `Event received`,
+        events_js_1.Events.INSTALL_MOD_UPDATE,
+      );
 
-        let callback = (progressRenderer, progressWindow) => {
-            sendProgressBarChange(window, "modUpdateToast", progressRenderer*100);
-            window.setProgressBar(progressWindow);
-        }
-        await (0, modUpdater_js_1.getModUpdater)().onUpdateInstall(callback)
-    });
+      let callback = (progressRenderer, progressWindow) => {
+        sendProgressBarChange(window, "modUpdateToast", progressRenderer * 100);
+        window.setProgressBar(progressWindow);
+      };
+      await (0, modUpdater_js_1.getModUpdater)().onUpdateInstall(callback);
+    },
+  );
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
     eventsLogger.info("Event handle", events_js_1.Events.GET_PASSPORT_LOGIN);
     try {
@@ -339,18 +353,18 @@ const sendModUpdateAvailable = (window, currVersion, newVersion) => {
 };
 exports.sendModUpdateAvailable = sendModUpdateAvailable;
 const sendProgressBarChange = (window, elementType, progress) => {
-    window.webContents.send(
-        events_js_1.Events.PROGRESS_BAR_CHANGE,
-        elementType,
-        progress,
-        Date.now(),
-    );
-    eventsLogger.info(
-        "Event sent",
-        events_js_1.Events.PROGRESS_BAR_CHANGE,
-        elementType,
-        progress,
-    );
+  window.webContents.send(
+    events_js_1.Events.PROGRESS_BAR_CHANGE,
+    elementType,
+    progress,
+    Date.now(),
+  );
+  eventsLogger.info(
+    "Event sent",
+    events_js_1.Events.PROGRESS_BAR_CHANGE,
+    elementType,
+    progress,
+  );
 };
 exports.sendProgressBarChange = sendProgressBarChange;
 const sendShowReleaseNotes = (window) => {
