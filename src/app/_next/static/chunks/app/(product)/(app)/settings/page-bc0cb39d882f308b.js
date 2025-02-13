@@ -1436,7 +1436,7 @@
                             className: Z().item,
                             children: (0, n.jsx)(P, {
                                 title: "Запускать при старте приложения",
-                                description: "Запустит мою волну сразу после старта приложения",
+                                description: "Запустит последний трек сразу после старта приложения",
                                 onChange: onAutoLaunchOnAppStartup,
                                 isChecked: window.nativeSettings.get(
                                     "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
