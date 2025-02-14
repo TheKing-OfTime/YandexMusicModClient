@@ -142,7 +142,7 @@ class TrackDownloader {
 
         this.logger.info("Got track");
 
-        buffer = this.applyNodeID3(data, buffer);
+        buffer = await this.applyNodeID3(data, buffer);
 
         this.window.setProgressBar(0.95);
 
