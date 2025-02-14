@@ -126,7 +126,7 @@ class TrackDownloader {
     async downloadTrack(data) {
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
-            defaultPath: `${artists2string(data.track?.artists)} — ${data.track?.title}.${data.codec}`,
+            defaultPath: `${artists2string(data.track?.artists)} — ${data.track?.title}.${data.codec.replace("-mp4", "")}`,
         });
         if (canceled || !filePath || !data.downloadURL)
             return this.logger.info("Track download canceled");
