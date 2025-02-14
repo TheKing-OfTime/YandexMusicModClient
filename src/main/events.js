@@ -12,8 +12,6 @@ exports.sendRefreshRepositoryMeta =
   exports.handleApplicationEvents =
     void 0;
 const electron_1 = require("electron");
-const NodeID3 = require("node-id3").Promise;
-const fs = require("fs").promises;
 const events_js_1 = require("./types/events.js");
 const playerActions_js_1 = require("./types/playerActions.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
@@ -21,6 +19,7 @@ const updater_js_1 = require("./lib/updater.js");
 const tray_js_1 = require("./lib/tray.js");
 const appSuspension_js_1 = require("./lib/appSuspension.js");
 const discordRichPresence_js_1 = require("./lib/discordRichPresence.js");
+const trackDownloader_js_1 = require("./lib/trackDownloader.js");
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const cookies_js_1 = require("./constants/cookies.js");
 const store_js_1 = require("./lib/store.js");
@@ -37,15 +36,6 @@ const isBoolean = (value) => {
   return typeof value === "boolean";
 };
 
-const artists2string = (artists) => {
-  if (!artists) return;
-  if (artists.length <= 1) return artists?.[0].name;
-  let string = artists.shift()?.name;
-  artists.forEach((a) => {
-    string += " & " + a.name;
-  });
-  return string;
-};
 
 function sleep(ms) {
   return new Promise((res) => setTimeout(res, ms));
@@ -53,7 +43,7 @@ function sleep(ms) {
 
 const handleApplicationEvents = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
-
+    const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
   if (store_js_1.getModFeatures()?.globalShortcuts) {
     const shortcuts = Object.entries(
       store_js_1.getModFeatures().globalShortcuts,
@@ -72,64 +62,7 @@ const handleApplicationEvents = (window) => {
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
     async (event, data) => {
-      eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
-      const downloadURL = data.downloadURL;
-      const artistCombined = artists2string(data.track?.artists);
-      //console.log(data.track)
-      const tags = {
-        title: data.track?.title,
-        artist: artistCombined,
-        album: data.track?.albums?.[0]?.title,
-      };
-
-      const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
-        defaultPath: `${artistCombined} — ${data.track?.title}.${data.codec}`,
-      });
-      if (canceled || !filePath || !downloadURL)
-        return eventsLogger.info(
-          "Track download canceled",
-          events_js_1.Events.DOWNLOAD_TRACK,
-        );
-      window.setProgressBar(0);
-      const res = await fetch(downloadURL);
-
-      // const contentLength = parseInt(res.headers.get('content-length'), 10);
-      // let downloadedChunksLength = 0;
-      // res.on('data', (chunk) => {
-      //     downloadedChunksLength += chunk.length;
-      //     window.setProgressBar(downloadedChunksLength/contentLength);
-      // })
-
-      let buffer = Buffer.from(await res.arrayBuffer());
-
-      window.setProgressBar(1.1);
-
-      eventsLogger.info("Got track", events_js_1.Events.DOWNLOAD_TRACK);
-      let coverRes, coverBuffer;
-      if (data.track?.coverUri) {
-        coverRes = await fetch(
-          "https://" + data.track?.coverUri.replace("%%", "1000x1000"),
-        );
-        coverBuffer = Buffer.from(await coverRes.arrayBuffer());
-        eventsLogger.info("Got cover", events_js_1.Events.DOWNLOAD_TRACK);
-      }
-      if (coverBuffer) {
-        tags.APIC = coverBuffer;
-      }
-
-      buffer = await NodeID3.write(tags, buffer);
-
-      window.setProgressBar(0.95);
-
-      await fs.writeFile(filePath, buffer);
-
-      window.setProgressBar(1);
-
-      eventsLogger.info("Track downloaded", events_js_1.Events.DOWNLOAD_TRACK);
-
-      setTimeout(() => {
-        window.setProgressBar(-1);
-      }, 1000);
+        await trackDownloader.downloadTrack(data);
     },
   );
 

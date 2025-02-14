@@ -9848,6 +9848,8 @@
                                   downloadURL: downloadInfo?.url,
                                   codec: downloadInfo?.codec,
                                   trackId: downloadInfo?.trackId,
+                                  transport: downloadInfo?.transport,
+                                  key: downloadInfo?.key,
                                   track: {
                                     title: JSON.parse(JSON.stringify(a.title)),
                                     artists: JSON.parse(

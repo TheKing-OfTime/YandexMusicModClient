@@ -560,6 +560,8 @@
                   codec: e.codec,
                   trackId: e.trackId,
                   track: e.track,
+                  transport: e.transport,
+                  key: e.key,
               });
           },
         s = (e) => {
