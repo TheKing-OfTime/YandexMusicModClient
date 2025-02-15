@@ -1,12 +1,11 @@
 const Logger_js_1 = require('../packages/logger/Logger');
 const electron_1 = require('electron');
-const NodeID3 = require("node-id3").Promise;
 const fs = require("fs").promises;
 const fsSync = require("fs");
 const path = require('path');
 const promisify = require("util").promisify;
 const { exec } = require('child_process');
-const ffmpegPath = require('ffmpeg-static');
+const FFMPEG_PATH = require('ffmpeg-static');
 
 const execPromise = promisify(exec);
 
@@ -15,13 +14,12 @@ const TMP_PATH = path.join(
     "\\Programs\\YandexMusic\\temp",
 );
 
-const asarPath = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'app.asar');
-const extractedFfmpegPath = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'ffmpeg.exe');
+const EXTRACTED_FFMPEG_PATH = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'ffmpeg.exe');
 
 async function extractFfmpeg() {
-    //const fileBuffer = asar.extractFile(asarPath, './node_modules/ffmpeg-static/ffmpeg.exe');
-    await fs.copyFile(ffmpegPath, extractedFfmpegPath);
+    await fs.copyFile(FFMPEG_PATH, EXTRACTED_FFMPEG_PATH);
 }
+
 function artists2string(artists) {
     if (!artists) return;
     if (artists.length <= 1) return artists?.[0].name;
@@ -191,7 +189,7 @@ class TrackDownloader {
             `"${finalFilepath}"`
         ];
 
-        const command = `${extractedFfmpegPath} ${args.join(" ")}`;
+        const command = `${EXTRACTED_FFMPEG_PATH} ${args.join(" ")}`;
         this.logger.info(`ReEncoding: ${command}`);
 
 
