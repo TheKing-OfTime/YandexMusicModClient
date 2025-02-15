@@ -9825,7 +9825,7 @@
                           (0, _.jsx)(N.wx, {
                             title: "Качество трека",
                             description:
-                                downloadInfo ? (downloadInfo?.bitrate !== 0
+                                downloadInfo?.quality ? (downloadInfo?.bitrate !== 0
                                 ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
                                 : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`) : 'Не удалось получить качество трека',
                             children: (0, _.jsxs)("div", {
