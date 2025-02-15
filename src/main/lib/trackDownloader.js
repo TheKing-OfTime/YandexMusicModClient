@@ -234,6 +234,8 @@ class TrackDownloader {
         this.window.setProgressBar(1.0);
         this.logger.info("Track downloaded");
 
+        await this.removeIfExistsDir(tempDirPath);
+
         setTimeout(() => {
             this.window.setProgressBar(-1);
         }, 1000);
