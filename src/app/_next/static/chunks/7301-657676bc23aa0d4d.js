@@ -9844,6 +9844,7 @@
                                     : qualityMap[downloadInfo?.quality]) ?? "NONE",
                               }),
                               onClick: () => {
+                                if(!downloadInfo?.quality) return;
                                 electronBridge.sendDownloadTrack({
                                   downloadURL: downloadInfo?.url,
                                   codec: downloadInfo?.codec,
