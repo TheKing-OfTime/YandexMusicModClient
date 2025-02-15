@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "YandexMusic",
-    "version": "5.39.0",
+  "version": "5.39.0",
   "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
   "author": "Яндекс Музыка <music@support.yandex.ru>",
   "homepage": "https://music.yandex.ru/download/",
@@ -15,6 +15,7 @@
     "electron-store": "~8.2.0",
     "electron-updater": "~6.3.4",
     "fast-uri": "^3.0.2",
+    "ffmpeg-static": "^5.2.0",
     "intl-messageformat": "~10.5.14",
     "node-cron": "~3.0.3",
     "node-id3": "^0.2.6",
@@ -32,8 +33,8 @@
     "js-yaml": "~4.1.0"
   },
   "buildInfo": {
-        "VERSION": "5.39.0",
-        "BRANCH": "r15873896"
+    "VERSION": "5.39.0",
+    "BRANCH": "r15873896"
   },
   "common": {
     "SHOW_RELEASE_NOTES": true,

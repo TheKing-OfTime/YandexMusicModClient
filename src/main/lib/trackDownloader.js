@@ -2,7 +2,26 @@ const Logger_js_1 = require('../packages/logger/Logger');
 const electron_1 = require('electron');
 const NodeID3 = require("node-id3").Promise;
 const fs = require("fs").promises;
+const fsSync = require("fs");
+const path = require('path');
+const promisify = require("util").promisify;
+const { exec } = require('child_process');
+const ffmpegPath = require('ffmpeg-static');
 
+const execPromise = promisify(exec);
+
+const TMP_PATH = path.join(
+    process.env.LOCALAPPDATA,
+    "\\Programs\\YandexMusic\\temp",
+);
+
+const asarPath = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'app.asar');
+const extractedFfmpegPath = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'ffmpeg.exe');
+
+async function extractFfmpeg() {
+    //const fileBuffer = asar.extractFile(asarPath, './node_modules/ffmpeg-static/ffmpeg.exe');
+    await fs.copyFile(ffmpegPath, extractedFfmpegPath);
+}
 function artists2string(artists) {
     if (!artists) return;
     if (artists.length <= 1) return artists?.[0].name;
@@ -48,6 +67,9 @@ class TrackDownloader {
     constructor(window) {
         this.window = window;
         this.logger = new Logger_js_1.Logger("TrackDownloaderLogger");
+        extractFfmpeg().then(() => {
+            this.logger.info("Extracted ffmpeg");
+        });
         this.logger.log("Initialized");
     }
 
@@ -91,65 +113,125 @@ class TrackDownloader {
 
     }
 
-    async applyNodeID3(data, buffer) {
-        const tags = {
-            title: data.track?.title,
-            artist: artists2string(data.track?.artists),
-            album: data.track?.albums?.[0]?.title,
-        };
-
-        let coverRes, coverBuffer;
-        if (data.track?.coverUri) {
-            coverRes = await fetch(
-                "https://" + data.track?.coverUri.replace("%%", "1000x1000"),
-            );
-            coverBuffer = Buffer.from(await coverRes.arrayBuffer());
-            this.logger.info("Got cover");
-        }
-        if (coverBuffer) {
-            tags.APIC = coverBuffer;
-        }
-
-        return await NodeID3.write(tags, buffer);
-    }
-
     async fetchTrack(data) {
         const res = await fetch(data.downloadURL);
         let arrayBuffer = await res.arrayBuffer();
 
+        if(!arrayBuffer) return;
+
         if (data?.transport === 'encraw')
             arrayBuffer = await this.decryptData({ key: data.key, data: arrayBuffer });
 
-        return arrayBuffer
+        return Buffer.from(arrayBuffer);
     }
 
-    async downloadTrack(data) {
+    async fetchAlbumCover(data) {
+        let coverRes, coverBuffer;
+        if (data.track?.coverUri) {
+            coverRes = await fetch(
+                "https://" + data.track?.coverUri.replace("%%", "400x400"),
+            );
+            coverBuffer = Buffer.from(await coverRes.arrayBuffer());
+        }
+        return coverBuffer;
+    }
+
+    async handleSaveDialog(data) {
+        const fileExtension = data.codec.replaceAll("aac", "m4a").replace(/(.*)-mp4/, "$1");
+        const defaultFilepath = `${artists2string(data.track?.artists)} — ${data.track?.title}.`
+          .replace(/[/\\?%*:|"<>]/g, '_') + fileExtension;
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
-            defaultPath: `${artists2string(data.track?.artists)} — ${data.track?.title}.${data.codec.replace("-mp4", "")}`,
+            defaultPath: defaultFilepath, //.replace("-mp4", "")
         });
         if (canceled || !filePath || !data.downloadURL)
             return this.logger.info("Track download canceled");
 
+        return filePath;
+    }
+
+    async removeIfExistsDir(dirPath) {
+        if (fsSync.existsSync(dirPath)) {
+            await fs.rm(dirPath, { recursive: true });
+        }
+        this.logger.log("Deleted track directory.", dirPath);
+    }
+
+    async createTempDirPath(data) {
+        if(!data?.trackId) return;
+        const dirPath = path.join(TMP_PATH, data?.trackId);
+        await this.removeIfExistsDir(dirPath)
+        await fs.mkdir(dirPath);
+        this.logger.log("Created track directory.", dirPath);
+        return dirPath;
+    }
+
+    async reEncodeWithFfmpeg(data, finalFilepath, tempDirPath, tempFilepath) {
+        if (!fsSync.existsSync(tempDirPath) ||!fsSync.existsSync(tempFilepath)) return;
+        let withCover = false;
+        const coverPath = path.join(tempDirPath, "400x400.jpg");
+
+        if(fsSync.existsSync(coverPath)) {
+            withCover = true;
+        }
+
+        const args = [
+            "-i", `"${tempFilepath}"`,
+            ...(withCover ? ["-i", path.join(tempDirPath, "400x400.jpg")] : []),
+            "-map", "0:a",
+            ...(withCover ? ["-map", "1"] : []),
+            "-c:a", "copy",
+            ...(withCover ? ["-c:v", "mjpeg"] : []),
+            ...(withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
+            ...(withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
+            ...(withCover ? ["-disposition:v", "attached_pic"] : []),
+            ...(data.track?.artists ? ["-metadata", `artist="${artists2string(data.track?.artists)}"`] : []),
+            ...(data.track?.title ? ["-metadata", `title="${data.track?.title}"`] : []),
+            ...(data.track?.albums?.[0]?.title ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`] : []),
+            `"${finalFilepath}"`
+        ];
+
+        const command = `${extractedFfmpegPath} ${args.join(" ")}`;
+        this.logger.info(`ReEncoding: ${command}`);
+
+
+        try {
+            const { stdout, stderr } = await execPromise(command);
+            this.logger.info(stdout);
+            this.logger.error(stderr);
+        } catch (error) {
+            this.logger.error(`ffmpeg error: ${error.message}`);
+        }
+    }
+
+    async downloadTrack(data) {
+
+        const finalTrackPath = await this.handleSaveDialog(data);
+        const tempDirPath = await this.createTempDirPath(data);
+        if(!tempDirPath) return;
+
+        const tempTrackPath = path.join(tempDirPath, `${data.trackId}.${data.codec}`);
 
         this.window.setProgressBar(0);
 
-        const arrayBuffer = await this.fetchTrack(data);
-
-        let buffer = Buffer.from(arrayBuffer);
-
-        this.window.setProgressBar(1.1);
-
+        const buffer = await this.fetchTrack(data);
         this.logger.info("Got track");
 
-        buffer = await this.applyNodeID3(data, buffer);
+        this.window.setProgressBar(0.6);
 
-        this.window.setProgressBar(0.95);
+        await fs.writeFile(tempTrackPath, buffer);
+        this.logger.info("Track saved to temp directory");
+        this.window.setProgressBar(0.8);
 
-        await fs.writeFile(filePath, buffer);
+        const coverBuffer = await this.fetchAlbumCover(data);
+        this.logger.info("Got cover");
+        if (coverBuffer) {
+            await fs.writeFile(path.join(tempDirPath, "400x400.jpg"), coverBuffer);
+            this.logger.info("Cover saved to temp directory");
+        }
 
-        this.window.setProgressBar(1);
-
+        await this.reEncodeWithFfmpeg(data, finalTrackPath, tempDirPath, tempTrackPath);
+        this.window.setProgressBar(1.0);
         this.logger.info("Track downloaded");
 
         setTimeout(() => {
