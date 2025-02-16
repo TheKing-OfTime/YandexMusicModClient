@@ -1,0 +1,39 @@
+name: Compress and Reupload Asset
+
+on:
+  release:
+    types: [published]  # Запускается при публикации нового релиза
+
+jobs:
+  compress_asset:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v4
+
+      - name: Установить Zstd
+        run: sudo apt-get update && sudo apt-get install -y zstd
+
+      - name: Скачать ассет
+        run: |
+          ASSET_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.assets[] | select(.name | test("app.asar")) | .browser_download_url')
+
+          if [ -z "$ASSET_URL" ]; then
+            echo "❌ Asset not found!"
+            exit 1
+          fi
+
+          curl -L -o original_asset.bin "$ASSET_URL"
+
+      - name: Переименовать и сжать в Zstd
+        run: |
+          mv original_asset.bin app.asar
+          zstd -15 -o compressed-app.asar.zst app.asar  # Используем уровень сжатия 15
+
+      - name: Загрузить сжатый файл в релиз
+        uses: softprops/action-gh-release@v2
+        with:
+          files: compressed-app.asar.zst
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
