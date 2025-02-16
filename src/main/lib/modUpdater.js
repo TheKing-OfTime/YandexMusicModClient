@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const zlib = require('node:zlib');
 const exec = require("child_process").exec;
 const promisify = require("util").promisify;
 const fsPromise = require("fs").promises;
@@ -11,6 +12,7 @@ const https = require("https");
 const axios = require("axios");
 
 const execPromise = promisify(exec);
+const unzipPromise = promisify(zlib.unzip);
 
 exports.getModUpdater = exports.ModUpdater = void 0;
 
@@ -22,6 +24,10 @@ const APP_ASAR_PATH = path.join(
 const APP_ASAR_TMP_DOWNLOAD_PATH = path.join(
   process.env.LOCALAPPDATA,
   "\\Programs\\YandexMusic\\temp\\app.asar",
+);
+const APP_ASAR_TMP_GZIP_DOWNLOAD_PATH = path.join(
+  process.env.LOCALAPPDATA,
+  "\\Programs\\YandexMusic\\temp\\app.asar.gz",
 );
 const TMP_PATH = path.join(
   process.env.LOCALAPPDATA,
@@ -36,7 +42,9 @@ class ModUpdater {
   onModUpdateListeners = [];
   logger;
   latestUrl = undefined;
+  isCompressed = false;
   constructor() {
+    this.isCompressed = false;
     this.logger = new Logger_js_1.Logger("ModUpdaterLogger");
     this.logger.log("Initializing");
   }
@@ -52,6 +60,18 @@ class ModUpdater {
     if (this.updaterId) {
       clearInterval(this.updaterId);
       this.logger.log("Loop stopped");
+    }
+  }
+
+  parseAssets(assets) {
+    const priorityFiles = ["app.asar.gz", "app.asar"];
+
+    for (const filename of priorityFiles) {
+      const asset = assets.find((a) => a.name === filename);
+      if (asset) {
+        if (filename === "app.asar.gz") this.isCompressed = true;
+        return asset.browser_download_url;
+      }
     }
   }
 
@@ -81,14 +101,15 @@ class ModUpdater {
         "->",
         latestVersion,
       );
-      return releaseData.assets[0].browser_download_url;
+      this.isCompressed = false;
+      return this.parseAssets(releaseData.assets);
     }
     return false;
   }
 
   async downloadFile(url, path, callback) {
     const httpsAgent = new https.Agent({
-      rejectUnauthorized: false,
+      rejectUnauthorized: false, keepAlive: true,
     });
 
     const writer = fs.createWriteStream(path);
@@ -126,16 +147,17 @@ class ModUpdater {
       callback(-1, -1);
     });
 
-    writer.on("finish", () => {
+    writer.on("finish", async () => {
       try {
         if (!isFinished) return;
         if (isError) return;
-          this.logger.log("Downloaded update.");
-          this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
-          callback(1.1, -1);
-          this.logger.log("Updated installed.");
+        this.logger.log("Downloaded update.");
+        if(this.isCompressed) await this.decompressGzipFile(APP_ASAR_TMP_GZIP_DOWNLOAD_PATH, APP_ASAR_TMP_DOWNLOAD_PATH)
+        await this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
+        callback(1.1, -1);
+        this.logger.log("Updated installed.");
       } catch (e) {
-        fsPromise.unlink(path);
+        await fsPromise.unlink(path);
         this.logger.error("Error writing file:", e);
         callback(-1, -1);
       }
@@ -162,6 +184,15 @@ class ModUpdater {
     this.logger.log("Copied: ", oldPath, " to ", newPath);
   }
 
+  async decompressGzipFile(oldPath, newPath) {
+      const compressedData = await fsPromise.readFile(oldPath);
+
+      const decompressedData = await unzipPromise(compressedData);
+
+      await fsPromise.writeFile(newPath, decompressedData);
+    this.logger.log("Decompressed: ", oldPath, " to ", newPath);
+  }
+
   onUpdateAvailable(listener) {
     this.onModUpdateListeners.push(listener);
   }
@@ -172,7 +203,9 @@ class ModUpdater {
     }
     await this.downloadFile(
       this.latestUrl,
-      APP_ASAR_TMP_DOWNLOAD_PATH,
+      this.isCompressed
+        ? APP_ASAR_TMP_GZIP_DOWNLOAD_PATH
+        : APP_ASAR_TMP_DOWNLOAD_PATH,
       callback,
     );
   }

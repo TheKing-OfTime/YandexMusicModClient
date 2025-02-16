@@ -217,7 +217,7 @@ const handleApplicationEvents = (window) => {
         events_js_1.Events.INSTALL_MOD_UPDATE,
       );
 
-      let callback = (progressRenderer, progressWindow) => {
+      let callback = async (progressRenderer, progressWindow) => {
         sendProgressBarChange(window, "modUpdateToast", progressRenderer * 100);
         window.setProgressBar(progressWindow);
       };
