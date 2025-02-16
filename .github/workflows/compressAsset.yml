@@ -13,8 +13,8 @@ jobs:
       - name: Checkout репозитория
         uses: actions/checkout@v4
 
-      - name: Установить Zstd
-        run: sudo apt-get update && sudo apt-get install -y zstd
+      - name: Установить Gzip
+        run: sudo apt-get update && sudo apt-get install -y gzip
 
       - name: Определить тег релиза
         id: get_release
@@ -37,15 +37,15 @@ jobs:
 
           curl -L -o original_asset.bin "$ASSET_URL"
 
-      - name: Переименовать и сжать в Zstd
+      - name: Переименовать и сжать в Gzip
         run: |
           mv original_asset.bin app.asar
-          zstd -15 -o compressed-app.asar.zst app.asar  # Используем уровень сжатия 15
+          gzip -k -9 app.asar  # Используем максимальный уровень сжатия (-9)
 
       - name: Загрузить сжатый файл в релиз
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.TAG }}  # Используем правильный тег
-          files: compressed-app.asar.zst
+          files: app.asar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
