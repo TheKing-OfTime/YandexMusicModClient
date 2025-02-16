@@ -1,0 +1,51 @@
+name: Compress and Reupload Asset
+
+on:
+  release:
+    types: [published]  # Автоматический запуск при новом релизе
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  compress_asset:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v4
+
+      - name: Установить Gzip
+        run: sudo apt-get update && sudo apt-get install -y gzip
+
+      - name: Определить тег релиза
+        id: get_release
+        run: |
+          if [ "${{ github.event_name }}" == "release" ]; then
+            echo "TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          else
+            LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tag_name')
+            echo "TAG=$LATEST_TAG" >> $GITHUB_ENV
+          fi
+
+      - name: Скачать ассет
+        run: |
+          ASSET_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.assets[] | select(.name | test("app.asar")) | .browser_download_url')
+
+          if [ -z "$ASSET_URL" ]; then
+            echo "❌ Asset not found!"
+            exit 1
+          fi
+
+          curl -L -o original_asset.bin "$ASSET_URL"
+
+      - name: Переименовать и сжать в Gzip
+        run: |
+          mv original_asset.bin app.asar
+          gzip -k -9 app.asar  # Используем максимальный уровень сжатия (-9)
+
+      - name: Загрузить сжатый файл в релиз
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}  # Используем правильный тег
+          files: app.asar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
