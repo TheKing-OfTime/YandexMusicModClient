@@ -59,6 +59,14 @@ function numberToUint8Counter(num) {
     return counter;
 }
 
+function getFileExtensionFromCodec(codec) {
+    return codec.replaceAll("he-aac", "m4a").replaceAll("aac", "m4a").replace(/(.*)-mp4/, "$1");
+}
+
+function removeInvalidCharsFromFilename(str) {
+    return str.replace(/[/\\?%*:|"<>]/g, '_');
+}
+
 class TrackDownloader {
     logger;
     window;
@@ -135,9 +143,8 @@ class TrackDownloader {
     }
 
     async handleSaveDialog(data) {
-        const fileExtension = data.codec.replaceAll("aac", "m4a").replace(/(.*)-mp4/, "$1");
-        const defaultFilepath = `${artists2string(data.track?.artists)} — ${data.track?.title}.`
-          .replace(/[/\\?%*:|"<>]/g, '_') + fileExtension;
+        const fileExtension = getFileExtensionFromCodec(data.codec);
+        const defaultFilepath = removeInvalidCharsFromFilename(`${artists2string(data.track?.artists)} — ${data.track?.title}.`) + fileExtension;
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
             defaultPath: defaultFilepath, //.replace("-mp4", "")
