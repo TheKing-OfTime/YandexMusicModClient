@@ -1,6 +1,7 @@
 name: Compress and Reupload Asset
 
 on:
+  workflow_dispatch:
   release:
     types: [published]  # Запускается при публикации нового релиза
 
