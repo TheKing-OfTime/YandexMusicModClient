@@ -9676,6 +9676,23 @@
             theState?.state?.queueState?.currentEntity?.value?.entity
               ?.mediaSourceData?.data,
           );
+          let onDownloadClick = (0, x.useCallback)(() => {
+              if (!downloadInfo?.quality) return;
+              electronBridge.sendDownloadTrack({
+                downloadURL: downloadInfo?.url,
+                codec: downloadInfo?.codec,
+                trackId: downloadInfo?.trackId,
+                transport: downloadInfo?.transport,
+                key: downloadInfo?.key,
+                track: {
+                  title: JSON.parse(JSON.stringify(a.title)),
+                  artists: JSON.parse(JSON.stringify(a.artists)),
+                  albums: JSON.parse(JSON.stringify(a.albums)),
+                  coverUri: JSON.parse(JSON.stringify(a.coverUri)),
+                },
+              });
+            }, [a, downloadInfo]);
+
           return (
             (0, x.useEffect)(() => {
               const timer = setTimeout(() => {
@@ -9824,10 +9841,11 @@
                           U,
                           (0, _.jsx)(N.wx, {
                             title: "Качество трека",
-                            description:
-                                downloadInfo?.quality ? (downloadInfo?.bitrate !== 0
+                            description: downloadInfo?.quality
+                              ? downloadInfo?.bitrate !== 0
                                 ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
-                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`) : 'Не удалось получить качество трека',
+                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`
+                              : "Не удалось получить качество трека",
                             children: (0, _.jsxs)("div", {
                               className: "eQt33MLDiQ6DRSuLaYEp",
                               children: (0, _.jsxs)("span", {
@@ -9841,30 +9859,10 @@
                                 children:
                                   (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                     ? codecMap[downloadInfo?.codec]
-                                    : qualityMap[downloadInfo?.quality]) ?? "NONE",
+                                    : qualityMap[downloadInfo?.quality]) ??
+                                  "NONE",
                               }),
-                              onClick: () => {
-                                if(!downloadInfo?.quality) return;
-                                electronBridge.sendDownloadTrack({
-                                  downloadURL: downloadInfo?.url,
-                                  codec: downloadInfo?.codec,
-                                  trackId: downloadInfo?.trackId,
-                                  transport: downloadInfo?.transport,
-                                  key: downloadInfo?.key,
-                                  track: {
-                                    title: JSON.parse(JSON.stringify(a.title)),
-                                    artists: JSON.parse(
-                                      JSON.stringify(a.artists),
-                                    ),
-                                    albums: JSON.parse(
-                                      JSON.stringify(a.albums),
-                                    ),
-                                    coverUri: JSON.parse(
-                                      JSON.stringify(a.coverUri),
-                                    ),
-                                  },
-                                });
-                              },
+                              onClick: onDownloadClick,
                             }),
                           }),
                           (0, _.jsx)(t0, {
@@ -10072,7 +10070,7 @@
             children: [
               (0, _.jsx)(c, {
                 onLikeClick: r,
-                  onDislikeClick: o,
+                onDislikeClick: o,
                 entityMeta: a.entityMeta,
                 className: (0, v.W)(t, im().root),
               }),
