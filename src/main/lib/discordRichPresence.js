@@ -252,20 +252,24 @@ async function setActivity(
 }
 
 const tryConnect = () => {
-  rpc.clearActivity();
-  return rpc.login({ clientId }).catch((e) => {
-    discordRichPresenceLogger.error(e);
-  });
+  try {
+    rpc.clearActivity();
+    return rpc.login({ clientId })
+  } catch (e) {
+    discordRichPresenceLogger.error('Try connection failed:', e);
+  }
 };
 
 const tryReconnect = async () => {
-  await rpc.clearActivity();
-  await rpc.destroy();
-  rpc = null;
-  initRPC();
-  return await rpc.login({ clientId }).catch((e) => {
-    discordRichPresenceLogger.error(e);
-  });
+  try {
+    await rpc.clearActivity();
+    await rpc.destroy();
+    rpc = null;
+    initRPC();
+    return await rpc.login({ clientId })
+  } catch (e) {
+    discordRichPresenceLogger.error('Try reconnection failed:', e);
+  }
 };
 
 tryConnect();
