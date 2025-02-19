@@ -159,15 +159,19 @@ class TrackDownloader {
         if (fsSync.existsSync(dirPath)) {
             await fs.rm(dirPath, { recursive: true });
         }
-        this.logger.log("Deleted track directory.", dirPath);
+        this.logger.log("Deleted temp track directory.", dirPath);
     }
 
     async createTempDirPath(data) {
         if(!data?.trackId) return;
+        if (!fsSync.existsSync(TMP_PATH)) {
+            await fs.mkdir(TMP_PATH);
+            this.logger.log("Created temp directory.");
+        }
         const dirPath = path.join(TMP_PATH, data?.trackId);
         await this.removeIfExistsDir(dirPath)
         await fs.mkdir(dirPath);
-        this.logger.log("Created track directory.", dirPath);
+        this.logger.log("Created temp track directory.", dirPath);
         return dirPath;
     }
 
@@ -220,7 +224,7 @@ class TrackDownloader {
         this.window.setProgressBar(0);
 
         const buffer = await this.fetchTrack(data);
-        this.logger.info("Got track");
+        this.logger.info("Got track. Saving to:", tempTrackPath);
 
         this.window.setProgressBar(0.6);
 
