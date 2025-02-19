@@ -62,6 +62,7 @@ const handleApplicationEvents = (window) => {
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
     async (event, data) => {
+        eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
         await trackDownloader.downloadTrack(data);
     },
   );
