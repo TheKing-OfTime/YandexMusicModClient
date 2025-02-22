@@ -9677,21 +9677,21 @@
               ?.mediaSourceData?.data,
           );
           let onDownloadClick = (0, x.useCallback)(() => {
-              if (!downloadInfo?.quality) return;
-              electronBridge.sendDownloadTrack({
-                downloadURL: downloadInfo?.url,
-                codec: downloadInfo?.codec,
-                trackId: downloadInfo?.trackId,
-                transport: downloadInfo?.transport,
-                key: downloadInfo?.key,
-                track: {
-                  title: JSON.parse(JSON.stringify(a.title)),
-                  artists: JSON.parse(JSON.stringify(a.artists)),
-                  albums: JSON.parse(JSON.stringify(a.albums)),
-                  coverUri: JSON.parse(JSON.stringify(a.coverUri)),
-                },
-              });
-            }, [a, downloadInfo]);
+            if (!downloadInfo?.quality) return;
+            electronBridge.sendDownloadTrack({
+              downloadURL: downloadInfo?.url,
+              codec: downloadInfo?.codec,
+              trackId: downloadInfo?.trackId,
+              transport: downloadInfo?.transport,
+              key: downloadInfo?.key,
+              track: {
+                title: JSON.parse(JSON.stringify(a.title)),
+                artists: JSON.parse(JSON.stringify(a.artists)),
+                albums: JSON.parse(JSON.stringify(a.albums)),
+                coverUri: JSON.parse(JSON.stringify(a.coverUri)),
+              },
+            });
+          }, [a, downloadInfo]);
 
           return (
             (0, x.useEffect)(() => {
@@ -9878,7 +9878,10 @@
                           }),
                         ],
                       }),
-                    (0, _.jsx)(iv.F, {}),
+                    (0, _.jsx)(N.wx, {
+                      title: `${Math.round((r?.volume ?? 0)*100)}%`,
+                      children: (0, _.jsxs)("div", {children:(0, _.jsx)(iv.F, {})}),
+                    }),
                   ],
                 }),
               ],
