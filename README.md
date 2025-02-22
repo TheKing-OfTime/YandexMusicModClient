@@ -129,6 +129,14 @@ Returns dislike button on main player bar
 
 </details>
 
+### Return repeat button
+<details>
+   <summary>Details</summary>
+   
+When My Vibe is in use, the repeat button on the main player bar becomes available.
+
+</details>
+
 ### Track quality display
 <details>
    <summary>Details</summary>
