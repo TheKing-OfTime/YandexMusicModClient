@@ -988,7 +988,10 @@
             window.nativeSettings.set("modFeatures.discordRPC.enable", e);
           }, []),
           onDiscordFromYnisonToggle = (0, d.useCallback)(async (e) => {
-            console.log("modFeatures.discordRPC.fromYnison toggled. Value: ", e);
+            console.log(
+              "modFeatures.discordRPC.fromYnison toggled. Value: ",
+              e,
+            );
             window.nativeSettings.set("modFeatures.discordRPC.fromYnison", e);
           }, []),
           onDiscordShowButtonsToggle = (0, d.useCallback)(async (e) => {
@@ -1283,6 +1286,16 @@
               e,
             );
           }, []),
+          onShowRepeatButtonOnVibe = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.showRepeatButtonOnVibe toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.showRepeatButtonOnVibe",
+              e,
+            );
+          }, []),
           onShowCodecToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark toggled. Value: ",
@@ -1333,6 +1346,18 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
+                  title: "Повтор трека в Моей Волне",
+                  description:
+                    "Кнопка повтора будет доступна даже если играет Волна",
+                  onChange: onShowRepeatButtonOnVibe,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.showRepeatButtonOnVibe",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
                   title: "Отображать кодек",
                   description: "Отображает кодек вместо качества трека",
                   onChange: onShowCodecToggle,
@@ -1358,95 +1383,98 @@
         });
       });
 
-        let vibeBehaviorEnhancementsSettings = (0, i.Pi)(() => {
-            let { formatMessage: e } = (0, r.Z)(),
-                {
-                    modals: { vibeBehaviorEnhancementsSettingsModal: t },
-                } = (0, _.oR4)(),
-                { notify: i } = (0, _.d$W)(),
-                onDisableRendering = (0, d.useCallback)(async (e) => {
-                    console.log(
-                        "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
-                        e,
-                    );
-                    window.nativeSettings.set(
-                        "modFeatures.vibeAnimationEnhancement.disableRendering",
-                        e,
-                    );
-                }, []),
-                onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
-                    console.log(
-                        "modFeatures.vibeAnimationEnhancement.playOnAnyEntity. Value: ",
-                        e,
-                    );
-                    window.nativeSettings.set(
-                        "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
-                        e,
-                    );
-                }, []),
-                onAutoLaunchOnAppStartup = (0, d.useCallback)(async (e) => {
-                    console.log(
-                        "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup toggled. Value: ",
-                        e,
-                    );
-                    window.nativeSettings.set(
-                        "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
-                        e,
-                    );
-                }, []);
-            return (0, n.jsx)(f.u, {
-                className: b().root,
-                style: { "max-width": "500px" },
-                title: "Поведение Моей Волны",
-                headerClassName: B().modalHeader,
-                contentClassName: B().modalContent,
-                open: t.isOpened,
-                onOpenChange: t.onOpenChange,
-                onClose: t.close,
-                size: "fitContent",
-                placement: "center",
-                labelClose: e({ id: "interface-actions.close" }),
-                children: (0, n.jsx)("ul", {
-                    className: Z().root,
-                    style: { width: "466px" },
-                    children: [
-                        (0, n.jsx)("li", {
-                            className: Z().item,
-                            children: (0, n.jsx)(P, {
-                                title: "Отключить отрисовку",
-                                description: "Значительно увеличивает производительность на слабом железе",
-                                onChange: onDisableRendering,
-                                isChecked: window.nativeSettings.get(
-                                    "modFeatures.vibeAnimationEnhancement.disableRendering",
-                                ),
-                            }),
-                        }),
-                        (0, n.jsx)("li", {
-                            className: Z().item,
-                            children: (0, n.jsx)(P, {
-                                title: "Реакция анимации на любые треки",
-                                description: "Появится реакция на треки даже когда включена не Моя Волна",
-                                onChange: onPlayOnAnyEntityToggle,
-                                isChecked: window.nativeSettings.get(
-                                    "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
-                                ),
-                            }),
-                        }),
-                        (0, n.jsx)("li", {
-                            className: Z().item,
-                            children: (0, n.jsx)(P, {
-                                title: "Запускать при старте приложения",
-                                description: "Запустит последний трек сразу после старта приложения",
-                                onChange: onAutoLaunchOnAppStartup,
-                                isChecked: window.nativeSettings.get(
-                                    "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
-                                ),
-                            }),
-                        }),
-                    ],
+      let vibeBehaviorEnhancementsSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { vibeBehaviorEnhancementsSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+          onDisableRendering = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.disableRendering",
+              e,
+            );
+          }, []),
+          onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.playOnAnyEntity. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+              e,
+            );
+          }, []),
+          onAutoLaunchOnAppStartup = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
+              e,
+            );
+          }, []);
+        return (0, n.jsx)(f.u, {
+          className: b().root,
+          style: { "max-width": "500px" },
+          title: "Поведение Моей Волны",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: Z().root,
+            style: { width: "466px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отключить отрисовку",
+                  description:
+                    "Значительно увеличивает производительность на слабом железе",
+                  onChange: onDisableRendering,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.disableRendering",
+                  ),
                 }),
-            });
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Реакция анимации на любые треки",
+                  description:
+                    "Появится реакция на треки даже когда включена не Моя Волна",
+                  onChange: onPlayOnAnyEntityToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Запускать при старте приложения",
+                  description:
+                    "Запустит последний трек сразу после старта приложения",
+                  onChange: onAutoLaunchOnAppStartup,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
+                  ),
+                }),
+              }),
+            ],
+          }),
         });
+      });
 
       var N = o(9695),
         k = o(82036),
@@ -1670,7 +1698,8 @@
               aboutAppModal: o,
               clearMemoryModal: i,
               discordRpcSettingsModal: discordRpcSettingsModal,
-                vibeBehaviorEnhancementsSettingsModal: vibeBehaviorEnhancementsSettingsModal,
+              vibeBehaviorEnhancementsSettingsModal:
+                vibeBehaviorEnhancementsSettingsModal,
               playerBarEnhancementsSettingsModal:
                 playerBarEnhancementsSettingsModal,
               windowBehaviorSettingsModal: windowBehaviorSettingsModal,
@@ -1966,17 +1995,17 @@
                   (0, n.jsx)(discordRpcSettings, {}),
                 ],
               }),
-                (0, n.jsx)("li", {
-                    className: Z().item,
-                    children: [
-                        (0, n.jsx)(S, {
-                            title: "Поведение Моей Волны",
-                            description: "Настройка поведения и анимации Моей Волны",
-                            onClick: vibeBehaviorEnhancementsSettingsModal.open,
-                        }),
-                        (0, n.jsx)(vibeBehaviorEnhancementsSettings, {}),
-                    ],
-                }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: "Поведение Моей Волны",
+                    description: "Настройка поведения и анимации Моей Волны",
+                    onClick: vibeBehaviorEnhancementsSettingsModal.open,
+                  }),
+                  (0, n.jsx)(vibeBehaviorEnhancementsSettings, {}),
+                ],
+              }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: [

@@ -45,6 +45,7 @@ electron_1.contextBridge.exposeInMainWorld(
     ?.showCodecInsteadOfQualityMark,
 );
 electron_1.contextBridge.exposeInMainWorld('SHOW_DISLIKE_BUTTON', () => store_js_1.getModFeatures()?.playerBarEnhancement?.showDislikeButton);
+electron_1.contextBridge.exposeInMainWorld('SHOW_REPEAT_BUTTON_ON_VIBE', () => store_js_1.getModFeatures()?.playerBarEnhancement?.showRepeatButtonOnVibe);
 electron_1.contextBridge.exposeInMainWorld('ALWAYS_SHOW_PLAYER_TIMESTAMPS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.alwaysShowPlayerTimestamps);
 electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', () => defaultExperimentOverrides);
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {

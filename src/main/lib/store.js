@@ -80,6 +80,7 @@ const init = () => {
     },
     playerBarEnhancement: {
       showDislikeButton: true,
+      showRepeatButtonOnVibe: true,
       showCodecInsteadOfQualityMark: false,
       alwaysShowPlayerTimestamps: false,
     },
