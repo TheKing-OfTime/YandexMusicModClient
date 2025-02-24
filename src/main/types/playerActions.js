@@ -17,12 +17,12 @@ var PlayerActions;
     PlayerActions["DISLIKE"] = "DISLIKE";
     PlayerActions["DISLIKE_NONE"] = "DISLIKE_NONE";
 
-    PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";
+    PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";   // UNSUPPORTED
     PlayerActions["REPEAT_NONE"] = "REPEAT_NONE";
     PlayerActions["REPEAT_CONTEXT"] = "REPEAT_CONTEXT";
     PlayerActions["REPEAT_ONE"] = "REPEAT_ONE";
 
     PlayerActions["TOGGLE_SHUFFLE"] = "TOGGLE_SHUFFLE";
-    PlayerActions["SHUFFLE"] = "SHUFFLE";
-    PlayerActions["SHUFFLE_NONE"] = "SHUFFLE_NONE";
+    PlayerActions["SHUFFLE"] = "SHUFFLE";               // UNSUPPORTED
+    PlayerActions["SHUFFLE_NONE"] = "SHUFFLE_NONE";     // UNSUPPORTED
 })(PlayerActions || (exports.PlayerActions = PlayerActions = {}));
