@@ -13,7 +13,7 @@
    </a>
 </p>
 
-## This is a modification for Yandex Music Desktop application which unmodified version can be downloaded [here](https://music.yandex.com/download/)
+## This is a modification for [Yandex Music Desktop](https://music.yandex.com/download/) application.
 ### YandexMusicModClient or its developer is not affiliated with Yandex or any of their companies, staff etc.
 <details>
    <summary>Message for Yandex Music Staff</summary>
@@ -233,11 +233,11 @@ Settings can be found in `%appdata%\YandexMusic\config.json`
 
 In app UI:
 <p align="left">
-<img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/89630ab8-a89c-41c3-983d-6352306398df">
+<img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/b53302b8-cd6c-4f66-b1e4-bb16a7f1db77">
 </p>
 
 > [!NOTE]  
-> App restart required for settings apply.
+> App restart required for some settings apply.
 
 ## Support
 If you really enjoyed the new experience with this modification, you can support my work on it:
