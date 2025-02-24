@@ -5283,6 +5283,15 @@
                             (0, k.jsx)(Tooltip.wx, {
                               title: `${i.currentPreset.preamp ?? 0} dB`,
                               children: (0, k.jsxs)("div", {
+                                onWheel: (e) => {
+                                  const delta = e.deltaY / 1000;
+                                  if (!i.currentPreset.preamp) return;
+                                  let value = (
+                                    parseFloat(i.currentPreset.preamp) +
+                                    parseFloat(delta)
+                                  ).toFixed(1);
+                                  p(Math.min(Math.max(value, 0.5), 1.5));
+                                },
                                 children: (0, k.jsx)(G, {
                                   isDisabled: a,
                                   minValue: 0.5,
@@ -5345,6 +5354,14 @@
                             return (0, k.jsx)(Tooltip.wx, {
                               title: `${r ?? 0} dB`,
                               children: (0, k.jsxs)("div", {
+                                onWheel: (evt) => {
+                                  const delta = evt.deltaY / 1000;
+                                  if (r === undefined) return;
+                                  let value = (
+                                    parseFloat(r) + parseFloat(delta)
+                                  ).toFixed(1);
+                                  f(e.key)(Math.min(Math.max(value, -12), 12));
+                                },
                                 children: (0, k.jsx)(
                                   G,
                                   {
