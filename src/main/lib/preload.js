@@ -34,6 +34,7 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
     }
 });
 electron_1.contextBridge.exposeInMainWorld('IS_DEVTOOLS_ENABLED', Boolean(store_js_1.getDevtoolsEnabled()));
+electron_1.contextBridge.exposeInMainWorld('ENABLE_YNISON_REMOTE_CONTROL', Boolean(store_js_1.getEnableYnisonRemoteControl()));
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_INTENSITY_COEFFICIENT', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.intensityCoefficient);
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_MAX_FPS', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.maxFPS);
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_LINEAR_DEBOOST', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.linearDeBoost);

@@ -10,6 +10,7 @@ var StoreKeys;
     StoreKeys["WINDOW_POSITION"] = "windowPosition";
     StoreKeys["MOD_FEATURES"] = "modFeatures";
     StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
+    StoreKeys["ENABLE_YNISON_REMOTE_CONTROL"] = "enableYnisonRemoteControl";
     StoreKeys["ENABLE_AUTO_UPDATES"] = "enableAutoUpdates";
     StoreKeys["DEFAULT_EXPERIMENT_OVERRIDES"] = "defaultExperimentOverrides";
     StoreKeys["DEVICE_ID"] = "deviceId";

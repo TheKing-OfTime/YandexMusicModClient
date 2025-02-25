@@ -1786,6 +1786,20 @@
             },
             [x],
           ),
+          onEnableYnisonRemoteControlToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("Ynison Remote Control toggled. Value: ", e);
+              window.nativeSettings.set("enableYnisonRemoteControl", e);
+              g(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [u],
+          ),
           onDevtoolsToggle = (0, d.useCallback)(
             async (e) => {
               console.log("devtools toggled. Value: ", e);
@@ -2049,6 +2063,16 @@
                   }),
                   (0, n.jsx)(windowBehaviorSettings, {}),
                 ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Включить Ynison Remote",
+                  description:
+                    "Даст возможность управлять этим плеером с других устройств [ALPHA]",
+                  onChange: onEnableYnisonRemoteControlToggle,
+                  isChecked: window.nativeSettings.get("enableYnisonRemoteControl"),
+                }),
               }),
               (0, n.jsx)("li", {
                 className: Z().item,

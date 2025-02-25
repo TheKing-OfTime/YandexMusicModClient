@@ -100,8 +100,9 @@ const init = () => {
       TOGGLE_SHUFFLE: "Ctrl+'",
     },
   });
-  initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
+  initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
+  initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
   initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, {
       WebNextTrackLyrics: 'on',
       WebNextEnableNewQuality: 'prod',
@@ -222,6 +223,11 @@ const getDevtoolsEnabled = () => {
   return Boolean(store.get(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED));
 };
 exports.getDevtoolsEnabled = getDevtoolsEnabled;
+
+const getEnableYnisonRemoteControl = () => {
+    return Boolean(store.get(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL));
+};
+exports.getEnableYnisonRemoteControl= getEnableYnisonRemoteControl;
 
 const getAutoUpdatesEnabled = () => {
   return Boolean(store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES));

@@ -7232,7 +7232,7 @@
           },
           info: e,
           volume_info: { volume: 0, version: null },
-          is_shadow: !1,
+          is_shadow: !(window?.ENABLE_YNISON_REMOTE_CONTROL ?? false),
         },
         is_currently_active: !1,
         sync_state_from_eov_optional: null,
@@ -7505,7 +7505,7 @@
             e.rawData.rid
           ) {
             if (this.deviceConfig.device_id !== e.rawData.player_state.status.version.device_id) electronBridge.sendYnisonState(e);
-            if (this.deviceConfig.device_id === e.rawData?.active_device_id_optional) this.playbackController?.applyYnisonDiff(a);
+            if ((window?.ENABLE_YNISON_REMOTE_CONTROL ?? false) && (this.deviceConfig.device_id === e.rawData?.active_device_id_optional)) this.playbackController?.applyYnisonDiff(a);
           }
         }
         constructor({
