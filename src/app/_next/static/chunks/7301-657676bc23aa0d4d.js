@@ -631,7 +631,7 @@
         return (0, r.jsxs)("div", {
           className: (0, o.W)(p().root, s),
           onWheel: (e) => {
-            const delta = e.deltaY / 10000;
+            const delta = (e.deltaY / 10000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
             if (!N) return;
             k(N + delta);
           },

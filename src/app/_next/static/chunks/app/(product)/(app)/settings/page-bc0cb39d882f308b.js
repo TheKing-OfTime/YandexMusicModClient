@@ -1315,6 +1315,16 @@
               "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
               e,
             );
+          }, []),
+          onInvertSliderOnScrollDeltaToggle = (0, d.useCallback)(async (e) => {
+              console.log(
+                  "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta toggled. Value: ",
+                  e,
+              );
+              window.nativeSettings.set(
+                  "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta",
+                  e,
+              );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1375,6 +1385,18 @@
                   onChange: onAlwaysShowPlayerTimestampsToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Инвертировать направление скролла",
+                  description:
+                    "Инвертирует направление скролла по слайдерам (Громкость и Эквалайзер)",
+                  onChange: onInvertSliderOnScrollDeltaToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta",
                   ),
                 }),
               }),

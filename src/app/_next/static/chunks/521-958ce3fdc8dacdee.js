@@ -5284,7 +5284,7 @@
                               title: `${i.currentPreset.preamp ?? 0} dB`,
                               children: (0, k.jsxs)("div", {
                                 onWheel: (e) => {
-                                  const delta = e.deltaY / 1000;
+                                  const delta = (e.deltaY / 1000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
                                   if (!i.currentPreset.preamp) return;
                                   let value = (
                                     parseFloat(i.currentPreset.preamp) +
@@ -5355,7 +5355,7 @@
                               title: `${r ?? 0} dB`,
                               children: (0, k.jsxs)("div", {
                                 onWheel: (evt) => {
-                                  const delta = evt.deltaY / 1000;
+                                  const delta = (evt.deltaY / 1000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
                                   if (r === undefined) return;
                                   let value = (
                                     parseFloat(r) + parseFloat(delta)

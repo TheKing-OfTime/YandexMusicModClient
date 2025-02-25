@@ -83,6 +83,7 @@ const init = () => {
       showRepeatButtonOnVibe: true,
       showCodecInsteadOfQualityMark: false,
       alwaysShowPlayerTimestamps: false,
+      invertSliderOnScrollDelta: true,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,
