@@ -6772,7 +6772,8 @@
         changeStatus(e) {
           let t = new tK(),
             a = Number(e.playback_speed),
-            i = Number(e.progress_ms) / 1e3;
+            i = Number(e.progress_ms) / 1e3,
+            isPaused = e.paused ?? NaN;
           return (
             Number.isNaN(a) ||
               t.push(() =>
@@ -6781,7 +6782,7 @@
             Number.isNaN(i) ||
               t.push(() => {
                 if (
-                  this.playback.state.playerState.status.value === eE.Xz.PLAYING
+                  this.playback.state.playerState.status.value === eE.Xz.PLAYING || this.playback.state.playerState.status.value === eE.Xz.PAUSED
                 )
                   return this.playback
                     .setProgress(i)
@@ -6791,6 +6792,10 @@
                 } = this.playback.state.queueState;
                 return e && (e.entity.startPosition = i), Promise.resolve();
               }),
+            Number.isNaN(isPaused) ||
+                t.push(() => {
+                      isPaused ? this.playback.pause().then(() => Promise.resolve()) : this.playback.resume().then(() => Promise.resolve());
+                  }),
             t.exec()
           );
         }
@@ -7227,7 +7232,7 @@
           },
           info: e,
           volume_info: { volume: 0, version: null },
-          is_shadow: !0,
+          is_shadow: !1,
         },
         is_currently_active: !1,
         sync_state_from_eov_optional: null,
@@ -7288,9 +7293,9 @@
           })).player_state &&
             e.player_state.player_queue &&
             ((t = this.deviceConfig.device_id), !a || a === t) &&
-            this.ynisonConnector.updatePlayerState({
+            (this.lastSentUpdatePlayerStateRid = this.ynisonConnector.updatePlayerState({
               player_state: i.player_state,
-            });
+            }));
         }
         updatePlayingStatus() {
           var e, t;
@@ -7352,6 +7357,7 @@
           (0, $._)(this, "unsubscribeFromPlayerEvents", void 0),
             (0, $._)(this, "updateFullStateMessageRid", null),
             (0, $._)(this, "updateFullStateResponseRid", null),
+            (0, $._)(this, "lastSentUpdatePlayerStateRid", null),
             (0, $._)(this, "playback", void 0),
             (0, $._)(this, "ynisonStateController", void 0),
             (0, $._)(this, "deviceConfig", void 0),
@@ -7409,7 +7415,7 @@
                   V.DISCONNECTED ||
                 this.ynisonConnect(),
                 document.hidden &&
-                  t.state.playerState.status.value !== eE.Xz.PLAYING //&& this.ynisonDisconnect();
+                  t.state.playerState.status.value !== eE.Xz.PLAYING; //&& this.ynisonDisconnect();
             }),
             this.ynisonConnect();
         }
@@ -7422,7 +7428,7 @@
         }
         onMessageRecieved(e, t) {
           var a;
-          if (this.deviceConfig.device_id !== e.rawData.player_state.status.version.device_id) electronBridge.sendYnisonState(e);
+          this.handlePlayerStateUpdate(e, t);
           e.rawData.rid ===
           (null === (a = this.playbackToYnisonController) || void 0 === a
             ? void 0
@@ -7488,6 +7494,18 @@
             null === (i = this.playbackController) ||
               void 0 === i ||
               i.applyYnisonDiff(a);
+          }
+        }
+        handlePlayerStateUpdate(e, t) {
+          let a = this.ynisonStateController.calculateDiff({
+            newState: e.rawData,
+          });
+          if (
+            this.playbackToYnisonController?.lastSentUpdatePlayerStateRid !==
+            e.rawData.rid
+          ) {
+            if (this.deviceConfig.device_id !== e.rawData.player_state.status.version.device_id) electronBridge.sendYnisonState(e);
+            if (this.deviceConfig.device_id === e.rawData?.active_device_id_optional) this.playbackController?.applyYnisonDiff(a);
           }
         }
         constructor({
