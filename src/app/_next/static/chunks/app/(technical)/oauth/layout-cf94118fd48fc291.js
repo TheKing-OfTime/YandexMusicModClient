@@ -835,6 +835,7 @@
                 break;
               case "MOVE_FORWARD":
                 null == e || e.moveForward();
+                break;
               case "REPEAT_NONE":
                 null == e || e.setRepeatMode("none");
                 break;
@@ -844,21 +845,41 @@
               case "REPEAT_ONE":
                 null == e || e.setRepeatMode("one");
                 break;
+              case "TOGGLE_REPEAT":
+                let nextMode = "none";
+                switch (e?.state?.queueState?.repeat?.value) {
+                  case "none":
+                    nextMode =
+                      e?.state?.currentContext?.value?.contextData?.type ===
+                      "vibe"
+                        ? "one"
+                        : "context";
+                    break;
+                  case "context":
+                    nextMode = "one";
+                    break;
+                  case "one":
+                  default:
+                    nextMode = "none";
+                    break;
+                }
+                null == e || e.setRepeatMode(nextMode);
+                break;
               case "TOGGLE_SHUFFLE":
                 null == e || e.toggleShuffle();
                 break;
-                case "TOGGLE_LIKE":
-                case "LIKE":
-                case "LIKE_NONE":
-                    null == e || onLikeClick(sonataState.entityMeta, o);
-                    sendPlayerStateDefault(e);
-                    break;
-                case "DISLIKE":
-                case "DISLIKE_NONE":
-                case "TOGGLE_DISLIKE":
-                    null == e || onDislikeClick(sonataState.entityMeta, o);
-                    sendPlayerStateDefault(e);
-                    break;
+              case "TOGGLE_LIKE":
+              case "LIKE":
+              case "LIKE_NONE":
+                null == e || onLikeClick(sonataState.entityMeta, o);
+                sendPlayerStateDefault(e);
+                break;
+              case "DISLIKE":
+              case "DISLIKE_NONE":
+              case "TOGGLE_DISLIKE":
+                null == e || onDislikeClick(sonataState.entityMeta, o);
+                sendPlayerStateDefault(e);
+                break;
             }
           },
           [e],

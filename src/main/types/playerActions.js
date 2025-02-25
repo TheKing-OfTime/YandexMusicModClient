@@ -17,7 +17,7 @@ var PlayerActions;
     PlayerActions["DISLIKE"] = "DISLIKE";
     PlayerActions["DISLIKE_NONE"] = "DISLIKE_NONE";
 
-    PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";   // UNSUPPORTED
+    PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";
     PlayerActions["REPEAT_NONE"] = "REPEAT_NONE";
     PlayerActions["REPEAT_CONTEXT"] = "REPEAT_CONTEXT";
     PlayerActions["REPEAT_ONE"] = "REPEAT_ONE";

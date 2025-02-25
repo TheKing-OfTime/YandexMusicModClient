@@ -217,7 +217,7 @@ const updateTaskbarExtension = (window) => {
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Like toggled");
-        events_js_1.sendPlayerAction(window, nextRepeatAction);
+        events_js_1.sendPlayerAction(window, playerActions_js_1.PlayerActions.TOGGLE_REPEAT);
       },
     },
   ];
