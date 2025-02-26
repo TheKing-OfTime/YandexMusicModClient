@@ -10973,6 +10973,7 @@
           let I = (0, iD._Z)(T),
             k = (0, Z.useCallback)(() => {
               let e = p.get(iV.BUb.YmPlayerVolume);
+              e = Math.min(Math.max(e ?? 1, 0), 1);
               "number" == typeof e
                 ? (null == T || T.setVolume(e),
                   null == T || T.setVolume(e, iV.jiA.TRAILER),

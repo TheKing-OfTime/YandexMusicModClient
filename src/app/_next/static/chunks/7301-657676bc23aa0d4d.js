@@ -633,7 +633,7 @@
           onWheel: (e) => {
             const delta = (e.deltaY / 10000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
             if (!N) return;
-            k(N + delta);
+            k(Math.min(Math.max(N + delta, 0), 1));
           },
           children: [
             (0, r.jsx)(u.z, {
