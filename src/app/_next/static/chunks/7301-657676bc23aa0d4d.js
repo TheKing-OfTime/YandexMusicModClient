@@ -9886,7 +9886,7 @@
                     (0, _.jsx)(N.wx, {
                       title: `${Math.round((r?.volume ?? 0) * 100)}%`,
                       children: (0, _.jsxs)("div", {
-                        children: (0, _.jsx)(iv.F, { primaryValue: window?.ENABLE_YNISON_REMOTE_CONTROL ? window.r?.volume : undefined }),
+                        children: (0, _.jsx)(iv.F, { primaryValue: window?.ENABLE_YNISON_REMOTE_CONTROL ? r?.volume : undefined }),
                       }),
                     }),
                   ],
