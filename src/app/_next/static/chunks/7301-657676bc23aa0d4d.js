@@ -573,7 +573,7 @@
         p = i.n(v);
       let x = (0, s.Pi)((e) => {
         var t, i;
-        let { className: s } = e,
+        let { className: s, primaryValue: primaryValue } = e,
           { formatMessage: v } = (0, c.Z)(),
           x = (0, n.uK4)(),
           y = (0, n.R$C)(),
@@ -654,7 +654,7 @@
             (0, r.jsx)(_.i, {
               thumbSize: "s",
               trackSize: "s",
-              value: N,
+              value: primaryValue ?? N,
               maxValue: 1,
               step: 0.01,
               onChange: k,
@@ -9886,7 +9886,7 @@
                     (0, _.jsx)(N.wx, {
                       title: `${Math.round((r?.volume ?? 0) * 100)}%`,
                       children: (0, _.jsxs)("div", {
-                        children: (0, _.jsx)(iv.F, {}),
+                        children: (0, _.jsx)(iv.F, { primaryValue: window?.ENABLE_YNISON_REMOTE_CONTROL ? window.r?.volume : undefined }),
                       }),
                     }),
                   ],

@@ -6757,7 +6757,13 @@
             let t = e.player_state.status;
             s.push(() => this.changeStatus(t));
           }
+
+          if (e?.devices?.[0]?.volume) s.push(() => this.changeVolume(e?.devices?.[0]?.volume));
           return s.exec();
+        }
+        changeVolume(e) {
+          let t = Math.max(Math.min(e,1),0);
+          return Number.isNaN(a) || this.playback.setVolume(t).then(() => Promise.resolve());
         }
         changeOptions(e) {
           let t = tJ(e.repeat_mode);
