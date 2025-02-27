@@ -7495,6 +7495,7 @@
               eE.Xz.MEDIA_ELEMENT_ERROR,
             ].includes(t.state.playerState.status.value))
           ) {
+            a.player_state.status.paused = undefined;
             var i;
             null === (i = this.playbackController) ||
               void 0 === i ||
