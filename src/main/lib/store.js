@@ -109,12 +109,15 @@ const init = () => {
       WebNextEntityTrailer: 'on',
       WebNextWizard: 'on',
       WebNextTrailerAlbumFullQueueStart: 'on',
-      WebNextEnableYnison: 'default',
-  });
+      WebNextEnableYnison: 'on',
+      WebNextYaspCore: 'on',
+      WebNextAllowContainerCodecs: 'on',
+      WebNextCommunication: 'default'
+  }, true);
 };
 exports.init = init;
 
-const initField = (fieldKey, defaultValue) => {
+const initField = (fieldKey, defaultValue, alwaysReinit=false) => {
   if (
     typeof defaultValue === "object" &&
     defaultValue !== null &&
@@ -122,11 +125,11 @@ const initField = (fieldKey, defaultValue) => {
   ) {
     console.log("Object found checking if values inited");
     for (let key in defaultValue) {
-      initField(`${fieldKey}.${key}`, defaultValue[key]);
+      initField(`${fieldKey}.${key}`, defaultValue[key], alwaysReinit);
     }
     return;
   }
-  if (typeof store.get(fieldKey) === "undefined") {
+  if (!alwaysReinit && (typeof store.get(fieldKey) === "undefined")) {
     store.set(fieldKey, defaultValue);
     console.log("Inited", fieldKey, "to", defaultValue);
     return;
