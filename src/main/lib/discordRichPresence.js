@@ -330,7 +330,6 @@ const fromYnisonState = (ynisonState) => {
       partialPlayerState.progress / 1000,
     );
 
-  discordRichPresenceLogger.log(ynisonState, partialPlayerState);
   discordRichPresence(partialPlayerState);
 };
 
