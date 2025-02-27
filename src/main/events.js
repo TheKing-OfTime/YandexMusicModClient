@@ -141,7 +141,7 @@ const handleApplicationEvents = (window) => {
             window,
             playerActions_js_1.PlayerActions.TOGGLE_PLAY,
           );
-        }, 2000);
+        }, 2500);
       }
 
       const releaseNotes = await (0, loadReleaseNotes_js_1.loadReleaseNotes)(
