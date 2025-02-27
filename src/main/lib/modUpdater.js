@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const zlib = require('node:zlib');
+const zlib = require("node:zlib");
 const exec = require("child_process").exec;
 const promisify = require("util").promisify;
 const fsPromise = require("fs").promises;
@@ -75,25 +75,27 @@ class ModUpdater {
     }
   }
 
-  async check() {
-    const url = await this.checkForUpdates();
+  async check(force = false) {
+    const url = await this.checkForUpdates(force);
     if (!url) return;
 
     this.latestUrl = url;
-    //await this.deleteFile(APP_ASAR_PATH)
-    //await this.renameFile(APP_ASAR_UPDATE_PATH, APP_ASAR_PATH);
-    setTimeout(() => {
-      //That's disgusting fix. I know...
-      this.onModUpdateListeners.forEach((listener) => {
-        listener(currentVersion, latestVersion);
-      });
-    }, 5000);
+    force
+      ? this.onModUpdateListeners.forEach((listener) => {
+          listener(currentVersion, latestVersion);
+        })
+      : setTimeout(() => {
+          //That's disgusting fix. I know...
+          this.onModUpdateListeners.forEach((listener) => {
+            listener(currentVersion, latestVersion);
+          });
+        }, 5000);
   }
 
-  async checkForUpdates() {
+  async checkForUpdates(force = false) {
     const response = await fetch(UPDATE_CHECK_URL);
     const releaseData = await response.json();
-    if (semver.lt(latestVersion, releaseData.name)) {
+    if (force || semver.lt(latestVersion, releaseData.name)) {
       latestVersion = releaseData.name;
       this.logger.log(
         "New version available:",
@@ -109,7 +111,8 @@ class ModUpdater {
 
   async downloadFile(url, path, callback) {
     const httpsAgent = new https.Agent({
-      rejectUnauthorized: false, keepAlive: true,
+      rejectUnauthorized: false,
+      keepAlive: true,
     });
 
     const writer = fs.createWriteStream(path);
@@ -152,7 +155,11 @@ class ModUpdater {
         if (!isFinished) return;
         if (isError) return;
         this.logger.log("Downloaded update.");
-        if(this.isCompressed) await this.decompressGzipFile(APP_ASAR_TMP_GZIP_DOWNLOAD_PATH, APP_ASAR_TMP_DOWNLOAD_PATH)
+        if (this.isCompressed)
+          await this.decompressGzipFile(
+            APP_ASAR_TMP_GZIP_DOWNLOAD_PATH,
+            APP_ASAR_TMP_DOWNLOAD_PATH,
+          );
         await this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
         callback(1.1, -1);
         this.logger.log("Updated installed.");
@@ -185,11 +192,11 @@ class ModUpdater {
   }
 
   async decompressGzipFile(oldPath, newPath) {
-      const compressedData = await fsPromise.readFile(oldPath);
+    const compressedData = await fsPromise.readFile(oldPath);
 
-      const decompressedData = await unzipPromise(compressedData);
+    const decompressedData = await unzipPromise(compressedData);
 
-      await fsPromise.writeFile(newPath, decompressedData);
+    await fsPromise.writeFile(newPath, decompressedData);
     this.logger.log("Decompressed: ", oldPath, " to ", newPath);
   }
 

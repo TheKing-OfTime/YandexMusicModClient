@@ -4,6 +4,7 @@ exports.setupTray = exports.updateTrayMenu = void 0;
 const electron_1 = require("electron");
 const node_path_1 = require("node:path");
 const updater_js_1 = require("./updater.js");
+const modUpdater_js_1 = require("./modUpdater.js");
 const i18n_js_1 = require("./i18n.js");
 const state_js_1 = require("./state.js");
 const createWindow_js_1 = require("./createWindow.js");
@@ -21,6 +22,7 @@ const trayIcon = () => {
 };
 const createContextMenu = (window) => {
   const updater = (0, updater_js_1.getUpdater)();
+  const modUpdater = (0, modUpdater_js_1.getModUpdater)();
   const windowStateLabel =
     state_js_1.state.isWindowHidden || window.isMinimized()
       ? (0, i18n_js_1.formatMessage)({ id: "windows-menu.unwrap" })
@@ -39,6 +41,18 @@ const createContextMenu = (window) => {
       label: (0, i18n_js_1.formatMessage)({ id: "desktop.check-for-updates" }),
       click() {
         updater.check();
+      },
+    },
+    {
+      label: 'Проверить обновления мода',
+      click() {
+        modUpdater.check();
+      },
+    },
+    {
+      label: 'Переустановить мод',
+      click() {
+        modUpdater.check(true);
       },
     },
     {
