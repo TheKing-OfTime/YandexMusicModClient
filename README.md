@@ -70,6 +70,27 @@
 
 </details>
 
+### Управление плеером с других устройств
+<details>
+   <summary>Подробнее</summary>
+
+
+Добавляет поддержку управления воспроизведением настольного клиента с других устройств.
+
+<img width="250" alt="Список устройств для воспроизведения" src="https://github.com/user-attachments/assets/17196b75-85c4-42f0-af81-ab62123fde5c">
+<img width="250" alt="Управление воспроизведение с телефона на ПК клиенте" src="https://github.com/user-attachments/assets/305a94f9-4908-4c47-9d75-c0838dbad805">
+
+<details>
+   <summary>Настройки</summary>
+
+Можно выключить в настройках внутри приложения
+
+![image](https://github.com/user-attachments/assets/8b7280d6-f2ef-4a0e-8835-32e173a1e843)
+
+</details>
+
+</details>
+
 ### Глобальные хоткеи
 <details>
    <summary>Подробнее</summary>
