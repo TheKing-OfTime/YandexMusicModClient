@@ -117,7 +117,7 @@ const init = () => {
 };
 exports.init = init;
 
-const initField = (fieldKey, defaultValue, alwaysReinit=false) => {
+const initField = (fieldKey, defaultValue, force=false) => {
   if (
     typeof defaultValue === "object" &&
     defaultValue !== null &&
@@ -125,11 +125,11 @@ const initField = (fieldKey, defaultValue, alwaysReinit=false) => {
   ) {
     console.log("Object found checking if values inited");
     for (let key in defaultValue) {
-      initField(`${fieldKey}.${key}`, defaultValue[key], alwaysReinit);
+      initField(`${fieldKey}.${key}`, defaultValue[key], force);
     }
     return;
   }
-  if (!alwaysReinit && (typeof store.get(fieldKey) === "undefined")) {
+  if (!force && (typeof store.get(fieldKey) === "undefined")) {
     store.set(fieldKey, defaultValue);
     console.log("Inited", fieldKey, "to", defaultValue);
     return;
