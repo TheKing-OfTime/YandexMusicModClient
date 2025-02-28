@@ -117,8 +117,7 @@ const init = () => {
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
   initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, defaultExperimentOverrides);
   fetchDefaultExperimentOverrides().then((data) => {
-      if(data) defaultExperimentOverrides = data;
-      initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, defaultExperimentOverrides, true);
+      if(data) initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, data, true);
   })
 };
 exports.init = init;
@@ -261,7 +260,7 @@ const fetchDefaultExperimentOverrides = async () => {
 exports.fetchDefaultExperimentOverrides = fetchDefaultExperimentOverrides;
 
 const getDefaultExperimentOverrides = () => {
-    return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES);
+    return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ?? defaultExperimentOverrides;
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 
