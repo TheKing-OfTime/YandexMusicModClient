@@ -27,6 +27,18 @@ const store_js_1 = require("../types/store.js");
 const config_js_1 = require("../config.js");
 const store = new electron_store_1.default();
 
+let defaultExperimentOverrides = {
+    WebNextTrackLyrics: 'on',
+    WebNextEnableNewQuality: 'prod',
+    WebNextEntityTrailer: 'on',
+    WebNextWizard: 'on',
+    WebNextTrailerAlbumFullQueueStart: 'on',
+    WebNextEnableYnison: 'on',
+    WebNextYaspCore: 'on',
+    WebNextAllowContainerCodecs: 'on',
+    WebNextCommunication: 'default'
+};
+
 const useCachedValue = (key) => {
     let cachedValue = null;
     const get = () => {
@@ -103,17 +115,7 @@ const init = () => {
   initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
-  initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, {
-      WebNextTrackLyrics: 'on',
-      WebNextEnableNewQuality: 'prod',
-      WebNextEntityTrailer: 'on',
-      WebNextWizard: 'on',
-      WebNextTrailerAlbumFullQueueStart: 'on',
-      WebNextEnableYnison: 'on',
-      WebNextYaspCore: 'on',
-      WebNextAllowContainerCodecs: 'on',
-      WebNextCommunication: 'default'
-  }, true);
+  initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, defaultExperimentOverrides);
 };
 exports.init = init;
 
@@ -129,7 +131,7 @@ const initField = (fieldKey, defaultValue, force=false) => {
     }
     return;
   }
-  if (!force && (typeof store.get(fieldKey) === "undefined")) {
+  if (force || (typeof store.get(fieldKey) === "undefined")) {
     store.set(fieldKey, defaultValue);
     console.log("Inited", fieldKey, "to", defaultValue);
     return;
