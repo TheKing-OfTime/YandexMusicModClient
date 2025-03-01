@@ -7552,7 +7552,7 @@
               app_name: t.appName,
               app_version: t.appVersion,
               title: t.title,
-              device_id: (0, tc.Z)(),
+              device_id: window?.DEVICE_INFO?.device_id ?? (0, tc.Z)(),
               type: th.WEB,
             }),
             (this.oauth = r),
