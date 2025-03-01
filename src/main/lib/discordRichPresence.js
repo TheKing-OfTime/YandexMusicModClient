@@ -9,7 +9,7 @@ const settings = () => store_js_1.getModFeatures()?.discordRPC;
 
 const clientId = settings()?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
-const SET_ACTIVITY_TIMEOUT_MS = 500;
+const SET_ACTIVITY_TIMEOUT_MS = 1500;
 
 let rpc = undefined;
 let isReady = false;
