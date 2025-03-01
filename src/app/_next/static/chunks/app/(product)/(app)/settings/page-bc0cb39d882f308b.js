@@ -1317,14 +1317,24 @@
             );
           }, []),
           onInvertSliderOnScrollDeltaToggle = (0, d.useCallback)(async (e) => {
-              console.log(
-                  "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta toggled. Value: ",
-                  e,
-              );
-              window.nativeSettings.set(
-                  "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta",
-                  e,
-              );
+            console.log(
+              "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta",
+              e,
+            );
+          }, []),
+          onDisablePerTrackColorsToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.disablePerTrackColors toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.disablePerTrackColors",
+              e,
+            );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1397,6 +1407,18 @@
                   onChange: onInvertSliderOnScrollDeltaToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.playerBarEnhancement.invertSliderOnScrollDelta",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Отключить цвета треков",
+                  description:
+                    "Панель перестанет перекрашиваться под каждый трек",
+                  onChange: onDisablePerTrackColorsToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.disablePerTrackColors",
                   ),
                 }),
               }),
@@ -2071,7 +2093,9 @@
                   description:
                     "Даст возможность управлять этим плеером с других устройств [ALPHA]",
                   onChange: onEnableYnisonRemoteControlToggle,
-                  isChecked: window.nativeSettings.get("enableYnisonRemoteControl"),
+                  isChecked: window.nativeSettings.get(
+                    "enableYnisonRemoteControl",
+                  ),
                 }),
               }),
               (0, n.jsx)("li", {

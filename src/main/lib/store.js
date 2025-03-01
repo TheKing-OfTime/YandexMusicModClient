@@ -96,6 +96,7 @@ const init = () => {
       showCodecInsteadOfQualityMark: false,
       alwaysShowPlayerTimestamps: false,
       invertSliderOnScrollDelta: true,
+      disablePerTrackColors: false,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,

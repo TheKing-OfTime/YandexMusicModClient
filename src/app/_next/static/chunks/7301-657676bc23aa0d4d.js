@@ -8209,7 +8209,7 @@
               () => ({
                 "--player-average-color-background": (0, L.Er)(
                   t,
-                  null == l ? void 0 : l.averageColor,
+                    (null == l || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)) ? void 0 : l.averageColor,
                 ),
               }),
               [null == l ? void 0 : l.averageColor, t],
@@ -9107,7 +9107,7 @@
               () => ({
                 "--player-average-color-background": (0, L.Er)(
                   n,
-                  null == e ? void 0 : e.averageColor,
+                    (null == e || (window.DISABLE_PER_TRACK_COLORS?.() ?? false))? void 0 : e.averageColor,
                 ),
               }),
               [null == e ? void 0 : e.averageColor, n],
@@ -9508,7 +9508,7 @@
                 return {
                   "--player-average-color-background": (0, L.Er)(
                     u,
-                    null == a ? void 0 : a.averageColor,
+                      (null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)) ? void 0 : a.averageColor,
                   ),
                 };
             }, [d.isAdvertShown, u, null == a ? void 0 : a.averageColor]),
@@ -9924,7 +9924,7 @@
                 return {
                   "--player-average-color-background": (0, L.Er)(
                     d,
-                    null == a ? void 0 : a.averageColor,
+                      (null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false))? void 0 : a.averageColor,
                   ),
                 };
             }, [s.isAdvertShown, d, null == a ? void 0 : a.averageColor]),
