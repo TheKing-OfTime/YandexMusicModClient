@@ -9690,10 +9690,10 @@
               transport: downloadInfo?.transport,
               key: downloadInfo?.key,
               track: {
-                title: JSON.parse(JSON.stringify(a.title)),
-                artists: JSON.parse(JSON.stringify(a.artists)),
-                albums: JSON.parse(JSON.stringify(a.albums)),
-                coverUri: JSON.parse(JSON.stringify(a.coverUri)),
+                title: a.title ? JSON.parse(JSON.stringify(a.title)) : undefined,
+                artists: a.artists ? JSON.parse(JSON.stringify(a.artists)) : undefined,
+                albums: a.albums ? JSON.parse(JSON.stringify(a.albums)) : undefined,
+                coverUri: a.coverUri ? JSON.parse(JSON.stringify(a.coverUri)) : undefined,
               },
             });
           }, [a, downloadInfo]);
