@@ -1285,6 +1285,7 @@
               "modFeatures.playerBarEnhancement.showDislikeButton",
               e,
             );
+            window.forcePlayerBarRerender?.()
           }, []),
           onShowRepeatButtonOnVibe = (0, d.useCallback)(async (e) => {
             console.log(
@@ -1295,6 +1296,7 @@
               "modFeatures.playerBarEnhancement.showRepeatButtonOnVibe",
               e,
             );
+              window.forcePlayerBarRerender?.()
           }, []),
           onShowCodecToggle = (0, d.useCallback)(async (e) => {
             console.log(
@@ -1305,12 +1307,14 @@
               "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
               e,
             );
+              window.forcePlayerBarRerender?.()
           }, []),
           onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps toggled. Value: ",
               e,
             );
+              window.forcePlayerBarRerender?.()
             window.nativeSettings.set(
               "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
               e,
@@ -1331,6 +1335,7 @@
               "modFeatures.playerBarEnhancement.disablePerTrackColors toggled. Value: ",
               e,
             );
+              window.forcePlayerBarRerender?.()
             window.nativeSettings.set(
               "modFeatures.playerBarEnhancement.disablePerTrackColors",
               e,

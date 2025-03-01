@@ -8438,6 +8438,7 @@
                   (0, _.jsx)(tK, { onOpenQualitySettingsMenu: M, message: i }),
                   { containerId: C.W$x.INFO },
                 );
+                window.forcePlayerBarRerender?.()
               },
               [R, M, d, y.quality, L],
             ),
@@ -9297,6 +9298,7 @@
                 }),
                 { containerId: C.W$x.INFO },
               );
+                window.forcePlayerBarRerender?.()
             },
             [j, c, t.quality, k, n.modal],
           ),
@@ -9471,6 +9473,8 @@
         ig = i.n(ib);
       let iC = "player-region",
         iN = (0, p.Pi)((e) => {
+          let [shouldRerender, forcePlayerBarRerender] = (0, x.useReducer)(x => x + 1, 0);
+          window.forcePlayerBarRerender = forcePlayerBarRerender;
           var t;
           let {
               className: i,
@@ -9511,7 +9515,7 @@
                       (null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)) ? void 0 : a.averageColor,
                   ),
                 };
-            }, [d.isAdvertShown, u, null == a ? void 0 : a.averageColor]),
+            }, [d.isAdvertShown, u, null == a ? void 0 : a.averageColor, shouldRerender]),
             B = (0, x.useCallback)((e) => {
               e.stopPropagation();
             }, []),
