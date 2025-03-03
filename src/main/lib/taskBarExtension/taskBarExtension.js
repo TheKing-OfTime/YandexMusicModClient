@@ -12,8 +12,10 @@ const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
 let assets = { dark: {}, light: {} };
 let systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
+let initiated = false
 
 const taskBarExtension = (window) => {
+  initiated = true;
   loadAssets("dark");
   loadAssets("light");
   //updateTaskbarExtension(window);
@@ -25,6 +27,8 @@ const taskBarExtension = (window) => {
 exports.taskBarExtension = taskBarExtension;
 
 const onPlayerStateChange = (window, newPlayerState) => {
+  if(!initiated) return;
+
   if (!(settings?.enable ?? true)) return;
   if (typeof newPlayerState !== "undefined") {
     playerState = structuredClone(newPlayerState);
