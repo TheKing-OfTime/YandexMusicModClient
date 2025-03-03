@@ -631,8 +631,10 @@
         return (0, r.jsxs)("div", {
           className: (0, o.W)(p().root, s),
           onWheel: (e) => {
-            const delta = (e.deltaY / 10000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
-            if (!N===null) return;
+            const delta =
+              (e.deltaY / 10000) *
+              (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
+            if (!N === null) return;
             k(Math.min(Math.max(N + delta, 0), 1));
           },
           children: [
@@ -8209,7 +8211,9 @@
               () => ({
                 "--player-average-color-background": (0, L.Er)(
                   t,
-                    (null == l || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)) ? void 0 : l.averageColor,
+                  null == l || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                    ? void 0
+                    : l.averageColor,
                 ),
               }),
               [null == l ? void 0 : l.averageColor, t],
@@ -8438,7 +8442,7 @@
                   (0, _.jsx)(tK, { onOpenQualitySettingsMenu: M, message: i }),
                   { containerId: C.W$x.INFO },
                 );
-                window.forcePlayerBarRerender?.()
+                window.forcePlayerBarRerender?.();
               },
               [R, M, d, y.quality, L],
             ),
@@ -9108,7 +9112,9 @@
               () => ({
                 "--player-average-color-background": (0, L.Er)(
                   n,
-                    (null == e || (window.DISABLE_PER_TRACK_COLORS?.() ?? false))? void 0 : e.averageColor,
+                  null == e || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                    ? void 0
+                    : e.averageColor,
                 ),
               }),
               [null == e ? void 0 : e.averageColor, n],
@@ -9298,7 +9304,7 @@
                 }),
                 { containerId: C.W$x.INFO },
               );
-                window.forcePlayerBarRerender?.()
+              window.forcePlayerBarRerender?.();
             },
             [j, c, t.quality, k, n.modal],
           ),
@@ -9473,7 +9479,10 @@
         ig = i.n(ib);
       let iC = "player-region",
         iN = (0, p.Pi)((e) => {
-          let [shouldRerender, forcePlayerBarRerender] = (0, x.useReducer)(x => x + 1, 0);
+          let [shouldRerender, forcePlayerBarRerender] = (0, x.useReducer)(
+            (x) => x + 1,
+            0,
+          );
           window.forcePlayerBarRerender = forcePlayerBarRerender;
           var t;
           let {
@@ -9512,10 +9521,17 @@
                 return {
                   "--player-average-color-background": (0, L.Er)(
                     u,
-                      (null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)) ? void 0 : a.averageColor,
+                    null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                      ? void 0
+                      : a.averageColor,
                   ),
                 };
-            }, [d.isAdvertShown, u, null == a ? void 0 : a.averageColor, shouldRerender]),
+            }, [
+              d.isAdvertShown,
+              u,
+              null == a ? void 0 : a.averageColor,
+              shouldRerender,
+            ]),
             B = (0, x.useCallback)((e) => {
               e.stopPropagation();
             }, []),
@@ -9694,10 +9710,18 @@
               transport: downloadInfo?.transport,
               key: downloadInfo?.key,
               track: {
-                title: a.title ? JSON.parse(JSON.stringify(a.title)) : undefined,
-                artists: a.artists ? JSON.parse(JSON.stringify(a.artists)) : undefined,
-                albums: a.albums ? JSON.parse(JSON.stringify(a.albums)) : undefined,
-                coverUri: a.coverUri ? JSON.parse(JSON.stringify(a.coverUri)) : undefined,
+                title: a.title
+                  ? JSON.parse(JSON.stringify(a.title))
+                  : undefined,
+                artists: a.artists
+                  ? JSON.parse(JSON.stringify(a.artists))
+                  : undefined,
+                albums: a.albums
+                  ? JSON.parse(JSON.stringify(a.albums))
+                  : undefined,
+                coverUri: a.coverUri
+                  ? JSON.parse(JSON.stringify(a.coverUri))
+                  : undefined,
               },
             });
           }, [a, downloadInfo]);
@@ -9708,10 +9732,25 @@
                 let fDownloadInfo =
                   theState?.state?.queueState?.currentEntity?.value?.entity
                     ?.mediaSourceData?.data;
-                if (fDownloadInfo) {
+                if (
+                  fDownloadInfo !== undefined &&
+                  JSON.stringify(fDownloadInfo) !== JSON.stringify(downloadInfo)
+                ) {
                   setDownloadInfo(fDownloadInfo);
                 }
               }, 400);
+
+              theState.state.queueState.currentEntity.onChange(() => {
+                let fDownloadInfo =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSourceData?.data;
+                if (
+                  fDownloadInfo !== undefined &&
+                  JSON.stringify(fDownloadInfo) !== JSON.stringify(downloadInfo)
+                ) {
+                  setDownloadInfo(fDownloadInfo);
+                }
+              });
               return () => {
                 null == timer || clearTimeout(timer);
               };
@@ -9890,7 +9929,11 @@
                     (0, _.jsx)(N.wx, {
                       title: `${Math.round((r?.volume ?? 0) * 100)}%`,
                       children: (0, _.jsxs)("div", {
-                        children: (0, _.jsx)(iv.F, { primaryValue: (window?.ENABLE_YNISON_REMOTE_CONTROL ? r?.volume : undefined) }),
+                        children: (0, _.jsx)(iv.F, {
+                          primaryValue: window?.ENABLE_YNISON_REMOTE_CONTROL
+                            ? r?.volume
+                            : undefined,
+                        }),
                       }),
                     }),
                   ],
@@ -9928,7 +9971,9 @@
                 return {
                   "--player-average-color-background": (0, L.Er)(
                     d,
-                      (null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false))? void 0 : a.averageColor,
+                    null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                      ? void 0
+                      : a.averageColor,
                   ),
                 };
             }, [s.isAdvertShown, d, null == a ? void 0 : a.averageColor]),
