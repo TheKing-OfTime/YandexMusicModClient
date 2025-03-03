@@ -632,7 +632,7 @@
           className: (0, o.W)(p().root, s),
           onWheel: (e) => {
             const delta = (e.deltaY / 10000) * (window?.INVERT_SLIDER_ON_SCROLL_DELTA ? -1 : 1);
-            if (!N) return;
+            if (!N===null) return;
             k(Math.min(Math.max(N + delta, 0), 1));
           },
           children: [
