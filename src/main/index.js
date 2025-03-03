@@ -32,8 +32,10 @@ Logger_js_1.Logger.setupLogger();
 (0, singleInstance_js_1.checkForSingleInstance)();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
 electron_1.app.setLoginItemSettings({
-    openAtLogin: store_js_1.getModFeatures()?.windowBehavior?.autoLaunchOnSystemStartup ?? false,
-    path: electron_1.app.getPath("exe")
+  openAtLogin:
+    store_js_1.getModFeatures()?.windowBehavior?.autoLaunchOnSystemStartup ??
+    false,
+  path: electron_1.app.getPath("exe"),
 });
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
@@ -41,32 +43,47 @@ electron_1.app.setLoginItemSettings({
   await electron_1.app.whenReady();
   (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
-    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+  if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
     (0, tray_js_1.setupTray)(window);
   }
   (0, safeRedirects_js_1.safeRedirects)(window);
-    (0, handleWindowReady_js_1.handleWindowReady)(window);
+  (0, handleWindowReady_js_1.handleWindowReady)(window);
   (0, handleWindowLifecycleEvents_js_1.handleWindowLifecycleEvents)(window);
   (0, handleWindowSessionEvents_js_1.handleWindowSessionEvents)(window);
   (0, events_js_1.handleApplicationEvents)(window);
   (0, handleExternalLink_js_1.handleExternalLink)(window);
   (0, handleDeeplink_js_1.handleDeeplink)(window);
-  (0, taskBarExtension_js_1.taskBarExtension)(window);
+  if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+    (0, taskBarExtension_js_1.taskBarExtension)(window);
+  }
   (0, handleHeadersReceived_js_1.handleHeadersReceived)(window);
   (0, handleBackgroundTasks_js_1.handleBackgroundTasks)(window);
   (0, handleCrash_js_1.handleCrash)();
   await (0, loadURL_js_1.loadURL)(window);
-    if ([platform_js_1.Platform.WINDOWS, platform_js_1.Platform.LINUX].includes(deviceInfo_js_1.devicePlatform)) {
+  if (
+    [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.LINUX].includes(
+      deviceInfo_js_1.devicePlatform,
+    )
+  ) {
     (0, customTitleBar_js_1.createCustomTitleBar)(window);
   }
-  if (store_js_1.getAutoUpdatesEnabled() ?? config_js_1.config.enableAutoUpdate) {
+  if (
+    store_js_1.getAutoUpdatesEnabled() ??
+    config_js_1.config.enableAutoUpdate
+  ) {
     updater.start();
     updater.onUpdate((version) => {
       (0, events_js_1.sendUpdateAvailable)(window, version);
     });
-    modUpdater.start();
-    modUpdater.onUpdateAvailable((currVersion, newVersion) => {
-      (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
-    });
+    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+      modUpdater.start();
+      modUpdater.onUpdateAvailable((currVersion, newVersion) => {
+        (0, events_js_1.sendModUpdateAvailable)(
+          window,
+          currVersion,
+          newVersion,
+        );
+      });
+    }
   }
 })();

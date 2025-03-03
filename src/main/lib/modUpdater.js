@@ -10,6 +10,7 @@ const Logger_js_1 = require("../packages/logger/Logger.js");
 const config_js_1 = require("../config.js");
 const https = require("https");
 const axios = require("axios");
+const electron = require('electron');
 
 const execPromise = promisify(exec);
 const unzipPromise = promisify(zlib.unzip);
@@ -17,21 +18,21 @@ const unzipPromise = promisify(zlib.unzip);
 exports.getModUpdater = exports.ModUpdater = void 0;
 
 const UPDATE_CHECK_URL = `https://api.github.com/repos/TheKing-OfTime/YandexMusicModClient/releases/latest`;
-const APP_ASAR_PATH = path.join(
-  process.env.LOCALAPPDATA,
-  "\\Programs\\YandexMusic\\resources\\app.asar",
-);
+const APP_ASAR_PATH = electron.app.getAppPath()
 const APP_ASAR_TMP_DOWNLOAD_PATH = path.join(
-  process.env.LOCALAPPDATA,
-  "\\Programs\\YandexMusic\\temp\\app.asar",
+    electron.app.getAppPath(),
+    '../../',
+    "temp\\app.asar",
 );
 const APP_ASAR_TMP_GZIP_DOWNLOAD_PATH = path.join(
-  process.env.LOCALAPPDATA,
-  "\\Programs\\YandexMusic\\temp\\app.asar.gz",
+    electron.app.getAppPath(),
+    '../../',
+    "temp\\app.asar.gz",
 );
 const TMP_PATH = path.join(
-  process.env.LOCALAPPDATA,
-  "\\Programs\\YandexMusic\\temp",
+    electron.app.getAppPath(),
+    '../../',
+    "\\temp",
 );
 const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);

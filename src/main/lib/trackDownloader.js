@@ -6,15 +6,17 @@ const path = require('path');
 const promisify = require("util").promisify;
 const { exec } = require('child_process');
 const FFMPEG_PATH = require('ffmpeg-static');
+const electron = require('electron');
 
 const execPromise = promisify(exec);
 
 const TMP_PATH = path.join(
-    process.env.LOCALAPPDATA,
-    "\\Programs\\YandexMusic\\temp",
+    electron.app.getAppPath(),
+    '../../',
+    "\\temp",
 );
 
-const EXTRACTED_FFMPEG_PATH = path.join(process.env.LOCALAPPDATA, "Programs", "YandexMusic", 'resources', 'ffmpeg.exe');
+const EXTRACTED_FFMPEG_PATH = path.join(electron.app.getAppPath(), '../', 'ffmpeg.exe');
 
 async function extractFfmpeg() {
     await fs.copyFile(FFMPEG_PATH, EXTRACTED_FFMPEG_PATH);
