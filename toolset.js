@@ -216,6 +216,8 @@ async function build(destDir=DEFAULT_DIST_PATH) {
     console.time('Архивация завершена');
     await asar.createPackage(MINIFIED_SRC_PATH, destDir);
     console.timeEnd('Архивация завершена');
+    await fsp.rm(MINIFIED_SRC_PATH, {recursive: true})
+    console.log('Минифицированный код отчищен');
 }
 
 async function buildDirectly() {
