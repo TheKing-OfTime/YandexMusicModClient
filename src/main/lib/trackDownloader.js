@@ -218,6 +218,8 @@ class TrackDownloader {
     async downloadTrack(data) {
 
         const finalTrackPath = await this.handleSaveDialog(data);
+        if(!finalTrackPath) return;
+
         const tempDirPath = await this.createTempDirPath(data);
         if(!tempDirPath) return;
 
