@@ -1,1 +1,1 @@
-npx asar pack ./src %localappdata%/Programs/YandexMusic/resources/app.asar
+node toolset.js buildDirectly

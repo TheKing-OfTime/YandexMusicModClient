@@ -167,14 +167,14 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     if(!uploadResponse.status.toString().startsWith('2')) return console.log("Не удалось загрузить ассет:", releaseResponse.data);
     console.log("Ассет успешно загружен:", uploadResponse.data);
 
-    // const updatedRelease = await octokit.repos.updateRelease({
-    //     owner: gitOwner,
-    //     repo: gitRepo,
-    //     release_id: releaseId,
-    //     draft: false,
-    // });
-    // if(!updatedRelease.status.toString().startsWith('2')) return console.log("Не удалось опубликован релиз:", releaseResponse.data);
-    // console.log("Релиз опубликован:", updatedRelease.data);
+    const updatedRelease = await octokit.repos.updateRelease({
+        owner: gitOwner,
+        repo: gitRepo,
+        release_id: releaseId,
+        draft: false,
+    });
+    if(!updatedRelease.status.toString().startsWith('2')) return console.log("Не удалось опубликован релиз:", releaseResponse.data);
+    console.log("Релиз опубликован:", updatedRelease.data);
 }
 
 async function minifyDir(srcDir, destDir) {
@@ -238,7 +238,7 @@ async function release(versions=undefined) {
     const {version: ymVersion} = await getLatestYMVersion();
     const patchNote = (versions ? PatchNote.forSpoofPatch(versions.newVersion, version, versions.oldVersion) : new PatchNote(ymVersion, version, patchNoteStringMD));
     await createGitHubRelease(version, DEFAULT_DIST_PATH, patchNote);
-    //await sendPatchNoteToDiscord(patchNote);
+    await sendPatchNoteToDiscord(patchNote);
 }
 
 async function run(command) {

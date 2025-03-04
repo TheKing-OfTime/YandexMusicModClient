@@ -1,1 +1,1 @@
-npx asar pack ./src ./builds/last/app.asar
+node toolset.js build
