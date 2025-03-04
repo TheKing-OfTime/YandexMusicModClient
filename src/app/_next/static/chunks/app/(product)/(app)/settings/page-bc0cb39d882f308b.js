@@ -1130,7 +1130,7 @@
                     "Если предыдущий пункт включён, отображает кнопку установки мода",
                   onChange: onDiscordShowGitHubButtonToggle,
                   isChecked: window.nativeSettings.get(
-                    "modFeatures.discordRPC.overrideDeepLinksExperiment",
+                    "modFeatures.discordRPC.showGitHubButton",
                   ),
                 }),
               }),
