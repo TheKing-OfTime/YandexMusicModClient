@@ -9895,15 +9895,10 @@
                                 : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`
                               : "Не удалось получить качество трека",
                             children: (0, _.jsxs)("div", {
-                              className: "eQt33MLDiQ6DRSuLaYEp",
+                              className: "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
                               children: (0, _.jsxs)("span", {
                                 className:
                                   ig().settingsButton + " eQt33MLDiQ6DRSuLaYEp",
-                                style: {
-                                  cursor: "pointer",
-                                  color:
-                                    "var(--ym-controls-color-secondary-text-enabled)",
-                                },
                                 children:
                                   (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                     ? codecMap[downloadInfo?.codec]
