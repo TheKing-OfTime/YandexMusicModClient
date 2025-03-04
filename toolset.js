@@ -170,7 +170,7 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     const updatedRelease = await octokit.repos.updateRelease({
         owner: gitOwner,
         repo: gitRepo,
-        release_id: releaseId,
+        release_id: releaseResponse.data.id,
         draft: false,
     });
     if(!updatedRelease.status.toString().startsWith('2')) return console.log("Не удалось опубликован релиз:", releaseResponse.data);
