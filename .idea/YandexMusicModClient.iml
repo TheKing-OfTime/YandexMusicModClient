@@ -7,6 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/diff" />
       <excludeFolder url="file://$MODULE_DIR$/extracted" />
+      <excludeFolder url="file://$MODULE_DIR$/minified" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
