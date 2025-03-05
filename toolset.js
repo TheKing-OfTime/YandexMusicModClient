@@ -135,7 +135,7 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     });
 
     if(!tagCreateResponse.status.toString().startsWith('2')) return console.log("Не удалось создать тег", tagCreateResponse.data);
-    console.log("Тег успешно создан:", tagCreateResponse.data);
+    console.log("Тег успешно создан");
 
     const releaseResponse = await octokit.rest.repos.createRelease({
         owner: gitOwner,
@@ -148,9 +148,11 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     })
 
     if(!releaseResponse.status.toString().startsWith('2')) return console.log("Не удалось создать драфт:", releaseResponse.data);
-    console.log("Драфт успешно создан:", releaseResponse.data);
-
+    console.log("Драфт успешно создан");
+    console.time("Ассет успешно загружен");
+    console.time("Загрузка ассета");
     const assetData = fs.readFileSync(asarPath)
+
 
     const uploadResponse = await octokit.repos.uploadReleaseAsset({
         owner: gitOwner,
@@ -165,7 +167,7 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     });
 
     if(!uploadResponse.status.toString().startsWith('2')) return console.log("Не удалось загрузить ассет:", releaseResponse.data);
-    console.log("Ассет успешно загружен:", uploadResponse.data);
+    console.timeEnd("Ассет успешно загружен");
 
     const updatedRelease = await octokit.repos.updateRelease({
         owner: gitOwner,
@@ -174,7 +176,7 @@ async function createGitHubRelease(version, asarPath, patchNote) {
         draft: false,
     });
     if(!updatedRelease.status.toString().startsWith('2')) return console.log("Не удалось опубликован релиз:", releaseResponse.data);
-    console.log("Релиз опубликован:", updatedRelease.data);
+    console.log("Релиз опубликован");
 }
 
 async function minifyDir(srcDir, destDir) {
