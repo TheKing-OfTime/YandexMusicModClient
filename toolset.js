@@ -207,21 +207,25 @@ async function minifyDir(srcDir, destDir) {
     }
 }
 
-async function build(destDir=DEFAULT_DIST_PATH) {
-    console.log('Минификация...');
-    console.time('Минификация завершена');
-    await minifyDir(SRC_PATH, MINIFIED_SRC_PATH);
-    console.timeEnd('Минификация завершена');
+async function build(destDir=DEFAULT_DIST_PATH,noMinify=false) {
+    if (!noMinify) {
+      console.log("Минификация...");
+      console.time("Минификация завершена");
+      await minifyDir(SRC_PATH, MINIFIED_SRC_PATH);
+      console.timeEnd("Минификация завершена");
+    }
     console.log('Архивация в ' + destDir);
     console.time('Архивация завершена');
-    await asar.createPackage(MINIFIED_SRC_PATH, destDir);
+    await asar.createPackage(noMinify ? SRC_PATH : MINIFIED_SRC_PATH, destDir);
     console.timeEnd('Архивация завершена');
-    await fsp.rm(MINIFIED_SRC_PATH, {recursive: true})
-    console.log('Минифицированный код отчищен');
+    if (!noMinify) {
+      await fsp.rm(MINIFIED_SRC_PATH, { recursive: true });
+      console.log("Минифицированный код отчищен");
+    }
 }
 
-async function buildDirectly() {
-    await build(DIRECT_DIST_PATH)
+async function buildDirectly(noMinify=false) {
+    await build(DIRECT_DIST_PATH, noMinify)
 }
 
 async function spoof(type='extracted') {
@@ -250,6 +254,9 @@ async function run(command) {
             break;
         case 'buildDirectly':
             await buildDirectly();
+            break;
+        case 'buildDirectlyNoMinify':
+            await buildDirectly(true);
             break;
         case 'spoof':
             await spoof();

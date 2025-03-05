@@ -1,0 +1,1 @@
+node toolset.js buildDirectlyNoMinify
