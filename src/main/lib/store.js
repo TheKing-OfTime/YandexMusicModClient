@@ -84,7 +84,7 @@ const init = () => {
     },
     vibeAnimationEnhancement: {
       maxFPS: 25,
-      intensityCoefficient: 1,
+      intensityCoefficient: 1.5,
       linearDeBoost: 2,
       playOnAnyEntity: false,
       disableRendering: false,
