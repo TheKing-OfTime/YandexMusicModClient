@@ -622,9 +622,13 @@
         _ = p.V5.model("Equalizer", {
           modal: x.KL,
           isEnabled: p.V5.boolean,
+          isInitialized: p.V5.boolean,
           currentPreset: p.V5.optional(g, v[l.DEFAULT]),
           customPreset: p.V5.optional(g, v[l.CUSTOM]),
         }).actions((e) => ({
+          setInitialized(t) {
+            e.isInitialized = t;
+          },
           setEnabled(t) {
             let { localStorage: r } = (0, p.dU)(e);
             e.isEnabled = t;

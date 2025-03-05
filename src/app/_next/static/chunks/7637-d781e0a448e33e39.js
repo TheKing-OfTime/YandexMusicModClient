@@ -967,7 +967,11 @@
                     t.equalizer.applyPreset((0, i.ZN)(e.currentPreset)),
                   t.equalizer.enable())
                 : t.equalizer.disable());
-          }, [e.currentPreset, e.isEnabled, null == t ? void 0 : t.equalizer]);
+              // This fixes no appplyPreset on app launch. This is bad solution. Really hope Yandex fix it somehow else.
+              if(!e.isInitialized) setTimeout(()=>{
+                  if(t.equalizer) {e.setInitialized(true)}
+              }, 100)
+          }, [e.currentPreset, e.isEnabled, e.isInitialized, null == t ? void 0 : t.equalizer]);
       });
     },
     90293: function (e, t, a) {
@@ -6779,7 +6783,7 @@
           let t = new tK(),
             a = Number(e.playback_speed),
             i = Number(e.progress_ms) / 1e3,
-            isPaused = e.paused ?? NaN;
+            isPaused = window?.ENABLE_YNISON_REMOTE_CONTROL ? e.paused ?? NaN : NaN;
           return (
             Number.isNaN(a) ||
               t.push(() =>
@@ -6803,8 +6807,10 @@
             Number.isNaN(isPaused) ||
               t.push(() => {
                 isPaused
-                  ? this.playback.pause().then(() => Promise.resolve())
-                  : this.playback.resume().then(() => Promise.resolve());
+                  ? this.playback.state.playerState.status.value ===
+                    eE.Xz.PLAYING && this.playback.pause().then(() => Promise.resolve())
+                  : this.playback.state.playerState.status.value ===
+                    eE.Xz.PAUSED && this.playback.resume().then(() => Promise.resolve());
               }),
             t.exec()
           );
@@ -10538,7 +10544,7 @@
           let { children: t } = e,
             a = (0, iV.wdp)(),
             [i] = (0, Z.useState)(() =>
-              iw.wi.create({ isEnabled: !1, modal: {} }, a),
+              iw.wi.create({ isEnabled: !1, isInitialized: !1, modal: {} }, a),
             );
           return (0, X.jsx)(iw.gp.Provider, { value: i, children: t });
         },
