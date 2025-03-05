@@ -983,6 +983,22 @@
             modals: { discordRpcSettingsModal: t },
           } = (0, _.oR4)(),
           { notify: i } = (0, _.d$W)(),
+          [afkTimeout, setAfkTimeout] = (0, d.useState)(
+            window.nativeSettings.get("modFeatures.discordRPC.afkTimeout"),
+          ),
+          onAfkTimeoutChange = (0, d.useCallback)(async (e) => {
+            let value = Math.min(Math.max(e, 1), 30);
+            setAfkTimeout(value);
+            console.log(
+              "modFeatures.discordRPC.afkTimeout changed. Value: ",
+              value,
+            );
+
+            window.nativeSettings.set(
+              "modFeatures.discordRPC.afkTimeout",
+              value,
+            );
+          }, []),
           onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
             console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
             window.nativeSettings.set("modFeatures.discordRPC.enable", e);
@@ -1132,6 +1148,19 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.showGitHubButton",
                   ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Таймер бездействия",
+                  description:
+                    "Через сколько в минутах активность автоматически отчистится",
+                  onChange: onAfkTimeoutChange,
+                  value: afkTimeout,
+                  maxValue: 30,
+                  minValue: 1,
+                  step: 1,
                 }),
               }),
             ],
@@ -1285,7 +1314,7 @@
               "modFeatures.playerBarEnhancement.showDislikeButton",
               e,
             );
-            window.forcePlayerBarRerender?.()
+            window.forcePlayerBarRerender?.();
           }, []),
           onShowRepeatButtonOnVibe = (0, d.useCallback)(async (e) => {
             console.log(
@@ -1296,7 +1325,7 @@
               "modFeatures.playerBarEnhancement.showRepeatButtonOnVibe",
               e,
             );
-              window.forcePlayerBarRerender?.()
+            window.forcePlayerBarRerender?.();
           }, []),
           onShowCodecToggle = (0, d.useCallback)(async (e) => {
             console.log(
@@ -1307,14 +1336,14 @@
               "modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark",
               e,
             );
-              window.forcePlayerBarRerender?.()
+            window.forcePlayerBarRerender?.();
           }, []),
           onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps toggled. Value: ",
               e,
             );
-              window.forcePlayerBarRerender?.()
+            window.forcePlayerBarRerender?.();
             window.nativeSettings.set(
               "modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps",
               e,
@@ -1335,7 +1364,7 @@
               "modFeatures.playerBarEnhancement.disablePerTrackColors toggled. Value: ",
               e,
             );
-              window.forcePlayerBarRerender?.()
+            window.forcePlayerBarRerender?.();
             window.nativeSettings.set(
               "modFeatures.playerBarEnhancement.disablePerTrackColors",
               e,
@@ -1438,6 +1467,16 @@
             modals: { vibeBehaviorEnhancementsSettingsModal: t },
           } = (0, _.oR4)(),
           { notify: i } = (0, _.d$W)(),
+          [maxFps, setMaxFPS] = (0, d.useState)(
+            window.nativeSettings.get(
+              "modFeatures.vibeAnimationEnhancement.maxFPS",
+            ),
+          ),
+          [intensityCoefficient, setIntensityCoefficient] = (0, d.useState)(
+            window.nativeSettings.get(
+              "modFeatures.vibeAnimationEnhancement.intensityCoefficient",
+            ),
+          ),
           onDisableRendering = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
@@ -1446,6 +1485,32 @@
             window.nativeSettings.set(
               "modFeatures.vibeAnimationEnhancement.disableRendering",
               e,
+            );
+          }, []),
+          onMaxFPSchange = (0, d.useCallback)(async (e) => {
+            let value = Math.min(Math.max(e, 1), 144);
+            setMaxFPS(value);
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.maxFPS changed. Value: ",
+              value,
+            );
+
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.maxFPS",
+              value,
+            );
+          }, []),
+          onIntensityCoefficientChange = (0, d.useCallback)(async (e) => {
+            let value = Math.min(Math.max(e, 0), 2.5);
+            setIntensityCoefficient(value);
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.intensityCoefficient changed. Value: ",
+              value,
+            );
+
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.intensityCoefficient",
+              value,
             );
           }, []),
           onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
@@ -1494,6 +1559,32 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.vibeAnimationEnhancement.disableRendering",
                   ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Ограничение FPS",
+                  description:
+                    "Верхняя граница FPS. Чем больше, тем плавнее анимация",
+                  onChange: onMaxFPSchange,
+                  value: maxFps,
+                  maxValue: 144,
+                  minValue: 1,
+                  step: 1,
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Интенсивность реакции на трек",
+                  description:
+                    "Чем больше, тем сильнее анимация ускоряется под трек",
+                  onChange: onIntensityCoefficientChange,
+                  value: intensityCoefficient,
+                  maxValue: 2.5,
+                  minValue: 0,
+                  step: 0.1,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1617,6 +1708,7 @@
       };
       var z = o(32427),
         L = o(7515),
+        sliderComponent = o(66055),
         R = o.n(L);
       let P = (e) => {
         let { title: t, onChange: o, isChecked: i, description: r } = e,
@@ -1652,6 +1744,79 @@
               isChecked: i,
               "aria-describedby": l,
               onChange: o,
+            }),
+          ],
+        });
+      };
+      let settingBarWithSlider = (e) => {
+        let {
+            title: t,
+            onChange: o,
+            value: i,
+            minValue: minValue,
+            maxValue: maxValue,
+            step: step,
+            description: r,
+          } = e,
+          l = (0, d.useId)();
+        return (0, n.jsxs)("div", {
+          className: R().root,
+          style: {
+            "flex-direction": "column",
+            "align-items": "start",
+          },
+          children: [
+            (0, n.jsxs)("div", {
+              className: R().textContainer,
+              children: [
+                (0, n.jsx)(c.Caption, {
+                  className: R().title,
+                  id: l,
+                  variant: "div",
+                  size: "l",
+                  weight: "bold",
+                  lineClamp: 1,
+                  "aria-hidden": !0,
+                  children: t,
+                }),
+                r &&
+                  (0, n.jsx)(c.Caption, {
+                    variant: "div",
+                    type: "text",
+                    size: "xs",
+                    weight: "medium",
+                    className: R().description,
+                    children: r,
+                  }),
+              ],
+            }),
+            (0, n.jsxs)("div", {
+              style: {
+                width: "-webkit-fill-available",
+              },
+              children: [
+                (0, n.jsx)(c.Caption, {
+                  style: {
+                    "text-align": "end",
+                  },
+                  variant: "div",
+                  type: "text",
+                  size: "xs",
+                  weight: "medium",
+                  className: R().description,
+                  children: i,
+                }),
+                (0, n.jsx)(sliderComponent.i, {
+                  thumbSize: "s",
+                  trackSize: "s",
+                  value: i,
+                  minValue: minValue ?? 0,
+                  maxValue: maxValue ?? 2,
+                  secondaryValue: maxValue ?? 1,
+                  step: step ?? 0.01,
+                  onChange: o,
+                }),
+              ],
             }),
           ],
         });

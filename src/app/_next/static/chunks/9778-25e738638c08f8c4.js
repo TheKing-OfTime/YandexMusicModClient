@@ -24444,7 +24444,7 @@
           t.DEFAULT_HUE =
           t.MAX_FPS =
             void 0),
-        (t.MAX_FPS = window.VIBE_ANIMATION_MAX_FPS ?? 25),
+        (t.MAX_FPS = 25),
         (t.DEFAULT_HUE = 22.968),
         (t.DEFAULT_SATURATION = 1),
         (t.DEFAULT_LIGHTNESS = 0.5),
@@ -24884,7 +24884,7 @@
           try {
             (this.uniforms = new u.Uniforms((0, i.normalizeCollectionHue)(e))),
               (this.renderer = new o.Renderer(this.rendererOptions)),
-              (this.ticker = new c.Ticker(a.MAX_FPS, this.render.bind(this)));
+              (this.ticker = new c.Ticker(window.VIBE_ANIMATION_MAX_FPS?.() ?? a.MAX_FPS, this.render.bind(this)));
           } catch (e) {
             ("string" == typeof e || e instanceof Error) && (null == p || p(e)),
               (f = !0);
@@ -25047,7 +25047,7 @@
               // Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
               let intensity =
                   ((r + n * 10.2 + 0 * 33.3) / 25) *
-                  (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT ?? 1);
+                  (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1);
               //console.debug(this.trackEnergy.value, this.energy.value, intensity);
               this.energy.update(this.trackEnergy.value + intensity);
               this.energy.next(e),
