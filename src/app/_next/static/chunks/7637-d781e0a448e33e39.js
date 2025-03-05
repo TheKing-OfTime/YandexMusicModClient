@@ -967,7 +967,7 @@
                     t.equalizer.applyPreset((0, i.ZN)(e.currentPreset)),
                   t.equalizer.enable())
                 : t.equalizer.disable());
-              // This fixes no appplyPreset on app launch. This is bad solution. Really hope Yandex fix it somehow else.
+              // This fixes no applyPreset on app launch. This is bad solution. Really hope Yandex fix it somehow else.
               if(!e.isInitialized) setTimeout(()=>{
                   if(t.equalizer) {e.setInitialized(true)}
               }, 100)
