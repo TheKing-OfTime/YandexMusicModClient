@@ -104,6 +104,7 @@ const init = () => {
       autoLaunchOnSystemStartup: false,
       minimizeToTrayOnWindowClose: true,
       startMinimized: false,
+      preventDisplaySleep: false,
     },
     globalShortcuts: {
       TOGGLE_PLAY: "Ctrl+/",

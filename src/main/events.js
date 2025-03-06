@@ -194,7 +194,7 @@ const handleApplicationEvents = (window) => {
     );
     if (isBoolean(data.isPlaying)) {
       state_js_1.state.player.isPlaying = data.isPlaying;
-      (0, appSuspension_js_1.toggleAppSuspension)(data.isPlaying);
+      (0, appSuspension_js_1.toggleAppSuspension)(data.isPlaying, (store_js_1.getModFeatures()?.windowBehavior?.preventDisplaySleep ?? false) && window.isVisible());
     }
     if (isBoolean(data.canMoveBackward)) {
       state_js_1.state.player.canMoveBackward = data.canMoveBackward;

@@ -5,9 +5,9 @@ const electron_1 = require("electron");
 const Logger_js_1 = require("../packages/logger/Logger.js");
 const appSuspensionLogger = new Logger_js_1.Logger('AppSuspension');
 let powerSaveBlockerId = null;
-const enableSuspensionBlocker = () => {
+const enableSuspensionBlocker = (preventDisplaySleep=false) => {
     disableSuspensionBlocker();
-    powerSaveBlockerId = electron_1.powerSaveBlocker.start('prevent-app-suspension');
+    powerSaveBlockerId = electron_1.powerSaveBlocker.start(preventDisplaySleep ? 'prevent-display-sleep' : 'prevent-app-suspension');
     appSuspensionLogger.info('App suspension blocker is enabled');
 };
 const disableSuspensionBlocker = () => {
@@ -17,9 +17,9 @@ const disableSuspensionBlocker = () => {
     electron_1.powerSaveBlocker.stop(powerSaveBlockerId);
     appSuspensionLogger.info('App suspension blocker is disabled');
 };
-const toggleAppSuspension = (enable) => {
+const toggleAppSuspension = (enable, preventDisplaySleep=false) => {
     if (enable) {
-        enableSuspensionBlocker();
+        enableSuspensionBlocker(preventDisplaySleep);
     }
     else {
         disableSuspensionBlocker();

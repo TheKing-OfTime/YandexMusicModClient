@@ -1198,6 +1198,13 @@
             },
             [],
           ),
+          onPreventDisplaySleepToggle = (0, d.useCallback)(async (e) => {
+            console.log("preventDisplaySleep toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.preventDisplaySleep",
+              e,
+            );
+          }, []),
           onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(
             async (e) => {
               console.log("autoLaunchOnSystemStartup toggled. Value: ", e);
@@ -1269,6 +1276,18 @@
                   onChange: onMinimizeToTrayOnWindowCloseToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.windowBehavior.minimizeToTrayOnWindowClose",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Предотвращать отключение монитора",
+                  description:
+                    "Если включено и окно ЯМ видно на экране, оно не уйдёт в сон от бездействия",
+                  onChange: onPreventDisplaySleepToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.preventDisplaySleep",
                   ),
                 }),
               }),
