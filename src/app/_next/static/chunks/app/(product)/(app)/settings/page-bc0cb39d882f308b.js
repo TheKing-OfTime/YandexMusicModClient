@@ -1588,7 +1588,7 @@
                     "Верхняя граница FPS. Чем больше, тем плавнее анимация",
                   onChange: onMaxFPSchange,
                   value: maxFps,
-                  maxValue: 144,
+                  maxValue: Math.min(window?.DISPLAY_MAX_FPS ?? 60, maxFps),
                   minValue: 1,
                   step: 1,
                 }),

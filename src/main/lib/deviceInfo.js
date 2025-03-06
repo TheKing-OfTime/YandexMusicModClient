@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDeviceInfo = exports.logSystemMetrics = exports.logHardwareInfo = exports.logSoftwareInfo = void 0;
+exports.getDeviceInfo = exports.logSystemMetrics = exports.logHardwareInfo = exports.logSoftwareInfo = exports.getMaxDisplayFrameRateRefresh = exports.updateMaxDisplayFrameRateRefresh = exports.getMaxDisplayFrameRateRefresh = void 0;
 const electron_1 = require("electron");
 const node_os_1 = require("node:os");
 const promises_1 = require("node:fs/promises");
@@ -31,6 +31,22 @@ const getCpu = () => {
     const cpu = (0, node_os_1.cpus)();
     return cpu[0]?.model;
 };
+
+const updateMaxDisplayFrameRateRefresh = () => {
+    deviceInfoLogger.info('Getting max refresh rate')
+    const displays = electron_1.screen?.getAllDisplays() ?? [ electron_1.screen?.getPrimaryDisplay() ]
+    if(!displays) return 0;
+    let maxFrameRate = 0;
+    displays.forEach((display)=>{
+        if(maxFrameRate < display.displayFrequency) maxFrameRate = display.displayFrequency;
+    });
+    store_js_1.setDisplayMaxFps(maxFrameRate)
+    deviceInfoLogger.info('Max FPS:', maxFrameRate)
+    return maxFrameRate;
+};
+
+exports.updateMaxDisplayFrameRateRefresh = updateMaxDisplayFrameRateRefresh
+
 const getLanguage = () => {
     const locale = electron_1.app.getLocale();
     const countryCode = electron_1.app.getLocaleCountryCode();

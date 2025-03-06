@@ -9,6 +9,7 @@ var StoreKeys;
     StoreKeys["WINDOW_DIMENSIONS"] = "windowDimensions";
     StoreKeys["WINDOW_POSITION"] = "windowPosition";
     StoreKeys["MOD_FEATURES"] = "modFeatures";
+    StoreKeys["DISPLAY_MAX_FPS"] = "displayMaxFps";
     StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
     StoreKeys["ENABLE_YNISON_REMOTE_CONTROL"] = "enableYnisonRemoteControl";
     StoreKeys["ENABLE_AUTO_UPDATES"] = "enableAutoUpdates";

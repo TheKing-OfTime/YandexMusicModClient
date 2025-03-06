@@ -46,6 +46,7 @@ electron_1.app.setLoginItemSettings({
   if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
     (0, tray_js_1.setupTray)(window);
   }
+  (0, deviceInfo_js_1.updateMaxDisplayFrameRateRefresh)();
   (0, safeRedirects_js_1.safeRedirects)(window);
   (0, handleWindowReady_js_1.handleWindowReady)(window);
   (0, handleWindowLifecycleEvents_js_1.handleWindowLifecycleEvents)(window);

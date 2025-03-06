@@ -117,6 +117,7 @@ const init = () => {
   initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
+  initField(store_js_1.StoreKeys.DISPLAY_MAX_FPS, 60);
   initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, defaultExperimentOverrides);
   fetchDefaultExperimentOverrides().then((data) => {
       if(data) initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, data, true);
@@ -265,6 +266,16 @@ const getDefaultExperimentOverrides = () => {
     return store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ?? defaultExperimentOverrides;
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
+
+const getDisplayMaxFps = () => {
+    return store.get(store_js_1.StoreKeys.DISPLAY_MAX_FPS) ?? 60;
+};
+exports.getDisplayMaxFps = getDisplayMaxFps;
+
+const setDisplayMaxFps = (value) => {
+    return store.set(store_js_1.StoreKeys.DISPLAY_MAX_FPS, Math.min(Math.max(value ?? 60, 30), 1024));
+};
+exports.setDisplayMaxFps = setDisplayMaxFps;
 
 const get = (key) => {
     return store.get(key);
