@@ -1507,7 +1507,7 @@
             );
           }, []),
           onMaxFPSchange = (0, d.useCallback)(async (e) => {
-            let value = Math.min(Math.max(e, 1), 144);
+            let value = Math.max(e, 1);
             setMaxFPS(value);
             console.log(
               "modFeatures.vibeAnimationEnhancement.maxFPS changed. Value: ",
