@@ -59,11 +59,11 @@ class Updater {
             return;
         }
         (0, deviceInfo_js_1.logSystemMetrics)(true);
-        if (isVersionDeprecated() || !config_js_1.config.enableUpdateByProbability) {
+        if (isVersionDeprecated() || !(store_js_1.getModFeatures()?.appAutoUpdates.enableAppAutoUpdateByProbability ?? config_js_1.config.enableUpdateByProbability)) {
             this.downloadUpdate(cancellationToken, updateInfo.version);
       return;
     }
-        if ('updateProbability' in updateInfo && config_js_1.config.enableUpdateByProbability) {
+        if ('updateProbability' in updateInfo && (store_js_1.getModFeatures()?.appAutoUpdates.enableAppAutoUpdateByProbability ?? config_js_1.config.enableUpdateByProbability)) {
             this.logger.info(`Update probability: ${updateInfo.updateProbability}; checking with client value ${this.clientUpdateProbability}`);
             const updateProbability = Number(updateInfo.updateProbability);
             if (this.clientUpdateProbability <= updateProbability && updateProbability > 0) {

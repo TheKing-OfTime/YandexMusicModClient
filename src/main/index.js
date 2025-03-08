@@ -27,6 +27,7 @@ const handleWindowReady_js_1 = require("./lib/handlers/handleWindowReady.js");
 const handleHeadersReceived_js_1 = require("./lib/handlers/handleHeadersReceived/handleHeadersReceived.js");
 const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks.js");
 Logger_js_1.Logger.setupLogger();
+const logger = new Logger_js_1.Logger("Main");
 (0, store_js_1.init)();
 (0, handleUncaughtException_js_1.handleUncaughtException)();
 (0, singleInstance_js_1.checkForSingleInstance)();
@@ -37,6 +38,29 @@ electron_1.app.setLoginItemSettings({
     false,
   path: electron_1.app.getPath("exe"),
 });
+if (store_js_1.getModFeatures()?.tryEnableSurroundAudio ?? false) {
+  logger.log(
+    "--try-supported-channel-layouts:",
+    electron_1.app.commandLine.hasSwitch("try-supported-channel-layouts"),
+    "--force-wave-audio:",
+    electron_1.app.commandLine.hasSwitch("force-wave-audio"),
+    "--disable-audio-output-resampler:",
+    electron_1.app.commandLine.hasSwitch("disable-audio-output-resampler"),
+  );
+
+  electron_1.app.commandLine.appendSwitch("try-supported-channel-layouts");
+  electron_1.app.commandLine.appendSwitch("force-wave-audio");
+  electron_1.app.commandLine.appendSwitch("disable-audio-output-resampler");
+
+  logger.log(
+    "--try-supported-channel-layouts:",
+    electron_1.app.commandLine.hasSwitch("try-supported-channel-layouts"),
+    "--force-wave-audio:",
+    electron_1.app.commandLine.hasSwitch("force-wave-audio"),
+    "--disable-audio-output-resampler:",
+    electron_1.app.commandLine.hasSwitch("disable-audio-output-resampler"),
+  );
+}
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
   const modUpdater = (0, modUpdater_js_1.getModUpdater)();
@@ -69,22 +93,18 @@ electron_1.app.setLoginItemSettings({
     (0, customTitleBar_js_1.createCustomTitleBar)(window);
   }
   if (
-    store_js_1.getAutoUpdatesEnabled() ??
+    store_js_1.getModFeatures()?.appAutoUpdates.enableAppAutoUpdate ??
     config_js_1.config.enableAutoUpdate
   ) {
     updater.start();
     updater.onUpdate((version) => {
       (0, events_js_1.sendUpdateAvailable)(window, version);
     });
-    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
-      modUpdater.start();
-      modUpdater.onUpdateAvailable((currVersion, newVersion) => {
-        (0, events_js_1.sendModUpdateAvailable)(
-          window,
-          currVersion,
-          newVersion,
-        );
-      });
-    }
+  }
+  if (store_js_1.getModFeatures()?.appAutoUpdates.enableModAutoUpdate && deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+    modUpdater.start();
+    modUpdater.onUpdateAvailable((currVersion, newVersion) => {
+      (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
+    });
   }
 })();

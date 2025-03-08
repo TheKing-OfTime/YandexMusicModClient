@@ -1318,6 +1318,122 @@
         });
       });
 
+      let appUpdatesSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { appUpdatesSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+          onModAutoUpdateToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("enableModAutoUpdate toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.appAutoUpdates.enableModAutoUpdate",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          ),
+          onAppAutoUpdateByProbabilityToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log(
+                "enableAppAutoUpdateByProbability toggled. Value: ",
+                !e,
+              );
+              window.nativeSettings.set(
+                "modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability",
+                !e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          ),
+          onAppAutoUpdateToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("enableAppAutoUpdate toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.appAutoUpdates.enableAppAutoUpdate",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          );
+        return (0, n.jsx)(f.u, {
+          className: b().root,
+          style: { "max-width": "550px" },
+          title: "Настройки обновлений",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: Z().root,
+            style: { width: "514px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Автообновлять приложение",
+                  description: "Обновлять ли приложение автоматически",
+                  onChange: onAppAutoUpdateToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.appAutoUpdates.enableAppAutoUpdate",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Получать обновления приложения сразу же",
+                  description:
+                    "Выключает участие в получении обновлений волнами",
+                  onChange: onAppAutoUpdateByProbabilityToggle,
+                  isChecked: !window.nativeSettings.get(
+                    "modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Автообновлять модификацию",
+                  description:
+                    "Обновлять ли мод автоматически (Рекомендуется оставить включённым)",
+                  onChange: onModAutoUpdateToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.appAutoUpdates.enableModAutoUpdate",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+
       let playerBarEnhancementsSettings = (0, i.Pi)(() => {
         let { formatMessage: e } = (0, r.Z)(),
           {
@@ -1936,6 +2052,7 @@
               playerBarEnhancementsSettingsModal:
                 playerBarEnhancementsSettingsModal,
               windowBehaviorSettingsModal: windowBehaviorSettingsModal,
+              appUpdatesSettingsModal: appUpdatesSettingsModal,
             },
             experiments: l,
             wizard: a,
@@ -2025,10 +2142,13 @@
             },
             [u],
           ),
-          onAutoUpdatesToggle = (0, d.useCallback)(
+          onTryEnableSurroundAudioToggle = (0, d.useCallback)(
             async (e) => {
-              console.log("auto updates toggled. Value: ", e);
-              window.nativeSettings.set("enableAutoUpdates", e);
+              console.log("tryEnableSurroundAudio toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.tryEnableSurroundAudio",
+                e,
+              );
               g(
                 (0, n.jsx)(p.Q, {
                   error:
@@ -2277,13 +2397,36 @@
               }),
               (0, n.jsx)("li", {
                 className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: "Настройки обновлений",
+                    description:
+                      "Настройки обновлений как программы, так и модификации",
+                    onClick: appUpdatesSettingsModal.open,
+                  }),
+                  (0, n.jsx)(appUpdatesSettings, {}),
+                ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Включить Ynison Remote",
+                  title: "Включить Ynison Remote [ALPHA]",
                   description:
-                    "Даст возможность управлять этим плеером с других устройств [ALPHA]",
+                    "Даст возможность управлять этим плеером с других устройств",
                   onChange: onEnableYnisonRemoteControlToggle,
                   isChecked: window.nativeSettings.get(
                     "enableYnisonRemoteControl",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Попробовать включить пространственный звук [ALPHA]",
+                  description: "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
+                  onChange: onTryEnableSurroundAudioToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.tryEnableSurroundAudio",
                   ),
                 }),
               }),
@@ -2295,16 +2438,6 @@
                     "Разблокирует Chromium Devtools и dev панель в правом нижнем углу",
                   onChange: onDevtoolsToggle,
                   isChecked: window.nativeSettings.get("enableDevTools"),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Обновлять автоматически",
-                  description:
-                    "Управляет авто обновлениями как программы, так и модификации",
-                  onChange: onAutoUpdatesToggle,
-                  isChecked: window.nativeSettings.get("enableAutoUpdates"),
                 }),
               }),
               (0, n.jsx)("li", {

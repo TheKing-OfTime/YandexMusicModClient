@@ -113,8 +113,13 @@ const init = () => {
       //TOGGLE_REPEAT: 'Ctrl+R',
       TOGGLE_SHUFFLE: "Ctrl+'",
     },
+    appAutoUpdates: {
+      enableAppAutoUpdate: store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES) ?? true,
+      enableAppAutoUpdateByProbability: false,
+      enableModAutoUpdate: true,
+    },
+    tryEnableSurroundAudio: false,
   });
-  initField(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES, true);
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
   initField(store_js_1.StoreKeys.DISPLAY_MAX_FPS, 60);

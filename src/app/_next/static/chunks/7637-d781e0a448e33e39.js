@@ -11723,6 +11723,7 @@
           playerBarEnhancementsSettingsModal: {},
           vibeBehaviorEnhancementsSettingsModal: {},
           windowBehaviorSettingsModal: {},
+          appUpdatesSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -13587,6 +13588,7 @@
         playerBarEnhancementsSettingsModal: _.KL,
         vibeBehaviorEnhancementsSettingsModal: _.KL,
         windowBehaviorSettingsModal: _.KL,
+        appUpdatesSettingsModal: _.KL,
       });
       var eB = a(84597),
         eY = a(86919),
