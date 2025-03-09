@@ -98,6 +98,9 @@ const init = () => {
       invertSliderOnScrollDelta: true,
       disablePerTrackColors: false,
     },
+    miscellaneous: {
+      squarePins: false,
+    },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,
       saveWindowPositionOnRestart: false,

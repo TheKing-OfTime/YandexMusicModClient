@@ -47,6 +47,7 @@ electron_1.contextBridge.exposeInMainWorld('ALWAYS_SHOW_PLAYER_TIMESTAMPS', () =
 electron_1.contextBridge.exposeInMainWorld('INVERT_SLIDER_ON_SCROLL_DELTA', () => store_js_1.getModFeatures()?.playerBarEnhancement?.invertSliderOnScrollDelta);
 electron_1.contextBridge.exposeInMainWorld('DISABLE_PER_TRACK_COLORS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.disablePerTrackColors);
 electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', () => store_js_1.getDefaultExperimentOverrides());
+electron_1.contextBridge.exposeInMainWorld('SQUARE_PINS', () => store_js_1.getModFeatures()?.miscellaneous?.squarePins);
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     get(key) {
         return store_js_1.get(key);
