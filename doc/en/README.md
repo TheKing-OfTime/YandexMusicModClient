@@ -25,11 +25,6 @@ My work will be much more efficient if I work on the source code in a cozy offic
 
 ## Install
 
-> [!WARNING]
-> ### Installing the modification for an unsuitable client version can lead to unpredictable results.
-> Before installing, make sure that the client version and the version for which the modification was made coincide.
-> This can be checked on the Releases page
-
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
 1. Open command line (Win + R -> cmd -> Enter)
 2. Execute this command
@@ -256,9 +251,6 @@ In app UI:
 <p align="left">
 <img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/b53302b8-cd6c-4f66-b1e4-bb16a7f1db77">
 </p>
-
-> [!NOTE]  
-> App restart required for some settings apply.
 
 ## Support
 If you really enjoyed the new experience with this modification, you can support my work on it:
