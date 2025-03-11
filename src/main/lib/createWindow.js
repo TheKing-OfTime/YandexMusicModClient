@@ -49,7 +49,10 @@ const dimensions = (store_js_1.getModFeatures()?.windowBehavior?.saveWindowDimen
 const position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
 
 const createWindow = async () => {
-    const withFrame = [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.MACOS].includes(deviceInfo_js_1.devicePlatform);
+  const withFrame = [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.MACOS].includes(deviceInfo_js_1.devicePlatform);
+  let scaleFactor = 1;
+  if (position)
+      scaleFactor = electron_1.screen.getPrimaryDisplay().scaleFactor / electron_1.screen.getDisplayNearestPoint(position)?.scaleFactor;
   const window = new electron_1.BrowserWindow({
     show: false,
     frame: withFrame,
@@ -61,8 +64,8 @@ const createWindow = async () => {
     },
     minWidth: 768,
     minHeight: 650,
-    width: dimensions?.width ?? 1280,
-    height: dimensions?.height ?? 800,
+    width: Math.max((dimensions?.width ?? 1280) * scaleFactor, 768),
+    height: Math.max((dimensions?.height ?? 800) * scaleFactor, 650),
     ...(position ? { x: position.x, y: position.y } : { center: true }),
     webPreferences: {
       devTools: (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()),
