@@ -5,10 +5,10 @@
 	<a href="https://discord.gg/HGNKDxwHEH">
       <img height="35.48" alt="Сервер" src="https://github.com/user-attachments/assets/b7c8a272-b48c-411f-aca3-6512086a9a18">
    </a>
-   <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/doc/en/README.md">
+   <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/">
       <img width="96" alt="Русский" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/Ru_Badge.png">
    </a>
-   <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/">
+   <a href="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/doc/en/README.md">
       <img width="96" alt="English" src="https://github.com/TheKing-OfTime/YandexMusicModClient/blob/master/assets/En_Badge_Highlighted.png">
    </a>
 </p>
@@ -24,11 +24,6 @@ My work will be much more efficient if I work on the source code in a cozy offic
 
 
 ## Install
-
-> [!WARNING]
-> ### Installing the modification for an unsuitable client version can lead to unpredictable results.
-> Before installing, make sure that the client version and the version for which the modification was made coincide.
-> This can be checked on the Releases page
 
 0. Download latest Yandex music client from offical site https://music.yandex.com/download/
 1. Open command line (Win + R -> cmd -> Enter)
@@ -256,9 +251,6 @@ In app UI:
 <p align="left">
 <img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/b53302b8-cd6c-4f66-b1e4-bb16a7f1db77">
 </p>
-
-> [!NOTE]  
-> App restart required for some settings apply.
 
 ## Support
 If you really enjoyed the new experience with this modification, you can support my work on it:
