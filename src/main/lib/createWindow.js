@@ -48,11 +48,29 @@ exports.toggleWindowState = toggleWindowState;
 const dimensions = (store_js_1.getModFeatures()?.windowBehavior?.saveWindowDimensionsOnRestart ?? true) ? store_js_1.getWindowDimensions() : undefined
 const position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
 
+const isWithinDisplayBounds = (pos, display) =>  {
+    const area = display.workArea
+    return (pos.x >= area.x &&
+            pos.y >= area.y &&
+            pos.x < area.x + area.width &&
+            pos.y < area.y + area.height
+    )
+}
+
 const createWindow = async () => {
   const withFrame = [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.MACOS].includes(deviceInfo_js_1.devicePlatform);
   let scaleFactor = 1;
-  if (position)
-      scaleFactor = electron_1.screen.getPrimaryDisplay().scaleFactor / electron_1.screen.getDisplayNearestPoint(position)?.scaleFactor;
+  if (position) {
+    const primaryDisplay = electron_1.screen.getPrimaryDisplay(),
+        nearestDisplay = electron_1.screen.getDisplayNearestPoint(position);
+
+    scaleFactor = primaryDisplay.scaleFactor / (nearestDisplay?.scaleFactor ?? primaryDisplay.scaleFactor);
+
+    if (isWithinDisplayBounds(position, nearestDisplay)) {
+
+    }
+
+  }
   const window = new electron_1.BrowserWindow({
     show: false,
     frame: withFrame,
