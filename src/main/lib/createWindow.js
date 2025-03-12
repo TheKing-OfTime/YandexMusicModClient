@@ -52,7 +52,7 @@ const toggleWindowState = (window) => {
 exports.toggleWindowState = toggleWindowState;
 
 const dimensions = (store_js_1.getModFeatures()?.windowBehavior?.saveWindowDimensionsOnRestart ?? true) ? store_js_1.getWindowDimensions() : undefined
-const position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
+let position = store_js_1.getModFeatures()?.windowBehavior?.saveWindowPositionOnRestart ? store_js_1.getWindowPosition() : undefined
 
 const isWithinDisplayBounds = (pos, display) =>  {
     const area = display.workArea
@@ -73,10 +73,10 @@ const createWindow = async () => {
     const primaryDisplay = electron_1.screen.getPrimaryDisplay(),
         nearestDisplay = electron_1.screen.getDisplayNearestPoint(position);
 
-    scaleFactor = primaryDisplay.scaleFactor / (nearestDisplay?.scaleFactor ?? primaryDisplay.scaleFactor);
+    scaleFactor = 1 / (nearestDisplay?.scaleFactor ?? primaryDisplay.scaleFactor);
 
-    if (isWithinDisplayBounds(position, nearestDisplay)) {
-
+    if (!isWithinDisplayBounds(position, nearestDisplay)) {
+        position = undefined;
     }
 
   }
@@ -90,6 +90,8 @@ const createWindow = async () => {
       y: 10,
     },
     ...minBounds,
+    width: (dimensions?.width ?? 1280) * scaleFactor,
+    height: (dimensions?.height ?? 800) * scaleFactor,
     ...(position ? { x: position.x, y: position.y } : { center: true }),
     webPreferences: {
       devTools: (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()),
@@ -102,9 +104,7 @@ const createWindow = async () => {
     },
   });
   window.once("ready-to-show", () => {
-
-    window.setSize((dimensions?.width ?? 1280) * scaleFactor, (dimensions?.height ?? 800) * scaleFactor);
-
+    window.setSize((dimensions?.width ?? 1280), (dimensions?.height ?? 800));
     (0, exports.toggleWindowVisibility)(window, !(store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false));
   });
   return window;
