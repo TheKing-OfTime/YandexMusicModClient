@@ -18,6 +18,12 @@ const deviceInfo_js_1 = require("./deviceInfo.js");
 const platform_js_1 = require("../types/platform.js");
 const taskBarExtension_js_1 = require("./taskBarExtension/taskBarExtension.js");
 const store_js_1 = require('./store.js');
+
+const minBounds = {
+    minWidth: 768,
+    minHeight: 650,
+}
+
 const toggleWindowVisibility = (window, isVisible) => {
   if (isVisible) {
     window.show();
@@ -58,7 +64,10 @@ const isWithinDisplayBounds = (pos, display) =>  {
 }
 
 const createWindow = async () => {
-  const withFrame = [platform_js_1.Platform.WINDOWS, platform_js_1.Platform.MACOS].includes(deviceInfo_js_1.devicePlatform);
+  const withFrame = [
+    platform_js_1.Platform.WINDOWS,
+    platform_js_1.Platform.MACOS,
+  ].includes(deviceInfo_js_1.devicePlatform);
   let scaleFactor = 1;
   if (position) {
     const primaryDisplay = electron_1.screen.getPrimaryDisplay(),
@@ -80,10 +89,7 @@ const createWindow = async () => {
       x: 16,
       y: 10,
     },
-    minWidth: 768,
-    minHeight: 650,
-    width: Math.max((dimensions?.width ?? 1280) * scaleFactor, 768),
-    height: Math.max((dimensions?.height ?? 800) * scaleFactor, 650),
+    ...minBounds,
     ...(position ? { x: position.x, y: position.y } : { center: true }),
     webPreferences: {
       devTools: (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()),
@@ -96,6 +102,9 @@ const createWindow = async () => {
     },
   });
   window.once("ready-to-show", () => {
+
+    window.setSize((dimensions?.width ?? 1280) * scaleFactor, (dimensions?.height ?? 800) * scaleFactor);
+
     (0, exports.toggleWindowVisibility)(window, !(store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false));
   });
   return window;
