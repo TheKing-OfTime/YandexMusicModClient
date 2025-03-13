@@ -1015,7 +1015,7 @@
         return (0, n.jsx)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
-          title: "Поведение окна",
+          title: "Разное",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
