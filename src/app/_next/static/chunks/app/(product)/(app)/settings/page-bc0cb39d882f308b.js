@@ -997,6 +997,20 @@
               }),
               { containerId: _.W$x.ERROR },
             );
+          }, []),
+          onFixRootPadding = (0, d.useCallback)(async (e) => {
+            console.log("rootPaddingToggle toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.miscellaneous.fixRootPadding",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1022,6 +1036,17 @@
                   onChange: squarePinsToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.miscellaneous.squarePins",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Исправить отступы главного контейнера",
+                  description: "Главный контейнер будет иметь одинаковые отступы",
+                  onChange: onFixRootPadding,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.miscellaneous.fixRootPadding",
                   ),
                 }),
               }),

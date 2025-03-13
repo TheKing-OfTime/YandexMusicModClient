@@ -753,6 +753,7 @@
                                     [ ev().root_applicationPreserveTitleBar ] : x || h,
                                     [ ev().root_withBarBelow ]                : j.isVisible || M,
                                     [ 'modFeatures_wideBar' ]                 : window.WIDE_BAR?.(),
+                                    [ 'modFeatures_fixRootPadding' ]          : window.FIX_ROOT_PADDING?.(),
                                 },
                                 c
                             ),

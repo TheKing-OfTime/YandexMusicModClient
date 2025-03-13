@@ -101,6 +101,7 @@ const init = () => {
     },
     miscellaneous: {
       squarePins : false,
+      fixRootPadding : false,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,

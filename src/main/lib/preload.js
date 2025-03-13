@@ -48,6 +48,7 @@ electron_1.contextBridge.exposeInMainWorld('INVERT_SLIDER_ON_SCROLL_DELTA', () =
 electron_1.contextBridge.exposeInMainWorld('DISABLE_PER_TRACK_COLORS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.disablePerTrackColors);
 electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', () => store_js_1.getDefaultExperimentOverrides());
 electron_1.contextBridge.exposeInMainWorld('SQUARE_PINS', () => store_js_1.getModFeatures()?.miscellaneous?.squarePins);
+electron_1.contextBridge.exposeInMainWorld('FIX_ROOT_PADDING', () => store_js_1.getModFeatures()?.miscellaneous?.fixRootPadding);
 electron_1.contextBridge.exposeInMainWorld('WIDE_BAR', () => store_js_1.getModFeatures()?.playerBarEnhancement?.wideBar);
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     get(key) {
