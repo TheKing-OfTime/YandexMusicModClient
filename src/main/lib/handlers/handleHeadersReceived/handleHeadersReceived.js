@@ -23,10 +23,6 @@ const handleHeadersReceived = (window) => {
         const headers = details.requestHeaders;
         let newHeaders = structuredClone(headers);
         if (headers) {
-          if (headers['x-yandex-music-device']) {
-
-              newHeaders['x-yandex-music-device'] = headers['x-yandex-music-device'].replace(/os=([^;]+)/, 'os=win32');
-          }
           if (headers['x-yandex-music-client']) {
               newHeaders['x-yandex-music-client'] = 'YandexMusicDesktopAppWindows/' + headers['x-yandex-music-client'].split('/')[1];
           }

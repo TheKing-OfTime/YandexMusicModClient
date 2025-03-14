@@ -31213,7 +31213,7 @@
             e = "uz0zSpaYCLmgk6C7YLdo5F";
             break;
           case n.t.LINUX:
-            e = "uVNvVMAvdrvjtwN0VlhEt2";
+            e = "kzqU4XhfCaY6B6JTHODeq5";
         }
         return e;
       }
