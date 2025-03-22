@@ -91,12 +91,17 @@ const init = () => {
       autoLaunchOnAppStartup: false,
     },
     playerBarEnhancement: {
-      showDislikeButton: true,
-      showRepeatButtonOnVibe: true,
-      showCodecInsteadOfQualityMark: false,
-      alwaysShowPlayerTimestamps: false,
-      invertSliderOnScrollDelta: true,
-      disablePerTrackColors: false,
+      showDislikeButton             : true,
+      showRepeatButtonOnVibe        : true,
+      showCodecInsteadOfQualityMark : false,
+      alwaysShowPlayerTimestamps    : false,
+      invertSliderOnScrollDelta     : true,
+      disablePerTrackColors         : false,
+      wideBar                       : false,
+    },
+    miscellaneous: {
+      squarePins : false,
+      fixRootPadding : false,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,

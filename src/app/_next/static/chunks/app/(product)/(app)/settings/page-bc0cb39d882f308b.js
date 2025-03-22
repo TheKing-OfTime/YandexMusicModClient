@@ -912,6 +912,7 @@
         C = o(93422),
         j = o(44014),
         b = o.n(j);
+
       let y = (0, i.Pi)(() => {
         let { formatMessage: e } = (0, r.Z)(),
           {
@@ -974,6 +975,83 @@
               children: (0, n.jsx)(l.Z, { id: "interface-actions.clear" }),
             }),
           ],
+        });
+      });
+    
+      let miscellaneousSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { miscellaneousSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+          squarePinsToggle = (0, d.useCallback)(async (e) => {
+            console.log("squarePinsToggle toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.miscellaneous.squarePins",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
+          }, []),
+          onFixRootPadding = (0, d.useCallback)(async (e) => {
+            console.log("rootPaddingToggle toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.miscellaneous.fixRootPadding",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
+          }, []);
+        return (0, n.jsx)(f.u, {
+          className: b().root,
+          style: { "max-width": "550px" },
+          title: "Разное",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: Z().root,
+            style: { width: "514px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Квадратные закрепы",
+                  description: "Закрепленные будут иметь форму квадрата",
+                  onChange: squarePinsToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.miscellaneous.squarePins",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Исправить отступы главного контейнера",
+                  description: "Главный контейнер будет иметь одинаковые отступы",
+                  onChange: onFixRootPadding,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.miscellaneous.fixRootPadding",
+                  ),
+                }),
+              }),
+            ],
+          }),
         });
       });
 
@@ -1504,6 +1582,23 @@
               "modFeatures.playerBarEnhancement.disablePerTrackColors",
               e,
             );
+          }, []),
+          onWideBarToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.wideBar toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.wideBar",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1588,6 +1683,17 @@
                   onChange: onDisablePerTrackColorsToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.playerBarEnhancement.disablePerTrackColors",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Всегда широкий",
+                  description: "Включает игнорирование размера окна, и делает бар широким",
+                  onChange: onWideBarToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.wideBar",
                   ),
                 }),
               }),
@@ -2043,16 +2149,24 @@
         let e = (0, _.bop)(),
           {
             modals: {
-              shortcutsModal: t,
-              aboutAppModal: o,
-              clearMemoryModal: i,
-              discordRpcSettingsModal: discordRpcSettingsModal,
+              shortcutsModal:
+                t,
+              aboutAppModal:
+                o,
+              clearMemoryModal:
+                i,
+              discordRpcSettingsModal:
+                discordRpcSettingsModal,
               vibeBehaviorEnhancementsSettingsModal:
                 vibeBehaviorEnhancementsSettingsModal,
               playerBarEnhancementsSettingsModal:
                 playerBarEnhancementsSettingsModal,
-              windowBehaviorSettingsModal: windowBehaviorSettingsModal,
-              appUpdatesSettingsModal: appUpdatesSettingsModal,
+              windowBehaviorSettingsModal:
+                windowBehaviorSettingsModal,
+              appUpdatesSettingsModal:
+                appUpdatesSettingsModal,
+              miscellaneousSettingsModal:
+                miscellaneousSettingsModal,
             },
             experiments: l,
             wizard: a,
@@ -2439,6 +2553,17 @@
                   onChange: onDevtoolsToggle,
                   isChecked: window.nativeSettings.get("enableDevTools"),
                 }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: "Разное",
+                    description: "Различные настройки не имеющие категории",
+                    onClick: miscellaneousSettingsModal.open,
+                  }),
+                  (0, n.jsx)(miscellaneousSettings, {}),
+                ],
               }),
               (0, n.jsx)("li", {
                 className: Z().item,

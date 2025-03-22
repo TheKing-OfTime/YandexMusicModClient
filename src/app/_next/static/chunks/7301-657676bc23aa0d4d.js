@@ -4756,7 +4756,7 @@
               children: (0, B.jsx)("div", {
                 role: "list",
                 "aria-label": l({ id: "navigation.pins-list" }),
-                className: eW().content,
+                className: ( window.SQUARE_PINS?.() ?? false ) ? `${eW().content} modFeatures_squarePins` : eW().content,
                 children: (0, B.jsx)(e_.Z, { component: null, children: u }),
               }),
             }),
