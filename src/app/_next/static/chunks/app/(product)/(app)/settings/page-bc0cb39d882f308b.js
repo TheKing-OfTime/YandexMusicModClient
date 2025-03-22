@@ -1504,6 +1504,23 @@
               "modFeatures.playerBarEnhancement.disablePerTrackColors",
               e,
             );
+          }, []),
+          onAlwaysWideBarToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.playerBarEnhancement.alwaysWideBar toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.playerBarEnhancement.alwaysWideBar",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1588,6 +1605,18 @@
                   onChange: onDisablePerTrackColorsToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.playerBarEnhancement.disablePerTrackColors",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Всегда широкий",
+                  description:
+                    "Панель будет всегда широкой, независимо от размера окна приложения",
+                  onChange: onAlwaysWideBarToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.playerBarEnhancement.alwaysWideBar",
                   ),
                 }),
               }),

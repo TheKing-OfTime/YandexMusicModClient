@@ -97,6 +97,7 @@ const init = () => {
       alwaysShowPlayerTimestamps: false,
       invertSliderOnScrollDelta: true,
       disablePerTrackColors: false,
+      alwaysWideBar : false,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,

@@ -28,7 +28,7 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
         return electron_1.ipcRenderer.invoke(name, ...args);
     }
 });
-electron_1.contextBridge.exposeInMainWorld("DISPLAY_MAX_FPS", store_js_1.getDisplayMaxFps());
+electron_1.contextBridge.exposeInMainWorld('DISPLAY_MAX_FPS', store_js_1.getDisplayMaxFps());
 electron_1.contextBridge.exposeInMainWorld('IS_DEVTOOLS_ENABLED', Boolean(store_js_1.getDevtoolsEnabled()));
 electron_1.contextBridge.exposeInMainWorld('ENABLE_YNISON_REMOTE_CONTROL', Boolean(store_js_1.getEnableYnisonRemoteControl()));
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_INTENSITY_COEFFICIENT', () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.intensityCoefficient);
@@ -46,6 +46,7 @@ electron_1.contextBridge.exposeInMainWorld('SHOW_REPEAT_BUTTON_ON_VIBE', () => s
 electron_1.contextBridge.exposeInMainWorld('ALWAYS_SHOW_PLAYER_TIMESTAMPS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.alwaysShowPlayerTimestamps);
 electron_1.contextBridge.exposeInMainWorld('INVERT_SLIDER_ON_SCROLL_DELTA', () => store_js_1.getModFeatures()?.playerBarEnhancement?.invertSliderOnScrollDelta);
 electron_1.contextBridge.exposeInMainWorld('DISABLE_PER_TRACK_COLORS', () => store_js_1.getModFeatures()?.playerBarEnhancement?.disablePerTrackColors);
+electron_1.contextBridge.exposeInMainWorld( 'ALWAYS_WIDE_BAR', () => store_js_1.getModFeatures()?.playerBarEnhancement?.alwaysWideBar );
 electron_1.contextBridge.exposeInMainWorld('DEFAULT_EXPERIMENT_OVERRIDES', () => store_js_1.getDefaultExperimentOverrides());
 electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     get(key) {
