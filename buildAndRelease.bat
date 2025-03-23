@@ -1,1 +1,1 @@
-node toolset.js buildAndRelease
+node toolset.js build -r

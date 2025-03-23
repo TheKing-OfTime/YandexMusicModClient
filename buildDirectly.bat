@@ -1,1 +1,1 @@
-node toolset.js buildDirectly
+node toolset.js build -d -m

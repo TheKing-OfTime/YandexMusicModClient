@@ -4,6 +4,7 @@
     "@octokit/rest": "^21.1.1",
     "dotenv": "^16.4.7",
     "electron": "^31.0.1",
+    "minimist": "^1.2.8",
     "semver": "^7.7.1",
     "terser": "^5.39.0"
   }

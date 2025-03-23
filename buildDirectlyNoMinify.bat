@@ -1,1 +1,1 @@
-node toolset.js buildDirectlyNoMinify
+node toolset.js build -d

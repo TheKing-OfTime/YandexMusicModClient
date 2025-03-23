@@ -1,6 +1,7 @@
 (async () => {
 require('dotenv').config()
 const asar = require('@electron/asar');
+const minimist = require('minimist');
 const fs = require('fs');
 const fsp = require('fs').promises;
 const path = require('path');
@@ -209,25 +210,25 @@ async function minifyDir(srcDir, destDir) {
     }
 }
 
-async function build(destDir=DEFAULT_DIST_PATH,noMinify=false) {
-    if (!noMinify) {
-      console.log("Минификация...");
-      console.time("Минификация завершена");
-      await minifyDir(SRC_PATH, MINIFIED_SRC_PATH);
-      console.timeEnd("Минификация завершена");
-    }
-    console.log('Архивация в ' + destDir);
-    console.time('Архивация завершена');
-    await asar.createPackage(noMinify ? SRC_PATH : MINIFIED_SRC_PATH, destDir);
-    console.timeEnd('Архивация завершена');
-    if (!noMinify) {
-      await fsp.rm(MINIFIED_SRC_PATH, { recursive: true });
-      console.log("Минифицированный код отчищен");
-    }
+async function build({ destDir = DEFAULT_DIST_PATH, noMinify = false } = { destDir: DEFAULT_DIST_PATH, noMinify: false }) {
+  if (!noMinify) {
+    console.log("Минификация...");
+    console.time("Минификация завершена");
+    await minifyDir(SRC_PATH, MINIFIED_SRC_PATH);
+    console.timeEnd("Минификация завершена");
+  }
+  console.log("Архивация в " + destDir);
+  console.time("Архивация завершена");
+  await asar.createPackage(noMinify ? SRC_PATH : MINIFIED_SRC_PATH, destDir);
+  console.timeEnd("Архивация завершена");
+  if (!noMinify) {
+    await fsp.rm(MINIFIED_SRC_PATH, { recursive: true });
+    console.log("Минифицированный код отчищен");
+  }
 }
 
 async function buildDirectly(noMinify=false) {
-    await build(DIRECT_DIST_PATH, noMinify)
+    await build({ destDir: DIRECT_DIST_PATH, noMinify: noMinify });
 }
 
 async function spoof(type='extracted') {
@@ -249,35 +250,35 @@ async function release(versions=undefined) {
     await sendPatchNoteToDiscord(patchNote);
 }
 
-async function run(command) {
+async function run(command, flags) {
+	const shouldMinify = flags.m ?? false;
+	const shouldBuildDirectly = flags.d ?? false;
+	const shouldRelease = flags.r ?? false;
+	const shouldBuild = flags.b ?? false;
+	const dest = flags.dest ?? DEFAULT_DIST_PATH;
+
+
     switch (command) {
         case 'build':
-            await build();
-            break;
-        case 'buildDirectly':
-            await buildDirectly();
-            break;
-        case 'buildDirectlyNoMinify':
-            await buildDirectly(true);
-            break;
+			if (shouldBuildDirectly) {
+        		await buildDirectly(!shouldMinify);
+				break;
+      		}
+			if (shouldRelease) {
+				await build();
+        		await release();
+				break;
+      		}
+
+			await build({destDir: dest, noMinify: !shouldMinify});
+			break;
         case 'spoof':
-            await spoof();
-            break;
+			const versions = await spoof();
+			if( shouldBuild || shouldRelease) await build()
+			if(shouldRelease) await release(versions)
+			break;
         case 'release':
             await release();
-            break;
-        case 'spoofAndBuild':
-            await spoof();
-            await build()
-            break;
-        case 'buildAndRelease':
-            await build();
-            await release();
-            break;
-        case 'spoofAndRelease':
-            const versions = await spoof();
-            await build()
-            await release(versions)
             break;
         case 'help':
         default:
@@ -285,7 +286,7 @@ async function run(command) {
             break
     }
 }
-    const args = process.argv.slice(2);
+    const args = minimist(process.argv.slice(2));
     console.log(args)
-    await run(...(args.length >= 1 ? args : []));
+    await run(args._?.[0], args);
 })()
