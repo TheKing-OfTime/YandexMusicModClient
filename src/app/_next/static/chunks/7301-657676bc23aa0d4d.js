@@ -9888,6 +9888,22 @@
                           D,
                           U,
                           (0, _.jsx)(N.wx, {
+                            title: "Скачать трек",
+                            description: "Скачает трек в текущем качестве туда, куда вы укажите",
+                            children: (0, _.jsxs)("div", {
+                              className:
+                                "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
+                              children: (0, _.jsxs)("span", {
+                                className: "JjlbHZ4FaP9EAcR_1DxF",
+                                children: (0, _.jsx)(G.Icon, {
+									variant: "download",
+									size: "xs",
+								}),
+                              }),
+                              onClick: onDownloadClick,
+                            }),
+                          }),
+                          (0, _.jsx)(N.wx, {
                             title: "Качество трека",
                             description: downloadInfo?.quality
                               ? downloadInfo?.bitrate !== 0
@@ -9895,29 +9911,36 @@
                                 : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`
                               : "Не удалось получить качество трека",
                             children: (0, _.jsxs)("div", {
-                              className: "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
-                              children: (0, _.jsxs)("span", {
-                                className:
-                                  ig().settingsButton + " eQt33MLDiQ6DRSuLaYEp",
-                                children:
-                                  (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                              className:
+                                "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
+                              children: (0, _.jsx)(t0, {
+                                placement: "bottom",
+                                open: y,
+                                onOpenChange: b,
+                                icon: (
+                                  window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                     ? codecMap[downloadInfo?.codec]
-                                    : qualityMap[downloadInfo?.quality]) ??
-                                  "NONE",
+                                    : qualityMap[downloadInfo?.quality]
+                                )
+                                  ? (0, _.jsxs)("span", {
+                                      className:
+                                        ig().settingsButton,
+									  style: {width: 'auto', height: 'auto', 'align-content': 'center'},
+                                      children:
+                                        (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                          ? codecMap[downloadInfo?.codec]
+                                          : qualityMap[
+                                              downloadInfo?.quality
+                                            ]) ?? "NONE",
+                                    })
+                                  : (0, _.jsx)(G.Icon, {
+                                      variant: "settings",
+                                      size: "xs",
+                                    }),
+                                size: "xxxs",
+                                referenceClassName: ig().settingsButton,
                               }),
-                              onClick: onDownloadClick,
                             }),
-                          }),
-                          (0, _.jsx)(t0, {
-                            placement: "bottom",
-                            open: y,
-                            onOpenChange: b,
-                            icon: (0, _.jsx)(G.Icon, {
-                              variant: "settings",
-                              size: "xs",
-                            }),
-                            size: "xxxs",
-                            referenceClassName: ig().settingsButton,
                           }),
                         ],
                       }),
