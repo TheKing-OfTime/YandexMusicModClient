@@ -6009,7 +6009,7 @@
               sonataState: { isVibeContext: i },
             } = (0, u.yj)(e);
             return (
-              !i &&
+              !i && (window.ENABLE_ENDLESS_MUSIC?.() ?? true) &&
               (null === (t = e.afterTracksIds) || void 0 === t
                 ? void 0
                 : t.length) === 0

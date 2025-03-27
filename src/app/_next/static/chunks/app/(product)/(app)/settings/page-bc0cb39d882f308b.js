@@ -1696,6 +1696,16 @@
               "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
               e,
             );
+          }, []),
+          onEnableEndlessMusicToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
+              e,
+            );
           }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -1772,6 +1782,18 @@
                   onChange: onAutoLaunchOnAppStartup,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Музыка без остановки",
+                  description:
+                    "После окончания воспроизведения очереди, запуститься волна",
+                  onChange: onEnableEndlessMusicToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
                   ),
                 }),
               }),
@@ -2452,7 +2474,8 @@
                 className: Z().item,
                 children: (0, n.jsx)(P, {
                   title: "Попробовать включить пространственный звук [ALPHA]",
-                  description: "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
+                  description:
+                    "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
                   onChange: onTryEnableSurroundAudioToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.tryEnableSurroundAudio",

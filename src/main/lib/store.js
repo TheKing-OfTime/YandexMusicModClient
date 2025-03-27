@@ -89,6 +89,7 @@ const init = () => {
       playOnAnyEntity: false,
       disableRendering: false,
       autoLaunchOnAppStartup: false,
+	  enableEndlessMusic: true,
     },
     playerBarEnhancement: {
       showDislikeButton: true,

@@ -9684,6 +9684,9 @@
           });
         }
         playAutoflow(e) {
+
+		  if(!(window.ENABLE_ENDLESS_MUSIC?.() ?? true)) return;
+
           var t, a, i;
           let r =
             null === (t = e.state.currentContext.value) || void 0 === t
