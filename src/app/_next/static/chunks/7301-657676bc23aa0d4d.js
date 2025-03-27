@@ -9889,7 +9889,7 @@
                           U,
                           (0, _.jsx)(N.wx, {
                             title: "Скачать трек",
-                            description: "Скачает трек в текущем качестве туда, куда вы укажите",
+                            description: "Скачает трек в текущем качестве туда, куда вы укажете",
                             children: (0, _.jsxs)("div", {
                               className:
                                 "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
