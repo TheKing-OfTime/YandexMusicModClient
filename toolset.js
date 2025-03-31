@@ -210,16 +210,16 @@ async function minifyDir(srcDir, destDir) {
     }
 }
 
-async function build({ destDir = DEFAULT_DIST_PATH, noMinify = false } = { destDir: DEFAULT_DIST_PATH, noMinify: false }) {
+async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
   if (!noMinify) {
     console.log("Минификация...");
     console.time("Минификация завершена");
-    await minifyDir(SRC_PATH, MINIFIED_SRC_PATH);
+    await minifyDir(srcPath, MINIFIED_SRC_PATH);
     console.timeEnd("Минификация завершена");
   }
   console.log("Архивация в " + destDir);
   console.time("Архивация завершена");
-  await asar.createPackage(noMinify ? SRC_PATH : MINIFIED_SRC_PATH, destDir);
+  await asar.createPackage(noMinify ? srcPath : MINIFIED_SRC_PATH, destDir);
   console.timeEnd("Архивация завершена");
   if (!noMinify) {
     await fsp.rm(MINIFIED_SRC_PATH, { recursive: true });
@@ -256,6 +256,7 @@ async function run(command, flags) {
 	const shouldRelease = flags.r ?? false;
 	const shouldBuild = flags.b ?? false;
 	const dest = flags.dest ?? DEFAULT_DIST_PATH;
+    const src = flags.src ?? SRC_PATH;
 
 
     switch (command) {
@@ -270,7 +271,7 @@ async function run(command, flags) {
 				break;
       		}
 
-			await build({destDir: dest, noMinify: !shouldMinify});
+			await build({srcPath: src, destDir: dest, noMinify: !shouldMinify});
 			break;
         case 'spoof':
 			const versions = await spoof();
