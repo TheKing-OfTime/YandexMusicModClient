@@ -227,8 +227,8 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
   }
 }
 
-async function buildDirectly(noMinify=false) {
-    await build({ destDir: DIRECT_DIST_PATH, noMinify: noMinify });
+async function buildDirectly(src, noMinify=false) {
+    await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify });
 }
 
 async function spoof(type='extracted') {
@@ -262,7 +262,7 @@ async function run(command, flags) {
     switch (command) {
         case 'build':
 			if (shouldBuildDirectly) {
-        		await buildDirectly(!shouldMinify);
+        		await buildDirectly(src, !shouldMinify);
 				break;
       		}
 			if (shouldRelease) {
