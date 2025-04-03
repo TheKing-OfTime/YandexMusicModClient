@@ -24884,7 +24884,10 @@
           try {
             (this.uniforms = new u.Uniforms((0, i.normalizeCollectionHue)(e))),
               (this.renderer = new o.Renderer(this.rendererOptions)),
-              (this.ticker = new c.Ticker(window.VIBE_ANIMATION_MAX_FPS?.() ?? a.MAX_FPS, this.render.bind(this)));
+              (this.ticker = new c.Ticker(
+                window.VIBE_ANIMATION_MAX_FPS?.() ?? a.MAX_FPS,
+                this.render.bind(this),
+              ));
           } catch (e) {
             ("string" == typeof e || e instanceof Error) && (null == p || p(e)),
               (f = !0);
@@ -24985,7 +24988,8 @@
       let o = r(46409),
         i = r(76090),
         a = r(99962),
-        s = r(41695);
+        s = r(41695),
+        nKind = r(58997);
       class l {
         toValue(e) {
           return { value: e };
@@ -25042,14 +25046,18 @@
             let r = t.getAverageFrequencies({ low: 0, high: 450 }),
               n = t.getAverageFrequencies({ low: 400, high: 5e3 }),
               o = t.getAverageFrequencies({ low: 5e3, high: 20e3 });
-              // Old solution Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
-              // Old solution let intensity =  ((r + n * 10.2 + 0 * 33.3) / 25) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1);
-              // console.debug(this.trackEnergy.value, this.energy.value, intensity);
-              this.energy.update(((t.getRMS() * 5) + 0.3) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1)) // Old solution (this.trackEnergy.value + intensity);
-              // console.log('NRG:', this.energy.value)
-              this.energy.next(e),
-                  this.trackEnergy.next(e),
-            this.audioLowRatio.next(e),
+            // Old solution Домножение громкостей для учёта диапазона усреднения частот. Пока что линейно
+            // Old solution let intensity =  ((r + n * 10.2 + 0 * 33.3) / 25) * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1);
+            // console.debug(this.trackEnergy.value, this.energy.value, intensity);
+            this.energy.update(
+                t.getRMS() *
+                2 *
+                (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) +
+                0.3,
+            ); // Old solution (this.trackEnergy.value + intensity);
+            console.log('NRG:', this.energy.value, window.localStorage.getItem(nKind.BUb.YmPlayerVolume))
+            this.energy.next(e),
+              this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
               this.audioHighRatio.next(e),
               (this.audio = [
@@ -32565,7 +32573,7 @@
             coverClassName: m,
             closeButton: v,
             withDefaultCloseButton: g = !0,
-            children: inhertChildren
+            children: inhertChildren,
           } = e,
           { formatMessage: h } = (0, a.Z)();
         return (0, n.jsxs)(u.Paper, {

@@ -4593,6 +4593,7 @@
         }
       }
       var tr = a(27257);
+      var nKind = a(58997);
       ((n = I || (I = {})).SUSPENDED = "suspended"),
         (n.RUNNING = "running"),
         (n.CLOSED = "closed");
@@ -4623,13 +4624,13 @@
           const dataArray = new Uint8Array(bufferLength);
           this.analyserNode.getByteTimeDomainData(dataArray);
           let sumSquares = 0;
-
+          let volume = JSON.parse(window.localStorage.getItem(nKind.BUb.YmPlayerVolume))?.value ?? 0;
           for (let i = 0; i < bufferLength; i++) {
             const normalized = (dataArray[i] - 128) / 128; // нормировка значений от -1 до 1
             sumSquares += normalized * normalized;
           }
 
-          const rms = Math.sqrt(sumSquares / bufferLength);
+          const rms = Math.sqrt((volume > 0 ? sumSquares / (volume * volume) : 0) / bufferLength);
           // console.log('RMS:', rms)
           return rms;
         }
