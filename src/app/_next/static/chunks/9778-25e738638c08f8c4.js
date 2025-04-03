@@ -25055,7 +25055,7 @@
                 (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) +
                 0.3,
             ); // Old solution (this.trackEnergy.value + intensity);
-            console.log('NRG:', this.energy.value, window.localStorage.getItem(nKind.BUb.YmPlayerVolume))
+            //console.log('NRG:', this.energy.value, window.localStorage.getItem(nKind.BUb.YmPlayerVolume))
             this.energy.next(e),
               this.audioLowRatio.next(e),
               this.audioMiddleRatio.next(e),
