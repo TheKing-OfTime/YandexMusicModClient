@@ -4617,6 +4617,23 @@
               l++;
           return o / l;
         }
+
+        getRMS() {
+          const bufferLength = this.analyserNode.fftSize;
+          const dataArray = new Uint8Array(bufferLength);
+          this.analyserNode.getByteTimeDomainData(dataArray);
+          let sumSquares = 0;
+
+          for (let i = 0; i < bufferLength; i++) {
+            const normalized = (dataArray[i] - 128) / 128; // нормировка значений от -1 до 1
+            sumSquares += normalized * normalized;
+          }
+
+          const rms = Math.sqrt(sumSquares / bufferLength);
+          // console.log('RMS:', rms)
+          return rms;
+        }
+
         constructor(e, t, a) {
           var i, r;
           (0, $._)(this, "audioContext", void 0),
