@@ -25015,7 +25015,6 @@
         }
         updateEnergy(e) {
           this.energy.update(e);
-            this.trackEnergy.update(e);
         }
         updateReactTop(e) {
           this.reactTop.update(e);
@@ -25032,8 +25031,7 @@
         }
         update(e, t) {
           if (
-            (this.trackEnergy.next(e),
-            this.energy.next(e),
+            (this.energy.next(e),
             this.color.next(e),
             this.reactTop.next(e),
             this.reactMiddle.next(e),
@@ -25099,15 +25097,6 @@
                 250,
               ),
             ),
-              n._(
-                  this,
-                  "trackEnergy",
-                  new s.DynamicValue(
-                      i.DEFAULT_NOT_PLAYING_ENERGY,
-                      i.DEFAULT_NOT_PLAYING_ENERGY,
-                      1e3,
-                  ),
-              ),
             n._(this, "time", Math.floor(3600 * Math.random())),
             n._(this, "color", void 0),
             n._(this, "rotation", [
