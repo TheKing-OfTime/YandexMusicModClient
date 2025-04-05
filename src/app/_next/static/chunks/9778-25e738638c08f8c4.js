@@ -14914,6 +14914,7 @@
                     role: p = "menuitem",
                     forwardRef: _,
                     isSubMenu: m,
+                        preventCloseOnClick: preventCloseOnClick,
                     isBlock: v,
                     className: g,
                     ...h
@@ -14955,7 +14956,7 @@
                         null === (t = h.onClick) ||
                           void 0 === t ||
                           t.call(h, e),
-                          m || null == T || T.events.emit("click");
+                        preventCloseOnClick || m || null == T || T.events.emit("click");
                       },
                       onFocus(e) {
                         var t, r;
