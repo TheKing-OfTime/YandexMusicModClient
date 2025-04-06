@@ -122,13 +122,19 @@ class TrackDownloader {
     }
 
     async fetchTrack(data) {
+        this.logger.log("Fetching track:", data);
         const res = await fetch(data.downloadURL);
         let arrayBuffer = await res.arrayBuffer();
 
-        if(!arrayBuffer) return;
+        if (!arrayBuffer) return this.logger.warn("Failed to fetch:", res);
 
-        if (data?.transport === 'encraw')
-            arrayBuffer = await this.decryptData({ key: data.key, data: arrayBuffer });
+        this.logger.log("Fetched!");
+
+        if (data?.transport === "encraw") {
+          this.logger.log("Track is encrypted. Decrypting...");
+          arrayBuffer = await this.decryptData({ key: data.key, data: arrayBuffer, });
+          this.logger.log("Decrypted!");
+        }
 
         return Buffer.from(arrayBuffer);
     }
