@@ -164,10 +164,9 @@ class TrackDownloader {
     }
 
     async removeIfExistsDir(dirPath) {
-        if (fsSync.existsSync(dirPath)) {
+        if (!fsSync.existsSync(dirPath)) return;
             await fs.rm(dirPath, { recursive: true });
-        }
-        this.logger.log("Deleted temp track directory.", dirPath);
+            this.logger.log("Deleted temp track directory.", dirPath);
     }
 
     async createTempDirPath(data) {
