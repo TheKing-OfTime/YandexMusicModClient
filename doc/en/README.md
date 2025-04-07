@@ -203,6 +203,17 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
+### Search when adding a track to a playlist
+<details>
+   <summary>Details</summary>
+
+Adds a search bar to the context menu for selecting a playlist.
+
+![image](https://github.com/user-attachments/assets/03924f52-6e37-4d6a-ad9e-c079ec739cd8)
+
+
+</details>
+
 ### Downloaded tracks info
 <details>
    <summary>Details</summary>
