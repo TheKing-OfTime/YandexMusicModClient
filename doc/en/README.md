@@ -274,6 +274,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/ajioe1111">
+      <img width="50" alt="ajioe1111" src="https://avatars.githubusercontent.com/u/39803571?v=4">
+   </a>
    <a href="https://github.com/xab4er">
       <img width="50" alt="xab4er" src="https://avatars.githubusercontent.com/u/60750449?v=4">
    </a>
