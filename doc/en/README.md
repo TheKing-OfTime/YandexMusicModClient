@@ -203,6 +203,17 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
+### Search when adding a track to a playlist
+<details>
+   <summary>Details</summary>
+
+Adds a search bar to the context menu for selecting a playlist.
+
+![image](https://github.com/user-attachments/assets/03924f52-6e37-4d6a-ad9e-c079ec739cd8)
+
+
+</details>
+
 ### Downloaded tracks info
 <details>
    <summary>Details</summary>
@@ -263,6 +274,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://github.com/ajioe1111">
+      <img width="50" alt="ajioe1111" src="https://avatars.githubusercontent.com/u/39803571?v=4">
+   </a>
    <a href="https://github.com/xab4er">
       <img width="50" alt="xab4er" src="https://avatars.githubusercontent.com/u/60750449?v=4">
    </a>

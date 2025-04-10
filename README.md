@@ -199,6 +199,17 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
+### Поиск при добавлении трека в плейлист
+<details>
+   <summary>Подробнее</summary>
+
+Добавляет строку поиска в контекстное меню выбора плейлиста.
+
+![image](https://github.com/user-attachments/assets/03924f52-6e37-4d6a-ad9e-c079ec739cd8)
+
+
+</details>
+
 ### Информация о скачанных треках
 <details>
    <summary>Подробнее</summary>
@@ -260,6 +271,9 @@ Devtools по умолчанию отключены. Чтобы включить
 ## Спонсоры
 Большое спасибо спонсорам, которые позволяют мне активно работать над этим проектом.
 <p align="left">
+   <a href="https://github.com/ajioe1111">
+      <img width="50" alt="ajioe1111" src="https://avatars.githubusercontent.com/u/39803571?v=4">
+   </a>
    <a href="https://github.com/xab4er">
       <img width="50" alt="xab4er" src="https://avatars.githubusercontent.com/u/60750449?v=4">
    </a>
