@@ -1284,7 +1284,7 @@
                 children: (0, n.jsx)(P, {
                   title: "Предотвращать отключение монитора",
                   description:
-                    "Если включено и окно ЯМ видно на экране, оно не уйдёт в сон от бездействия",
+                    "Если включено и окно ЯМ видно на экране, он не уйдёт в сон от бездействия",
                   onChange: onPreventDisplaySleepToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.windowBehavior.preventDisplaySleep",
