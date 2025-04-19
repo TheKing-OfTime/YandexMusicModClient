@@ -328,6 +328,9 @@ Thanks a lot to the sponsors who allow me to actively work on this project.
    <a href="https://github.com/alex2810com">
       <img width="50" alt="alex2810com" src="https://avatars.githubusercontent.com/u/187911293?v=4">
    </a>
+   <a href="https://github.com/ellatuk">
+      <img width="50" alt="ellatuk" src="https://avatars.githubusercontent.com/u/87390648?v=4">
+   </a>
 </p>
 
 > This list updates manually.
