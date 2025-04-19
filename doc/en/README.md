@@ -68,7 +68,7 @@ Adds support for Discord Rich Presence
 
 ### Player remote control
 <details>
-   <summary>Settings</summary>
+   <summary>Details</summary>
 
 
 Adds support for managing desktop client playback from other devices.
@@ -77,7 +77,7 @@ Adds support for managing desktop client playback from other devices.
 <img width="250" alt="Manage playback from your phone on the PC client" src="https://github.com/user-attachments/assets/305a94f9-4908-4c47-9d75-c0838dbad805">
 
 <details>
-   <summary>Настройки</summary>
+   <summary>Details</summary>
 
 You can disable it on the settings page
 
