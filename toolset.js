@@ -119,6 +119,30 @@ async function modifySrcPackage(version, buildInfo) {
     return { oldVersion: oldVersion, newVersion: version }
 }
 
+async function getVersionFromConfig() {
+    const configJs = await fsp.readFile(path.join(SRC_PATH, '/main/config.js'), 'utf8');
+    return configJs.match(/version: "(.*?)"/)[1];
+}
+
+async function modifyConfigJs(version) {
+    let configJs = await fsp.readFile(path.join(SRC_PATH, '/main/config.js'), 'utf8');
+    const oldVersion = configJs.match(/version: "(.*?)"/)[1];
+    configJs = configJs.replace(/version: "(.*?)"/, `version: "${version}"`);
+    await fsp.writeFile(path.join(SRC_PATH, '/main/config.js'), configJs, 'utf8');
+    return { oldVersion: oldVersion, newVersion: version }
+}
+
+async function getLatestRelease() {
+    const response = await octokit.rest.repos.getLatestRelease({
+        owner: gitOwner,
+        repo: gitRepo,
+    });
+
+    if (!response.status.toString().startsWith('2')) return console.log("Не удалось получить последний релиз:", response.data);
+
+    return response.data;
+}
+
 /**
  *
  * @param {String} version
@@ -231,12 +255,26 @@ async function buildDirectly(src, noMinify=false) {
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify });
 }
 
-async function spoof(type='extracted') {
+async function spoof(type='extracted', shouldRelease=false) {
     console.log('Спуфинг...');
     console.time('Спуфинг завершён');
+    let latestRelease, configVersion;
+    if (shouldRelease) {
+      latestRelease = await getLatestRelease();
+      configVersion = await getVersionFromConfig();
+    }
     const versions = await getLatestYMVersion(type);
     console.log('Последняя версия ЯМ', versions);
     const result = await modifySrcPackage(versions.version, versions.buildInfo);
+
+    if(latestRelease) {
+      if(semver.lte(configVersion, latestRelease.name)) {
+        const nextVersion = semver.inc(latestRelease.name, 'patch');
+        await modifyConfigJs(nextVersion);
+        console.log('Версия мода изменена с', configVersion, 'на', nextVersion);
+      }
+    }
+
     console.timeEnd('Спуфинг завершён');
     console.log('Спуфнуто с', result.oldVersion, 'до', result.newVersion);
     return result
@@ -274,7 +312,7 @@ async function run(command, flags) {
 			await build({srcPath: src, destDir: dest, noMinify: !shouldMinify});
 			break;
         case 'spoof':
-			const versions = await spoof();
+			const versions = await spoof('extracted', shouldRelease);
 			if( shouldBuild || shouldRelease) await build()
 			if(shouldRelease) await release(versions)
 			break;
