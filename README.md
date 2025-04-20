@@ -13,7 +13,7 @@
    </a>
 </p>
 
-## Это модификация для настольного приложения Яндекс Музыка, не модифицированную версию которого можно загрузить [здесь](https://music.yandex.com/download/)
+## Это модификация для [настольного приложения Яндекс Музыка](https://music.yandex.com/download/)
 ### YandexMusicModClient или его разработчик не связаны с Яндексом или какой-либо из их компаний, сотрудников и т.д.
 <details>
    <summary>Сообщение для сотрудников Яндекс Музыки</summary>
@@ -324,6 +324,9 @@ Devtools по умолчанию отключены. Чтобы включить
    </a>
    <a href="https://github.com/alex2810com">
       <img width="50" alt="alex2810com" src="https://avatars.githubusercontent.com/u/187911293?v=4">
+   </a>
+   <a href="https://github.com/ellatuk">
+      <img width="50" alt="ellatuk" src="https://avatars.githubusercontent.com/u/87390648?v=4">
    </a>
 </p>
 
