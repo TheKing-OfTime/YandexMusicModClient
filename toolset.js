@@ -143,6 +143,62 @@ async function getLatestRelease() {
     return response.data;
 }
 
+async function createAndPushSpoofCommit() {
+    const currentCommit = await octokit.repos.getCommit({
+        owner: gitOwner,
+        repo: gitRepo,
+        ref: 'master'
+    });
+
+    const modifiedFiles = [
+        { path: 'src/main/config.js' },
+        { path: 'src/package.json' }
+    ];
+
+    const createBlobPromises = modifiedFiles.map(file => {
+        const content = fs.readFileSync(path.join(SRC_PATH, '..', file.path), 'utf8');
+        return octokit.git.createBlob({
+            owner: gitOwner,
+            repo: gitRepo,
+            content: content,
+            encoding: 'utf-8'
+        });
+    });
+
+    const blobs = await Promise.all(createBlobPromises);
+
+    const tree = await octokit.git.createTree({
+        owner: gitOwner,
+        repo: gitRepo,
+        base_tree: currentCommit.data.commit.tree.sha,
+        tree: blobs.map((blob, index) => ({
+            path: modifiedFiles[index].path,
+            mode: '100644',
+            type: 'blob',
+            sha: blob.data.sha
+        }))
+    });
+
+    const commitResponse = await octokit.git.createCommit({
+        owner: gitOwner,
+        repo: gitRepo,
+        message: 'Спуфинг',
+        tree: tree.data.sha,
+        parents: [currentCommit.data.sha]
+    });
+
+    await octokit.git.updateRef({
+        owner: gitOwner,
+        repo: gitRepo,
+        ref: 'heads/master',
+        sha: commitResponse.data.sha,
+        force: true
+    });
+
+    if (!commitResponse.status.toString().startsWith('2')) return console.log("Не удалось создать коммит:", commitResponse.data);
+    console.log("Коммит успешно создан и отправлен в репозиторий");
+}
+
 /**
  *
  * @param {String} version
@@ -272,6 +328,7 @@ async function spoof(type='extracted', shouldRelease=false) {
         const nextVersion = semver.inc(latestRelease.name, 'patch');
         await modifyConfigJs(nextVersion);
         console.log('Версия мода изменена с', configVersion, 'на', nextVersion);
+        await createAndPushSpoofCommit();
       }
     }
 
