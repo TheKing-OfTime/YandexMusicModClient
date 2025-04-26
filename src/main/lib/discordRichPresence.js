@@ -343,7 +343,7 @@ const discordRichPresence = (playingState) => {
     title = playingState.track.title + ` (${playingState.track.version})`;
   }
 
-  const artist = getArtist(playingState.track?.artists);
+  const artist = getArtist(playingState.track?.artists?.slice());
 
   let album = playingState.track?.albums?.[0]?.title;
 
