@@ -31,6 +31,7 @@ const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
 const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
+const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
@@ -204,6 +205,7 @@ const handleApplicationEvents = (window) => {
     }
     (0, tray_js_1.updateTrayMenu)(window);
     (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
+    (0, scrobbleManager_js_1.handlePlayingStateEvent)(data);
     (0, discordRichPresence_js_1.discordRichPresence)(data);
   });
   electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
