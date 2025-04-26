@@ -11745,6 +11745,7 @@
           vibeBehaviorEnhancementsSettingsModal: {},
           windowBehaviorSettingsModal: {},
           appUpdatesSettingsModal: {},
+          scrobblersSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -13610,6 +13611,7 @@
         vibeBehaviorEnhancementsSettingsModal: _.KL,
         windowBehaviorSettingsModal: _.KL,
         appUpdatesSettingsModal: _.KL,
+        scrobblersSettingsModal: _.KL,
       });
       var eB = a(84597),
         eY = a(86919),

@@ -31,17 +31,17 @@ const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
 const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
+const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
   return typeof value === "boolean";
 };
 
 
-function sleep(ms) {
-  return new Promise((res) => setTimeout(res, ms));
-}
+let mainWindow = undefined;
 
 const handleApplicationEvents = (window) => {
+  mainWindow = window;
   const updater = (0, updater_js_1.getUpdater)();
     const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
   if (store_js_1.getModFeatures()?.globalShortcuts) {
@@ -204,6 +204,7 @@ const handleApplicationEvents = (window) => {
     }
     (0, tray_js_1.updateTrayMenu)(window);
     (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
+    (0, scrobbleManager_js_1.handlePlayingStateEvent)(data);
     (0, discordRichPresence_js_1.discordRichPresence)(data);
   });
   electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
@@ -247,7 +248,36 @@ electron_1.ipcMain.handle("openConfigFile", async () => {
     electron_1.app.getPath("userData") + "/config.json",
   );
 });
+
+electron_1.ipcMain.handle('scrobble-login', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblers().forEach((scrobbler) => {
+    scrobbler.login();
+  });
+});
+electron_1.ipcMain.handle('scrobble-logout', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblers().forEach((scrobbler) => {
+    scrobbler.logout();
+  });
+});
+electron_1.ipcMain.handle('scrobble-lastfm-login', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").login();
+});
+
+electron_1.ipcMain.handle('scrobble-lastfm-logout', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").logout();
+});
+
+electron_1.ipcMain.handle('scrobble-lastfm-get-user', () => {
+  return scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").api.getUserInfo();
+});
 exports.handleApplicationEvents = handleApplicationEvents;
+
+const sendLastFmUserInfoUpdated = (window=mainWindow, userinfo) => {
+  window.webContents.send(events_js_1.Events.LASTFM_USERINFO_UPDATE, userinfo);
+  eventsLogger.info("Event sent", events_js_1.Events.LASTFM_USERINFO_UPDATE, userinfo);
+};
+
+exports.sendLastFmUserInfoUpdated = sendLastFmUserInfoUpdated;
 const sendProbabilityBucket = (window, bucket) => {
   window.webContents.send(events_js_1.Events.PROBABILITY_BUCKET, bucket);
   eventsLogger.info(

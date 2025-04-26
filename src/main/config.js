@@ -28,6 +28,12 @@ exports.config = {
   },
   modification: {
       version: "1.24.5",
+      realYMVersion: "5.37.1",
+      lastfm: {
+          apikey: "2b9046ddec8c00edcd0144b3abbea4ba",
+          sharedSecret: "b36604de5a2cb86870c1caefa307c373",
+          baseUrl: "https://ws.audioscrobbler.com/2.0/",
+      },
   },
 };
 const applyCommonConfig = (commonConfig) => {

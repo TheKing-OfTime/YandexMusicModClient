@@ -26,6 +26,7 @@ const handleWindowSessionEvents_js_1 = require("./lib/handlers/handleWindowSessi
 const handleWindowReady_js_1 = require("./lib/handlers/handleWindowReady.js");
 const handleHeadersReceived_js_1 = require("./lib/handlers/handleHeadersReceived/handleHeadersReceived.js");
 const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks.js");
+
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
 (0, store_js_1.init)();
