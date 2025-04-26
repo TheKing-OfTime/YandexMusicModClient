@@ -5,10 +5,11 @@ exports.handlePlayingStateEvent = handlePlayingStateEvent;
 const ScrobblerManager_1 = require("./ScrobblerManager");
 const LastFmScrobbler_1 = require("./services/lastfm/LastFmScrobbler");
 const scrobblerManager = new ScrobblerManager_1.ScrobblerManager();
+const config_1 = require("../../config");
+config_1.config
 exports.scrobblerManager = scrobblerManager;
 scrobblerManager.registerScrobbler(
-// TODO: Move to config, toolset or environment variables?
-new LastFmScrobbler_1.LastFmScrobbler("ebd53b66afc398d291226adc17b1c5e1", "cd1c5e25adabf68e3621679a3943bb07", "https://ws.audioscrobbler.com/2.0"));
+new LastFmScrobbler_1.LastFmScrobbler(config_1.config.modification.lastfm.apikey, config_1.config.modification.lastfm.sharedSecret, config_1.config.modification.lastfm.baseUrl));
 /**
  * Handle a playing state event from Yandex Music
  *
