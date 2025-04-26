@@ -165,6 +165,8 @@ class LastFmScrobbler {
         }
         catch (error) {
             this.logger.error(`Failed to send scrobble for track: "${track.title}":`, error);
+        } finally {
+            events_js_1.sendLastFmUserInfoUpdated(undefined, await this.api.getUserInfo());
         }
     }
     async fetchAndStoreSession(token) {
