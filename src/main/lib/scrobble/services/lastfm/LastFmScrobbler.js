@@ -54,7 +54,15 @@ class LastFmScrobbler {
         childWindow.loadURL(`http://www.last.fm/api/auth/?api_key=${this.API_KEY}&token=${token}`);
         childWindow.webContents.on("dom-ready", () => {
             childWindow.webContents.insertCSS('.masthead { -webkit-app-region: drag } html, body { overflow-y: scroll; scrollbar-width: none; } body::-webkit-scrollbar { width: 0; height: 0; }')
-            childWindow.webContents.executeJavaScript('console.log("dom-ready triggered"); if(document.querySelector(".content-top-header")?.innerText === "Application authenticated") { setTimeout(() => { window.close(); }, 1000) };');
+            childWindow.webContents.executeJavaScript(`
+            console.log("dom-ready triggered");
+            if ( document.querySelector(".alert-success"))
+                {
+                    setTimeout(() => {
+                        window.close();
+                    }, 1000)
+                };
+            `);
         });
         childWindow.on("closed", async () => {
             await this.fetchAndStoreSession(token);
