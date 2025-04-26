@@ -35,10 +35,25 @@ class LastFmScrobbler {
     async login() {
         const token = await this.api.getToken();
         const childWindow = new electron_1.BrowserWindow({
-            width: 800,
-            height: 600,
+            width: 400,
+            height: 400,
+            titleBarStyle: 'hidden',
+            ...(process.platform !== 'darwin' ? {
+                titleBarOverlay: {
+                    color: '#000',
+                    symbolColor: '#fff',
+                    height: 48,
+                }
+            } : {}),
+            resizable: false,
+            maximizable: false,
+            minimizable: false,
         });
         childWindow.loadURL(`http://www.last.fm/api/auth/?api_key=${this.API_KEY}&token=${token}`);
+        childWindow.webContents.on("dom-ready", () => {
+            childWindow.webContents.insertCSS('.masthead { -webkit-app-region: drag } html, body { overflow-y: scroll; scrollbar-width: none; } body::-webkit-scrollbar { width: 0; height: 0; }')
+            childWindow.webContents.executeJavaScript('console.log("dom-ready triggered"); if(document.querySelector(".content-top-header")?.innerText === "Application authenticated") { setTimeout(() => { window.close(); }, 1000) };');
+        });
         childWindow.on("closed", async () => {
             await this.fetchAndStoreSession(token);
         });
