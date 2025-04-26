@@ -87,6 +87,20 @@ class LastFmApi {
             throw new Error(warningMessages.join("; "));
         }
     }
+
+    /**
+     * Get user information from Last.fm
+     *
+     * @see https://www.last.fm/api/show/user.getInfo
+     *
+     * @param username Optional username to get info for. If not provided, the session's user will be used.
+     */
+    getUserInfo(username=undefined) {
+        return this.request("user.getInfo", {
+            ...(username ? {user: username} : {}),
+        });
+    }
+
     /**
      * Makes a request to the Last.fm API
      *

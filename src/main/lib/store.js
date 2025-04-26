@@ -120,6 +120,9 @@ const init = () => {
       enableAppAutoUpdateByProbability: false,
       enableModAutoUpdate: true,
     },
+    scrobblers: {
+      lastfm: false,
+    },
     tryEnableSurroundAudio: false,
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);

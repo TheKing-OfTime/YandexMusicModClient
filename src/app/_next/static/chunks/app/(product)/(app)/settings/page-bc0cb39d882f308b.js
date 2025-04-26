@@ -1434,6 +1434,88 @@
         });
       });
 
+      let scrobblersSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { scrobblersSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+
+          [userInfo, setUserInfo] = (0, d.useState)(null),
+
+          onLastFMLoginClick = (0, d.useCallback)(
+            async (e) => {
+              console.log("scrobble-lastfm-login triggered.");
+              window.scrobble.lastfmLogin();
+            },
+            [],
+          ),
+          onLastFMLogoutClick = (0, d.useCallback)(
+            async (e) => {
+              console.log("scrobble-lastfm-logout triggered.");
+              window.scrobble.lastfmLogout();
+            },
+            [],
+          ),
+          onLastFMScrobblingToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("enableAppAutoUpdate toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.scrobblers.lastfm",
+                e,
+              );
+            },
+            [],
+          );
+        return ((0, d.useEffect)(() => {
+          window.scrobble?.lastfmGetUser().then((e) => {
+            setUserInfo(e);
+          });
+          window.desktopEvents?.on("LASTFM_USERINFO_UPDATE", (event, e) => {
+            setUserInfo(e);
+          });
+        }, []),
+          (0, n.jsx)(f.u, {
+          className: b().root,
+          style: { "max-width": "550px" },
+          title: "Настройки скробблинга",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: Z().root,
+            style: { width: "514px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(S, {
+                  title: (userInfo ? `${userInfo.user.name} (${userInfo.user.playcount})` : "LastFM"),
+                  description: userInfo ? "Выйти из LastFM" : "Авторизоваться в LastFM",
+                  onClick: userInfo ? onLastFMLogoutClick : onLastFMLoginClick,
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Скробблинг в LastFM",
+                  disabled: !userInfo,
+                  onChange: onLastFMScrobblingToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.scrobblers.lastfm",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        })
+        )
+      });
+
       let playerBarEnhancementsSettings = (0, i.Pi)(() => {
         let { formatMessage: e } = (0, r.Z)(),
           {
@@ -2104,6 +2186,7 @@
                 playerBarEnhancementsSettingsModal,
               windowBehaviorSettingsModal: windowBehaviorSettingsModal,
               appUpdatesSettingsModal: appUpdatesSettingsModal,
+              scrobblersSettingsModal: scrobblersSettingsModal,
             },
             experiments: l,
             wizard: a,
@@ -2445,6 +2528,16 @@
                   }),
                   (0, n.jsx)(windowBehaviorSettings, {}),
                 ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [(0, n.jsx)(S, {
+                  title: "Настройки скробблинга",
+                  description: "Авторизация в Last.fm и другие настройки",
+                  onClick: scrobblersSettingsModal.open,
+                }),
+                (0, n.jsx)(scrobblersSettings, {}),
+                ]
               }),
               (0, n.jsx)("li", {
                 className: Z().item,

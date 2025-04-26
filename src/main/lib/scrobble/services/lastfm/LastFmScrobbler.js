@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LastFmScrobbler = void 0;
 const electron_1 = require("electron");
 const Logger_1 = require("../../../../packages/logger/Logger");
+const store_js_1 = require("../../../store");
+const events_js_1 = require("../../../../events");
 const electron_store_1 = require("electron-store");
 const trackInfo_1 = require("./utils/trackInfo");
 const LastFmApi_1 = require("./api/LastFmApi");
@@ -25,8 +27,8 @@ class LastFmScrobbler {
         this.api = new LastFmApi_1.LastFmApi(this.API_KEY, sharedSecret, baseUrl, () => this.getStoredSession());
     }
     isEnabled() {
-        // TODO: Implement based on user preferences
-        return this.isLoggedIn();
+        let isLastFmEnabled = store_js_1.getModFeatures()?.scrobblers?.lastfm;
+        return this.isLoggedIn() && isLastFmEnabled;
     }
     isLoggedIn() {
         const session = this.store.get(this.SESSION_STORE_KEY);
@@ -56,11 +58,13 @@ class LastFmScrobbler {
         });
         childWindow.on("closed", async () => {
             await this.fetchAndStoreSession(token);
+            events_js_1.sendLastFmUserInfoUpdated(undefined, await this.api.getUserInfo());
         });
     }
     async logout() {
         this.store.delete(this.SESSION_STORE_KEY);
         this.logger.info("Logged out");
+        events_js_1.sendLastFmUserInfoUpdated(undefined, undefined);
     }
     handleEvent(playingState) {
         if (this.isTrackChanged(playingState.track)) {
