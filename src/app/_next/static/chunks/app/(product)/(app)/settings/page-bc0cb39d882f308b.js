@@ -1471,7 +1471,7 @@
           window.scrobble?.lastfmGetUser().then((e) => {
             setUserInfo(e);
           });
-        }),
+        }, [t.isOpened]),
         (0, d.useEffect)(() => {
           window.desktopEvents?.on("LASTFM_USERINFO_UPDATE", (event, e) => {
             setUserInfo(e);
