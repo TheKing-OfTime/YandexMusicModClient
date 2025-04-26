@@ -58,6 +58,14 @@ electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     }
 });
 electron_1.contextBridge.exposeInMainWorld('openConfigFile', () => electron_1.ipcRenderer.invoke('openConfigFile'));
+
+// TEMPORARY: Set up Last.fm login IPC handler. Mostly for example.
+electron_1.contextBridge.exposeInMainWorld('scrobble', {
+  login: () => electron_1.ipcRenderer.invoke('scrobble-login'),
+  logout: () => electron_1.ipcRenderer.invoke('scrobble-logout'),
+  lastfmLogin: () => electron_1.ipcRenderer.invoke('scrobble-lastfm-login'),
+});
+
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {

@@ -26,6 +26,8 @@ const handleWindowSessionEvents_js_1 = require("./lib/handlers/handleWindowSessi
 const handleWindowReady_js_1 = require("./lib/handlers/handleWindowReady.js");
 const handleHeadersReceived_js_1 = require("./lib/handlers/handleHeadersReceived/handleHeadersReceived.js");
 const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks.js");
+const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
+
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
 (0, store_js_1.init)();
@@ -108,3 +110,19 @@ if (store_js_1.getModFeatures()?.tryEnableSurroundAudio ?? false) {
     });
   }
 })();
+
+// TEMPORARY: Set up Last.fm login IPC handler. Mostly for example.
+electron_1.ipcMain.handle('scrobble-login', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblers().forEach((scrobbler) => {
+    scrobbler.login();
+  });
+});
+electron_1.ipcMain.handle('scrobble-logout', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblers().forEach((scrobbler) => {
+    scrobbler.logout();
+  });
+});
+electron_1.ipcMain.handle('scrobble-lastfm-login', () => {
+  scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").login();
+});
+
