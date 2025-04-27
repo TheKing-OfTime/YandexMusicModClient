@@ -86,6 +86,33 @@
 
 </details>
 
+### Скробблинг Last.FM
+<details>
+   <summary>Подробнее</summary>
+
+
+Добавляет поддержку cкробблинга в Last.FM. Трек заскробблится если вы прослушаете хотя бы его половину. (Но при этом запрос скроббла отправиться при смене трека)
+
+<img width="550" alt="Страница пользователя Last.FM с заскроббленными треками" src="https://github.com/user-attachments/assets/9a47a37b-b895-4a06-8538-fb94eb009290">
+
+<details>
+   <summary>Настройки</summary>
+
+Авторизоваться в Last.FM, а также включить/выключить функцию можно в соответствующем меню в настройках приложения.
+
+![Яндекс_Музыка_YCvwJPSvMt](https://github.com/user-attachments/assets/76c25ff0-fddd-4747-93ba-a6ab60efe876)
+
+<details>
+   <summary>Процесс авторизации</summary>
+
+https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
+
+</details>
+
+</details>
+
+</details>
+
 ### Глобальные хоткеи
 <details>
    <summary>Подробнее</summary>

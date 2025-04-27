@@ -87,6 +87,33 @@ You can disable it on the settings page
 
 </details>
 
+### Last.FM scrobbling
+<details>
+   <summary>Details</summary>
+
+
+Adds support for Last.FM scrobbling. The track will be scrobbled if you listen to at least half of it. (But the scrobble request will be sent when the track is changed)
+
+<img width="550" alt="The Last.FM user's page with scribbled tracks" src="https://github.com/user-attachments/assets/9a47a37b-b895-4a06-8538-fb94eb009290">
+
+<details>
+   <summary>Settings</summary>
+
+Log in to Last.FM, as well as enable / disable the function, can be found in the corresponding menu in the app settings.
+
+![YandexMusic_YCvwJPSvMt](https://github.com/user-attachments/assets/76c25ff0-fddd-4747-93ba-a6ab60efe876)
+
+<details>
+   <summary>Authorization process</summary>
+
+https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
+
+</details>
+
+</details>
+
+</details>
+
 ### Global Shortcuts
 <details>
    <summary>Details</summary>
