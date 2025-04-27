@@ -1479,7 +1479,7 @@
         }, []),
           (0, n.jsx)(f.u, {
           className: b().root,
-          style: { "max-width": "550px" },
+          //style: { "max-width": "550px" },
           title: "Настройки скробблинга",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
@@ -1491,7 +1491,7 @@
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsx)("ul", {
             className: Z().root,
-            style: { width: "514px" },
+            style: { width: "-webkit-fill-available" },
             children: [
               (0, n.jsx)("li", {
                 className: Z().item,
