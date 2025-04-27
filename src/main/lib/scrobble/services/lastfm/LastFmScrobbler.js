@@ -107,7 +107,11 @@ class LastFmScrobbler {
         }
         else {
             this.pauseTrackPlayback();
-            this.maybeScrobbleCurrentTrack();
+
+            const isScrobbled = this.maybeScrobbleCurrentTrack();
+            if (isScrobbled) {
+                this.currentTrackPlayedTime = 0;
+            }
         }
     }
     startTrackPlayback() {
@@ -123,11 +127,14 @@ class LastFmScrobbler {
     }
     maybeScrobbleCurrentTrack() {
         if (!this.currentTrack)
-            return;
+            return false;
+
         const totalPlayedTime = this.calculateTotalPlayedTime();
-        if (this.isTrackEligibleForScrobble(this.currentTrack, totalPlayedTime)) {
-            void this.sendScrobble(this.currentTrack);
-        }
+        if (!this.isTrackEligibleForScrobble(this.currentTrack, totalPlayedTime))
+            return false;
+        
+        void this.sendScrobble(this.currentTrack);
+        return true;
     }
     calculateTotalPlayedTime() {
         let totalTime = this.currentTrackPlayedTime;
