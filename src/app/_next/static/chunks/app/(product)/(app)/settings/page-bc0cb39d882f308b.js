@@ -1482,10 +1482,20 @@
               children: [
                 (0, n.jsx)("li", {
                   className: Z().item,
+                  ...(userInfo?.user?.image ? {style: { display: "flex", alignItems: "center", gap: "16px" }} : {}),
                   children: [
+                    (0, n.jsx)('div', {
+                      children: userInfo?.user?.image
+                        ? (0, n.jsx)('img', {
+                          src: userInfo.user.image?.find(img => img.size === 'medium')?.['#text'] || userInfo.user.image?.[0]?.['#text'],
+                          alt: 'Аватар',
+                          style: { width: 46, height: 46, borderRadius: '50%' },
+                        })
+                        : null
+                    }),
                     (0, n.jsx)(S, {
                       title: userInfo
-                        ? `${userInfo.user.name} (${userInfo.user.playcount})`
+                        ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`
                         : "LastFM",
                       description: userInfo
                         ? "Выйти из LastFM"
