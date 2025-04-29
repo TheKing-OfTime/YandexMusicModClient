@@ -143,7 +143,7 @@ async function getLatestRelease() {
     return response.data;
 }
 
-async function createAndPushSpoofCommit() {
+async function createAndPushSpoofCommit(oldVersion=undefined, newVersion=undefined) {
     const currentCommit = await octokit.repos.getCommit({
         owner: gitOwner,
         repo: gitRepo,
@@ -182,7 +182,7 @@ async function createAndPushSpoofCommit() {
     const commitResponse = await octokit.git.createCommit({
         owner: gitOwner,
         repo: gitRepo,
-        message: 'Спуфинг',
+        message: (oldVersion && newVersion) ? `chore: Spoof version from ${oldVersion} to ${newVersion}` : 'chore: Spoof version',
         tree: tree.data.sha,
         parents: [currentCommit.data.sha]
     });
@@ -328,7 +328,7 @@ async function spoof(type='extracted', shouldRelease=false) {
         const nextVersion = semver.inc(latestRelease.name, 'patch');
         await modifyConfigJs(nextVersion);
         console.log('Версия мода изменена с', configVersion, 'на', nextVersion);
-        await createAndPushSpoofCommit();
+        await createAndPushSpoofCommit(configVersion, nextVersion);
       }
     }
 
