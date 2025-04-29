@@ -9923,7 +9923,8 @@
                                     "background-color":
                                       "var(--ym-controls-color-secondary-text-enabled)",
                                     width: `${downloadProgress === -100 ? 0 : downloadProgress}%`,
-                                    transition: ((downloadProgress > 0 && downloadProgress <= 100) ? "width 0.3s" : 'none'),
+                                    transition: ((downloadProgress >= 0 && downloadProgress < 100) ? "width 0.3s" : 'width 0.3s, opacity 0.3s linear 0.5s'),
+                                    opacity: ((downloadProgress >= 0 && downloadProgress < 100) ? "1" : '0'),
                                     height: "2px",
                                     "border-radius": "10px",
                                   },
