@@ -132,6 +132,13 @@ const init = () => {
         autoLike: false,
       },
     },
+    downloader: {
+        useDefaultPath: false,
+        defaultPath: '',
+        useMP3: false,
+        useCustomPathForSessionStorage: false,
+        customPathForSessionStorage: '',
+    },
     tryEnableSurroundAudio: false,
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
