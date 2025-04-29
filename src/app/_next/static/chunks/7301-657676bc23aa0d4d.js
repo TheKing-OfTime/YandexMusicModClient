@@ -6009,7 +6009,8 @@
               sonataState: { isVibeContext: i },
             } = (0, u.yj)(e);
             return (
-              !i && (window.ENABLE_ENDLESS_MUSIC?.() ?? true) &&
+              !i &&
+              (window.ENABLE_ENDLESS_MUSIC?.() ?? true) &&
               (null === (t = e.afterTracksIds) || void 0 === t
                 ? void 0
                 : t.length) === 0
@@ -9502,6 +9503,7 @@
             { theme: u } = (0, C.FgM)(),
             [m, p] = (0, x.useState)(!1),
             [y, b] = (0, x.useState)(!1),
+            [downloadProgress, setDownloadProgress] = (0, x.useState)(0),
             { formatMessage: k } = (0, W.Z)(),
             j = r.contextType === T.A.Generative,
             I = !j,
@@ -9728,6 +9730,13 @@
 
           return (
             (0, x.useEffect)(() => {
+              window.desktopEvents.on('PROGRESS_BAR_CHANGE', (e, elementType, progress) => {
+                if (elementType === 'trackDownloadCurrent') {
+                  setDownloadProgress(progress);
+                }
+              })
+            }, []),
+            (0, x.useEffect)(() => {
               const timer = setTimeout(() => {
                 let fDownloadInfo =
                   theState?.state?.queueState?.currentEntity?.value?.entity
@@ -9889,17 +9898,37 @@
                           U,
                           (0, _.jsx)(N.wx, {
                             title: "Скачать трек",
-                            description: "Скачает трек в текущем качестве туда, куда вы укажете",
+                            description:
+                              "Скачает трек в текущем качестве туда, куда вы укажете",
                             children: (0, _.jsxs)("div", {
                               className:
                                 "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
-                              children: (0, _.jsxs)("span", {
-                                className: "JjlbHZ4FaP9EAcR_1DxF",
-                                children: (0, _.jsx)(G.Icon, {
-									variant: "download",
-									size: "xs",
-								}),
-                              }),
+                              style: {
+                                display: "flex",
+                                "flex-direction": "column",
+                                gap: "2px",
+                                "align-self": "center",
+                                "padding-top": "5px",
+                              },
+                              children: [
+                                (0, _.jsxs)("span", {
+                                  className: "JjlbHZ4FaP9EAcR_1DxF",
+                                  children: (0, _.jsx)(G.Icon, {
+                                    variant: "download",
+                                    size: "xs",
+                                  }),
+                                }),
+                                (0, _.jsxs)("div", {
+                                  style: {
+                                    "background-color":
+                                      "var(--ym-controls-color-secondary-text-enabled)",
+                                    width: `${downloadProgress === -100 ? 0 : downloadProgress}%`,
+                                    transition: ((downloadProgress > 0 && downloadProgress <= 100) ? "width 0.3s" : 'none'),
+                                    height: "2px",
+                                    "border-radius": "10px",
+                                  },
+                                }),
+                              ],
                               onClick: onDownloadClick,
                             }),
                           }),
@@ -9923,9 +9952,12 @@
                                     : qualityMap[downloadInfo?.quality]
                                 )
                                   ? (0, _.jsxs)("span", {
-                                      className:
-                                        ig().settingsButton,
-									  style: {width: 'auto', height: 'auto', 'align-content': 'center'},
+                                      className: ig().settingsButton,
+                                      style: {
+                                        width: "auto",
+                                        height: "auto",
+                                        "align-content": "center",
+                                      },
                                       children:
                                         (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
                                           ? codecMap[downloadInfo?.codec]
