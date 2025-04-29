@@ -121,19 +121,47 @@ class TrackDownloader {
 
     }
 
-    async fetchTrack(data) {
+    async fetchTrack(data, callback = (x,b)=>{return null}) {
         this.logger.log("Fetching track:", data);
+
         const res = await fetch(data.downloadURL);
-        let arrayBuffer = await res.arrayBuffer();
+
+        const contentLength = res.headers.get('content-length');
+        let arrayBuffer;
+
+        if (contentLength) {
+            const total = parseInt(contentLength, 10);
+            let loaded = 0;
+            const reader = res.body.getReader();
+            const chunks = [];
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                chunks.push(value);
+                loaded += value.length;
+                const result = Math.min((loaded / total) * 0.7, 1);
+                callback(result, result);
+            }
+            arrayBuffer = new Uint8Array(chunks.reduce((acc, val) => acc + val.length, 0));
+            let offset = 0;
+            for (const chunk of chunks) {
+                arrayBuffer.set(chunk, offset);
+                offset += chunk.length;
+            }
+            arrayBuffer = arrayBuffer.buffer;
+        } else {
+            arrayBuffer = await res.arrayBuffer();
+            callback(0.7, 0.7);
+        }
 
         if (!arrayBuffer) return this.logger.warn("Failed to fetch:", res);
 
         this.logger.log("Fetched!");
 
         if (data?.transport === "encraw") {
-          this.logger.log("Track is encrypted. Decrypting...");
-          arrayBuffer = await this.decryptData({ key: data.key, data: arrayBuffer, });
-          this.logger.log("Decrypted!");
+            this.logger.log("Track is encrypted. Decrypting...");
+            arrayBuffer = await this.decryptData({ key: data.key, data: arrayBuffer });
+            this.logger.log("Decrypted!");
         }
 
         return Buffer.from(arrayBuffer);
@@ -220,7 +248,7 @@ class TrackDownloader {
         }
     }
 
-    async downloadTrack(data) {
+    async downloadTrack(data, callback = (x,b)=>{return null} ) {
 
         const finalTrackPath = await this.handleSaveDialog(data);
         if(!finalTrackPath) return;
@@ -230,16 +258,14 @@ class TrackDownloader {
 
         const tempTrackPath = path.join(tempDirPath, `${data.trackId}.${data.codec}`);
 
-        this.window.setProgressBar(0);
+        callback(0, 0);
 
-        const buffer = await this.fetchTrack(data);
+        const buffer = await this.fetchTrack(data, callback);
         this.logger.info("Got track. Saving to:", tempTrackPath);
-
-        this.window.setProgressBar(0.6);
 
         await fs.writeFile(tempTrackPath, buffer);
         this.logger.info("Track saved to temp directory");
-        this.window.setProgressBar(0.8);
+        callback(0.8, 0.8);
 
         const coverBuffer = await this.fetchAlbumCover(data);
         this.logger.info("Got cover");
@@ -249,13 +275,13 @@ class TrackDownloader {
         }
 
         await this.reEncodeWithFfmpeg(data, finalTrackPath, tempDirPath, tempTrackPath);
-        this.window.setProgressBar(1.0);
+        callback(1.0, 1.0);
         this.logger.info("Track downloaded");
 
         await this.removeIfExistsDir(tempDirPath);
 
         setTimeout(() => {
-            this.window.setProgressBar(-1);
+          callback(-1.0, -1.0);
         }, 1000);
     }
 }
