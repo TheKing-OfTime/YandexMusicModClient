@@ -1537,7 +1537,7 @@
                     }),
                     (0, n.jsx)(S, {
                       title: userInfo
-                        ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`
+                        ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString().replace(' ', ",")})`
                         : "LastFM",
                       description: userInfo
                         ? "Выйти из LastFM"
@@ -1577,7 +1577,7 @@
                   children: (0, n.jsx)(P, {
                     title: "Использовать Ynison [ALPHA]",
                     description:
-                      "Использует для скробблинга данные проигрывания с других устройств",
+                      "Скробблить проигрывания даже с других устройств",
                     disabled: !userInfo,
                     onChange: onLastFmFromYnisonToggle,
                     isChecked: window.nativeSettings.get(
