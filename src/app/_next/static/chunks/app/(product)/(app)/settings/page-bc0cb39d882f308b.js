@@ -1441,6 +1441,7 @@
           } = (0, _.oR4)(),
           { notify: i } = (0, _.d$W)(),
           [userInfo, setUserInfo] = (0, d.useState)(null),
+          [unauthorizedProbe, setUnauthorizedProbe] = (0, d.useState)(false),
           onLastFMLoginClick = (0, d.useCallback)(async (e) => {
             console.log("scrobble-lastfm-login triggered.");
             window.scrobble.lastfmLogin();
@@ -1483,6 +1484,9 @@
           (0, d.useEffect)(() => {
             window.scrobble?.lastfmGetUser().then((e) => {
               setUserInfo(e);
+            });
+            fetch('https://api.music.yandex.net/tracks/24924389:2350470').then((response) => {
+                setUnauthorizedProbe(response.ok)
             });
           }, [t.isOpened]),
           (0, d.useEffect)(() => {
@@ -1576,9 +1580,8 @@
                   className: Z().item,
                   children: (0, n.jsx)(P, {
                     title: "Использовать Ynison [ALPHA]",
-                    description:
-                      "Скробблить проигрывания даже с других устройств",
-                    disabled: !userInfo,
+                    description: unauthorizedProbe ? "Недоступно в вашем регионе или включён VPN" : "Скробблить проигрывания даже с других устройств",
+                    disabled: !unauthorizedProbe,
                     onChange: onLastFmFromYnisonToggle,
                     isChecked: window.nativeSettings.get(
                       "modFeatures.scrobblers.lastfm.fromYnison",

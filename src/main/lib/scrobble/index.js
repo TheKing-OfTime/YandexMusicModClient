@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.scrobblerManager = void 0;
 exports.handlePlayingStateEvent = handlePlayingStateEvent;
+exports.handlePlayingStateEventFromYnison = handlePlayingStateEventFromYnison;
 const ScrobblerManager_1 = require("./ScrobblerManager");
 const LastFmScrobbler_1 = require("./services/lastfm/LastFmScrobbler");
 const scrobblerManager = new ScrobblerManager_1.ScrobblerManager();
@@ -16,4 +17,8 @@ new LastFmScrobbler_1.LastFmScrobbler(config_1.config.modification.lastfm.apikey
  */
 function handlePlayingStateEvent(playingState) {
     scrobblerManager.handlePlayingState(playingState);
+}
+
+function handlePlayingStateEventFromYnison(ynisonState) {
+    scrobblerManager.handlePlayingStateFromYnison(ynisonState);
 }

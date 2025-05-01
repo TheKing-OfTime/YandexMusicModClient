@@ -216,6 +216,7 @@ const handleApplicationEvents = (window) => {
   electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
     eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
     (0, discordRichPresence_js_1.fromYnisonState)(data);
+    (0, scrobbleManager_js_1.handlePlayingStateEventFromYnison)(data);
   });
   electron_1.ipcMain.on(
     events_js_1.Events.INSTALL_MOD_UPDATE,
