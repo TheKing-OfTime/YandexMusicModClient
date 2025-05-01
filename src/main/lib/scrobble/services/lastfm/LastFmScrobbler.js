@@ -90,13 +90,13 @@ class LastFmScrobbler {
     }
 
     handleLikeState(playingState) {
-        this.logger.debug("handleLikeState", store_js_1.getModFeatures()?.scrobblers?.lastfm.autoLike, this.nowPlayingLastFmTrack);
+        //this.logger.debug("handleLikeState", store_js_1.getModFeatures()?.scrobblers?.lastfm.autoLike, this.nowPlayingLastFmTrack);
         if (!store_js_1.getModFeatures()?.scrobblers?.lastfm.autoLike || !this.nowPlayingLastFmTrack) return;
-        this.logger.debug("handleLikeState check 1 passed");
+        //this.logger.debug("handleLikeState check 1 passed");
         if (!this.checkIfTrackStatesSynced(playingState)) return this.nowPlayingLastFmTrack = null;
-        this.logger.debug("handleLikeState check 2 passed");
+        //this.logger.debug("handleLikeState check 2 passed");
         if (this.nowPlayingLastFmTrack.loved == playingState.actionsStore.isLiked) return;
-        this.logger.debug("handleLikeState check 3 passed");
+        //this.logger.debug("handleLikeState check 3 passed");
 
         this.logger.debug("Track states are synced. Syncing like state");
 
