@@ -1449,9 +1449,35 @@
             console.log("scrobble-lastfm-logout triggered.");
             window.scrobble.lastfmLogout();
           }, []),
-          onLastFMScrobblingToggle = (0, d.useCallback)(async (e) => {
-            console.log("enableAppAutoUpdate toggled. Value: ", e);
-            window.nativeSettings.set("modFeatures.scrobblers.lastfm", e);
+          onLastFmScrobblingToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.scrobblers.lastfm.enable toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.scrobblers.lastfm.enable",
+              e,
+            );
+          }, []),
+          onLastFmAutoLikesToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.scrobblers.lastfm.autoLike toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.scrobblers.lastfm.autoLike",
+              e,
+            );
+          }, []),
+          onLastFmFromYnisonToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.scrobblers.lastfm.fromYnison toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.scrobblers.lastfm.fromYnison",
+              e,
+            );
           }, []);
         return (
           (0, d.useEffect)(() => {
@@ -1482,16 +1508,32 @@
               children: [
                 (0, n.jsx)("li", {
                   className: Z().item,
-                  ...(userInfo?.user?.image ? {style: { display: "flex", alignItems: "center", gap: "16px" }} : {}),
+                  ...(userInfo?.user?.image
+                    ? {
+                        style: {
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "16px",
+                        },
+                      }
+                    : {}),
                   children: [
-                    (0, n.jsx)('div', {
+                    (0, n.jsx)("div", {
                       children: userInfo?.user?.image
-                        ? (0, n.jsx)('img', {
-                          src: userInfo.user.image?.find(img => img.size === 'medium')?.['#text'] || userInfo.user.image?.[0]?.['#text'],
-                          alt: 'Аватар',
-                          style: { width: 46, height: 46, borderRadius: '50%' },
-                        })
-                        : null
+                        ? (0, n.jsx)("img", {
+                            src:
+                              userInfo.user.image?.find(
+                                (img) => img.size === "medium",
+                              )?.["#text"] ||
+                              userInfo.user.image?.[0]?.["#text"],
+                            alt: "Аватар",
+                            style: {
+                              width: 46,
+                              height: 46,
+                              borderRadius: "50%",
+                            },
+                          })
+                        : null,
                     }),
                     (0, n.jsx)(S, {
                       title: userInfo
@@ -1511,12 +1553,36 @@
                   children: (0, n.jsx)(P, {
                     title: "Скробблинг в LastFM",
                     disabled: !userInfo,
-                    onChange: onLastFMScrobblingToggle,
+                    onChange: onLastFmScrobblingToggle,
                     isChecked: window.nativeSettings.get(
                       "modFeatures.scrobblers.lastfm",
                     ),
                   }),
                 }),
+                  (0, n.jsx)("li", {
+                      className: Z().item,
+                      children: (0, n.jsx)(P, {
+                          title: "Синхронизировать лайки",
+                          description: "Автоматически лайкает/анлайкает треки в LastFM",
+                          disabled: !userInfo,
+                          onChange: onLastFmAutoLikesToggle,
+                          isChecked: window.nativeSettings.get(
+                              "modFeatures.scrobblers.lastfm.autoLike",
+                          ),
+                      }),
+                  }),
+                  (0, n.jsx)("li", {
+                      className: Z().item,
+                      children: (0, n.jsx)(P, {
+                          title: "Использовать Ynison [ALPHA]",
+                          description: "Использует для скробблинга данные проигрывания с других устройств",
+                          disabled: !userInfo,
+                          onChange: onLastFmFromYnisonToggleToggle,
+                          isChecked: window.nativeSettings.get(
+                              "modFeatures.scrobblers.lastfm.fromYnison",
+                          ),
+                      }),
+                  }),
               ],
             }),
           })
