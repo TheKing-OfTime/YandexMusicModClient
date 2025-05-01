@@ -23,11 +23,14 @@ class LastFmScrobbler {
         this.currentTrack = null;
         this.currentTrackStartTime = null;
         this.currentTrackPlayedTime = 0;
+
+        this.nowPlayingLastFmTrack = null;
+
         this.API_KEY = apiKey;
         this.api = new LastFmApi_1.LastFmApi(this.API_KEY, sharedSecret, baseUrl, () => this.getStoredSession());
     }
     isEnabled() {
-        let isLastFmEnabled = store_js_1.getModFeatures()?.scrobblers?.lastfm;
+        let isLastFmEnabled = store_js_1.getModFeatures()?.scrobblers?.lastfm.enable;
         return this.isLoggedIn() && isLastFmEnabled;
     }
     isLoggedIn() {
@@ -81,7 +84,47 @@ class LastFmScrobbler {
         else if (this.isPlaybackStateChanged(playingState)) {
             this.handlePlaybackStateChange(playingState);
         }
+
+        this.handleLikeState(playingState);
+
     }
+
+    handleLikeState(playingState) {
+        this.logger.debug("handleLikeState", store_js_1.getModFeatures()?.scrobblers?.lastfm.autoLike, this.nowPlayingLastFmTrack);
+        if (!store_js_1.getModFeatures()?.scrobblers?.lastfm.autoLike || !this.nowPlayingLastFmTrack) return;
+        this.logger.debug("handleLikeState check 1 passed");
+        if (!this.checkIfTrackStatesSynced(playingState)) return this.nowPlayingLastFmTrack = null;
+        this.logger.debug("handleLikeState check 2 passed");
+        if (this.nowPlayingLastFmTrack.loved == playingState.actionsStore.isLiked) return;
+        this.logger.debug("handleLikeState check 3 passed");
+
+        this.logger.debug("Track states are synced. Syncing like state");
+
+        this.syncLikeState(playingState.actionsStore.isLiked);
+    }
+
+    checkIfTrackStatesSynced(playingState) {
+        if (this.nowPlayingLastFmTrack.name !== playingState.track.title && this.nowPlayingLastFmTrack.artist.name !== playingState.track.artists[0].title) {
+            this.logger.debug("Track states are not synced");
+            return false;
+        }
+        return true;
+    }
+
+    syncLikeState(isLiked) {
+        if (isLiked) {
+            this.api.like(this.nowPlayingLastFmTrack.name, this.nowPlayingLastFmTrack.artist.name).then(() => {
+                this.nowPlayingLastFmTrack.loved = "1";
+                this.logger.debug("Track liked on Last.fm");
+            })
+        } else {
+            this.api.unlike(this.nowPlayingLastFmTrack.name, this.nowPlayingLastFmTrack.artist.name).then(() => {
+                this.nowPlayingLastFmTrack.loved = "0";
+                this.logger.debug("Track unliked on Last.fm");
+            })
+        }
+    }
+
     isTrackChanged(newTrack) {
         return this.currentTrack?.id !== newTrack.id;
     }
@@ -92,7 +135,10 @@ class LastFmScrobbler {
         this.currentTrackPlayedTime = 0;
         if (playingState.isPlaying) {
             this.startTrackPlayback();
-            void this.updateNowPlaying(playingState.track);
+            this.updateNowPlaying(playingState.track).then(track => {
+                this.nowPlayingLastFmTrack = track;
+                this.handleLikeState(playingState);
+            });
         }
     }
     isPlaybackStateChanged(playingState) {
@@ -167,7 +213,7 @@ class LastFmScrobbler {
     async updateNowPlaying(track) {
         this.logger.info("Updating now playing: ", track.title);
         try {
-            await this.api.updateNowPlaying((0, trackInfo_1.getTrackInfo)(track));
+            return await this.api.updateNowPlaying((0, trackInfo_1.getTrackInfo)(track));
         }
         catch (error) {
             this.logger.error(`Failed to update now playing for track: "${track.title}":`, error);

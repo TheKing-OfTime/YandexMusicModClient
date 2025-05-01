@@ -66,6 +66,7 @@ electron_1.contextBridge.exposeInMainWorld('scrobble', {
   lastfmLogin: () => electron_1.ipcRenderer.invoke('scrobble-lastfm-login'),
   lastfmLogout: () => electron_1.ipcRenderer.invoke('scrobble-lastfm-logout'),
   lastfmGetUser:  () => electron_1.ipcRenderer.invoke('scrobble-lastfm-get-user'),
+  lastfmGetResnet:  (user) => electron_1.ipcRenderer.invoke('scrobble-lastfm-get-current-playing-track', user),
 });
 
 window.document.addEventListener('DOMContentLoaded', () => {

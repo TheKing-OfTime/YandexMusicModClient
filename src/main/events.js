@@ -276,6 +276,12 @@ electron_1.ipcMain.handle('scrobble-lastfm-logout', () => {
 electron_1.ipcMain.handle('scrobble-lastfm-get-user', () => {
   return scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").api.getUserInfo();
 });
+
+electron_1.ipcMain.handle('scrobble-lastfm-get-current-playing-track', (event, user) => {
+  return scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").api.getCurrentPlayingTrack(user);
+});
+
+
 exports.handleApplicationEvents = handleApplicationEvents;
 
 const sendLastFmUserInfoUpdated = (window=mainWindow, userinfo) => {

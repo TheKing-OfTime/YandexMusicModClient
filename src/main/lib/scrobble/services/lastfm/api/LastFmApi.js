@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LastFmApi = void 0;
 const signature_1 = require("../utils/signature");
 const Logger_1 = require("../../../../../packages/logger/Logger");
+const {options} = require("axios");
 /**
  * Handles all Last.fm API communication
  */
@@ -51,6 +52,8 @@ class LastFmApi {
     async updateNowPlaying(trackInfo) {
         const result = await this.request("track.updateNowPlaying", trackInfo);
         this.handleScrobbleResult(result.nowplaying);
+
+        return await this.getCurrentPlayingTrack();
     }
     /**
      * Scrobbles a track on Last.fm
@@ -91,12 +94,66 @@ class LastFmApi {
     /**
      * Get user information from Last.fm
      *
+     * @see https://www.last.fm/api/show/user.getRecentTracks
+     *
+     * @param user Optional username to get info for. If not provided, the session's user will be used.
+     */
+    async getCurrentPlayingTrack(user=undefined) {
+        const result = await this.request("user.getRecentTracks", {
+            limit: 1,
+            nowplaying: true,
+            extended: 1,
+            user: user ?? this.sessionProvider().name,
+        });
+        return result?.recenttracks?.track?.filter(track => track["@attr"]?.nowplaying)?.[0];
+    }
+
+    /**
+     * Get user information from Last.fm
+     *
      * @see https://www.last.fm/api/show/user.getInfo
      *
      * @param username Optional username to get info for. If not provided, the session's user will be used.
      */
     getUserInfo(username=undefined) {
         return this.request("user.getInfo", {
+            ...(username ? {user: username} : {}),
+        });
+    }
+
+    /**
+     * Love a track for a user profile.
+     *
+     * @see https://www.last.fm/api/show/track.love
+     */
+    like(track, artist) {
+        return this.request("track.love", {
+            track,
+            artist
+        });
+    }
+
+    /**
+     * Unlove a track for a user profile.
+     *
+     * @see https://www.last.fm/api/show/track.unlove
+     */
+    unlike(track, artist) {
+        return this.request("track.unlove", {
+            track,
+            artist
+        });
+    }
+
+    /**
+     * Get the metadata for a track on Last.fm using the artist/track name
+     *
+     * @see https://www.last.fm/api/show/track.love
+     */
+    getTrackInfo(track, artist, username=undefined) {
+        return this.request("track.getInfo", {
+            track,
+            artist,
             ...(username ? {user: username} : {}),
         });
     }
@@ -109,7 +166,7 @@ class LastFmApi {
      * @param options The options for the request
      * @returns The response from the Last.fm API
      */
-    async request(method, params, options = {
+    async request(method, params=undefined, options = {
         noSig: false,
         noSk: false,
         method: "POST",
