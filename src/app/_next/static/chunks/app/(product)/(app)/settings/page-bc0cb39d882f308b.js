@@ -1559,30 +1559,32 @@
                     ),
                   }),
                 }),
-                  (0, n.jsx)("li", {
-                      className: Z().item,
-                      children: (0, n.jsx)(P, {
-                          title: "Синхронизировать лайки",
-                          description: "Автоматически лайкает/анлайкает треки в LastFM",
-                          disabled: !userInfo,
-                          onChange: onLastFmAutoLikesToggle,
-                          isChecked: window.nativeSettings.get(
-                              "modFeatures.scrobblers.lastfm.autoLike",
-                          ),
-                      }),
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(P, {
+                    title: "Синхронизировать лайки",
+                    description:
+                      "Автоматически лайкает/анлайкает треки в LastFM",
+                    disabled: !userInfo,
+                    onChange: onLastFmAutoLikesToggle,
+                    isChecked: window.nativeSettings.get(
+                      "modFeatures.scrobblers.lastfm.autoLike",
+                    ),
                   }),
-                  (0, n.jsx)("li", {
-                      className: Z().item,
-                      children: (0, n.jsx)(P, {
-                          title: "Использовать Ynison [ALPHA]",
-                          description: "Использует для скробблинга данные проигрывания с других устройств",
-                          disabled: !userInfo,
-                          onChange: onLastFmFromYnisonToggleToggle,
-                          isChecked: window.nativeSettings.get(
-                              "modFeatures.scrobblers.lastfm.fromYnison",
-                          ),
-                      }),
+                }),
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(P, {
+                    title: "Использовать Ynison [ALPHA]",
+                    description:
+                      "Использует для скробблинга данные проигрывания с других устройств",
+                    disabled: !userInfo,
+                    onChange: onLastFmFromYnisonToggle,
+                    isChecked: window.nativeSettings.get(
+                      "modFeatures.scrobblers.lastfm.fromYnison",
+                    ),
                   }),
+                }),
               ],
             }),
           })
