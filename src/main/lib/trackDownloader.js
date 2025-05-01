@@ -1,4 +1,5 @@
 const Logger_js_1 = require('../packages/logger/Logger');
+const store_js_1 = require('./store');
 const electron_1 = require('electron');
 const fs = require("fs").promises;
 const fsSync = require("fs");
@@ -178,9 +179,7 @@ class TrackDownloader {
         return coverBuffer;
     }
 
-    async handleSaveDialog(data) {
-        const fileExtension = getFileExtensionFromCodec(data.codec);
-        const defaultFilepath = removeInvalidCharsFromFilename(`${artists2string(data.track?.artists)} — ${data.track?.title}.`) + fileExtension;
+    async handleSaveDialog(data, defaultFilepath) {
 
         const { canceled, filePath } = await electron_1.dialog.showSaveDialog({
             defaultPath: defaultFilepath, //.replace("-mp4", "")
@@ -210,7 +209,7 @@ class TrackDownloader {
         return dirPath;
     }
 
-    async reEncodeWithFfmpeg(data, finalFilepath, tempDirPath, tempFilepath) {
+    async extractWithFfmpeg(data, finalFilepath, tempDirPath, tempFilepath) {
         if (!fsSync.existsSync(tempDirPath) ||!fsSync.existsSync(tempFilepath)) return;
         let withCover = false;
         const coverPath = path.join(tempDirPath, "400x400.jpg");
@@ -248,15 +247,49 @@ class TrackDownloader {
         }
     }
 
+    async convertToMP3(inputAudioPath, outputAudioPath) {
+        if (!fsSync.existsSync(inputAudioPath)) return;
+
+        const args = [
+            "-i", `"${inputAudioPath}"`,
+            "-map", "0",
+            "-map_metadata", "0",
+            "-codec:a", "libmp3lame",
+            "-b:a", "320k",
+            "-id3v2_version", "3",
+            "-write_id3v1", "1",
+            `"${outputAudioPath}"`
+        ];
+
+        const command = `${EXTRACTED_FFMPEG_PATH} ${args.join(" ")}`;
+        this.logger.info(`ReEncoding: ${command}`);
+
+
+        try {
+            const { stdout, stderr } = await execPromise(command);
+            this.logger.info(stdout);
+            this.logger.error(stderr);
+        } catch (error) {
+            this.logger.error(`ffmpeg error: ${error.message}`);
+            return false;
+        }
+    }
+
     async downloadTrack(data, callback = (x,b)=>{return null} ) {
 
-        const finalTrackPath = await this.handleSaveDialog(data);
+        const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false;
+        const fileExtension = getFileExtensionFromCodec(data.codec);
+        const defaultFilepath = removeInvalidCharsFromFilename(`${artists2string(data.track?.artists)} — ${data.track?.title}.`) + (useMP3 ? 'mp3' : fileExtension);
+        const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
+
+        const finalTrackPath = (store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath) ? path.join(defaultDirPath, defaultFilepath) : await this.handleSaveDialog(data, defaultFilepath);
         if(!finalTrackPath) return;
 
         const tempDirPath = await this.createTempDirPath(data);
         if(!tempDirPath) return;
 
         const tempTrackPath = path.join(tempDirPath, `${data.trackId}.${data.codec}`);
+        const tempExtractedTrackPath = path.join(tempDirPath, `extracted${data.trackId}.${fileExtension}`);
 
         callback(0, 0);
 
@@ -274,7 +307,15 @@ class TrackDownloader {
             this.logger.info("Cover saved to temp directory");
         }
 
-        await this.reEncodeWithFfmpeg(data, finalTrackPath, tempDirPath, tempTrackPath);
+        await this.extractWithFfmpeg(data, useMP3 ? tempExtractedTrackPath : finalTrackPath, tempDirPath, tempTrackPath);
+
+        if(useMP3) {
+            callback(0.8, 0.9);
+            this.logger.info("Converting to MP3", tempExtractedTrackPath);
+            await this.convertToMP3(tempExtractedTrackPath, finalTrackPath);
+            this.logger.info("Converted to MP3", finalTrackPath);
+        }
+
         callback(1.0, 1.0);
         this.logger.info("Track downloaded");
 
