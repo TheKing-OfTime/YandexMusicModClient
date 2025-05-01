@@ -11746,6 +11746,7 @@
           windowBehaviorSettingsModal: {},
           appUpdatesSettingsModal: {},
           scrobblersSettingsModal: {},
+          downloaderSettingsModal: {},
         },
         landing: {
           loadingState: h.Gui.IDLE,
@@ -13612,6 +13613,7 @@
         windowBehaviorSettingsModal: _.KL,
         appUpdatesSettingsModal: _.KL,
         scrobblersSettingsModal: _.KL,
+        downloaderSettingsModal: _.KL,
       });
       var eB = a(84597),
         eY = a(86919),

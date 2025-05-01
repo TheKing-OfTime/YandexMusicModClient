@@ -55,7 +55,10 @@ electron_1.contextBridge.exposeInMainWorld('nativeSettings', {
     },
     set(key, value) {
         return store_js_1.set(key, value);
-    }
+    },
+    setPathWithNativeDialog(key, defaultPath=undefined, properties=undefined) {
+        electron_1.ipcRenderer.invoke('setPathWithNativeDialog', key, defaultPath, properties);
+    },
 });
 electron_1.contextBridge.exposeInMainWorld('openConfigFile', () => electron_1.ipcRenderer.invoke('openConfigFile'));
 

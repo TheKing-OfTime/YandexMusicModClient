@@ -29,4 +29,5 @@ var Events;
     Events["REPOSITORY_META_UPDATED"] = "REPOSITORY_META_UPDATED";
     Events["DOWNLOAD_TRACK"] = "DOWNLOAD_TRACK";
     Events["LASTFM_USERINFO_UPDATE"] = "LASTFM_USERINFO_UPDATE";
+    Events["NATIVE_STORE_UPDATE"] = "NATIVE_STORE_UPDATE";
 })(Events || (exports.Events = Events = {}));

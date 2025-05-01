@@ -1434,6 +1434,167 @@
         });
       });
 
+      let downloaderSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { downloaderSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+          [useMP3, setUseMP3] = (0, d.useState)(
+            window.nativeSettings?.get("modFeatures.downloader.useMP3") ??
+              false,
+          ),
+          [useCustomPathForSessionStorage, setUseCustomPathForSessionStorage] =
+            (0, d.useState)(
+              window.nativeSettings?.get(
+                "modFeatures.downloader.useCustomPathForSessionStorage",
+              ) ?? false,
+            ),
+          [useDefaultPath, setUseDefaultPath] = (0, d.useState)(
+            window.nativeSettings?.get(
+              "modFeatures.downloader.useDefaultPath",
+            ) ?? false,
+          ),
+          [customPathForSessionStorage, setCustomPathForSessionStorage] = (0,
+          d.useState)(
+            window.nativeSettings?.get(
+              "modFeatures.downloader.customPathForSessionStorage",
+            ) ?? "",
+          ),
+          [defaultPath, setDefaultPath] = (0, d.useState)(
+            window.nativeSettings?.get("modFeatures.downloader.defaultPath") ??
+              "",
+          ),
+          onUseDefaultPathToggle = (0, d.useCallback)(async (e) => {
+            console.log("useDefaultPath toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.downloader.useDefaultPath",
+              e,
+            );
+            setUseDefaultPath(e);
+          }, []),
+          onDefaultPathExploreClick = (0, d.useCallback)(async (e) => {
+            window.nativeSettings?.setPathWithNativeDialog(
+              "modFeatures.downloader.defaultPath",
+              undefined,
+              ["openDirectory", "showHiddenFiles"],
+            );
+          }, []),
+          onUseMP3Toggle = (0, d.useCallback)(async (e) => {
+            console.log("useMP3 toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.downloader.useMP3", e);
+            setUseMP3(e);
+          }, []),
+          onUseCustomPathForSessionStorageToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("useCustomPathForSessionStorage toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.downloader.useCustomPathForSessionStorage",
+                e,
+              );
+              setUseCustomPathForSessionStorage(e);
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          ),
+          onCustomPathForSessionStorageExploreClick = (0, d.useCallback)(
+            async (e) => {
+              window.nativeSettings?.setPathWithNativeDialog(
+                "modFeatures.downloader.customPathForSessionStorage",
+              );
+            },
+            [],
+          );
+        return (
+          (0, d.useEffect)(() => {
+              window.desktopEvents?.on(
+              "NATIVE_STORE_UPDATE",
+              (event, key, value) => {
+                if (key === "modFeatures.downloader.defaultPath") {
+                  setDefaultPath(value);
+                }
+                else if (
+                  key === "modFeatures.downloader.customPathForSessionStorage"
+                ) {
+                  setCustomPathForSessionStorage(value);
+                    i(
+                        (0, n.jsx)(p.Q, {
+                            error:
+                                "Для применения этой настройки требуется перезапуск приложения",
+                        }),
+                        { containerId: _.W$x.ERROR },
+                    );
+                }
+              },
+            );
+          }, []),
+          (0, n.jsx)(f.u, {
+            className: b().root,
+            style: { "max-width": "550px" },
+            title: "Настройки скачивания треков",
+            headerClassName: B().modalHeader,
+            contentClassName: B().modalContent,
+            open: t.isOpened,
+            onOpenChange: t.onOpenChange,
+            onClose: t.close,
+            size: "fitContent",
+            placement: "center",
+            labelClose: e({ id: "interface-actions.close" }),
+            children: (0, n.jsx)("ul", {
+              className: Z().root,
+              style: { width: "514px" },
+              children: [
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(toggleBarWithPathChooser, {
+                    title: "Путь для файлов по умолчанию",
+                    description: useDefaultPath
+                      ? "Использовать путь по умолчанию для скачивания треков в файл"
+                      : "Спрашивать путь при каждом скачивании трека",
+                    onChange: onUseDefaultPathToggle,
+                    isChecked: useDefaultPath,
+                    placeholder: "Укажите путь кнопкой справа",
+                    inputValue: defaultPath,
+                    onClick: onDefaultPathExploreClick,
+                  }),
+                }),
+                (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(P, {
+                    title: "Скачивать в MP3",
+                    description: useMP3
+                      ? "Треки скачиваются в MP3"
+                      : "Треки скачиваются в оригинальном формате",
+                    onChange: onUseMP3Toggle,
+                    isChecked: useMP3,
+                  }),
+                }),
+                false && (0, n.jsx)("li", {
+                  className: Z().item,
+                  children: (0, n.jsx)(toggleBarWithPathChooser, {
+                    title: "Путь для оффлайн прослушивания",
+                    description: useCustomPathForSessionStorage
+                      ? "Использовать путь ниже для ванильного скачивания треков"
+                      : "Использовать путь по умолчанию для ванильного скачивания треков",
+                    onChange: onUseCustomPathForSessionStorageToggle,
+                    isChecked: useCustomPathForSessionStorage,
+                    placeholder: "Укажите путь кнопкой справа",
+                    inputValue: customPathForSessionStorage,
+                    onClick: onCustomPathForSessionStorageExploreClick,
+                  }),
+                }),
+              ],
+            }),
+          })
+        );
+      });
+
       let scrobblersSettings = (0, i.Pi)(() => {
         let { formatMessage: e } = (0, r.Z)(),
           {
@@ -1543,7 +1704,10 @@
                     }),
                     (0, n.jsx)(S, {
                       title: userInfo
-                        ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`.replace(' ', ',')
+                        ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`.replace(
+                            " ",
+                            ",",
+                          )
                         : "LastFM",
                       description: userInfo
                         ? "Выйти из LastFM"
@@ -2059,6 +2223,8 @@
       var z = o(32427),
         L = o(7515),
         sliderComponent = o(66055),
+        inputComponent = o(53569),
+        buttonComponent = o(78372),
         R = o.n(L);
       let P = (e) => {
         let { title: t, onChange: o, isChecked: i, description: r } = e,
@@ -2098,6 +2264,83 @@
           ],
         });
       };
+
+      let toggleBarWithPathChooser = (e) => {
+        let {
+            title: t,
+            onChange: o,
+            isChecked: i,
+            description: r,
+            placeholder: placeholder,
+            disabled: disabled,
+            inputValue: inputValue,
+            onClick: onClick,
+          } = e,
+          l = (0, d.useId)();
+        return (0, n.jsxs)("div", {
+          style: {
+            "flex-direction": "column",
+            display: "flex",
+            gap: "5px",
+          },
+          children: [
+            (0, n.jsxs)("div", {
+              className: R().root,
+              children: [
+                (0, n.jsxs)("div", {
+                  className: R().textContainer,
+                  children: [
+                    (0, n.jsx)(c.Caption, {
+                      className: R().title,
+                      id: l,
+                      variant: "div",
+                      size: "l",
+                      weight: "bold",
+                      lineClamp: 1,
+                      "aria-hidden": !0,
+                      children: t,
+                    }),
+                    r &&
+                      (0, n.jsx)(c.Caption, {
+                        variant: "div",
+                        type: "text",
+                        size: "xs",
+                        weight: "medium",
+                        className: R().description,
+                        children: r,
+                      }),
+                  ],
+                }),
+                (0, n.jsx)(z.Z, {
+                  isChecked: i,
+                  "aria-describedby": l,
+                  onChange: o,
+                }),
+              ],
+            }),
+            (0, n.jsxs)("div", {
+              className: R().root,
+              style: { "justify-content": "unset", "align-items": "unset" },
+              children: [
+                (0, n.jsx)(inputComponent.I, {
+                  containerClassName: "ToggleBarWithPathChooser_input",
+                  value: inputValue,
+                  placeholder: placeholder,
+                  disabled: true,
+                }),
+                (0, n.jsx)(buttonComponent.z, {
+                  radius: "xxxl",
+                  color: "secondary",
+                  size: "m",
+                  onClick: onClick,
+                  children: "Обзор",
+                }),
+              ],
+            }),
+          ],
+        });
+      };
+
       let settingBarWithSlider = (e) => {
         let {
             title: t,
@@ -2269,6 +2512,7 @@
               windowBehaviorSettingsModal: windowBehaviorSettingsModal,
               appUpdatesSettingsModal: appUpdatesSettingsModal,
               scrobblersSettingsModal: scrobblersSettingsModal,
+              downloaderSettingsModal: downloaderSettingsModal,
             },
             experiments: l,
             wizard: a,
@@ -2620,6 +2864,18 @@
                     onClick: scrobblersSettingsModal.open,
                   }),
                   (0, n.jsx)(scrobblersSettings, {}),
+                ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(S, {
+                    title: "Настройки скачивания треков",
+                    description:
+                      "Настройки оффлайн прослушивания, а ткаже скачивания в файл",
+                    onClick: downloaderSettingsModal.open,
+                  }),
+                  (0, n.jsx)(downloaderSettings, {}),
                 ],
               }),
               (0, n.jsx)("li", {
