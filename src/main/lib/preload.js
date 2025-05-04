@@ -11,6 +11,7 @@ const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
 
 electron_1.contextBridge.exposeInMainWorld('VERSION', String(config_js_1.config.buildInfo.VERSION));
 electron_1.contextBridge.exposeInMainWorld('MOD_VERSION', String(config_js_1.config.modification.version));
+electron_1.contextBridge.exposeInMainWorld('HOST_VERSION', String(config_js_1.config.modification.realYMVersion));
 electron_1.contextBridge.exposeInMainWorld('BRANCH', String(config_js_1.config.buildInfo.BRANCH));
 electron_1.contextBridge.exposeInMainWorld('PLATFORM', deviceInfo.os);
 electron_1.contextBridge.exposeInMainWorld('DEVICE_INFO', deviceInfo);

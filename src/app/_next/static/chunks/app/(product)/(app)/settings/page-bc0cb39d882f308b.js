@@ -905,6 +905,13 @@
               size: "xs",
               children: "YandexMusicModClient " + window.MOD_VERSION,
             }),
+              (0, n.jsx)(c.Caption, {
+                  className: h().versionText,
+                  type: "controls",
+                  variant: "div",
+                  size: "xs",
+                  children: "Host " + window.HOST_VERSION,
+              }),
           ],
         });
       });
@@ -2539,7 +2546,7 @@
             : C({ id: "equalizer.disabled" }),
           w = (0, d.useMemo)(
             () =>
-              `${C({ id: "desktop.app-version-short" }, { version: e })} / Мод ${window.MOD_VERSION}`,
+              `${C({ id: "desktop.app-version-short" }, { version: e })} / Мод ${window.MOD_VERSION} / Хост ${window.HOST_VERSION}`,
             [!0, C, e],
           ),
           T = (0, d.useCallback)(
