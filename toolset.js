@@ -345,7 +345,31 @@ async function release(versions=undefined) {
     await sendPatchNoteToDiscord(patchNote);
 }
 
+async function extractIfNotExist(version, force=false) {
+    const extractedPathDir = path.join(EXTRACTED_DIR_PATH, version);
+    if(!force && fs.existsSync(extractedPathDir)) return console.log('Папка под ' + version + ' уже существует:', extractedPathDir);
+    await fsp.mkdir(extractedPathDir, { recursive: true });
+    await asar.extractAll(DIRECT_DIST_PATH, extractedPathDir);
+    console.log('Релиз ' + version + ' успешно извлечён в', extractedPathDir);
+    return extractedPathDir;
+}
+
+async function extractBuild(force=false) {
+    if(!fs.existsSync(EXTRACTED_DIR_PATH)) {
+        await fsp.mkdir(EXTRACTED_DIR_PATH, { recursive: true });
+    }
+    const latestYMVersion = await getLatestYMVersion('direct');
+
+    const pathToPureExtractedBuild = await extractIfNotExist(`${latestYMVersion.version}@pure`, force);
+    const pathToExtractedBuild = await extractIfNotExist(latestYMVersion.version, force);
+
+    return { pureExtracted: pathToPureExtractedBuild, extracted: pathToExtractedBuild }
+}
+
 async function run(command, flags) {
+
+    const force = flags.f
+
 	const shouldMinify = flags.m ?? false;
 	const shouldBuildDirectly = flags.d ?? false;
 	const shouldRelease = flags.r ?? false;
@@ -375,6 +399,10 @@ async function run(command, flags) {
 			break;
         case 'release':
             await release();
+            break;
+
+        case 'extract':
+            await extractBuild(force);
             break;
         case 'help':
         default:
