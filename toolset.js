@@ -486,8 +486,8 @@ async function bypassAsarIntegrity(appPath) {
         console.log("Подменяю подпись");
         dumpEntitlements(appPath);
 
-        execSync(`codesign --force --entitlements /tmp/extracted_entitlements.xml --sign - '${appPath}'`);
-        fs.unlinkSync('/tmp/extracted_entitlements.xml');
+        execSync(`codesign --force --entitlements ${EXTRACTED_ENTITLEMENTS_PATH} --sign - '${appPath}'`);
+        fs.unlinkSync(EXTRACTED_ENTITLEMENTS_PATH);
         console.log("Кеш очищен");
 
         console.log("Обход asar integrity завершён");
