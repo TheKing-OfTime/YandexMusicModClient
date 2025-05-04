@@ -455,6 +455,5 @@ async function run(command, flags) {
     }
 }
     const args = minimist(process.argv.slice(2));
-    console.log(args)
     await run(args._?.[0], args);
 })()
