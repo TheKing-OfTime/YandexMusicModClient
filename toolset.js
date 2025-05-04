@@ -5,16 +5,47 @@ const minimist = require('minimist');
 const fs = require('fs');
 const fsp = require('fs').promises;
 const path = require('path');
-const semver = require('semver')
+const semver = require('semver');
+const crypto = require('crypto');
+const plist = require('plist');
 const { minify } = require('terser');
 const { Octokit } = await import('@octokit/rest');
+const { execSync } = require('child_process');
 
 const SRC_PATH = path.join(process.argv[1], '../src');
 const DEFAULT_DIST_PATH = path.join(process.argv[1], '../builds/latest/app.asar');
 const EXTRACTED_DIR_PATH = path.join(process.argv[1], '../extracted');
-const DIRECT_DIST_PATH = path.join(process.env.LOCALAPPDATA, "/Programs/YandexMusic/resources/app.asar");
+
+const MAC_APP_PATH = '/Applications/Яндекс Музыка.app';
+const WINDOWS_APP_PATH = path.join(process.env.LOCALAPPDATA, '/Programs/YandexMusic');
+
+const DIRECT_DIST_PATH = process.platform === 'darwin' ? path.join(MAC_APP_PATH, '/Contents/Resources/app.asar') : path.join(WINDOWS_APP_PATH, "resources/app.asar");
+const INFO_PLIST_PATH = path.join(MAC_APP_PATH, '/Contents/Info.plist');
+
+if(process.platform === 'darwin') {
+    if(!fs.existsSync(DIRECT_DIST_PATH)) {
+        console.log('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
+        process.exit(1);
+    }
+    if(!fs.existsSync(INFO_PLIST_PATH)) {
+        console.log('Не удалось найти Info.plist:', INFO_PLIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
+        process.exit(1);
+    }
+}
+if(!fs.existsSync(DIRECT_DIST_PATH)) {
+    console.log('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите WINDOWS_APP_PATH в toolset.js');
+    process.exit(1);
+}
 
 const MINIFIED_SRC_PATH = path.join(process.argv[1], "../minified/src");
+const TEMP_DIR = path.join(process.argv[1], "../temp");
+
+if(!fs.existsSync(TEMP_DIR)) {
+    fs.mkdirSync(TEMP_DIR, { recursive: true });
+    console.log('Создана временная директория:', TEMP_DIR);
+}
+
+const EXTRACTED_ENTITLEMENTS_PATH = path.join(TEMP_DIR, "extracted_entitlements.xml");
 
 const PATCH_NOTES_PATH = path.join(process.argv[1], "../PATCHNOTES.md");
 
@@ -309,6 +340,7 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
 
 async function buildDirectly(src, noMinify=false) {
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify });
+    if (process.platform === "darwin") await bypassAsarIntegrity(MAC_APP_PATH);
 }
 
 async function spoof(type='extracted', shouldRelease=false) {
@@ -337,11 +369,11 @@ async function spoof(type='extracted', shouldRelease=false) {
     return result
 }
 
-async function release(versions=undefined) {
+async function release(dest, versions=undefined) {
     const version = await getModVersion();
     const {version: ymVersion} = await getLatestYMVersion();
     const patchNote = (versions ? PatchNote.forSpoofPatch(versions.newVersion, version, versions.oldVersion) : new PatchNote(ymVersion, version, patchNoteStringMD));
-    await createGitHubRelease(version, DEFAULT_DIST_PATH, patchNote);
+    await createGitHubRelease(version, dest, patchNote);
     await sendPatchNoteToDiscord(patchNote);
 }
 
@@ -366,47 +398,102 @@ async function extractBuild(force=false) {
     return { pureExtracted: pathToPureExtractedBuild, extracted: pathToExtractedBuild }
 }
 
-    async function replaceInFilesRecursively(dir, rules) {
-        const entries = await fsp.readdir(dir, { withFileTypes: true });
-        for (const entry of entries) {
-            const fullPath = path.join(dir, entry.name);
-            if (entry.isDirectory()) {
-                await replaceInFilesRecursively(fullPath, rules);
-            } else if (entry.isFile()) {
-                let content = await fsp.readFile(fullPath, 'utf8');
-                let newContent = content;
-                for (const { regex, replacement } of rules) {
-                    newContent = newContent.replace(regex, replacement);
-                }
-                if (newContent !== content) {
-                    await fsp.writeFile(fullPath, newContent, 'utf8');
-                    console.log(`Вхождение найдено и заменено в: ${fullPath}`);
-                }
+async function replaceInFilesRecursively(dir, rules) {
+    const entries = await fsp.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+            await replaceInFilesRecursively(fullPath, rules);
+        } else if (entry.isFile()) {
+            let content = await fsp.readFile(fullPath, 'utf8');
+            let newContent = content;
+            for (const { regex, replacement } of rules) {
+                newContent = newContent.replace(regex, replacement);
+            }
+            if (newContent !== content) {
+                await fsp.writeFile(fullPath, newContent, 'utf8');
+                console.log(`Вхождение найдено и заменено в: ${fullPath}`);
             }
         }
     }
+}
 
-    async function patchExtractedBuild(extractedPath, options = { unlockDevtools: true, unlockDevPanel: true }) {
-        console.log('Патчинг извлечённого релиза', extractedPath);
-        
-        if (options.unlockDevtools) {
-            let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
-            configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
-            await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
-            console.log("Devtools Разблокированы", extractedPath);
-        }
+async function patchExtractedBuild(extractedPath, options = { unlockDevtools: true, unlockDevPanel: true }) {
+    console.log('Патчинг извлечённого релиза', extractedPath);
 
-        if (options.unlockDevPanel) {
-            const rules = [
-                { regex: /panel: ?!1, ?allowOverwriteExperiments: ?!1/g, replacement: 'panel:!0,allowOverwriteExperiments:!0' },
-                { regex: /exposeSonataStateInWindow: ?!1/g, replacement: 'exposeSonataStateInWindow:!0' },
-            ]
+    if (options.unlockDevtools) {
+        let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
+        configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
+        await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
+        console.log("Devtools Разблокированы", extractedPath);
+    }
 
-            console.log('Применяю regex патчи', extractedPath, rules);
-            await replaceInFilesRecursively(path.join(extractedPath, '/app/'), rules);
-            console.log('Regex патчи применены', extractedPath);
+    if (options.unlockDevPanel) {
+        const rules = [
+            { regex: /panel: ?!1, ?allowOverwriteExperiments: ?!1/g, replacement: 'panel:!0,allowOverwriteExperiments:!0' },
+            { regex: /exposeSonataStateInWindow: ?!1/g, replacement: 'exposeSonataStateInWindow:!0' },
+        ]
+
+        console.log('Применяю regex патчи', extractedPath, rules);
+        await replaceInFilesRecursively(path.join(extractedPath, '/app/'), rules);
+        console.log('Regex патчи применены', extractedPath);
+    }
+}
+
+
+function calcASARHeaderHash(archivePath) {
+    const headerString = asar.getRawHeader(archivePath).headerString;
+    const hash = crypto.createHash('sha256').update(headerString).digest('hex');
+    return { algorithm: 'SHA256', hash };
+}
+
+function dumpEntitlements(appPath) {
+    try {
+        execSync(`codesign -d --entitlements :- '${appPath}' > '${EXTRACTED_ENTITLEMENTS_PATH}'`);
+        console.log(`Dumped entitlements from ${appPath} to ${EXTRACTED_ENTITLEMENTS_PATH}`);
+    } catch (error) {
+        console.error(`Failed to dump entitlements from ${appPath} to ${EXTRACTED_ENTITLEMENTS_PATH}.`, error);
+    }
+}
+
+function checkIfElectronAsarIntegrityIsUsed() {
+        try {
+            execSync(`plutil -p '${INFO_PLIST_PATH}' | grep -q ElectronAsarIntegrity`);
+            return true;
+        } catch {
+            return false;
         }
     }
+
+async function bypassAsarIntegrity(appPath) {
+    if (process.platform !== 'darwin') return false;
+    try {
+        if (checkIfElectronAsarIntegrityIsUsed()) {
+            console.log("Asar integrity включено. Обход");
+            const newHash = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
+            console.log(`Хеш модифицированного asar: ${newHash}`);
+            console.log("Подменяю хеш в Info.plist");
+
+            const plistContent = fs.readFileSync(INFO_PLIST_PATH, 'utf8');
+            const plistData = plist.parse(plistContent);
+            plistData.ElectronAsarIntegrity["Resources/app.asar"].hash = newHash;
+            fs.writeFileSync(INFO_PLIST_PATH, plist.build(plistData));
+        }
+
+        console.log("Подменяю подпись");
+        dumpEntitlements(appPath);
+
+        execSync(`codesign --force --entitlements /tmp/extracted_entitlements.xml --sign - '${appPath}'`);
+        fs.unlinkSync('/tmp/extracted_entitlements.xml');
+        console.log("Кеш очищен");
+
+        console.log("Обход asar integrity завершён");
+
+    } catch (error) {
+        console.error("Не удалось обойти asar integrity", error);
+    }
+
+}
 
 async function run(command, flags) {
 
@@ -429,7 +516,7 @@ async function run(command, flags) {
       		}
 			if (shouldRelease) {
 				await build();
-        		await release();
+        		await release(dest);
 				break;
       		}
 
@@ -438,19 +525,21 @@ async function run(command, flags) {
         case 'spoof':
 			const versions = await spoof('extracted', shouldRelease);
 			if ( shouldBuild || shouldRelease) await build()
-			if (shouldRelease) await release(versions)
+			if (shouldRelease) await release(dest, versions)
 			break;
         case 'release':
-            await release();
+            await release(dest);
             break;
 
         case 'extract':
             const { extracted } = await extractBuild(force);
             if (shouldPatch) await patchExtractedBuild(extracted);
+            if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify);
             break;
+
         case 'help':
         default:
-            console.log('help - shows this message\nbuild\nbuildDirectly\nspoof\nspoofAndBuild\nbuildAndRelease\nspoofAndRelease');
+            console.log('help - shows this message\nbuild\nspoof\nrelease\nextract');
             break
     }
 }
