@@ -17,7 +17,7 @@ const DEFAULT_DIST_PATH = path.join(process.argv[1], '../builds/latest/app.asar'
 const EXTRACTED_DIR_PATH = path.join(process.argv[1], '../extracted');
 
 const MAC_APP_PATH = '/Applications/Яндекс Музыка.app';
-const WINDOWS_APP_PATH = path.join(process.env.LOCALAPPDATA, '/Programs/YandexMusic');
+const WINDOWS_APP_PATH = path.join(process.env?.LOCALAPPDATA ?? '', '/Programs/YandexMusic');
 
 const DIRECT_DIST_PATH = process.platform === 'darwin' ? path.join(MAC_APP_PATH, '/Contents/Resources/app.asar') : path.join(WINDOWS_APP_PATH, "resources/app.asar");
 const INFO_PLIST_PATH = path.join(MAC_APP_PATH, '/Contents/Info.plist');
@@ -466,7 +466,10 @@ function checkIfElectronAsarIntegrityIsUsed() {
     }
 
 async function bypassAsarIntegrity(appPath) {
-    if (process.platform !== 'darwin') return false;
+    if (process.platform !== 'darwin') {
+        console.log("Не удалось обойти asar integrity: Доступно только для macOS");
+        return false;
+    }
     try {
         if (checkIfElectronAsarIntegrityIsUsed()) {
             console.log("Asar integrity включено. Обход");
@@ -536,10 +539,17 @@ async function run(command, flags) {
             if (shouldPatch) await patchExtractedBuild(extracted);
             if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify);
             break;
+        case 'patch':
+            await patchExtractedBuild(src)
+            if (shouldBuildDirectly) await buildDirectly(src, !shouldMinify);
+            break;
+        case 'bypass-asar-integrity':
+            await bypassAsarIntegrity(dest)
+            break;
 
         case 'help':
         default:
-            console.log('help - shows this message\nbuild\nspoof\nrelease\nextract');
+            console.log('help - shows this message\nbuild\nspoof\nrelease\nextract\npatch\nbypass-asar-integrity');
             break
     }
 }
