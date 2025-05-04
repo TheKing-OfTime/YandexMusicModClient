@@ -450,9 +450,9 @@ function calcASARHeaderHash(archivePath) {
 function dumpEntitlements(appPath) {
     try {
         execSync(`codesign -d --entitlements :- '${appPath}' > '${EXTRACTED_ENTITLEMENTS_PATH}'`);
-        console.log(`Dumped entitlements from ${appPath} to ${EXTRACTED_ENTITLEMENTS_PATH}`);
+        console.log(`Упакованы entitlements из ${appPath} в ${EXTRACTED_ENTITLEMENTS_PATH}`);
     } catch (error) {
-        console.error(`Failed to dump entitlements from ${appPath} to ${EXTRACTED_ENTITLEMENTS_PATH}.`, error);
+        console.error(`Не удалось упаковать entitlements из ${appPath} в ${EXTRACTED_ENTITLEMENTS_PATH}.`, error);
     }
 }
 
@@ -494,6 +494,8 @@ async function bypassAsarIntegrity(appPath) {
 
     } catch (error) {
         console.error("Не удалось обойти asar integrity", error);
+        fs.unlinkSync(EXTRACTED_ENTITLEMENTS_PATH);
+        console.log("Кеш очищен");
     }
 
 }
