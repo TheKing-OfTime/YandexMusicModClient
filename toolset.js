@@ -366,10 +366,53 @@ async function extractBuild(force=false) {
     return { pureExtracted: pathToPureExtractedBuild, extracted: pathToExtractedBuild }
 }
 
+    async function replaceInFilesRecursively(dir, rules) {
+        const entries = await fsp.readdir(dir, { withFileTypes: true });
+        for (const entry of entries) {
+            const fullPath = path.join(dir, entry.name);
+            if (entry.isDirectory()) {
+                await replaceInFilesRecursively(fullPath, rules);
+            } else if (entry.isFile()) {
+                let content = await fsp.readFile(fullPath, 'utf8');
+                let newContent = content;
+                for (const { regex, replacement } of rules) {
+                    newContent = newContent.replace(regex, replacement);
+                }
+                if (newContent !== content) {
+                    await fsp.writeFile(fullPath, newContent, 'utf8');
+                    console.log(`Вхождение найдено и заменено в: ${fullPath}`);
+                }
+            }
+        }
+    }
+
+    async function patchExtractedBuild(extractedPath, options = { unlockDevtools: true, unlockDevPanel: true }) {
+        console.log('Патчинг извлечённого релиза', extractedPath);
+        
+        if (options.unlockDevtools) {
+            let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
+            configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
+            await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
+            console.log("Devtools Разблокированы", extractedPath);
+        }
+
+        if (options.unlockDevPanel) {
+            const rules = [
+                { regex: /panel: ?!1, ?allowOverwriteExperiments: ?!1/g, replacement: 'panel:!0,allowOverwriteExperiments:!0' },
+                { regex: /exposeSonataStateInWindow: ?!1/g, replacement: 'exposeSonataStateInWindow:!0' },
+            ]
+
+            console.log('Применяю regex патчи', extractedPath, rules);
+            await replaceInFilesRecursively(path.join(extractedPath, '/app/'), rules);
+            console.log('Regex патчи применены', extractedPath);
+        }
+    }
+
 async function run(command, flags) {
 
-    const force = flags.f
+    const force = flags.f ?? false
 
+    const shouldPatch = flags.p ?? false;
 	const shouldMinify = flags.m ?? false;
 	const shouldBuildDirectly = flags.d ?? false;
 	const shouldRelease = flags.r ?? false;
@@ -394,15 +437,16 @@ async function run(command, flags) {
 			break;
         case 'spoof':
 			const versions = await spoof('extracted', shouldRelease);
-			if( shouldBuild || shouldRelease) await build()
-			if(shouldRelease) await release(versions)
+			if ( shouldBuild || shouldRelease) await build()
+			if (shouldRelease) await release(versions)
 			break;
         case 'release':
             await release();
             break;
 
         case 'extract':
-            await extractBuild(force);
+            const { extracted } = await extractBuild(force);
+            if (shouldPatch) await patchExtractedBuild(extracted);
             break;
         case 'help':
         default:
