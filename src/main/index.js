@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
+const path = require("path");
+const fs = require("fs");
 const config_js_1 = require("./config.js");
 const platform_js_1 = require("./types/platform.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
@@ -29,6 +31,38 @@ const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
+
+// Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
+function initSessionStoragePath() {
+  if ((store_js_1.getModFeatures()?.downloader.useCustomPathForSessionStorage ?? false) && fs.existsSync(store_js_1.getModFeatures()?.downloader.customPathForSessionStorage)) {
+    if (electron_1.app.getPath('sessionData') === store_js_1.getModFeatures().downloader.customPathForSessionStorage) return;
+    logger.log("Custom path for session storage requested:", store_js_1.getModFeatures()?.downloader.customPathForSessionStorage);
+    const previousSessionStoragePath = electron_1.app.getPath('sessionData');
+    electron_1.app.setPath("sessionData", path.join(store_js_1.getModFeatures()?.downloader.customPathForSessionStorage, electron_1.app.getName()));
+    fs.cpSync(previousSessionStoragePath, electron_1.app.getPath('sessionData'), {
+      recursive: true,
+      force: true,
+      preserveTimestamps: true,
+      filter: (src, destination) => {
+        return !['config.json', '.updaterId', 'logs'].some(el=>src.endsWith(el));
+      }
+    })
+  } else {
+    if (electron_1.app.getPath('sessionData') === electron_1.app.getPath('userData')) return;
+    logger.log("Default path for session storage requested");
+    const previousSessionStoragePath = electron_1.app.getPath('sessionData');
+    electron_1.app.setPath("sessionData", electron_1.app.getPath('userData'));
+    fs.cpSync(previousSessionStoragePath, electron_1.app.getPath('sessionData'), {
+      recursive: true,
+      force: true,
+      preserveTimestamps: true,
+      filter: (src, destination) => {
+        return !['config.json', '.updaterId', 'logs'].some(el=>src.endsWith(el));
+      }
+    })
+  }
+}
+
 (0, store_js_1.init)();
 (0, handleUncaughtException_js_1.handleUncaughtException)();
 (0, singleInstance_js_1.checkForSingleInstance)();
@@ -62,6 +96,9 @@ if (store_js_1.getModFeatures()?.tryEnableSurroundAudio ?? false) {
     electron_1.app.commandLine.hasSwitch("disable-audio-output-resampler"),
   );
 }
+
+initSessionStoragePath();
+
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
   const modUpdater = (0, modUpdater_js_1.getModUpdater)();

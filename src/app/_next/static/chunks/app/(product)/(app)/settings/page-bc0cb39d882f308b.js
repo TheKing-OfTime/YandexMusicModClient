@@ -905,13 +905,13 @@
               size: "xs",
               children: "YandexMusicModClient " + window.MOD_VERSION,
             }),
-              (0, n.jsx)(c.Caption, {
-                  className: h().versionText,
-                  type: "controls",
-                  variant: "div",
-                  size: "xs",
-                  children: "Host " + window.HOST_VERSION,
-              }),
+            (0, n.jsx)(c.Caption, {
+              className: h().versionText,
+              type: "controls",
+              variant: "div",
+              size: "xs",
+              children: "Host " + window.HOST_VERSION,
+            }),
           ],
         });
       });
@@ -1514,29 +1514,30 @@
             async (e) => {
               window.nativeSettings?.setPathWithNativeDialog(
                 "modFeatures.downloader.customPathForSessionStorage",
+                undefined,
+                ["openDirectory", "showHiddenFiles"],
               );
             },
             [],
           );
         return (
           (0, d.useEffect)(() => {
-              window.desktopEvents?.on(
+            window.desktopEvents?.on(
               "NATIVE_STORE_UPDATE",
               (event, key, value) => {
                 if (key === "modFeatures.downloader.defaultPath") {
                   setDefaultPath(value);
-                }
-                else if (
+                } else if (
                   key === "modFeatures.downloader.customPathForSessionStorage"
                 ) {
                   setCustomPathForSessionStorage(value);
-                    i(
-                        (0, n.jsx)(p.Q, {
-                            error:
-                                "Для применения этой настройки требуется перезапуск приложения",
-                        }),
-                        { containerId: _.W$x.ERROR },
-                    );
+                  i(
+                    (0, n.jsx)(p.Q, {
+                      error:
+                        "Для применения этой настройки требуется перезапуск приложения",
+                    }),
+                    { containerId: _.W$x.ERROR },
+                  );
                 }
               },
             );
@@ -1582,13 +1583,13 @@
                     isChecked: useMP3,
                   }),
                 }),
-                false && (0, n.jsx)("li", {
+                (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(toggleBarWithPathChooser, {
-                    title: "Путь для оффлайн прослушивания",
+                    title: "Путь для кеша",
                     description: useCustomPathForSessionStorage
-                      ? "Использовать путь ниже для ванильного скачивания треков"
-                      : "Использовать путь по умолчанию для ванильного скачивания треков",
+                      ? "Использовать путь ниже для кеша (в т.ч. ванильного скачивания треков)"
+                      : "Использовать путь по умолчанию для кеша (в т.ч. ванильного скачивания треков)",
                     onChange: onUseCustomPathForSessionStorageToggle,
                     isChecked: useCustomPathForSessionStorage,
                     placeholder: "Укажите путь кнопкой справа",
