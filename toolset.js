@@ -339,6 +339,10 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
 }
 
 async function buildDirectly(src, noMinify=false) {
+    if (process.platform === "darwin" && checkIfSystemIntegrityProtectionEnabled()) {
+        console.log("System Integrity Protection включён. Обход невозможен, пожалуйста, отключите SIP для File System и попробуйте снова.");
+        return false;
+    }
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify });
     if (process.platform === "darwin") await bypassAsarIntegrity(MAC_APP_PATH);
 }
@@ -465,11 +469,26 @@ function checkIfElectronAsarIntegrityIsUsed() {
         }
     }
 
+function checkIfSystemIntegrityProtectionEnabled() {
+    try {
+        const response = execSync(`csrutil status`);
+        return response.includes('enabled');
+    } catch {
+        return false;
+    }
+}
+
 async function bypassAsarIntegrity(appPath) {
     if (process.platform !== 'darwin') {
         console.log("Не удалось обойти asar integrity: Доступно только для macOS");
         return false;
     }
+
+    if (checkIfSystemIntegrityProtectionEnabled()) {
+        console.log("System Integrity Protection включён. Обход невозможен, пожалуйста, отключите SIP для File System и попробуйте снова.");
+        return false;
+    }
+
     try {
         if (checkIfElectronAsarIntegrityIsUsed()) {
             console.log("Asar integrity включено. Обход");
