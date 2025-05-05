@@ -558,6 +558,7 @@
             t.send(i.BOn.DOWNLOAD_TRACK, {
               downloadURL: e.downloadURL,
               codec: e.codec,
+              bitrate: e.bitrate,
               trackId: e.trackId,
               track: e.track,
               transport: e.transport,

@@ -223,7 +223,7 @@ class TrackDownloader {
             ...(withCover ? ["-i", path.join(tempDirPath, "400x400.jpg")] : []),
             "-map", "0:a",
             ...(withCover ? ["-map", "1"] : []),
-            ...(fileExtension === 'mp3' ? ["-codec:a", "libmp3lame","-id3v2_version", "3", "-write_id3v1", "1", ...(data.bitrate ? ["-b:a", data.bitrate + "k",] : ["-b:a", "320k",])] : ["-c:a", "copy"]),
+            ...(fileExtension === 'mp3' ? ["-codec:a", "libmp3lame","-id3v2_version", "3", "-write_id3v1", "1", "-b:a", (data.bitrate ?? 320) + "k",] : ["-c:a", "copy"]),
             ...(withCover ? ["-c:v", "mjpeg"] : []),
             ...(withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
             ...(withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
