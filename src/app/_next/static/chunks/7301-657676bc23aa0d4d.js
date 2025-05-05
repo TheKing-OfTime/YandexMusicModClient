@@ -9897,9 +9897,9 @@
                           D,
                           U,
                           (0, _.jsx)(N.wx, {
-                            title: "Скачать трек",
+                            title: "Скачать трек в файл",
                             description:
-                              "Скачает трек в текущем качестве туда, куда вы укажете",
+                              "Скачать трек в читаемый файл на вашем ПК",
                             children: (0, _.jsxs)("div", {
                               className:
                                 "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
