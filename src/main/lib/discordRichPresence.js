@@ -253,7 +253,7 @@ async function setActivity(
 
 const tryConnect = () => {
     try {
-        rpc.clearActivity();
+        rpc.clearActivity().catch((e) => {discordRichPresenceLogger.error('ClearActivity failed:', e);});
         return rpc.login({ clientId })
     } catch (e) {
         discordRichPresenceLogger.error('Try connection failed:', e);
@@ -262,7 +262,7 @@ const tryConnect = () => {
 
 const tryReconnect = async () => {
     try {
-        await rpc.clearActivity();
+        await rpc.clearActivity().catch((e) => {discordRichPresenceLogger.error('ClearActivity failed:', e);});;
         await rpc.destroy();
         rpc = null;
         initRPC();
