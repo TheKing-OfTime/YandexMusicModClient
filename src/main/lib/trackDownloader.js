@@ -277,9 +277,9 @@ class TrackDownloader {
 
     async downloadTrack(data, callback = (x,b)=>{return null} ) {
 
-        const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false;
         const fileExtension = getFileExtensionFromCodec(data.codec);
-        const defaultFilepath = removeInvalidCharsFromFilename(`${artists2string(data.track?.artists)} — ${data.track?.title}.`) + (useMP3 ? 'mp3' : fileExtension);
+        const convertToMP3 = (store_js_1.getModFeatures()?.downloader?.useMP3 ?? false) && (fileExtension !== "mp3");
+        const defaultFilepath = removeInvalidCharsFromFilename(`${artists2string(data.track?.artists)} — ${data.track?.title}.`) + (convertToMP3 ? 'mp3' : fileExtension);
         const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
 
         const finalTrackPath = (store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath) ? path.join(defaultDirPath, defaultFilepath) : await this.handleSaveDialog(data, defaultFilepath);
@@ -307,9 +307,9 @@ class TrackDownloader {
             this.logger.info("Cover saved to temp directory");
         }
 
-        await this.extractWithFfmpeg(data, useMP3 ? tempExtractedTrackPath : finalTrackPath, tempDirPath, tempTrackPath);
+        await this.extractWithFfmpeg(data, convertToMP3 ? tempExtractedTrackPath : finalTrackPath, tempDirPath, tempTrackPath);
 
-        if(useMP3) {
+        if(convertToMP3) {
             callback(0.8, 0.9);
             this.logger.info("Converting to MP3", tempExtractedTrackPath);
             await this.convertToMP3(tempExtractedTrackPath, finalTrackPath);
