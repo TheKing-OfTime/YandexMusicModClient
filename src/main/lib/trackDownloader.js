@@ -209,7 +209,7 @@ class TrackDownloader {
         return dirPath;
     }
 
-    async extractWithFfmpeg(data, finalFilepath, tempDirPath, tempFilepath) {
+    async extractWithFfmpeg(data, finalFilepath, tempDirPath, tempFilepath, fileExtension=undefined) {
         if (!fsSync.existsSync(tempDirPath) ||!fsSync.existsSync(tempFilepath)) return;
         let withCover = false;
         const coverPath = path.join(tempDirPath, "400x400.jpg");
@@ -223,7 +223,7 @@ class TrackDownloader {
             ...(withCover ? ["-i", path.join(tempDirPath, "400x400.jpg")] : []),
             "-map", "0:a",
             ...(withCover ? ["-map", "1"] : []),
-            "-c:a", "copy",
+            ...(fileExtension === 'mp3' ? ["-codec:a", "libmp3lame","-id3v2_version", "3", "-write_id3v1", "1", ...(data.bitrate ? ["-b:a", data.bitrate + "k",] : ["-b:a", "320k",])] : ["-c:a", "copy"]),
             ...(withCover ? ["-c:v", "mjpeg"] : []),
             ...(withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
             ...(withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
@@ -307,7 +307,7 @@ class TrackDownloader {
             this.logger.info("Cover saved to temp directory");
         }
 
-        await this.extractWithFfmpeg(data, convertToMP3 ? tempExtractedTrackPath : finalTrackPath, tempDirPath, tempTrackPath);
+        await this.extractWithFfmpeg(data, convertToMP3 ? tempExtractedTrackPath : finalTrackPath, tempDirPath, tempTrackPath, fileExtension);
 
         if(convertToMP3) {
             callback(0.8, 0.9);

@@ -9708,6 +9708,7 @@
             electronBridge.sendDownloadTrack({
               downloadURL: downloadInfo?.url,
               codec: downloadInfo?.codec,
+              bitrate: downloadInfo?.bitrate,
               trackId: downloadInfo?.trackId,
               transport: downloadInfo?.transport,
               key: downloadInfo?.key,
