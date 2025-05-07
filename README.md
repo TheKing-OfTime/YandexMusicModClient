@@ -100,7 +100,7 @@
 
 Авторизоваться в Last.FM, а также включить/выключить функцию можно в соответствующем меню в настройках приложения.
 
-![Яндекс_Музыка_YCvwJPSvMt](https://github.com/user-attachments/assets/76c25ff0-fddd-4747-93ba-a6ab60efe876)
+![image](https://github.com/user-attachments/assets/0fbd13ed-7837-49c2-9b28-5bc210480002)
 
 <details>
    <summary>Процесс авторизации</summary>
@@ -112,6 +112,39 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 </details>
 
 </details>
+
+
+### Настраиваемая папка кеша
+<details>
+   <summary>Подробнее</summary>
+
+
+В ванильной версии весь кеш (в том числе скаченные вами треки для оффлейн прослушивания) хранится по пути `%appdata%/YandexMusic/`
+
+Данная функия позволяет использовать для кеша другой путь. Например чтобы 10 гигабайт скаченной вами музыки не тратили место на системном диске
+
+![image](https://github.com/user-attachments/assets/f48a8d32-d03f-4770-8204-460f37ab059f)
+
+
+<details>
+   <summary>Настройки</summary>
+
+	"globalShortcuts": {
+		"TOGGLE_PLAY": "Ctrl+/",
+		"MOVE_FORWARD": "Ctrl+,",
+		"MOVE_BACKWARD": "Ctrl+.",
+		"TOGGLE_SHUFFLE": "Ctrl+\'",
+		"REPEAT_NONE": undefined,
+		"REPEAT_CONTEXT": undefined,
+		"REPEAT_NONE": undefined,
+  		"TOGGLE_LIKE": undefined,
+  		"TOGGLE_DISLIKE": undefined,
+	}
+
+</details>
+
+</details>
+
 
 ### Глобальные хоткеи
 <details>
@@ -252,7 +285,13 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 <details>
    <summary>Подробнее</summary>
 
-Позволяет скачать текущий трек вам на ПК. Нажмите на иконку качества/кодека трека чтобы выбрать путь для размещения файла.
+Позволяет скачать текущий трек вам на ПК.
+
+![image](https://github.com/user-attachments/assets/95a52251-401a-4071-9ee3-914b8c7b7c8f)
+
+![image](https://github.com/user-attachments/assets/aaf79024-34cb-4159-9790-501f21534e54)
+
+
 
 </details>
 
@@ -260,7 +299,10 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 <details>
    <summary>Подробнее</summary>
 
-Позволяет включать/выключать эксперементы. Для этого вам нужно включить enableDevTools и использовать UI в приложении в dev панели:
+Позволяет включать/выключать эксперементы. Для этого вам нужно включить Режим разработчика.
+
+![image](https://github.com/user-attachments/assets/b341e6cb-58e3-4dfa-b8b3-e6ece72539a5)
+
 
 </details>
 
@@ -283,7 +325,7 @@ Devtools по умолчанию отключены. Чтобы включить
 
 Настройки внутри приложения:
 <p align="left">
-<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/b53302b8-cd6c-4f66-b1e4-bb16a7f1db77">
+<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/b9aa1828-476c-4fde-86a8-84fb02eb0817">
 </p>
 
 
