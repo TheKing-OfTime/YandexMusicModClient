@@ -101,7 +101,7 @@ Adds support for Last.FM scrobbling. The track will be scrobbled if you listen t
 
 Log in to Last.FM, as well as enable / disable the function, can be found in the corresponding menu in the app settings.
 
-![YandexMusic_YCvwJPSvMt](https://github.com/user-attachments/assets/76c25ff0-fddd-4747-93ba-a6ab60efe876)
+![image](https://github.com/user-attachments/assets/0fbd13ed-7837-49c2-9b28-5bc210480002)
 
 <details>
    <summary>Authorization process</summary>
@@ -113,6 +113,24 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 </details>
 
 </details>
+
+
+
+### Custom Cache folder
+<details>
+   <summary>Details</summary>
+
+
+In the vanilla version, the entire cache (including tracks you downloaded for offline listening) is stored in `%appdata%/YandexMusic/`
+
+This function allows you to use a different path for the cache. For example so that 10 gigabytes of music you downloaded doesn't waste space on the system disk
+
+![image](https://github.com/user-attachments/assets/f48a8d32-d03f-4770-8204-460f37ab059f)
+
+</details>
+
+
+
 
 ### Global Shortcuts
 <details>
@@ -256,7 +274,13 @@ Adds information about downloaded tracks to the settings page (tracks count and 
 <details>
    <summary>Details</summary>
 
-Allows download track that is currently playing into a file. Click to the quality/codec icon to show download dialog.
+Allows you to download the current track to your PC.
+
+![image](https://github.com/user-attachments/assets/95a52251-401a-4071-9ee3-914b8c7b7c8f)
+
+![image](https://github.com/user-attachments/assets/aaf79024-34cb-4159-9790-501f21534e54)
+
+
 
 </details>
 
@@ -264,7 +288,9 @@ Allows download track that is currently playing into a file. Click to the qualit
 <details>
    <summary>Details</summary>
 
-Allows you to enable/disable any experiment in the app. To do so you need set `"enableDevTools": true` and then you'll see the button in the dev panel:
+Allows you to enable/disable any experiment in the app. To do so you need enable Developer mode.
+
+![image](https://github.com/user-attachments/assets/b341e6cb-58e3-4dfa-b8b3-e6ece72539a5)
 
 </details>
 
@@ -287,7 +313,7 @@ Settings can be found in `%appdata%\YandexMusic\config.json`
 
 In app UI:
 <p align="left">
-<img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/b53302b8-cd6c-4f66-b1e4-bb16a7f1db77">
+<img width="500" alt="UI Settings example" src="https://github.com/user-attachments/assets/b9aa1828-476c-4fde-86a8-84fb02eb0817">
 </p>
 
 ## Support
