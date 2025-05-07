@@ -125,24 +125,6 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 ![image](https://github.com/user-attachments/assets/f48a8d32-d03f-4770-8204-460f37ab059f)
 
-
-<details>
-   <summary>Настройки</summary>
-
-	"globalShortcuts": {
-		"TOGGLE_PLAY": "Ctrl+/",
-		"MOVE_FORWARD": "Ctrl+,",
-		"MOVE_BACKWARD": "Ctrl+.",
-		"TOGGLE_SHUFFLE": "Ctrl+\'",
-		"REPEAT_NONE": undefined,
-		"REPEAT_CONTEXT": undefined,
-		"REPEAT_NONE": undefined,
-  		"TOGGLE_LIKE": undefined,
-  		"TOGGLE_DISLIKE": undefined,
-	}
-
-</details>
-
 </details>
 
 
