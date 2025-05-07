@@ -304,6 +304,9 @@ Devtools по умолчанию отключены. Чтобы включить
    <a href="https://github.com/xab4er">
       <img width="50" alt="xab4er" src="https://avatars.githubusercontent.com/u/60750449?v=4">
    </a>
+   <a href="https://github.com/Crosbic">
+      <img width="50" alt="Crosbic" src="https://avatars.githubusercontent.com/u/71810318?v=4">
+   </a>
    <a href="https://github.com/foreA-adoxid">
       <img width="50" alt="foreA-adoxid" src="https://avatars.githubusercontent.com/u/72875762?v=4">
    </a>
