@@ -322,6 +322,9 @@ Devtools по умолчанию отключены. Чтобы включить
 ## Спонсоры
 Большое спасибо спонсорам, которые позволяют мне активно работать над этим проектом.
 <p align="left">
+   <a href="https://www.last.fm/ru/user/am0rall">
+      <img width="50" alt="am0rall" src="https://lastfm.freetls.fastly.net/i/u/avatar170s/a983db6495ea41c8c16777aa0679632d.png">
+   </a>
    <a href="https://github.com/ajioe1111">
       <img width="50" alt="ajioe1111" src="https://avatars.githubusercontent.com/u/39803571?v=4">
    </a>
