@@ -71,7 +71,7 @@ class PatchNote {
     }
 
     toDiscord(){
-        return `# ${this.version}\n\n${this.patchNoteString}`
+        return `# Client ${this.version}\n\n${this.patchNoteString}`
     }
 
     toGitHub(){
