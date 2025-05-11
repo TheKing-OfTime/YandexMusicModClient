@@ -9731,11 +9731,14 @@
 
           return (
             (0, x.useEffect)(() => {
-              window.desktopEvents.on('PROGRESS_BAR_CHANGE', (e, elementType, progress) => {
-                if (elementType === 'trackDownloadCurrent') {
-                  setDownloadProgress(progress);
-                }
-              })
+              window.desktopEvents.on(
+                "PROGRESS_BAR_CHANGE",
+                (e, elementType, progress) => {
+                  if (elementType === "trackDownloadCurrent") {
+                    setDownloadProgress(progress);
+                  }
+                },
+              );
             }, []),
             (0, x.useEffect)(() => {
               const timer = setTimeout(() => {
@@ -9900,16 +9903,25 @@
                           (0, _.jsx)(N.wx, {
                             title: "Скачать трек в файл",
                             description:
-                              "Скачать трек в читаемый файл на вашем ПК",
-                            children: (0, _.jsxs)("div", {
-                              className:
-                                "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
+                              window?.DEVICE_INFO?.os === "win32"
+                                ? downloadInfo?.quality
+                                  ? "Скачать трек в читаемый файл на вашем ПК"
+                                  : "Не удалось получить данные о треке"
+                                : "Пока не доступно на вашей OS",
+                            children: (0, _.jsxs)("button", {
+                              disabled:
+                                !downloadInfo?.quality ||
+                                window?.DEVICE_INFO?.os !== "win32",
+                              className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${ !downloadInfo?.quality ||
+                              window?.DEVICE_INFO?.os !== "win32" ? '' : 'HbaqudSqu7Q3mv3zMPGr'} qU2apWBO1yyEK0lZ3lPO`,
                               style: {
                                 display: "flex",
                                 "flex-direction": "column",
                                 gap: "2px",
                                 "align-self": "center",
                                 "padding-top": "5px",
+                                "padding-inline": "2px",
+                                //pointerEvents: !downloadInfo?.quality || window?.DEVICE_INFO?.os !== "win32" ? 'none' : 'auto',
                               },
                               children: [
                                 (0, _.jsxs)("span", {
@@ -9924,8 +9936,16 @@
                                     "background-color":
                                       "var(--ym-controls-color-secondary-text-enabled)",
                                     width: `${downloadProgress === -100 ? 0 : downloadProgress}%`,
-                                    transition: ((downloadProgress >= 0 && downloadProgress < 100) ? "width 0.3s" : 'width 0.3s, opacity 0.3s linear 0.5s'),
-                                    opacity: ((downloadProgress >= 0 && downloadProgress < 100) ? "1" : '0'),
+                                    transition:
+                                      downloadProgress >= 0 &&
+                                      downloadProgress < 100
+                                        ? "width 0.3s"
+                                        : "width 0.3s, opacity 0.3s linear 0.5s",
+                                    opacity:
+                                      downloadProgress >= 0 &&
+                                      downloadProgress < 100
+                                        ? "1"
+                                        : "0",
                                     height: "2px",
                                     "border-radius": "10px",
                                   },
