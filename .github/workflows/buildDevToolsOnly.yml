@@ -1,0 +1,92 @@
+name: Patch and Upload Yandex Music app.asar
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  patch-asar:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install 7-Zip
+        run: choco install 7zip -y
+        shell: powershell
+
+      - name: Download latest.yml
+        run: Invoke-WebRequest -Uri "https://music-desktop-application.s3.yandex.net/stable/latest.yml" -OutFile "latest.yml"
+        shell: powershell
+
+      - name: Parse latest.yml to get EXE filename
+        id: parse-yml
+        run: |
+          $yml = Get-Content latest.yml | Out-String
+          $match = [regex]::Match($yml, 'url:\s*(.+\.exe)')
+          if (-not $match.Success) { throw "EXE URL not found in latest.yml" }
+          $exeName = $match.Groups[1].Value.Trim()
+          echo "exe_name=$exeName" >> $env:GITHUB_OUTPUT
+        shell: powershell
+
+      - name: Download EXE file
+        run: |
+          $exeName = "${{ steps.parse-yml.outputs.exe_name }}"
+          $url = "https://music-desktop-application.s3.yandex.net/stable/$exeName"
+          Invoke-WebRequest -Uri $url -OutFile $exeName
+        shell: powershell
+
+      - name: Extract EXE with 7-Zip
+        run: |
+          & "C:\Program Files\7-Zip\7z.exe" x "${{ steps.parse-yml.outputs.exe_name }}" -oYandexMusicExtracted -y
+        shell: powershell
+
+      - name: Extract app-64.7z
+        run: |
+          & "C:\Program Files\7-Zip\7z.exe" x "YandexMusicExtracted\$PLUGINSDIR\app-64.7z" -oApp64Extracted -y
+        shell: powershell
+
+      - name: Run toolset.js on app.asar
+        run: |
+          $asarPath = "${{ github.workspace }}\App64Extracted\resources\app.asar"
+          node toolset.js extract -bp --withoutPure --extractType="customAsar" --src="$asarPath"
+        shell: powershell
+
+      - name: Rename app.asar to appDevTools.asar
+        run: |
+          Rename-Item -Path "builds\patched\app.asar" -NewName "appDevTools.asar"
+        shell: powershell
+
+      - name: Gzip appDevTools.asar using 7-Zip
+        run: |
+          & "C:\Program Files\7-Zip\7z.exe" a -tgzip "builds\patched\appDevTools.asar.gz" "builds\patched\appDevTools.asar"
+        shell: powershell
+
+      - name: Determine release tag
+        id: release-tag
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            $tag = "${{ github.event.release.tag_name }}"
+          } else {
+            $tag = "latest"
+          }
+          echo "tag_name=$tag" >> $env:GITHUB_OUTPUT
+        shell: powershell
+
+      - name: Upload appDevTools.asar and .gz to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release-tag.outputs.tag_name }}
+          files: |
+            builds/patched/appDevTools.asar
+            builds/patched/appDevTools.asar.gz

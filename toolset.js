@@ -14,6 +14,7 @@ const { execSync } = require('child_process');
 
 const SRC_PATH = path.join(process.argv[1], '../src');
 const DEFAULT_DIST_PATH = path.join(process.argv[1], '../builds/latest/app.asar');
+const DEFAULT_PATCHED_DIST_PATH = path.join(process.argv[1], '../builds/patched/app.asar');
 const EXTRACTED_DIR_PATH = path.join(process.argv[1], '../extracted');
 
 const MAC_APP_PATH = '/Applications/Яндекс Музыка.app';
@@ -115,7 +116,7 @@ async function getLatestExtractedSrcDir(toPatched = false) {
     return path.join(EXTRACTED_DIR_PATH, `/${version}${toPatched ? '' : '@pure'}`);
 }
 
-async function getLatestYMVersion(type='direct') {
+async function getLatestYMVersion(type='direct', srcPath=undefined) {
     let packageFileBuffer;
     switch (type) {
         default:
@@ -129,6 +130,13 @@ async function getLatestYMVersion(type='direct') {
             break;
         case 'src':
             packageFileBuffer = await fsp.readFile(path.join(SRC_PATH, '/package.json'), 'utf8')
+            break;
+        case 'customSrc':
+            packageFileBuffer = await fsp.readFile(path.join(srcPath, '/package.json'), 'utf8')
+            break;
+        case 'customAsar':
+            packageFileBuffer = asar.extractFile(srcPath, 'package.json').toString();
+            break;
     }
 
     const packageFileJson = JSON.parse(packageFileBuffer);
@@ -381,25 +389,31 @@ async function release(dest, versions=undefined) {
     await sendPatchNoteToDiscord(patchNote);
 }
 
-async function extractIfNotExist(version, force=false) {
+async function extractIfNotExist(version, force=false, src=undefined) {
     const extractedPathDir = path.join(EXTRACTED_DIR_PATH, version);
     if(!force && fs.existsSync(extractedPathDir)) return console.log('Папка под ' + version + ' уже существует:', extractedPathDir);
     await fsp.mkdir(extractedPathDir, { recursive: true });
-    await asar.extractAll(DIRECT_DIST_PATH, extractedPathDir);
+    await asar.extractAll(src ?? DIRECT_DIST_PATH, extractedPathDir);
     console.log('Релиз ' + version + ' успешно извлечён в', extractedPathDir);
     return extractedPathDir;
 }
 
-async function extractBuild(force=false) {
+async function extractBuild(force=false, src=undefined, type='direct', withPure=true) {
     if(!fs.existsSync(EXTRACTED_DIR_PATH)) {
         await fsp.mkdir(EXTRACTED_DIR_PATH, { recursive: true });
     }
-    const latestYMVersion = await getLatestYMVersion('direct');
+    const latestYMVersion = await getLatestYMVersion(type, src);
 
-    const pathToPureExtractedBuild = await extractIfNotExist(`${latestYMVersion.version}@pure`, force);
-    const pathToExtractedBuild = await extractIfNotExist(latestYMVersion.version, force);
 
-    return { pureExtracted: pathToPureExtractedBuild, extracted: pathToExtractedBuild }
+    const pathToExtractedBuild = await extractIfNotExist(latestYMVersion.version, force, src);
+
+    if (withPure) {
+        const pathToPureExtractedBuild = await extractIfNotExist(`${latestYMVersion.version}@pure`, force);
+
+        return { pureExtracted: pathToPureExtractedBuild, extracted: pathToExtractedBuild }
+    }
+
+    return { extracted: pathToExtractedBuild }
 }
 
 async function replaceInFilesRecursively(dir, rules) {
@@ -524,6 +538,8 @@ async function run(command, flags) {
     const force = flags.f ?? false
 
     const lastExtracted = flags.lastExtracted ?? false;
+    const extractType = flags.extractType ?? 'direct';
+    const withoutPure = flags.withoutPure ?? false;
 
     const shouldPatch = flags.p ?? false;
 	const shouldMinify = flags.m ?? false;
@@ -531,7 +547,7 @@ async function run(command, flags) {
 	const shouldRelease = flags.r ?? false;
 	const shouldBuild = flags.b ?? false;
 
-	const dest = flags.dest ?? DEFAULT_DIST_PATH;
+	const dest = flags.dest ?? (lastExtracted ? DEFAULT_PATCHED_DIST_PATH : DEFAULT_DIST_PATH);
     const src = (lastExtracted ? await getLatestExtractedSrcDir(true) : (flags.src ?? SRC_PATH));
 
 
@@ -559,9 +575,10 @@ async function run(command, flags) {
             break;
 
         case 'extract':
-            const { extracted } = await extractBuild(force);
+            const { extracted } = await extractBuild(force, src, extractType, !withoutPure);
             if (shouldPatch) await patchExtractedBuild(extracted);
             if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify);
+            if (shouldBuild) await build({ srcPath: extracted, destDir: DEFAULT_PATCHED_DIST_PATH, noMinify: !shouldMinify });
             break;
         case 'patch':
             await patchExtractedBuild(src)
@@ -578,5 +595,6 @@ async function run(command, flags) {
     }
 }
     const args = minimist(process.argv.slice(2));
+    console.log(args);
     await run(args._?.[0], args);
 })()
