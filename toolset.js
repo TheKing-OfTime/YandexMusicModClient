@@ -25,17 +25,14 @@ const INFO_PLIST_PATH = path.join(MAC_APP_PATH, '/Contents/Info.plist');
 
 if(process.platform === 'darwin') {
     if(!fs.existsSync(DIRECT_DIST_PATH)) {
-        console.log('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
-        process.exit(1);
+        console.warn('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
     }
     if(!fs.existsSync(INFO_PLIST_PATH)) {
-        console.log('Не удалось найти Info.plist:', INFO_PLIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
-        process.exit(1);
+        console.warn('Не удалось найти Info.plist:', INFO_PLIST_PATH, '\nПереопределите MAC_APP_PATH в toolset.js');
     }
 }
 if(!fs.existsSync(DIRECT_DIST_PATH)) {
-    console.log('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите WINDOWS_APP_PATH в toolset.js');
-    process.exit(1);
+    console.warn('Не удалось найти директорию с Яндекс Музыкой:', DIRECT_DIST_PATH, '\nПереопределите WINDOWS_APP_PATH в toolset.js');
 }
 
 const MINIFIED_SRC_PATH = path.join(process.argv[1], "../minified/src");
