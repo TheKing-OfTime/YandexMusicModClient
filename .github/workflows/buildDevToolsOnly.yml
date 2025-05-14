@@ -53,7 +53,7 @@ jobs:
 
       - name: Extract app-64.7z
         run: |
-          & "C:\Program Files\7-Zip\7z.exe" x "YandexMusicExtracted\$PLUGINSDIR\app-64.7z" -oApp64Extracted -y
+          & "C:\Program Files\7-Zip\7z.exe" x 'YandexMusicExtracted\$PLUGINSDIR\app-64.7z' -oApp64Extracted -y
         shell: powershell
 
       - name: Run toolset.js on app.asar
