@@ -364,7 +364,7 @@ async function spoof(type='extracted', shouldRelease=false) {
         const nextVersion = semver.inc(latestRelease.name, 'patch');
         await modifyConfigJs(nextVersion);
         console.log('Версия мода изменена с', configVersion, 'на', nextVersion);
-        await createAndPushSpoofCommit(configVersion, nextVersion);
+        await createAndPushSpoofCommit(result.oldVersion, result.newVersion);
       }
     }
 
