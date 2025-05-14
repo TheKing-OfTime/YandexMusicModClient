@@ -43,13 +43,11 @@ jobs:
         shell: powershell
 
       - name: Extract EXE with 7-Zip
-        run: |
-          & "C:\Program Files\7-Zip\7z.exe" x "${{ steps.parse-yml.outputs.exe_name }}" -oYandexMusicExtracted -y
+        run: 7z x "${{ steps.parse-yml.outputs.exe_name }}" -oYandexMusicExtracted -y
         shell: powershell
 
       - name: Extract app-64.7z
-        run: |
-          & "C:\Program Files\7-Zip\7z.exe" x 'YandexMusicExtracted\$PLUGINSDIR\app-64.7z' -oApp64Extracted -y
+        run: 7z x 'YandexMusicExtracted\$PLUGINSDIR\app-64.7z' -oApp64Extracted -y
         shell: powershell
 
       - name: Run toolset.js on app.asar
@@ -59,13 +57,11 @@ jobs:
         shell: powershell
 
       - name: Rename app.asar to appDevTools.asar
-        run: |
-          Rename-Item -Path "builds\patched\app.asar" -NewName "appDevTools.asar"
+        run: Rename-Item -Path "builds\patched\app.asar" -NewName "appDevTools.asar"
         shell: powershell
 
       - name: Gzip appDevTools.asar using 7-Zip
-        run: |
-          & "C:\Program Files\7-Zip\7z.exe" a -tgzip "builds\patched\appDevTools.asar.gz" "builds\patched\appDevTools.asar"
+        run: 7z a -tgzip "builds\patched\appDevTools.asar.gz" "builds\patched\appDevTools.asar"
         shell: powershell
 
       - name: Determine release tag
@@ -75,7 +71,6 @@ jobs:
             $tag = "${{ github.event.release.tag_name }}"
           } else {
             $latestRelease = Invoke-RestMethod `
-              -Headers @{ Authorization = "Bearer $env:GITHUB_TOKEN" } `
               -Uri "https://api.github.com/repos/${{ github.repository }}/releases/latest"
             $tag = $latestRelease.tag_name
           }
