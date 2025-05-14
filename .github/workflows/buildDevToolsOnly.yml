@@ -21,10 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install 7-Zip
-        run: choco install 7zip -y
-        shell: powershell
-
       - name: Download latest.yml
         run: Invoke-WebRequest -Uri "https://music-desktop-application.s3.yandex.net/stable/latest.yml" -OutFile "latest.yml"
         shell: powershell
@@ -78,7 +74,10 @@ jobs:
           if ($env:GITHUB_EVENT_NAME -eq 'release') {
             $tag = "${{ github.event.release.tag_name }}"
           } else {
-            $tag = "latest"
+            $latestRelease = Invoke-RestMethod `
+              -Headers @{ Authorization = "Bearer $env:GITHUB_TOKEN" } `
+              -Uri "https://api.github.com/repos/${{ github.repository }}/releases/latest"
+            $tag = $latestRelease.tag_name
           }
           echo "tag_name=$tag" >> $env:GITHUB_OUTPUT
         shell: powershell
