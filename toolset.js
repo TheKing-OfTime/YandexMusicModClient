@@ -101,7 +101,7 @@ async function sendPatchNoteToDiscord(patchNote) {
     console.log('Патчноут отправлен в Discord')
 }
 
-async function getLatestExtractedSrcDir() {
+async function getLatestExtractedSrcDir(toPatched = false) {
     let version = '1.0.0'
     const versions = (await fsp.readdir(EXTRACTED_DIR_PATH, { withFileTypes: true })).filter(
       (dirent) => {
@@ -112,7 +112,7 @@ async function getLatestExtractedSrcDir() {
     versions.forEach(ver=>{if(semver.gt(ver, version)) version = ver});
 
     if(version === '1.0.0') return console.log('Не удалось получить последний релиз из ./extracted/')
-    return path.join(EXTRACTED_DIR_PATH, `/${version}@pure`)
+    return path.join(EXTRACTED_DIR_PATH, `/${version}${toPatched ? '' : '@pure'}`);
 }
 
 async function getLatestYMVersion(type='direct') {
@@ -328,7 +328,7 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
     await minifyDir(srcPath, MINIFIED_SRC_PATH);
     console.timeEnd("Минификация завершена");
   }
-  console.log("Архивация в " + destDir);
+  console.log("Архивация из " + (noMinify ? srcPath : MINIFIED_SRC_PATH) + " в " + destDir);
   console.time("Архивация завершена");
   await asar.createPackage(noMinify ? srcPath : MINIFIED_SRC_PATH, destDir);
   console.timeEnd("Архивация завершена");
@@ -523,13 +523,16 @@ async function run(command, flags) {
 
     const force = flags.f ?? false
 
+    const lastExtracted = flags.lastExtracted ?? false;
+
     const shouldPatch = flags.p ?? false;
 	const shouldMinify = flags.m ?? false;
 	const shouldBuildDirectly = flags.d ?? false;
 	const shouldRelease = flags.r ?? false;
 	const shouldBuild = flags.b ?? false;
+
 	const dest = flags.dest ?? DEFAULT_DIST_PATH;
-    const src = flags.src ?? SRC_PATH;
+    const src = (lastExtracted ? await getLatestExtractedSrcDir(true) : (flags.src ?? SRC_PATH));
 
 
     switch (command) {
