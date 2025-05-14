@@ -90,3 +90,5 @@ jobs:
           files: |
             builds/patched/appDevTools.asar
             builds/patched/appDevTools.asar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
