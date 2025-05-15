@@ -22,7 +22,7 @@ electron_1.contextBridge.exposeInMainWorld('desktopEvents', {
     on(name, listener) {
         electron_1.ipcRenderer.on(name, listener);
     },
-    off(name, listener) {
+    off(name, listener) {                                                                                         // This function actually can't remove Listener because electron copies listener so function reference is different. Workaround https://github.com/electron/electron/issues/45224
         electron_1.ipcRenderer.off(name, listener);
     },
     invoke(name, ...args) {
