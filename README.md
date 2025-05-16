@@ -33,6 +33,13 @@
    ```
 3. Готово!
 
+Если вам из функций модификации вам нужны только разблокированные DevTools. То вы можете использовать эту команду.
+
+```bat
+curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/appDevTools.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
+```
+
+Преимущество в том что эта версия собирается полностью автоматически, и всегда использует последнюю версию ЯМ (Не спуфится)
 
 
 > [!NOTE]  
