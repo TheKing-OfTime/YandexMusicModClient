@@ -231,7 +231,7 @@ class TrackDownloader {
             ...(data.track?.artists ? ["-metadata", `artist="${artists2string(data.track?.artists)}"`] : []),
             ...(data.track?.title ? ["-metadata", `title="${data.track?.title}"`] : []),
             ...(data.track?.albums?.[0]?.title ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`] : []),
-            `"${finalFilepath}"`
+            `-y "${finalFilepath}"`
         ];
 
         const command = `${EXTRACTED_FFMPEG_PATH} ${args.join(" ")}`;
@@ -258,7 +258,7 @@ class TrackDownloader {
             "-b:a", "320k",
             "-id3v2_version", "3",
             "-write_id3v1", "1",
-            `"${outputAudioPath}"`
+            `-y "${outputAudioPath}"`
         ];
 
         const command = `${EXTRACTED_FFMPEG_PATH} ${args.join(" ")}`;
