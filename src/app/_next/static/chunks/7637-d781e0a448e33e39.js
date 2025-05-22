@@ -11089,7 +11089,7 @@
                       playbackId: iV.jiA.ADVERT,
                     })),
                   k(),
-                  n.loadYasp().then(() => {
+                  n.loadYasp('12611').then(() => {
                     n.attachYasp(s.source),
                       n.attachYasp(l.source),
                       u && n.attachYasp(u.source);
