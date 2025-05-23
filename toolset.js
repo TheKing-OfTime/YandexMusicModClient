@@ -545,7 +545,7 @@ async function run(command, flags) {
 	const shouldBuild = flags.b ?? false;
 
 	const dest = flags.dest ?? (lastExtracted ? DEFAULT_PATCHED_DIST_PATH : DEFAULT_DIST_PATH);
-    const src = (lastExtracted ? await getLatestExtractedSrcDir(true) : (flags.src ?? SRC_PATH));
+    const src = (command === 'extract' ? flags.src : (lastExtracted ? await getLatestExtractedSrcDir(true) : (flags.src ?? SRC_PATH)));
 
 
     switch (command) {
