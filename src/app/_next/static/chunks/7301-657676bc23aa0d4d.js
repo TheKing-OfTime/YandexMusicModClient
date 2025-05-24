@@ -9699,6 +9699,7 @@
             "flac-mp4": "FLAC",
           };
           let theState = (0, C.R$C)();
+          let [realBitrate, setRealBitrate] = (0, x.useState)(null);
           let [downloadInfo, setDownloadInfo] = (0, x.useState)(
             theState?.state?.queueState?.currentEntity?.value?.entity
               ?.mediaSourceData?.data,
@@ -9739,6 +9740,31 @@
                   }
                 },
               );
+
+              // Listen for bitrate changes from the Yasp audio element. Little overcomplicated but works.
+              const registerYaspAudioElementListener = () => {
+                if (
+                  !window?.Ya?.YaspAudioElement?.instances?.find(
+                    (instance) => instance.yaspSrc,
+                  )
+                ) {
+                  setTimeout(registerYaspAudioElementListener, 1000);
+                  return console.log("YaspAudioElement not found, retrying...");
+                }
+                console.log("register YaspAudioElementListener");
+                window?.Ya?.YaspAudioElement?.instances
+                  .find((instance) => instance.yaspSrc)
+                  .addEventListener("yasp-event", (e) => {
+                    if (e.detail?.name !== "AbrDecisionChange") return;
+                    let bitrate = Math.round(
+                      (Object.values(
+                        JSON.parse(e.detail?.data?.message)?.tracks,
+                      )?.[0]?.bitrate ?? 0) / 1000,
+                    );
+                    setRealBitrate(bitrate);
+                  });
+              };
+              registerYaspAudioElementListener();
             }, []),
             (0, x.useEffect)(() => {
               const timer = setTimeout(() => {
@@ -9912,8 +9938,12 @@
                               disabled:
                                 !downloadInfo?.quality ||
                                 window?.DEVICE_INFO?.os !== "win32",
-                              className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${ !downloadInfo?.quality ||
-                              window?.DEVICE_INFO?.os !== "win32" ? '' : 'HbaqudSqu7Q3mv3zMPGr'} qU2apWBO1yyEK0lZ3lPO`,
+                              className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${
+                                !downloadInfo?.quality ||
+                                window?.DEVICE_INFO?.os !== "win32"
+                                  ? ""
+                                  : "HbaqudSqu7Q3mv3zMPGr"
+                              } qU2apWBO1yyEK0lZ3lPO`,
                               style: {
                                 display: "flex",
                                 "flex-direction": "column",
@@ -9957,9 +9987,7 @@
                           (0, _.jsx)(N.wx, {
                             title: "Качество трека",
                             description: downloadInfo?.quality
-                              ? downloadInfo?.bitrate !== 0
-                                ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]} - ${downloadInfo?.bitrate}`
-                                : `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}`
+                              ? (`${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}` + (downloadInfo?.bitrate ? `-${downloadInfo?.bitrate}` : '') + (downloadInfo?.codec !== 'mp3' && realBitrate ? ` ${realBitrate} kbps` : ''))
                               : "Не удалось получить качество трека",
                             children: (0, _.jsxs)("div", {
                               className:
