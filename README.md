@@ -225,8 +225,8 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 </details>
 
-![image](https://github.com/user-attachments/assets/da143017-b9ff-4faf-91dc-b9ccc81b1e2f)
-![image](https://github.com/user-attachments/assets/3e5b6fb2-fbd3-4e04-880c-f1e556d8c4ef)
+![image](https://github.com/user-attachments/assets/424434fb-5e66-4a85-8ca2-90179cb7f357)
+
 
 </details>
 
