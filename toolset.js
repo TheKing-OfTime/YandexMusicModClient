@@ -389,7 +389,7 @@ async function buildNativeModules() {
     }
 }
 
-async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
+async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false, noNativeModules = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
   if (!noMinify) {
     console.log("Минификация...");
     console.time("Минификация завершена");
@@ -397,7 +397,7 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
     console.timeEnd("Минификация завершена");
   }
 
-  await buildNativeModules();
+  !noNativeModules && await buildNativeModules();
 
   console.log("Архивация из " + (noMinify ? srcPath : MINIFIED_SRC_PATH) + " в " + destDir);
   console.time("Архивация завершена");
@@ -409,12 +409,12 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
   }
 }
 
-async function buildDirectly(src, noMinify=false) {
+async function buildDirectly(src, noMinify=false, noNativeModules=false) {
     if (process.platform === "darwin" && checkIfSystemIntegrityProtectionEnabled()) {
         console.log("System Integrity Protection включён. Обход невозможен, пожалуйста, отключите SIP для File System и попробуйте снова.");
         return false;
     }
-    await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify });
+    await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
     if (process.platform === "darwin") await bypassAsarIntegrity(MAC_APP_PATH);
 }
 
@@ -603,6 +603,7 @@ async function run(command, flags) {
     const lastExtracted = flags.lastExtracted ?? false;
     const extractType = flags.extractType ?? 'direct';
     const withoutPure = flags.withoutPure ?? false;
+    const noNativeModules = flags.noNativeModules ?? false;
 
     const shouldPatch = flags.p ?? false;
 	const shouldMinify = flags.m ?? false;
@@ -617,11 +618,11 @@ async function run(command, flags) {
     switch (command) {
         case 'build':
 			if (shouldBuildDirectly) {
-        		await buildDirectly(src, !shouldMinify);
+        		await buildDirectly(src, !shouldMinify, noNativeModules);
 				break;
       		}
 			if (shouldRelease) {
-				await build();
+				await build({noNativeModules: noNativeModules });
         		await release(dest);
 				break;
       		}
@@ -630,7 +631,7 @@ async function run(command, flags) {
 			break;
         case 'spoof':
 			const versions = await spoof('extracted', shouldRelease);
-			if ( shouldBuild || shouldRelease) await build()
+			if ( shouldBuild || shouldRelease) await build({noNativeModules: noNativeModules })
 			if (shouldRelease) await release(dest, versions)
 			break;
         case 'release':
@@ -641,7 +642,7 @@ async function run(command, flags) {
             const { extracted } = await extractBuild(force, src, extractType, !withoutPure);
             if (shouldPatch) await patchExtractedBuild(extracted);
             if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify);
-            if (shouldBuild) await build({ srcPath: extracted, destDir: DEFAULT_PATCHED_DIST_PATH, noMinify: !shouldMinify });
+            if (shouldBuild) await build({ srcPath: extracted, destDir: DEFAULT_PATCHED_DIST_PATH, noMinify: !shouldMinify, noNativeModules: noNativeModules });
             break;
         case 'patch':
             await patchExtractedBuild(src)
