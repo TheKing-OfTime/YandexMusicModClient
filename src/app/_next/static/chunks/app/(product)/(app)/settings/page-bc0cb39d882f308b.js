@@ -1235,7 +1235,41 @@
               "modFeatures.windowBehavior.startMinimized",
               e,
             );
-          }, []);
+          }, []),
+          onTaskbarExtensionsEnableToggle = (0, d.useCallback)(async (e) => {
+            console.log("taskBarExtensions.enable toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.taskBarExtensions.enable",
+              e,
+            );
+            i(
+              (0, n.jsx)(p.Q, {
+                error:
+                  "Для применения этой настройки требуется перезапуск приложения",
+              }),
+              { containerId: _.W$x.ERROR },
+            );
+          }, []),
+          onTaskbarExtensionsCoverAsThumbnailToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log(
+                "taskBarExtensions.coverAsThumbnail toggled. Value: ",
+                e,
+              );
+              window.nativeSettings.set(
+                "modFeatures.taskBarExtensions.coverAsThumbnail",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          );
         return (0, n.jsx)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
@@ -1317,6 +1351,30 @@
                   onChange: onStartMinimizedToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.windowBehavior.startMinimized",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Включить улучшенное превью окна на панели задач",
+                  description:
+                    "Добавляет кнопки управления воспроизведением на превью окна в панели задач",
+                  onChange: onTaskbarExtensionsEnableToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.taskBarExtensions.enable",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Использовать обложку трека в превью окна",
+                  description:
+                    "Если трек играет, заменяет динамичное превью на картинку обложки трека",
+                  onChange: onTaskbarExtensionsCoverAsThumbnailToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.taskBarExtensions.coverAsThumbnail",
                   ),
                 }),
               }),

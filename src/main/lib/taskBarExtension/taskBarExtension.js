@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
+
+const native = require("../../native_modules/set_iconic_thumbnail");
+
 const events_js_1 = require("../../events");
 const config_js_1 = require("../../config");
 const store_js_1 = require("../store.js");
@@ -32,6 +35,7 @@ const onPlayerStateChange = (window, newPlayerState) => {
   if (!(settings?.enable ?? true)) return;
   if (typeof newPlayerState !== "undefined") {
     playerState = structuredClone(newPlayerState);
+    playerState.isPaused = playerState.status === "paused";
   }
   updateTaskbarExtension(window);
 };
@@ -110,6 +114,38 @@ const getArtist = () => {
   return artistsLabel;
 };
 
+const setIconicThumbnail = async (window, playerState) => {
+    if (!playerState?.track?.coverUri) {
+        return;
+    }
+
+    const coverUrl = `https://${playerState.track.coverUri}`.replace("%%", "100x100");
+    try {
+        taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
+        const coverImage = await fetch(coverUrl);
+        const imageBuffer = await coverImage.arrayBuffer();
+        const result = native.setIconicThumbnail(
+          window.getNativeWindowHandle(),
+          Buffer.from(imageBuffer),
+        );
+        taskBarExtensionLogger.log("Thumbnail set result:", result);
+    } catch (error) {
+        taskBarExtensionLogger.error("Error setting thumbnail:", error);
+    }
+}
+
+const clearIconicThumbnail = async (window) => {
+    try {
+        taskBarExtensionLogger.log("Clearing thumbnail");
+        const result = native.clearIconicThumbnail(
+          window.getNativeWindowHandle(),
+        );
+        taskBarExtensionLogger.log("Thumbnail cleared result:", result);
+    } catch (error) {
+      taskBarExtensionLogger.error("Error setting thumbnail:", error);
+    }
+}
+
 const updateTaskbarExtension = (window) => {
   const availability = getActionsAvailabilityObject(
     playerState.availableActions,
@@ -179,8 +215,8 @@ const updateTaskbarExtension = (window) => {
       },
     },
     {
-      tooltip: playerState?.isPlaying ? "Pause" : "Play",
-      icon: playerState?.isPlaying
+      tooltip: !playerState.isPaused ? "Pause" : "Play",
+      icon: !playerState.isPaused
         ? assets[systemTheme].pause
         : assets[systemTheme].play,
       click() {
@@ -235,6 +271,10 @@ const updateTaskbarExtension = (window) => {
 
   const taskButtonStatus = window.setThumbarButtons(buttons);
   window.setThumbnailToolTip(getTooltipString());
+
+  if (settings?.coverAsThumbnail ?? true) {
+    playerState.isPaused ? clearIconicThumbnail(window) : setIconicThumbnail(window, playerState);
+  }
 
   taskBarExtensionLogger.log(
     "ThumbarButtons set:",

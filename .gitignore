@@ -1,6 +1,6 @@
 /app.asar
 /app.txt
-/package-lock.json
+*package-lock.json
 /node_modules
 /extracted/
 /diff/
@@ -8,3 +8,5 @@
 /.env
 /tmp/
 /minified/
+/native/*/build/*
+/native/*/node_modules/*

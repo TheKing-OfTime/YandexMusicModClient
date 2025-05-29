@@ -85,6 +85,7 @@ const init = () => {
     },
     taskBarExtensions: {
       enable: true,
+      coverAsThumbnail: true,
     },
     vibeAnimationEnhancement: {
       maxFPS: 25,
