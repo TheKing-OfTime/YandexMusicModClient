@@ -328,6 +328,67 @@ async function minifyDir(srcDir, destDir) {
     }
 }
 
+/**
+ * Сборка и копирование нативного модуля
+ * @param {string} moduleName - имя папки с модулем (например, setIconicThumbnail)
+ */
+async function buildNativeModule(moduleName) {
+    console.log('Собираю нативный модуль:', moduleName);
+    const nativeDir = path.join(__dirname, 'native', moduleName);
+    const gypPath = path.join(nativeDir, 'binding.gyp');
+    if (!fs.existsSync(gypPath)) throw new Error(`Не найден binding.gyp в ${nativeDir}`);
+
+    // Получаем имя таргета из binding.gyp
+    const gyp = JSON.parse(
+        fs.readFileSync(gypPath, 'utf8')
+            .replace(/\/\/.*$/mg, '') // убираем комментарии
+            .replace(/,\s*]/g, ']')   // убираем лишние запятые
+            .replace(/,\s*}/g, '}')
+    );
+    const targetName = gyp.targets?.[0]?.target_name;
+    if (!targetName) throw new Error('Не удалось получить target_name из binding.gyp');
+    console.log('binding.gyp.target_name:', targetName);
+
+    console.log('Запускаю компиляцию');
+    console.time('Компиляция завершена');
+    // Сборка модуля
+    execSync('npm run build', { cwd: nativeDir, stdio: 'inherit' });
+    console.timeEnd('Компиляция завершена');
+    console.log('Копирую модуль в проект');
+    // Копирование .node файла
+    const builtNode = path.join(nativeDir, 'build', 'Release', `${targetName}.node`);
+    const destDir = path.join(__dirname, 'src', 'main', 'native_modules', targetName);
+    const destNode = path.join(destDir, `${targetName}.node`);
+    await fsp.mkdir(destDir, { recursive: true });
+    await fsp.copyFile(builtNode, destNode);
+    console.log('Модуль скопирован');
+
+    console.log('Копирую враппер');
+    // Копирование JS файлов
+    const jsDir = path.join(nativeDir, 'js');
+    if (fs.existsSync(jsDir)) {
+        const files = await fsp.readdir(jsDir);
+        for (const file of files) {
+            await fsp.copyFile(
+                path.join(jsDir, file),
+                path.join(destDir, file)
+            );
+        }
+    }
+    console.log('Враппер скопирован');
+    console.log(`Модуль ${targetName} собран и скопирован в ${destDir}`);
+}
+
+
+async function buildNativeModules() {
+    console.log('Собираю нативные модули');
+    const nativeDir = path.join(__dirname, 'native');
+    const modules = (await fsp.readdir(nativeDir, {withFileTypes: true})).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
+    for (const module of modules) {
+        await buildNativeModule(module)
+    }
+}
+
 async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
   if (!noMinify) {
     console.log("Минификация...");
@@ -335,6 +396,9 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
     await minifyDir(srcPath, MINIFIED_SRC_PATH);
     console.timeEnd("Минификация завершена");
   }
+
+  await buildNativeModules();
+
   console.log("Архивация из " + (noMinify ? srcPath : MINIFIED_SRC_PATH) + " в " + destDir);
   console.time("Архивация завершена");
   await asar.createPackage(noMinify ? srcPath : MINIFIED_SRC_PATH, destDir);
