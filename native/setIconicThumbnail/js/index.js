@@ -2,7 +2,7 @@ const path = require('path');
 const os = require('os');
 
 // Load the compiled native addon
-const native = require('./set_iconic_thumbnail.node');
+const native = process.platform === 'win32' ? require('./set_iconic_thumbnail.node') : null;
 
 /**
  * Convert Electron's native window handle buffer into a HWND (number).
@@ -35,6 +35,9 @@ function parseHWND(hwndBuffer) {
  * @returns {number} HRESULT (0 = S_OK)
  */
 function setIconicThumbnail(hwndBuffer, imageBuffer) {
+    if (!native) {
+        throw new Error('Native module IconicThumbnail not available on this platform');
+    }
     if (!Buffer.isBuffer(imageBuffer)) {
         throw new Error('imageBuffer must be a Buffer');
     }
@@ -49,6 +52,9 @@ function setIconicThumbnail(hwndBuffer, imageBuffer) {
  * @returns {number} HRESULT (0 = S_OK)
  */
 function clearIconicThumbnail(hwndBuffer) {
+    if (!native) {
+        throw new Error('Native module IconicThumbnail not available on this platform');
+    }
     const hwnd = parseHWND(hwndBuffer);
     return native.clearIconicThumbnail(hwnd);
 }
