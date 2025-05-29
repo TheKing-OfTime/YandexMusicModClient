@@ -33,8 +33,6 @@ Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
 const consoleOverrideLogger = new Logger_js_1.Logger("ConsoleOverride");
 
-console.log = consoleOverrideLogger.log;
-
 // Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
 function initSessionStoragePath() {
   if ((store_js_1.getModFeatures()?.downloader.useCustomPathForSessionStorage ?? false) && fs.existsSync(store_js_1.getModFeatures()?.downloader.customPathForSessionStorage)) {
