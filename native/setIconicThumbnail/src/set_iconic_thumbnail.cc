@@ -134,7 +134,7 @@ Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info) {
     }
 
     // dwSITFlags can be 0 or DWM_SIT_DISPLAYFRAME (0x00000001)
-    hr = DwmSetIconicThumbnail(hwnd, hBitmap, 1);
+    hr = DwmSetIconicThumbnail(hwnd, hBitmap, 0);
 
 
     delete pBitmap;
