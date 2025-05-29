@@ -53,7 +53,7 @@ jobs:
       - name: Run toolset.js on app.asar
         run: |
           $asarPath = "${{ github.workspace }}\App64Extracted\resources\app.asar"
-          node toolset.js extract -bp --withoutPure --extractType="customAsar" --src="$asarPath"
+          node toolset.js extract -bp --withoutPure --noNativeModules --extractType="customAsar" --src="$asarPath"
         shell: powershell
 
       - name: Rename app.asar to appDevTools.asar
