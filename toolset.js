@@ -315,7 +315,9 @@ async function minifyDir(srcDir, destDir) {
                 await fsp.writeFile(destPath, result.code, 'utf8');
                 console.timeEnd(`    Минифицирован: ${destPath}`);
             } catch (err) {
-                console.error(`    Ошибка при минификации ${destPath}:`, err);
+                console.warn(`    Ошибка при минификации ${destPath}:`, err);
+                await fsp.cp(srcPath, destPath, { recursive: true })
+                console.log(`    Пропущен и скопирован: ${destPath}`);
             }
         } else if (stat.isDirectory()) {
             await minifyDir(srcPath, destPath);
