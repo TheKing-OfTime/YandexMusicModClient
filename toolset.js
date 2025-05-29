@@ -267,7 +267,7 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     if(!releaseResponse.status.toString().startsWith('2')) return console.log("Не удалось создать драфт:", releaseResponse.data);
     console.log("Драфт успешно создан");
     console.time("Ассет успешно загружен");
-    console.time("Загрузка ассета");
+    console.log("Загрузка ассета");
     const assetData = fs.readFileSync(asarPath)
 
 
