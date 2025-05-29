@@ -30,7 +30,7 @@ function parseHWND(hwndBuffer) {
 
 /**
  * Set the iconic thumbnail for a given window using an image buffer.
- * @param {Buffer|Uint8Array} imageBuffer - PNG or JPEG image buffer
+ * @param {Buffer|Uint8Array} imageBuffer - PNG or JPEG image buffer 100x100px MAXIMUM
  * @param {Buffer} hwndBuffer - From `BrowserWindow.getNativeWindowHandle()`
  * @returns {number} HRESULT (0 = S_OK)
  */
