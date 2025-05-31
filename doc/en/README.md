@@ -188,12 +188,13 @@ Adds support for Taskbar Extensions
    <summary>Settings</summary>
 
       "taskBarExtensions": {
-			"enable": true or false //Enables or disables Taskbar Extensions
+			"enable": true or false // Enables or disables Taskbar Extensions
+			"coverAsThumbnail": true or false // Enables or disables replacing Live preview with the track's cover image
       }
 
 </details>
 
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
+![image](https://github.com/user-attachments/assets/ec4017ab-9fb7-4e19-a2e6-d30dfbaa6cdc)
 
 </details>
 
