@@ -370,13 +370,13 @@ Devtools по умолчанию отключены. Чтобы включить
       <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/33039150?v=4">
    </a>
    <a href="https://github.com/schwarzalexey">
-      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
+      <img width="50" alt="schwarzalexey" src="https://avatars.githubusercontent.com/u/97682066?v=4?v=4">
    </a>
    <a href="https://github.com/dudoska">
       <img width="50" alt="dudoska" src="https://avatars.githubusercontent.com/u/94677394?v=4">
    </a>
    <a href="https://diramix.github.io/html-profile/">
-      <img width="50" alt="SergheyUmca" src="https://avatars.githubusercontent.com/u/79011730?v=4">
+      <img width="50" alt="Diramix" src="https://avatars.githubusercontent.com/u/79011730?v=4">
    </a>
    <a href="https://github.com/trigger-off">
       <img width="50" alt="trigger-off" src="https://avatars.githubusercontent.com/u/71810229?v=4">

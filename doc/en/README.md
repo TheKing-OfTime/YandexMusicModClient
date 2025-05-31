@@ -33,9 +33,26 @@ My work will be much more efficient if I work on the source code in a cozy offic
    ```
 3. Done!
 
+If you only need unlocked DevTools from the modification functions. You can use this command.
+
+```bat
+curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/appDevTools.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
+```
+
+The advantage is that this version is built fully automatically, and always uses the latest version of YAM (Not spoofed as a full modification).
+
+
 > [!NOTE]  
 > Relogin may be required after patch install.
 
+## Build project from sources
+
+0. Make sure that Yandex Music and node.js are already installed
+1. Clone the project `git clone https://github.com/TheKing-OfTime/YandexMusicModClient.git`
+2. Install the `npm install` dependencies Note that you need to install the dependencies in the root folder of the project, not in `/src/`.
+3. For ease of building there is a cli script `toolset.js` in the project. It will allow you to quickly and easily unpack, package, pubilize, spoof, or patch the code.
+4. `node toolset.js build -d -m`. This command will automatically optimize the code (Minify it), and then pack it to the default Yandex Music path `%localappdata%/Programs/YandexMusic/resources/app.asar`.
+5. To build the project quickly, you can remove the -m flag during development. Without it there will be no long minifaction process
 
 ## Features
 
@@ -139,7 +156,7 @@ This function allows you to use a different path for the cache. For example so t
 
 Adds support for Global Shortcuts.
 
-Currently supported only this actions (I tried add more but others work pretty unstable due to horrible babel & webpack config on Yandex's end)
+Currently supported only this actions 
 
 <details>
    <summary>Settings</summary>
@@ -327,6 +344,9 @@ If you really enjoyed the new experience with this modification, you can support
 ## Sponsors
 Thanks a lot to the sponsors who allow me to actively work on this project.
 <p align="left">
+   <a href="https://www.last.fm/ru/user/am0rall">
+      <img width="50" alt="am0rall" src="https://lastfm.freetls.fastly.net/i/u/avatar170s/a983db6495ea41c8c16777aa0679632d.png">
+   </a>
    <a href="https://github.com/ajioe1111">
       <img width="50" alt="ajioe1111" src="https://avatars.githubusercontent.com/u/39803571?v=4">
    </a>
