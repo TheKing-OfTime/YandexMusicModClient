@@ -171,7 +171,7 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 </details>
 
-### Кнопки в превью панели задач
+### Улучшение превью панели задач
 <details>
    <summary>Подробнее</summary>
 
@@ -183,11 +183,13 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
       "taskBarExtensions": {
 			"enable": true or false //Включает или отключает расширения панели задач
+			"coverAsThumbnail": true or false //Включает или отключает замену Live превью на картинку обложки трека
 		}
 
 </details>
 
-![image](https://github.com/TheKing-OfTime/YandexMusicModClient/assets/68960526/8c3711a3-4bb7-4601-a291-b5c7eb5f58f0)
+![image](https://github.com/user-attachments/assets/ec4017ab-9fb7-4e19-a2e6-d30dfbaa6cdc)
+
 
 </details>
 
