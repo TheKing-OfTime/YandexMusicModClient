@@ -31,6 +31,75 @@ void ShutdownGDIPlus() {
     }
 }
 
+HBITMAP BufferToHBITMAP(const Napi::Buffer<unsigned char>& imageBuffer, int maxWidth, int maxHeight, bool forceResize = FALSE) {
+    const unsigned char* imageData = imageBuffer.Data();
+    size_t imageSize = imageBuffer.Length();
+
+    // Используем CComPtr для управления IStream
+    CComPtr<IStream> pStream;
+    HRESULT hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
+    if (FAILED(hr)) {
+        return NULL;
+    }
+
+    ULONG bytesWritten;
+    hr = pStream->Write(imageData, static_cast<ULONG>(imageSize), &bytesWritten);
+    if (FAILED(hr) || bytesWritten != imageSize) {
+        return NULL;
+    }
+
+    LARGE_INTEGER li = {0};
+    hr = pStream->Seek(li, STREAM_SEEK_SET, NULL);
+    if (FAILED(hr)) {
+        return NULL;
+    }
+
+    Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromStream(pStream);
+    if (!pBitmap || pBitmap->GetLastStatus() != Gdiplus::Ok) {
+        if (pBitmap) delete pBitmap;
+        return NULL;
+    }
+
+    UINT width = pBitmap->GetWidth();
+    UINT height = pBitmap->GetHeight();
+    if (forceResize || width > (UINT)maxWidth || height > (UINT)maxHeight) {
+        double scale = std::min((double)maxWidth / width, (double)maxHeight / height);
+        UINT newWidth = static_cast<UINT>(width * scale);
+        UINT newHeight = static_cast<UINT>(height * scale);
+        if (newWidth == 0) newWidth = 1;
+        if (newHeight == 0) newHeight = 1;
+
+        Gdiplus::Bitmap* pResized = new Gdiplus::Bitmap(maxWidth, maxHeight, pBitmap->GetPixelFormat());
+        Gdiplus::Graphics graphics(pResized);
+        graphics.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+        graphics.Clear(Gdiplus::Color(0, 0, 0, 0));
+
+        int offsetX = (maxWidth - newWidth) / 2;
+        int offsetY = (maxHeight - newHeight) / 2;
+        graphics.DrawImage(pBitmap, offsetX, offsetY, newWidth, newHeight);
+
+        delete pBitmap;
+        pBitmap = pResized;
+    }
+
+    if (pBitmap->GetWidth() == 0 || pBitmap->GetHeight() == 0) {
+        delete pBitmap;
+        return NULL;
+    }
+
+    HBITMAP hBitmap = NULL;
+    Gdiplus::Status gdiStatus = pBitmap->GetHBITMAP(Gdiplus::Color(0, 0, 0, 0), &hBitmap);
+    delete pBitmap;
+    if (gdiStatus != Gdiplus::Ok || hBitmap == NULL) {
+        return NULL;
+    }
+    return hBitmap;
+}
+
+HBITMAP BufferToHBITMAP(const Napi::Buffer<unsigned char>& imageBuffer, int maxSize, bool forceResize = FALSE) {
+    return BufferToHBITMAP(imageBuffer, maxSize, maxSize, forceResize);
+}
+
 Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
 
@@ -42,8 +111,6 @@ Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info) {
     HWND hwnd = reinterpret_cast<HWND>(static_cast<uintptr_t>(info[0].As<Napi::Number>().Int64Value()));
 
     Napi::Buffer<unsigned char> imageBuffer = info[1].As<Napi::Buffer<unsigned char>>();
-    const unsigned char* imageData = imageBuffer.Data();
-    size_t imageSize = imageBuffer.Length();
 
     HRESULT hr = S_OK;
 
@@ -79,68 +146,17 @@ Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info) {
         return env.Undefined();
     }
 
-    // Use CComPtr for smart pointer management of IStream
-    CComPtr<IStream> pStream;
-    hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
-    if (FAILED(hr)) {
-        ShutdownGDIPlus();
-        Napi::Error::New(env, "Failed to create stream for image data").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, hr);
-    }
 
-    // Write image data to the stream
-    ULONG bytesWritten;
-    hr = pStream->Write(imageData, static_cast<ULONG>(imageSize), &bytesWritten);
-    if (FAILED(hr) || bytesWritten != imageSize) {
+    HBITMAP hBitmap = BufferToHBITMAP(imageBuffer, 100);
+    if (hBitmap == NULL) {
         ShutdownGDIPlus();
-        Napi::Error::New(env, "Failed to write image data to stream").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, hr);
-    }
-
-    // Reset stream position to the beginning
-    LARGE_INTEGER li = {0};
-    hr = pStream->Seek(li, STREAM_SEEK_SET, NULL);
-    if (FAILED(hr)) {
-        ShutdownGDIPlus();
-        Napi::Error::New(env, "Failed to seek stream to beginning").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, hr);
-    }
-
-    // Load the image from the stream into a GDI+ Image object
-    Gdiplus::Bitmap* pBitmap = Gdiplus::Bitmap::FromStream(pStream);
-    if (!pBitmap || pBitmap->GetLastStatus() != Gdiplus::Ok) {
-        ShutdownGDIPlus();
-        Napi::Error::New(env, "Failed to load image from buffer. Ensure it's a valid PNG/JPEG.").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, pBitmap ? pBitmap->GetLastStatus() : -1); // Return GDI+ status or generic error
-    }
-
-    // Check if the bitmap is valid
-    if (pBitmap->GetWidth() == 0 || pBitmap->GetHeight() == 0) {
-        delete pBitmap;
-        ShutdownGDIPlus();
-        Napi::Error::New(env, "Loaded image has zero width or height.").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, E_INVALIDARG); // Generic invalid argument error
-    }
-
-    HBITMAP hBitmap = NULL;
-    // For 32-bit depth, we typically use Gdiplus::Color(0,0,0,0) (transparent) or a solid color.
-    // DWM documentation explicitly states 32-bit color depth.
-    Gdiplus::Status gdiStatus = pBitmap->GetHBITMAP(Gdiplus::Color(0, 0, 0, 0), &hBitmap);
-    if (gdiStatus != Gdiplus::Ok || hBitmap == NULL) {
-        delete pBitmap;
-        ShutdownGDIPlus();
-        Napi::Error::New(env, "Failed to convert GDI+ Bitmap to HBITMAP").ThrowAsJavaScriptException();
-        return Napi::Number::New(env, gdiStatus);
+        Napi::Error::New(env, "Failed to convert image buffer to HBITMAP").ThrowAsJavaScriptException();
+        return Napi::Number::New(env, -1);
     }
 
     // dwSITFlags can be 0 or DWM_SIT_DISPLAYFRAME (0x00000001)
     hr = DwmSetIconicThumbnail(hwnd, hBitmap, 0);
 
-
-    delete pBitmap;
-    if (hBitmap) {
-        DeleteObject(hBitmap);
-    }
 
     ShutdownGDIPlus();
 

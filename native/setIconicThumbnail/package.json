@@ -4,7 +4,7 @@
   "main": "js/index.js",
   "scripts": {
     "clean": "node -e \"require('fs').rmSync('build', { recursive: true, force: true })\"",
-    "build": "node-gyp configure && node-gyp build",
+    "build": "node-gyp clean && node-gyp configure && node-gyp build",
     "debug": "node-gyp clean && node-gyp configure --debug && node-gyp build --debug"
   },
   "keywords": [],

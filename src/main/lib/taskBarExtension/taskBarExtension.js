@@ -123,12 +123,13 @@ const setIconicThumbnail = async (window, playerState) => {
     try {
         taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
         const coverImage = await fetch(coverUrl);
-        const imageBuffer = await coverImage.arrayBuffer();
+        const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
         const result = native.setIconicThumbnail(
           window.getNativeWindowHandle(),
-          Buffer.from(imageBuffer),
+          imageBuffer,
         );
         taskBarExtensionLogger.log("Thumbnail set result:", result);
+        taskBarExtensionLogger.log("LivePreview set result:", resultLivePreview);
     } catch (error) {
         taskBarExtensionLogger.error("Error setting thumbnail:", error);
     }
