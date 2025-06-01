@@ -10,7 +10,6 @@ const settings = () => store_js_1.getModFeatures()?.discordRPC;
 const clientId = settings()?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
 const SET_ACTIVITY_TIMEOUT_MS = 1500;
-const RECONNECT_INTERVAL_MS = 5000;
 
 let rpc = undefined;
 let isReady = false;
@@ -35,7 +34,7 @@ const tryConnect = async () => {
     }
 };
 
-function startReconnectLoop() {
+function startReconnectLoop(reconnectInterval) {
     if (isReconnecting) {
         return;
     }
@@ -57,7 +56,7 @@ function startReconnectLoop() {
         }
         if (!connected) {
             discordRichPresenceLogger.info(`Reconnect failed (#${++n})`);
-            reconnectTimeoutId = setTimeout(reconnectAttempt, RECONNECT_INTERVAL_MS);
+            reconnectTimeoutId = setTimeout(reconnectAttempt, reconnectInterval);
         } else {
             discordRichPresenceLogger.info("Reconnect succeeded");
             clearTimeout(reconnectTimeoutId);
@@ -85,8 +84,12 @@ const initRPC = () => {
 
     rpc.on("disconnected", () => {
         isReady = false;
-        discordRichPresenceLogger.info("Disconnected");;
-        startReconnectLoop();
+        discordRichPresenceLogger.info("Disconnected");
+
+        let reconnectInterval = settings()?.reconnectInterval ?? 0;
+        if (reconnectInterval > 0) {
+            startReconnectLoop(reconnectInterval * 1000);
+        }
     });
 
     rpc.on("error", (e) => {
