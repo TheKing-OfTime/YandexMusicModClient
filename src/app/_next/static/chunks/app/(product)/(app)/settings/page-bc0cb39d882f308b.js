@@ -1095,7 +1095,7 @@
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsx)("ul", {
             className: `${Z().root} ${B().list}`,
-            style: { width: "466px", "max-height": "600px" },
+            style: { width: "466px", "max-height": "600px", gap: 0 },
             children: [
               (0, n.jsx)("li", {
                 className: Z().item,
@@ -1327,8 +1327,8 @@
           placement: "center",
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsx)("ul", {
-            className: Z().root,
-            style: { width: "514px" },
+              className: `${Z().root} ${B().list}`,
+              style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
               (0, n.jsx)("li", {
                 className: Z().item,
