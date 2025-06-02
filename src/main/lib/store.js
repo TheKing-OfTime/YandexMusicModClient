@@ -82,6 +82,7 @@ const init = () => {
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
       afkTimeout: 15,
+      reconnectInterval: 30,
     },
     taskBarExtensions: {
       enable: true,

@@ -43,7 +43,7 @@ function startReconnectLoop(reconnectInterval) {
     let n = 0;
     discordRichPresenceLogger.info("Reconnecting");
     const reconnectAttempt = async () => {
-        rpc && rpc.destroy().catch(() => { });
+        rpc?.destroy().catch(() => { });
         rpc = null;
         initRPC();
 
@@ -72,6 +72,7 @@ const initRPC = () => {
     rpc = new DiscordRPC.Client({ transport: "ipc" });
     isReady = false;
     isListeningType = false;
+    isReconnecting = false;
 
     rpc.on("ready", () => {
         discordRichPresenceLogger.info("Ready");
@@ -86,7 +87,7 @@ const initRPC = () => {
         isReady = false;
         discordRichPresenceLogger.info("Disconnected");
 
-        let reconnectInterval = settings()?.reconnectInterval ?? 0;
+        let reconnectInterval = settings()?.reconnectInterval ?? 30;
         if (reconnectInterval > 0) {
             startReconnectLoop(reconnectInterval * 1000);
         }
@@ -222,10 +223,11 @@ const fromYnisonState = (ynisonState) => {
 };
 
 function updateActivity(activityObject) {
+    discordRichPresenceLogger.debug("Updating activity:", activityObject);
     rpc.setActivity(activityObject).then((activity) => {
         silentTypeCheck(activity);
     }).catch((e) => {
-        discordRichPresenceLogger.error("sendCurrentActivity setActivity error:", e);
+        discordRichPresenceLogger.error("updateActivity error:", e);
     });
 }
 
@@ -382,7 +384,6 @@ const discordRichPresence = (playingState) => {
         initRPC();
         tryConnect();
     } else {
-        discordRichPresenceLogger.info("Sending current activity:", playingState);
         sendCurrentActivity();
     }
 };
