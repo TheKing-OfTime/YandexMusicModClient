@@ -1090,8 +1090,8 @@
           placement: "center",
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsx)("ul", {
-            className: Z().root,
-            style: { width: "466px" },
+            className: `${Z().root} ${B().list}`,
+            style: { width: "466px", "max-height": "600px" },
             children: [
               (0, n.jsx)("li", {
                 className: Z().item,
