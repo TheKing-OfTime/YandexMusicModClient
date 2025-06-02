@@ -94,9 +94,6 @@ const initRPC = () => {
     });
 
     rpc.on("error", (e) => {
-        if (e.name === "Could not connect") {
-            isReady = false;
-        }
         discordRichPresenceLogger.error("Error", e);
     });
 };
