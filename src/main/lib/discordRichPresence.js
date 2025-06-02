@@ -72,7 +72,6 @@ const initRPC = () => {
     rpc = new DiscordRPC.Client({ transport: "ipc" });
     isReady = false;
     isListeningType = false;
-    isReconnecting = false;
 
     rpc.on("ready", () => {
         discordRichPresenceLogger.info("Ready");
@@ -81,6 +80,7 @@ const initRPC = () => {
     rpc.on("connected", () => {
         isReady = true;
         discordRichPresenceLogger.info("Connected");
+        sendCurrentActivity();
     });
 
     rpc.on("disconnected", () => {
