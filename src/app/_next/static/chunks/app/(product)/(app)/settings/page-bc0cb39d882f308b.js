@@ -1191,7 +1191,7 @@
                 children: (0, n.jsx)(settingBarWithSlider, {
                   title: "Повторное подключение к Discord",
                   description:
-                    "Интервал повторных попыток подключения к Discord в секундах при потере соединения",
+                    "Интервал повторных попыток подключения к Discord при потере соединения (в секундах, 0 — отключает)",
                   onChange: onReconnectIntervalChange,
                   value: reconnectInterval,
                   maxValue: 300,
