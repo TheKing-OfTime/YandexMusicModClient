@@ -297,6 +297,8 @@ electron_1.ipcMain.handle('scrobble-lastfm-get-current-playing-track', (event, u
 });
 
 
+
+
 exports.handleApplicationEvents = handleApplicationEvents;
 
 const sendLastFmUserInfoUpdated = (window=mainWindow, userinfo) => {
@@ -406,3 +408,43 @@ const sendNativeStoreUpdate = (window, key, value) => {
     eventsLogger.info("Event send", events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
 };
 exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
+
+const zoomIn = () => {
+    eventsLogger.info("Event handle", 'zoom-in');
+    return mainWindow.webContents.zoomFactor = Math.min(mainWindow.webContents.zoomFactor + 0.05, 3.0);
+}
+
+exports.zoomIn = zoomIn;
+
+const zoomOut = () => {
+    eventsLogger.info("Event handle", 'zoom-out');
+    return mainWindow.webContents.zoomFactor = Math.max(mainWindow.webContents.zoomFactor - 0.05, 0.25);
+}
+exports.zoomOut = zoomOut;
+
+const resetZoom = () => {
+    eventsLogger.info("Event handle", 'reset-zoom');
+    return mainWindow.webContents.zoomFactor = 1.0;
+}
+
+exports.resetZoom = resetZoom;
+
+const getZoomLevel = () => {
+    eventsLogger.info("Event handle", 'get-zoom-level');
+    return mainWindow.webContents.zoomFactor;
+}
+
+exports.getZoomLevel = getZoomLevel;
+
+const setZoomLevel = (event, level) => {
+    eventsLogger.info("Event handle", 'set-zoom-level');
+    return mainWindow.webContents.zoomFactor = Math.min(Math.max(level, 0.25), 3.0);
+}
+
+exports.setZoomLevel = setZoomLevel;
+
+electron_1.ipcMain.handle('zoom-in', zoomIn);
+electron_1.ipcMain.handle('zoom-out', zoomOut);
+electron_1.ipcMain.handle('reset-zoom',  resetZoom);
+electron_1.ipcMain.handle('get-zoom-level', getZoomLevel);
+electron_1.ipcMain.handle('set-zoom-level', setZoomLevel);

@@ -11,6 +11,8 @@ const config_js_1 = require("../config.js");
 const store_js_1 = require('./store.js');
 const platform_js_1 = require("../types/platform.js");
 const i18n_js_1 = require("./i18n.js");
+const events_js_1 = require("../events.js");
+
 const createSupportChatUrl = () => {
     const context = JSON.stringify({ entrypoint: 'web_desktop' });
     return `https://yandex.ru/chat?context=${encodeURIComponent(context)}#${config_js_1.config.common.SUPPORT_URL}`;
@@ -122,6 +124,32 @@ const createContextMenu = () => {
             submenu: debugMenu
         });
     }
+    template.push({
+        label: 'Zoom',
+        submenu: [
+            {
+                label: "Zoom +",
+                accelerator: 'CmdOrCtrl+=',
+                click() {
+                    events_js_1.zoomIn();
+                }
+            },
+            {
+                label: "Zoom -",
+                accelerator: 'CmdOrCtrl+-',
+                click() {
+                    events_js_1.zoomOut();
+                }
+            },
+            {
+                label: "Zoom Reset",
+                accelerator: 'CmdOrCtrl+0',
+                click() {
+                    events_js_1.resetZoom();
+                }
+            },
+        ]
+    })
     return electron_1.Menu.buildFromTemplate(template);
 };
 const setupSystemMenu = () => {

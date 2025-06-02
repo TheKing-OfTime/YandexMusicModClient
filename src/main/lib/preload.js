@@ -73,6 +73,14 @@ electron_1.contextBridge.exposeInMainWorld('scrobble', {
   lastfmGetResnet:  (user) => electron_1.ipcRenderer.invoke('scrobble-lastfm-get-current-playing-track', user),
 });
 
+electron_1.contextBridge.exposeInMainWorld('zoomControl', {
+    zoomIn: () => electron_1.ipcRenderer.invoke('zoom-in'),
+    zoomOut: () => electron_1.ipcRenderer.invoke('zoom-out'),
+    resetZoom: () => electron_1.ipcRenderer.invoke('reset-zoom'),
+    getZoomLevel: () => electron_1.ipcRenderer.invoke('get-zoom-level'),
+    setZoomLevel: () => electron_1.ipcRenderer.invoke('set-zoom-level'),
+})
+
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
     if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
