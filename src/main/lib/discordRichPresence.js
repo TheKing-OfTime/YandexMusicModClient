@@ -34,11 +34,14 @@ const tryConnect = async () => {
     }
 };
 
-function startReconnectLoop(reconnectInterval) {
+function startReconnectLoop() {
     if (isReconnecting) {
         return;
     }
+    const reconnectInterval = (settings()?.reconnectInterval ?? 30) * 1000;
     isReconnecting = true;
+
+    if (!reconnectInterval) return;
 
     let n = 0;
     discordRichPresenceLogger.info("Reconnecting");
@@ -87,10 +90,7 @@ const initRPC = () => {
         isReady = false;
         discordRichPresenceLogger.info("Disconnected");
 
-        let reconnectInterval = settings()?.reconnectInterval ?? 30;
-        if (reconnectInterval > 0) {
-            startReconnectLoop(reconnectInterval * 1000);
-        }
+        startReconnectLoop();
     });
 
     rpc.on("error", (e) => {
@@ -379,7 +379,11 @@ const discordRichPresence = (playingState) => {
 
     if (!rpc) {
         initRPC();
-        tryConnect();
+        tryConnect().then(connected=> {
+            if(!connected) {
+                startReconnectLoop();
+            }
+        });
     } else {
         sendCurrentActivity();
     }
