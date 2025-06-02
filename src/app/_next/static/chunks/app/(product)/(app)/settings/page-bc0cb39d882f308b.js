@@ -993,6 +993,9 @@
           [afkTimeout, setAfkTimeout] = (0, d.useState)(
             window.nativeSettings.get("modFeatures.discordRPC.afkTimeout"),
           ),
+          [reconnectInterval, setReconnectInterval] = (0, d.useState)(
+            window.nativeSettings.get("modFeatures.discordRPC.reconnectInterval"),
+          ),
           onAfkTimeoutChange = (0, d.useCallback)(async (e) => {
             let value = Math.min(Math.max(e, 1), 30);
             setAfkTimeout(value);
@@ -1003,6 +1006,19 @@
 
             window.nativeSettings.set(
               "modFeatures.discordRPC.afkTimeout",
+              value,
+            );
+          }, []),
+          onReconnectIntervalChange = (0, d.useCallback)(async (e) => {
+            let value = Math.min(Math.max(e, 0), 300);
+            setReconnectInterval(value);
+            console.log(
+              "modFeatures.discordRPC.reconnectInterval changed. Value: ",
+              value,
+            );
+
+            window.nativeSettings.set(
+              "modFeatures.discordRPC.reconnectInterval",
               value,
             );
           }, []),
@@ -1168,6 +1184,19 @@
                   maxValue: 30,
                   minValue: 1,
                   step: 1,
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Повторное подключение к Discord",
+                  description:
+                    "Интервал повторных попыток подключения к Discord при потере соединения (в секундах, 0 — отключает)",
+                  onChange: onReconnectIntervalChange,
+                  value: reconnectInterval,
+                  maxValue: 300,
+                  minValue: 0,
+                  step: 5,
                 }),
               }),
             ],
