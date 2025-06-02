@@ -437,8 +437,8 @@ const getZoomLevel = () => {
 exports.getZoomLevel = getZoomLevel;
 
 const setZoomLevel = (event, level) => {
-    eventsLogger.info("Event handle", 'set-zoom-level');
-    return mainWindow.webContents.zoomFactor = Math.min(Math.max(level, 0.25), 3.0);
+    eventsLogger.info("Event handle", 'set-zoom-level', level);
+    return mainWindow.webContents.zoomFactor = Math.min(Math.max(level ?? 1.0, 0.25), 3.0);
 }
 
 exports.setZoomLevel = setZoomLevel;

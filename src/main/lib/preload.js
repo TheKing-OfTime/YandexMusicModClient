@@ -78,7 +78,7 @@ electron_1.contextBridge.exposeInMainWorld('zoomControl', {
     zoomOut: () => electron_1.ipcRenderer.invoke('zoom-out'),
     resetZoom: () => electron_1.ipcRenderer.invoke('reset-zoom'),
     getZoomLevel: () => electron_1.ipcRenderer.invoke('get-zoom-level'),
-    setZoomLevel: () => electron_1.ipcRenderer.invoke('set-zoom-level'),
+    setZoomLevel: (level) => electron_1.ipcRenderer.invoke('set-zoom-level', level),
 })
 
 window.document.addEventListener('DOMContentLoaded', () => {
