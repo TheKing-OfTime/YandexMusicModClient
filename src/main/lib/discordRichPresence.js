@@ -269,7 +269,7 @@ function buildActivityObject(playingState) {
     if (playingState.status.startsWith("loading")) return undefined;
 
     let title = playingState.track?.title;
-    if (playingState.track?.version) {
+    if (playingState.track?.version && (settings()?.showVersion ?? true)) {
         title = playingState.track.title + ` (${playingState.track.version})`;
     }
 

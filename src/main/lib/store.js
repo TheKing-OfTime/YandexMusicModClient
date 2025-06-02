@@ -79,6 +79,7 @@ const init = () => {
       showButtons: true,
       showSmallIcon: false,
       showAlbum: true,
+      showVersion: true,
       overrideDeepLinksExperiment: false,
       showGitHubButton: true,
       afkTimeout: 15,

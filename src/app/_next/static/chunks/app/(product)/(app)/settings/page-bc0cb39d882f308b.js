@@ -1076,7 +1076,11 @@
           onDiscordShowAlbumToggle = (0, d.useCallback)(async (e) => {
             console.log("modFeatures.discordRPC.showAlbum toggled. Value: ", e);
             window.nativeSettings.set("modFeatures.discordRPC.showAlbum", e);
-          }, []);
+          }, []),
+            onDiscordShowVersionToggle = (0, d.useCallback)(async (e) => {
+                console.log("modFeatures.discordRPC.showVersion toggled. Value: ", e);
+                window.nativeSettings.set("modFeatures.discordRPC.showVersion", e);
+            }, []);
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "500px" },
@@ -1137,6 +1141,17 @@
                   ),
                 }),
               }),
+                (0, n.jsx)("li", {
+                    className: Z().item,
+                    children: (0, n.jsx)(P, {
+                        title: "Отображать Версию трека",
+                        description: "Отображать ли версию трека в статусе",
+                        onChange: onDiscordShowVersionToggle,
+                        isChecked: window.nativeSettings.get(
+                            "modFeatures.discordRPC.showVersion",
+                        ),
+                    }),
+                }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
