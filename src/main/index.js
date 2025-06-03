@@ -131,19 +131,19 @@ initSessionStoragePath();
   ) {
     (0, customTitleBar_js_1.createCustomTitleBar)(window);
   }
+  updater.onUpdate((version) => {
+    (0, events_js_1.sendUpdateAvailable)(window, version);
+  });
   if (
     store_js_1.getModFeatures()?.appAutoUpdates.enableAppAutoUpdate ??
     config_js_1.config.enableAutoUpdate
   ) {
     updater.start();
-    updater.onUpdate((version) => {
-      (0, events_js_1.sendUpdateAvailable)(window, version);
-    });
   }
+  modUpdater.onUpdateAvailable((currVersion, newVersion) => {
+    (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
+  });
   if (store_js_1.getModFeatures()?.appAutoUpdates.enableModAutoUpdate && deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
     modUpdater.start();
-    modUpdater.onUpdateAvailable((currVersion, newVersion) => {
-      (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
-    });
   }
 })();
