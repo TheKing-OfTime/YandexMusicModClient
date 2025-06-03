@@ -63,7 +63,7 @@ HBITMAP BufferToHBITMAP(const Napi::Buffer<unsigned char>& imageBuffer, int maxW
     UINT width = pBitmap->GetWidth();
     UINT height = pBitmap->GetHeight();
     if (forceResize || width > (UINT)maxWidth || height > (UINT)maxHeight) {
-        double scale = std::min((double)maxWidth / width, (double)maxHeight / height);
+        double scale = (std::min)((double)maxWidth / width, (double)maxHeight / height);
         UINT newWidth = static_cast<UINT>(width * scale);
         UINT newHeight = static_cast<UINT>(height * scale);
         if (newWidth == 0) newWidth = 1;
