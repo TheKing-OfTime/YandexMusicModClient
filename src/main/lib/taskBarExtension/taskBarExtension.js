@@ -129,7 +129,6 @@ const setIconicThumbnail = async (window, playerState) => {
           imageBuffer,
         );
         taskBarExtensionLogger.log("Thumbnail set result:", result);
-        taskBarExtensionLogger.log("LivePreview set result:", resultLivePreview);
     } catch (error) {
         taskBarExtensionLogger.error("Error setting thumbnail:", error);
     }
