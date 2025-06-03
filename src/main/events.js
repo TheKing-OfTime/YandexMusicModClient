@@ -411,14 +411,14 @@ exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
 
 const zoomIn = () => {
     eventsLogger.info("Event handle", 'zoom-in');
-    return mainWindow.webContents.zoomFactor = Math.min(mainWindow.webContents.zoomFactor + 0.05, 3.0);
+    return mainWindow.webContents.zoomFactor = Math.min(mainWindow.webContents.zoomFactor + 0.05, 2.0);
 }
 
 exports.zoomIn = zoomIn;
 
 const zoomOut = () => {
     eventsLogger.info("Event handle", 'zoom-out');
-    return mainWindow.webContents.zoomFactor = Math.max(mainWindow.webContents.zoomFactor - 0.05, 0.25);
+    return mainWindow.webContents.zoomFactor = Math.max(mainWindow.webContents.zoomFactor - 0.05, 0.75);
 }
 exports.zoomOut = zoomOut;
 
@@ -438,7 +438,7 @@ exports.getZoomLevel = getZoomLevel;
 
 const setZoomLevel = (event, level) => {
     eventsLogger.info("Event handle", 'set-zoom-level', level);
-    return mainWindow.webContents.zoomFactor = Math.min(Math.max(level ?? 1.0, 0.25), 3.0);
+    return mainWindow.webContents.zoomFactor = Math.min(Math.max(level ?? 1.0, 0.75), 2.0);
 }
 
 exports.setZoomLevel = setZoomLevel;
