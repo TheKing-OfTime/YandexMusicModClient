@@ -231,9 +231,9 @@ function updateActivity(activityObject) {
 function sendCurrentActivity() {
     if (!(settings()?.enable ?? true)) {
         if (lastActivity) {
-            rpc.clearActivity();
+            rpc?.clearActivity();
             lastActivity = undefined;
-            rpc.destroy();
+            rpc?.destroy();
         }
         return;
     }
@@ -245,10 +245,13 @@ function sendCurrentActivity() {
         afkTimeoutId = undefined;
     }
 
-    afkTimeoutId = setTimeout(() => {
-        rpc.clearActivity();
-        afkTimeoutId = undefined;
-    }, (settings()?.afkTimeout ?? 15) * 60 * 1000);
+    if (lastPlayingState.status === "paused") {
+        afkTimeoutId = setTimeout(() => {
+            discordRichPresenceLogger.info("Clearing activity due to inactivity");
+            rpc?.clearActivity();
+            afkTimeoutId = undefined;
+        }, (settings()?.afkTimeout ?? 15) * 60 * 1000);
+    }
 
     if (activityObject && !compareActivities(activityObject)) {
         lastActivity = activityObject;
@@ -379,8 +382,8 @@ const discordRichPresence = (playingState) => {
 
     if (!rpc) {
         initRPC();
-        tryConnect().then(connected=> {
-            if(!connected) {
+        tryConnect().then(connected => {
+            if (!connected) {
                 startReconnectLoop();
             }
         });
