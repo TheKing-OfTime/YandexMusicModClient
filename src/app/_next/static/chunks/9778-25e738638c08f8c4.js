@@ -24886,7 +24886,7 @@
             (this.uniforms = new u.Uniforms((0, i.normalizeCollectionHue)(e))),
               (this.renderer = new o.Renderer(this.rendererOptions)),
               (this.ticker = new c.Ticker(
-                windows.VIBE_ANIMATION_DISABLE_RENDERING ? 1 : (window.VIBE_ANIMATION_MAX_FPS?.() ?? a.MAX_FPS),
+                window.VIBE_ANIMATION_DISABLE_RENDERING?.() ? 1 : (window.VIBE_ANIMATION_MAX_FPS?.() ?? a.MAX_FPS),
                 this.render.bind(this),
               ));
           } catch (e) {
