@@ -404,6 +404,9 @@ Devtools по умолчанию отключены. Чтобы включить
    <a href="https://github.com/ellatuk">
       <img width="50" alt="ellatuk" src="https://avatars.githubusercontent.com/u/87390648?v=4">
    </a>
+   <a href="https://github.com/LockMean">
+      <img width="50" alt="LockMea" src="https://avatars.githubusercontent.com/u/214841821?v=4">
+   </a>
 </p>
 
 > Список обновляется вручную
