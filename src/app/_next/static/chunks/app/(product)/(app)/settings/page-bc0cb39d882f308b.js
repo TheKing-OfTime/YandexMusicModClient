@@ -1506,8 +1506,8 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Автообновлять приложение",
-                  description: "Обновлять ли приложение автоматически",
+                  title: "Проверять обновления приложения",
+                  description: "Проверять ли наличие обновлений приложения автоматически",
                   onChange: onAppAutoUpdateToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.appAutoUpdates.enableAppAutoUpdate",
@@ -1529,9 +1529,9 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Автообновлять модификацию",
+                  title: "Проверять обновления модификации",
                   description:
-                    "Обновлять ли мод автоматически (Рекомендуется оставить включённым)",
+                    "Проверять ли наличие обновлений мода автоматически",
                   onChange: onModAutoUpdateToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.appAutoUpdates.enableModAutoUpdate",
