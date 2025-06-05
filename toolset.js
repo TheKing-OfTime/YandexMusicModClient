@@ -390,14 +390,14 @@ async function buildNativeModules() {
 }
 
 async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false, noNativeModules = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
-  if (!noMinify) {
+    !noNativeModules && await buildNativeModules();
+
+    if (!noMinify) {
     console.log("Минификация...");
     console.time("Минификация завершена");
     await minifyDir(srcPath, MINIFIED_SRC_PATH);
     console.timeEnd("Минификация завершена");
   }
-
-  !noNativeModules && await buildNativeModules();
 
   console.log("Архивация из " + (noMinify ? srcPath : MINIFIED_SRC_PATH) + " в " + destDir);
   console.time("Архивация завершена");
