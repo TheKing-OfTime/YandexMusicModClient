@@ -24465,65 +24465,285 @@
       let n = r(58655);
       Object.defineProperty(t, "__esModule", { value: !0 }), (t.Color = void 0);
       let o = r(57034),
-        i = r(48399),
-        a = r(76090),
-        s = r(86765);
+          i = r(48399),
+          a = r(76090),
+          s = r(86765);
+
+      // --- Вспомогательные функции для парсинга и конвертации цвета ---
+
+      // Преобразует hex цвет в RGB
+      function h(hex) {
+          let r = 0, g = 0, b = 0;
+          // 3-знач. хекс (#FFF)
+          if (hex.length === 4) {
+              r = parseInt(hex[1] + hex[1], 16);
+              g = parseInt(hex[2] + hex[2], 16);
+              b = parseInt(hex[3] + hex[3], 16);
+          }
+          // 6-знач. хекс (#FFFFFF)
+          else if (hex.length === 7) {
+              r = parseInt(hex.substring(1, 3), 16);
+              g = parseInt(hex.substring(3, 5), 16);
+              b = parseInt(hex.substring(5, 7), 16);
+          }
+          return [r, g, b];
+      }
+
+      // Преобразует RGB в HSL
+      function m(r, g, b) {
+          r /= 255;
+          g /= 255;
+          b /= 255;
+
+          let max = Math.max(r, g, b),
+              min = Math.min(r, g, b);
+          let h, s, l = (max + min) / 2; // <-- Здесь вероятная проблема
+
+          if (max === min) {
+              h = s = 0;
+          } else {
+              let d = max - min;
+              s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+              switch (max) {
+                  case r:
+                      h = (g - b) / d + (g < b ? 6 : 0);
+                      break;
+                  case g:
+                      h = (b - r) / d + 2;
+                      break;
+                  case b:
+                      h = (r - g) / d + 4;
+                      break;
+              }
+              h /= 6;
+          }
+
+          return [h * 360, s * 100, l * 100]; // Возвращаем в диапазонах H[0-360], S[0-100], L[0-100]
+      }
+
+      // --- Переносим hslToRgb и _ в статические методы класса l (t.Color) ---
+      // Это позволит обращаться к ним через a.hslToRgb и a.parseCssColorToHsl
+
+      // --- Реализация u, c, c_l с использованием новой функции _ ---
+      const u = (c) => l.parseCssColorToHsl(c).h; // Оттенок (hue)
+      const c = (c) => l.parseCssColorToHsl(c).s; // Насыщенность (saturation)
+      const c_l = (c) => l.parseCssColorToHsl(c).l; // Светлота (lightness)
+
       class l {
-        get value() {
-          return [
-            this.bottomStart.value,
-            this.middleStart.value,
-            this.topStart.value,
-            this.bottomEnd.value,
-            this.middleEnd.value,
-            this.topEnd.value,
-          ];
-        }
-        update(e, t) {
-          (this.hue = e), (this.collectionHue = t);
-          let r = (0, o.adjustHue)(e),
-            n = (0, o.safeHue)(r + (0, i.randomNumber)(40, 80), r),
-            a = (0, o.adjustHue)(t);
-          this.topStart.update(r),
-            this.topEnd.update(
-              (0, o.safeHue)(r + (0, i.randomNumber)(30, 40), r),
-            ),
-            this.middleStart.update(n),
-            this.middleEnd.update(
-              (0, o.safeHue)(n + (0, i.randomNumber)(30, 40), r),
-            ),
-            this.bottomStart.update(a),
-            this.bottomEnd.update(
-              (0, o.safeHue)(a + (0, i.randomNumber)(30, 40), r),
-            );
-        }
-        next(e) {
-          this.topStart.next(e),
-            this.topEnd.next(e),
-            this.middleStart.next(e),
-            this.middleEnd.next(e),
-            this.bottomStart.next(e),
-            this.bottomEnd.next(e);
-        }
-        constructor(e) {
-          n._(this, "hue", a.DEFAULT_HUE),
-            n._(this, "collectionHue", a.DEFAULT_COLLECTION_HUE),
-            n._(this, "topStart", void 0),
-            n._(this, "topEnd", void 0),
-            n._(this, "middleStart", void 0),
-            n._(this, "middleEnd", void 0),
-            n._(this, "bottomStart", void 0),
-            n._(this, "bottomEnd", void 0),
-            (this.collectionHue = e);
-          let t = (0, o.adjustHue)(e),
-            r = (0, o.safeHue)(t + (0, i.randomNumber)(30, 40), t);
-          (this.topStart = new s.RGB(50)),
-            (this.topEnd = new s.RGB(50)),
-            (this.middleStart = new s.RGB(300)),
-            (this.middleEnd = new s.RGB(320)),
-            (this.bottomStart = new s.RGB(t)),
-            (this.bottomEnd = new s.RGB(r));
-        }
+          s; // (mode: 'gradient', 'palette'(In progress), 'static')
+          c; // (paletteColorIndex)
+          p; // (colorPalette)
+
+          // Статический метод для преобразования HSL в RGB
+          static hslToRgb(hVal, sVal, lVal) {
+              hVal /= 360;
+              sVal /= 100;
+              lVal /= 100;
+              let r, g, b;
+
+              if (sVal === 0) {
+                  r = g = b = lVal; // achromatic
+              } else {
+                  const hue2rgb = (p, q, t) => {
+                      if (t < 0) t += 1;
+                      if (t > 1) t -= 1;
+                      if (t < 1 / 6) return p + (q - p) * 6 * t;
+                      if (t < 1 / 2) return q;
+                      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                      return p;
+                  };
+                  const q = lVal < 0.5 ? lVal * (1 + sVal) : lVal + sVal - lVal * sVal;
+                  const p = 2 * lVal - q;
+                  r = hue2rgb(p, q, hVal + 1 / 3);
+                  g = hue2rgb(p, q, hVal);
+                  b = hue2rgb(p, q, hVal - 1 / 3);
+              }
+              return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+          }
+
+          // Статический метод для парсинга CSS-цвета в HSL
+          static parseCssColorToHsl(cssColorString) {
+              let rVal, gVal, bVal;
+              let hValue, sValue, lValue;
+
+               cssColorString = cssColorString.trim().toLowerCase(); 
+
+              // Попытка парсить hex
+              if (cssColorString.startsWith('#')) {
+                  [rVal, gVal, bVal] = h(cssColorString);
+                  [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+              }
+              // Попытка парсить rgb()
+              else if (cssColorString.startsWith('rgb(')) {
+                  const values = cssColorString.substring(4, cssColorString.length - 1).split(',').map(Number);
+                  [rVal, gVal, bVal] = values;
+                  [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+              }
+              // Попытка парсить hsl()
+              else if (cssColorString.startsWith('hsl(')) {
+                  const values = cssColorString.substring(4, cssColorString.length - 1).split(',').map(v => parseFloat(v));
+                  hValue = values[0];
+                  sValue = values[1];
+                  lValue = values[2];
+              }
+              // Попытка парсить именованные цвета
+              else {
+                  const namedColors = {
+                      'red': [255, 0, 0], 'green': [0, 128, 0], 'blue': [0, 0, 255],
+                      'yellow': [255, 255, 0], 'cyan': [0, 255, 255], 'magenta': [255, 0, 255],
+                      'white': [255, 255, 255], 'black': [0, 0, 0]
+                  };
+                  if (namedColors[cssColorString]) {
+                      [rVal, gVal, bVal] = namedColors[cssColorString];
+                      [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+                  } else {
+                      return { h: 0, s: 0, l: 0 };
+                  }
+              }
+              return { h: hValue, s: sValue, l: lValue };
+          }
+
+
+          get value() {
+              return [
+                  this.bottomStart.value,
+                  this.middleStart.value,
+                  this.topStart.value,
+                  this.bottomEnd.value,
+                  this.middleEnd.value,
+                  this.topEnd.value,
+              ];
+          }
+
+          _() { 
+            const rootStyles = window.getComputedStyle(document.documentElement); // --ym-vibe-color-palette - multi color (palette in progress)
+            const paletteString = rootStyles.getPropertyValue('--ym-vibe-color').trim();
+            if (paletteString) {
+                this.p = paletteString.split(',').map(f => f.trim());
+            } else {
+                this.p = [];
+                console.warn("CSS variable '--ym-vibe-color' not found or empty. Using default colors.");
+            }
+          }
+
+          f() {
+            if (this.p.length === 0) {
+                const defaultHsl = { h: 0, s: 0, l: 0 };
+                this.g(defaultHsl);
+                return;
+            }
+
+            const currentCssColor = this.p[this.c];
+            const hslValues = l.parseCssColorToHsl(currentCssColor);
+            this.g(hslValues);
+          }
+          g(hslValues) {
+              this.topStart.update(hslValues.h);
+              this.topStart.s = hslValues.s;
+              this.topStart.l = hslValues.l;
+
+              this.topEnd.update(hslValues.h);
+              this.topEnd.s = hslValues.s;
+              this.topEnd.l = hslValues.l;
+
+              this.middleStart.update(hslValues.h);
+              this.middleStart.s = hslValues.s;
+              this.middleStart.l = hslValues.l;
+
+              this.middleEnd.update(hslValues.h);
+              this.middleEnd.s = hslValues.s;
+              this.middleEnd.l = hslValues.l;
+
+              this.bottomStart.update(hslValues.h);
+              this.bottomStart.s = hslValues.s;
+              this.bottomStart.l = hslValues.l;
+
+              this.bottomEnd.update(hslValues.h);
+              this.bottomEnd.s = hslValues.s;
+              this.bottomEnd.l = hslValues.l;
+          }
+
+          update(e, t) {
+              // if (this.s === 'palette') {
+              //     this.c = (this.c + 1) % this.p.length;
+              //     this.f(); // Обновляем цвета из палитры (циклически)
+              // } else
+              if (this.s === 'static') {
+                  if (this.p.length > 0) {
+                      const staticHsl = l.parseCssColorToHsl(this.p[0]); // Используем статический метод
+                      this.g(staticHsl);
+                  } else {
+                      this.g({ h: 0, s: 0, l: 0 }); // Черный цвет по умолчанию
+                  }
+              }
+              else { // Режим 'gradient'
+                  (this.hue = e), (this.collectionHue = t);
+                  let r = (0, o.adjustHue)(e),
+                      n = (0, o.safeHue)(r + (0, i.randomNumber)(40, 80), r),
+                      a = (0, o.adjustHue)(t);
+                  this.topStart.update(r);
+                  this.topEnd.update(
+                      (0, o.safeHue)(r + (0, i.randomNumber)(30, 40), r),
+                  );
+                  this.middleStart.update(n);
+                  this.middleEnd.update(
+                      (0, o.safeHue)(n + (0, i.randomNumber)(30, 40), r),
+                  );
+                  this.bottomStart.update(a);
+                  this.bottomEnd.update(
+                      (0, o.safeHue)(a + (0, i.randomNumber)(30, 40), r),
+                  );
+              }
+          }
+
+          next(e) {
+              if (this.s === 'gradient') {
+                  this.topStart.next(e);
+                  this.topEnd.next(e);
+                  this.middleStart.next(e);
+                  this.middleEnd.next(e);
+                  this.bottomStart.next(e);
+                  this.bottomEnd.next(e);
+              }
+          }
+
+          constructor(e, mode = 'gradient') {
+              n._(this, "hue", a.DEFAULT_HUE);
+              n._(this, "collectionHue", a.DEFAULT_COLLECTION_HUE);
+              n._(this, "topStart", void 0);
+              n._(this, "topEnd", void 0);
+              n._(this, "middleStart", void 0);
+              n._(this, "middleEnd", void 0);
+              n._(this, "bottomStart", void 0);
+              n._(this, "bottomEnd", void 0);
+
+              this.collectionHue = e;
+              this.s = mode;
+              this.c = 0;
+
+              this._(); // Загружаем палитру цветов
+
+              this.topStart = new s.RGB(0);
+              this.topEnd = new s.RGB(0);
+              this.middleStart = new s.RGB(0);
+              this.middleEnd = new s.RGB(0);
+              this.bottomStart = new s.RGB(0);
+              this.bottomEnd = new s.RGB(0);
+
+              if (/*this.s === 'palette' || */this.s === 'static') {
+                  this.f();
+              } else {
+                  let t = (0, o.adjustHue)(e),
+                      r = (0, o.safeHue)(t + (0, i.randomNumber)(30, 40), t);
+
+                  this.topStart.update(50);
+                  this.topEnd.update(50);
+                  this.middleStart.update(300);
+                  this.middleEnd.update(320);
+                  this.bottomStart.update(t);
+                  this.bottomEnd.update(r);
+              }
+          }
       }
       t.Color = l;
     },
@@ -24604,7 +24824,7 @@
         }
         getVertexAndFragment(e) {
           return {
-            vertex: s.VertexShaderV2,
+            vertex: s.getVertexShaderV2(),
             fragment: (0, s.getFragmentShaderV2)(e),
           };
         }
@@ -24614,16 +24834,27 @@
             this.handleOnVisibilityChange,
           );
         }
+
         createElement() {
           this.renderer &&
             ((this.container.innerHTML = ""),
             this.container.appendChild(this.renderer.gl.canvas));
         }
         createVibeAnimationUsingShader() {
-          this.createElement(),
-            (this.shader = this.createShader()),
-            this.handleOnVisibilityChange(),
-            this.setupListeners();
+          s.loadShadersOnce()
+            .then(function(success) {
+                if (success) {
+                    this.createElement();
+                    this.shader = this.createShader();
+                    this.handleOnVisibilityChange();
+                    this.setupListeners();
+                } else {
+                    console.error("Не удалось загрузить шейдеры. Анимация не будет создана.");
+                }
+            }.bind(this))
+            .catch(function(error) {
+                console.error("Произошла ошибка во время загрузки шейдеров:", error);
+            });
         }
         createShader() {
           if (!this.renderer || !this.uniforms) return;
@@ -24990,7 +25221,8 @@
         i = r(76090),
         a = r(99962),
         s = r(41695),
-        nKind = r(58997);
+        nKind = r(58997),
+        _htmlClassObserver = null;
       class l {
         toValue(e) {
           return { value: e };
@@ -25015,8 +25247,22 @@
         updateColor(e, t) {
           this.color.update(e, t);
         }
-        updateBackgroundColor(e) {
-          this.background = new o.Vec3(e, e, e);
+        updateBackgroundColor() {
+
+            // Запрос requestAnimationFrame гарантирует, что мы считываем стили
+            // после того, как браузер обновит их в ответ на изменение класса.
+            requestAnimationFrame(() => {
+                const bodyStyles = window.getComputedStyle(document.body);
+                let backgroundColorString = bodyStyles.getPropertyValue('--ym-vibe-background-color').trim();
+                if (!backgroundColorString) return;
+
+                // Преобразование цвета в RGB и установка в Uniforms
+                const hsl_background_obj = a.Color.parseCssColorToHsl(backgroundColorString);
+                const rgb_background = a.Color.hslToRgb(hsl_background_obj.h, hsl_background_obj.s, hsl_background_obj.l);
+                
+                // Нормализуем RGB-значения к диапазону 0.0-1.0
+                this.background = new o.Vec3(rgb_background[0] / 255, rgb_background[1] / 255, rgb_background[2] / 255); 
+            });
         }
         updateEnergy(e) {
           this.energy.update(e);
@@ -25096,37 +25342,57 @@
         }
         constructor(e) {
           n._(this, "isPlaying", !1),
-            n._(this, "background", new o.Vec3(0, 0, 0)),
-            n._(
-              this,
-              "energy",
-              new s.DynamicValue(
-                i.DEFAULT_NOT_PLAYING_ENERGY,
-                i.DEFAULT_NOT_PLAYING_ENERGY,
-                250,
-              ),
+          n._(this, "background", new o.Vec3(0, 0, 0)),
+          n._(
+            this,
+            "energy",
+            new s.DynamicValue(
+              i.DEFAULT_NOT_PLAYING_ENERGY,
+              i.DEFAULT_NOT_PLAYING_ENERGY,
+              250,
             ),
-            n._(this, "time", Math.floor(3600 * Math.random())),
-            n._(this, "color", void 0),
-            n._(this, "rotation", [
-              new o.Vec3(-0.3, 0.3, 0.2),
-              new o.Vec3(-0.3, -0.3, -0.2),
-              new o.Vec3(-0.3, -0.3, 0.2),
-            ]),
-            n._(this, "audio", [0, 0, 0]),
-            n._(this, "audioLowRatio", new s.DynamicValue(0, 0, 1e3)),
-            n._(this, "audioMiddleRatio", new s.DynamicValue(0, 0, 1e3)),
-            n._(this, "audioHighRatio", new s.DynamicValue(0, 0, 1e3)),
-            n._(this, "reactTop", new s.DynamicValue(0, 0, 600)),
-            n._(this, "reactMiddle", new s.DynamicValue(0, 0, 600)),
-            n._(this, "reactBottom", new s.DynamicValue(0, 0, 600)),
-            n._(this, "point", [0, 0]),
-            n._(this, "interaction", 0),
-            n._(this, "width", 0),
-            n._(this, "height", 0),
-            (this.color = new a.Color(e)),
-            this.updateSize();
-        }
+          ),
+          n._(this, "time", Math.floor(3600 * Math.random())),
+          n._(this, "color", void 0),
+          n._(this, "rotation", [
+            new o.Vec3(-0.3, 0.3, 0.2),
+            new o.Vec3(-0.3, -0.3, -0.2),
+            new o.Vec3(-0.3, -0.3, 0.2),
+          ]),
+          n._(this, "audio", [0, 0, 0]),
+          n._(this, "audioLowRatio", new s.DynamicValue(0, 0, 1e3)),
+          n._(this, "audioMiddleRatio", new s.DynamicValue(0, 0, 1e3)),
+          n._(this, "audioHighRatio", new s.DynamicValue(0, 0, 1e3)),
+          n._(this, "reactTop", new s.DynamicValue(0, 0, 600)),
+          n._(this, "reactMiddle", new s.DynamicValue(0, 0, 600)),
+          n._(this, "reactBottom", new s.DynamicValue(0, 0, 600)),
+          n._(this, "point", [0, 0]),
+          n._(this, "interaction", 0),
+          n._(this, "width", 0),
+          n._(this, "height", 0),
+          (this.color = new a.Color(e, window.VIBE_ANIMATION_COLOR_TYPE?.() ?? "gradient")); // palette(In progress)/static/(gradient - default)
+          this.updateSize();
+
+          this._bodyClassObserver = new MutationObserver((mutationsList) => {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    if (target.classList.contains('ym-dark-theme') || target.classList.contains('ym-light-theme')) {
+                        this.updateBackgroundColor(); 
+                    }
+                    break;
+                  }
+                }
+            });
+            this._bodyClassObserver.observe(document.body, { attributes: true });
+            this.updateBackgroundColor(); 
+          }
+          dispose() {
+              if (this._bodyClassObserver) {
+                  this._bodyClassObserver.disconnect(); 
+              }
+          }
+
       }
       t.Uniforms = l;
     },
@@ -25228,201 +25494,104 @@
         });
     },
     24407: function(e, t) {
-      "use strict";
-      Object.defineProperty(t, "__esModule", { value: !0 }),
-        (t.getFragmentShaderV2 = t.VertexShaderV2 = void 0),
-        (t.VertexShaderV2 = `
-          precision highp float;
-          attribute vec4 position;
-          
-          void main() {
-            gl_Position = position;
-          }
-        `),
-        (t.getFragmentShaderV2 = (e) => {
-          if (window.VIBE_ANIMATION_DISABLE_RENDERING?.() ?? false) {
-            return `
-              precision highp float;
-              uniform vec3 vColorBackground;
-              
-              void main() {
-                gl_FragColor = vec4(vColorBackground, 1.0);
-              }
-            `;
-          }
+        "use strict";
+        t.getFragmentShaderV2 = t.getVertexShaderV2 = t.loadShadersOnce = void 0;
+        var loadedVertexShaderSource = null;
+        var loadedFragmentShaderEnabledSource = null;
+        var loadedFragmentShaderDisabledSource = null;
+        var shadersLoadingPromise = null;
 
-          return `
-            precision highp float;
-            
-            uniform vec2 vScreenSize;
-            uniform float vTime;
-            uniform float vScale;
-            uniform vec3 vColorBackground;
-            uniform vec3 vColor[6];
-            uniform vec3 vRotation[3];
-            uniform float vAudio[3];
-            uniform float vReact[3];
-            uniform vec2 vInteractionPoint;
-            uniform float vInteraction;
-            
-            #define CIRCLE_WIDTH_BASE 0.8
-            #define CIRCLE_WIDTH_STEP 0.2
-            #define SPARK_STRENGTH_BASE 1.0
-            #define SPARK_STRENGTH_STEP 0.3
-            #define CIRCLE_RADIUS_BASE 0.95
-            #define CIRCLE_RADIUS_STEP 0.15
-            #define CIRCLE_OFFSET_BASE 0.0
-            #define CIRCLE_OFFSET_STEP 1.57
-            
-            vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
-            vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
-            
-            float snoise3(vec3 v) {
-              const vec2 C = vec2(0.1666667, 0.3333333);
-              const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
-              vec3 i = floor(v + dot(v, C.yyy));
-              vec3 x0 = v - i + dot(i, C.xxx);
-              vec3 g = step(x0.yzx, x0.xyz);
-              vec3 l = 1.0 - g;
-              vec3 i1 = min(g.xyz, l.zxy);
-              vec3 i2 = max(g.xyz, l.zxy);
-              vec3 x1 = x0 - i1 + 1.0 * C.xxx;
-              vec3 x2 = x0 - i2 + 2.0 * C.xxx;
-              vec3 x3 = x0 - 1. + 3.0 * C.xxx;
-              i = mod(i, 289.0);
-              vec4 p = permute(permute(permute(
-                        i.z + vec4(0.0, i1.z, i2.z, 1.0))
-                      + i.y + vec4(0.0, i1.y, i2.y, 1.0))
-                      + i.x + vec4(0.0, i1.x, i2.x, 1.0));
-              float n_ = 0.142857142857;
-              vec3 ns = n_ * D.wyz - D.xzx;
-              vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
-              vec4 x_ = floor(j * ns.z);
-              vec4 y_ = floor(j - 7.0 * x_);
-              vec4 x = x_ * ns.x + ns.yyyy;
-              vec4 y = y_ * ns.x + ns.yyyy;
-              vec4 h = 1.0 - abs(x) - abs(y);
-              vec4 b0 = vec4(x.xy, y.xy);
-              vec4 b1 = vec4(x.zw, y.zw);
-              vec4 s0 = floor(b0)*2.0 + 1.0;
-              vec4 s1 = floor(b1)*2.0 + 1.0;
-              vec4 sh = -step(h, vec4(0.0));
-              vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
-              vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
-              vec3 p0 = vec3(a0.xy,h.x);
-              vec3 p1 = vec3(a0.zw,h.y);
-              vec3 p2 = vec3(a1.xy,h.z);
-              vec3 p3 = vec3(a1.zw,h.w);
-              vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
-              p0 *= norm.x;
-              p1 *= norm.y;
-              p2 *= norm.z;
-              p3 *= norm.w;
-              vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
-              m = m * m;
-              return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+        /**
+         * Вспомогательная функция для асинхронной загрузки текстового файла.
+         * @param {string} url URL файла для загрузки.
+         * @returns {Promise<string|null>} Промис, который разрешится строковым содержимым файла или null в случае ошибки.
+         */
+        function fetchShaderFile(url) {
+            return new Promise(function(resolve) {
+                fetch(url)
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('Failed to load shader from ' + url + ': ' + response.statusText);
+                        }
+                        return response.text();
+                    })
+                    .then(function(text) {
+                        resolve(text);
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching shader from ' + url + ':', error);
+                        resolve(null); // Возвращаем null при ошибке
+                    });
+            });
+        }
+
+        /**
+         * Асинхронно загружает все необходимые шейдеры из файлов.
+         * Вызывается только один раз для кэширования содержимого.
+         * @returns {Promise<boolean>} Промис, который разрешится true при успешной загрузке всех шейдеров, false в противном случае.
+         */
+        function loadShadersOnce() {
+            // Если загрузка уже началась или завершена, возвращаем текущий промис
+            if (shadersLoadingPromise) {
+                return shadersLoadingPromise;
             }
-            
-            float tri(in float x){return abs(fract(x)-.5);}
-            vec3 tri3(in vec3 p){return vec3(tri(p.z+tri(p.y*20.)), tri(p.z+tri(p.x*1.)), tri(p.y+tri(p.x*1.)));}
-            
-            float triNoise3D(in vec3 p, in float spd) {
-              float z=0.4;
-              float rz = 0.1;
-              vec3 bp = p;
-              for (float i=0.; i<=4.; i++ ) {
-                vec3 dg = tri3(bp*0.01);
-                p += (dg+vTime*.1*spd);
-                bp *= 4.;
-                z *= 0.9;
-                p *= 1.6;
-                rz += (tri(p.z+tri(0.6*p.x+0.1*tri(p.y))))/z;
-              }
-              return smoothstep(0.0, 8., rz + sin(rz + sin(z) * 2.8) * 2.2);
+
+            // Запускаем загрузку и сохраняем промис
+            shadersLoadingPromise = new Promise(function(resolve) {
+                var fetchPromises = [
+                    fetchShaderFile('/_next/static/shaders/vibe-animation-vertex.vert'),
+                    fetchShaderFile('/_next/static/shaders/vibe-effect-enabled-fragment.frag'),
+                    fetchShaderFile('/_next/static/shaders/vibe-effect-disabled-fragment.frag')
+                ];
+
+                Promise.all(fetchPromises)
+                    .then(function(results) {
+                        loadedVertexShaderSource = results[0];
+                        loadedFragmentShaderEnabledSource = results[1];
+                        loadedFragmentShaderDisabledSource = results[2];
+
+                        if (!loadedVertexShaderSource || !loadedFragmentShaderEnabledSource || !loadedFragmentShaderDisabledSource) {
+                            console.error("One or more shaders failed to load. Please check file paths and network status.");
+                            shadersLoadingPromise = null; // Сбрасываем промис при ошибке
+                            resolve(false);
+                        } else {
+                            resolve(true);
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error("An unexpected error occurred during shader loading:", error);
+                        shadersLoadingPromise = null;
+                        resolve(false);
+                    });
+            });
+
+            return shadersLoadingPromise;
+        }
+        Object.defineProperty(t, "__esModule", { value: true });
+        t.getVertexShaderV2 = function() {
+            if (loadedVertexShaderSource === null) {
+                console.warn("VertexShaderV2 was requested before async loading completed. Please ensure loadShadersOnce() is handled.");
+                return null;
             }
-            
-            vec2 rotate(vec2 p, float a) {
-              float s = sin(a);
-              float c = cos(a);
-              return vec2(p.x * c - p.y * s, p.x * s + p.y * c);
+            return loadedVertexShaderSource;
+        };
+        t.getFragmentShaderV2 = function(e) {
+            if (loadedFragmentShaderEnabledSource === null || loadedFragmentShaderDisabledSource === null) {
+                console.warn("FragmentShaderV2 was requested before async loading completed. Please ensure loadShadersOnce() is handled.");
+                return null;
             }
-            
-            float light(float intensity, float attenuation, float dist) {
-              return intensity / (1.0 + dist + dist * attenuation);
+
+            if (window.VIBE_ANIMATION_DISABLE_RENDERING?.() ?? false) {
+                return loadedFragmentShaderDisabledSource;
+            } else {
+                var fragmentShaderSource = loadedFragmentShaderEnabledSource;
+                if (typeof e !== 'undefined' && fragmentShaderSource.indexOf('${e}') !== -1) {
+                    fragmentShaderSource = fragmentShaderSource.replace(/\$\{e\}/g, e.toString());
+                }
+                return fragmentShaderSource;
             }
-            
-            vec4 makeNoiseBlob2(vec2 uv, vec3 color1, vec3 color2, float strength, float offset) {
-              float len = length(uv);
-              float v0, v1, cl;
-              float r0, d0, n0;
-              n0 = snoise3(vec3(uv * 1.2 + offset, vTime * 0.5 + offset)) * 0.5 + 0.5;
-              r0 = mix(0.0, 1.0, n0);
-              d0 = distance(uv, r0 / len * uv);
-              v0 = smoothstep(r0 + 0.1 + (sin(vTime + offset) + 1.0), r0, len);
-              v1 = light(0.15 * (1.0 + 1.5 * (-sin(vTime * 2. + offset * 0.5) * 0.5)) + 0.3 * strength, 10.0, d0);
-              vec3 col = mix(color1, color2, uv.y * 2.);
-              col = col + v1;
-              col.rgb = clamp(col.rgb, 0.0, 1.0);
-              return vec4(col, v0);
-            }
-            
-            vec4 makeBlob(vec2 uv, float blob, vec3 color1, vec3 color2, float width, float baseReaction, float likeReaction, float audioStrength, float offset, vec2 noiseOffset) {
-              float len = length(uv);
-              float outerRadius = blob + width * 0.5 + baseReaction * (1.0 + max(likeReaction, audioStrength * 0.6) * 50. * baseReaction);
-              float strength = max(likeReaction, audioStrength);
-              vec4 noise = makeNoiseBlob2(uv * (1.0 - likeReaction * 0.5) + noiseOffset, color1, color2, strength, offset);
-              noise.a = mix(0.0, noise.a, smoothstep(outerRadius, 0.5, len));
-              noise.rgb += 0.6 * likeReaction * (1.0 - smoothstep(0.2, outerRadius * 0.8, len));
-              return noise;
-            }
-            
-            void main() {
-              vec2 uv = gl_FragCoord.xy / vScreenSize.xy;
-              uv = uv * 2.0 - 1.0;
-              uv.y *= vScreenSize.y / min(vScreenSize.x, vScreenSize.y) / vScale;
-              uv.x *= vScreenSize.x / min(vScreenSize.x, vScreenSize.y) / vScale;
-              
-              vec2 ruv = uv * 2.0;
-              float pr = length(ruv);
-              float pa = atan(ruv.y, ruv.x);
-              float idx = (pa/3.1415) / 2.0;
-              
-              vec2 ruv1 = rotate(uv * 2.0, 3.1415);
-              float pa1 = atan(ruv1.y, ruv1.x);
-              float idx1 = (pa1/3.1415) / 2.0;
-              float idx21 = (pa1/3.1415 + 1.0) / 2.0 * 3.1415;
-              
-              float spark = triNoise3D(vec3(idx, 0.0, 0.0), 0.1);
-              spark = mix(spark, triNoise3D(vec3(idx1, 0.0, idx1), 0.1), smoothstep(0.9, 1.0, sin(idx21)));
-              spark = spark * 0.2 + pow(spark, 10.);
-              spark = smoothstep(0.0, spark, 0.3) * spark;
-              
-              vec3 color = vColorBackground;
-              vec4 blobColor;
-              float floatIndex;
-              float radius;
-              float n0 = snoise3(vec3(uv * 1.2, vTime * 0.5));
-              
-              for (int i = 0; i < ${e}; i++) {
-                floatIndex = float(i);
-                radius = CIRCLE_RADIUS_BASE - CIRCLE_RADIUS_STEP * floatIndex;
-                blobColor = makeBlob(uv,
-                                  mix(radius, radius + 0.3, n0),
-                                  vColor[i],
-                                  vColor[i+3],
-                                  CIRCLE_WIDTH_BASE - CIRCLE_WIDTH_STEP * floatIndex,
-                                  (SPARK_STRENGTH_BASE - SPARK_STRENGTH_STEP * floatIndex) * spark,
-                                  vReact[i],
-                                  vAudio[i],
-                                  CIRCLE_OFFSET_BASE + CIRCLE_OFFSET_STEP * floatIndex,
-                                  rotate(vRotation[i].xy, vTime * vRotation[i].z));
-                color = mix(color, blobColor.rgb, blobColor.a);
-              }
-              
-              gl_FragColor = vec4(color, 1.0);
-            }
-          `;
-        });
+        };
+        t.loadShadersOnce = loadShadersOnce;
     },
     78634: function (e, t) {
       "use strict";
