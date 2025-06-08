@@ -35219,7 +35219,21 @@
           });
         });
       var O = r(34882);
-      let T = () => {
+      let reloadPage = () => {
+          let [e, t] = (0, i.useState)(!1),
+            r = (0, i.useCallback)(() => {
+                window.location.reload();
+            }, [e, t]);
+          return (0, n.jsxs)(a.z, {
+            size: "xxs",
+            className: c().block,
+            variant: "default",
+            isBlock: !0,
+            onClick: r,
+            children: "Перезагрузить страницу",
+          });
+        },
+        T = () => {
           let [e, t] = (0, i.useState)(!1),
             r = (0, i.useCallback)(() => {
               t(!e),
@@ -35337,8 +35351,8 @@
           return (0, n.jsxs)("div", {
             className: c().panel,
             children: [
+              (0, n.jsx)(reloadPage, {}),
               (0, n.jsx)(T, {}),
-              !1,
               (0, n.jsx)(R, {}),
               (0, n.jsx)(S, {}),
               (0, n.jsx)(C, {}),
