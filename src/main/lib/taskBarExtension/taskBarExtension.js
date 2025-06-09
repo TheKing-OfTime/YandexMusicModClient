@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 
-const native = require("../../native_modules/set_iconic_thumbnail");
-
 const events_js_1 = require("../../events");
 const config_js_1 = require("../../config");
 const store_js_1 = require("../store.js");
@@ -11,6 +9,10 @@ const playerActions_js_1 = require("../../types/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
+const fs = require("fs");
+let native = null;
+if (fs.existsSync('../../native_modules/set_iconic_thumbnail')) native = require("../../native_modules/set_iconic_thumbnail");
+
 const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
 let assets = { dark: {}, light: {} };
@@ -272,7 +274,7 @@ const updateTaskbarExtension = (window) => {
   const taskButtonStatus = window.setThumbarButtons(buttons);
   window.setThumbnailToolTip(getTooltipString());
 
-  if (settings?.coverAsThumbnail ?? true) {
+  if ((settings?.coverAsThumbnail ?? true) && native) {
     playerState.isPaused ? clearIconicThumbnail(window) : setIconicThumbnail(window, playerState);
   }
 
