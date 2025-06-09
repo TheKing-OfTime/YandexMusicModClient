@@ -24462,77 +24462,85 @@
     99962: function (e, t, r) {
       "use strict";
       Object.defineProperty(t, "__esModule", { value: !0 });
-      let n = r(58655);
-      Object.defineProperty(t, "__esModule", { value: !0 }), (t.Color = void 0);
-      let o = r(57034),
-          i = r(48399),
-          a = r(76090),
-          s = r(86765);
+      let n = r(58655); // Предполагаем, что это вспомогательная функция для инициализации полей класса
+      let o = r(57034); // Функции для работы с оттенком (hue)
+      let i = r(48399); // Функции для генерации случайных чисел
+      let a = r(76090); // Дефолтные значения
+      let s = r(86765); // Класс RGB
 
-      // --- Вспомогательные функции для парсинга и конвертации цвета ---
+      t.Color = void 0;
 
-      // Преобразует hex цвет в RGB
-      function h(hex) {
-          let r = 0, g = 0, b = 0;
-          // 3-знач. хекс (#FFF)
-          if (hex.length === 4) {
-              r = parseInt(hex[1] + hex[1], 16);
-              g = parseInt(hex[2] + hex[2], 16);
-              b = parseInt(hex[3] + hex[3], 16);
-          }
-          // 6-знач. хекс (#FFFFFF)
-          else if (hex.length === 7) {
-              r = parseInt(hex.substring(1, 3), 16);
-              g = parseInt(hex.substring(3, 5), 16);
-              b = parseInt(hex.substring(5, 7), 16);
-          }
-          return [r, g, b];
-      }
+      class Color {
+          // Приватные поля класса
+          // #mode: 'gradient' | 'palette' | 'static' | 'shadow';
+          // #paletteColorIndex: number;
+          // #colorPalette: string[];
+          // #shadowBaseColor: string; // Добавляем поле для базового цвета теней
 
-      // Преобразует RGB в HSL
-      function m(r, g, b) {
-          r /= 255;
-          g /= 255;
-          b /= 255;
+          mode;
+          paletteColorIndex;
+          colorPalette;
+          shadowBaseColor;
 
-          let max = Math.max(r, g, b),
-              min = Math.min(r, g, b);
-          let h, s, l = (max + min) / 2; // <-- Здесь вероятная проблема
+          hue;
+          collectionHue;
 
-          if (max === min) {
-              h = s = 0;
-          } else {
-              let d = max - min;
-              s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-              switch (max) {
-                  case r:
-                      h = (g - b) / d + (g < b ? 6 : 0);
-                      break;
-                  case g:
-                      h = (b - r) / d + 2;
-                      break;
-                  case b:
-                      h = (r - g) / d + 4;
-                      break;
+          topStart;
+          topEnd;
+          middleStart;
+          middleEnd;
+          bottomStart;
+          bottomEnd;
+
+          // Статический метод для преобразования hex цвета в RGB
+          static hexToRgb(hex) {
+              let r = 0, g = 0, b = 0;
+              // 3-значный хекс (#FFF)
+              if (hex.length === 4) {
+                  r = parseInt(hex[1] + hex[1], 16);
+                  g = parseInt(hex[2] + hex[2], 16);
+                  b = parseInt(hex[3] + hex[3], 16);
               }
-              h /= 6;
+              // 6-значный хекс (#FFFFFF)
+              else if (hex.length === 7) {
+                  r = parseInt(hex.substring(1, 3), 16);
+                  g = parseInt(hex.substring(3, 5), 16);
+                  b = parseInt(hex.substring(5, 7), 16);
+              }
+              return [r, g, b];
           }
 
-          return [h * 360, s * 100, l * 100]; // Возвращаем в диапазонах H[0-360], S[0-100], L[0-100]
-      }
+          // Статический метод для преобразования RGB в HSL
+          static rgbToHsl(r, g, b) {
+              r /= 255;
+              g /= 255;
+              b /= 255;
 
-      // --- Переносим hslToRgb и _ в статические методы класса l (t.Color) ---
-      // Это позволит обращаться к ним через a.hslToRgb и a.parseCssColorToHsl
+              let max = Math.max(r, g, b),
+                  min = Math.min(r, g, b);
+              let h, s, l = (max + min) / 2;
 
-      // --- Реализация u, c, c_l с использованием новой функции _ ---
-      const u = (c) => l.parseCssColorToHsl(c).h; // Оттенок (hue)
-      const c = (c) => l.parseCssColorToHsl(c).s; // Насыщенность (saturation)
-      const c_l = (c) => l.parseCssColorToHsl(c).l; // Светлота (lightness)
+              if (max === min) {
+                  h = s = 0;
+              } else {
+                  let d = max - min;
+                  s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                  switch (max) {
+                      case r:
+                          h = (g - b) / d + (g < b ? 6 : 0);
+                          break;
+                      case g:
+                          h = (b - r) / d + 2;
+                          break;
+                      case b:
+                          h = (r - g) / d + 4;
+                          break;
+                  }
+                  h /= 6;
+              }
 
-      class l {
-          s; // (mode: 'gradient', 'palette'(In progress), 'static')
-          c; // (paletteColorIndex)
-          p; // (colorPalette)
+              return { h: h * 360, s: s * 100, l: l * 100 }; // Возвращаем как объект
+          }
 
           // Статический метод для преобразования HSL в RGB
           static hslToRgb(hVal, sVal, lVal) {
@@ -24542,13 +24550,13 @@
               let r, g, b;
 
               if (sVal === 0) {
-                  r = g = b = lVal; // achromatic
+                  r = g = b = lVal;
               } else {
                   const hue2rgb = (p, q, t) => {
                       if (t < 0) t += 1;
                       if (t > 1) t -= 1;
                       if (t < 1 / 6) return p + (q - p) * 6 * t;
-                      if (t < 1 / 2) return q;
+                      if (t < 1 / 2) return q;``
                       if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
                       return p;
                   };
@@ -24558,7 +24566,7 @@
                   g = hue2rgb(p, q, hVal);
                   b = hue2rgb(p, q, hVal - 1 / 3);
               }
-              return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+              return [Math.round(r * 255)  / 255, Math.round(g * 255)  / 255, Math.round(b * 255)  / 255];
           }
 
           // Статический метод для парсинга CSS-цвета в HSL
@@ -24566,18 +24574,18 @@
               let rVal, gVal, bVal;
               let hValue, sValue, lValue;
 
-               cssColorString = cssColorString.trim().toLowerCase(); 
+              cssColorString = cssColorString.trim().toLowerCase();
 
               // Попытка парсить hex
               if (cssColorString.startsWith('#')) {
-                  [rVal, gVal, bVal] = h(cssColorString);
-                  [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+                  [rVal, gVal, bVal] = Color.hexToRgb(cssColorString);
+                  ({ h: hValue, s: sValue, l: lValue } = Color.rgbToHsl(rVal, gVal, bVal));
               }
               // Попытка парсить rgb()
               else if (cssColorString.startsWith('rgb(')) {
                   const values = cssColorString.substring(4, cssColorString.length - 1).split(',').map(Number);
                   [rVal, gVal, bVal] = values;
-                  [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+                  ({ h: hValue, s: sValue, l: lValue } = Color.rgbToHsl(rVal, gVal, bVal));
               }
               // Попытка парсить hsl()
               else if (cssColorString.startsWith('hsl(')) {
@@ -24595,109 +24603,154 @@
                   };
                   if (namedColors[cssColorString]) {
                       [rVal, gVal, bVal] = namedColors[cssColorString];
-                      [hValue, sValue, lValue] = m(rVal, gVal, bVal);
+                      ({ h: hValue, s: sValue, l: lValue } = Color.rgbToHsl(rVal, gVal, bVal));
                   } else {
+                      console.warn(`Unknown color format or named color: ${cssColorString}. Returning default HSL (black).`);
                       return { h: 0, s: 0, l: 0 };
                   }
               }
               return { h: hValue, s: sValue, l: lValue };
           }
 
+          // Вспомогательные функции для получения отдельных компонентов HSL
+          static getHue(cssColor) { return Color.parseCssColorToHsl(cssColor).h; }
+          static getSaturation(cssColor) { return Color.parseCssColorToHsl(cssColor).s; }
+          static getLightness(cssColor) { return Color.parseCssColorToHsl(cssColor).l; }
 
           get value() {
-              return [
-                  this.bottomStart.value,
-                  this.middleStart.value,
-                  this.topStart.value,
-                  this.bottomEnd.value,
-                  this.middleEnd.value,
-                  this.topEnd.value,
-              ];
+            return [
+                this.bottomStart.value,
+                this.middleStart.value,
+                this.topStart.value,
+                this.bottomEnd.value,
+                this.middleEnd.value,
+                this.topEnd.value,
+            ];
           }
 
-          _() { 
-            const rootStyles = window.getComputedStyle(document.documentElement); // --ym-vibe-color-palette - multi color (palette in progress)
-            const paletteString = rootStyles.getPropertyValue('--ym-vibe-color').trim();
-            if (paletteString) {
-                this.p = paletteString.split(',').map(f => f.trim());
-            } else {
-                this.p = [];
-                console.warn("CSS variable '--ym-vibe-color' not found or empty. Using default colors.");
-            }
+          _loadCssColors() {
+              const rootStyles = window.getComputedStyle(document.documentElement);
+
+              const paletteString = rootStyles.getPropertyValue('--ym-vibe-color-palette').trim();
+              if (paletteString) {
+                  this.colorPalette = paletteString.split(',').map(f => f.trim());
+              } else {
+                  this.colorPalette = [];
+                  console.warn("CSS variable '--ym-vibe-color-palette' not found or empty. Using default colors for palette mode.");
+              }
+
+              const shadowColorString = rootStyles.getPropertyValue('--ym-vibe-color-shadow').trim();
+              if (shadowColorString) {
+                  this.shadowBaseColor = shadowColorString;
+              } else {
+                  this.shadowBaseColor = 'black';
+                  console.warn("CSS variable '--ym-vibe-color-shadow' not found or empty. Using default color (black) for shadow mode.");
+              }
           }
 
-          f() {
-            if (this.p.length === 0) {
-                const defaultHsl = { h: 0, s: 0, l: 0 };
-                this.g(defaultHsl);
-                return;
-            }
-
-            const currentCssColor = this.p[this.c];
-            const hslValues = l.parseCssColorToHsl(currentCssColor);
-            this.g(hslValues);
-          }
-          g(hslValues) {
-              this.topStart.update(hslValues.h);
-              this.topStart.s = hslValues.s;
-              this.topStart.l = hslValues.l;
-
-              this.topEnd.update(hslValues.h);
-              this.topEnd.s = hslValues.s;
-              this.topEnd.l = hslValues.l;
-
-              this.middleStart.update(hslValues.h);
-              this.middleStart.s = hslValues.s;
-              this.middleStart.l = hslValues.l;
-
-              this.middleEnd.update(hslValues.h);
-              this.middleEnd.s = hslValues.s;
-              this.middleEnd.l = hslValues.l;
-
-              this.bottomStart.update(hslValues.h);
-              this.bottomStart.s = hslValues.s;
-              this.bottomStart.l = hslValues.l;
-
-              this.bottomEnd.update(hslValues.h);
-              this.bottomEnd.s = hslValues.s;
-              this.bottomEnd.l = hslValues.l;
+          // Обновляет все 6 цветов на основе переданных HSL значений
+          _updateAllColorsFromHsl(hslValues) {
+              const [rVal, gVal, bVal] = Color.hslToRgb(hslValues.h, hslValues.s, hslValues.l);
+              this.topStart.setRgb(rVal, gVal, bVal);
+              this.topEnd.setRgb(rVal, gVal, bVal);
+              this.middleStart.setRgb(rVal, gVal, bVal);
+              this.middleEnd.setRgb(rVal, gVal, bVal);
+              this.bottomStart.setRgb(rVal, gVal, bVal);
+              this.bottomEnd.setRgb(rVal, gVal, bVal);
           }
 
+          // Обновление цветов в зависимости от режима
           update(e, t) {
-              // if (this.s === 'palette') {
-              //     this.c = (this.c + 1) % this.p.length;
-              //     this.f(); // Обновляем цвета из палитры (циклически)
-              // } else
-              if (this.s === 'static') {
-                  if (this.p.length > 0) {
-                      const staticHsl = l.parseCssColorToHsl(this.p[0]); // Используем статический метод
-                      this.g(staticHsl);
+              this.hue = e;
+              this.collectionHue = t;
+
+              if (this.mode === 'static') {
+                  if (this.colorPalette.length > 0) {
+                      const staticHsl = Color.parseCssColorToHsl(this.colorPalette[0]);
+                      this._updateAllColorsFromHsl(staticHsl);
                   } else {
-                      this.g({ h: 0, s: 0, l: 0 }); // Черный цвет по умолчанию
+                      this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
                   }
+              } else if (this.mode === 'palette') {
+                  if (this.colorPalette.length >= 6) {
+                      // Используем 6 цветов из палитры для 6 точек градиента
+                      const hslColors = this.colorPalette.slice(0, 6).map(color => Color.parseCssColorToHsl(color));
+                      this._updateAllColorsFromPalette(hslColors);
+                  } else {
+                      console.warn("Not enough colors in '--ym-vibe-color-palette' for 'palette' mode. Expected at least 6. Using default black.");
+                      this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
+                  }
+              } else if (this.mode === 'shadow') {
+                  const baseHsl = Color.parseCssColorToHsl(this.shadowBaseColor);
+                  this._generateShadowColors(baseHsl);
               }
               else { // Режим 'gradient'
-                  (this.hue = e), (this.collectionHue = t);
-                  let r = (0, o.adjustHue)(e),
-                      n = (0, o.safeHue)(r + (0, i.randomNumber)(40, 80), r),
-                      a = (0, o.adjustHue)(t);
-                  this.topStart.update(r);
+                  let rHue = (0, o.adjustHue)(e),
+                      nHue = (0, o.safeHue)(rHue + (0, i.randomNumber)(40, 80), rHue),
+                      aHue = (0, o.adjustHue)(t);
+                  this.topStart.update(rHue);
                   this.topEnd.update(
-                      (0, o.safeHue)(r + (0, i.randomNumber)(30, 40), r),
+                      (0, o.safeHue)(rHue + (0, i.randomNumber)(30, 40), rHue),
                   );
-                  this.middleStart.update(n);
+                  this.middleStart.update(nHue);
                   this.middleEnd.update(
-                      (0, o.safeHue)(n + (0, i.randomNumber)(30, 40), r),
+                      (0, o.safeHue)(nHue + (0, i.randomNumber)(30, 40), rHue),
                   );
-                  this.bottomStart.update(a);
+                  this.bottomStart.update(aHue);
                   this.bottomEnd.update(
-                      (0, o.safeHue)(a + (0, i.randomNumber)(30, 40), r),
+                      (0, o.safeHue)(aHue + (0, i.randomNumber)(30, 40), rHue),
                   );
               }
+          }
+
+          // Применение цветов из палитры к точкам градиента
+          _updateAllColorsFromPalette(hslColors) {
+              // Преобразуем каждый HSL цвет в RGB и передаем в соответствующий экземпляр RGB
+              let [r, g, b] = Color.hslToRgb(hslColors[0].h, hslColors[0].s, hslColors[0].l);
+              this.topStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(hslColors[1].h, hslColors[1].s, hslColors[1].l);
+              this.topEnd.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(hslColors[2].h, hslColors[2].s, hslColors[2].l);
+              this.middleStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(hslColors[3].h, hslColors[3].s, hslColors[3].l);
+              this.middleEnd.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(hslColors[4].h, hslColors[4].s, hslColors[4].l);
+              this.bottomStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(hslColors[5].h, hslColors[5].s, hslColors[5].l);
+              this.bottomEnd.setRgb(r, g, b);
+          }
+
+          // Генерация оттенков для режима 'shadow'
+          _generateShadowColors(baseHsl) {
+              const generateLightness = (baseL, offset) => Math.min(100, Math.max(0, baseL + offset));
+              const generateSaturation = (baseS, offset) => Math.min(100, Math.max(0, baseS + offset));
+
+              let [r, g, b] = Color.hslToRgb(baseHsl.h, generateSaturation(baseHsl.s, 10), generateLightness(baseHsl.l, 20));
+              this.topStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(baseHsl.h, generateSaturation(baseHsl.s, 5), generateLightness(baseHsl.l, 10));
+              this.topEnd.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(baseHsl.h, baseHsl.s, baseHsl.l);
+              this.middleStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(baseHsl.h, generateSaturation(baseHsl.s, -5), generateLightness(baseHsl.l, -10));
+              this.middleEnd.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(baseHsl.h, generateSaturation(baseHsl.s, -10), generateLightness(baseHsl.l, -20));
+              this.bottomStart.setRgb(r, g, b);
+
+              [r, g, b] = Color.hslToRgb(baseHsl.h, generateSaturation(baseHsl.s, -15), generateLightness(baseHsl.l, -30));
+              this.bottomEnd.setRgb(r, g, b);
           }
 
           next(e) {
-              if (this.s === 'gradient') {
+              if (this.mode != 'static') {
                   this.topStart.next(e);
                   this.topEnd.next(e);
                   this.middleStart.next(e);
@@ -24716,36 +24769,38 @@
               n._(this, "middleEnd", void 0);
               n._(this, "bottomStart", void 0);
               n._(this, "bottomEnd", void 0);
-
+			  console.log(mode);
               this.collectionHue = e;
-              this.s = mode;
-              this.c = 0;
+              this.mode = mode;
+              this.paletteColorIndex = 0;
 
-              this._(); // Загружаем палитру цветов
+              this._loadCssColors();
 
-              this.topStart = new s.RGB(0);
+              this.topStart = new s.RGB(0); // Инициализация с базовым оттенком для RGB
               this.topEnd = new s.RGB(0);
               this.middleStart = new s.RGB(0);
               this.middleEnd = new s.RGB(0);
               this.bottomStart = new s.RGB(0);
               this.bottomEnd = new s.RGB(0);
 
-              if (/*this.s === 'palette' || */this.s === 'static') {
-                  this.f();
-              } else {
-                  let t = (0, o.adjustHue)(e),
-                      r = (0, o.safeHue)(t + (0, i.randomNumber)(30, 40), t);
+              // Инициализация цветов при создании экземпляра
+              // Вызываем update, который уже содержит логику для всех режимов
+              this.update(e, e); // Передаем e, e так как hue и collectionHue могут быть нужны для начального расчета
+              // Оригинальная логика для градиентного режима, которая может быть вызвана в update()
+              // if (this.mode === 'gradient') {
+              //     let tInitial = (0, o.adjustHue)(e),
+              //         rInitial = (0, o.safeHue)(tInitial + (0, i.randomNumber)(30, 40), tInitial);
 
-                  this.topStart.update(50);
-                  this.topEnd.update(50);
-                  this.middleStart.update(300);
-                  this.middleEnd.update(320);
-                  this.bottomStart.update(t);
-                  this.bottomEnd.update(r);
-              }
+              //     this.topStart.update(50);
+              //     this.topEnd.update(50);
+              //     this.middleStart.update(300);
+              //     this.middleEnd.update(320);
+              //     this.bottomStart.update(tInitial);
+              //     this.bottomEnd.update(rInitial);
+              // }
           }
       }
-      t.Color = l;
+      t.Color = Color;
     },
     41695: function (e, t, r) {
       "use strict";
@@ -25159,6 +25214,11 @@
         get value() {
           return [this.r.value, this.g.value, this.b.value];
         }
+        setRgb(rVal, gVal, bVal) {
+            this.r.update(rVal);
+            this.g.update(gVal);
+            this.b.update(bVal);
+        }
         update(e) {
           let t = (0, o.hsl2rgb)(e, i.DEFAULT_SATURATION, i.DEFAULT_LIGHTNESS);
           this.r.update(t[0]), this.g.update(t[1]), this.b.update(t[2]);
@@ -25261,7 +25321,7 @@
                 const rgb_background = a.Color.hslToRgb(hsl_background_obj.h, hsl_background_obj.s, hsl_background_obj.l);
                 
                 // Нормализуем RGB-значения к диапазону 0.0-1.0
-                this.background = new o.Vec3(rgb_background[0] / 255, rgb_background[1] / 255, rgb_background[2] / 255); 
+                this.background = new o.Vec3(rgb_background[0], rgb_background[1], rgb_background[2]); 
             });
         }
         updateEnergy(e) {
@@ -25370,7 +25430,7 @@
           n._(this, "interaction", 0),
           n._(this, "width", 0),
           n._(this, "height", 0),
-          (this.color = new a.Color(e, window.VIBE_ANIMATION_COLOR_TYPE?.() ?? "gradient")); // palette(In progress)/static/(gradient - default)
+          (this.color = new a.Color(e, window.VIBE_ANIMATION_COLOR_TYPE?.() ?? "gradient")); // shadow/palette/static/(gradient - default)
           this.updateSize();
 
           this._bodyClassObserver = new MutationObserver((mutationsList) => {
