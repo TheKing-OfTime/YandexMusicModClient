@@ -234,7 +234,7 @@ class TrackDownloader {
             `-y "${finalFilepath}"`
         ];
 
-        const command = `${EXTRACTED_FFMPEG_PATH} ${args.join(" ")}`;
+        const command = `"${EXTRACTED_FFMPEG_PATH}" ${args.join(" ")}`;
         this.logger.info(`ReEncoding: ${command}`);
 
 
