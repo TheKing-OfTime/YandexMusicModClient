@@ -5,8 +5,8 @@ const config_js_1 = require("../config.js");
 const store_js_1 = require("./store.js");
 const getInitialTheme_js_1 = require("./getInitialTheme.js");
 const deviceInfo_js_1 = require("./deviceInfo.js");
-const theme_js_1 = require("../types/theme.js");
-const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
+// const theme_js_1 = require("../types/theme.js");
+// const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
 const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
 
 electron_1.contextBridge.exposeInMainWorld('VERSION', String(config_js_1.config.buildInfo.VERSION));
@@ -37,6 +37,7 @@ electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_MAX_FPS', () => store
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_LINEAR_DEBOOST', store_js_1.getModFeatures()?.vibeAnimationEnhancement?.linearDeBoost);
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_PLAY_ON_ANY_ENTITY', () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.playOnAnyEntity);
 electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_DISABLE_RENDERING', () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.disableRendering);
+electron_1.contextBridge.exposeInMainWorld('VIBE_ANIMATION_COLOR_TYPE', () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.colorType);
 electron_1.contextBridge.exposeInMainWorld(
   "SHOW_CODEC_INSTEAD_OF_QUALITY_MARK", () =>
   store_js_1.getModFeatures()?.playerBarEnhancement
@@ -81,9 +82,21 @@ electron_1.contextBridge.exposeInMainWorld('zoomControl', {
     setZoomLevel: (level) => electron_1.ipcRenderer.invoke('set-zoom-level', level),
 })
 
+electron_1.contextBridge.exposeInMainWorld('shaderAPI', {
+  getShader: (name) => {
+      const result = electron_1.ipcRenderer.sendSync('get-shader-sync', name);
+      if (result.success) {
+        return result.data;
+      } else {
+        throw new Error(result.error);
+      }
+    },
+    isReady: () => electron_1.ipcRenderer.sendSync('is-shader-ready-sync')
+});
+
 window.document.addEventListener('DOMContentLoaded', () => {
     const theme = (0, getInitialTheme_js_1.getInitialTheme)();
-    if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
-        window.document.documentElement.style.backgroundColor = theme === theme_js_1.Theme.Light ? '#FFFFFF' : '#000000';
-    }
+    // if (hostnamePatterns_js_1.applicationHostnamePattern.test(window.location.hostname)) {
+    //     window.document.documentElement.style.backgroundColor = theme === theme_js_1.Theme.Light ? '#FFFFFF' : '#000000';
+    // }
 });

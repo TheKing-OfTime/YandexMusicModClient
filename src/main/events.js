@@ -17,6 +17,7 @@ const playerActions_js_1 = require("./types/playerActions.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
 const tray_js_1 = require("./lib/tray.js");
+const { shaderManager } = require("./lib/ShaderManagerAPI.js")
 const appSuspension_js_1 = require("./lib/appSuspension.js");
 const discordRichPresence_js_1 = require("./lib/discordRichPresence.js");
 const trackDownloader_js_1 = require("./lib/trackDownloader.js");
@@ -36,7 +37,6 @@ const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
     return typeof value === "boolean";
 };
-
 
 let mainWindow = undefined;
 
@@ -250,6 +250,7 @@ const handleApplicationEvents = (window) => {
         }
     });
 };
+
 electron_1.ipcMain.handle("openConfigFile", async () => {
     return await electron_1.shell.openPath(
         electron_1.app.getPath("userData") + "/config.json",
@@ -296,8 +297,19 @@ electron_1.ipcMain.handle('scrobble-lastfm-get-current-playing-track', (event, u
     return scrobbleManager_js_1.scrobblerManager.getScrobblerByType("Last.fm").api.getCurrentPlayingTrack(user);
 });
 
+electron_1.ipcMain.on('get-shader-sync', (event, name) => {
+  try {
+    const shaderContent = shaderManager.getShader(name);
+    event.returnValue = { success: true, data: shaderContent };
+  } catch (error) {
+    console.error('Shader load failed:', error.message);
+    event.returnValue = { success: false, error: error.message }; 
+  }
+});
 
-
+electron_1.ipcMain.on('is-shader-ready-sync', (event) => {
+  event.returnValue = shaderManager.isReady();
+});
 
 exports.handleApplicationEvents = handleApplicationEvents;
 

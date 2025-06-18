@@ -97,6 +97,7 @@ const init = () => {
       disableRendering: false,
       autoLaunchOnAppStartup: false,
       enableEndlessMusic: true,
+      colorType: "original", // #mode: 'original' | 'gradient' | 'static' | 'shadow'
     },
     playerBarEnhancement: {
       showDislikeButton: true,

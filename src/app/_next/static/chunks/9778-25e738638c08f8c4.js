@@ -24380,23 +24380,13 @@
         f = u.Heading,
         p = u.__esModule;
     },
-    57034: function (e, t) {
-      "use strict";
-      Object.defineProperty(t, "__esModule", { value: !0 }),
-        (t.hsl2rgb = t.adjustHue = t.safeHue = void 0),
-        (t.safeHue = (e, t) => (t >= 280 && t < 360 ? e % 360 : e)),
-        (t.adjustHue = (e) => (e + 280) % 360),
-        (t.hsl2rgb = (e, t, r) => {
-          let n = (n) => {
-            let o = (n + e / 30) % 12;
-            return (
-              r -
-              t * Math.min(r, 1 - r) * Math.max(-1, Math.min(o - 3, 9 - o, 1))
-            );
-          };
-          return [n(0), n(8), n(4)];
-        });
-    },
+    // 57034: function (e, t) {
+    //   "use strict";
+    //   Object.defineProperty(t, "__esModule", { value: !0 }),
+    //     (t.adjustHue = t.safeHue = void 0),
+    //     (t.safeHue = (e, t) => (t >= 280 && t < 360 ? e % 360 : e)),
+    //     (t.adjustHue = (e) => (e + 280) % 360);
+    // },
     45101: function (e, t, r) {
       "use strict";
       Object.defineProperty(t, "__esModule", { value: !0 }),
@@ -24463,7 +24453,6 @@
       "use strict";
       Object.defineProperty(t, "__esModule", { value: !0 });
       let n = r(58655); // Предполагаем, что это вспомогательная функция для инициализации полей класса
-      let o = r(57034); // Функции для работы с оттенком (hue)
       let i = r(48399); // Функции для генерации случайных чисел
       let a = r(76090); // Дефолтные значения
       let s = r(86765); // Класс RGB
@@ -24472,7 +24461,7 @@
 
       class Color {
           // Приватные поля класса
-          // #mode: 'gradient' | 'palette' | 'static' | 'shadow';
+          // #mode: 'original' | 'gradient' | 'static' | 'shadow';
           // #paletteColorIndex: number;
           // #colorPalette: string[];
           // #shadowBaseColor: string; // Добавляем поле для базового цвета теней
@@ -24539,7 +24528,7 @@
                   h /= 6;
               }
 
-              return { h: h * 360, s: s * 100, l: l * 100 }; // Возвращаем как объект
+              return { h: h * 360, s: s * 100, l: l * 100 }; // Возвращаем как объект !! Важное замечание
           }
 
           // Статический метод для преобразования HSL в RGB
@@ -24556,7 +24545,7 @@
                       if (t < 0) t += 1;
                       if (t > 1) t -= 1;
                       if (t < 1 / 6) return p + (q - p) * 6 * t;
-                      if (t < 1 / 2) return q;``
+                      if (t < 1 / 2) return q;
                       if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
                       return p;
                   };
@@ -24566,7 +24555,7 @@
                   g = hue2rgb(p, q, hVal);
                   b = hue2rgb(p, q, hVal - 1 / 3);
               }
-              return [Math.round(r * 255)  / 255, Math.round(g * 255)  / 255, Math.round(b * 255)  / 255];
+              return [ r, g, b ];
           }
 
           // Статический метод для парсинга CSS-цвета в HSL
@@ -24616,6 +24605,8 @@
           static getHue(cssColor) { return Color.parseCssColorToHsl(cssColor).h; }
           static getSaturation(cssColor) { return Color.parseCssColorToHsl(cssColor).s; }
           static getLightness(cssColor) { return Color.parseCssColorToHsl(cssColor).l; }
+          static adjustHueStandard(e) { return (e + 280) % 360; }
+          static safeHueStandard(e, t) { return (t >= 280 && t < 360 ? e % 360 : e); }
 
           get value() {
             return [
@@ -24631,20 +24622,20 @@
           _loadCssColors() {
               const rootStyles = window.getComputedStyle(document.documentElement);
 
-              const paletteString = rootStyles.getPropertyValue('--ym-vibe-color-palette').trim();
+              const paletteString = rootStyles.getPropertyValue('--mod-ym-vibe-color-palette').trim();
               if (paletteString) {
                   this.colorPalette = paletteString.split(',').map(f => f.trim());
               } else {
                   this.colorPalette = [];
-                  console.warn("CSS variable '--ym-vibe-color-palette' not found or empty. Using default colors for palette mode.");
+                  console.warn("CSS variable '--mod-ym-vibe-color-palette' not found or empty. Using default colors for palette mode.");
               }
 
-              const shadowColorString = rootStyles.getPropertyValue('--ym-vibe-color-shadow').trim();
+              const shadowColorString = rootStyles.getPropertyValue('--mod-ym-vibe-color-shadow').trim();
               if (shadowColorString) {
                   this.shadowBaseColor = shadowColorString;
               } else {
-                  this.shadowBaseColor = 'black';
-                  console.warn("CSS variable '--ym-vibe-color-shadow' not found or empty. Using default color (black) for shadow mode.");
+                  this.shadowBaseColor = 'red';
+                  console.warn("CSS variable '--mod-ym-vibe-color-shadow' not found or empty. Using default color (black) for shadow mode.");
               }
           }
 
@@ -24661,46 +24652,58 @@
 
           // Обновление цветов в зависимости от режима
           update(e, t) {
-              this.hue = e;
-              this.collectionHue = t;
+            this.hue = e;
+            this.collectionHue = t;
 
-              if (this.mode === 'static') {
-                  if (this.colorPalette.length > 0) {
-                      const staticHsl = Color.parseCssColorToHsl(this.colorPalette[0]);
-                      this._updateAllColorsFromHsl(staticHsl);
-                  } else {
-                      this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
-                  }
-              } else if (this.mode === 'palette') {
-                  if (this.colorPalette.length >= 6) {
-                      // Используем 6 цветов из палитры для 6 точек градиента
-                      const hslColors = this.colorPalette.slice(0, 6).map(color => Color.parseCssColorToHsl(color));
-                      this._updateAllColorsFromPalette(hslColors);
-                  } else {
-                      console.warn("Not enough colors in '--ym-vibe-color-palette' for 'palette' mode. Expected at least 6. Using default black.");
-                      this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
-                  }
-              } else if (this.mode === 'shadow') {
-                  const baseHsl = Color.parseCssColorToHsl(this.shadowBaseColor);
-                  this._generateShadowColors(baseHsl);
+            if (this.mode === "static") {
+              if (this.colorPalette.length > 0) {
+                const staticHsl = Color.parseCssColorToHsl(this.colorPalette[0]);
+                this._updateAllColorsFromHsl(staticHsl);
+              } else {
+                this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
               }
-              else { // Режим 'gradient'
-                  let rHue = (0, o.adjustHue)(e),
-                      nHue = (0, o.safeHue)(rHue + (0, i.randomNumber)(40, 80), rHue),
-                      aHue = (0, o.adjustHue)(t);
-                  this.topStart.update(rHue);
-                  this.topEnd.update(
-                      (0, o.safeHue)(rHue + (0, i.randomNumber)(30, 40), rHue),
-                  );
-                  this.middleStart.update(nHue);
-                  this.middleEnd.update(
-                      (0, o.safeHue)(nHue + (0, i.randomNumber)(30, 40), rHue),
-                  );
-                  this.bottomStart.update(aHue);
-                  this.bottomEnd.update(
-                      (0, o.safeHue)(aHue + (0, i.randomNumber)(30, 40), rHue),
-                  );
+            } else if (this.mode === "gradient") {
+              if (this.colorPalette.length >= 6) {
+                const hslColors = this.colorPalette
+                  .slice(0, 6)
+                  .map((color) => Color.parseCssColorToHsl(color));
+                this._updateAllColorsFromPalette(hslColors);
+              } else {
+                console.warn(
+                  "Not enough colors in '--mod-ym-vibe-color-palette' for 'gradient' mode. Expected at least 6. Using default black.",
+                );
+                this._updateAllColorsFromHsl({ h: 0, s: 0, l: 0 });
               }
+            } else if (this.mode === "shadow") {
+              const baseHsl = Color.parseCssColorToHsl(this.shadowBaseColor);
+              this._generateShadowColors(baseHsl);
+            } else {
+              this._updateAllColorsFromOriginal(e);
+            }
+          }
+
+          _updateAllColorsFromOriginal(hueValue) {
+            let tInitial = Color.adjustHueStandard(hueValue);
+            let rInitial = Color.safeHueStandard(
+              tInitial + i.randomNumber(30, 40),
+              tInitial,
+            );
+
+            let [r, g, b] = Color.hslToRgb(50, 100, 50);
+            this.topStart.setRgb(r, g, b);
+            this.topEnd.setRgb(r, g, b);
+
+            [r, g, b] = Color.hslToRgb(300, 100, 50);
+            this.middleStart.setRgb(r, g, b);
+
+            [r, g, b] = Color.hslToRgb(320, 100, 50);
+            this.middleEnd.setRgb(r, g, b);
+
+            [r, g, b] = Color.hslToRgb(tInitial, 100, 50);
+            this.bottomStart.setRgb(r, g, b);
+
+            [r, g, b] = Color.hslToRgb(rInitial, 100, 50);
+            this.bottomEnd.setRgb(r, g, b);
           }
 
           // Применение цветов из палитры к точкам градиента
@@ -24727,6 +24730,7 @@
 
           // Генерация оттенков для режима 'shadow'
           _generateShadowColors(baseHsl) {
+              // Математические мини-помошнички :D
               const generateLightness = (baseL, offset) => Math.min(100, Math.max(0, baseL + offset));
               const generateSaturation = (baseS, offset) => Math.min(100, Math.max(0, baseS + offset));
 
@@ -24760,7 +24764,7 @@
               }
           }
 
-          constructor(e, mode = 'gradient') {
+          constructor(e, mode = "original") {
               n._(this, "hue", a.DEFAULT_HUE);
               n._(this, "collectionHue", a.DEFAULT_COLLECTION_HUE);
               n._(this, "topStart", void 0);
@@ -24769,38 +24773,22 @@
               n._(this, "middleEnd", void 0);
               n._(this, "bottomStart", void 0);
               n._(this, "bottomEnd", void 0);
-			  console.log(mode);
               this.collectionHue = e;
               this.mode = mode;
               this.paletteColorIndex = 0;
 
               this._loadCssColors();
 
-              this.topStart = new s.RGB(0); // Инициализация с базовым оттенком для RGB
+              this.topStart = new s.RGB(0);
               this.topEnd = new s.RGB(0);
               this.middleStart = new s.RGB(0);
               this.middleEnd = new s.RGB(0);
               this.bottomStart = new s.RGB(0);
               this.bottomEnd = new s.RGB(0);
-
-              // Инициализация цветов при создании экземпляра
-              // Вызываем update, который уже содержит логику для всех режимов
-              this.update(e, e); // Передаем e, e так как hue и collectionHue могут быть нужны для начального расчета
-              // Оригинальная логика для градиентного режима, которая может быть вызвана в update()
-              // if (this.mode === 'gradient') {
-              //     let tInitial = (0, o.adjustHue)(e),
-              //         rInitial = (0, o.safeHue)(tInitial + (0, i.randomNumber)(30, 40), tInitial);
-
-              //     this.topStart.update(50);
-              //     this.topEnd.update(50);
-              //     this.middleStart.update(300);
-              //     this.middleEnd.update(320);
-              //     this.bottomStart.update(tInitial);
-              //     this.bottomEnd.update(rInitial);
-              // }
+              this.update(e, e); // Первое обновление, чтобы подтянулось всё
+            }
           }
-      }
-      t.Color = Color;
+        t.Color = Color;
     },
     41695: function (e, t, r) {
       "use strict";
@@ -24896,20 +24884,10 @@
             this.container.appendChild(this.renderer.gl.canvas));
         }
         createVibeAnimationUsingShader() {
-          s.loadShadersOnce()
-            .then(function(success) {
-                if (success) {
-                    this.createElement();
-                    this.shader = this.createShader();
-                    this.handleOnVisibilityChange();
-                    this.setupListeners();
-                } else {
-                    console.error("Не удалось загрузить шейдеры. Анимация не будет создана.");
-                }
-            }.bind(this))
-            .catch(function(error) {
-                console.error("Произошла ошибка во время загрузки шейдеров:", error);
-            });
+          this.createElement(),
+            (this.shader = this.createShader()),
+            this.handleOnVisibilityChange(),
+            this.setupListeners();
         }
         createShader() {
           if (!this.renderer || !this.uniforms) return;
@@ -25205,11 +25183,7 @@
     86765: function (e, t, r) {
       "use strict";
       Object.defineProperty(t, "__esModule", { value: !0 });
-      let n = r(58655);
-      Object.defineProperty(t, "__esModule", { value: !0 }), (t.RGB = void 0);
-      let o = r(57034),
-        i = r(76090),
-        a = r(41695);
+      let n = r(58655), i = r(76090), a = r(41695);
       class s {
         get value() {
           return [this.r.value, this.g.value, this.b.value];
@@ -25220,8 +25194,9 @@
             this.b.update(bVal);
         }
         update(e) {
-          let t = (0, o.hsl2rgb)(e, i.DEFAULT_SATURATION, i.DEFAULT_LIGHTNESS);
-          this.r.update(t[0]), this.g.update(t[1]), this.b.update(t[2]);
+            this.r.update(rVal);
+            this.g.update(gVal);
+            this.b.update(bVal);
         }
         next(e) {
           this.r.next(e), this.g.next(e), this.b.next(e);
@@ -25230,10 +25205,9 @@
           n._(this, "r", void 0),
             n._(this, "g", void 0),
             n._(this, "b", void 0);
-          let t = (0, o.hsl2rgb)(e, i.DEFAULT_SATURATION, i.DEFAULT_LIGHTNESS);
-          (this.r = new a.DynamicValue(t[0], t[0], 3e3)),
-            (this.g = new a.DynamicValue(t[1], t[1], 3e3)),
-            (this.b = new a.DynamicValue(t[2], t[2], 3e3));
+          (this.r = new a.DynamicValue(rVal, rVal, 3e3)),
+          (this.g = new a.DynamicValue(gVal, gVal, 3e3)),
+          (this.b = new a.DynamicValue(bVal, bVal, 3e3));
         }
       }
       t.RGB = s;
@@ -25313,7 +25287,7 @@
             // после того, как браузер обновит их в ответ на изменение класса.
             requestAnimationFrame(() => {
                 const bodyStyles = window.getComputedStyle(document.body);
-                let backgroundColorString = bodyStyles.getPropertyValue('--ym-vibe-background-color').trim();
+                let backgroundColorString = bodyStyles.getPropertyValue('--mod-ym-vibe-background-color').trim();
                 if (!backgroundColorString) return;
 
                 // Преобразование цвета в RGB и установка в Uniforms
@@ -25459,17 +25433,17 @@
     78671: function (e, t, r) {
       "use strict";
       t.T6 = t.TP = t.UE = t.nT = t.dr = t.kB = t.wX = void 0;
-      var n = r(57034);
+      let tColor = r(99962);
       Object.defineProperty(t, "wX", {
         enumerable: !0,
         get: function () {
-          return n.hsl2rgb;
+          return tColor.Color.hslToRgb;
         },
       }),
         Object.defineProperty(t, "kB", {
           enumerable: !0,
           get: function () {
-            return n.adjustHue;
+            return tColor.Color.adjustHueStandard;
           },
         });
       var o = r(44247);
@@ -25555,103 +25529,48 @@
     },
     24407: function(e, t) {
         "use strict";
-        t.getFragmentShaderV2 = t.getVertexShaderV2 = t.loadShadersOnce = void 0;
-        var loadedVertexShaderSource = null;
-        var loadedFragmentShaderEnabledSource = null;
-        var loadedFragmentShaderDisabledSource = null;
-        var shadersLoadingPromise = null;
-
-        /**
-         * Вспомогательная функция для асинхронной загрузки текстового файла.
-         * @param {string} url URL файла для загрузки.
-         * @returns {Promise<string|null>} Промис, который разрешится строковым содержимым файла или null в случае ошибки.
-         */
-        function fetchShaderFile(url) {
-            return new Promise(function(resolve) {
-                fetch(url)
-                    .then(function(response) {
-                        if (!response.ok) {
-                            throw new Error('Failed to load shader from ' + url + ': ' + response.statusText);
-                        }
-                        return response.text();
-                    })
-                    .then(function(text) {
-                        resolve(text);
-                    })
-                    .catch(function(error) {
-                        console.error('Error fetching shader from ' + url + ':', error);
-                        resolve(null); // Возвращаем null при ошибке
-                    });
-            });
-        }
-
-        /**
-         * Асинхронно загружает все необходимые шейдеры из файлов.
-         * Вызывается только один раз для кэширования содержимого.
-         * @returns {Promise<boolean>} Промис, который разрешится true при успешной загрузке всех шейдеров, false в противном случае.
-         */
-        function loadShadersOnce() {
-            // Если загрузка уже началась или завершена, возвращаем текущий промис
-            if (shadersLoadingPromise) {
-                return shadersLoadingPromise;
-            }
-
-            // Запускаем загрузку и сохраняем промис
-            shadersLoadingPromise = new Promise(function(resolve) {
-                var fetchPromises = [
-                    fetchShaderFile('/_next/static/shaders/vibe-animation-vertex.vert'),
-                    fetchShaderFile('/_next/static/shaders/vibe-effect-enabled-fragment.frag'),
-                    fetchShaderFile('/_next/static/shaders/vibe-effect-disabled-fragment.frag')
-                ];
-
-                Promise.all(fetchPromises)
-                    .then(function(results) {
-                        loadedVertexShaderSource = results[0];
-                        loadedFragmentShaderEnabledSource = results[1];
-                        loadedFragmentShaderDisabledSource = results[2];
-
-                        if (!loadedVertexShaderSource || !loadedFragmentShaderEnabledSource || !loadedFragmentShaderDisabledSource) {
-                            console.error("One or more shaders failed to load. Please check file paths and network status.");
-                            shadersLoadingPromise = null; // Сбрасываем промис при ошибке
-                            resolve(false);
-                        } else {
-                            resolve(true);
-                        }
-                    })
-                    .catch(function(error) {
-                        console.error("An unexpected error occurred during shader loading:", error);
-                        shadersLoadingPromise = null;
-                        resolve(false);
-                    });
-            });
-
-            return shadersLoadingPromise;
-        }
+        t.getFragmentShaderV2 = t.getVertexShaderV2 = void 0;
         Object.defineProperty(t, "__esModule", { value: true });
-        t.getVertexShaderV2 = function() {
-            if (loadedVertexShaderSource === null) {
-                console.warn("VertexShaderV2 was requested before async loading completed. Please ensure loadShadersOnce() is handled.");
-                return null;
-            }
-            return loadedVertexShaderSource;
-        };
-        t.getFragmentShaderV2 = function(e) {
-            if (loadedFragmentShaderEnabledSource === null || loadedFragmentShaderDisabledSource === null) {
-                console.warn("FragmentShaderV2 was requested before async loading completed. Please ensure loadShadersOnce() is handled.");
-                return null;
-            }
 
-            if (window.VIBE_ANIMATION_DISABLE_RENDERING?.() ?? false) {
-                return loadedFragmentShaderDisabledSource;
-            } else {
-                var fragmentShaderSource = loadedFragmentShaderEnabledSource;
-                if (typeof e !== 'undefined' && fragmentShaderSource.indexOf('${e}') !== -1) {
-                    fragmentShaderSource = fragmentShaderSource.replace(/\$\{e\}/g, e.toString());
-                }
-                return fragmentShaderSource;
-            }
+        const DEFAULT_VERTEX_SHADER = `precision highp float;
+attribute vec4 position;
+
+void main() {
+    gl_Position = position;
+}`.trim(); // На случай, если не подтянется
+
+    const DEFAULT_FRAGMENT_SHADER = `precision highp float;
+uniform vec3 vColorBackground;
+
+void main() {
+    gl_FragColor = vec4(vColorBackground, 1.0);
+}`.trim(); // На случай, если не подтянется
+
+        t.getVertexShaderV2 = function() {
+          try {
+              return window.shaderAPI.getShader('vibe-animation-vertex.vert');
+          } catch (error) {
+              console.error("Failed to get vertex shader: " + error.message);
+              return DEFAULT_VERTEX_SHADER;
+          }
         };
-        t.loadShadersOnce = loadShadersOnce;
+
+        t.getFragmentShaderV2 = function(e) {
+          try {
+              if (window.VIBE_ANIMATION_DISABLE_RENDERING?.() ?? false) {
+                  return window.shaderAPI.getShader('vibe-effect-disabled-fragment.frag');
+              } else {
+                  let fragmentShaderSource = window.shaderAPI.getShader('vibe-effect-enabled-fragment.frag');
+                  if (typeof e !== 'undefined' && fragmentShaderSource.indexOf('${e}') !== -1) {
+                      fragmentShaderSource = fragmentShaderSource.replace(/\$\{e\}/g, e.toString());
+                  }
+                  return fragmentShaderSource;
+              }
+          } catch (error) {
+              console.error("Failed to get fragment shader: " + error.message);
+              return DEFAULT_FRAGMENT_SHADER;
+          }
+      };
     },
     78634: function (e, t) {
       "use strict";
@@ -30608,12 +30527,12 @@
         };
       var rg = r(78671);
       let rh = (e, t, r) => {
-          let n = null != t ? t : rg.UE,
-            o = null != r ? r : rg.TP,
+          let n = (null != t ? t : rg.UE) * 100,
+            o = (null != r ? r : rg.TP) * 100,
             i = (0, rg.wX)((0, rg.kB)(e), n, o),
-            a = Math.round(255 * i[0]),
-            s = Math.round(255 * i[1]),
-            l = Math.round(255 * i[2]);
+            a = Math.round(i[0]*255),
+            s = Math.round(i[1]*255),
+            l = Math.round(i[2]*255);
           return "rgb(".concat(a, ", ").concat(s, ", ").concat(l, ")");
         },
         rE = (e) => {

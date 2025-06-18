@@ -363,9 +363,9 @@ ol,ul {
 		--ym-z-index-modal: 500;
 		--ym-z-index-notification: 600;
 		--ym-z-index-overlay: 700;
-        --ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
-		--ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
-		--ym-vibe-color-shadow: #ff0000;
+        --mod-ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
+		--mod-ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
+		--mod-ym-vibe-color-shadow: #ff0000;
 	}
 }
 
@@ -542,9 +542,9 @@ ol,ul {
 		--ym-z-index-modal: 500;
 		--ym-z-index-notification: 600;
 		--ym-z-index-overlay: 700;
-        --ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
-        --ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
-		--ym-vibe-color-shadow: #ff0000;
+        --mod-ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
+        --mod-ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
+		--mod-ym-vibe-color-shadow: #ff0000;
 	}
 }
 
@@ -720,9 +720,9 @@ ol,ul {
 	--ym-z-index-modal: 500;
 	--ym-z-index-notification: 600;
 	--ym-z-index-overlay: 700;
-    --ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
-    --ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
-	--ym-vibe-color-shadow: #ff0000;
+    --mod-ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
+    --mod-ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
+	--mod-ym-vibe-color-shadow: #ff0000;
 }
 
 .ym-light-theme {
@@ -897,9 +897,9 @@ ol,ul {
 	--ym-z-index-modal: 500;
 	--ym-z-index-notification: 600;
 	--ym-z-index-overlay: 700;
-    --ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
-	--ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
-	--ym-vibe-color-shadow: #ff0000;
+    --mod-ym-vibe-background-color: var(--ym-background-color-primary-enabled-content);
+	--mod-ym-vibe-color-palette: #ff0000, #ff4814, #ff1509, #ff1290, #ff8490, #121212;
+	--mod-ym-vibe-color-shadow: #ff0000;
 }
 
 .ym-font-music {
