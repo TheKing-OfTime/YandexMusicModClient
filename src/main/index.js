@@ -1,5 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+
+global.requireIfExists = (path) =>{
+  try {
+    return require(path);
+  } catch (e) {
+    return false;
+  }
+};
+
 const electron_1 = require("electron");
 const path = require("path");
 const fs = require("fs");

@@ -9,9 +9,10 @@ const playerActions_js_1 = require("../../types/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
-const fs = require("fs");
-let native = null;
-if (fs.existsSync('../../native_modules/set_iconic_thumbnail')) native = require("../../native_modules/set_iconic_thumbnail");
+const native = requireIfExists('./native_modules/set_iconic_thumbnail');
+if (!native) {
+    taskBarExtensionLogger.warn("Native module for thumbnails is not available. Thumbnail won't work.");
+};
 
 const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
