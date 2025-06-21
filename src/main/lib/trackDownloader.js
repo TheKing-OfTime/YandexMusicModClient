@@ -220,7 +220,7 @@ class TrackDownloader {
 
         const args = [
             "-i", `"${tempFilepath}"`,
-            ...(withCover ? ["-i", path.join(tempDirPath, "400x400.jpg")] : []),
+            ...(withCover ? ["-i", `"${path.join(tempDirPath, "400x400.jpg")}"`] : []),
             "-map", "0:a",
             ...(withCover ? ["-map", "1"] : []),
             ...(fileExtension === 'mp3' ? ["-codec:a", "libmp3lame","-id3v2_version", "3", "-write_id3v1", "1", "-b:a", (data.bitrate ?? 320) + "k",] : ["-c:a", "copy"]),
