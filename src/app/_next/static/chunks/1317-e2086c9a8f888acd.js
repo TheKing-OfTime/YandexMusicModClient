@@ -3012,10 +3012,9 @@
                 return (0, A.o)(t, i);
               },
               getExperiment(i) {
-                var a;
                 let n = e.experiments.get(i),
                   l = t.getOverwrittenExperiments();
-                return l && null !== (a = l[i]) && void 0 !== a ? a : n;
+                return l?.[i] ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? n;
               },
               isExperimentEnabled(e) {
                 var i, a, n;
