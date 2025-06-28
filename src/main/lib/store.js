@@ -32,35 +32,7 @@ const config_js_1 = require("../config.js");
 const store = new electron_store_1.default();
 
 let defaultExperimentOverrides = {
-  WebNextTrackLyrics: "on",
-  WebNextEnableNewQuality: "prod",
-  WebNextEntityTrailer: "on",
-  WebNextWizard: "on",
-  WebNextTrailerAlbumFullQueueStart: "on",
-  WebNextEnableYnison: "on",
-  WebNextYaspCore: "on",
-  WebNextAllowContainerCodecs: "on",
-  WebNextCommunication: "default",
-  WebNextAllowExclamationIcon: "on",
-  WebNextBookSearch: "on",
-  WebNextEqualizer: "on",
-  WebNextLandingSkeletonPodcastsAndBooks: "on",
-  WebNextLegalRejectArtist: "on",
-  WebNextLegalRejectTrack: "on",
-  WebNextLegalUnsafeAlbum: "default",
-  WebNextLegalUnsafeArtist: "default",
-  WebNextLegalUnsafeClip: "default",
-  WebNextLegalUnsafeTrack: "default",
-  WebNextNewExplicitApi: "on",
-  WebNextNewExplicitApiModalFA: "on",
-  WebNextNewExplicitApiDescriptionText: "on",
-  WebNextPlayQueue: "on",
-  WebNextPlaylistFilters: "on",
-  WebNextRedAlert: "on",
-  WebNextSearchLanding: "on",
-  WebNextSwitchMainSkeletons: "on",
-  WebNextTrackAboutModal: "on",
-  WebNextTrackModal: "on",
+  WebNextPromoVeryBestRecommendations: 'off',
 };
 
 const useCachedValue = (key) => {
