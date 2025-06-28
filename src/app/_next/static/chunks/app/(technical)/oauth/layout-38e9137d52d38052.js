@@ -285,6 +285,12 @@
         kr: function () {
           return P.useSendPlayerState;
         },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
+        sendYnisonState: function () {
+          return sendYnisonState;
+        },
       });
       let t = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -299,6 +305,28 @@
             void 0 === n ||
             n.send(s.BOn.APPLICATION_READY, e);
         },
+        sendDownloadTrack = (e) => {
+          var n;
+          null === (n = window.desktopEvents) ||
+          void 0 === n ||
+          n.send(i.BOn.DOWNLOAD_TRACK, {
+            downloadURL: e.downloadURL,
+            codec: e.codec,
+            bitrate: e.bitrate,
+            trackId: e.trackId,
+            track: e.track,
+            transport: e.transport,
+            key: e.key,
+          });
+        },
+          sendYnisonState = (e) => {
+            var t;
+            null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(i.BOn.YNISON_STATE, {
+              rawData: e.rawData,
+            });
+          },
         i = (e) => {
           let n = e === s.Q2A.Light ? "#FFFFFF" : "#000000";
           window.desktopEvents.send(s.BOn.APPLICATION_THEME, n);
@@ -846,6 +874,11 @@
                 isPlaying: o,
                 canMoveBackward: t,
                 canMoveForward: s,
+                status: e.status,
+                track: e.track,
+                progress: e.progress,
+                availableActions: e.availableActions,
+                actionsStore: e.actionsStore,
               });
           });
         (0, t.useEffect)(() => {

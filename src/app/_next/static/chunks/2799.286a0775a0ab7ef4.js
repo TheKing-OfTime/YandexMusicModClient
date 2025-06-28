@@ -26,9 +26,9 @@
           return {
             client: "YandexMusicWeb/1.0",
             dev: {
-              panel: !0,
-              allowOverwriteExperiments: !0,
+              panel: window.IS_DEVTOOLS_ENABLED ?? !1,
               exposeSonataStateInWindow: !0,
+              allowOverwriteExperiments: !0,
             },
             logger: {
               uaDisabled: !!s.env.SERVER_UNIFIED_AGENT_DISABLED,

@@ -344,7 +344,7 @@
             T = (0, b.W)(() => {
               M(!0);
             }),
-            O = L.isPlaying && L.isVibeContext;
+            O = L.isPlaying && (L.isVibeContext || window?.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY());
           U(
             (0, b.W)(() => {
               null == _ || _.likeAnimation();
@@ -353,9 +353,9 @@
           let B = (0, b.W)(() => {
             if (!(null == R ? void 0 : R.analyser)) return;
             let [e, t, n] = R.analyser.getAverageFrequencies([
-              { low: 0, high: 250 },
-              { low: 500, high: 2e3 },
-              { low: 2e3, high: 4e3 },
+              { low: 0, high: 450 },
+              { low: 400, high: 5e3 },
+              { low: 5e3, high: 20e3 },
             ]);
             null == _ ||
               _.updateAudioFrequencies({

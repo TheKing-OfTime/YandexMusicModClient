@@ -252,6 +252,7 @@
                   {
                     [z().root_applicationPreserveTitleBar]: W || F,
                     [z().root_withBarBelow]: G.isVisible || q,
+                    ["modFeatures_alwaysWideBar"]: window.ALWAYS_WIDE_BAR?.(),
                   },
                   x,
                 ),

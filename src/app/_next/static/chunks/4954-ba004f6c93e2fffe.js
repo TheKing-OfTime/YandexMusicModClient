@@ -1965,7 +1965,7 @@
                       },
                       info: e,
                       volume_info: { volume: 0, version: null },
-                      is_shadow: !0,
+                      is_shadow: !(window?.ENABLE_YNISON_REMOTE_CONTROL ?? false),
                     },
                     is_currently_active: !1,
                     sync_state_from_eov_optional: null,

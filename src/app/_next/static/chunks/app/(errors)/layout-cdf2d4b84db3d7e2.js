@@ -286,6 +286,12 @@
         kr: function () {
           return P.useSendPlayerState;
         },
+        sendDownloadTrack: function () {
+          return sendDownloadTrack;
+        },
+        sendYnisonState: function () {
+          return sendYnisonState;
+        },
       });
       let t = () => {
         document.addEventListener("auxclick", (e) => e.preventDefault()),
@@ -300,6 +306,28 @@
             void 0 === n ||
             n.send(s.BOn.APPLICATION_READY, e);
         },
+        sendDownloadTrack = (e) => {
+          var n;
+          null === (n = window.desktopEvents) ||
+          void 0 === n ||
+          n.send(i.BOn.DOWNLOAD_TRACK, {
+            downloadURL: e.downloadURL,
+            codec: e.codec,
+            bitrate: e.bitrate,
+            trackId: e.trackId,
+            track: e.track,
+            transport: e.transport,
+            key: e.key,
+          });
+        },
+          sendYnisonState = (e) => {
+            var t;
+            null === (t = window.desktopEvents) ||
+            void 0 === t ||
+            t.send(i.BOn.YNISON_STATE, {
+              rawData: e.rawData,
+            });
+          },
         r = (e) => {
           let n = e === s.Q2A.Light ? "#FFFFFF" : "#000000";
           window.desktopEvents.send(s.BOn.APPLICATION_THEME, n);
@@ -476,81 +504,220 @@
         u = o(27723),
         h = o.n(u);
       let c = (e) => {
-          let { version: n, formatMessage: o, closeToast: i } = e,
-            u = (0, s.useCallback)(() => {
-              var e;
-              null === (e = window.desktopEvents) ||
-                void 0 === e ||
-                e.send(r.BOn.INSTALL_UPDATE),
-                null == i || i();
-            }, [i]),
-            c = (0, s.useMemo)(
-              () =>
-                (0, t.jsxs)("div", {
-                  className: h().message,
-                  children: [
-                    (0, t.jsx)(a.Caption, {
-                      className: h().text,
+        let { version: n, formatMessage: o, closeToast: i } = e,
+          u = (0, s.useCallback)(() => {
+            var e;
+            null === (e = window.desktopEvents) ||
+              void 0 === e ||
+              e.send(r.BOn.INSTALL_UPDATE),
+              null == i || i();
+          }, [i]),
+          c = (0, s.useMemo)(
+            () =>
+              (0, t.jsxs)("div", {
+                className: h().message,
+                children: [
+                  (0, t.jsx)(a.Caption, {
+                    className: h().text,
+                    variant: "div",
+                    type: "controls",
+                    size: "m",
+                    children: o(
+                      { id: "desktop.on-update-available" },
+                      { version: n },
+                    ),
+                  }),
+                  (0, t.jsx)(d.Button, {
+                    className: h().button,
+                    onClick: u,
+                    variant: "default",
+                    color: "secondary",
+                    size: "xs",
+                    radius: "xxxl",
+                    children: (0, t.jsx)(a.Caption, {
                       variant: "div",
                       type: "controls",
                       size: "m",
-                      children: o(
-                        { id: "desktop.on-update-available" },
-                        { version: n },
-                      ),
+                      children: o({ id: "desktop.update" }),
                     }),
-                    (0, t.jsx)(d.Button, {
-                      className: h().button,
-                      onClick: u,
-                      variant: "default",
-                      color: "secondary",
-                      size: "xs",
-                      radius: "xxxl",
-                      children: (0, t.jsx)(a.Caption, {
-                        variant: "div",
-                        type: "controls",
-                        size: "m",
-                        children: o({ id: "desktop.update" }),
-                      }),
+                  }),
+                ],
+              }),
+            [o, u, n],
+          );
+        return (0, t.jsx)(v.Yj, {
+          className: (0, l.W)(h().root, h().important),
+          message: c,
+        });
+      },
+      modUpdateToast = (e) => {
+        let { version: n, formatMessage: o, closeToast: i } = e,
+            [getProgress, setProgress] = (0, s.useState)(-1),
+            u = (0, s.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+              void 0 === e ||
+              e.send(r.BOn.APPLICATION_RESTART),
+              null == i || i();
+            }, [i]),
+            callInstallModUpdate = (0, s.useCallback)(() => {
+              var e;
+              null === (e = window.desktopEvents) ||
+              void 0 === e ||
+              e.send(r.BOn.INSTALL_MOD_UPDATE);
+            }, [i]),
+            formattedMessages = (progressValue) => {
+              let message = o({ id: "offline.download" });
+              if (progressValue < 0) {
+                message = o({ id: "offline.download" });
+              } else if (progressValue >= 0 && progressValue <= 100) {
+                message = "Скачивание…";
+              } else if (progressValue > 100) {
+                message = "Установить";
+              }
+              return message;
+            },
+            c = (0, s.useMemo)(
+                () =>
+                    (0, t.jsxs)("div", {
+                      className: h().message,
+                      children: [
+                        (0, t.jsx)(a.Caption, {
+                          className: h().text,
+                          variant: "div",
+                          type: "controls",
+                          size: "m",
+                          children: o(
+                              { id: "desktop.on-mod-update-available" },
+                              { version: n },
+                          ),
+                        }),
+                        (0, t.jsx)(d.Button, {
+                          className: h().button,
+                          onClick: getProgress <= 100 ? callInstallModUpdate : u,
+                          variant: "default",
+                          color: "secondary",
+                          size: "xs",
+                          radius: "xxxl",
+                          disabled: getProgress <= 100 && getProgress >= 0,
+                          children: (0, t.jsx)(a.Caption, {
+                            variant: "div",
+                            type: "controls",
+                            size: "m",
+                            children: formattedMessages(getProgress),
+                          }),
+                        }),
+                      ],
                     }),
-                  ],
-                }),
-              [o, u, n],
+                [o, u, n, getProgress],
+            ),
+            progressBarUpdate = (0, s.useCallback)(
+                (event, elementType, progress, dedupeTimestamp = 0) => {
+                  if (
+                      window.dedupeNonces &&
+                      window.dedupeNonces[elementType] === dedupeTimestamp
+                  )
+                    return;
+                  if (!window.dedupeNonces) window.dedupeNonces = {};
+                  if (dedupeTimestamp)
+                    window.dedupeNonces[elementType] = dedupeTimestamp;
+                  setProgress(progress);
+                },
+                [setProgress],
             );
-          return (0, t.jsx)(v.Yj, {
-            className: (0, l.W)(h().root, h().important),
-            message: c,
-          });
-        },
-        m = () => {
-          let { formatMessage: e } = (0, i.Z)(),
-            { notify: n } = (0, r.d$W)(),
-            o = (0, s.useRef)(""),
-            l = (0, s.useCallback)(
-              (s, i) => {
-                o.current !== i &&
-                  ((o.current = i),
-                  n((0, t.jsx)(c, { formatMessage: e, version: i }), {
-                    containerId: r.W$x.IMPORTANT,
-                  }));
+        return ((0, s.useEffect)(() => {
+          var e;
+          return (
+              null === (e = window.desktopEvents) ||
+              void 0 === e ||
+              e.on(r.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate),
+                  () => {
+                    var e;
+                    null === (e = window.desktopEvents) ||
+                    void 0 === e ||
+                    e.off(r.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate);
+                  }
+          );
+        }, [progressBarUpdate]),
+            (0, t.jsx)(v.Yj, {
+          className: (0, l.W)(h().root, h().important),
+          message: c,
+          children: [
+            (0, n.jsx)("div", {
+              className: "qaIScXjx1qyXuaIHXQIo",
+              style: {
+                overflow: "hidden",
+                "margin-left": "-16px",
+                "margin-top": "-6px",
+                position: "absolute",
+                width: (500 * getProgress) / 100 + "px",
+                height: "50px",
+                "background-color": "rgb(255 255 255)",
+                opacity: getProgress <= 100 ? 0.1 : 0,
+                "z-index": 1,
+                transition: "opacity 0.3s linear 0.5s",
               },
-              [e, o, n],
+            }),
+          ],
+        }));
+      },
+      m = () => {
+        let { formatMessage: e } = (0, i.Z)(),
+          { notify: n } = (0, r.d$W)(),
+          o = (0, s.useRef)(""),
+          l = (0, s.useCallback)(
+            (s, i) => {
+              o.current !== i &&
+                ((o.current = i),
+                n((0, t.jsx)(c, { formatMessage: e, version: i }), {
+                  containerId: r.W$x.IMPORTANT,
+                }));
+            },
+            [e, o, n],
+          ),
+            modUpdateCallback = (0, s.useCallback)(
+                (s, i, newVersion, dedupeTimestamp = 0) => {
+                  if (
+                      window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
+                  )
+                    return;
+                  if (dedupeTimestamp)
+
+                  n((0, t.jsx)(c, { formatMessage: e, version: `${i} -> ${newVersion}` }), {
+                        containerId: r.W$x.IMPORTANT,
+                  });
+                },
+                [e, o, n],
             );
-          (0, s.useEffect)(() => {
-            var e;
-            return (
+        (0, s.useEffect)(() => {
+          var e;
+          return (
+            null === (e = window.desktopEvents) ||
+              void 0 === e ||
+              e.on(r.BOn.UPDATE_AVAILABLE, l),
+            () => {
+              var e;
               null === (e = window.desktopEvents) ||
                 void 0 === e ||
-                e.on(r.BOn.UPDATE_AVAILABLE, l),
-              () => {
-                var e;
-                null === (e = window.desktopEvents) ||
+                e.off(r.BOn.UPDATE_AVAILABLE, l);
+            }
+          );
+        }, [l]),
+            (0, s.useEffect)(() => {
+              var e;
+              return (
+                  null === (e = window.desktopEvents) ||
                   void 0 === e ||
-                  e.off(r.BOn.UPDATE_AVAILABLE, l);
-              }
-            );
-          }, [l]);
-        };
+                  e.on(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+                      () => {
+                        var e;
+                        null === (e = window.desktopEvents) ||
+                        void 0 === e ||
+                        e.off(r.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+                      }
+              );
+            }, [modUpdateCallback]);
+      };
     },
     47334: function (e, n, o) {
       "use strict";
@@ -847,6 +1014,11 @@
                 isPlaying: o,
                 canMoveBackward: t,
                 canMoveForward: s,
+                status: e.status,
+                track: e.track,
+                progress: e.progress,
+                availableActions: e.availableActions,
+                actionsStore: e.actionsStore,
               });
           });
         (0, t.useEffect)(() => {

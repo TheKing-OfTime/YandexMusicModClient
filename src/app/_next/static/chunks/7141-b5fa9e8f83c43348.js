@@ -19114,6 +19114,7 @@
                     role: _ = "menuitem",
                     forwardRef: p,
                     isSubMenu: x,
+                    preventCloseOnClick: preventCloseOnClick,
                     isBlock: m,
                     className: v,
                     autoFocus: g,
@@ -19157,7 +19158,7 @@
                         null === (t = E.onClick) ||
                           void 0 === t ||
                           t.call(E, e),
-                          x || null == S || S.events.emit("click");
+                          preventCloseOnClick || x || null == S || S.events.emit("click");
                       },
                       onFocus(e) {
                         var t, r;
@@ -30451,7 +30452,7 @@
           this.invoke(u.UPDATE_LAYOUT, { isMobile: e });
         }
         enable() {
-          this.invoke(u.ENABLE);
+          this.invoke(window?.VIBE_ANIMATION_DISABLE_RENDERING() ? u.DISABLE : u.ENABLE);
         }
         disable() {
           this.invoke(u.DISABLE);
@@ -33564,7 +33565,13 @@
         (s.REFRESH_TRACKS_AVAILABILITY = "REFRESH_TRACKS_AVAILABILITY"),
         (s.REFRESH_REPOSITORY_META = "REFRESH_REPOSITORY_META"),
         (s.TRACKS_AVAILABILITY_UPDATED = "TRACKS_AVAILABILITY_UPDATED"),
-        (s.REPOSITORY_META_UPDATED = "REPOSITORY_META_UPDATED");
+        (s.REPOSITORY_META_UPDATED = "REPOSITORY_META_UPDATED"),
+        (s.DOWNLOAD_TRACK = "DOWNLOAD_TRACK"),
+        (s.MOD_UPDATE_AVAILABLE = "MOD_UPDATE_AVAILABLE"),
+        (s.INSTALL_MOD_UPDATE = "INSTALL_MOD_UPDATE"),
+        (s.PROGRESS_BAR_CHANGE = "PROGRESS_BAR_CHANGE"),
+        (s.APPLICATION_RESTART = "APPLICATION_RESTART"),
+        (s.YNISON_STATE = "YNISON_STATE");
     },
     57750: function (e, t, r) {
       "use strict";
@@ -37464,7 +37471,7 @@
             e = "uz0zSpaYCLmgk6C7YLdo5F";
             break;
           case n.t.LINUX:
-            e = "uVNvVMAvdrvjtwN0VlhEt2";
+            e = "kzqU4XhfCaY6B6JTHODeq5";
         }
         return e;
       }
@@ -39017,6 +39024,7 @@
           coverClassName: p,
           closeButton: x,
           withDefaultCloseButton: m = !0,
+          children: inhertChildren,
         } = e;
         return (0, n.jsxs)(c.Paper, {
           radius: "l",
@@ -39029,6 +39037,7 @@
               }),
               ...(0, i.BA)(i.r9.NOTIFICATION_TEXT),
               children: [
+                ...(inhertChildren ? inhertChildren : []),
                 (0, a.isValidElement)(u) &&
                   (0, n.jsx)(c.Paper, {
                     className: (0, s.W)(d().cover, p),

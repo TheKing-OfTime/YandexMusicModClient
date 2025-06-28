@@ -3411,7 +3411,7 @@
         }
         createAnalyzerNode(e) {
           let t = e.createAnalyser();
-          return (t.fftSize = 32), (t.smoothingTimeConstant = 0), t;
+          return (t.fftSize = 1024), (t.smoothingTimeConstant = 0.4), t;
         }
         initializeContext(e, t) {
           if (((this.audioElement = e), this.isAudioContextRequired)) {
@@ -6455,7 +6455,16 @@
             let t = e.diff.player_state.status;
             n.push(() => this.changeStatus(t));
           }
+          if (e?.devices?.[0]?.volume)
+            s.push(() => this.changeVolume(e?.devices?.[0]?.volume));
           return n.exec();
+        }
+        changeVolume(e) {
+          let t = Math.max(Math.min(e, 1), 0);
+          return (
+              Number.isNaN(a) ||
+              this.playback.setVolume(t).then(() => Promise.resolve())
+          );
         }
         changeOptions(e) {
           let t = at(e.repeat_mode);
@@ -6470,7 +6479,10 @@
         changeStatus(e) {
           let t = new ae(),
             a = Number(e.playback_speed),
-            i = Number(e.progress_ms) / 1e3;
+            i = Number(e.progress_ms) / 1e3,
+            isPaused = window?.ENABLE_YNISON_REMOTE_CONTROL
+                ? (e.paused ?? NaN)
+                : NaN;
           return (
             Number.isNaN(a) ||
               t.push(() =>
@@ -6479,7 +6491,8 @@
             Number.isNaN(i) ||
               t.push(() => {
                 if (
-                  this.playback.state.playerState.status.value === Z.FY.PLAYING
+                  this.playback.state.playerState.status.value === Z.FY.PLAYING ||
+                    this.playback.state.playerState.status.value === Z.FY.PAUSED
                 )
                   return this.playback
                     .setProgress(i)
@@ -6489,6 +6502,16 @@
                 } = this.playback.state.queueState;
                 return e && (e.entity.startPosition = i), Promise.resolve();
               }),
+            Number.isNaN(isPaused) ||
+            t.push(() => {
+              isPaused
+                  ? this.playback.state.playerState.status.value ===
+                  Z.FY.PLAYING &&
+                  this.playback.pause().then(() => Promise.resolve())
+                  : this.playback.state.playerState.status.value ===
+                  Z.FY.PAUSED &&
+                  this.playback.resume().then(() => Promise.resolve());
+            }),
             t.exec()
           );
         }
@@ -7065,8 +7088,9 @@
           });
           this.ynisonStateController.updateState({
             newState: e,
-            skipVersionCompare: !0,
-            skipDeviceActivityCheck: !0,
+            skipVersionCompare: !1,
+            skipDeviceActivityCheck: !1,
+            isSetNewState: !0,
             trigger: "YnisonPlugin",
           });
         }
@@ -8408,15 +8432,15 @@
               if (t) return;
               let e = () => {
                 let e = a.get(a2.YwV);
-                document.hidden ||
+                document.hidden || (
+                  e.connector.disconnect(),
                   e.connector.connect({
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
-                  }),
+                  })),
                   document.hidden &&
                     (null == i ? void 0 : i.state.playerState.status.value) !==
-                      Z.FY.PLAYING &&
-                    e.connector.disconnect();
+                      Z.FY.PLAYING;
               };
               return (
                 document.addEventListener("visibilitychange", e),
