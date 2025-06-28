@@ -33641,7 +33641,6 @@
       });
       var n = r(35785);
       let s = (e) => {
-        var t;
         let {
             config: r,
             containerStorage: s,
@@ -33650,9 +33649,9 @@
             experimentDetail: o,
           } = e,
           l = (0, n.o)(s, r);
-        if (!l) return (null == o ? void 0 : o.group) === i;
-        let c = null === (t = l[a]) || void 0 === t ? void 0 : t.group;
-        return c ? c === i : (null == o ? void 0 : o.group) === i;
+        if (!l) return o?.group === i;
+        let c = l?.[a]?.group;
+        return (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[t] ?? o?.group) === i;
       };
     },
     35785: function (e, t, r) {

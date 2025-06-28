@@ -390,7 +390,7 @@ async function buildNativeModules() {
 }
 
 async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false, noNativeModules = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
-    !noNativeModules && await buildNativeModules();
+    if (!noNativeModules) await buildNativeModules();
 
     if (!noMinify) {
     console.log("Минификация...");

@@ -178,10 +178,9 @@
                 return (0, f.o)(t, i);
               },
               getExperiment(i) {
-                var s;
                 let r = e.experiments.get(i),
                   l = t.getOverwrittenExperiments();
-                return l && null !== (s = l[i]) && void 0 !== s ? s : r;
+                return l?.[i] ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? r;
               },
               isExperimentEnabled(e) {
                 var i, s, r;
