@@ -1,0 +1,174 @@
+.WelcomePage_root__JK3Pb {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-l);
+  height: 100vh;
+  height: 100dvh;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+.WelcomePage_image__7_fpW,
+.WelcomePage_root__JK3Pb {
+  overflow: hidden;
+  width: 100%;
+}
+.WelcomePage_image__7_fpW {
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
+  z-index: -1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .WelcomePage_image__7_fpW {
+    transition: none;
+  }
+}
+.WelcomePage_loginButton__AJHcG {
+  min-width: 7.5rem;
+}
+.WelcomePage_loginButton__AJHcG:focus-visible
+  ~ .WelcomePage_secondBackground__55zFI,
+.WelcomePage_loginButton__AJHcG:hover ~ .WelcomePage_secondBackground__55zFI {
+  opacity: 1;
+}
+.WelcomePage_offerButton__MRs_g {
+  margin-block-start: var(--ym-spacer-size-l);
+}
+.WelcomePage_offerButton__MRs_g.WelcomePage_offerButton_important__0wf60 {
+  font-family: var(--ym-font-text);
+  font-size: var(--ym-font-size-label-l);
+  font-style: normal;
+  font-weight: var(--ym-font-weight-medium);
+  letter-spacing: var(--ym-letter-spacing-l);
+  line-height: var(--ym-font-line-height-label-l);
+  padding-inline-end: var(--ym-spacer-size-xxxl);
+  padding-inline-start: var(--ym-spacer-size-xxxl);
+}
+.WelcomePage_text__A4aXp {
+  color: var(--ym-controls-color-secondary-text-enabled_variant);
+}
+.WelcomePage_offerText__ZvXKN,
+.WelcomePage_text__A4aXp {
+  text-align: center;
+}
+.WelcomePage_offerText__ZvXKN {
+  color: var(--ym-controls-color-secondary-text-enabled);
+}
+.WelcomePage_logoContainer__72W3y {
+  inset-block-start: var(--ym-spacer-size-xl);
+  inset-inline-start: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+}
+.WelcomePage_logo__oMU8g {
+  color: var(--ym-logo-color-primary-variant);
+}
+.WelcomePage_user__WNc4W {
+  inset-block-end: var(--ym-spacer-size-xxxxl);
+  inset-inline-start: var(--ym-spacer-size-xxxxl);
+  position: fixed;
+}
+.WelcomePage_username__yXGsn.WelcomePage_important__MJxEk {
+  color: var(--ym-controls-color-secondary-text-enabled_variant);
+}
+.BlockPage_root__crGK_ {
+  align-items: center;
+  background:
+    radial-gradient(
+      circle farthest-corner at 50% 0,
+      rgba(221, 85, 255, 0.08) 0,
+      transparent 50%,
+      transparent 100%
+    ),
+    linear-gradient(
+      0deg,
+      hsla(0, 0%, 78%, 0.04) 0,
+      transparent 17%,
+      transparent 100%
+    ),
+    var(--ym-background-color-primary-enabled-content);
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  justify-content: center;
+  width: 100%;
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_root__crGK_ {
+    background:
+      linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 14%,
+        rgba(221, 85, 255, 0.06) 100%
+      ),
+      var(--ym-background-color-primary-enabled-content);
+  }
+}
+.BlockPage_container__my_l0 {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 66.25rem;
+  padding-inline-end: 2rem;
+  padding-inline-start: 2rem;
+  width: 100%;
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_container__my_l0 {
+    flex-direction: column-reverse;
+    margin-block-end: 4.6875rem;
+  }
+}
+.BlockPage_content__4nK4D {
+  display: block;
+  margin-inline-end: 0.9375rem;
+  margin-inline-start: 0.9375rem;
+  max-width: 25rem;
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_content__4nK4D {
+    margin-block-start: 4.0625rem;
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+  }
+}
+.BlockPage_title__sAejV {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_title__sAejV {
+    line-height: var(--ym-font-line-height-headline-l) !important;
+  }
+}
+.BlockPage_button__KoFZX {
+  margin-block-start: 3.125rem;
+  max-width: 17.5rem;
+  width: 100%;
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_button__KoFZX {
+    margin-block-start: 1.875rem;
+    max-width: none;
+  }
+}
+.BlockPage_image__C02Db {
+  background: 50%/100% auto no-repeat
+    url(/_next/static/media/logo.060eb96c.webp);
+  display: block;
+  height: 25rem;
+  margin-inline-end: 3.75rem;
+  margin-inline-start: 1.25rem;
+  max-width: 25rem;
+  width: 100%;
+}
+@media only screen and (max-width: 767.98px) {
+  .BlockPage_image__C02Db {
+    height: 10rem;
+    margin: 0;
+    max-width: 10rem;
+  }
+}

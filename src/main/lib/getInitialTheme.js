@@ -4,31 +4,34 @@ exports.getInitialTheme = void 0;
 const storage_js_1 = require("../types/storage.js");
 const theme_js_1 = require("../types/theme.js");
 const getLocalStorageTheme = () => {
-    const item = window.localStorage.getItem(storage_js_1.StorageKeys.Theme);
-    if (!item) {
-        return;
+  const item = window.localStorage.getItem(storage_js_1.StorageKeys.Theme);
+  if (!item) {
+    return null;
+  }
+  try {
+    const value = JSON.parse(item)?.value;
+    if (
+      value &&
+      typeof value === "string" &&
+      Object.values(theme_js_1.Theme).includes(value)
+    ) {
+      return value;
     }
-    try {
-        return JSON.parse(item)?.value;
-    }
-    catch {
-        return;
-    }
+  } catch {}
+  return null;
 };
-const getPreferredColorScheme = () => {
-    const media = window.matchMedia(`(prefers-color-scheme: ${theme_js_1.Theme.Light})`);
-    return media.matches ? theme_js_1.Theme.Light : theme_js_1.Theme.Dark;
+const getSystemTheme = () => {
+  const media = window.matchMedia(`(prefers-color-scheme: light)`);
+  return media.matches ? theme_js_1.Theme.Light : theme_js_1.Theme.Dark;
 };
 const getInitialTheme = () => {
-    const theme = getLocalStorageTheme();
-    switch (theme) {
-        case theme_js_1.Theme.Dark:
-        case theme_js_1.Theme.Light:
-            return theme;
-        case 'system':
-            return getPreferredColorScheme();
-        default:
-            return theme_js_1.Theme.Dark;
-    }
+  const theme = getLocalStorageTheme();
+  switch (theme) {
+    case theme_js_1.Theme.Dark:
+    case theme_js_1.Theme.Light:
+      return theme;
+    default:
+      return getSystemTheme();
+  }
 };
 exports.getInitialTheme = getInitialTheme;

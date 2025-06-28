@@ -1,0 +1,26 @@
+.HorizontalCardContainer_root__YoAAP {
+  --horizontal-card-fallback-height: 3.5rem;
+  align-items: center;
+  display: flex;
+  height: 3.5rem;
+  height: var(--horizontal-card-height, var(--horizontal-card-fallback-height));
+  overflow: hidden;
+  position: relative;
+  transition: background-color var(--ym-duration-transition);
+  width: 100%;
+}
+.HorizontalCardContainer_root__YoAAP:has(:focus-visible),
+.HorizontalCardContainer_root__YoAAP:hover {
+  background-color: var(--ym-surface-color-primary-enabled-list);
+}
+@supports not selector(:has(*)) {
+  .HorizontalCardContainer_root__YoAAP:focus-within,
+  .HorizontalCardContainer_root__YoAAP:hover {
+    background-color: var(--ym-surface-color-primary-enabled-list);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .HorizontalCardContainer_root__YoAAP {
+    transition: none;
+  }
+}

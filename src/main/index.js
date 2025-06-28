@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
-global.requireIfExists = (path) =>{
+global.requireIfExists = (path) => {
   try {
     return require(path);
   } catch (e) {
@@ -44,32 +44,67 @@ const consoleOverrideLogger = new Logger_js_1.Logger("ConsoleOverride");
 
 // Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
 function initSessionStoragePath() {
-  if ((store_js_1.getModFeatures()?.downloader.useCustomPathForSessionStorage ?? false) && fs.existsSync(store_js_1.getModFeatures()?.downloader.customPathForSessionStorage)) {
-    if (electron_1.app.getPath('sessionData') === store_js_1.getModFeatures().downloader.customPathForSessionStorage) return;
-    logger.log("Custom path for session storage requested:", store_js_1.getModFeatures()?.downloader.customPathForSessionStorage);
-    const previousSessionStoragePath = electron_1.app.getPath('sessionData');
-    electron_1.app.setPath("sessionData", path.join(store_js_1.getModFeatures()?.downloader.customPathForSessionStorage, electron_1.app.getName()));
-    fs.cpSync(previousSessionStoragePath, electron_1.app.getPath('sessionData'), {
-      recursive: true,
-      force: true,
-      preserveTimestamps: true,
-      filter: (src, destination) => {
-        return !['config.json', '.updaterId', 'logs'].some(el=>src.endsWith(el));
-      }
-    })
+  if (
+    (store_js_1.getModFeatures()?.downloader.useCustomPathForSessionStorage ??
+      false) &&
+    fs.existsSync(
+      store_js_1.getModFeatures()?.downloader.customPathForSessionStorage,
+    )
+  ) {
+    if (
+      electron_1.app.getPath("sessionData") ===
+      store_js_1.getModFeatures().downloader.customPathForSessionStorage
+    )
+      return;
+    logger.log(
+      "Custom path for session storage requested:",
+      store_js_1.getModFeatures()?.downloader.customPathForSessionStorage,
+    );
+    const previousSessionStoragePath = electron_1.app.getPath("sessionData");
+    electron_1.app.setPath(
+      "sessionData",
+      path.join(
+        store_js_1.getModFeatures()?.downloader.customPathForSessionStorage,
+        electron_1.app.getName(),
+      ),
+    );
+    fs.cpSync(
+      previousSessionStoragePath,
+      electron_1.app.getPath("sessionData"),
+      {
+        recursive: true,
+        force: true,
+        preserveTimestamps: true,
+        filter: (src, destination) => {
+          return !["config.json", ".updaterId", "logs"].some((el) =>
+            src.endsWith(el),
+          );
+        },
+      },
+    );
   } else {
-    if (electron_1.app.getPath('sessionData') === electron_1.app.getPath('userData')) return;
+    if (
+      electron_1.app.getPath("sessionData") ===
+      electron_1.app.getPath("userData")
+    )
+      return;
     logger.log("Default path for session storage requested");
-    const previousSessionStoragePath = electron_1.app.getPath('sessionData');
-    electron_1.app.setPath("sessionData", electron_1.app.getPath('userData'));
-    fs.cpSync(previousSessionStoragePath, electron_1.app.getPath('sessionData'), {
-      recursive: true,
-      force: true,
-      preserveTimestamps: true,
-      filter: (src, destination) => {
-        return !['config.json', '.updaterId', 'logs'].some(el=>src.endsWith(el));
-      }
-    })
+    const previousSessionStoragePath = electron_1.app.getPath("sessionData");
+    electron_1.app.setPath("sessionData", electron_1.app.getPath("userData"));
+    fs.cpSync(
+      previousSessionStoragePath,
+      electron_1.app.getPath("sessionData"),
+      {
+        recursive: true,
+        force: true,
+        preserveTimestamps: true,
+        filter: (src, destination) => {
+          return !["config.json", ".updaterId", "logs"].some((el) =>
+            src.endsWith(el),
+          );
+        },
+      },
+    );
   }
 }
 
@@ -152,7 +187,10 @@ initSessionStoragePath();
   modUpdater.onUpdateAvailable((currVersion, newVersion) => {
     (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
   });
-  if (store_js_1.getModFeatures()?.appAutoUpdates.enableModAutoUpdate && deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+  if (
+    store_js_1.getModFeatures()?.appAutoUpdates.enableModAutoUpdate &&
+    deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS
+  ) {
     modUpdater.start();
   }
 })();

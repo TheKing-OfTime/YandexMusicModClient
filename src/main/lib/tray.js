@@ -44,13 +44,13 @@ const createContextMenu = (window) => {
       },
     },
     {
-      label: 'Проверить обновления мода',
+      label: "Проверить обновления мода",
       click() {
         modUpdater.check();
       },
     },
     {
-      label: 'Переустановить мод',
+      label: "Переустановить мод",
       click() {
         modUpdater.check(true);
       },

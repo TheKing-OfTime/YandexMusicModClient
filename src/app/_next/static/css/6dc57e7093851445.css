@@ -1,0 +1,83 @@
+.Shimmer_root__NvUMY,
+.TextVolume_root__wxSaK {
+  height: var(--album-page-track-height);
+  padding-inline-start: var(--ym-spacer-size-xs);
+}
+.TextVolume_root__wxSaK {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-block-end: var(--ym-spacer-size-l);
+}
+.AlbumDonationMenu_popover__Fswfa {
+  max-width: 20rem;
+}
+@media only screen and (max-width: 767.98px) {
+  .AlbumDonationMenu_popover__Fswfa {
+    max-width: 100%;
+  }
+}
+.AlbumDonationMenuItem_root__Ajw_w {
+  align-items: center;
+  display: flex;
+  gap: var(--ym-spacer-size-xs);
+}
+.AlbumDonationMenuItem_cover__Gg8_a,
+.AlbumDonationMenuItem_image__AI5zU {
+  height: 100%;
+  width: 100%;
+}
+.AlbumDonationMenuItem_cover__Gg8_a {
+  flex-grow: 0;
+  max-height: var(--ym-spacer-size-xxl);
+  max-width: var(--ym-spacer-size-xxl);
+}
+.AlbumContent_carouselBlocks__bOsTV {
+  padding-block-start: var(--ym-spacer-size-s);
+}
+.AlbumContent_carouselBlocks__bOsTV:empty {
+  padding: 0;
+}
+.AlbumContent_carouselBlock__QhSlm {
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@supports (-moz-appearance: none) {
+  .AlbumContent_carouselBlock__QhSlm {
+    padding-inline-end: var(--ym-spacer-size-l);
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .AlbumContent_carouselBlock__QhSlm {
+    padding-inline-start: var(--ym-spacer-size-l);
+    scroll-padding-inline-start: var(--ym-spacer-size-l);
+  }
+}
+.AlbumContent_carouselBlockHeader__Liibv {
+  padding-block-end: var(--ym-spacer-size-l);
+  padding-block-start: var(--ym-spacer-size-m);
+}
+@media only screen and (max-width: 767.98px) {
+  .AlbumContent_carouselBlockHeader__Liibv {
+    padding-block-end: var(--ym-spacer-size-xs);
+    padding-block-start: var(--ym-spacer-size-l);
+  }
+}
+.AlbumContent_carouselContainer__Y1M_e:not(:last-child) {
+  margin-block-end: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+  .AlbumContent_carouselContainer__Y1M_e:not(:last-child) {
+    margin-block-end: var(--ym-spacer-size-l);
+  }
+}
+.AlbumContent_label__2jz4j {
+  padding-block-end: var(--ym-spacer-size-xxl);
+  padding-block-start: var(--ym-spacer-size-xxl);
+  padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+  .AlbumContent_label__2jz4j {
+    padding-inline-start: var(--ym-spacer-size-l);
+  }
+}

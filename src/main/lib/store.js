@@ -32,35 +32,35 @@ const config_js_1 = require("../config.js");
 const store = new electron_store_1.default();
 
 let defaultExperimentOverrides = {
-  WebNextTrackLyrics: 'on',
-  WebNextEnableNewQuality: 'prod',
-  WebNextEntityTrailer: 'on',
-  WebNextWizard: 'on',
-  WebNextTrailerAlbumFullQueueStart: 'on',
-  WebNextEnableYnison: 'on',
-  WebNextYaspCore: 'on',
-  WebNextAllowContainerCodecs: 'on',
-  WebNextCommunication: 'default',
-  WebNextAllowExclamationIcon: 'on',
-  WebNextBookSearch: 'on',
-  WebNextEqualizer: 'on',
-  WebNextLandingSkeletonPodcastsAndBooks: 'on',
-  WebNextLegalRejectArtist: 'on',
-  WebNextLegalRejectTrack: 'on',
-  WebNextLegalUnsafeAlbum: 'default',
-  WebNextLegalUnsafeArtist: 'default',
-  WebNextLegalUnsafeClip: 'default',
-  WebNextLegalUnsafeTrack: 'default',
-  WebNextNewExplicitApi: 'on',
-  WebNextNewExplicitApiModalFA: 'on',
-  WebNextNewExplicitApiDescriptionText: 'on',
-  WebNextPlayQueue: 'on',
-  WebNextPlaylistFilters: 'on',
-  WebNextRedAlert: 'on',
-  WebNextSearchLanding: 'on',
-  WebNextSwitchMainSkeletons: 'on',
-  WebNextTrackAboutModal: 'on',
-  WebNextTrackModal: 'on',
+  WebNextTrackLyrics: "on",
+  WebNextEnableNewQuality: "prod",
+  WebNextEntityTrailer: "on",
+  WebNextWizard: "on",
+  WebNextTrailerAlbumFullQueueStart: "on",
+  WebNextEnableYnison: "on",
+  WebNextYaspCore: "on",
+  WebNextAllowContainerCodecs: "on",
+  WebNextCommunication: "default",
+  WebNextAllowExclamationIcon: "on",
+  WebNextBookSearch: "on",
+  WebNextEqualizer: "on",
+  WebNextLandingSkeletonPodcastsAndBooks: "on",
+  WebNextLegalRejectArtist: "on",
+  WebNextLegalRejectTrack: "on",
+  WebNextLegalUnsafeAlbum: "default",
+  WebNextLegalUnsafeArtist: "default",
+  WebNextLegalUnsafeClip: "default",
+  WebNextLegalUnsafeTrack: "default",
+  WebNextNewExplicitApi: "on",
+  WebNextNewExplicitApiModalFA: "on",
+  WebNextNewExplicitApiDescriptionText: "on",
+  WebNextPlayQueue: "on",
+  WebNextPlaylistFilters: "on",
+  WebNextRedAlert: "on",
+  WebNextSearchLanding: "on",
+  WebNextSwitchMainSkeletons: "on",
+  WebNextTrackAboutModal: "on",
+  WebNextTrackModal: "on",
 };
 
 const useCachedValue = (key) => {
@@ -156,11 +156,11 @@ const init = () => {
       },
     },
     downloader: {
-        useDefaultPath: false,
-        defaultPath: '',
-        useMP3: false,
-        useCustomPathForSessionStorage: false,
-        customPathForSessionStorage: '',
+      useDefaultPath: false,
+      defaultPath: "",
+      useMP3: false,
+      useCustomPathForSessionStorage: false,
+      customPathForSessionStorage: "",
     },
     tryEnableSurroundAudio: false,
   });
@@ -170,17 +170,21 @@ const init = () => {
   initField(
     store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES,
     defaultExperimentOverrides,
-    true
+    true,
   );
 
   if (getModFeatures()?.scrobblers?.lastfm?.enable === undefined)
-    initField(`${store_js_1.StoreKeys.MOD_FEATURES}.scrobblers`, {
-      lastfm: {
-        enable: true,
-        fromYnison: false,
-        autoLike: false,
+    initField(
+      `${store_js_1.StoreKeys.MOD_FEATURES}.scrobblers`,
+      {
+        lastfm: {
+          enable: true,
+          fromYnison: false,
+          autoLike: false,
+        },
       },
-    }, true);
+      true,
+    );
 
   fetchDefaultExperimentOverrides().then((data) => {
     if (data)

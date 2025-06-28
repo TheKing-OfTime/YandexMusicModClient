@@ -1,0 +1,99 @@
+.ConcertDate_root__xnVG1 {
+  align-items: center;
+  background-color: var(--ym-controls-color-secondary-default-enabled);
+  border-radius: var(--ym-radius-size-m);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--ym-spacer-size-xxxs);
+}
+.ConcertDate_month__ti5Na {
+  text-transform: uppercase;
+}
+.ConcertDate_day__YibpP {
+  font-family: var(--ym-font-text);
+  font-size: var(--ym-font-size-headline-m);
+  font-style: normal;
+  font-weight: var(--ym-font-weight-bold);
+  letter-spacing: var(--ym-letter-spacing-m);
+  line-height: var(--ym-font-line-height-headline-m);
+}
+.ConcertDate_weekday__fBZXo {
+  color: var(--ym-controls-color-primary-text-enabled);
+  text-transform: uppercase;
+}
+.ConcertCard_root__fcR9B {
+  --date-cell-fallback-width: 3.75rem;
+  --action-button-width: 7.5rem;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--ym-spacer-size-m);
+  padding: var(--ym-radius-size-m);
+  transition: background-color var(--ym-duration-transition);
+  width: 100%;
+}
+.ConcertCard_root__fcR9B:has(:focus-visible),
+.ConcertCard_root__fcR9B:hover {
+  background-color: var(--ym-surface-color-primary-enabled-list);
+}
+@supports not selector(:has(*)) {
+  .ConcertCard_root__fcR9B:focus-within,
+  .ConcertCard_root__fcR9B:hover {
+    background-color: var(--ym-surface-color-primary-enabled-list);
+  }
+}
+.ConcertCard_root__fcR9B .ConcertCard_ripple__PW4xI {
+  animation: ConcertCard_ripple__PW4xI 0.6s linear;
+  background-color: var(--ym-controls-color-secondary-default-pressed);
+  border-radius: var(--ym-radius-size-round);
+  position: absolute;
+  transform: scale(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ConcertCard_root__fcR9B .ConcertCard_ripple__PW4xI {
+    animation: none;
+  }
+}
+@keyframes ConcertCard_ripple__PW4xI {
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .ConcertCard_root__fcR9B {
+    --action-button-width: 6.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ConcertCard_root__fcR9B {
+    transition: none;
+  }
+}
+.ConcertCard_date__ECoa3 {
+  height: auto;
+  height: var(--data-cell-height, auto);
+  width: var(--date-cell-width, var(--date-cell-fallback-width));
+}
+.ConcertCard_dateColor__muPRD {
+  color: var(--ym-controls-color-secondary-on_default-enabled);
+}
+.ConcertCard_button__GQxNL {
+  align-items: center;
+  -webkit-backdrop-filter: initial;
+  backdrop-filter: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block-end: var(--ym-spacer-size-m);
+  padding-block-start: var(--ym-spacer-size-m);
+  width: var(--action-button-width);
+}
+@media only screen and (max-width: 767.98px) {
+  .ConcertCard_button__GQxNL {
+    padding-block-end: var(--ym-spacer-size-m);
+    padding-block-start: var(--ym-spacer-size-m);
+  }
+}

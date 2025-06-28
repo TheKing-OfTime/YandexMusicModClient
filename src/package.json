@@ -36,7 +36,7 @@
     "BRANCH": "r16878045"
   },
   "common": {
-    "SHOW_RELEASE_NOTES": false,
+    "SHOW_RELEASE_NOTES": true,
     "REFRESH_EVENT_TRIGGER_TIME_MS": 600000,
     "UPDATE_POLL_INTERVAL_MS": 1800000,
     "UPDATE_URL": "https://music-desktop-application.s3.yandex.net/stable/",

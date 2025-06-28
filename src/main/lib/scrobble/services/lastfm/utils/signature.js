@@ -12,13 +12,14 @@ const crypto = require("crypto");
  * @returns MD5 hash signature
  */
 function generateSignature(params, sharedSecret) {
-    // Filter out format, callback, and api_sig parameters
-    const sortedParams = Array.from(params.entries())
-        .filter(([key]) => !["format", "callback", "api_sig"].includes(key))
-        .sort(([a], [b]) => a.localeCompare(b));
-    // Create signature string: <name><value> for each param + shared secret
-    const signatureString = sortedParams.map(([key, value]) => `${key}${value}`).join("") +
-        sharedSecret;
-    // Generate MD5 hash
-    return crypto.createHash("md5").update(signatureString).digest("hex");
+  // Filter out format, callback, and api_sig parameters
+  const sortedParams = Array.from(params.entries())
+    .filter(([key]) => !["format", "callback", "api_sig"].includes(key))
+    .sort(([a], [b]) => a.localeCompare(b));
+  // Create signature string: <name><value> for each param + shared secret
+  const signatureString =
+    sortedParams.map(([key, value]) => `${key}${value}`).join("") +
+    sharedSecret;
+  // Generate MD5 hash
+  return crypto.createHash("md5").update(signatureString).digest("hex");
 }

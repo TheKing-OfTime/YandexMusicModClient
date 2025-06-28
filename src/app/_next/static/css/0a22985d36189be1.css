@@ -1,0 +1,504 @@
+.PlaylistWithTracksEmpty_root__J_i2h {
+  align-items: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-block-end: var(--ym-spacer-size-l);
+  padding-block-start: var(--ym-spacer-size-l);
+}
+.PlaylistWithTracksEmpty_image__U2P1t {
+  height: 4.5rem;
+  margin-block-end: var(--ym-spacer-size-xl);
+  object-fit: fill;
+  width: 4.5rem;
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistWithTracksEmpty_image__U2P1t {
+    height: 8.75rem;
+    width: 8.75rem;
+  }
+}
+.PlaylistWithTracksEmpty_header___u3dc {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+  margin-block-end: var(--ym-spacer-size-m);
+  text-align: center;
+  width: 90%;
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistWithTracksEmpty_header___u3dc {
+    font-size: var(--ym-font-size-headline-xs);
+    line-height: var(--ym-font-line-height-headline-xs);
+  }
+}
+.PlaylistWithTracksEmpty_text__b8DQv {
+  color: var(--ym-controls-color-primary-text-enabled);
+  margin-block-end: var(--ym-spacer-size-l);
+  max-width: 23.125rem;
+  text-align: center;
+  width: 90%;
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistWithTracksEmpty_text__b8DQv {
+    font-size: var(--ym-font-size-label-l);
+    font-weight: var(--ym-font-weight-medium);
+    line-height: var(--ym-font-line-height-label-l);
+  }
+}
+.PlaylistWithTracksEmpty_myWaveButton__YJgY5 {
+  padding-inline-end: var(--ym-spacer-size-xxxl);
+  padding-inline-start: var(--ym-spacer-size-xxxl);
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistWithTracksEmpty_myWaveButtonText__wBPxS {
+    font-size: var(--ym-font-size-label-l);
+    line-height: var(--ym-font-line-height-label-l);
+  }
+}
+.PromotionsCard_root__1yY_m {
+  --new-promotions-zoom-duration: 150ms;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xs);
+}
+.PromotionsCard_image__4lmYk {
+  aspect-ratio: 1.5;
+  transition: transform var(--new-promotions-zoom-duration) ease-in-out;
+  width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .PromotionsCard_image__4lmYk {
+    transition: none;
+  }
+}
+@media (any-hover: hover) {
+  .PromotionsCard_card__fpUzx:hover .PromotionsCard_image__4lmYk {
+    transform: scale(1.02);
+  }
+}
+.PromotionsCard_titleLink__3q_M5 {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.PromotionsCard_titleLink__3q_M5:focus-visible,
+.PromotionsCard_titleLink__3q_M5:hover {
+  text-decoration: underline;
+}
+.PromotionsCard_subtitle__fGfn9 {
+  color: var(--ym-controls-color-primary-text-enabled);
+}
+.Promotions_root__Osgj2:hover .Promotions_controls__IEqvq {
+  opacity: 1;
+}
+.Promotions_item__ycc9P.Promotions_important__x_kQK {
+  max-width: 21.25rem;
+  min-width: 18.75rem;
+  width: 100%;
+}
+@media only screen and (min-width: 1240px) and (max-width: 1550px) {
+  .Promotions_item__ycc9P.Promotions_important__x_kQK {
+    max-width: none;
+    min-width: 0;
+    min-width: auto;
+    width: calc(33.33333% - var(--ym-spacer-size-l) * 2 / 3);
+  }
+}
+@media only screen and (min-width: 1550px) and (max-width: 1920px) {
+  .Promotions_item__ycc9P.Promotions_important__x_kQK {
+    max-width: none;
+    min-width: 0;
+    min-width: auto;
+    width: calc(25% - var(--ym-spacer-size-l) * 3 / 4);
+  }
+}
+.Promotions_item__ycc9P.Promotions_important__x_kQK {
+  max-width: 27.25rem;
+  min-width: 22.25rem;
+}
+@media only screen and (min-width: 1550px) and (max-width: 1920px) {
+  .Promotions_item__ycc9P.Promotions_important__x_kQK {
+    max-width: none;
+    min-width: 0;
+    min-width: auto;
+    width: calc(33.33333% - var(--ym-spacer-size-l) * 2 / 3);
+  }
+}
+.PromotionShimmer_root__Nb8vU {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xs);
+  width: 100%;
+}
+.PromotionShimmer_cover__WYwD7 {
+  aspect-ratio: 1.5;
+  width: 100%;
+}
+.PromotionShimmer_meta__9eRwi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xxxs);
+  width: 100%;
+}
+.PromotionShimmer_heading__38lLU {
+  max-width: 12.8125rem;
+}
+.PromotionShimmer_heading__38lLU,
+.PromotionShimmer_title__TLj1g {
+  height: 100%;
+  min-height: 1rem;
+  width: 100%;
+}
+.PromotionShimmer_title__TLj1g {
+  max-width: 6.25rem;
+}
+.PromotionShimmer_subtitle__LS5v_ {
+  height: 100%;
+  max-width: 14.6875rem;
+  min-height: 1rem;
+  width: 100%;
+}
+.SearchHistory_root__0z_bV {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.SearchHistory_fallback____oTN {
+  flex-grow: 1;
+  justify-content: center;
+  min-height: 50vh;
+  min-height: 50dvh;
+}
+.SearchHistory_button__LBJeT {
+  margin-block-start: var(--ym-spacer-size-l);
+}
+.Special_root__FOrBZ {
+  align-items: center;
+  background-color: var(--ym-background-color-primary-enabled-popover);
+  border-radius: var(--ym-radius-size-xl);
+  display: flex;
+  justify-content: space-between;
+  min-height: 12rem;
+  padding: var(--ym-spacer-size-xxl);
+  position: relative;
+}
+.Special_actions__XYuvB {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xxl);
+  width: 50%;
+  z-index: 1;
+}
+.Special_textContainer__pN_TF {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xxxs);
+  max-width: 100%;
+}
+.Special_textColor__dySbq {
+  color: var(
+    --text-color,
+    var(--ym-controls-color-primary-text-enabled_variant)
+  );
+}
+.Special_imageContainer__V1_E3 {
+  aspect-ratio: 1;
+  height: 110%;
+  inset-block-start: 50%;
+  inset-inline-end: 10%;
+  max-width: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+}
+@media only screen and (max-width: 1279.98px) {
+  .Special_imageContainer__V1_E3 {
+    inset-inline-end: 5%;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .Special_imageContainer__V1_E3 {
+    inset-inline-end: 0;
+  }
+}
+.Special_image__1sSXR {
+  height: 100%;
+  width: 100%;
+}
+.Special_button__j8gGH {
+  background-color: var(
+    --button-color,
+    var(--ym-controls-color-primary-default-enabled)
+  );
+  color: var(
+    --button-text-color,
+    var(--ym-controls-color-primary-on_default-enabled)
+  );
+  padding-block-end: var(--ym-spacer-size-m);
+  padding-block-start: var(--ym-spacer-size-m);
+  padding-inline-end: var(--ym-spacer-size-xxl);
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.Vibes_root__Bk6PF:hover .Vibes_controls__bUp2H {
+  opacity: 1;
+}
+.Vibes_header__RcW5b.Vibes_important__Vew_4 {
+  padding-block-end: var(--ym-spacer-size-xs);
+}
+.Vibes_tab__uOfqW.Vibes_important__Vew_4 {
+  flex-shrink: 0;
+  list-style-type: none;
+  scroll-snap-align: start;
+}
+.Vibes_tabShimmer__hjehH,
+.Vibes_tab__uOfqW.Vibes_important__Vew_4 {
+  height: 100%;
+  min-height: 2.75rem;
+}
+.Vibes_tabCarousel__bSvp0.Vibes_important__Vew_4 {
+  padding-block-end: var(--ym-spacer-size-l);
+}
+@media only screen and (max-width: 767.98px) {
+  .Vibes_tabCarousel__bSvp0.Vibes_important__Vew_4 {
+    padding-block-end: var(--ym-spacer-size-xs);
+  }
+}
+.Wizard_root__aW2c2 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 20.5rem;
+  margin-block-end: var(--ym-spacer-size-l);
+  margin-block-start: var(--ym-spacer-size-xxxxl);
+  text-align: center;
+}
+.Wizard_title__L8ktt {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.Wizard_description__RFf2U {
+  font-family: var(--ym-font-text);
+  font-size: var(--ym-font-size-label-l);
+  font-style: normal;
+  font-weight: var(--ym-font-weight-normal);
+  letter-spacing: var(--ym-letter-spacing-m);
+  line-height: var(--ym-font-size-headline-xs);
+  margin-block-start: var(--ym-spacer-size-m);
+  max-width: 27.5rem;
+  width: 85%;
+}
+.Wizard_button__lr8pa {
+  font-size: var(--ym-font-size-label-m);
+  margin-block-start: var(--ym-spacer-size-xxl);
+}
+.Wizard_buttonIcon__eOX3P {
+  color: var(--ym-controls-color-secondary-on_default-enabled_variant);
+}
+.Wizard_imagesWrapper__tyqWr {
+  height: 6.25rem;
+}
+.Wizard_images__5rxec {
+  display: flex;
+  height: 5rem;
+  margin-block-end: var(--ym-spacer-size-xxl);
+  width: 13rem;
+}
+.Wizard_paper__ijUgq {
+  border: 0.125rem solid var(--ym-background-color-primary-enabled-content);
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+.Wizard_paper__ijUgq:first-child {
+  z-index: 3;
+}
+.Wizard_paper__ijUgq:nth-child(2) {
+  inset-inline-start: -1rem;
+  z-index: 2;
+}
+.Wizard_paper__ijUgq:nth-child(3) {
+  inset-inline-start: -2rem;
+  z-index: 1;
+}
+.Wizard_image__k9AXl {
+  flex-shrink: 0;
+  height: 4.75rem;
+  width: 4.75rem;
+}
+.WizardTextShimmer_titleShimmer__g__ye {
+  height: var(--ym-font-line-height-headline-xs);
+  justify-content: center;
+  margin-block-end: var(--ym-spacer-size-m);
+}
+.WizardTextShimmer_titleTextShimmer__ThHNk {
+  max-width: 15rem;
+  width: 100%;
+}
+.WizardTextShimmer_textShimmer__QokKt {
+  max-width: 17.5rem;
+  width: 100%;
+}
+.WizardTextShimmer_descriptionShimmer__Z9daY {
+  height: var(--ym-font-size-headline-xs);
+  justify-content: center;
+}
+.WizardTextShimmer_descriptionShimmer__Z9daY:nth-child(2n)
+  .WizardTextShimmer_textShimmer__QokKt {
+  max-width: 20rem;
+}
+.ArtistPopularTracksAndReleases_root__rN5Wk {
+  container-name: popular-tracks-and-releases;
+  container-type: inline-size;
+}
+.ArtistPopularTracksAndReleases_container__EQIVk {
+  display: flex;
+  row-gap: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 1060px) {
+  .ArtistPopularTracksAndReleases_container__EQIVk {
+    flex-direction: column;
+  }
+}
+.ArtistPopularTracksAndReleases_popularTracks__HEZ73 {
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.ArtistPopularTracksAndReleases_popularTracks_withReleaseBlock__WwiJr {
+  max-width: 60%;
+}
+@media only screen and (max-width: 1059.98px) {
+  .ArtistPopularTracksAndReleases_popularTracks_withReleaseBlock__WwiJr {
+    max-width: 100%;
+    order: 2;
+  }
+}
+.ArtistPopularTracksAndReleases_release__9NDdR {
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 40%;
+}
+@media only screen and (max-width: 1059.98px) {
+  .ArtistPopularTracksAndReleases_release__9NDdR {
+    max-width: 100%;
+  }
+}
+.ArtistPopularTracksAndReleases_releaseCard__uHtao {
+  --last-release-card-width: 14.375rem;
+  max-width: 14.375rem;
+  max-width: var(--last-release-card-width);
+  width: 14.375rem;
+  width: var(--last-release-card-width);
+}
+@media only screen and (max-width: 1059.98px) {
+  .ArtistPopularTracksAndReleases_releaseCard__uHtao {
+    order: 1;
+  }
+}
+@container popular-tracks-and-releases (width < 600px) {
+  .ArtistPopularTracksAndReleases_container__EQIVk {
+    flex-direction: column;
+  }
+  .ArtistPopularTracksAndReleases_popularTracks__HEZ73 {
+    max-width: 100%;
+    order: 2;
+  }
+  .ArtistPopularTracksAndReleases_popularTracks_withReleaseBlock__WwiJr {
+    max-width: 100%;
+  }
+  .ArtistPopularTracksAndReleases_release__9NDdR {
+    order: 1;
+  }
+}
+.FamiliarYouAndArtistPick_root___Ihxe {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media only screen and (max-width: 1060px) {
+  .FamiliarYouAndArtistPick_root___Ihxe {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.Skeleton_root__ANDaF,
+.Skeleton_upperBlocks__zI__5 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xxl);
+  position: relative;
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+  .Skeleton_root__ANDaF,
+  .Skeleton_upperBlocks__zI__5 {
+    gap: var(--ym-spacer-size-l);
+  }
+}
+.Skeleton_root__ANDaF {
+  flex-grow: 1;
+}
+.Skeleton_upperBlocks__zI__5 {
+  padding-block-end: var(--ym-spacer-size-xxl);
+}
+.Skeleton_tab__Jn6By {
+  flex-shrink: 0;
+  height: 100%;
+  list-style-type: none;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  scroll-snap-align: start;
+}
+.Skeleton_tabPanel__Ke42U {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.Skeleton_tabCarousel__E2kLf.Skeleton_important__ob12_ {
+  margin: 0;
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@supports (-moz-appearance: none) {
+  .Skeleton_tabCarousel__E2kLf.Skeleton_important__ob12_ {
+    padding-inline-end: var(--ym-spacer-size-l);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .Skeleton_tabCarousel__E2kLf.Skeleton_important__ob12_ {
+    padding-inline-start: var(--ym-spacer-size-l);
+    scroll-padding-inline-start: var(--ym-spacer-size-l);
+  }
+}
+.Skeleton_header__Ir5f4 {
+  margin-block-end: var(--ym-spacer-size-l);
+}
+.Skeleton_stickyTabs__I_uuk {
+  padding-inline-start: 0;
+}
+.NotificationReloadBlocks_root__QZlC9.NotificationReloadBlocks_important__E7f44 {
+  padding: var(--ym-spacer-size-xxs);
+  padding-inline-start: var(--ym-spacer-size-l);
+}
+.NotificationReloadBlocks_text__aIYzg {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.NotificationReloadBlocks_icon__amJhM {
+  color: var(--ym-controls-color-primary-text-enabled);
+}
+.NotificationReloadBlocks_button__fyg7T {
+  flex-shrink: 0;
+}
+.NotificationReloadBlocks_button__fyg7T:focus-visible
+  .NotificationReloadBlocks_icon__amJhM,
+.NotificationReloadBlocks_button__fyg7T:hover
+  .NotificationReloadBlocks_icon__amJhM {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.NotificationReloadBlocks_message__d66cG {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.VirtualizedSkeletonBlock_root__njUFa {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  position: absolute;
+  width: 100%;
+}

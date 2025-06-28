@@ -1,0 +1,84 @@
+.Offline_root__IxjsY {
+  height: 100%;
+  justify-content: center;
+}
+.Offline_container__2V5Vo,
+.Offline_root__IxjsY {
+  display: flex;
+  flex-direction: column;
+}
+.Offline_container__2V5Vo {
+  align-items: center;
+  gap: var(--ym-spacer-size-l);
+}
+.Offline_icon__jDmpJ,
+.Offline_title__Y2CtW {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.Offline_text__Nhult,
+.Offline_title__Y2CtW {
+  text-align: center;
+}
+.Offline_buttons__ZOFI7 {
+  display: flex;
+  gap: var(--ym-spacer-size-l);
+}
+.Offline_button__QSA_j {
+  min-width: 12.5rem;
+}
+.PlaylistFiltersShimmer_root__dFSKz {
+  gap: var(--ym-spacer-size-xs);
+  margin-block-end: var(--ym-spacer-size-xxxl);
+  margin-block-start: var(--ym-spacer-size-xxxxl);
+  padding-inline-end: var(--ym-spacer-size-xxl);
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 1024px) {
+  .PlaylistFiltersShimmer_root__dFSKz {
+    padding-inline-end: var(--ym-spacer-size-m);
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistFiltersShimmer_root__dFSKz {
+    padding-inline-start: var(--ym-spacer-size-l);
+    scroll-padding-inline-start: var(--ym-spacer-size-l);
+  }
+}
+.PlaylistFiltersShimmer_shimmer__7myrt {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 2.5rem;
+}
+.PlaylistFilters_carousel__AfoU1 {
+  gap: var(--ym-spacer-size-xs);
+  padding-inline-end: var(--ym-spacer-size-l);
+  scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+}
+.PlaylistFilters_carousel_noSmooth__cPLaQ {
+  scroll-behavior: auto;
+}
+@media only screen and (max-width: 1024px) {
+  .PlaylistFilters_carousel__AfoU1 {
+    padding-inline-end: var(--ym-spacer-size-m);
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .PlaylistFilters_carousel__AfoU1 {
+    padding-inline-end: var(--ym-spacer-size-xl);
+    padding-inline-start: var(--ym-spacer-size-l);
+    scroll-padding-inline-start: var(--ym-spacer-size-l);
+  }
+}
+.PlaylistFilters_filter__s_myh {
+  background-color: var(--ym-controls-color-primary-outline-enabled);
+  border: 0.125rem solid var(--ym-controls-color-primary-outline-enabled);
+  border-radius: var(--ym-radius-size-xxxl);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 100%;
+  max-width: 12.5rem;
+}
+.PlaylistFilters_filter_selected__y3GuB {
+  border-color: var(--ym-controls-color-primary-outline-selected_stroke);
+}

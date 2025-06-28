@@ -231,7 +231,7 @@ function parse (uri, opts) {
         isIP = true
       }
     }
-    if (parsed.scheme === undefined && parsed.userinfo === undefined && parsed.host === undefined && parsed.port === undefined && !parsed.path && parsed.query === undefined) {
+    if (parsed.scheme === undefined && parsed.userinfo === undefined && parsed.host === undefined && parsed.port === undefined && parsed.query === undefined && !parsed.path) {
       parsed.reference = 'same-document'
     } else if (parsed.scheme === undefined) {
       parsed.reference = 'relative'
@@ -270,10 +270,10 @@ function parse (uri, opts) {
       if (gotEncoding && parsed.host !== undefined) {
         parsed.host = unescape(parsed.host)
       }
-      if (parsed.path && parsed.path.length) {
+      if (parsed.path) {
         parsed.path = escape(unescape(parsed.path))
       }
-      if (parsed.fragment && parsed.fragment.length) {
+      if (parsed.fragment) {
         parsed.fragment = encodeURI(decodeURIComponent(parsed.fragment))
       }
     }

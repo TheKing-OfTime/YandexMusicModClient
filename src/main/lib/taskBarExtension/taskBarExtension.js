@@ -9,16 +9,18 @@ const playerActions_js_1 = require("../../types/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
-const native = requireIfExists('./native_modules/set_iconic_thumbnail');
+const native = requireIfExists("./native_modules/set_iconic_thumbnail");
 if (!native) {
-    taskBarExtensionLogger.warn("Native module for thumbnails is not available. Thumbnail won't work.");
-};
+  taskBarExtensionLogger.warn(
+    "Native module for thumbnails is not available. Thumbnail won't work.",
+  );
+}
 
 const settings = store_js_1.getModFeatures()?.taskBarExtensions;
 let playerState;
 let assets = { dark: {}, light: {} };
 let systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
-let initiated = false
+let initiated = false;
 
 const taskBarExtension = (window) => {
   initiated = true;
@@ -33,7 +35,7 @@ const taskBarExtension = (window) => {
 exports.taskBarExtension = taskBarExtension;
 
 const onPlayerStateChange = (window, newPlayerState) => {
-  if(!initiated) return;
+  if (!initiated) return;
 
   if (!(settings?.enable ?? true)) return;
   if (typeof newPlayerState !== "undefined") {
@@ -118,36 +120,37 @@ const getArtist = () => {
 };
 
 const setIconicThumbnail = async (window, playerState) => {
-    if (!playerState?.track?.coverUri) {
-        return;
-    }
+  if (!playerState?.track?.coverUri) {
+    return;
+  }
 
-    const coverUrl = `https://${playerState.track.coverUri}`.replace("%%", "100x100");
-    try {
-        taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
-        const coverImage = await fetch(coverUrl);
-        const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
-        const result = native.setIconicThumbnail(
-          window.getNativeWindowHandle(),
-          imageBuffer,
-        );
-        taskBarExtensionLogger.log("Thumbnail set result:", result);
-    } catch (error) {
-        taskBarExtensionLogger.error("Error setting thumbnail:", error);
-    }
-}
+  const coverUrl = `https://${playerState.track.coverUri}`.replace(
+    "%%",
+    "100x100",
+  );
+  try {
+    taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
+    const coverImage = await fetch(coverUrl);
+    const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
+    const result = native.setIconicThumbnail(
+      window.getNativeWindowHandle(),
+      imageBuffer,
+    );
+    taskBarExtensionLogger.log("Thumbnail set result:", result);
+  } catch (error) {
+    taskBarExtensionLogger.error("Error setting thumbnail:", error);
+  }
+};
 
 const clearIconicThumbnail = async (window) => {
-    try {
-        taskBarExtensionLogger.log("Clearing thumbnail");
-        const result = native.clearIconicThumbnail(
-          window.getNativeWindowHandle(),
-        );
-        taskBarExtensionLogger.log("Thumbnail cleared result:", result);
-    } catch (error) {
-      taskBarExtensionLogger.error("Error setting thumbnail:", error);
-    }
-}
+  try {
+    taskBarExtensionLogger.log("Clearing thumbnail");
+    const result = native.clearIconicThumbnail(window.getNativeWindowHandle());
+    taskBarExtensionLogger.log("Thumbnail cleared result:", result);
+  } catch (error) {
+    taskBarExtensionLogger.error("Error setting thumbnail:", error);
+  }
+};
 
 const updateTaskbarExtension = (window) => {
   const availability = getActionsAvailabilityObject(
@@ -260,7 +263,10 @@ const updateTaskbarExtension = (window) => {
       //flags: availability.nextUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Like toggled");
-        events_js_1.sendPlayerAction(window, playerActions_js_1.PlayerActions.TOGGLE_REPEAT);
+        events_js_1.sendPlayerAction(
+          window,
+          playerActions_js_1.PlayerActions.TOGGLE_REPEAT,
+        );
       },
     },
   ];
@@ -276,7 +282,9 @@ const updateTaskbarExtension = (window) => {
   window.setThumbnailToolTip(getTooltipString());
 
   if ((settings?.coverAsThumbnail ?? true) && native) {
-    playerState.isPaused ? clearIconicThumbnail(window) : setIconicThumbnail(window, playerState);
+    playerState.isPaused
+      ? clearIconicThumbnail(window)
+      : setIconicThumbnail(window, playerState);
   }
 
   taskBarExtensionLogger.log(

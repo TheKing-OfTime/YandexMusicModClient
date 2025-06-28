@@ -1,0 +1,72 @@
+.DownloadMobileApp_root__RU7VS {
+  --text-color: #ffffffe5;
+  background-image: url(https://avatars.mds.yandex.net/get-music-misc/49997/img.679b35ca1d4523452ebb5aa8/orig);
+  background-image: -webkit-image-set(
+    url("https://avatars.mds.yandex.net/get-music-misc/49997/img.679b35ca1d4523452ebb5aa8/orig")
+      1x,
+    url("https://avatars.mds.yandex.net/get-music-misc/49997/img.679b35b664246e1af82a1bd2/orig")
+      2x
+  );
+  background-image: image-set(
+    url("https://avatars.mds.yandex.net/get-music-misc/49997/img.679b35ca1d4523452ebb5aa8/orig")
+      1x,
+    url("https://avatars.mds.yandex.net/get-music-misc/49997/img.679b35b664246e1af82a1bd2/orig")
+      2x
+  );
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xxxl);
+  height: 100%;
+  justify-content: flex-end;
+  padding-block-end: var(--ym-spacer-size-xxl);
+  padding-block-start: var(--ym-spacer-size-xxxl);
+  padding-inline-end: var(--ym-spacer-size-xxl);
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  position: relative;
+  width: 100%;
+}
+.DownloadMobileApp_closeButton__t38Rw {
+  inset-block-start: var(--ym-spacer-size-xl);
+  inset-inline-end: var(--ym-spacer-size-xl);
+  position: absolute;
+}
+.DownloadMobileApp_text__bCbs3 {
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-l);
+  text-align: center;
+}
+.DownloadMobileApp_subtitle__vPtiS {
+  font-size: var(--ym-font-size-headline-xs);
+  line-height: var(--ym-font-line-height-headline-l);
+}
+.DownloadMobileApp_buttons__mL4w1 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ym-spacer-size-xs);
+}
+.DownloadMobileApp_listenInAppLink__flOyk {
+  border-radius: var(--ym-radius-size-xxl);
+}
+.DownloadMobileApp_button__r0E7Z {
+  height: var(--ym-spacer-size-xxxxxl);
+  padding-inline-end: var(--ym-spacer-size-xxxl);
+  padding-inline-start: var(--ym-spacer-size-xxxl);
+}
+.DownloadMobileApp_stayButton__k3Ot8 {
+  color: var(--ym-controls-color-plus-on_default-enabled);
+}
+.DownloadMobileAppModal_root__nD7fo {
+  border: none;
+}
+@media only screen and (max-width: 767.98px) {
+  .DownloadMobileAppModal_root__nD7fo {
+    position: fixed;
+  }
+}
+.DownloadMobileAppModal_content__4ZW2F {
+  height: 100%;
+}

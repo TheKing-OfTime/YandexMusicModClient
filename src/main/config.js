@@ -2,7 +2,7 @@
 var __importDefault =
   (this && this.__importDefault) ||
   function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyCommonConfig = exports.config = void 0;
@@ -27,13 +27,13 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-      version: "1.27.14",
-      realYMVersion: "5.37.1",
-      lastfm: {
-          apikey: "2b9046ddec8c00edcd0144b3abbea4ba",
-          sharedSecret: "b36604de5a2cb86870c1caefa307c373",
-          baseUrl: "https://ws.audioscrobbler.com/2.0/",
-      },
+    version: "1.28.0",
+    realYMVersion: "5.57.0",
+    lastfm: {
+      apikey: "2b9046ddec8c00edcd0144b3abbea4ba",
+      sharedSecret: "b36604de5a2cb86870c1caefa307c373",
+      baseUrl: "https://ws.audioscrobbler.com/2.0/",
+    },
   },
 };
 const applyCommonConfig = (commonConfig) => {

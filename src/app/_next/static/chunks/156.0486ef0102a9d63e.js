@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[156],{70156:function(n,e,t){t.d(e,{s:function(){return _}});var u=t(21535);let _=n=>{if(u.env.NEXT_PUBLIC_USE_BFF){var e;let n=null!==(e=u.env.NEXT_PUBLIC_BFF_HOST)&&void 0!==e?e:"";return"".concat(n,"/api")}return n}}}]);

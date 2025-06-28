@@ -1,0 +1,102 @@
+.PostPlaylists_root__3tea0 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+.PostPlaylists_content__2fXI5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-block-end: var(--ym-spacer-size-xl);
+  padding-inline-end: var(--ym-spacer-size-s);
+  padding-inline-start: var(--ym-spacer-size-xxl);
+  grid-gap: var(--ym-spacer-size-m);
+  gap: var(--ym-spacer-size-m);
+}
+@supports (-moz-appearance: none) {
+  .PostPlaylists_content__2fXI5 {
+    padding-inline-end: var(--ym-spacer-size-xxl);
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .PostPlaylists_content__2fXI5 {
+    padding-inline-start: var(--ym-spacer-size-l);
+  }
+  @supports (-moz-appearance: none) {
+    .PostPlaylists_content__2fXI5 {
+      padding-inline-end: var(--ym-spacer-size-l);
+    }
+  }
+}
+@media only screen and (min-width: 360px) {
+  .PostPlaylists_content__2fXI5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .PostPlaylists_content__2fXI5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .PostPlaylists_content__2fXI5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 890px) {
+  .PostPlaylists_content__2fXI5 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (min-width: 960px) {
+  .PostPlaylists_content__2fXI5 {
+    gap: calc(var(--ym-spacer-size-m) * 2);
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1920px) {
+  .PostPlaylists_content__2fXI5 {
+    --min-column-size: 10.75rem;
+    grid-template-columns: repeat(2, minmax(10.75rem, 1fr)) !important;
+    grid-template-columns: repeat(
+      2,
+      minmax(var(--min-column-size), 1fr)
+    ) !important;
+  }
+  @container post-page (width >= 618px) {
+    .PostPlaylists_content__2fXI5 {
+      grid-template-columns: repeat(
+        3,
+        minmax(var(--min-column-size), 1fr)
+      ) !important;
+    }
+  }
+  @container post-page (width >= 815px) {
+    .PostPlaylists_content__2fXI5 {
+      grid-template-columns: repeat(
+        4,
+        minmax(var(--min-column-size), 1fr)
+      ) !important;
+    }
+  }
+  @container post-page (width >= 1010px) {
+    .PostPlaylists_content__2fXI5 {
+      grid-template-columns: repeat(
+        5,
+        minmax(var(--min-column-size), 1fr)
+      ) !important;
+    }
+  }
+  @container post-page (width >= 1206px) {
+    .PostPlaylists_content__2fXI5 {
+      grid-template-columns: repeat(
+        6,
+        minmax(var(--min-column-size), 1fr)
+      ) !important;
+    }
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .PostPlaylists_content__2fXI5 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}

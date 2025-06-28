@@ -1,0 +1,78 @@
+.VideoAd_root__e7gla {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: none;
+  border: none;
+  border-radius: var(--ym-radius-size-xxl);
+  overflow: visible;
+  visibility: visible;
+  width: 33.75rem;
+}
+.VideoAd_root_hidden__78CPl {
+  visibility: hidden;
+}
+@media only screen and (max-width: 767.98px) {
+  .VideoAd_root__e7gla {
+    position: fixed;
+    width: 19.375rem;
+  }
+}
+@supports (-webkit-hyphens: none) {
+  .VideoAd_root__e7gla {
+    inset-block-start: 30%;
+  }
+}
+.VideoAd_videoBlock__bqNRq {
+  border-start-end-radius: var(--ym-radius-size-xxl);
+  border-start-start-radius: var(--ym-radius-size-xxl);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.VideoAd_video__j1f_y {
+  width: 33.75rem;
+}
+@media only screen and (max-width: 767.98px) {
+  .VideoAd_video__j1f_y {
+    width: 19.375rem;
+  }
+}
+.VideoAd_content__QroDp {
+  position: relative;
+}
+.VideoAd_close__sMGlV {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: var(--ym-background-color-primary-enabled-content);
+  inset-inline-end: calc(var(--ym-spacer-size-xxxxxl) * -1);
+  position: absolute;
+}
+.VideoAd_close__sMGlV:focus-visible,
+.VideoAd_close__sMGlV:hover {
+  background-color: var(--ym-controls-color-secondary-outline-enabled_stroke);
+  color: var(--ym-controls-color-secondary-on_default-hovered);
+}
+@media only screen and (max-width: 767.98px) {
+  .VideoAd_close__sMGlV {
+    inset-inline-end: calc(var(--ym-spacer-size-xxxxl) * -1);
+  }
+}
+@media only screen and (max-width: 479.98px) {
+  .VideoAd_close__sMGlV {
+    inset-inline-end: -2.25rem;
+  }
+}
+.VideoAd_notifyClose__w82mE {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.VideoAd_cover__kQwxh.VideoAd_important__VZkA_ {
+  background-color: transparent;
+}
+.VideoAd_icon__o_Hzn {
+  height: var(--ym-icon-size-xs);
+  width: var(--ym-icon-size-xs);
+}
+.VideoAd_text__rjKqZ {
+  color: var(--ym-controls-color-primary-text-enabled);
+}
