@@ -2967,9 +2967,7 @@
             eb =
               h.checkExperiment(P.peG.WebNextEnableDownloadControls, "on") &&
               B.hasPlus &&
-              !v &&
-              o.isFavouritePlaylist &&
-              o.isOwnPlaylist,
+              !v,
             eC = (0, s.useMemo)(
               () =>
                 (0, r.jsxs)("div", {
