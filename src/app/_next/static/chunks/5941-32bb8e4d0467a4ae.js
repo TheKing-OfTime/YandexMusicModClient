@@ -770,6 +770,118 @@
             message: v,
           });
         },
+          modUpdateToast = (e) => {
+            let { version: t, formatMessage: n, closeToast: s } = e,
+                [getProgress, setProgress] = (0, a.useState)(-1),
+                d = (0, a.useCallback)(() => {
+                  var e;
+                  null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.send(i.BOn.APPLICATION_RESTART),
+                  null == s || s();
+                }, [s]),
+                callInstallModUpdate = (0, a.useCallback)(() => {
+                  var e;
+                  null === (e = window.desktopEvents) ||
+                  void 0 === e ||
+                  e.send(i.BOn.INSTALL_MOD_UPDATE);
+                }, [s]),
+                formattedMessages = (progressValue) => {
+                  let message = n({ id: "offline.download" });
+                  if (progressValue < 0) {
+                    message = n({ id: "offline.download" });
+                  } else if (progressValue >= 0 && progressValue <= 100) {
+                    message = "Скачивание…";
+                  } else if (progressValue > 100) {
+                    message = "Установить";
+                  }
+                  return message;
+                },
+                v = (0, a.useMemo)(
+                    () =>
+                        (0, o.jsxs)("div", {
+                          className: _().message,
+                          children: [
+                            (0, o.jsx)(c.Caption, {
+                              className: _().text,
+                              variant: "div",
+                              type: "controls",
+                              size: "m",
+                              children: n(
+                                  { id: "desktop.on-mod-update-available" },
+                                  { version: t },
+                              ),
+                            }),
+                            (0, o.jsx)(r.Button, {
+                              className: _().button,
+                              onClick: getProgress <= 100 ? callInstallModUpdate : d,
+                              variant: "default",
+                              color: "secondary",
+                              size: "xs",
+                              radius: "xxxl",
+                              disabled: getProgress <= 100 && getProgress >= 0,
+                              children: (0, o.jsx)(c.Caption, {
+                                variant: "div",
+                                type: "controls",
+                                size: "m",
+                                children: formattedMessages(getProgress),
+                              }),
+                            }),
+                          ],
+                        }),
+                    [n, d, t, getProgress],
+                ),
+                progressBarUpdate = (0, a.useCallback)(
+                    (event, elementType, progress, dedupeTimestamp = 0) => {
+                      if (
+                          window.dedupeNonces &&
+                          window.dedupeNonces[elementType] === dedupeTimestamp
+                      )
+                        return;
+                      if (!window.dedupeNonces) window.dedupeNonces = {};
+                      if (dedupeTimestamp)
+                        window.dedupeNonces[elementType] = dedupeTimestamp;
+                      setProgress(progress);
+                    },
+                    [setProgress],
+                );
+            return (
+                (0, a.useEffect)(() => {
+                  var e;
+                  return (
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.on(i.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate),
+                          () => {
+                            var e;
+                            null === (e = window.desktopEvents) ||
+                            void 0 === e ||
+                            e.off(i.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate);
+                          }
+                  );
+                }, [progressBarUpdate]),
+                (0, o.jsx)(u.Yj, {
+              className: (0, l.W)(_().root, _().important),
+              message: v,
+                  children: [
+                    (0, o.jsx)("div", {
+                      className: "qaIScXjx1qyXuaIHXQIo",
+                      style: {
+                        overflow: "hidden",
+                        "margin-left": "-16px",
+                        "margin-top": "-6px",
+                        position: "absolute",
+                        width: (500 * getProgress) / 100 + "px",
+                        height: "50px",
+                        "background-color": "rgb(255 255 255)",
+                        opacity: getProgress <= 100 ? 0.1 : 0,
+                        "z-index": 1,
+                        transition: "opacity 0.3s linear 0.5s",
+                      },
+                    }),
+                  ]
+            }));
+          },
         p = () => {
           let { formatMessage: e } = (0, s.Z)(),
             { notify: t } = (0, i.d$W)(),
@@ -783,7 +895,35 @@
                   }));
               },
               [e, n, t],
+            ),
+          modUpdateCallback = (0, a.useCallback)(
+              (a, s, newVersion, dedupeTimestamp = 0) => {
+                if (
+                    window.modUpdateAvailableEventDedupeNonce === dedupeTimestamp
+                )
+                  return;
+                if (dedupeTimestamp)
+                  window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
+                t((0, o.jsx)(modUpdateToast, { formatMessage: e, version: `${s} -> ${newVersion}` }), {
+                      containerId: i.W$x.IMPORTANT,
+                });
+              },
+              [e, n, t],
+          );
+          (0, a.useEffect)(() => {
+            var e;
+            return (
+                null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback),
+                    () => {
+                      var e;
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.off(i.BOn.MOD_UPDATE_AVAILABLE, modUpdateCallback);
+                    }
             );
+          }, [modUpdateCallback]);
           (0, a.useEffect)(() => {
             var e;
             return (
@@ -842,17 +982,26 @@
       var o,
         a,
         s = n(65067),
-        i = n(13534);
+        i = n(13534);//,
+          //electronBridge = n(35308),
+          //feedbackApi = n(26382);
       ((o = a || (a = {})).PLAY = "PLAY"),
         (o.PAUSE = "PAUSE"),
         (o.MOVE_BACKWARD = "MOVE_BACKWARD"),
         (o.MOVE_FORWARD = "MOVE_FORWARD");
       let l = (e) => {
+        // TODO
+        // let { sonataState: sonataState } = (0, s.oR4)(),
+        //     onLikeClick = (0, feedbackApi.SB)(sonataState.entityMeta),
+        //     onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
         let t = (0, s.useCallback)(
-          (t, n) => {
+          (t, n, nonce = 1) => {
+            if (window.playerActionEventDedupeNonce === nonce) return;
+            if (nonce) window.playerActionEventDedupeNonce = nonce;
             switch (n) {
               case "PLAY":
               case "PAUSE":
+              case "TOGGLE_PLAY":
                 null == e || e.togglePause();
                 break;
               case "MOVE_BACKWARD":
@@ -860,6 +1009,51 @@
                 break;
               case "MOVE_FORWARD":
                 null == e || e.moveForward();
+                break;
+              case "REPEAT_NONE":
+                null == e || e.setRepeatMode("none");
+                break;
+              case "REPEAT_CONTEXT":
+                null == e || e.setRepeatMode("context");
+                break;
+              case "REPEAT_ONE":
+                null == e || e.setRepeatMode("one");
+                break;
+              case "TOGGLE_REPEAT":
+                let nextMode = "none";
+                switch (e?.state?.queueState?.repeat?.value) {
+                  case "none":
+                    nextMode =
+                        e?.state?.currentContext?.value?.contextData?.type ===
+                        "vibe"
+                            ? "one"
+                            : "context";
+                    break;
+                  case "context":
+                    nextMode = "one";
+                    break;
+                  case "one":
+                  default:
+                    nextMode = "none";
+                    break;
+                }
+                null == e || e.setRepeatMode(nextMode);
+                break;
+              case "TOGGLE_SHUFFLE":
+                null == e || e.toggleShuffle();
+                break;
+              case "TOGGLE_LIKE":
+              case "LIKE":
+              case "LIKE_NONE":
+                null == e || onLikeClick?.(sonataState.entityMeta, o);
+                sendPlayerStateDefault?.(e);
+                break;
+              case "DISLIKE":
+              case "DISLIKE_NONE":
+              case "TOGGLE_DISLIKE":
+                null == e || onDislikeClick?.(sonataState.entityMeta, o);
+                sendPlayerStateDefault?.(e);
+                break;
             }
           },
           [e],
@@ -1101,14 +1295,128 @@
                 availableActions: e.availableActions,
                 actionsStore: e.actionsStore,
               });
-          });
+          }),
+            sendPlayerStateDefault = (ve) => {
+              n({
+                status: ve.state.playerState.status.value,
+                isPlaying: ve.state.playerState.status.value === s.FY.PLAYING,
+                canMoveForward:
+                ve.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                canMoveBackward:
+                ve.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                track:
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+                progress: ve.state.playerState.progress.value?.position,
+                availableActions: {
+                  moveBackward:
+                  ve.state.currentContext.value?.availableActions.moveBackward
+                      .value,
+                  moveForward:
+                  ve.state.currentContext.value?.availableActions.moveForward
+                      .value,
+                  repeat:
+                  ve.state.currentContext.value?.availableActions.repeat.value,
+                  shuffle:
+                  ve.state.currentContext.value?.availableActions.shuffle.value,
+                  speed:
+                  ve.state.currentContext.value?.availableActions.speed.value,
+                },
+                actionsStore: {
+                  repeat: ve.state.queueState.repeat.value,
+                  shuffle: ve.state.queueState.shuffle.value,
+                  isLiked:
+                      ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                          ve.state.queueState.currentEntity.value?.entity.entityData
+                              .meta.id,
+                      ),
+                  isDisliked:
+                      ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                          ve.state.queueState.currentEntity.value?.entity.entityData
+                              .meta.id,
+                      ),
+                },
+              });
+            },
+            sendPlayerStatePlaying = (ve) => {
+              n({
+                status: s.FY.PLAYING,
+                isPlaying: true,
+                canMoveForward:
+                ve.state.currentContext.value?.availableActions.moveForward
+                    .value,
+                canMoveBackward:
+                ve.state.currentContext.value?.availableActions.moveBackward
+                    .value,
+                track:
+                ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+                progress: ve.state.playerState.progress.value?.position,
+                availableActions: {
+                  moveBackward:
+                  ve.state.currentContext.value?.availableActions.moveBackward
+                      .value,
+                  moveForward:
+                  ve.state.currentContext.value?.availableActions.moveForward
+                      .value,
+                  repeat:
+                  ve.state.currentContext.value?.availableActions.repeat.value,
+                  shuffle:
+                  ve.state.currentContext.value?.availableActions.shuffle.value,
+                  speed:
+                  ve.state.currentContext.value?.availableActions.speed.value,
+                },
+                actionsStore: {
+                  repeat: ve.state.queueState.repeat.value,
+                  shuffle: ve.state.queueState.shuffle.value,
+                  isLiked:
+                      ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                          ve.state.queueState.currentEntity.value?.entity.entityData
+                              .meta.id,
+                      ),
+                  isDisliked:
+                      ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                          ve.state.queueState.currentEntity.value?.entity.entityData
+                              .meta.id,
+                      ),
+                },
+              });
+            };
         (0, o.useEffect)(() => {
           let e, o;
           let a =
               null == t
                 ? void 0
                 : t.state.playerState.status.onChange((e) => {
-                    e && n({ isPlaying: e === s.FY.PLAYING });
+                    e && sendPlayerStateDefault(t);
+                  }),
+              onEntityChange =
+                  t?.state.queueState.currentEntity.onChange((e) => {
+                    e && sendPlayerStatePlaying(t);
+                  }),
+              seekTracker =
+                  t?.state.playerState.event.onChange((e) => {
+                    if (
+                        t.state.playerState.event.value === s.xg.SET_PROGRESS
+                    ) {
+                      sendPlayerStateDefault(t);
+                    }
+                  }),
+              onRepeatAvailableChange =
+                  t?.state.currentContext.value?.availableActions.repeat?.onChange((e) => {
+                    sendPlayerStateDefault(t);
+                  }),
+              onShuffleAvailableChange =
+                  t?.state.currentContext.value?.availableActions.shuffle?.onChange((e) => {
+                    sendPlayerStateDefault(t);
+                  }),
+              onRepeatChange =
+                  t?.state.queueState.repeat?.onChange((e) => {
+                    sendPlayerStateDefault(t);
+                  }),
+              onShuffleChange =
+                  t?.state.queueState.shuffle?.onChange((e) => {
+                    sendPlayerStateDefault(t);
                   }),
             i =
               null == t
@@ -1124,7 +1432,7 @@
                               void 0 === a
                             ? void 0
                             : a.availableActions.moveBackward.onChange((e) => {
-                                n({ canMoveBackward: !!e });
+                                  sendPlayerStateDefault(t);
                               })),
                       (o =
                         null == t
@@ -1133,12 +1441,18 @@
                               void 0 === s
                             ? void 0
                             : s.availableActions.moveForward.onChange((e) => {
-                                n({ canMoveForward: !!e });
+                                  sendPlayerStateDefault(t);
                               }));
                   });
           return () => {
             null == a || a(),
               null == i || i(),
+            null == onEntityChange || onEntityChange(),
+            null == seekTracker || seekTracker(),
+            null == onRepeatAvailableChange || onRepeatAvailableChange(),
+            null == onShuffleAvailableChange || onShuffleAvailableChange(),
+            null == onRepeatChange || onRepeatChange(),
+            null == onShuffleChange || onShuffleChange(),
               null == o || o(),
               null == o || o();
           };
