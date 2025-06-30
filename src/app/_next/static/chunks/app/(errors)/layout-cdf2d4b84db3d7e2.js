@@ -310,7 +310,7 @@
           var n;
           null === (n = window.desktopEvents) ||
           void 0 === n ||
-          n.send(i.BOn.DOWNLOAD_TRACK, {
+          n.send(s.BOn.DOWNLOAD_TRACK, {
             downloadURL: e.downloadURL,
             codec: e.codec,
             bitrate: e.bitrate,
@@ -324,7 +324,7 @@
             var t;
             null === (t = window.desktopEvents) ||
             void 0 === t ||
-            t.send(i.BOn.YNISON_STATE, {
+            t.send(s.BOn.YNISON_STATE, {
               rawData: e.rawData,
             });
           },
