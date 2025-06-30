@@ -3879,16 +3879,19 @@
                   { value: a } = e.state.queueState.currentEntity;
                 if (void 0 !== t && void 0 !== a) {
                   let { meta: i } = a.entity.data;
-                  (0, eq.x)(t) ||
-                  (0, e2.Q)(t) ||
-                  ("type" in i && i.type && te.includes(i.type))
-                    ? ((t.availableActions.repeat.value = !1),
-                      (t.availableActions.shuffle.value = !1),
-                      e.state.queueState.repeat.value !== Z.zq.NONE &&
-                        e.setRepeatMode(Z.zq.NONE),
-                      e.state.queueState.shuffle.value && e.toggleShuffle())
-                    : ((t.availableActions.repeat.value = !0),
-                      (t.availableActions.shuffle.value = !0));
+                  (window?.SHOW_REPEAT_BUTTON_ON_VIBE() ? false : (0, eq.x)(t)) || // is track type Vibe
+                  (0, e2.Q)(t) || // is track type Generative
+                  ('type' in i && i.type && te.includes(i.type))
+                      ? ((t.availableActions.repeat.value = !1),
+                      e.state.queueState.repeat.value !== Z.zq.NONE && e.setRepeatMode(Z.zq.NONE))
+                      : ((t.availableActions.repeat.value = !0),
+                      (0, eq.x)(t) && e.state.queueState.repeat.value === Z.zq.CONTEXT && e.setRepeatMode(Z.zq.NONE));
+
+                  (0, eq.x)(t) || // is track type Vibe
+                  (0, e2.Q)(t) || // is track type Generative
+                  ('type' in i && i.type && te.includes(i.type))
+                      ? ((t.availableActions.shuffle.value = !1), e.state.queueState.shuffle.value && e.toggleShuffle())
+                      : (t.availableActions.shuffle.value = !0);
                 }
               })(a),
                 (function (e) {

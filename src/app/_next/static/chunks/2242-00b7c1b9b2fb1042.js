@@ -414,27 +414,30 @@
         o = n(6232),
         s = n(93093),
         i = n(13534),
-        r = n(92569);
+        r = n(92569),
+      isVibeContainer = n(44122);
       let l = () => {
         let { notify: e } = (0, i.d$W)(),
-          { fullscreenPlayer: t } = (0, i.oR4)(),
-          n = (0, i.R$C)();
+            { fullscreenPlayer: t } = (0, i.oR4)(),
+            n = (0, i.R$C)();
         return (0, s.W)((s, l) => {
           if (null === s.entityMeta || !s.canChangeRepeatMode) return;
           let c = o.zq.NONE;
-          switch (s.repeatMode) {
-            case o.zq.NONE:
-              c = o.zq.CONTEXT;
-              break;
-            case o.zq.CONTEXT:
-              c = o.zq.ONE;
+          if(isVibeContainer.x({data: {type: s?.contextType}}) && s.repeatMode === o.zq.NONE) {
+            c = o.zq.ONE;
+          } else {
+            switch (s.repeatMode) {
+              case o.zq.NONE:
+                c = o.zq.CONTEXT;
+                break;
+              case o.zq.CONTEXT:
+                c = o.zq.ONE;
+            }
           }
           null == n || n.setRepeatMode(c, l),
-            e((0, a.jsx)(r.NotificationRepeat, { repeatMode: c }), {
-              containerId: t.modal.isOpened
-                ? i.W$x.FULLSCREEN_INFO
-                : i.W$x.INFO,
-            });
+              e((0, a.jsx)(r.NotificationRepeat, { repeatMode: c }), {
+                containerId: t.modal.isOpened ? i.W$x.FULLSCREEN_INFO : i.W$x.INFO,
+              });
         });
       };
     },
