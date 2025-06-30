@@ -3879,19 +3879,25 @@
                   { value: a } = e.state.queueState.currentEntity;
                 if (void 0 !== t && void 0 !== a) {
                   let { meta: i } = a.entity.data;
-                  (window?.SHOW_REPEAT_BUTTON_ON_VIBE() ? false : (0, eq.x)(t)) || // is track type Vibe
+                  (window?.SHOW_REPEAT_BUTTON_ON_VIBE()
+                    ? false
+                    : (0, eq.x)(t)) || // is track type Vibe
                   (0, e2.Q)(t) || // is track type Generative
-                  ('type' in i && i.type && te.includes(i.type))
-                      ? ((t.availableActions.repeat.value = !1),
-                      e.state.queueState.repeat.value !== Z.zq.NONE && e.setRepeatMode(Z.zq.NONE))
-                      : ((t.availableActions.repeat.value = !0),
-                      (0, eq.x)(t) && e.state.queueState.repeat.value === Z.zq.CONTEXT && e.setRepeatMode(Z.zq.NONE));
+                  ("type" in i && i.type && te.includes(i.type))
+                    ? ((t.availableActions.repeat.value = !1),
+                      e.state.queueState.repeat.value !== Z.zq.NONE &&
+                        e.setRepeatMode(Z.zq.NONE))
+                    : ((t.availableActions.repeat.value = !0),
+                      (0, eq.x)(t) &&
+                        e.state.queueState.repeat.value === Z.zq.CONTEXT &&
+                        e.setRepeatMode(Z.zq.NONE));
 
                   (0, eq.x)(t) || // is track type Vibe
                   (0, e2.Q)(t) || // is track type Generative
-                  ('type' in i && i.type && te.includes(i.type))
-                      ? ((t.availableActions.shuffle.value = !1), e.state.queueState.shuffle.value && e.toggleShuffle())
-                      : (t.availableActions.shuffle.value = !0);
+                  ("type" in i && i.type && te.includes(i.type))
+                    ? ((t.availableActions.shuffle.value = !1),
+                      e.state.queueState.shuffle.value && e.toggleShuffle())
+                    : (t.availableActions.shuffle.value = !0);
                 }
               })(a),
                 (function (e) {
@@ -6465,8 +6471,8 @@
         changeVolume(e) {
           let t = Math.max(Math.min(e, 1), 0);
           return (
-              Number.isNaN(a) ||
-              this.playback.setVolume(t).then(() => Promise.resolve())
+            Number.isNaN(a) ||
+            this.playback.setVolume(t).then(() => Promise.resolve())
           );
         }
         changeOptions(e) {
@@ -6484,8 +6490,8 @@
             a = Number(e.playback_speed),
             i = Number(e.progress_ms) / 1e3,
             isPaused = window?.ENABLE_YNISON_REMOTE_CONTROL
-                ? (e.paused ?? NaN)
-                : NaN;
+              ? (e.paused ?? NaN)
+              : NaN;
           return (
             Number.isNaN(a) ||
               t.push(() =>
@@ -6494,8 +6500,9 @@
             Number.isNaN(i) ||
               t.push(() => {
                 if (
-                  this.playback.state.playerState.status.value === Z.FY.PLAYING ||
-                    this.playback.state.playerState.status.value === Z.FY.PAUSED
+                  this.playback.state.playerState.status.value ===
+                    Z.FY.PLAYING ||
+                  this.playback.state.playerState.status.value === Z.FY.PAUSED
                 )
                   return this.playback
                     .setProgress(i)
@@ -6506,15 +6513,15 @@
                 return e && (e.entity.startPosition = i), Promise.resolve();
               }),
             Number.isNaN(isPaused) ||
-            t.push(() => {
-              isPaused
+              t.push(() => {
+                isPaused
                   ? this.playback.state.playerState.status.value ===
-                  Z.FY.PLAYING &&
-                  this.playback.pause().then(() => Promise.resolve())
+                      Z.FY.PLAYING &&
+                    this.playback.pause().then(() => Promise.resolve())
                   : this.playback.state.playerState.status.value ===
-                  Z.FY.PAUSED &&
-                  this.playback.resume().then(() => Promise.resolve());
-            }),
+                      Z.FY.PAUSED &&
+                    this.playback.resume().then(() => Promise.resolve());
+              }),
             t.exec()
           );
         }
@@ -8435,8 +8442,8 @@
               if (t) return;
               let e = () => {
                 let e = a.get(a2.YwV);
-                document.hidden || (
-                  e.connector.disconnect(),
+                document.hidden ||
+                  (e.connector.disconnect(),
                   e.connector.connect({
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
@@ -9929,6 +9936,13 @@
           clearMemoryModal: {},
           imageSliderModal: { modal: {} },
           artistAboutModal: { loadingState: m.Gui.IDLE, modal: {} },
+          discordRpcSettingsModal: {},
+          vibeBehaviorEnhancementsSettingsModal: {},
+          playerBarEnhancementsSettingsModal: {},
+          windowBehaviorSettingsModal: {},
+          appUpdatesSettingsModal: {},
+          scrobblersSettingsModal: {},
+          downloaderSettingsModal: {},
         },
         landing: {
           loadingState: m.Gui.IDLE,
@@ -12626,6 +12640,13 @@
         imageSliderModal: te.R,
         promoLandingBuySubscriptionModal: C.KL,
         artistAboutModal: N.Dd,
+        discordRpcSettingsModal: C.KL,
+        vibeBehaviorEnhancementsSettingsModal: C.KL,
+        playerBarEnhancementsSettingsModal: C.KL,
+        windowBehaviorSettingsModal: C.KL,
+        appUpdatesSettingsModal: C.KL,
+        scrobblersSettingsModal: C.KL,
+        downloaderSettingsModal: C.KL,
       });
       var ta = a(68877),
         ti = a(91851),
