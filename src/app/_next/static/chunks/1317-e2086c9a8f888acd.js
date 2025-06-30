@@ -561,6 +561,7 @@
           return (0, a.jsxs)(a.Fragment, {
             children: [
               (0, a.jsx)(x, {
+                style: (window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : undefined),
                 role: "text",
                 "aria-label": m,
                 value: h,
@@ -577,6 +578,7 @@
                     Math.min(Math.max(y - p / 2, 0), g),
                     "px",
                   ),
+                  ...(window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : {}),
                 },
                 ref: _,
                 value: (0, u.gf)(Math.round(i), Math.round(r)),
@@ -10813,11 +10815,6 @@
       var ig = i(26760),
         ib = i.n(ig);
       let iC = (0, y.Pi)((e) => {
-        let [shouldRerender, forcePlayerBarRerender] = (0, x.useReducer)(
-          (x) => x + 1,
-          0,
-        );
-        window.forcePlayerBarRerender = forcePlayerBarRerender;
         var t;
         let { className: i, entityMeta: a, onLikeClick: n } = e,
           {
@@ -11128,6 +11125,11 @@
       var iI = i(15934),
         iA = i.n(iI);
       let iN = (0, y.Pi)((e) => {
+        let [, forcePlayerBarRerender] = (0, x.useReducer)(
+            (x) => x + 1,
+            0,
+        );
+        window.forcePlayerBarRerender = forcePlayerBarRerender;
         var t;
         let {
             className: i,
