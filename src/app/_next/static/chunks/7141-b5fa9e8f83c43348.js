@@ -30414,7 +30414,7 @@
             return new Worker(
               (i =
                 i ||
-                ((r = (t = atob(a)).indexOf("\n", 10) + 1),
+                ((r = (t = atob(a).replace(/this\.ticker=new .?.\(25,/, `this.ticker=new nt(${window.VIBE_ANIMATION_MAX_FPS?.()},`)).indexOf("\n", 10) + 1),
                 (n = new Blob(
                   [
                     t.substring(r) +
