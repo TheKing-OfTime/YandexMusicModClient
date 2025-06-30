@@ -986,7 +986,7 @@
           placement: "center",
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsxs)("ul", {
-            className: Z().root,
+            className: `${Z().root} ${B().list}`,
             style: { width: "466px", "max-height": "600px", gap: 0 },
             children: [
               (0, n.jsx)("li", {
@@ -1377,7 +1377,7 @@
                           })
                         : null,
                     }),
-                    (0, n.jsx)(S, {
+                    (0, n.jsx)(w, {
                       title: userInfo
                         ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`.replace(
                             " ",
@@ -1516,8 +1516,8 @@
           }, []);
         return (0, n.jsxs)(f.u, {
           className: b().root,
-          style: { "max-width": "550px" },
-          title: "Настройки панели плеера",
+          style: { "max-width": "500px" },
+          title: "Улучшения панели плеера",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
@@ -1714,7 +1714,7 @@
           placement: "center",
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsxs)("ul", {
-            className: Z().root,
+            className: `${Z().root} ${B().list}`,
             style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
               (0, n.jsx)("li", {
