@@ -3014,7 +3014,9 @@
               getExperiment(i) {
                 let n = e.experiments.get(i),
                   l = t.getOverwrittenExperiments();
-                return l?.[i] ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? n;
+                return (
+                  l?.[i] ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? n
+                );
               },
               isExperimentEnabled(e) {
                 var i, a, n;
@@ -5220,7 +5222,9 @@
                           className: (0, r.clsx)(
                             d.default.textContainer,
                             d.default["textContainer_direction_".concat(h)],
-                            { [d.default.textContainer_selected]: c },
+                            {
+                              [d.default.textContainer_selected]: c,
+                            },
                           ),
                           children: g,
                         }),
@@ -7244,7 +7248,8 @@
         I = i(17392),
         A = i(97141),
         N = i(23442),
-        k = i.n(N);
+        k = i.n(N),
+        electronBridge = i(13028);
       let S = (0, y.Pi)((e) => {
           let { className: t, data: i, mediaContent: a, linkClassName: n } = e,
             {
@@ -7402,6 +7407,7 @@
             } = (0, _.yj)(e);
             return (
               !i &&
+              (window.ENABLE_ENDLESS_MUSIC?.() ?? true) &&
               (null === (t = e.afterTracksIds) || void 0 === t
                 ? void 0
                 : t.length) === 0
@@ -8729,7 +8735,9 @@
                         className: (0, h.W)(
                           e4().element,
                           e4().element_withDefaultElement,
-                          { [e4().element_paused]: a.isPaused },
+                          {
+                            [e4().element_paused]: a.isPaused,
+                          },
                         ),
                         style: t,
                       },
@@ -9597,7 +9605,9 @@
               () => ({
                 "--player-average-color-background": (0, R.Er)(
                   t,
-                  null == a ? void 0 : a.averageColor,
+                  null == a || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                    ? void 0
+                    : a.averageColor,
                 ),
               }),
               [null == a ? void 0 : a.averageColor, t],
@@ -10419,7 +10429,9 @@
               () => ({
                 "--player-average-color-background": (0, R.Er)(
                   n,
-                  null == e ? void 0 : e.averageColor,
+                  null == e || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                    ? void 0
+                    : e.averageColor,
                 ),
               }),
               [null == e ? void 0 : e.averageColor, n],
@@ -10769,7 +10781,9 @@
           return {
             "--player-average-color-background": (0, R.Er)(
               t,
-              null == e ? void 0 : e.averageColor,
+              null == e || (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                ? void 0
+                : e.averageColor,
             ),
           };
         };
@@ -10799,6 +10813,11 @@
       var ig = i(26760),
         ib = i.n(ig);
       let iC = (0, y.Pi)((e) => {
+        let [shouldRerender, forcePlayerBarRerender] = (0, x.useReducer)(
+          (x) => x + 1,
+          0,
+        );
+        window.forcePlayerBarRerender = forcePlayerBarRerender;
         var t;
         let { className: i, entityMeta: a, onLikeClick: n } = e,
           {
@@ -11312,157 +11331,397 @@
                 : null,
             [G, a, E, P],
           );
-        return (0, v.jsx)("section", {
-          style: c.isAdvertShown ? void 0 : j,
-          className: (0, h.W)(iA().root, iA().important, i),
-          ...(0, Y.BA)(Y.QM.player.PLAYERBAR_DESKTOP),
-          "aria-labelledby": i_,
-          children: (0, v.jsxs)("div", {
-            className: iA().playerBar,
-            children: [
-              !o.isGenerativeContext &&
-                (0, v.jsx)(el.d, {
-                  sliderClassName: iA().slider,
-                  progressbarClassName: iA().progressBar,
-                  disabled: !a,
-                  isMobile: !1,
-                }),
-              (0, v.jsxs)("div", {
-                className: (0, h.W)(iA().player, {
-                  [iA().player_disabled]: !a,
-                }),
-                children: [
-                  (0, v.jsx)("div", {
-                    onClick: D,
-                    className: iA().triggerModal,
-                  }),
-                  (0, v.jsx)(tU.y, {
-                    children: (0, v.jsx)(I.Heading, {
-                      variant: "h3",
-                      id: i_,
-                      children: (0, v.jsx)(b.Z, { id: "a11y-regions.player" }),
-                    }),
-                  }),
-                  (0, v.jsx)("div", {
-                    className: iA().info,
-                    children: (0, v.jsx)("div", {
-                      className: iA().infoCard,
-                      children:
-                        a &&
-                        !c.isAdvertShown &&
-                        (0, v.jsxs)(v.Fragment, {
-                          children: [
-                            (0, v.jsxs)(tS.Paper, {
-                              radius: "s",
-                              className: iA().coverContainer,
-                              ...(0, Y.BA)(
-                                Y.QM.player.PLAYERBAR_DESKTOP_COVER_CONTAINER,
-                              ),
-                              children: [
-                                (0, v.jsx)(A.BE, {
-                                  className: iA().cover,
-                                  src: a.coverUri,
-                                  size: 100,
-                                  fit: "cover",
-                                  withAvatarReplace: !0,
-                                }),
-                                N &&
-                                  (0, v.jsxs)(iu.u, {
-                                    placement: "top",
-                                    offsetOptions: 4,
-                                    children: [
-                                      (0, v.jsx)(ix, {
-                                        ariaLabel: f({
-                                          id: "player-actions.fullscreen-button",
-                                        }),
-                                        onClick: s.showFullscreenPlayerModal,
-                                      }),
-                                      (0, v.jsx)(iu._v, {
-                                        children: (0, v.jsx)(b.Z, {
-                                          id: "player-actions.fullscreen",
-                                        }),
-                                      }),
-                                    ],
-                                  }),
-                              ],
-                            }),
-                            (0, v.jsx)("div", {
-                              className: iA().description,
-                              children: Z,
-                            }),
-                          ],
-                        }),
-                    }),
-                  }),
-                  (0, v.jsxs)("div", {
-                    className: iA().sonata,
-                    children: [
-                      (0, v.jsx)(A.FM, {
-                        fallback: (0, v.jsx)(A.dJ, {
-                          disabled:
-                            !a || o.isGenerativeContext || c.isAdvertShown,
-                          isLiked: null == a ? void 0 : a.isLiked,
-                          onClick: n,
-                          iconSize: "xs",
-                        }),
-                      }),
-                      (0, v.jsx)(L.WP, {
-                        className: (0, h.W)(
-                          iA().sonataControls,
-                          iA().important,
-                        ),
-                        withRepeat: !0,
-                        withShuffle: !0,
-                        isMobile: !1,
-                        entityMeta: a,
-                      }),
-                      (0, v.jsx)(A.FM, {
-                        fallback: (0, v.jsx)(A.Q1, {
-                          disabled:
-                            !a || o.isGenerativeContext || c.isAdvertShown,
-                          isDisliked: null == a ? void 0 : a.isDisliked,
-                          onClick: l,
-                          iconSize: "xs",
-                        }),
-                      }),
-                    ],
-                  }),
-                  (0, v.jsxs)("div", {
-                    className: iA().meta,
-                    children: [
-                      !o.isGenerativeContext &&
-                        !c.isAdvertShown &&
-                        (0, v.jsxs)(v.Fragment, {
-                          children: [
-                            S && (0, v.jsx)(A.t5, { iconSize: "l" }),
-                            F,
-                            z,
-                            (0, v.jsx)(t$, {
-                              placement: "bottom",
-                              open: y,
-                              onOpenChange: g,
-                              icon: (0, v.jsx)(K.Icon, {
-                                variant: "settings",
-                                size: "xs",
-                              }),
-                              size: "xxxs",
-                              referenceClassName: iA().settingsButton,
-                            }),
-                          ],
-                        }),
-                      (0, v.jsx)(im.F, {
-                        variant: im.E.VERTICAL,
-                        sonataVolume: o.volume,
-                        onVolumeSet: V,
-                        onVolumeClick: B,
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-            ],
+        const qualityMap = {
+          lq: "LQ",
+          nq: "NQ",
+          hq: "HQ",
+          lossless: "HQ+",
+        };
+        const codecMap = {
+          mp3: "MP3",
+          "he-aac": "HE-AAC",
+          aac: "AAC",
+          flac: "FLAC",
+          "aac-mp4": "AAC",
+          "he-aac-mp4": "HE-AAC",
+          "flac-mp4": "FLAC",
+        };
+        let theState = (0, u.R$C)();
+        let [downloadProgress, setDownloadProgress] = (0, x.useState)(0);
+        let [downloadInfo, setDownloadInfo] = (0, x.useState)(
+          theState?.state?.queueState?.currentEntity?.value?.entity
+            ?.mediaSourceData?.data,
+        );
+        let [realBitrate, setRealBitrate] = (0, x.useState)(null);
+        const registerYaspAudioElementListener = () => {
+          if (
+            !window?.Ya?.YaspAudioElement?.instances?.find(
+              (instance) => instance.yaspSrc,
+            )
+          ) {
+            setTimeout(registerYaspAudioElementListener, 1000);
+            return console.log("YaspAudioElement not found, retrying...");
+          }
+          console.log("register YaspAudioElementListener");
+          window?.Ya?.YaspAudioElement?.instances
+            .find((instance) => instance.yaspSrc)
+            .addEventListener("yasp-event", (e) => {
+              if (e.detail?.name !== "AbrDecisionChange") return;
+              let bitrate = Math.round(
+                (Object.values(JSON.parse(e.detail?.data?.message)?.tracks)?.[0]
+                  ?.bitrate ?? 0) / 1000,
+              );
+
+              setRealBitrate(bitrate);
+            });
+        };
+        registerYaspAudioElementListener();
+        let onDownloadClick = (0, x.useCallback)(() => {
+          if (!downloadInfo?.quality) return;
+          electronBridge.sendDownloadTrack({
+            downloadURL: downloadInfo?.url,
+            codec: downloadInfo?.codec,
+            bitrate: downloadInfo?.bitrate,
+            trackId: downloadInfo?.trackId,
+            transport: downloadInfo?.transport,
+            key: downloadInfo?.key,
+            track: {
+              title: a.title ? JSON.parse(JSON.stringify(a.title)) : undefined,
+              artists: a.artists
+                ? JSON.parse(JSON.stringify(a.artists))
+                : undefined,
+              albums: a.albums
+                ? JSON.parse(JSON.stringify(a.albums))
+                : undefined,
+              coverUri: a.coverUri
+                ? JSON.parse(JSON.stringify(a.coverUri))
+                : undefined,
+            },
+          });
+        }, [a, downloadInfo]);
+        return (
+          (0, x.useEffect)(() => {
+            window.desktopEvents.on(
+              "PROGRESS_BAR_CHANGE",
+              (e, elementType, progress) => {
+                if (elementType === "trackDownloadCurrent") {
+                  setDownloadProgress(progress);
+                }
+              },
+            );
+          }, []),
+          (0, x.useEffect)(() => {
+            if (downloadInfo === undefined) {
+              const intervalId = setInterval(() => {
+                const data =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSourceData?.data;
+                if (data !== undefined) {
+                  setDownloadInfo(data);
+                  clearInterval(intervalId);
+                }
+              }, 1000);
+
+              return () => {
+                clearInterval(intervalId);
+              };
+            }
+
+            const unsubscribe =
+              theState.state.queueState.currentEntity.onChange(() => {
+                const data =
+                  theState?.state?.queueState?.currentEntity?.value?.entity
+                    ?.mediaSourceData?.data;
+
+                const dataString = JSON.stringify(data);
+                const downloadInfoString = JSON.stringify(downloadInfo);
+
+                if (data !== undefined && dataString !== downloadInfoString) {
+                  setDownloadInfo(data);
+                }
+              });
+
+            return () => {
+              if (typeof unsubscribe === "function") {
+                unsubscribe();
+              }
+            };
           }),
-        });
+          (0, v.jsx)("section", {
+            style: c.isAdvertShown ? void 0 : j,
+            className: (0, h.W)(iA().root, iA().important, i),
+            ...(0, Y.BA)(Y.QM.player.PLAYERBAR_DESKTOP),
+            "aria-labelledby": i_,
+            children: (0, v.jsxs)("div", {
+              className: iA().playerBar,
+              children: [
+                !o.isGenerativeContext &&
+                  (0, v.jsx)(el.d, {
+                    sliderClassName: iA().slider,
+                    progressbarClassName: iA().progressBar,
+                    disabled: !a,
+                    isMobile: !1,
+                  }),
+                (0, v.jsxs)("div", {
+                  className: (0, h.W)(iA().player, {
+                    [iA().player_disabled]: !a,
+                  }),
+                  children: [
+                    (0, v.jsx)("div", {
+                      onClick: D,
+                      className: iA().triggerModal,
+                    }),
+                    (0, v.jsx)(tU.y, {
+                      children: (0, v.jsx)(I.Heading, {
+                        variant: "h3",
+                        id: i_,
+                        children: (0, v.jsx)(b.Z, {
+                          id: "a11y-regions.player",
+                        }),
+                      }),
+                    }),
+                    (0, v.jsx)("div", {
+                      className: iA().info,
+                      children: (0, v.jsx)("div", {
+                        className: iA().infoCard,
+                        children:
+                          a &&
+                          !c.isAdvertShown &&
+                          (0, v.jsxs)(v.Fragment, {
+                            children: [
+                              (0, v.jsxs)(tS.Paper, {
+                                radius: "s",
+                                className: iA().coverContainer,
+                                ...(0, Y.BA)(
+                                  Y.QM.player.PLAYERBAR_DESKTOP_COVER_CONTAINER,
+                                ),
+                                children: [
+                                  (0, v.jsx)(A.BE, {
+                                    className: iA().cover,
+                                    src: a.coverUri,
+                                    size: 100,
+                                    fit: "cover",
+                                    withAvatarReplace: !0,
+                                  }),
+                                  N &&
+                                    (0, v.jsxs)(iu.u, {
+                                      placement: "top",
+                                      offsetOptions: 4,
+                                      children: [
+                                        (0, v.jsx)(ix, {
+                                          ariaLabel: f({
+                                            id: "player-actions.fullscreen-button",
+                                          }),
+                                          onClick: s.showFullscreenPlayerModal,
+                                        }),
+                                        (0, v.jsx)(iu._v, {
+                                          children: (0, v.jsx)(b.Z, {
+                                            id: "player-actions.fullscreen",
+                                          }),
+                                        }),
+                                      ],
+                                    }),
+                                ],
+                              }),
+                              (0, v.jsx)("div", {
+                                className: iA().description,
+                                children: Z,
+                              }),
+                            ],
+                          }),
+                      }),
+                    }),
+                    (0, v.jsxs)("div", {
+                      className: iA().sonata,
+                      children: [
+                          window.SHOW_DISLIKE_BUTTON() ? (0, v.jsx)(A.FM, {
+                              fallback: (0, v.jsx)(A.Q1, {
+                                  disabled:
+                                      !a ||
+                                      o.isGenerativeContext ||
+                                      c.isAdvertShown,
+                                  isDisliked: null == a ? void 0 : a.isDisliked,
+                                  onClick: l,
+                                  iconSize: "xs",
+                              }),
+                          }) : (0, v.jsx)(A.FM, {
+                              fallback: (0, v.jsx)(A.dJ, {
+                                disabled:
+                                  !a ||
+                                  o.isGenerativeContext ||
+                                  c.isAdvertShown,
+                                isLiked: null == a ? void 0 : a.isLiked,
+                                onClick: n,
+                                iconSize: "xs",
+                              }),
+                            }),
+                            (0, v.jsx)(L.WP, {
+                              className: (0, h.W)(
+                                iA().sonataControls,
+                                iA().important,
+                              ),
+                              withRepeat: !0,
+                              withShuffle: !0,
+                              isMobile: !1,
+                              entityMeta: a,
+                            }),
+                          window.SHOW_DISLIKE_BUTTON() ? (0, v.jsx)(A.FM, {
+                              fallback: (0, v.jsx)(A.dJ, {
+                                  disabled:
+                                      !a ||
+                                      o.isGenerativeContext ||
+                                      c.isAdvertShown,
+                                  isLiked: null == a ? void 0 : a.isLiked,
+                                  onClick: n,
+                                  iconSize: "xs",
+                              }),
+                          }) : (0, v.jsx)(A.FM, {
+                              fallback: (0, v.jsx)(A.Q1, {
+                                disabled:
+                                  !a ||
+                                  o.isGenerativeContext ||
+                                  c.isAdvertShown,
+                                isDisliked: null == a ? void 0 : a.isDisliked,
+                                onClick: l,
+                                iconSize: "xs",
+                              }),
+                            }),
+                          ],
+                    }),
+                    (0, v.jsxs)("div", {
+                      className: iA().meta,
+                      children: [
+                        !o.isGenerativeContext &&
+                          !c.isAdvertShown &&
+                          (0, v.jsxs)(v.Fragment, {
+                            children: [
+                              S && (0, v.jsx)(A.t5, { iconSize: "l" }),
+                              F,
+                              z,
+                              (0, v.jsx)(A.wx, {
+                                title: "Скачать трек в файл",
+                                description:
+                                  window?.DEVICE_INFO?.os === "win32"
+                                    ? downloadInfo?.quality
+                                      ? "Скачать трек в читаемый файл на вашем ПК"
+                                      : "Не удалось получить данные о треке"
+                                    : "Пока не доступно на вашей OS",
+                                children: (0, v.jsxs)("button", {
+                                  disabled:
+                                    !downloadInfo?.quality ||
+                                    window?.DEVICE_INFO?.os !== "win32",
+                                  className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${
+                                    !downloadInfo?.quality ||
+                                    window?.DEVICE_INFO?.os !== "win32"
+                                      ? ""
+                                      : "HbaqudSqu7Q3mv3zMPGr"
+                                  } qU2apWBO1yyEK0lZ3lPO`,
+                                  style: {
+                                    display: "flex",
+                                    "flex-direction": "column",
+                                    gap: "2px",
+                                    "align-self": "center",
+                                    "padding-top": "5px",
+                                    "padding-inline": "2px",
+                                  },
+                                  children: [
+                                    (0, v.jsxs)("span", {
+                                      className: "JjlbHZ4FaP9EAcR_1DxF",
+                                      children: (0, v.jsx)(K.Icon, {
+                                        variant: "download",
+                                        size: "xxs",
+                                        style: {
+                                          width: "24px",
+                                          height: "24px",
+                                        },
+                                      }),
+                                    }),
+                                    (0, v.jsxs)("div", {
+                                      style: {
+                                        "background-color":
+                                          "var(--ym-controls-color-secondary-text-enabled)",
+                                        width: `${downloadProgress === -100 ? 0 : downloadProgress}%`,
+                                        transition:
+                                          downloadProgress >= 0 &&
+                                          downloadProgress < 100
+                                            ? "width 0.3s"
+                                            : "width 0.3s, opacity 0.3s linear 0.5s",
+                                        opacity:
+                                          downloadProgress >= 0 &&
+                                          downloadProgress < 100
+                                            ? "1"
+                                            : "0",
+                                        height: "2px",
+                                        "border-radius": "10px",
+                                      },
+                                    }),
+                                  ],
+                                  onClick: onDownloadClick,
+                                }),
+                              }),
+                              (0, v.jsx)(A.wx, {
+                                title: "Качество трека",
+                                description: downloadInfo?.quality
+                                  ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}` +
+                                    (downloadInfo?.bitrate
+                                      ? `-${downloadInfo?.bitrate}`
+                                      : "") +
+                                    (downloadInfo?.codec !== "mp3" &&
+                                    realBitrate
+                                      ? ` ${realBitrate} kbps`
+                                      : "")
+                                  : "Не удалось получить качество трека",
+                                children: (0, v.jsxs)("div", {
+                                  className:
+                                    "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
+                                  children: (0, v.jsx)(t$, {
+                                    placement: "bottom",
+                                    open: y,
+                                    onOpenChange: b,
+                                    icon: (
+                                      window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                        ? codecMap[downloadInfo?.codec]
+                                        : qualityMap[downloadInfo?.quality]
+                                    )
+                                      ? (0, v.jsxs)("span", {
+                                          className: ib().settingsButton,
+                                          style: {
+                                            width: "auto",
+                                            height: "auto",
+                                            "align-content": "center",
+                                          },
+                                          children:
+                                            (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                              ? codecMap[downloadInfo?.codec]
+                                              : qualityMap[
+                                                  downloadInfo?.quality
+                                                ]) ?? "NONE",
+                                        })
+                                      : (0, v.jsx)(K.Icon, {
+                                          variant: "settings",
+                                          size: "xs",
+                                        }),
+                                    size: "xxxs",
+                                    referenceClassName: ib().settingsButton,
+                                  }),
+                                }),
+                              }),
+                            ],
+                          }),
+                        (0, v.jsx)(im.F, {
+                          variant: im.E.VERTICAL,
+                          sonataVolume: o.volume,
+                          onVolumeSet: V,
+                          onVolumeClick: B,
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          })
+        );
       });
       var ik = i(13896),
         iS = i.n(ik);
