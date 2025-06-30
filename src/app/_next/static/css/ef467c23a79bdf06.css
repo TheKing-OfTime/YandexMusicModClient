@@ -1216,6 +1216,12 @@
     margin-block-start: var(--ym-spacer-size-xxl);
   }
 }
+
+.ToggleBarWithPathChooser_input {
+  flex: 1;
+  margin-right: 15px;
+}
+
 .EditContentModal_button__usS1Z {
   padding-inline-end: var(--ym-spacer-size-xxl);
   padding-inline-start: var(--ym-spacer-size-xxl);
