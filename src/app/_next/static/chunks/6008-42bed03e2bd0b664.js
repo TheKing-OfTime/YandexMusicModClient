@@ -12563,46 +12563,50 @@
         }).actions((e) => {
           let t = {
             getData: (0, d.ls)(function* () {
-              let { dynamicPagesResource: a, modelActionsLogger: i } = (0,
-              d.dU)(e);
-              if (
-                e.loadingState !== m.Gui.PENDING &&
-                e.loadingState !== m.Gui.RESOLVE
-              )
-                try {
-                  e.loadingState = m.Gui.PENDING;
-                  let i = yield a.getTriggers({
-                    anchorIds: Object.values(e1.o),
-                  });
-                  if (
-                    ((e.list = e7(i)),
-                    e.loadingState !== m.Gui.IDLE &&
-                      (e.loadingState = m.Gui.RESOLVE),
-                    !e.list)
-                  )
-                    return;
-                  let { barBelow: r, modal: l } = e.list;
-                  r.setAnchorId(e1.o.ON_START_BAR_BELOW),
-                    r.barBelowItem &&
-                      (r.show(),
-                      t.shown(
-                        r.barBelowItem.anchorId,
-                        r.barBelowItem.screenId,
-                      )),
-                    l.setAnchorId(e1.o.ON_START_FULLSCREEN),
-                    l.modalItem &&
-                      (l.open(),
-                      t.shown(l.modalItem.anchorId, l.modalItem.screenId));
-                } catch (t) {
-                  i.error(t),
-                    t instanceof em.du &&
-                      (t.statusCode === em.CN.NOT_FOUND ||
-                        t.statusCode === em.CN.BAD_REQUEST) &&
-                      (e.errorStatusCode = em.CN.NOT_FOUND),
-                    e.loadingState !== m.Gui.IDLE &&
-                      (e.loadingState = m.Gui.REJECT);
-                }
+              let { dynamicPagesResource: a, modelActionsLogger: i } = (0, d.dU)(e);
+              return e.loadingState = m.Gui.RESOLVE
             }),
+            // getData: (0, d.ls)(function* () {
+            //   let { dynamicPagesResource: a, modelActionsLogger: i } = (0,
+            //   d.dU)(e);
+            //   if (
+            //     e.loadingState !== m.Gui.PENDING &&
+            //     e.loadingState !== m.Gui.RESOLVE
+            //   )
+            //     try {
+            //       e.loadingState = m.Gui.PENDING;
+            //       let i = yield a.getTriggers({
+            //         anchorIds: Object.values(e1.o),
+            //       });
+            //       if (
+            //         ((e.list = e7(i)),
+            //         e.loadingState !== m.Gui.IDLE &&
+            //           (e.loadingState = m.Gui.RESOLVE),
+            //         !e.list)
+            //       )
+            //         return;
+            //       let { barBelow: r, modal: l } = e.list;
+            //       r.setAnchorId(e1.o.ON_START_BAR_BELOW),
+            //         r.barBelowItem &&
+            //           (r.show(),
+            //           t.shown(
+            //             r.barBelowItem.anchorId,
+            //             r.barBelowItem.screenId,
+            //           )),
+            //         l.setAnchorId(e1.o.ON_START_FULLSCREEN),
+            //         l.modalItem &&
+            //           (l.open(),
+            //           t.shown(l.modalItem.anchorId, l.modalItem.screenId));
+            //     } catch (t) {
+            //       i.error(t),
+            //         t instanceof em.du &&
+            //           (t.statusCode === em.CN.NOT_FOUND ||
+            //             t.statusCode === em.CN.BAD_REQUEST) &&
+            //           (e.errorStatusCode = em.CN.NOT_FOUND),
+            //         e.loadingState !== m.Gui.IDLE &&
+            //           (e.loadingState = m.Gui.REJECT);
+            //     }
+            // }),
             shown: (0, d.ls)(function* (t, a) {
               let { dynamicPagesResource: i, modelActionsLogger: r } = (0,
               d.dU)(e);
