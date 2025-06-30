@@ -4020,7 +4020,7 @@
   padding-block-start: var(--ym-spacer-size-xxxs);
   padding-inline-end: var(--ym-spacer-size-xs);
   padding-inline-start: var(--ym-spacer-size-xs);
-  z-index: var(--ym-z-index-overlay);
+  z-index: 10000;
 }
 .Fqg1VWCJUfasVVxqICeO {
   color: var(--ym-controls-color-secondary-on_default-enabled);
