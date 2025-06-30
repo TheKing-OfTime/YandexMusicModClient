@@ -864,23 +864,27 @@
                 className: (0, r.W)(g().sliderContainer, {
                   [g().sliderContainer_focusVisible]: E,
                 }),
-                children: (0, l.jsx)("div", {
+                children: [
+                //     (0, l.jsx)("span", {
+                //   children: `${M.toFixed(2)}%`,
+                // }),
+                  (0, l.jsx)("div", {
                   className: g().wrapperSlider,
                   children: (0, l.jsx)(h.i, {
-                    onMouseLeave: j,
-                    className: (0, r.W)(g().slider, g().important, a),
-                    thumbSize: "s",
-                    onFocus: T,
-                    onBlur: j,
-                    trackSize: "s",
-                    value: M,
-                    maxValue: 1,
-                    step: 0.01,
-                    onChange: V,
-                    "aria-label": I({ id: "player-actions.volume-control" }),
-                    ...(0, c.BA)(c.bG.changeVolume.CHANGE_VOLUME_SLIDER),
-                  }),
-                }),
+                      onMouseLeave: j,
+                      className: (0, r.W)(g().slider, g().important, a),
+                      thumbSize: "s",
+                      onFocus: T,
+                      onBlur: j,
+                      trackSize: "s",
+                      value: M,
+                      maxValue: 1,
+                      step: 0.01,
+                      onChange: V,
+                      "aria-label": I({ id: "player-actions.volume-control" }),
+                      ...(0, c.BA)(c.bG.changeVolume.CHANGE_VOLUME_SLIDER),
+                    }),
+                }),]
               });
           });
         return (0, l.jsxs)("div", {
