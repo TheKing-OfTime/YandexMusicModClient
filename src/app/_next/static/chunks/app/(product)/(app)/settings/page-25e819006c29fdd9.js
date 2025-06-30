@@ -2933,7 +2933,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Включить Ynison Remote [ALPHA]",
+                  title: "Ynison Remote [ALPHA] (Временно не работает)",
                   description:
                     "Даст возможность управлять этим плеером с других устройств",
                   onChange: onEnableYnisonRemoteControlToggle,
