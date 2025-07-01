@@ -1,0 +1,28 @@
+{
+  "name": "electron-is-accelerator",
+  "version": "0.2.0",
+  "description": "Check if a string is a valid Electron accelerator",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "jshint *.js && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brrd/electron-is-accelerator.git"
+  },
+  "keywords": [
+    "electron",
+    "accelerator"
+  ],
+  "author": "brrd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brrd/electron-is-accelerator/issues"
+  },
+  "homepage": "https://github.com/brrd/electron-is-accelerator",
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "jshint": "^2.9.4"
+  }
+}
