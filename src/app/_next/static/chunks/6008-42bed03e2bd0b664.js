@@ -6465,7 +6465,7 @@
             n.push(() => this.changeStatus(t));
           }
           if (e?.devices?.[0]?.volume)
-            s.push(() => this.changeVolume(e?.devices?.[0]?.volume));
+            n.push(() => this.changeVolume(e?.devices?.[0]?.volume));
           return n.exec();
         }
         changeVolume(e) {
@@ -7100,7 +7100,6 @@
             newState: e,
             skipVersionCompare: !1,
             skipDeviceActivityCheck: !1,
-            isSetNewState: !0,
             trigger: "YnisonPlugin",
           });
         }
@@ -8444,14 +8443,13 @@
               let e = () => {
                 let e = a.get(a2.YwV);
                 document.hidden ||
-                  (e.connector.disconnect(),
-                  e.connector.connect({
+                  (e.connector.connect({
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
                   })),
                   document.hidden &&
                     (null == i ? void 0 : i.state.playerState.status.value) !==
-                      Z.FY.PLAYING;
+                      Z.FY.PLAYING && e.connector.disconnect();
               };
               return (
                 document.addEventListener("visibilitychange", e),
