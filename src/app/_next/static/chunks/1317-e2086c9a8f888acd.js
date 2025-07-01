@@ -384,6 +384,7 @@
                 ? o.bG.changeTimecode.TIMECODE_TIME_START
                 : o.bG.changeTimecode.TIMECODE_TIME_END;
           return (0, a.jsx)(p.Caption, {
+            style: (window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : undefined),
             ref: r,
             tabIndex: 0,
             className: (0, n.W)(h().root, h()["root_".concat(i)], l),
