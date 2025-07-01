@@ -7098,8 +7098,8 @@
           });
           this.ynisonStateController.updateState({
             newState: e,
-            skipVersionCompare: !1,
-            skipDeviceActivityCheck: !1,
+            skipVersionCompare: !0,
+            skipDeviceActivityCheck: !0,
             trigger: "YnisonPlugin",
           });
         }
@@ -8443,10 +8443,10 @@
               let e = () => {
                 let e = a.get(a2.YwV);
                 document.hidden ||
-                  (e.connector.connect({
+                  e.connector.connect({
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
-                  })),
+                  }),
                   document.hidden &&
                     (null == i ? void 0 : i.state.playerState.status.value) !==
                       Z.FY.PLAYING && e.connector.disconnect();
