@@ -271,17 +271,29 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     const assetData = fs.readFileSync(asarPath)
 
 
-    const uploadResponse = await octokit.repos.uploadReleaseAsset({
-        owner: gitOwner,
-        repo: gitRepo,
-        release_id: releaseResponse.data.id,
-        name: 'app.asar',
-        data: assetData,
-        headers: {
-            "content-type": "application/octet-stream",
-            "content-length": assetData.length,
-        },
-    });
+    let uploadResponse;
+    const maxRetries = 3;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            uploadResponse = await octokit.repos.uploadReleaseAsset({
+              owner: gitOwner,
+              repo: gitRepo,
+              release_id: releaseResponse.data.id,
+              name: "app.asar",
+              data: assetData,
+              headers: {
+                "content-type": "application/octet-stream",
+                "content-length": assetData.length,
+              },
+            });
+            break;
+        } catch (err) {
+            console.warn(`Попытка #${attempt} загрузки ассета не удалась:`, err.message);
+            if (attempt === maxRetries) throw err;
+            console.warn(`Повторная попытка загрузки ассета через ${(2000 * attempt)/1000} секунды...`);
+            await new Promise(res => setTimeout(res, 2000 * attempt));
+        }
+    }
 
     if(!uploadResponse.status.toString().startsWith('2')) return console.log("Не удалось загрузить ассет:", releaseResponse.data);
     console.timeEnd("Ассет успешно загружен");
