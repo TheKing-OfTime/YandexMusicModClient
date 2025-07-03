@@ -1046,7 +1046,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Использовать Ynison [ALPHA]",
+                  title: ["Использовать Ynison",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
                   description:
                     "Использует данные о воспроизведении с других устройств",
                   onChange: onDiscordFromYnisonToggle,
@@ -1464,7 +1464,7 @@
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(P, {
-                    title: "Использовать Ynison [ALPHA]",
+                    title: ["Использовать Ynison",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
                     description: unauthorizedProbe
                       ? "Скробблить проигрывания даже с других устройств"
                       : "Недоступно в вашем регионе или включён VPN",
@@ -2501,6 +2501,21 @@
           ],
         });
       };
+
+      let labeledBubble = (e) => {
+          let { label: label, color: color = 'var(--ym-controls-color-primary-default-enabled)', ...i } = e;
+          return (0, n.jsxs)('div', {
+              style: {
+                  'margin-inline': '5px',
+                  'background-color': color,
+                  'color': 'black',
+                  'border-radius': '50px',
+                  'padding-inline': '6px',
+              },
+              children: label,
+          })
+      }
+
       var I = o(38955),
         B = o.n(I);
       let A = (0, i.Pi)(() => {
@@ -2978,7 +2993,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Ynison Remote [ALPHA] (Временно не работает)",
+                  title: ["Ynison Remote",(0, n.jsx)(labeledBubble, {label: 'ALPHA'}),"(Временно не работает)"],
                   description:
                     "Даст возможность управлять этим плеером с других устройств",
                   onChange: onEnableYnisonRemoteControlToggle,
@@ -2990,7 +3005,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Попробовать включить пространственный звук [ALPHA]",
+                  title: ["Попробовать включить пространственный звук",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
                   description:
                     "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
                   onChange: onTryEnableSurroundAudioToggle,
