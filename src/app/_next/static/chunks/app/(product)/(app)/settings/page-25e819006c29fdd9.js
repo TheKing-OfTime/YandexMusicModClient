@@ -835,6 +835,36 @@
                     }),
                   }),
                 }),
+                (0, n.jsx)("li", {
+                  className: h().item,
+                  children: (0, n.jsx)(p.rU, {
+                    className: h().link,
+                    target: "_blank",
+                    href: "https://github.com/TheKing-OfTime/YandexMusicModClient",
+                    children: (0, n.jsx)(c.Caption, {
+                      type: "controls",
+                      variant: "span",
+                      size: "l",
+                      weight: "medium",
+                      children: "Репозиторий модификации на GitHub",
+                    }),
+                  }),
+                }),
+                (0, n.jsx)("li", {
+                  className: h().item,
+                  children: (0, n.jsx)(p.rU, {
+                    className: h().link,
+                    target: "_blank",
+                    href: "https://boosty.to/thekingoftime/donate",
+                    children: (0, n.jsx)(c.Caption, {
+                      type: "controls",
+                      variant: "span",
+                      size: "l",
+                      weight: "medium",
+                      children: "Поддержать автора модификации",
+                    }),
+                  }),
+                }),
               ],
             }),
             (0, n.jsx)(c.Caption, {
@@ -867,6 +897,20 @@
               variant: "div",
               size: "xs",
               children: e({ id: "desktop.app-revision" }, { revision: s }),
+            }),
+            (0, n.jsx)(c.Caption, {
+              className: h().versionText,
+              type: "controls",
+              variant: "div",
+              size: "xs",
+              children: "YandexMusicModClient " + window.MOD_VERSION,
+            }),
+            (0, n.jsx)(c.Caption, {
+              className: h().versionText,
+              type: "controls",
+              variant: "div",
+              size: "xs",
+              children: "Host " + window.HOST_VERSION,
             }),
           ],
         });
@@ -1829,7 +1873,7 @@
               "modFeatures.vibeAnimationEnhancement.intensityCoefficient",
             ),
           ),
-            onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
+          onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
               e,
@@ -2119,6 +2163,7 @@
           i = (0, _.pL3)(),
           s = (0, d.useCallback)(() => {
             i.clearAll().then(() => {
+              window.onDownloadedTracksDeleted();
               t.close(),
                 o(
                   (0, n.jsx)(p.Yj, {
