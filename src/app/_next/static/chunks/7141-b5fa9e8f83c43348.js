@@ -33658,7 +33658,7 @@
           l = (0, n.o)(s, r);
         if (!l) return o?.group === i;
         let c = l?.[a]?.group;
-        return (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[t] ?? o?.group) === i;
+        return (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? o?.group) === i;
       };
     },
     35785: function (e, t, r) {
