@@ -11369,18 +11369,23 @@
             setTimeout(registerYaspAudioElementListener, 1000);
             return console.log("YaspAudioElement not found, retrying...");
           }
+
+          const listener = (e) => {
+            if (e.detail?.name !== "AbrDecisionChange") return;
+            let bitrate = Math.round(
+                (Object.values(JSON.parse(e.detail?.data?.message)?.tracks)?.[0]
+                    ?.bitrate ?? 0) / 1000,
+            );
+
+            setRealBitrate(bitrate);
+          }
+
+          if (Array.from(window?.Ya?.YaspAudioElement?.instances.find((instance) => instance.yaspSrc)?.yaspEventListeners).find((connectedListener)=>connectedListener.toString() === listener.toString())) return console.debug("already registered YaspAudioElementListener");
+
           console.log("register YaspAudioElementListener");
           window?.Ya?.YaspAudioElement?.instances
             .find((instance) => instance.yaspSrc)
-            .addEventListener("yasp-event", (e) => {
-              if (e.detail?.name !== "AbrDecisionChange") return;
-              let bitrate = Math.round(
-                (Object.values(JSON.parse(e.detail?.data?.message)?.tracks)?.[0]
-                  ?.bitrate ?? 0) / 1000,
-              );
-
-              setRealBitrate(bitrate);
-            });
+            .addEventListener("yasp-event", listener);
         };
         registerYaspAudioElementListener();
         let onDownloadClick = (0, x.useCallback)(() => {
