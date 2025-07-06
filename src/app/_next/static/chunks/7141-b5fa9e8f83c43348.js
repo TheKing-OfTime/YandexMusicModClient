@@ -19158,7 +19158,10 @@
                         null === (t = E.onClick) ||
                           void 0 === t ||
                           t.call(E, e),
-                          preventCloseOnClick || x || null == S || S.events.emit("click");
+                          preventCloseOnClick ||
+                            x ||
+                            null == S ||
+                            S.events.emit("click");
                       },
                       onFocus(e) {
                         var t, r;
@@ -30414,7 +30417,11 @@
             return new Worker(
               (i =
                 i ||
-                ((r = (t = atob(a).replace(/this\.ticker=new .?.\(25,/, `this.ticker=new nt(${window.VIBE_ANIMATION_MAX_FPS?.()},`)).indexOf("\n", 10) + 1),
+                ((r =
+                  (t = atob(a).replace(
+                    /this\.ticker=new .?.\(25,/,
+                    `this.ticker=new nt(${window.VIBE_ANIMATION_MAX_FPS?.()},`,
+                  )).indexOf("\n", 10) + 1),
                 (n = new Blob(
                   [
                     t.substring(r) +
@@ -30452,7 +30459,9 @@
           this.invoke(u.UPDATE_LAYOUT, { isMobile: e });
         }
         enable() {
-          this.invoke(window?.VIBE_ANIMATION_DISABLE_RENDERING() ? u.DISABLE : u.ENABLE);
+          this.invoke(
+            window?.VIBE_ANIMATION_DISABLE_RENDERING() ? u.DISABLE : u.ENABLE,
+          );
         }
         disable() {
           this.invoke(u.DISABLE);
@@ -33658,7 +33667,9 @@
           l = (0, n.o)(s, r);
         if (!l) return o?.group === i;
         let c = l?.[a]?.group;
-        return (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? o?.group) === i;
+        return (
+          (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? o?.group) === i
+        );
       };
     },
     35785: function (e, t, r) {
@@ -41693,6 +41704,25 @@
             f = (0, a.useRef)(null),
             _ = (0, a.useRef)(null),
             p = u.overwrittenExperiments,
+            nameInputRef = (0, a.useRef)(null),
+            groupInputRef = (0, a.useRef)(null),
+            handlePaste = (0, a.useCallback)((e) => {
+              const paste = (e.clipboardData || window.clipboardData).getData("text");
+              const match = paste.match(/^(.+?):\s?(.+)$/);
+
+              if (match) {
+                  e.preventDefault();
+
+                  const [, name, group] = match;
+
+                  if (nameInputRef.current) {
+                      nameInputRef.current.value = name.trim();
+                  }
+                  if (groupInputRef.current) {
+                      groupInputRef.current.value = group.trim();
+                  }
+              }
+            }, []),
             E = (0, a.useCallback)(
               (e) => {
                 var t, r, n;
@@ -41744,6 +41774,7 @@
             ref: f,
             children: [
               (0, n.jsx)(v.I, {
+                ref: nameInputRef,
                 containerClassName: b().overrideInput,
                 type: "text",
                 name: "name",
@@ -41751,8 +41782,10 @@
                 required: !0,
                 defaultValue: s.name,
                 readOnly: l,
+                onPaste: handlePaste,
               }),
               (0, n.jsx)(v.I, {
+                ref: groupInputRef,
                 containerClassName: b().overrideInput,
                 type: "text",
                 name: "group",
@@ -41760,6 +41793,7 @@
                 required: !0,
                 defaultValue:
                   null === (t = s.value) || void 0 === t ? void 0 : t.group,
+                onPaste: handlePaste,
               }),
               (0, n.jsx)(v.I, {
                 ref: _,
