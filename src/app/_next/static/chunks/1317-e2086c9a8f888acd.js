@@ -384,7 +384,9 @@
                 ? o.bG.changeTimecode.TIMECODE_TIME_START
                 : o.bG.changeTimecode.TIMECODE_TIME_END;
           return (0, a.jsx)(p.Caption, {
-            style: (window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : undefined),
+            style: window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.()
+              ? { opacity: 1 }
+              : undefined,
             ref: r,
             tabIndex: 0,
             className: (0, n.W)(h().root, h()["root_".concat(i)], l),
@@ -562,7 +564,9 @@
           return (0, a.jsxs)(a.Fragment, {
             children: [
               (0, a.jsx)(x, {
-                style: (window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : undefined),
+                style: window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.()
+                  ? { opacity: 1 }
+                  : undefined,
                 role: "text",
                 "aria-label": m,
                 value: h,
@@ -579,7 +583,9 @@
                     Math.min(Math.max(y - p / 2, 0), g),
                     "px",
                   ),
-                  ...(window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.() ? { opacity: 1 } : {}),
+                  ...(window.ALWAYS_SHOW_PLAYER_TIMESTAMPS?.()
+                    ? { opacity: 1 }
+                    : {}),
                 },
                 ref: _,
                 value: (0, u.gf)(Math.round(i), Math.round(r)),
@@ -870,8 +876,8 @@
                 //   children: `${M.toFixed(2)}%`,
                 // }),
                   (0, l.jsx)("div", {
-                  className: g().wrapperSlider,
-                  children: (0, l.jsx)(h.i, {
+                    className: g().wrapperSlider,
+                    children: (0, l.jsx)(h.i, {
                       onMouseLeave: j,
                       className: (0, r.W)(g().slider, g().important, a),
                       thumbSize: "s",
@@ -885,7 +891,8 @@
                       "aria-label": I({ id: "player-actions.volume-control" }),
                       ...(0, c.BA)(c.bG.changeVolume.CHANGE_VOLUME_SLIDER),
                     }),
-                }),]
+                  }),
+                ],
               });
           });
         return (0, l.jsxs)("div", {
@@ -11130,10 +11137,7 @@
       var iI = i(15934),
         iA = i.n(iI);
       let iN = (0, y.Pi)((e) => {
-        let [, forcePlayerBarRerender] = (0, x.useReducer)(
-            (x) => x + 1,
-            0,
-        );
+        let [, forcePlayerBarRerender] = (0, x.useReducer)((x) => x + 1, 0);
         window.forcePlayerBarRerender = forcePlayerBarRerender;
         var t;
         let {
@@ -11373,14 +11377,24 @@
           const listener = (e) => {
             if (e.detail?.name !== "AbrDecisionChange") return;
             let bitrate = Math.round(
-                (Object.values(JSON.parse(e.detail?.data?.message)?.tracks)?.[0]
-                    ?.bitrate ?? 0) / 1000,
+              (Object.values(JSON.parse(e.detail?.data?.message)?.tracks)?.[0]
+                ?.bitrate ?? 0) / 1000,
             );
 
             setRealBitrate(bitrate);
-          }
+          };
 
-          if (Array.from(window?.Ya?.YaspAudioElement?.instances.find((instance) => instance.yaspSrc)?.yaspEventListeners).find((connectedListener)=>connectedListener.toString() === listener.toString())) return console.debug("already registered YaspAudioElementListener");
+          if (
+            Array.from(
+              window?.Ya?.YaspAudioElement?.instances.find(
+                (instance) => instance.yaspSrc,
+              )?.yaspEventListeners,
+            ).find(
+              (connectedListener) =>
+                connectedListener.toString() === listener.toString(),
+            )
+          )
+            return console.debug("already registered YaspAudioElementListener");
 
           console.log("register YaspAudioElementListener");
           window?.Ya?.YaspAudioElement?.instances
@@ -11546,17 +11560,19 @@
                     (0, v.jsxs)("div", {
                       className: iA().sonata,
                       children: [
-                          window.SHOW_DISLIKE_BUTTON() ? (0, v.jsx)(A.FM, {
+                        window.SHOW_DISLIKE_BUTTON()
+                          ? (0, v.jsx)(A.FM, {
                               fallback: (0, v.jsx)(A.Q1, {
-                                  disabled:
-                                      !a ||
-                                      o.isGenerativeContext ||
-                                      c.isAdvertShown,
-                                  isDisliked: null == a ? void 0 : a.isDisliked,
-                                  onClick: l,
-                                  iconSize: "xs",
+                                disabled:
+                                  !a ||
+                                  o.isGenerativeContext ||
+                                  c.isAdvertShown,
+                                isDisliked: null == a ? void 0 : a.isDisliked,
+                                onClick: l,
+                                iconSize: "xs",
                               }),
-                          }) : (0, v.jsx)(A.FM, {
+                            })
+                          : (0, v.jsx)(A.FM, {
                               fallback: (0, v.jsx)(A.dJ, {
                                 disabled:
                                   !a ||
@@ -11567,27 +11583,29 @@
                                 iconSize: "xs",
                               }),
                             }),
-                            (0, v.jsx)(L.WP, {
-                              className: (0, h.W)(
-                                iA().sonataControls,
-                                iA().important,
-                              ),
-                              withRepeat: !0,
-                              withShuffle: !0,
-                              isMobile: !1,
-                              entityMeta: a,
-                            }),
-                          window.SHOW_DISLIKE_BUTTON() ? (0, v.jsx)(A.FM, {
+                        (0, v.jsx)(L.WP, {
+                          className: (0, h.W)(
+                            iA().sonataControls,
+                            iA().important,
+                          ),
+                          withRepeat: !0,
+                          withShuffle: !0,
+                          isMobile: !1,
+                          entityMeta: a,
+                        }),
+                        window.SHOW_DISLIKE_BUTTON()
+                          ? (0, v.jsx)(A.FM, {
                               fallback: (0, v.jsx)(A.dJ, {
-                                  disabled:
-                                      !a ||
-                                      o.isGenerativeContext ||
-                                      c.isAdvertShown,
-                                  isLiked: null == a ? void 0 : a.isLiked,
-                                  onClick: n,
-                                  iconSize: "xs",
+                                disabled:
+                                  !a ||
+                                  o.isGenerativeContext ||
+                                  c.isAdvertShown,
+                                isLiked: null == a ? void 0 : a.isLiked,
+                                onClick: n,
+                                iconSize: "xs",
                               }),
-                          }) : (0, v.jsx)(A.FM, {
+                            })
+                          : (0, v.jsx)(A.FM, {
                               fallback: (0, v.jsx)(A.Q1, {
                                 disabled:
                                   !a ||
@@ -11598,7 +11616,7 @@
                                 iconSize: "xs",
                               }),
                             }),
-                          ],
+                      ],
                     }),
                     (0, v.jsxs)("div", {
                       className: iA().meta,
