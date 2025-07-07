@@ -48,13 +48,18 @@ const handleApplicationEvents = (window) => {
       store_js_1.getModFeatures().globalShortcuts,
     );
     shortcuts.forEach((shortcut) => {
-      if (shortcut[1] && isAccelerator(shortcut[1]))
+      if (shortcut[1] && isAccelerator(shortcut[1])) {
         electron_1.globalShortcut.register(shortcut[1], () => {
           const actions = shortcut[0].split(" ");
           actions.forEach((action) => {
             sendPlayerAction(window, playerActions_js_1.PlayerActions[action]);
           });
         });
+      } else {
+        eventsLogger.warn(
+          `Global shortcut ${shortcut[0]} is not registered. Invalid accelerator: ${shortcut[1]}`,
+        );
+      }
     });
   }
 
