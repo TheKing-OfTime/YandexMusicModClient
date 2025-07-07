@@ -1046,7 +1046,10 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: ["Использовать Ynison",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
+                  title: [
+                    "Использовать Ynison",
+                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                  ],
                   description:
                     "Использует данные о воспроизведении с других устройств",
                   onChange: onDiscordFromYnisonToggle,
@@ -1464,7 +1467,10 @@
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(P, {
-                    title: ["Использовать Ynison",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
+                    title: [
+                      "Использовать Ynison",
+                      (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                    ],
                     description: unauthorizedProbe
                       ? "Скробблить проигрывания даже с других устройств"
                       : "Недоступно в вашем регионе или включён VPN",
@@ -2501,20 +2507,29 @@
           ],
         });
       };
-
+      var Tooltip = o(97141);
       let labeledBubble = (e) => {
-          let { label: label, color: color = 'var(--ym-controls-color-primary-default-enabled)', ...i } = e;
-          return (0, n.jsxs)('div', {
-              style: {
-                  'margin-inline': '5px',
-                  'background-color': color,
-                  'color': 'black',
-                  'border-radius': '50px',
-                  'padding-inline': '6px',
-              },
-              children: label,
-          })
-      }
+        let {
+          label: label,
+          color: color = "var(--ym-controls-color-primary-default-enabled)",
+          tooltip: tooltip = {title: "Экспериментально", description: "Может работать некорректно"},
+          ...i
+        } = e;
+        return (0, n.jsx)(Tooltip.wx, {
+          title: tooltip.title,
+          description: tooltip.description,
+          children: (0, n.jsxs)("div", {
+            style: {
+              "margin-inline": "5px",
+              "background-color": color,
+              color: "black",
+              "border-radius": "50px",
+              "padding-inline": "6px",
+            },
+            children: label,
+          }),
+        });
+      };
 
       var I = o(38955),
         B = o.n(I);
@@ -2993,7 +3008,11 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: ["Ynison Remote",(0, n.jsx)(labeledBubble, {label: 'ALPHA'}),"(Временно не работает)"],
+                  title: [
+                    "Ynison Remote",
+                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                    "(Временно не работает)",
+                  ],
                   description:
                     "Даст возможность управлять этим плеером с других устройств",
                   onChange: onEnableYnisonRemoteControlToggle,
@@ -3005,7 +3024,10 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: ["Попробовать включить пространственный звук",(0, n.jsx)(labeledBubble, {label: 'ALPHA'})],
+                  title: [
+                    "Попробовать включить пространственный звук",
+                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                  ],
                   description:
                     "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
                   onChange: onTryEnableSurroundAudioToggle,
