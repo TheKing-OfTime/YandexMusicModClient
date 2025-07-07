@@ -227,20 +227,33 @@ const handleApplicationEvents = (window) => {
     (0, scrobbleManager_js_1.handlePlayingStateEventFromYnison)(data);
   });
   electron_1.ipcMain.on(
-    events_js_1.Events.INSTALL_MOD_UPDATE,
+    events_js_1.Events.DOWNLOAD_MOD_UPDATE,
     async (event, data) => {
       eventsLogger.info(
         `Event received`,
-        events_js_1.Events.INSTALL_MOD_UPDATE,
+        events_js_1.Events.DOWNLOAD_MOD_UPDATE,
       );
 
       let callback = async (progressRenderer, progressWindow) => {
         sendProgressBarChange(window, "modUpdateToast", progressRenderer * 100);
         window.setProgressBar(progressWindow);
       };
-      await (0, modUpdater_js_1.getModUpdater)().onUpdateInstall(callback);
+      await (0, modUpdater_js_1.getModUpdater)().onUpdateDownload(callback);
     },
   );
+
+  electron_1.ipcMain.on(
+      events_js_1.Events.INSTALL_MOD_UPDATE,
+      async (event, data) => {
+        eventsLogger.info(
+            `Event received`,
+            events_js_1.Events.INSTALL_MOD_UPDATE,
+        );
+        await (0, modUpdater_js_1.getModUpdater)().onInstallUpdate();
+        electron_1.ipcMain.emit(events_js_1.Events.APPLICATION_RESTART);
+      },
+  );
+
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
     eventsLogger.info("Event handle", events_js_1.Events.GET_PASSPORT_LOGIN);
     try {

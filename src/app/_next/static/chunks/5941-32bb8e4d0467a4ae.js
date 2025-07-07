@@ -777,14 +777,14 @@
                   var e;
                   null === (e = window.desktopEvents) ||
                   void 0 === e ||
-                  e.send(i.BOn.APPLICATION_RESTART),
+                  e.send(i.BOn.INSTALL_MOD_UPDATE),
                   null == s || s();
                 }, [s]),
                 callInstallModUpdate = (0, a.useCallback)(() => {
                   var e;
                   null === (e = window.desktopEvents) ||
                   void 0 === e ||
-                  e.send(i.BOn.INSTALL_MOD_UPDATE);
+                  e.send(i.BOn.DOWNLOAD_MOD_UPDATE);
                 }, [s]),
                 formattedMessages = (progressValue) => {
                   let message = n({ id: "offline.download" });

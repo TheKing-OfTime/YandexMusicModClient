@@ -557,14 +557,14 @@
               var e;
               null === (e = window.desktopEvents) ||
               void 0 === e ||
-              e.send(r.BOn.APPLICATION_RESTART),
+              e.send(r.BOn.INSTALL_MOD_UPDATE),
               null == i || i();
             }, [i]),
             callInstallModUpdate = (0, s.useCallback)(() => {
               var e;
               null === (e = window.desktopEvents) ||
               void 0 === e ||
-              e.send(r.BOn.INSTALL_MOD_UPDATE);
+              e.send(r.BOn.DOWNLOAD_MOD_UPDATE);
             }, [i]),
             formattedMessages = (progressValue) => {
               let message = o({ id: "offline.download" });

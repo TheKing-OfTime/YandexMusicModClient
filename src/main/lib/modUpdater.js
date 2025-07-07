@@ -157,9 +157,8 @@ class ModUpdater {
             APP_ASAR_TMP_GZIP_DOWNLOAD_PATH,
             APP_ASAR_TMP_DOWNLOAD_PATH,
           );
-        await this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
         callback(1.1, -1);
-        this.logger.log("Updated installed.");
+        this.logger.log("Update ready to install.");
       } catch (e) {
         await fsPromise.unlink(path);
         this.logger.error("Error writing file:", e);
@@ -200,7 +199,7 @@ class ModUpdater {
   onUpdateAvailable(listener) {
     this.onModUpdateListeners.push(listener);
   }
-  async onUpdateInstall(callback) {
+  async onUpdateDownload(callback) {
     if (!fs.existsSync(TMP_PATH)) {
       await fsPromise.mkdir(TMP_PATH);
       this.logger.log("Created temp directory.");
@@ -212,6 +211,16 @@ class ModUpdater {
         : APP_ASAR_TMP_DOWNLOAD_PATH,
       callback,
     );
+  }
+
+  async onInstallUpdate() {
+    this.logger.log("Installing update...");
+    try {
+      await this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
+    } catch (e) {
+      this.logger.error("Update install failed:", e);
+    }
+    this.logger.log("Update installed.");
   }
 }
 
