@@ -2121,6 +2121,10 @@
 }
 .Gr0NtROEpipzr518Mwr6 {
   background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color .3s linear;
+  @starting-style {
+    background-color: transparent;
+  }
 }
 .NaZE1NCUxSM1MvpZuLJV {
   background-color: var(--ym-background-color-primary-enabled-overlay);
