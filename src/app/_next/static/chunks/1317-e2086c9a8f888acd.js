@@ -872,9 +872,17 @@
                   [g().sliderContainer_focusVisible]: E,
                 }),
                 children: [
-                //     (0, l.jsx)("span", {
-                //   children: `${M.toFixed(2)}%`,
-                // }),
+                  (0, l.jsx)("span", {
+                    children: `${Math.round(M.toFixed(2)*100)}%`,
+                    style: {
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      "margin-inline": "auto",
+                      width: "fit-content",
+                      top: '0.7rem',
+                    },
+                  }),
                   (0, l.jsx)("div", {
                     className: g().wrapperSlider,
                     children: (0, l.jsx)(h.i, {
