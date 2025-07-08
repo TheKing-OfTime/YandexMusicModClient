@@ -193,16 +193,6 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 </details>
 
-### Возврат кнопки дизлайка
-<details>
-   <summary>Подробнее</summary>
-
-Возвращает кнопку дизлайка в плеер на главной.
-
-![image](https://github.com/user-attachments/assets/22a83331-dfc4-4c7b-92c9-4fdbe2758910)
-
-</details>
-
 ### Возврат кнопки повтора
 <details>
    <summary>Подробнее</summary>
