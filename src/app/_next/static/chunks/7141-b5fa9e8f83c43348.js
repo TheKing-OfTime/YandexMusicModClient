@@ -45399,6 +45399,9 @@
             children:
               f ||
               (0, n.jsx)(l.Caption, {
+                style: {    
+                  'display': "block"
+                },
                 variant: "div",
                 size: "l",
                 lineClamp: 1,
