@@ -33669,7 +33669,7 @@
         if (!l) return o?.group === i;
         let c = l?.[a]?.group;
         return (
-          (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[i] ?? o?.group) === i
+          (c ?? window?.DEFAULT_EXPERIMENT_OVERRIDES()?.[a] ?? o?.group) === i
         );
       };
     },
