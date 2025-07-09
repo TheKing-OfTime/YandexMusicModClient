@@ -22,28 +22,16 @@
 Моя работа будет намного эффективнее, если я буду работать над исходным кодом в уютном офисе, а не с минифицированной и прогнанной через webpack версией кода
 </details>
 
-> [!CAUTION]  
-> # В версии 5.59.0 Яндекс добавили проврку подлинности кода.
-> Пока что старым способом мод можно установить только на версию 5.58.0 и ниже.
-> Скачать её можно [тут](https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.58.0.exe)
-> После установки старой версии ЯМы НЕ запускайте её, а сразу устанавливайте мод.
-> Я попытаюсь найти решение как можно скорее
-
 ## Установка
 
 0. Загрузите последнюю версию клиента Яндекс музыки с официального сайта https://music.yandex.com/download/
-1. Откройте командную строку (Win + R -> cmd -> Enter)
-2. Выполните эту команду
-   ```bat
-   curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/app.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
-   ```
-3. Готово!
+1. Скачайте и установите Патчер из репозитория https://github.com/TheKing-OfTime/YandexMusicModPatcher следуюя его порядку установки.
+2. Нажмите в нём кнопку Patch.
+3. Дождитесь окончания установки.
+4. Готово!
 
 Если из функций модификации вам нужны только разблокированные DevTools. То вы можете использовать эту команду.
-
-```bat
-curl -L https://github.com/TheKing-OfTime/YandexMusicModClient/releases/latest/download/appDevTools.asar > %localappdata%/Programs/YandexMusic/resources/app.asar
-```
+То в настройках патчера выберите Канал релизов "Только Девтулзы"
 
 Преимущество в том что эта версия собирается полностью автоматически, и всегда использует последнюю версию ЯМ (Не спуфится как полная модификация)
 
