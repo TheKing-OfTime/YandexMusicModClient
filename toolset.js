@@ -639,7 +639,7 @@ async function run(command, flags) {
 				break;
       		}
 
-			await build({srcPath: src, destDir: dest, noMinify: !shouldMinify});
+			await build({srcPath: src, destDir: dest, noMinify: !shouldMinify, noNativeModules: noNativeModules });
 			break;
         case 'spoof':
 			const versions = await spoof('extracted', shouldRelease);
