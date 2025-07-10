@@ -11,6 +11,8 @@ const config_js_1 = require("../config.js");
 const https = require("https");
 const axios = require("axios");
 const electron = require("electron");
+const { spawn } = require('child_process');
+const spawnAsync = promisify(spawn);
 
 const execPromise = promisify(exec);
 const unzipPromise = promisify(zlib.unzip);
@@ -187,6 +189,29 @@ class ModUpdater {
     this.logger.log("Copied: ", oldPath, " to ", newPath);
   }
 
+  async openPatcher(path) {
+    const cmdScript = `ymmp://patch/from-mod/${encodeURI(path)}`;
+    this.logger.log("Opening external detached: ", cmdScript);
+    await this.openExternalDetached(cmdScript);
+  }
+
+  async openExternalDetached(url) {
+    let command, args;
+
+    if (process.platform === 'win32') {
+      command = 'cmd.exe';
+      args = ['/c', 'start', '', url];
+    } else if (process.platform === 'darwin') {
+      command = 'open';
+      args = [url];
+    } else {
+      command = 'xdg-open';
+      args = [url];
+    }
+
+    (await spawnAsync(command, args, { detached: true, stdio: 'ignore', })).unref();
+  }
+
   async decompressGzipFile(oldPath, newPath) {
     const compressedData = await fsPromise.readFile(oldPath);
 
@@ -216,7 +241,7 @@ class ModUpdater {
   async onInstallUpdate() {
     this.logger.log("Installing update...");
     try {
-      await this.copyFile(APP_ASAR_TMP_DOWNLOAD_PATH, APP_ASAR_PATH);
+      await this.openPatcher(APP_ASAR_TMP_DOWNLOAD_PATH);
     } catch (e) {
       this.logger.error("Update install failed:", e);
     }
