@@ -19,6 +19,7 @@ const EXTRACTED_DIR_PATH = path.join(process.argv[1], '../extracted');
 
 const MAC_APP_PATH = '/Applications/Яндекс Музыка.app';
 const WINDOWS_APP_PATH = path.join(process.env?.LOCALAPPDATA ?? '', '/Programs/YandexMusic');
+const WINDOWS_EXE_PATH = path.join(WINDOWS_APP_PATH ?? '', 'Яндекс Музыка.exe');
 
 const DIRECT_DIST_PATH = process.platform === 'darwin' ? path.join(MAC_APP_PATH, '/Contents/Resources/app.asar') : path.join(WINDOWS_APP_PATH, "resources/app.asar");
 const INFO_PLIST_PATH = path.join(MAC_APP_PATH, '/Contents/Info.plist');
@@ -56,6 +57,8 @@ const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 const patchNoteStringMD = fs.readFileSync(PATCH_NOTES_PATH, { encoding: "utf8"});
 
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
+
+let oldYMHash;
 
 class PatchNote {
     static forSpoofPatch(ymVersion, version, previousYmVersion) {
@@ -426,8 +429,9 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false) {
         console.log("System Integrity Protection включён. Обход невозможен, пожалуйста, отключите SIP для File System и попробуйте снова.");
         return false;
     }
+    oldYMHash = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
-    if (process.platform === "darwin") await bypassAsarIntegrity(MAC_APP_PATH);
+    await bypassAsarIntegrity();
 }
 
 async function spoof(type='extracted', shouldRelease=false) {
@@ -567,7 +571,69 @@ function checkIfSystemIntegrityProtectionEnabled() {
     }
 }
 
-async function bypassAsarIntegrity(appPath) {
+async function bypassWinAsarIntegrity(appPath) {
+        console.log(`Подготовка к замене хеша`);
+        try {
+            const exePath = appPath;
+
+            if (!fs.existsSync(exePath)) {
+                return console.log(`Файл не найден по пути: ${exePath}`);
+            }
+
+            // 2) Создание резервной копии
+            const backupPath = exePath + '.backup';
+            if (!fs.existsSync(backupPath)) {
+                fs.copyFileSync(exePath, backupPath);
+                console.log(`Резервная копия создана: ${backupPath}`);
+            } else {
+                console.log(`Резервная копия уже существует: ${backupPath}`);
+            }
+
+            // 3) Шаблоны (ASCII‑hex)
+            const oldHexStr = oldYMHash;
+            const newHexStr = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
+
+            console.log(`Хеши: ${oldHexStr} ${newHexStr} ${oldHexStr.length} ${newHexStr.length}`);
+
+            if (oldHexStr.length !== newHexStr.length) {
+                return console.log('Длины старого и нового хеша не совпадают');
+            }
+
+            if (oldHexStr === newHexStr) {
+                return console.log('Старый и новый хеши совпадают, изменения не требуется');
+            }
+
+            const oldBuf = Buffer.from(oldHexStr, 'ascii');
+            const newBuf = Buffer.from(newHexStr, 'ascii');
+
+            // 4) Чтение, замена, запись
+            const fileBuf = fs.readFileSync(exePath);
+            let count = 0;
+            let offset = 0;
+
+            while (true) {
+                const idx = fileBuf.indexOf(oldBuf, offset);
+                if (idx === -1) break;
+                newBuf.copy(fileBuf, idx);
+                count++;
+                offset = idx + oldBuf.length;
+            }
+
+            if (count === 0) {
+                console.log('Шаблон не найден, изменений не внесено.');
+            } else {
+                fs.writeFileSync(exePath, fileBuf);
+                console.log(`Успешно заменено вхождений: ${count}.`);
+                fs.unlinkSync(backupPath);
+            }
+
+        } catch (err) {
+            console.log('Ошибка: ' + err.message);
+        }
+
+    }
+
+async function bypassDarwinAsarIntegrity(appPath) {
     if (process.platform !== 'darwin') {
         console.log("Не удалось обойти asar integrity: Доступно только для macOS");
         return false;
@@ -606,6 +672,11 @@ async function bypassAsarIntegrity(appPath) {
         console.log("Кеш очищен");
     }
 
+}
+
+async function bypassAsarIntegrity(dest=undefined) {
+    if (process.platform === "darwin") await bypassDarwinAsarIntegrity(dest ?? MAC_APP_PATH);
+    if (process.platform === "win32") await bypassWinAsarIntegrity(dest ?? WINDOWS_EXE_PATH);
 }
 
 async function run(command, flags) {
