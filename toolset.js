@@ -59,6 +59,7 @@ const patchNoteStringMD = fs.readFileSync(PATCH_NOTES_PATH, { encoding: "utf8"})
 const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
 let oldYMHash;
+let oldYMHashOverride;
 
 class PatchNote {
     static forSpoofPatch(ymVersion, version, previousYmVersion) {
@@ -590,7 +591,7 @@ async function bypassWinAsarIntegrity(appPath) {
             }
 
             // 3) Шаблоны (ASCII‑hex)
-            const oldHexStr = oldYMHash;
+            const oldHexStr = oldYMHashOverride ?? oldYMHash;
             const newHexStr = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
 
             console.log(`Хеши: ${oldHexStr} ${newHexStr} ${oldHexStr.length} ${newHexStr.length}`);
@@ -687,6 +688,7 @@ async function run(command, flags) {
     const extractType = flags.extractType ?? 'direct';
     const withoutPure = flags.withoutPure ?? false;
     const noNativeModules = flags.noNativeModules ?? false;
+    oldYMHashOverride = flags.oldYMHashOverride;
 
     const shouldPatch = flags.p ?? false;
 	const shouldMinify = flags.m ?? false;
