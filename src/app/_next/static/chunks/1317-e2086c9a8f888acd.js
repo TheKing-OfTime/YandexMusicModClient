@@ -873,14 +873,14 @@
                 }),
                 children: [
                   (0, l.jsx)("span", {
-                    children: `${Math.round(M.toFixed(2)*100)}%`,
+                    children: `${Math.round(M.toFixed(2) * 100)}%`,
                     style: {
                       position: "absolute",
                       left: 0,
                       right: 0,
                       "margin-inline": "auto",
                       width: "fit-content",
-                      top: '0.7rem',
+                      top: "0.7rem",
                     },
                   }),
                   (0, l.jsx)("div", {
@@ -9465,6 +9465,8 @@
               fullscreenPlayer: n,
             } = (0, u.oR4)(),
             { state: l, toggleTrue: r } = (0, en.O)(!1),
+            [isRemoteDeviceConnected, setIsRemoteDeviceConnected] = (0, x.useState)(window.isRemoteDeviceConnected ?? false),
+            [remoteDevice, setRemoteDevice] = (0, x.useState)(window.remoteDevice ?? null),
             o =
               (null == a ? void 0 : a.isTrackPodcast) ||
               (null == a
@@ -9546,6 +9548,16 @@
               [a, null == a ? void 0 : a.id, o, d, n.isSplitMode],
             );
           return (
+            (0, x.useEffect)(() => {
+              window.onRemoteDeviceConnected.push((device_info) => {
+                setIsRemoteDeviceConnected(true);
+                setRemoteDevice(device_info);
+              });
+              window.onRemoteDeviceDisconnected.push(() => {
+                setIsRemoteDeviceConnected(false);
+                setRemoteDevice(null);
+              });
+            }, []),
             (0, x.useEffect)(
               () => (
                 window.addEventListener("resize", i),
@@ -9577,11 +9589,25 @@
                     Y.QM.player.FULLSCREEN_PLAYER_FULLSCREEN_CONTENT,
                   ),
                   children: [
-                    (0, v.jsx)(tT, {
-                      className: (0, h.W)(tL().poster, tL().important),
-                      coverUri: null == a ? void 0 : a.coverUri,
-                      children: (0, v.jsx)(tk, {}),
-                    }),
+                    isRemoteDeviceConnected &&
+                      (0, v.jsxs)("div", {
+                        style: {
+                          position: "absolute",
+                          top: '-25px',
+                          color:
+                            "var(--ym-controls-color-primary-default-enabled)",
+                        },
+                        children: [
+                          (0, v.jsxs)("span", {
+                            children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                          }),
+                        ],
+                      }),
+                      (0, v.jsx)(tT, {
+                        className: (0, h.W)(tL().poster, tL().important),
+                        coverUri: null == a ? void 0 : a.coverUri,
+                        children: (0, v.jsx)(tk, {}),
+                      }),
                     (0, v.jsxs)("div", {
                       className: tL().info,
                       children: [
@@ -11372,6 +11398,9 @@
             ?.mediaSourceData?.data,
         );
         let [realBitrate, setRealBitrate] = (0, x.useState)(null);
+        let [isRemoteDeviceConnected, setIsRemoteDeviceConnected] = (0,
+        x.useState)(false);
+        let [remoteDevice, setRemoteDevice] = (0, x.useState)(null);
         const registerYaspAudioElementListener = () => {
           if (
             !window?.Ya?.YaspAudioElement?.instances?.find(
@@ -11443,6 +11472,18 @@
                 }
               },
             );
+            window.onRemoteDeviceConnected.push((device_info) => {
+              setIsRemoteDeviceConnected(true);
+              setRemoteDevice(device_info);
+              window.isRemoteDeviceConnected = true;
+              window.remoteDevice = device_info;
+            });
+            window.onRemoteDeviceDisconnected.push(() => {
+              setIsRemoteDeviceConnected(false);
+              setRemoteDevice(null);
+              window.isRemoteDeviceConnected = false;
+              window.remoteDevice = null;
+            });
           }, []),
           (0, x.useEffect)(() => {
             if (downloadInfo === undefined) {
@@ -11624,6 +11665,21 @@
                                 iconSize: "xs",
                               }),
                             }),
+                        isRemoteDeviceConnected &&
+                          (0, v.jsxs)("div", {
+                            style: {
+                              position: "absolute",
+                              bottom: 0,
+                              color:
+                                "var(--ym-controls-color-primary-default-enabled)",
+                              "font-size": "small",
+                            },
+                            children: [
+                              (0, v.jsxs)("span", {
+                                children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                              }),
+                            ],
+                          }),
                       ],
                     }),
                     (0, v.jsxs)("div", {

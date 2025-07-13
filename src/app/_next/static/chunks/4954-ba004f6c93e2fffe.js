@@ -1499,7 +1499,8 @@
                   (i.player_state.status.version = O(
                     this.connectorConfig.device.device_id,
                     0,
-                  ));
+                  )),
+                (i.player_state.status.paused = true);
                 var n = K(
                     { update_full_state: i },
                     J({ player_action_timestamp_ms: 0 }, t),
@@ -1913,36 +1914,40 @@
               enumerable: !1,
               configurable: !0,
               writable: !0,
-              value: function (e) {
-                (this.variables.shadow && this.isUpdateFullStateComplited) ||
-                  ((this.isUpdateFullStateComplited =
-                    e.rawData.rid === this.updateFullStateMessageRid),
-                  this.isUpdateFullStateComplited &&
-                    this.stateController.updateState({
-                      newState: e.rawData,
-                      trigger: "WSConnector",
-                    }));
+              value: function (event) {
+
+                if (this.variables.shadow && this.isUpdateFullStateComplited) return;
+                if (!this.isUpdateFullStateComplited) {
+                  this.isUpdateFullStateComplited = event.rawData.rid === this.updateFullStateMessageRid;
+                }
+                  this.stateController.updateState({
+                    newState: event.rawData,
+                    trigger: "WSConnector",
+                  });
+
               },
             }),
             Object.defineProperty(e.prototype, "onStateChanged", {
               enumerable: !1,
               configurable: !0,
               writable: !0,
-              value: function (e) {
-                var t, i, n, r;
-                !this.isUpdateFullStateComplited ||
-                  (this.variables.shadow &&
-                    ((t = this.deviceConfig.device_id),
-                    (i = e.state.active_device_id_optional) && i !== t)) ||
-                  ((n = e.diff).player_state && n.player_state.player_queue
-                    ? this.connector.updatePlayerState({
-                        player_state: e.state.player_state,
-                      })
-                    : (r = e.diff).player_state &&
-                      r.player_state.status &&
-                      this.connector.updatePlayingStatus({
-                        playing_status: e.state.player_state.status,
-                      }));
+              value: function (event) {
+
+                if (!this.isUpdateFullStateComplited) return;
+
+                if ( this.variables.shadow &&
+                event.state.active_device_id_optional &&
+                event.state.active_device_id_optional !== this.deviceConfig.device_id ) return;
+
+                if (event.diff.player_state && event.diff.player_state.player_queue) {
+                  this.connector.updatePlayerState({
+                    player_state: event.state.player_state,
+                  });
+                } else if (event.diff.player_state && event.diff.player_state.status) {
+                  this.connector.updatePlayingStatus({
+                    playing_status: event.state.player_state.status,
+                  });
+                }
               },
             }),
             Object.defineProperty(e.prototype, "onConnected", {
@@ -1965,7 +1970,7 @@
                       },
                       info: e,
                       volume_info: { volume: 0, version: null },
-                      is_shadow: !0,// TODO !(window?.ENABLE_YNISON_REMOTE_CONTROL ?? false),
+                      is_shadow: !(window?.ENABLE_YNISON_REMOTE_CONTROL ?? false),
                     },
                     is_currently_active: !1,
                     sync_state_from_eov_optional: null,

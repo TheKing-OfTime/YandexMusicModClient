@@ -3011,7 +3011,6 @@
                   title: [
                     "Ynison Remote",
                     (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
-                    "(Временно не работает)",
                   ],
                   description:
                     "Даст возможность управлять этим плеером с других устройств",

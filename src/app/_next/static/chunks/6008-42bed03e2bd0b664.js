@@ -6415,17 +6415,54 @@
               return null;
           }
         };
+      const electronBridge = a(13028);
+      window.onRemoteDeviceConnected = [];
+      window.onRemoteDeviceDisconnected = [];
       class aS {
         onYnisonStateUpdated(e) {
-          [
+          // Отправляем состояние Ynison в electronBridge
+          electronBridge.sendYnisonState({ rawData: e.state });
+
+          const isRemoteControlEnabled = window.ENABLE_YNISON_REMOTE_CONTROL;
+          const allowedStatuses1 = [
             Z.FY.ENDED,
             Z.FY.IDLE,
             Z.FY.PAUSED,
             Z.FY.STOPPED,
             Z.FY.MEDIA_ELEMENT_ERROR,
-          ].includes(this.playback.state.playerState.status.value) &&
-            this.variables.shouldApplyState &&
+          ];
+          const allowedStatuses2 = [
+            Z.FY.ENDED,
+            Z.FY.IDLE,
+            Z.FY.STOPPED,
+            Z.FY.MEDIA_ELEMENT_ERROR,
+          ];
+
+          const currentStatus = this.playback.state.playerState.status.value;
+          const shouldApplyState = this.variables.shouldApplyState;
+          const isDeviceMatch = e.state.active_device_id_optional === window.DEVICE_INFO?.device_id;
+          const selfStateDuped = e.state.player_state.status.version.device_id === window.DEVICE_INFO?.device_id
+
+          if (isRemoteControlEnabled ? (!selfStateDuped &&
+          shouldApplyState &&
+          (isDeviceMatch || allowedStatuses2.includes(currentStatus))
+          ) : (allowedStatuses1.includes(currentStatus) && shouldApplyState)) {
             this.applyYnisonDiff(e);
+
+            if (isRemoteControlEnabled) {
+              const currentDevice = e.state.devices.find(
+                (device) =>
+                  device.info.device_id ===
+                  e.state.player_state.status.version.device_id,
+              );
+              window.onRemoteDeviceConnected.forEach((listener) =>
+                listener(currentDevice),
+              );
+            }
+
+          } else if (isRemoteControlEnabled && (!isDeviceMatch)) {
+            window.onRemoteDeviceDisconnected.forEach(listener=>listener());
+          }
         }
         applyYnisonDiff(e) {
           var t, a, i, r, l, s;
@@ -6464,8 +6501,8 @@
             let t = e.diff.player_state.status;
             n.push(() => this.changeStatus(t));
           }
-          if (e?.devices?.[0]?.volume)
-            n.push(() => this.changeVolume(e?.devices?.[0]?.volume));
+          if (e.diff?.devices?.[0]?.volume)
+            n.push(() => this.changeVolume(e.diff?.devices?.[0]?.volume));
           return n.exec();
         }
         changeVolume(e) {
@@ -6527,11 +6564,15 @@
         }
         changeContext(e) {
           let t = this.getContextParams(e);
+          const isPaused = this.playback.state.playerState.status.value === 'paused';
           return t
             ? this.playback
                 .setContext(t)
                 .then(() => {
                   this.playback.stop();
+                  this.playback.play().then(()=>{
+                    if (isPaused) this.playback.pause();
+                  });
                 })
                 .catch((e) => {
                   this.playback.hooks.afterError.promise(
@@ -7056,7 +7097,7 @@
                 status: {
                   duration_ms: aC(r),
                   progress_ms: a_(r),
-                  paused: !0,
+                  paused: (window.ENABLE_YNISON_REMOTE_CONTROL ? r.state.playerState.status.value === Z.FY.PAUSED : false),
                   playback_speed: r.state.playerState.speed.value,
                   version: (0, tq.Cs)(s.device_id, 0),
                 },
@@ -8447,7 +8488,7 @@
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
                   }),
-                  document.hidden &&
+                window.ENABLE_YNISON_REMOTE_CONTROL || document.hidden &&
                     (null == i ? void 0 : i.state.playerState.status.value) !==
                       Z.FY.PLAYING && e.connector.disconnect();
               };

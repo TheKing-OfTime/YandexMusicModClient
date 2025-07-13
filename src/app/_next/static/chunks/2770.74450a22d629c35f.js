@@ -1471,7 +1471,7 @@
                   app_name: "Browser",
                   app_version: (0, ed.b)() || "",
                   title: "Music Desktop App",
-                  device_id: (0, n.Z)(),
+                  device_id: (window?.ENABLE_YNISON_REMOTE_CONTROL ? window?.DEVICE_INFO?.device_id : undefined) ?? (0, n.Z)(),
                   type: o.Yi.WEB,
                 },
                 r = e.get(ef.Hz).getPassportUid(),
@@ -1481,7 +1481,7 @@
                 multiAuthUserId: r,
                 oauth: i.token,
                 ynisonConnectionConfig: eT.ynisonConnectionConfig,
-                variables: { shadow: !0 },
+                variables: { shadow: !(window?.ENABLE_YNISON_REMOTE_CONTROL ?? false) },
               });
             }),
           );
