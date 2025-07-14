@@ -6564,15 +6564,17 @@
         }
         changeContext(e) {
           let t = this.getContextParams(e);
-          const isPaused = this.playback.state.playerState.status.value === 'paused';
+          const isPaused = this.playback.state.playerState.status.value !== 'playing';
           return t
             ? this.playback
                 .setContext(t)
                 .then(() => {
                   this.playback.stop();
-                  this.playback.play().then(()=>{
-                    if (isPaused) this.playback.pause();
-                  });
+                  if (window.ENABLE_YNISON_REMOTE_CONTROL) {
+                    this.playback.play().then(() => {
+                      if (isPaused) this.playback.pause();
+                    });
+                  }
                 })
                 .catch((e) => {
                   this.playback.hooks.afterError.promise(

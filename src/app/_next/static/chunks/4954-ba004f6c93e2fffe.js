@@ -1919,6 +1919,7 @@
                 if (this.variables.shadow && this.isUpdateFullStateComplited) return;
                 if (!this.isUpdateFullStateComplited) {
                   this.isUpdateFullStateComplited = event.rawData.rid === this.updateFullStateMessageRid;
+                  event.rawData.player_state.status.paused = !0;
                 }
                   this.stateController.updateState({
                     newState: event.rawData,
