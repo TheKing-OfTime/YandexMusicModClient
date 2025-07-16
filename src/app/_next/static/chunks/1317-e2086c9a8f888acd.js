@@ -11402,11 +11402,10 @@
         x.useState)(false);
         let [remoteDevice, setRemoteDevice] = (0, x.useState)(null);
         const registerYaspAudioElementListener = () => {
-          if (
-            !window?.Ya?.YaspAudioElement?.instances?.find(
-              (instance) => instance.yaspSrc,
-            )
-          ) {
+          const instance = window?.Ya?.YaspAudioElement?.instances?.find(
+            (instance) => instance.yaspSrc,
+          )
+          if (!instance) {
             setTimeout(registerYaspAudioElementListener, 1000);
             return console.log("YaspAudioElement not found, retrying...");
           }
@@ -11421,22 +11420,19 @@
             setRealBitrate(bitrate);
           };
 
-          if (
-            Array.from(
-              window?.Ya?.YaspAudioElement?.instances.find(
-                (instance) => instance.yaspSrc,
-              )?.yaspEventListeners,
-            ).find(
-              (connectedListener) =>
-                connectedListener.toString() === listener.toString(),
+          if (Array.from(instance?.yaspEventListeners).find(
+            (connectedListener) =>
+              connectedListener.toString() === listener.toString(),
             )
-          )
-            return console.debug("already registered YaspAudioElementListener");
+          ) {
 
-          console.log("register YaspAudioElementListener");
-          window?.Ya?.YaspAudioElement?.instances
-            .find((instance) => instance.yaspSrc)
-            .addEventListener("yasp-event", listener);
+            instance.removeEventListener("yasp-event", listener);
+
+            console.log("Removed listener on YaspAudioElement");
+          }
+
+          console.log("Registered listener on YaspAudioElement");
+          instance.addEventListener("yasp-event", listener);
         };
         registerYaspAudioElementListener();
         let onDownloadClick = (0, x.useCallback)(() => {
@@ -11486,40 +11482,37 @@
             });
           }, []),
           (0, x.useEffect)(() => {
-            if (downloadInfo === undefined) {
-              const intervalId = setInterval(() => {
-                const data =
-                  theState?.state?.queueState?.currentEntity?.value?.entity
-                    ?.mediaSourceData?.data;
-                if (data !== undefined) {
-                  setDownloadInfo(data);
-                  clearInterval(intervalId);
-                }
-              }, 1000);
-
-              return () => {
-                clearInterval(intervalId);
-              };
-            }
+            let intervalId;
 
             const unsubscribe =
-              theState.state.queueState.currentEntity.onChange(() => {
+            theState.state.queueState.currentEntity.onChange(() => {
+              const data =
+              theState?.state?.queueState?.currentEntity?.value?.entity
+              ?.mediaSourceData?.data;
+
+              const dataString = JSON.stringify(data);
+              const downloadInfoString = JSON.stringify(downloadInfo);
+
+              if (data !== undefined && dataString !== downloadInfoString) {
+                setDownloadInfo(data);
+              }
+            });
+
+            if (downloadInfo === undefined) {
+              intervalId = setInterval(() => {
                 const data =
-                  theState?.state?.queueState?.currentEntity?.value?.entity
-                    ?.mediaSourceData?.data;
-
-                const dataString = JSON.stringify(data);
-                const downloadInfoString = JSON.stringify(downloadInfo);
-
-                if (data !== undefined && dataString !== downloadInfoString) {
+                theState?.state?.queueState?.currentEntity?.value?.entity
+                ?.mediaSourceData?.data;
+                if (data !== undefined) {
                   setDownloadInfo(data);
+                  if (intervalId) clearInterval(intervalId);
                 }
-              });
+              }, 1000);
+            }
 
             return () => {
-              if (typeof unsubscribe === "function") {
-                unsubscribe();
-              }
+              if (intervalId) clearInterval(intervalId);
+              if (typeof unsubscribe === "function") unsubscribe();
             };
           }),
           (0, v.jsx)("section", {
