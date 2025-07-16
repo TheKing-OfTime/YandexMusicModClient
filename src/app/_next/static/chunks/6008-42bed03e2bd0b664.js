@@ -6440,13 +6440,18 @@
 
           const currentStatus = this.playback.state.playerState.status.value;
           const shouldApplyState = this.variables.shouldApplyState;
-          const isDeviceMatch = e.state.active_device_id_optional === window.DEVICE_INFO?.device_id;
-          const selfStateDuped = e.state.player_state.status.version.device_id === window.DEVICE_INFO?.device_id
+          const isDeviceMatch =
+            e.state.active_device_id_optional === window.DEVICE_INFO?.device_id;
+          const selfStateDuped =
+            e.state.player_state.status.version.device_id ===
+            window.DEVICE_INFO?.device_id;
 
-          if (isRemoteControlEnabled ? (!selfStateDuped &&
-          shouldApplyState &&
-          (isDeviceMatch || allowedStatuses2.includes(currentStatus))
-          ) : (allowedStatuses1.includes(currentStatus) && shouldApplyState)) {
+          if (
+            isRemoteControlEnabled
+              ? shouldApplyState &&
+                ((!selfStateDuped && isDeviceMatch) || allowedStatuses2.includes(currentStatus))
+              : allowedStatuses1.includes(currentStatus) && shouldApplyState
+          ) {
             this.applyYnisonDiff(e);
 
             if (isRemoteControlEnabled) {
@@ -6459,9 +6464,8 @@
                 listener(currentDevice),
               );
             }
-
-          } else if (isRemoteControlEnabled && (!isDeviceMatch)) {
-            window.onRemoteDeviceDisconnected.forEach(listener=>listener());
+          } else if (isRemoteControlEnabled && !isDeviceMatch) {
+            window.onRemoteDeviceDisconnected.forEach((listener) => listener());
           }
         }
         applyYnisonDiff(e) {
@@ -6564,7 +6568,8 @@
         }
         changeContext(e) {
           let t = this.getContextParams(e);
-          const isPaused = this.playback.state.playerState.status.value !== 'playing';
+          const isPaused =
+            this.playback.state.playerState.status.value !== "playing";
           return t
             ? this.playback
                 .setContext(t)
@@ -7099,7 +7104,9 @@
                 status: {
                   duration_ms: aC(r),
                   progress_ms: a_(r),
-                  paused: (window.ENABLE_YNISON_REMOTE_CONTROL ? r.state.playerState.status.value === Z.FY.PAUSED : false),
+                  paused: window.ENABLE_YNISON_REMOTE_CONTROL
+                    ? r.state.playerState.status.value === Z.FY.PAUSED
+                    : false,
                   playback_speed: r.state.playerState.speed.value,
                   version: (0, tq.Cs)(s.device_id, 0),
                 },
@@ -8490,9 +8497,12 @@
                     oauth: a.get(a2.xit).token,
                     multiAuthUserId: a.get(a2.Hzc).getPassportUid(),
                   }),
-                window.ENABLE_YNISON_REMOTE_CONTROL || document.hidden &&
-                    (null == i ? void 0 : i.state.playerState.status.value) !==
-                      Z.FY.PLAYING && e.connector.disconnect();
+                  window.ENABLE_YNISON_REMOTE_CONTROL ||
+                    (document.hidden &&
+                      (null == i
+                        ? void 0
+                        : i.state.playerState.status.value) !== Z.FY.PLAYING &&
+                      e.connector.disconnect());
               };
               return (
                 document.addEventListener("visibilitychange", e),
@@ -12604,8 +12614,9 @@
         }).actions((e) => {
           let t = {
             getData: (0, d.ls)(function* () {
-              let { dynamicPagesResource: a, modelActionsLogger: i } = (0, d.dU)(e);
-              return e.loadingState = m.Gui.RESOLVE
+              let { dynamicPagesResource: a, modelActionsLogger: i } = (0,
+              d.dU)(e);
+              return (e.loadingState = m.Gui.RESOLVE);
             }),
             // getData: (0, d.ls)(function* () {
             //   let { dynamicPagesResource: a, modelActionsLogger: i } = (0,
