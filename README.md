@@ -82,9 +82,19 @@
 
 
 Добавляет поддержку управления воспроизведением настольного клиента с других устройств.
+<div>
+	<img width="250" alt="Список устройств для воспроизведения" src="https://github.com/user-attachments/assets/17196b75-85c4-42f0-af81-ab62123fde5c">
+	<img width="250" alt="Управление воспроизведение с телефона на ПК клиенте" src="https://github.com/user-attachments/assets/305a94f9-4908-4c47-9d75-c0838dbad805">
+</div>
+<div>
+	<img width="504" alt="DiscordCanary_q3lSyzS2R9" src="https://github.com/user-attachments/assets/ebd7a0c0-db68-4c26-b0f9-481e1ea9e57b" />
+	<br/>
+	<img width="504" alt="Яндекс_Музыка_1AZwtDf0Tz" src="https://github.com/user-attachments/assets/ec3cba2f-9b58-4a07-bc60-1920fc94b759" />
+</div>
 
-<img width="250" alt="Список устройств для воспроизведения" src="https://github.com/user-attachments/assets/17196b75-85c4-42f0-af81-ab62123fde5c">
-<img width="250" alt="Управление воспроизведение с телефона на ПК клиенте" src="https://github.com/user-attachments/assets/305a94f9-4908-4c47-9d75-c0838dbad805">
+
+
+
 
 <details>
    <summary>Настройки</summary>
