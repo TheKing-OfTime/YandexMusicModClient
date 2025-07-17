@@ -3141,7 +3141,8 @@
         }
       }
       var eK = a(73084),
-        ez = a(77959);
+        ez = a(77959),
+        nVal = a(13534);
       ((l = C || (C = {})).SUSPENDED = "suspended"),
         (l.RUNNING = "running"),
         (l.CLOSED = "closed");
@@ -3173,6 +3174,39 @@
               r = n[a + 1];
             return void 0 === i || void 0 === r ? 0 : (r - i) / (a - t + 1);
           });
+        }
+        getExponentialVolume = (e) => {
+          let t = Math.pow(0.01, 1 - e);
+          return t > 0.01 ? t : 0;
+        };
+        getRMS() {
+          const bufferLength = this.analyserNode.fftSize;
+          const dataArray = new Uint8Array(bufferLength);
+          this.analyserNode.getByteTimeDomainData(dataArray);
+
+          let sumSquares = 0;
+          const stored = JSON.parse(window.localStorage.getItem(nVal.BUb.YmPlayerVolume));
+          const volume = this.getExponentialVolume(stored?.value ?? 1);
+
+          for (let i = 0; i < bufferLength; i++) {
+            const normalized = volume !== 0 ? ((dataArray[i] - 128) / 128) / volume : 0;
+            sumSquares += normalized * normalized;
+          }
+
+          const meanSquare = sumSquares / bufferLength;
+          const rawRMS = Math.sqrt(meanSquare);
+
+          if (window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY?.() ?? false) {
+            const alpha = window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY_COEFFICENT?.() ?? 0.2;
+            this._prevRms =
+              this._prevRms !== undefined
+                ? this._prevRms * (1 - alpha) + rawRMS * alpha
+                : rawRMS;
+
+            return this._prevRms;
+          }
+
+          return rawRMS;
         }
         constructor(e, t, a) {
           (0, X._)(this, "audioContext", void 0),

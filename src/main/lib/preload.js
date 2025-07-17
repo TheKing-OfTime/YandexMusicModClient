@@ -64,8 +64,16 @@ electron_1.contextBridge.exposeInMainWorld(
   () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.maxFPS,
 );
 electron_1.contextBridge.exposeInMainWorld(
-  "VIBE_ANIMATION_LINEAR_DEBOOST",
-  store_js_1.getModFeatures()?.vibeAnimationEnhancement?.linearDeBoost,
+  "VIBE_ANIMATION_USE_DYNAMIC_ENERGY",
+  () => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.useDynamicEnergy,
+);
+electron_1.contextBridge.exposeInMainWorld(
+"VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY",
+() => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.smoothDynamicEnergy,
+);
+electron_1.contextBridge.exposeInMainWorld(
+"VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY_COEFFICIENT",
+() => store_js_1.getModFeatures()?.vibeAnimationEnhancement?.smoothDynamicEnergyCoefficient,
 );
 electron_1.contextBridge.exposeInMainWorld(
   "VIBE_ANIMATION_PLAY_ON_ANY_ENTITY",
@@ -166,6 +174,17 @@ electron_1.contextBridge.exposeInMainWorld("zoomControl", {
   setZoomLevel: (level) =>
     electron_1.ipcRenderer.invoke("set-zoom-level", level),
 });
+
+
+
+electron_1.contextBridge.exposeInMainWorld('loadWorker', (workerName) => {
+  const fs = require('fs');
+  const path = require('path');
+  const workerPath = path.join(__dirname, 'workers',`${path.parse(workerName).name}.js`);
+  const code = fs.readFileSync(workerPath);
+  return code.toString('utf-8');
+});
+
 
 window.document.addEventListener("DOMContentLoaded", () => {
   const theme = (0, getInitialTheme_js_1.getInitialTheme)();

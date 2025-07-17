@@ -357,6 +357,10 @@
               { low: 400, high: 5e3 },
               { low: 5e3, high: 20e3 },
             ]);
+
+            const energy = R.analyser.getRMS() * 2 * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) + 0.3;
+            if (_ != null) _.updateEnergy(window.VIBE_ANIMATION_USE_DYNAMIC_ENERGY?.() ? energy : (L?.entityMeta?.trackParameters?.energy ?? 1));
+
             null == _ ||
               _.updateAudioFrequencies({
                 low: null != e ? e : 0,
@@ -376,6 +380,7 @@
                 offscreenCanvas: n,
                 state: d,
                 collectionHue: V.collectionHue,
+                fps: window.VIBE_ANIMATION_MAX_FPS?.() ?? 25,
                 shaderOptions: D(),
                 onMessage: S,
                 onError: T,

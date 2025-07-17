@@ -1879,6 +1879,12 @@
               "modFeatures.vibeAnimationEnhancement.intensityCoefficient",
             ),
           ),
+          [smoothDynamicEnergyCoefficient, setSmoothDynamicEnergyCoefficient] =
+            (0, d.useState)(
+              window.nativeSettings.get(
+                "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient",
+              ),
+            ),
           onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ",
@@ -1915,6 +1921,22 @@
               value,
             );
           }, []),
+          onSmoothDynamicEnergyCoefficientChange = (0, d.useCallback)(
+            async (e) => {
+              let value = Math.min(Math.max(e, 0.01), 1);
+              setSmoothDynamicEnergyCoefficient(value);
+              console.log(
+                "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient changed. Value: ",
+                value,
+              );
+
+              window.nativeSettings.set(
+                "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient",
+                value,
+              );
+            },
+            [],
+          ),
           onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.playOnAnyEntity. Value: ",
@@ -1944,12 +1966,32 @@
               "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
               e,
             );
+          }, []),
+          onEnableUseDynamicEnergy = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.useDynamicEnergy toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.useDynamicEnergy",
+              e,
+            );
+          }, []),
+          onEnableSmoothDynamicEnergy = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy",
+              e,
+            );
           }, []);
 
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
-          title: "Настройки моей волны",
+          title: "Поведение Моей волны",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
@@ -1959,8 +2001,8 @@
           placement: "center",
           labelClose: e({ id: "interface-actions.close" }),
           children: (0, n.jsxs)("ul", {
-            className: Z().root,
-            style: { width: "514px" },
+            className: `${Z().root} ${B().list}`,
+            style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
               (0, n.jsx)("li", {
                 className: Z().item,
@@ -1985,6 +2027,42 @@
                   maxValue: Math.max(window?.DISPLAY_MAX_FPS ?? 60, maxFps),
                   minValue: 1,
                   step: 1,
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Подстраивать скорость анимации под Энергию трека",
+                  description:
+                    "Анимация будет подстраивать скорость под Энергию трека в реальном времени",
+                  onChange: onEnableUseDynamicEnergy,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.useDynamicEnergy",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Смягчать динамическую энергию",
+                  description: "Изменения скорости трека будут более плавными",
+                  onChange: onEnableSmoothDynamicEnergy,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Коэффициент сглаживания энергии",
+                  description:
+                    "Чем меньше, тем сильнее сглаживаются изменения скорости анимации",
+                  onChange: onSmoothDynamicEnergyCoefficientChange,
+                  value: smoothDynamicEnergyCoefficient,
+                  maxValue: 1,
+                  minValue: 0.01,
+                  step: 0.01,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2512,7 +2590,10 @@
         let {
           label: label,
           color: color = "var(--ym-controls-color-primary-default-enabled)",
-          tooltip: tooltip = {title: "Экспериментально", description: "Может работать некорректно"},
+          tooltip: tooltip = {
+            title: "Экспериментально",
+            description: "Может работать некорректно",
+          },
           ...i
         } = e;
         return (0, n.jsx)(Tooltip.wx, {
