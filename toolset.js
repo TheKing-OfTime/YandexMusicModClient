@@ -726,7 +726,7 @@ async function run(command, flags) {
         case 'extract':
             const { extracted } = await extractBuild(force, src, extractType, !withoutPure);
             if (shouldPatch) await patchExtractedBuild(extracted);
-            if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify);
+            if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify, noNativeModules);
             if (shouldBuild) await build({ srcPath: extracted, destDir: DEFAULT_PATCHED_DIST_PATH, noMinify: !shouldMinify, noNativeModules: noNativeModules });
             break;
         case 'patch':
