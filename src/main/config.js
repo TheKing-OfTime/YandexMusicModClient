@@ -27,7 +27,7 @@ exports.config = {
     clickErrorCounter: "690.2354",
   },
   modification: {
-    version: "1.32.0",
+    version: "1.32.1",
     realYMVersion: "5.57.0",
     lastfm: {
       apikey: "2b9046ddec8c00edcd0144b3abbea4ba",
