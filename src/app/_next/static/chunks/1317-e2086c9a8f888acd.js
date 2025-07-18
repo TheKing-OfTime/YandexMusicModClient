@@ -11486,28 +11486,31 @@
 
             const unsubscribe =
             theState.state.queueState.currentEntity.onChange(() => {
-              const data =
-              theState?.state?.queueState?.currentEntity?.value?.entity
-              ?.mediaSourceData?.data;
+              const data = theState?.state?.queueState?.currentEntity?.value?.entity?.mediaSourceData?.data;
 
               const dataString = JSON.stringify(data);
               const downloadInfoString = JSON.stringify(downloadInfo);
 
-              if (data !== undefined && dataString !== downloadInfoString) {
-                setDownloadInfo(data);
+              if (dataString !== downloadInfoString) {
+                if (data === undefined) {
+                  let retries = 5;
+                  intervalId = setInterval(() => {
+                    const rerequestedData = theState?.state?.queueState?.currentEntity?.value?.entity?.mediaSourceData?.data;
+                    if ((retries <= 0) || (rerequestedData !== undefined)) {
+                      setDownloadInfo(rerequestedData);
+                      clearInterval(intervalId);
+                    }
+                  }, 200)
+                } else {
+                  setDownloadInfo(data);
+                }
+
               }
             });
 
-            if (downloadInfo === undefined) {
-              intervalId = setInterval(() => {
-                const data =
-                theState?.state?.queueState?.currentEntity?.value?.entity
-                ?.mediaSourceData?.data;
-                if (data !== undefined) {
-                  setDownloadInfo(data);
-                  if (intervalId) clearInterval(intervalId);
-                }
-              }, 1000);
+            const data = theState?.state?.queueState?.currentEntity?.value?.entity?.mediaSourceData?.data;
+            if (data) {
+              setDownloadInfo(data);
             }
 
             return () => {
