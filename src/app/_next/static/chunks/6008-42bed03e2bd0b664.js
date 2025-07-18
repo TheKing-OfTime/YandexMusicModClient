@@ -6454,9 +6454,6 @@
       window.onRemoteDeviceDisconnected = [];
       class aS {
         onYnisonStateUpdated(e) {
-          // Отправляем состояние Ynison в electronBridge
-          electronBridge.sendYnisonState({ rawData: e.state });
-
           const isRemoteControlEnabled = window.ENABLE_YNISON_REMOTE_CONTROL;
           const allowedStatuses1 = [
             Z.FY.ENDED,
@@ -6479,6 +6476,11 @@
           const selfStateDuped =
             e.state.player_state.status.version.device_id ===
             window.DEVICE_INFO?.device_id;
+
+          if (!selfStateDuped) {
+            // Отправляем состояние Ynison в main процесс
+            electronBridge.sendYnisonState({ rawData: e.state });
+          }
 
           if (
             isRemoteControlEnabled
