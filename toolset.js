@@ -731,7 +731,7 @@ async function run(command, flags) {
             break;
         case 'patch':
             await patchExtractedBuild(src)
-            if (shouldBuildDirectly) await buildDirectly(src, !shouldMinify);
+            if (shouldBuildDirectly) await buildDirectly(src, !shouldMinify, noNativeModules);
             break;
         case 'bypass-asar-integrity':
             await bypassAsarIntegrity(dest)
