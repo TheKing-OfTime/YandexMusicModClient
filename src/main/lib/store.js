@@ -68,6 +68,7 @@ const init = () => {
       enable: true,
       fromYnison: false,
       applicationIDForRPC: "1124055337234858005",
+      statusDisplayType: 0,
       showButtons: true,
       showSmallIcon: false,
       showAlbum: true,

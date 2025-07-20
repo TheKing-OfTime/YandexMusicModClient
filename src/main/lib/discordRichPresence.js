@@ -2,14 +2,40 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Logger_js_1 = require("../packages/logger/Logger.js");
 const store_js_1 = require("./store.js");
+const config_js_1 = require("../config.js");
 const DiscordRPC = require("discord-rpc");
 const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
+
+class convertableLink {
+  constructor(link) {
+    this.link = link;
+  }
+
+  toString() {
+    return this.link;
+  }
+
+  toWeb() {
+    if (!this.link) return;
+    return "https://music.yandex.ru/" + this.link + "?utm_source=discord&utm_medium=rich_presence_click";
+  }
+
+  toApp() {
+    if (!this.link) return;
+    return "yandexmusic://" + this.link;
+  }
+}
 
 const settings = () => store_js_1.getModFeatures()?.discordRPC;
 
 const clientId = settings()?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
 const SET_ACTIVITY_TIMEOUT_MS = 1500;
+const STATUS_DISPLAY_TYPES = {
+  0: 0, // Name
+  1: 1, // State
+  2: 2, // Details
+}
 
 let rpc = undefined;
 let isReady = false;
@@ -298,12 +324,10 @@ function buildActivityObject(playingState) {
       "400x400",
     );
 
-  const shareTrackPath = `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`;
-  const deepShareTrackUrl = "yandexmusic://" + shareTrackPath;
-  const webShareTrackUrl =
-    "https://music.yandex.ru/" +
-    shareTrackPath +
-    "?utm_source=discord&utm_medium=rich_presence_click";
+  const shareTrackPath = new convertableLink((playingState.track.albums?.[0]?.id && playingState.track.id) ? `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`: undefined);
+  const shareAlbumPath = new convertableLink(playingState.track.albums?.[0]?.id ? `album/${playingState.track.albums?.[0]?.id}` : undefined);
+  const shareArtistPath = new convertableLink(playingState.track.artists?.[0]?.id ? `artist/${playingState.track.artists?.[0]?.id}` : undefined);
+
 
   let startTimestamp = Math.round(
     Date.now() - (playingState.progress ?? 0) * 1000,
@@ -329,9 +353,14 @@ function buildActivityObject(playingState) {
 
   let activityObject = {
     type: 2,
+    statusDisplayType: STATUS_DISPLAY_TYPES[settings()?.statusDisplayType] ?? 0,
     details: string2Discord(title),
+    detailsUrl: shareTrackPath.toWeb(),
     state: string2Discord(artist),
+    stateUrl: shareArtistPath.toWeb(),
     largeImageKey: albumArt,
+    largeImageText: `YandexMusicModClient ${config_js_1.config.modification.version}`,
+    largeImageUrl: GITHUB_LINK,
     startTimestamp,
     endTimestamp,
     instance: false,
@@ -342,30 +371,31 @@ function buildActivityObject(playingState) {
     activityObject.smallImageText = stateText;
   }
 
-  if (settings()?.showAlbum ?? true) {
+  if ((settings()?.showAlbum ?? true) && album) {
     activityObject.largeImageText = string2Discord(album);
+    activityObject.largeImageUrl = shareAlbumPath.toWeb();
   }
 
   if (
-    (deepShareTrackUrl || webShareTrackUrl) &&
+    (shareTrackPath.toApp() || shareTrackPath.toWeb()) &&
     (settings()?.showButtons ?? true)
   ) {
     if (!(settings()?.overrideDeepLinksExperiment ?? false)) {
       activityObject.buttons = [
         {
           label: "Listen in Yandex Music App",
-          url: deepShareTrackUrl,
+          url: shareTrackPath.toApp(),
         },
         {
           label: "Listen in Yandex Music Web",
-          url: webShareTrackUrl,
+          url: shareTrackPath.toWeb(),
         },
       ];
     } else if (settings()?.showGitHubButton ?? true) {
       activityObject.buttons = [
         {
           label: "Listen on Yandex Music",
-          url: webShareTrackUrl,
+          url: shareTrackPath.toWeb(),
         },
         {
           label: "Install from GitHub",
@@ -376,7 +406,7 @@ function buildActivityObject(playingState) {
       activityObject.buttons = [
         {
           label: "Listen on Yandex Music",
-          url: webShareTrackUrl,
+          url: shareTrackPath.toWeb(),
         },
       ];
     }
