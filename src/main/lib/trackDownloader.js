@@ -8,6 +8,7 @@ const promisify = require("util").promisify;
 const { exec } = require("child_process");
 const FFMPEG_PATH = require("ffmpeg-static");
 const electron = require("electron");
+const crypto = require('crypto');
 
 const execPromise = promisify(exec);
 
