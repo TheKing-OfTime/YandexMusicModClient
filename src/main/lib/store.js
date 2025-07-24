@@ -33,6 +33,7 @@ const store = new electron_store_1.default();
 
 let defaultExperimentOverrides = {
   WebNextPromoVeryBestRecommendations: 'off',
+  WebNextUGC: 'on',
 };
 
 const useCachedValue = (key) => {
