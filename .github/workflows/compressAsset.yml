@@ -2,8 +2,8 @@ name: Compress and Reupload Asset
 
 on:
   release:
-    types: [published]  # Автоматический запуск при новом релизе
-  workflow_dispatch:  # Ручной запуск
+    types: [published]
+  workflow_dispatch:
 
 jobs:
   compress_asset:
@@ -13,8 +13,8 @@ jobs:
       - name: Checkout репозитория
         uses: actions/checkout@v4
 
-      - name: Установить Gzip
-        run: sudo apt-get update && sudo apt-get install -y gzip
+      - name: Установить Gzip и Zstd
+        run: sudo apt-get update && sudo apt-get install -y gzip zstd
 
       - name: Определить тег релиза
         id: get_release
@@ -40,12 +40,18 @@ jobs:
       - name: Переименовать и сжать в Gzip
         run: |
           mv original_asset.bin app.asar
-          gzip -k -9 app.asar  # Используем максимальный уровень сжатия (-9)
+          gzip -k -9 app.asar
 
-      - name: Загрузить сжатый файл в релиз
+      - name: Сжать в Zstd
+        run: |
+          zstd -11 -k app.asar
+
+      - name: Загрузить сжатые файлы в релиз
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.TAG }}  # Используем правильный тег
-          files: app.asar.gz
+          tag_name: ${{ env.TAG }}
+          files: |
+            app.asar.gz
+            app.asar.zst
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
