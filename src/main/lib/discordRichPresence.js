@@ -188,7 +188,7 @@ function compareActivities(newActivity) {
 
 const getArtist = (artistsArray) => {
   if (!artistsArray?.[0]?.name) return undefined;
-  let artistsLabel = "by " + artistsArray[0].name;
+  let artistsLabel = (settings()?.statusDisplayType === 1 ? '' : "by ") + artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
     artistsLabel += ", " + artist.name;
