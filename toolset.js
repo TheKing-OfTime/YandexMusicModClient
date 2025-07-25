@@ -142,35 +142,27 @@ async function getLatestYMVersion(type='direct', srcPath=undefined) {
 
     const packageFileJson = JSON.parse(packageFileBuffer);
 
-    return { version: packageFileJson.version, buildInfo: packageFileJson.buildInfo }
+    return { version: packageFileJson.version, buildInfo: packageFileJson.buildInfo, modification: packageFileJson.modification };
 
 }
 
-function getModVersion(){
-    return require(path.join(SRC_PATH, '/main/config.js')).config.modification.version;
+function getModVersion() {
+  return require(path.join(SRC_PATH, "/main/config.js")).config.modification
+    .version;
 }
 
-async function modifySrcPackage(version, buildInfo) {
+async function modifySrcPackage({ version=undefined, buildInfo=undefined, modVersion=undefined }) {
     let packageJson = JSON.parse(await fsp.readFile(path.join(SRC_PATH, '/package.json'), 'utf8'));
     const oldVersion = packageJson.version;
-    packageJson.version = version;
-    packageJson.buildInfo = buildInfo;
+
+    if (version) packageJson.version = version;
+    if (buildInfo) packageJson.buildInfo = buildInfo;
+    if (modVersion) packageJson.modification.version = modVersion;
+
     await fsp.writeFile(path.join(SRC_PATH, '/package.json'), JSON.stringify(packageJson, null, 2), 'utf8');
     return { oldVersion: oldVersion, newVersion: version }
 }
 
-async function getVersionFromConfig() {
-    const configJs = await fsp.readFile(path.join(SRC_PATH, '/main/config.js'), 'utf8');
-    return configJs.match(/version: "(.*?)"/)[1];
-}
-
-async function modifyConfigJs(version) {
-    let configJs = await fsp.readFile(path.join(SRC_PATH, '/main/config.js'), 'utf8');
-    const oldVersion = configJs.match(/version: "(.*?)"/)[1];
-    configJs = configJs.replace(/version: "(.*?)"/, `version: "${version}"`);
-    await fsp.writeFile(path.join(SRC_PATH, '/main/config.js'), configJs, 'utf8');
-    return { oldVersion: oldVersion, newVersion: version }
-}
 
 async function getLatestRelease() {
     const response = await octokit.rest.repos.getLatestRelease({
@@ -438,20 +430,20 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false) {
 async function spoof(type='extracted', shouldRelease=false) {
     console.log('Спуфинг...');
     console.time('Спуфинг завершён');
-    let latestRelease, configVersion;
+    let latestRelease, modVersion;
+    const versions = await getLatestYMVersion(type);
     if (shouldRelease) {
       latestRelease = await getLatestRelease();
-      configVersion = await getVersionFromConfig();
+      modVersion = versions.modification.version;
     }
-    const versions = await getLatestYMVersion(type);
     console.log('Последняя версия ЯМ', versions);
-    const result = await modifySrcPackage(versions.version, versions.buildInfo);
+    const result = await modifySrcPackage({ version: versions.version, buildInfo: versions.buildInfo });
 
     if(latestRelease) {
-      if(semver.lte(configVersion, latestRelease.name)) {
+      if(semver.lte(modVersion, latestRelease.name)) {
         const nextVersion = semver.inc(latestRelease.name, 'patch');
-        await modifyConfigJs(nextVersion);
-        console.log('Версия мода изменена с', configVersion, 'на', nextVersion);
+        await modifySrcPackage({ modVersion: nextVersion });
+        console.log('Версия мода изменена с', modVersion, 'на', nextVersion);
         await createAndPushSpoofCommit(result.oldVersion, result.newVersion);
       }
     }

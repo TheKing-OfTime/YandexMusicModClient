@@ -31,6 +31,15 @@
     "electron": "~32.1.0",
     "js-yaml": "~4.1.0"
   },
+  "modification": {
+    "version": "1.32.3",
+    "realYMVersion": "5.57.0",
+    "lastfm": {
+      "apikey": "2b9046ddec8c00edcd0144b3abbea4ba",
+      "sharedSecret": "b36604de5a2cb86870c1caefa307c373",
+      "baseUrl": "https://ws.audioscrobbler.com/2.0/"
+    }
+  },
   "buildInfo": {
     "VERSION": "5.61.1",
     "BRANCH": "r17089085",

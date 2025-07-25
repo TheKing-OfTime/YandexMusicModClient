@@ -26,15 +26,7 @@ exports.config = {
     clickUrl: "https://yandex.ru/clck/click",
     clickErrorCounter: "690.2354",
   },
-  modification: {
-    version: "1.32.3",
-    realYMVersion: "5.57.0",
-    lastfm: {
-      apikey: "2b9046ddec8c00edcd0144b3abbea4ba",
-      sharedSecret: "b36604de5a2cb86870c1caefa307c373",
-      baseUrl: "https://ws.audioscrobbler.com/2.0/",
-    },
-  },
+  modification:  package_json_1.default.modification,
 };
 const applyCommonConfig = (commonConfig) => {
   Object.assign(exports.config.common, commonConfig ?? {});
