@@ -16,6 +16,7 @@ const spawnAsync = promisify(spawn);
 
 const execPromise = promisify(exec);
 const unzipPromise = promisify(zlib.unzip);
+const zstdDecompressPromise = zlib.zstdDecompress ? promisify(zlib.zstdDecompress) : undefined;
 
 exports.getModUpdater = exports.ModUpdater = void 0;
 
@@ -31,6 +32,11 @@ const APP_ASAR_TMP_GZIP_DOWNLOAD_PATH = path.join(
   "../../",
   "temp\\app.asar.gz",
 );
+const APP_ASAR_TMP_ZSTD_DOWNLOAD_PATH = path.join(
+electron.app.getAppPath(),
+"../../",
+"temp\\app.asar.zst",
+);
 const TMP_PATH = path.join(electron.app.getAppPath(), "../../", "\\temp");
 const currentVersion = config_js_1.config.modification.version;
 console.log(APP_ASAR_PATH);
@@ -42,6 +48,7 @@ class ModUpdater {
   logger;
   latestUrl = undefined;
   isCompressed = false;
+  compressionType = null; // null, 'gzip', 'zstd'
   constructor() {
     this.isCompressed = false;
     this.logger = new Logger_js_1.Logger("ModUpdaterLogger");
@@ -65,10 +72,21 @@ class ModUpdater {
   parseAssets(assets) {
     const priorityFiles = ["app.asar.gz", "app.asar"];
 
+    if (zstdDecompressPromise) {
+      priorityFiles.unshift("app.asar.zst");
+    }
+
     for (const filename of priorityFiles) {
       const asset = assets.find((a) => a.name === filename);
       if (asset) {
-        if (filename === "app.asar.gz") this.isCompressed = true;
+        if (filename === "app.asar.gz") {
+          this.isCompressed = true;
+          this.compressionType = "gzip";
+        }
+        if (filename === "app.asar.zst") {
+          this.isCompressed = true;
+          this.compressionType = "zstd";
+        }
         return asset.browser_download_url;
       }
     }
@@ -154,11 +172,20 @@ class ModUpdater {
         if (!isFinished) return;
         if (isError) return;
         this.logger.log("Downloaded update.");
-        if (this.isCompressed)
-          await this.decompressGzipFile(
-            APP_ASAR_TMP_GZIP_DOWNLOAD_PATH,
-            APP_ASAR_TMP_DOWNLOAD_PATH,
-          );
+        if (this.isCompressed) {
+          if (this.compressionType === "zstd" && zstdDecompressPromise) {
+            await this.decompressZstdFile(
+              APP_ASAR_TMP_ZSTD_DOWNLOAD_PATH,
+              APP_ASAR_TMP_DOWNLOAD_PATH,
+            );
+          } else {
+            await this.decompressGzipFile(
+              APP_ASAR_TMP_GZIP_DOWNLOAD_PATH,
+              APP_ASAR_TMP_DOWNLOAD_PATH,
+            );
+          }
+
+        }
         callback(1.1, -1);
         this.logger.log("Update ready to install.");
       } catch (e) {
@@ -216,6 +243,15 @@ class ModUpdater {
     const compressedData = await fsPromise.readFile(oldPath);
 
     const decompressedData = await unzipPromise(compressedData);
+
+    await fsPromise.writeFile(newPath, decompressedData);
+    this.logger.log("Decompressed: ", oldPath, " to ", newPath);
+  }
+
+  async decompressZstdFile(oldPath, newPath) {
+    const compressedData = await fsPromise.readFile(oldPath);
+
+    const decompressedData = await zstdDecompressPromise(compressedData);
 
     await fsPromise.writeFile(newPath, decompressedData);
     this.logger.log("Decompressed: ", oldPath, " to ", newPath);
