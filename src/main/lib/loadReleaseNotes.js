@@ -15,7 +15,9 @@ const loadReleaseNotes = async (language) => {
       `Request to ${url} completed with status: `,
       response.status,
     );
-    return response.json();
+    const data = await response.json()
+    delete data['desktop-release-notes.default']; // Brute force fix for semver error in renderer.
+    return data;                                  // TODO: Try backport new approach from newer YM versions.
   } catch (error) {
     commonLogger.error(`Release-notes loading failed with error: `, error);
     return;
