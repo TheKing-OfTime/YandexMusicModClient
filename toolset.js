@@ -434,7 +434,7 @@ async function spoof(type='extracted', shouldRelease=false) {
     const versions = await getLatestYMVersion(type);
     if (shouldRelease) {
       latestRelease = await getLatestRelease();
-      modVersion = versions.modification.version;
+      modVersion = (await getLatestYMVersion('src')).modification.version;
     }
     console.log('Последняя версия ЯМ', versions);
     const result = await modifySrcPackage({ version: versions.version, buildInfo: versions.buildInfo });
