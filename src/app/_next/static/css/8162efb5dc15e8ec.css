@@ -1262,7 +1262,7 @@
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  transition: opacity var(--ym-duration-transition) ease 0.2s;
+  transition: opacity var(--ym-duration-transition) ease;
   width: 5.25rem;
   width: var(--width-slider-container);
   z-index: var(--toastify-z-index);
