@@ -15,7 +15,7 @@ function getTrackInfo(track) {
     throw new Error("Missing required track information");
   }
   return {
-    artist: mainArtist.name,
+    artist: getArtists(structuredClone(track.artists)),
     track: track.title,
     duration: Math.floor(track.durationMs / 1000),
     album: track.albums?.[0]?.title,
@@ -23,3 +23,12 @@ function getTrackInfo(track) {
     trackNumber: track.albums?.[0]?.trackPosition?.index,
   };
 }
+
+const getArtists = (artistsArray) => {
+  let artistsLabel = artistsArray[0].name;
+  artistsArray.shift();
+  artistsArray.forEach((artist) => {
+    artistsLabel += " & " + artist.name;
+  });
+  return artistsLabel;
+};
