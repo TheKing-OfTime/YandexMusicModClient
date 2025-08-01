@@ -217,7 +217,7 @@ class ModUpdater {
   }
 
   async openPatcher(path) {
-    const cmdScript = `ymmp://patch/from-mod/${encodeURI(path)}`;
+    const cmdScript = `ymmp://patch/from-mod/${encodeURIComponent(path)}`;
     this.logger.log("Opening external detached: ", cmdScript);
     await this.openExternalDetached(cmdScript);
   }
