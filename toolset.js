@@ -262,8 +262,6 @@ async function createGitHubRelease(version, asarPath, patchNote) {
 
     if(!releaseResponse.status.toString().startsWith('2')) return console.log("Не удалось создать драфт:", releaseResponse.data);
     console.log("Драфт успешно создан");
-    console.time("Ассет успешно загружен");
-    console.log("Загрузка ассета");
     const assetData = fs.readFileSync(asarPath)
 
 
@@ -271,6 +269,8 @@ async function createGitHubRelease(version, asarPath, patchNote) {
     const maxRetries = 3;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
+            console.time("Ассет успешно загружен");
+            console.log("Загрузка ассета...");
             uploadResponse = await octokit.repos.uploadReleaseAsset({
               owner: gitOwner,
               repo: gitRepo,
@@ -674,6 +674,8 @@ async function bypassAsarIntegrity(dest=undefined) {
 
 async function run(command, flags) {
 
+    console.time(`${command} исполнен за`);
+
     const force = flags.f ?? false
 
     const lastExtracted = flags.lastExtracted ?? false;
@@ -734,6 +736,8 @@ async function run(command, flags) {
             console.log('help - shows this message\nbuild\nspoof\nrelease\nextract\npatch\nbypass-asar-integrity');
             break
     }
+
+    console.timeEnd(`${command} исполнен за`);
 }
     const args = minimist(process.argv.slice(2));
     console.log(args);
