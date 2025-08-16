@@ -1411,10 +1411,10 @@
                       children: userInfo?.user?.image?.[0]?.["#text"]
                         ? (0, n.jsx)("img", {
                             src:
-                              userInfo.user.image?.find(
+                              (userInfo.user.image?.find(
                                 (img) => img.size === "medium",
                               )?.["#text"] ||
-                              userInfo.user.image?.[0]?.["#text"],
+                              userInfo.user.image?.[0]?.["#text"]).replace('64s', 'avatar'), // Dirty workaround
                             alt: "Аватар",
                             style: {
                               width: 46,
