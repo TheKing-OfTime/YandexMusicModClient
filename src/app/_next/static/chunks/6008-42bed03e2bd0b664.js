@@ -7140,9 +7140,7 @@
                 status: {
                   duration_ms: aC(r),
                   progress_ms: a_(r),
-                  paused: window.ENABLE_YNISON_REMOTE_CONTROL
-                    ? r.state.playerState.status.value === Z.FY.PAUSED
-                    : false,
+                  paused: true, //TODO Дождаться фикса от Яндекса window.ENABLE_YNISON_REMOTE_CONTROL ? r.state.playerState.status.value === Z.FY.PAUSED : true,
                   playback_speed: r.state.playerState.speed.value,
                   version: (0, tq.Cs)(s.device_id, 0),
                 },
