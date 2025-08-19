@@ -114,10 +114,11 @@ const setupTray = (window) => {
   tray.setToolTip(config_js_1.config.meta.PRODUCT_NAME_LOCALIZED);
   (0, exports.updateTrayMenu)(window);
   tray.on("click", () => {
-    (0, events_js_1.sendPlayerAction)(
-      window,
-      playerActions_js_1.PlayerActions.TOGGLE_PLAY,
-    );
+    (0, createWindow_js_1.toggleWindowState)(window);
+    // (0, events_js_1.sendPlayerAction)(    TODO uncomment when Electron fix double-click issue
+    //   window,
+    //   playerActions_js_1.PlayerActions.TOGGLE_PLAY,
+    // );
   });
   tray.on("double-click", () => {
     (0, createWindow_js_1.toggleWindowState)(window);
