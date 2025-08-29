@@ -156,7 +156,7 @@ function getModVersion() {
     .version;
 }
 
-async function modifyPackage(src = SRC_PATH, { version=undefined, buildInfo=undefined, modVersion=undefined, appConfig=undefined }) {
+async function modifyPackage({src = SRC_PATH,  version=undefined, buildInfo=undefined, modVersion=undefined, appConfig=undefined }) {
     let packageJson = JSON.parse(await fsp.readFile(path.join(src, '/package.json'), 'utf8'));
     const oldVersion = packageJson.version;
 
@@ -531,7 +531,7 @@ async function patchExtractedBuild(extractedPath, options = { unlockDevtools: tr
         // configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
         // await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
 
-        await modifyPackage(extractedPath, { appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
+        await modifyPackage({src: extractedPath, appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
         console.log("Devtools Разблокированы", extractedPath);
     }
 
