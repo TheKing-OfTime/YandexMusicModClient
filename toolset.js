@@ -11,6 +11,11 @@ const plist = require('plist');
 const { minify } = require('terser');
 const { Octokit } = await import('@octokit/rest');
 const { execSync } = require('child_process');
+const { exec, spawn } = require('child_process');
+const { promisify } = require('util');
+
+const execAsync = promisify(exec);
+const spawnAsync = promisify(spawn);
 
 const SRC_PATH = path.join(process.argv[1], '../src');
 const DEFAULT_DIST_PATH = path.join(process.argv[1], '../builds/latest/app.asar');
@@ -418,14 +423,21 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
   }
 }
 
-async function buildDirectly(src, noMinify=false, noNativeModules=false) {
+async function buildDirectly(src, noMinify=false, noNativeModules=false, forceOpen=false) {
     if (process.platform === "darwin" && checkIfSystemIntegrityProtectionEnabled()) {
         console.log("System Integrity Protection включён. Обход невозможен, пожалуйста, отключите SIP для File System и попробуйте снова.");
         return false;
     }
     oldYMHash = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
+    const shouldReopen = await closeYandexMusic();
     await bypassAsarIntegrity();
+
+    if( shouldReopen || forceOpen ) {
+        console.log('Запуск Яндекс Музыки...');
+        launchYandexMusic();
+        console.log('Яндекс Музыка запущена');
+    };
 }
 
 async function spoof(type='extracted', shouldRelease=false) {
@@ -679,12 +691,113 @@ async function bypassAsarIntegrity(dest=undefined) {
     if (process.platform === "win32") await bypassWinAsarIntegrity(dest ?? WINDOWS_EXE_PATH);
 }
 
+
+// Copied from https://github.com/PulseSync-LLC/PulseSync-client/blob/dev/src/main/utils/appUtils.ts
+async function getYandexMusicProcesses() {
+    if (process.platform === "darwin") {
+        try {
+            const command = `pgrep -f "Яндекс Музыка"`
+            const { stdout } = await execAsync(command, { encoding: 'utf8' })
+            const processes = stdout.split('\n').filter(line => line.trim() !== '')
+            return processes.map(pid => ({ pid: parseInt(pid, 10) })).filter(proc => !isNaN(proc.pid))
+        } catch (error) {
+            console.error('Ошибка выявления процесса Яндекс Музыки на Mac:', error)
+            return []
+        }
+    } else if (process.platform === "linux") {
+        try {
+            const command = `pgrep -fa "yandexmusic"`
+            const { stdout } = await execAsync(command, { encoding: 'utf8' })
+            const processes = stdout.split('\n')
+            .filter(line => line.trim() !== '')
+            .filter(line => !['pgrep', 'yandexmusicmodpatcher', 'YandexMusicModPatcher'].some(keyword => line.includes(keyword)))
+            return processes.map(line => {
+                const parts = line.split(' ');
+                const pid = parseInt(parts[0], 10);
+                return { pid };
+            }).filter(proc => !isNaN(proc.pid));
+        } catch (error) {
+            console.error('Ошибка выявления процесса Яндекс Музыки на Linux:', error)
+            return []
+        }
+    } else {
+        try {
+            const command = `tasklist /FI "IMAGENAME eq Яндекс Музыка.exe" /FO CSV /NH`
+            const { stdout } = await execAsync(command, { encoding: 'utf8' })
+            const processes = stdout.split('\n').filter(line => line.trim() !== '')
+            const yandexProcesses = []
+            processes.forEach(line => {
+                const parts = line.split('","')
+                if (parts.length > 1) {
+                    const pidStr = parts[1].replace(/"/g, '').trim()
+                    const pid = parseInt(pidStr, 10)
+                    if (!isNaN(pid)) {
+                        yandexProcesses.push({ pid })
+                    }
+                }
+            })
+            return yandexProcesses
+        } catch (error) {
+            console.error('Ошибка выявления процесса Яндекс Музыки:', error)
+            return []
+        }
+    }
+}
+
+async function isYandexMusicRunning() {
+    return (await getYandexMusicProcesses())?.length > 0;
+}
+
+async function closeYandexMusic() {
+    const yandexProcesses = await getYandexMusicProcesses();
+    if (yandexProcesses.length === 0) {
+        console.log('Яндекс Музыка не запущена. Закрытие не требуется.');
+        return false;
+    }
+
+    console.log('Закрываю Яндекс Музыку...');
+
+    for (const proc of yandexProcesses) {
+        try {
+            process.kill(proc.pid)
+            console.log(`Процесс Яндекс Музыки с PID ${proc.pid} был завершён.`)
+        } catch (error) {
+            console.error(`Не удалось завершить процесс ${proc.pid}:`, error)
+        }
+    }
+
+    return true;
+}
+
+async function launchYandexMusic() {
+    return await openExternalDetached('yandexmusic://');
+}
+
+async function openExternalDetached(url) {
+    let command, args;
+
+    if (process.platform === 'win32') {
+        command = 'cmd.exe';
+        args = ['/c', 'start', '', url];
+    } else if (process.platform === 'darwin') {
+        command = 'open';
+        args = [url];
+    } else {
+        command = 'xdg-open';
+        args = [url];
+    }
+
+    (await spawnAsync(command, args, { detached: true, stdio: 'ignore', })).unref();
+}
+
+
 async function run(command, flags) {
 
     console.time(`${command} исполнен за`);
 
     const force = flags.f ?? false
 
+    const forceOpen = flags.forceOpen ?? false;
     const lastExtracted = flags.lastExtracted ?? false;
     const extractType = flags.extractType ?? 'direct';
     const withoutPure = flags.withoutPure ?? false;
@@ -704,7 +817,7 @@ async function run(command, flags) {
     switch (command) {
         case 'build':
 			if (shouldBuildDirectly) {
-        		await buildDirectly(src, !shouldMinify, noNativeModules);
+        		await buildDirectly(src, !shouldMinify, noNativeModules, forceOpen);
 				break;
       		}
 			if (shouldRelease) {
@@ -727,12 +840,13 @@ async function run(command, flags) {
         case 'extract':
             const { extracted } = await extractBuild(force, src, extractType, !withoutPure);
             if (shouldPatch) await patchExtractedBuild(extracted);
-            if (shouldBuildDirectly) await buildDirectly(extracted, !shouldMinify, noNativeModules);
+            if (shouldBuildDirectly)
+              await buildDirectly(extracted, !shouldMinify, noNativeModules, forceOpen);
             if (shouldBuild) await build({ srcPath: extracted, destDir: DEFAULT_PATCHED_DIST_PATH, noMinify: !shouldMinify, noNativeModules: noNativeModules });
             break;
         case 'patch':
             await patchExtractedBuild(src)
-            if (shouldBuildDirectly) await buildDirectly(src, !shouldMinify, noNativeModules);
+            if (shouldBuildDirectly) await buildDirectly(src, !shouldMinify, noNativeModules, forceOpen);
             break;
         case 'bypass-asar-integrity':
             await bypassAsarIntegrity(dest)
@@ -742,6 +856,13 @@ async function run(command, flags) {
         default:
             console.log('help - shows this message\nbuild\nspoof\nrelease\nextract\npatch\nbypass-asar-integrity');
             break
+    }
+
+    const isYmRunning = await isYandexMusicRunning();
+    if (!isYmRunning && forceOpen) {
+        console.log('Запуск Яндекс Музыки...');
+        launchYandexMusic()
+        console.log('Яндекс Музыка запущена');
     }
 
     console.timeEnd(`${command} исполнен за`);
