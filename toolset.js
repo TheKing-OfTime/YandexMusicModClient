@@ -151,15 +151,16 @@ function getModVersion() {
     .version;
 }
 
-async function modifySrcPackage({ version=undefined, buildInfo=undefined, modVersion=undefined }) {
-    let packageJson = JSON.parse(await fsp.readFile(path.join(SRC_PATH, '/package.json'), 'utf8'));
+async function modifyPackage(src = SRC_PATH, { version=undefined, buildInfo=undefined, modVersion=undefined, appConfig=undefined }) {
+    let packageJson = JSON.parse(await fsp.readFile(path.join(src, '/package.json'), 'utf8'));
     const oldVersion = packageJson.version;
 
     if (version) packageJson.version = version;
     if (buildInfo) packageJson.buildInfo = buildInfo;
     if (modVersion) packageJson.modification.version = modVersion;
+    if (appConfig) packageJson.appConfig = {...packageJson.appConfig, ...appConfig};
 
-    await fsp.writeFile(path.join(SRC_PATH, '/package.json'), JSON.stringify(packageJson, null, 2), 'utf8');
+    await fsp.writeFile(path.join(src, '/package.json'), JSON.stringify(packageJson, null, 2), 'utf8');
     return { oldVersion: oldVersion, newVersion: version }
 }
 
@@ -437,12 +438,12 @@ async function spoof(type='extracted', shouldRelease=false) {
       modVersion = (await getLatestYMVersion('src')).modification.version;
     }
     console.log('Последняя версия ЯМ', versions);
-    const result = await modifySrcPackage({ version: versions.version, buildInfo: versions.buildInfo });
+    const result = await modifyPackage({ version: versions.version, buildInfo: versions.buildInfo });
 
     if(latestRelease) {
       if(semver.lte(modVersion, latestRelease.name)) {
         const nextVersion = semver.inc(latestRelease.name, 'patch');
-        await modifySrcPackage({ modVersion: nextVersion });
+        await modifyPackage({ modVersion: nextVersion });
         console.log('Версия мода изменена с', modVersion, 'на', nextVersion);
         await createAndPushSpoofCommit(result.oldVersion, result.newVersion);
       }
@@ -512,16 +513,22 @@ async function patchExtractedBuild(extractedPath, options = { unlockDevtools: tr
     console.log('Патчинг извлечённого релиза', extractedPath);
 
     if (options.unlockDevtools) {
-        let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
-        configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
-        await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
+
+        // Old way
+        // let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
+        // configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
+        // await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
+
+        await modifyPackage(extractedPath, { appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
         console.log("Devtools Разблокированы", extractedPath);
     }
 
     if (options.unlockDevPanel) {
         const rules = [
-            { regex: /panel: ?!1, ?allowOverwriteExperiments: ?!1/g, replacement: 'panel:!0,allowOverwriteExperiments:!0' },
-            { regex: /exposeSonataStateInWindow: ?!1/g, replacement: 'exposeSonataStateInWindow:!0' },
+            // Old way
+            // { regex: /panel: ?!1, ?allowOverwriteExperiments: ?!1/g, replacement: 'panel:!0,allowOverwriteExperiments:!0' },
+            // { regex: /exposeSonataStateInWindow: ?!1/g, replacement: 'exposeSonataStateInWindow:!0' },
+            { regex: /e\.set\(c.qV, ?![10]\), ?e\.set\(c.yc, ?![10]\), ?e\.set\(c.W4, ?![10]\)/g, replacement: 'e.set(c.qV,!0),e.set(c.yc,!0),e.set(c.W4,!0)' },
         ]
 
         console.log('Применяю regex патчи', extractedPath, rules);
