@@ -793,7 +793,7 @@ async function openExternalDetached(url) {
 
 async function run(command, flags) {
 
-    console.time(`${command} исполнен за`);
+    if(command) console.time(`${command} исполнен за`);
 
     const force = flags.f ?? false
 
@@ -851,11 +851,23 @@ async function run(command, flags) {
         case 'bypass-asar-integrity':
             await bypassAsarIntegrity(dest)
             break;
-
-        case 'help':
+        case 'rebuild':
+            await buildDirectly(src, true, true, true);
+            break;
         default:
-            console.log('help - shows this message\nbuild\nspoof\nrelease\nextract\npatch\nbypass-asar-integrity');
-            break
+            if (command) console.log('Неизвестная команда:', command, '\nИнтерпретирую как help...');
+        case 'help':
+            console.log("\n================================\n");
+            console.log(
+              "Команды:\n\nhelp - Отображает это сообщение\nbuild - собирает проект в asar-файл\nspoof - подменяет версию приложения в src на последнюю\nrelease - создаёт релиз на GitHub и автоматически загружает asar\nextract - извлекает новый билд из приложения\npatch - патчит извлечённый билд для разблокировки девтулзов и дев панели\nbypass-asar-integrity - обходит проверку целостности asar\nrebuild - шорткат для build -d --noNativeModules --forceOpen",
+            );
+            console.log("\n================================\n");
+            console.log(
+              "Флаги:\n\n -f - форсирует перезапись/пересборку/повторное извлечение\n --forceOpen - форсирует открытие Яндекс Музыки после выполнения команды\n --noNativeModules - пропускает сборку нативных модулей (только для build и buildDirectly)\n -m - минифицирует исходный код (только для build и buildDirectly)\n -r - создаёт релиз на GitHub (только для spoof или build)\n -b - собирает проект (только для spoof)\n -d - собирает напрямую в дистрибутив Яндекс Музыки (только для build и patch)\n -p - патчит извлечённый (только для extract)\n --lastExtracted - использует последний извлечённый билд из ./extracted/ в качестве src (только для build и buildDirectly)\n --extractType [direct/extracted/src/customSrc/customAsar] - тип источника для извлечения (только для extract), по умолчанию direct\n --withoutPure - не извлекает чистую версию без патчей (только для extract)\n --src [path] - путь к исходному коду или asar-файлу, в зависимости от команды\n --dest [path] - путь к результирующему asar-файлу, в зависимости от команды\n --oldYMHashOverride [hash] - переопределяет старый хеш asar при обходе целостности (только Windows; для bypass-asar-integrity и build -d)",
+            );
+            console.log("\n================================\n");
+            console.log('Флаги с аргументами указываются через =, например --oldYMHashOverride=f9cdcfb583ccebb5b23edaab0ea90165bee0479458532a0580c1b3a307d746d3');
+            break;
     }
 
     const isYmRunning = await isYandexMusicRunning();
@@ -865,7 +877,7 @@ async function run(command, flags) {
         console.log('Яндекс Музыка запущена');
     }
 
-    console.timeEnd(`${command} исполнен за`);
+    if (command) console.timeEnd(`${command} исполнен за`);
 }
     const args = minimist(process.argv.slice(2));
     console.log(args);
