@@ -801,7 +801,7 @@ async function run(command, flags) {
     const lastExtracted = flags.lastExtracted ?? false;
     const extractType = flags.extractType ?? 'direct';
     const withoutPure = flags.withoutPure ?? false;
-    const noNativeModules = flags.noNativeModules ?? false;
+    const noNativeModules = (command === 'extract' || lastExtracted ) ? true : (flags.noNativeModules ?? false);
     oldYMHashOverride = flags.oldYMHashOverride;
 
     const shouldPatch = flags.p ?? false;
