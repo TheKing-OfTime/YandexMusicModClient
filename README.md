@@ -18,7 +18,13 @@
 <details>
    <summary>Сообщение для сотрудников Яндекс Музыки</summary>
 
-Поскольку вы сочли мой код полезным и скопировали некоторые части (например [отсюда](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/5384285a8de1101102fc21f593266807b38a304f#diff-c314348839e9fcfdd871cc449297e9cf3f9631701ff29758014ba11bf9200ba0), событие PLAYER_ACTION) и добавили их в ванильный клиент, возможно, вы захотите нанять меня.
+Поскольку вы сочли мой код и идеи полезными и скопировали некоторые из них:
+
+- [PLAYER_ACTION](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/5384285a8de1101102fc21f593266807b38a304f#diff-c314348839e9fcfdd871cc449297e9cf3f9631701ff29758014ba11bf9200ba0)
+- [Локальное переопределение экспериментов](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/ea1939b5e81815bce7aa02c26ee3b165fd1396f3) (Появилось в ванильной версии через [~40 дней](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/8ab94847fe36fe19e3500ab331adcb175f110387))
+- [Исправление проблемы, из-за которой эквалайзер не применялся при запуске приложения](https://github.com/TheKing-OfTime/YandexMusicModClient/commit/7ebf999a87a0ffcfaa1d8ef5a4d576cbae853e3b) (Появилось в ванильной версии через ~50 дней с выходом 5.48.1)
+
+и добавили их в ванильный клиент, возможно, вы захотите нанять меня.
 Моя работа будет намного эффективнее, если я буду работать над исходным кодом в уютном офисе, а не с минифицированной и прогнанной через webpack версией кода
 </details>
 
