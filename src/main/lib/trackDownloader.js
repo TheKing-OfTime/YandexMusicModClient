@@ -25,7 +25,7 @@ async function extractFfmpeg() {
 }
 
 function artists2string(artists) {
-  if (!artists) return;
+  if (!artists || (artists?.length === 0)) return;
   if (artists.length <= 1) return artists?.[0].name;
   let string = artists.shift()?.name;
   artists.forEach((a) => {
@@ -262,7 +262,7 @@ class TrackDownloader {
       ...(withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
       ...(withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
       ...(withCover ? ["-disposition:v", "attached_pic"] : []),
-      ...(data.track?.artists
+      ...(data.track?.artists && data.track?.artists.length > 0
         ? ["-metadata", `artist="${artists2string(data.track?.artists)}"`]
         : []),
       ...(data.track?.title
