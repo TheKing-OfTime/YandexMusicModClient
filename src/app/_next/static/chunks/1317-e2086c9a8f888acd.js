@@ -11407,7 +11407,7 @@
           )
           if (!instance) {
             setTimeout(registerYaspAudioElementListener, 1000);
-            return console.log("YaspAudioElement not found, retrying...");
+            return console.debug("YaspAudioElement not found, retrying...");
           }
 
           const listener = (e) => {
@@ -11428,10 +11428,10 @@
 
             instance.removeEventListener("yasp-event", listener);
 
-            console.log("Removed listener on YaspAudioElement");
+            console.debug("Removed listener on YaspAudioElement");
           }
 
-          console.log("Registered listener on YaspAudioElement");
+          console.debug("Registered listener on YaspAudioElement");
           instance.addEventListener("yasp-event", listener);
         };
         registerYaspAudioElementListener();
