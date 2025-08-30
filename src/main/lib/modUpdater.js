@@ -268,7 +268,7 @@ class ModUpdater {
     await this.downloadFile(
       this.latestUrl,
       this.isCompressed
-        ? APP_ASAR_TMP_GZIP_DOWNLOAD_PATH
+        ? (this.compressionType === "zstd" ? APP_ASAR_TMP_ZSTD_DOWNLOAD_PATH : APP_ASAR_TMP_GZIP_DOWNLOAD_PATH)
         : APP_ASAR_TMP_DOWNLOAD_PATH,
       callback,
     );
