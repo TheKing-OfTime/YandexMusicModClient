@@ -52,7 +52,12 @@ class ModUpdater {
   constructor() {
     this.isCompressed = false;
     this.logger = new Logger_js_1.Logger("ModUpdaterLogger");
-    this.logger.log("Initializing");
+    this.logger.log("Initializing...");
+    this.clearCaches().then(() =>
+        {
+          this.logger.log("Initialized");
+        }
+    );
   }
 
   start() {
@@ -67,6 +72,14 @@ class ModUpdater {
       clearInterval(this.updaterId);
       this.logger.log("Loop stopped");
     }
+  }
+
+  async clearCaches() {
+      this.logger.log("Clearing caches");
+      await this.deleteFile(APP_ASAR_TMP_ZSTD_DOWNLOAD_PATH);
+      await this.deleteFile(APP_ASAR_TMP_GZIP_DOWNLOAD_PATH);
+      await this.deleteFile(APP_ASAR_TMP_DOWNLOAD_PATH);
+      this.logger.log("Caches cleared");
   }
 
   parseAssets(assets) {
@@ -162,7 +175,7 @@ class ModUpdater {
       isFinished = true;
       isError = true;
       writer.end();
-      fsPromise.unlink(path);
+      this.deleteFile(path);
       this.logger.error("Download error:", err.message);
       callback(-1, -1);
     });
@@ -189,14 +202,14 @@ class ModUpdater {
         callback(1.1, -1);
         this.logger.log("Update ready to install.");
       } catch (e) {
-        await fsPromise.unlink(path);
+        await this.deleteFile(path);
         this.logger.error("Error writing file:", e);
         callback(-1, -1);
       }
     });
 
     writer.on("error", (err) => {
-      fsPromise.unlink(path);
+      this.deleteFile(path);
       this.logger.error("Error writing file:", err);
       callback(-1, -1);
     });
