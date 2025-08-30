@@ -867,6 +867,7 @@ async function run(command, flags) {
             );
             console.log("\n================================\n");
             console.log('Флаги с аргументами указываются через =, например --oldYMHashOverride=f9cdcfb583ccebb5b23edaab0ea90165bee0479458532a0580c1b3a307d746d3');
+            console.log("\n================================\n");
             break;
     }
 
