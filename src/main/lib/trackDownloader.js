@@ -74,6 +74,34 @@ function removeInvalidCharsFromFilename(str) {
   return str.replace(/[/\\?%*:|"<>]/g, "_");
 }
 
+function removeInvalidEndingsFromTrackTitle(str) {
+    if (str.endsWith(".mp3")) str.replaceAll(".mp3", "");
+    if (str.endsWith(".mp4")) str.replaceAll(".mp4", "");
+    if (str.endsWith(".m4a")) str.replaceAll(".m4a", "");
+    if (str.endsWith(".flac")) str.replaceAll(".flac", "");
+    return str;
+}
+
+function getTrackFilename(track) {
+    if (!track) return "unknown_track";
+
+    let trackFilename, artistsString = artists2string(track?.artists), titleString = removeInvalidEndingsFromTrackTitle(track?.title);
+
+    if(artistsString && titleString) {
+        trackFilename = `${artistsString} — ${titleString}`;
+    } else if (titleString) {
+        trackFilename = titleString;
+    } else if (artistsString) {
+        trackFilename = artistsString;
+    } else if (track.filename){
+        trackFilename = removeInvalidEndingsFromTrackTitle(track.filename);
+    } else {
+        trackFilename = track.realId ?? track.id;
+    }
+
+    return removeInvalidCharsFromFilename(trackFilename)
+}
+
 class TrackDownloader {
   logger;
   window;
@@ -330,10 +358,7 @@ class TrackDownloader {
     const convertToMP3 =
       (store_js_1.getModFeatures()?.downloader?.useMP3 ?? false) &&
       fileExtension !== "mp3";
-    const defaultFilepath =
-      removeInvalidCharsFromFilename(
-        `${artists2string(data.track?.artists)} — ${data.track?.title}.`,
-      ) + (convertToMP3 ? "mp3" : fileExtension);
+    const defaultFilepath = getTrackFilename(data.track) + '.' + (convertToMP3 ? "mp3" : fileExtension);
     const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
 
     const finalTrackPath =
