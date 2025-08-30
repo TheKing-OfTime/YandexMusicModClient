@@ -431,6 +431,9 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false, forceOp
     oldYMHash = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
     const shouldReopen = await closeYandexMusic();
+
+    await new Promise(resolve => setTimeout(resolve, 500)); // Dirty delay. To make sure YM is closed
+
     await bypassAsarIntegrity();
 
     if( shouldReopen || forceOpen ) {
