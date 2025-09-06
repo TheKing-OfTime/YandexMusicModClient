@@ -6499,9 +6499,11 @@
               window.onRemoteDeviceConnected.forEach((listener) =>
                 listener(currentDevice),
               );
+              window.remoteDeviceConnected = true;
             }
           } else if (isRemoteControlEnabled && !isDeviceMatch) {
             window.onRemoteDeviceDisconnected.forEach((listener) => listener());
+            window.remoteDeviceConnected = false;
           }
         }
         applyYnisonDiff(e) {
@@ -7140,7 +7142,7 @@
                 status: {
                   duration_ms: aC(r),
                   progress_ms: a_(r),
-                  paused: true, //TODO Дождаться фикса от Яндекса window.ENABLE_YNISON_REMOTE_CONTROL ? r.state.playerState.status.value === Z.FY.PAUSED : true,
+                  paused: (window.ENABLE_YNISON_REMOTE_CONTROL && window.remoteDeviceConnected) ? r.state.playerState.status.value === Z.FY.PAUSED : true, //TODO Дождаться фикса от Яндекса
                   playback_speed: r.state.playerState.speed.value,
                   version: (0, tq.Cs)(s.device_id, 0),
                 },
