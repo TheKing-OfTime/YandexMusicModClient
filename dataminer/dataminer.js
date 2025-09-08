@@ -6,7 +6,7 @@ const traverse = require("@babel/traverse").default;
 const generate = require("@babel/generator").default;
 
 const ROOT = path.join(process.argv[2] ?? "./src", "/app/_next/static/chunks");
-const OUTPUT = process.argv[3] ?? "dataminer-output.json";
+const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2] ? process.argv[2].split('/')[2].replaceAll('.', '_') : 'src'}.json`);
 
 // Список поддерживаемых методов httpClient
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
@@ -106,31 +106,59 @@ function extractEndpointAndOptions(callNode) {
         endpoint = normalizeEndpoint(args[0]);
     }
 
-    if (args.length > 1 && args[1].type === "ObjectExpression") {
-        for (const prop of args[1].properties) {
-            if (prop.type !== "ObjectProperty") continue;
+    if (args.length > 1) {
+        const second = args[1];
 
-            // --- searchParams ---
-            if (
-            (prop.key.type === "Identifier" && prop.key.name === "searchParams") ||
-            (prop.key.type === "StringLiteral" && prop.key.value === "searchParams")
-            ) {
-                searchParams = generate(prop.value ?? prop, { concise: true }).code;
-                searchParamsFormatted = extractKeysFromValue(prop.value ?? prop);
-            }
+        if (second.type === "ObjectExpression") {
+            ({ searchParams, searchParamsFormatted, json, jsonFormatted } =
+            extractOptionsFromObject(second));
+        }
 
-            // --- json ---
-            if (
-            (prop.key.type === "Identifier" && prop.key.name === "json") ||
-            (prop.key.type === "StringLiteral" && prop.key.value === "json")
-            ) {
-                json = generate(prop.value ?? prop, { concise: true }).code;
-                jsonFormatted = extractKeysFromValue(prop.value ?? prop);
+        else if (second.type === "CallExpression") {
+            for (const arg of second.arguments) {
+                if (arg.type === "ObjectExpression") {
+                    const extracted = extractOptionsFromObject(arg);
+                    searchParams = searchParams ?? extracted.searchParams;
+                    searchParamsFormatted = searchParamsFormatted ?? extracted.searchParamsFormatted;
+                    json = json ?? extracted.json;
+                    jsonFormatted = jsonFormatted ?? extracted.jsonFormatted;
+                }
             }
         }
     }
 
     return { endpoint, searchParams, searchParamsFormatted, json, jsonFormatted };
+}
+
+function extractOptionsFromObject(objNode) {
+    let searchParams = null;
+    let searchParamsFormatted = null;
+    let json = null;
+    let jsonFormatted = null;
+
+    for (const prop of objNode.properties) {
+        if (prop.type !== "ObjectProperty") continue;
+
+        // --- searchParams ---
+        if (
+        (prop.key.type === "Identifier" && prop.key.name === "searchParams") ||
+        (prop.key.type === "StringLiteral" && prop.key.value === "searchParams")
+        ) {
+            searchParams = generate(prop.value ?? prop, { concise: true }).code;
+            searchParamsFormatted = extractKeysFromValue(prop.value ?? prop);
+        }
+
+        // --- json ---
+        if (
+        (prop.key.type === "Identifier" && prop.key.name === "json") ||
+        (prop.key.type === "StringLiteral" && prop.key.value === "json")
+        ) {
+            json = generate(prop.value ?? prop, { concise: true }).code;
+            jsonFormatted = extractKeysFromValue(prop.value ?? prop);
+        }
+    }
+
+    return { searchParams, searchParamsFormatted, json, jsonFormatted };
 }
 
 function extractKeysFromValue(valueNode) {
@@ -234,11 +262,14 @@ function extractKeysFromValue(valueNode) {
                         method:
                             callPath.node.callee.property.name ??
                             callPath.node.callee.property.value,
-                        endpoint: "/".concat(endpoint),
+                        endpoint: endpoint,
                         searchParamKeys: searchParams,
-                        searchParamKeysFormatted: searchParamsFormatted,
                         jsonBodyKeys: json,
-                        jsonBodyKeysFormatted: jsonFormatted,
+                        formated: {
+                            endpoint: "/".concat(endpoint),
+                            searchParamKeys: searchParamsFormatted,
+                            jsonBodyKeys: jsonFormatted,
+                        },
                     });
                 },
             });
@@ -248,12 +279,16 @@ function extractKeysFromValue(valueNode) {
     }
 
     console.log(`\n\n\n✅ Готово. Найдено вызовов: ${results.length}`);
+
+    console.log(`\n\nСортирую результат...`);
+    results.sort((a, b) => a.formated.endpoint.localeCompare(b.formated.endpoint));
+    console.log(`\nСортировка завершена\n`);
     console.timeEnd('Анализ завершён за');
     try {
         fs.writeFileSync(OUTPUT, JSON.stringify(results, null, 2), "utf8");
-        console.log(`💾 Результат сохранён в ${OUTPUT}`);
+        console.log(`\n💾 Результат сохранён в ${OUTPUT}`);
     } catch (err) {
-        console.error(`❌ Ошибка записи файла ${OUTPUT}: ${err.message}`);
+        console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}`);
     }
     console.log('\n\n');
 })();
