@@ -43,7 +43,7 @@ function isDirectlyAwaited(callPath) {
 }
 
 // === нормализация endpoint ===
-function normalizeEndpoint(node) {
+function normalizeEndpoint(node, callPath) {
     if (!node) return null;
 
     switch (node.type) {
@@ -54,7 +54,7 @@ function normalizeEndpoint(node) {
             return node.quasis
             .map((q, i) => {
                 const expr = node.expressions[i];
-                const val = expr ? normalizeEndpoint(expr) : "";
+                const val = expr ? normalizeEndpoint(expr, callPath) : "";
                 return q.value.cooked + val;
             })
             .join("");
@@ -62,7 +62,7 @@ function normalizeEndpoint(node) {
 
         case "BinaryExpression":
             if (node.operator === "+") {
-                return normalizeEndpoint(node.left) + normalizeEndpoint(node.right);
+                return normalizeEndpoint(node.left, callPath) + normalizeEndpoint(node.right, callPath);
             }
             return generate(node).code;
 
@@ -73,37 +73,214 @@ function normalizeEndpoint(node) {
             node.callee.property.type === "Identifier" &&
             node.callee.property.name === "concat"
             ) {
-                const base = normalizeEndpoint(node.callee.object);
-                const args = node.arguments.map(normalizeEndpoint).join("");
+                const base = normalizeEndpoint(node.callee.object, callPath);
+                const args = node.arguments.map((a) => normalizeEndpoint(a, callPath)).join("");
                 return base + args;
             }
             return generate(node).code;
         }
 
-        case "MemberExpression":
+        case "MemberExpression": {
+            // Например t.url
+            node.__endpointSource = generate(node, { concise: true }).code;
+            node.__unsure = true;
             if (node.property.type === "Identifier") {
                 return `:${node.property.name}`;
             }
             return `:${generate(node.property).code}`;
+        }
 
-        case "Identifier":
+        case "Identifier": {
+            // Попытка найти объявление переменной
+            let binding = null;
+            if (callPath && callPath.scope) {
+                binding = callPath.scope.getBinding(node.name);
+            }
+
+            if (binding && binding.path.node.type === "VariableDeclarator" && binding.path.node.init) {
+                const initCode = generate(binding.path.node.init, { concise: true }).code;
+                node.__endpointSource = initCode;
+                node.__unsure = true;
+            } else {
+                node.__endpointSource = node.name;
+                node.__unsure = true;
+            }
+
             return `:${node.name}`;
+        }
 
         default:
             return generate(node).code;
     }
 }
 
-function extractEndpointAndOptions(callNode) {
+function extractKeysFromValue(valueNode, path) {
+    if (!valueNode) return null;
+
+    // Helper to extract keys from ObjectExpression node
+    const keysFromObject = (obj) =>
+    obj.properties
+    .map((prop) => {
+        if (prop.type === "ObjectProperty") {
+            if (prop.key.type === "Identifier") return prop.key.name;
+            if (prop.key.type === "StringLiteral") return prop.key.value;
+        }
+        return null;
+    })
+    .filter(Boolean);
+
+    // Resolve Identifier by finding its binding and following initializer
+    if (valueNode.type === "Identifier") {
+        const name = valueNode.name;
+        if (!path || !path.scope) return null;
+        const binding = path.scope.getBinding(name);
+        if (binding && binding.path && binding.path.node) {
+            const init = binding.path.node.init;
+            if (init) {
+                // рекурсивно обработаем инициализатор (передаём binding.path как контекст)
+                return extractKeysFromValue(init, binding.path);
+            }
+        }
+        return null;
+    }
+
+    // If it's an object literal — simple case
+    if (valueNode.type === "ObjectExpression") {
+        return keysFromObject(valueNode);
+    }
+
+    // If it's a call like (0, r.F)({...}) — проверим аргументы на объекты
+    if (valueNode.type === "CallExpression") {
+        const keys = [];
+        for (const arg of valueNode.arguments) {
+            if (arg.type === "ObjectExpression") {
+                keys.push(...keysFromObject(arg));
+            } else if (arg.type === "Identifier") {
+                const nested = extractKeysFromValue(arg, path);
+                if (nested) keys.push(...nested);
+            } else if (arg.type === "CallExpression") {
+                const nested = extractKeysFromValue(arg, path);
+                if (nested) keys.push(...nested);
+            }
+        }
+        return keys.length ? keys : null;
+    }
+
+    // If it's a sequence/expression that wraps an object: try to be permissive
+    // e.g. (0, r.P)({...}) was handled, but also maybe other wrappers — we can try to see if node has .arguments or .left/right
+    if (valueNode.type === "SequenceExpression") {
+        for (const expr of valueNode.expressions) {
+            const found = extractKeysFromValue(expr, path);
+            if (found) return found;
+        }
+    }
+
+    // fallback: no keys
+    return null;
+}
+
+function extractOptionsFromObject(objNode, path) {
+    let searchParams = null;
+    let searchParamsFormatted = null;
+    let json = null;
+    let jsonFormatted = null;
+
+    for (const prop of objNode.properties) {
+        if (prop.type !== "ObjectProperty") continue;
+
+        // --- searchParams ---
+        if (
+        (prop.key.type === "Identifier" && prop.key.name === "searchParams") ||
+        (prop.key.type === "StringLiteral" && prop.key.value === "searchParams")
+        ) {
+            searchParams = generate(prop.value ?? prop, { concise: true }).code;
+            searchParamsFormatted = extractKeysFromValue(prop.value ?? prop, path);
+        }
+
+        // --- json ---
+        if (
+        (prop.key.type === "Identifier" && prop.key.name === "json") ||
+        (prop.key.type === "StringLiteral" && prop.key.value === "json")
+        ) {
+            json = generate(prop.value ?? prop, { concise: true }).code;
+            jsonFormatted = extractKeysFromValue(prop.value ?? prop, path);
+        }
+    }
+
+    return { searchParams, searchParamsFormatted, json, jsonFormatted };
+}
+
+function processNodeRecursive(node, path) {
+    let searchParams = null;
+    let searchParamsFormatted = null;
+    let json = null;
+    let jsonFormatted = null;
+
+    if (!node) return { searchParams, searchParamsFormatted, json, jsonFormatted };
+
+    if (node.type === "ObjectExpression") {
+        const extracted = extractOptionsFromObject(node, path);
+        return extracted;
+    }
+
+    if (node.type === "CallExpression") {
+        // проверяем аргументы рекурсивно (поддерживаем обёртки createHttpOptions(...), wrap(...createHttpOptions(...)) и т.п.)
+        for (const arg of node.arguments) {
+            const extracted = processNodeRecursive(arg, path);
+            searchParams = searchParams ?? extracted.searchParams;
+            searchParamsFormatted = searchParamsFormatted ?? extracted.searchParamsFormatted;
+            json = json ?? extracted.json;
+            jsonFormatted = jsonFormatted ?? extracted.jsonFormatted;
+            // если все нашли - можем сразу вернуть
+            if (searchParams && json) break;
+        }
+        return { searchParams, searchParamsFormatted, json, jsonFormatted };
+    }
+
+    if (node.type === "Identifier") {
+        // пытаемся найти binding и обработать инициализатор
+        if (path && path.scope) {
+            const binding = path.scope.getBinding(node.name);
+            if (binding && binding.path && binding.path.node && binding.path.node.init) {
+                return processNodeRecursive(binding.path.node.init, binding.path);
+            }
+        }
+        return { searchParams, searchParamsFormatted, json, jsonFormatted };
+    }
+
+    // SequenceExpression (a, b, {...}) - проверим вложенные выражения
+    if (node.type === "SequenceExpression") {
+        for (const expr of node.expressions) {
+            const extracted = processNodeRecursive(expr, path);
+            searchParams = searchParams ?? extracted.searchParams;
+            searchParamsFormatted = searchParamsFormatted ?? extracted.searchParamsFormatted;
+            json = json ?? extracted.json;
+            jsonFormatted = jsonFormatted ?? extracted.jsonFormatted;
+        }
+        return { searchParams, searchParamsFormatted, json, jsonFormatted };
+    }
+
+    return { searchParams, searchParamsFormatted, json, jsonFormatted };
+}
+
+
+function extractEndpointAndOptions(callNode, callPath) {
     const args = callNode.arguments;
     let endpoint = null;
     let searchParams = null;
     let searchParamsFormatted = null;
     let json = null;
     let jsonFormatted = null;
+    let unsureEndpoint = false;
+    let endpointSource = null;
 
     if (args.length > 0) {
-        endpoint = normalizeEndpoint(args[0]);
+        endpoint = normalizeEndpoint(args[0], callPath);
+
+        if (args[0].__unsure) {
+            unsureEndpoint = true;
+            endpointSource = args[0].__endpointSource;
+        }
     }
 
     if (args.length > 1) {
@@ -127,72 +304,43 @@ function extractEndpointAndOptions(callNode) {
         }
     }
 
-    return { endpoint, searchParams, searchParamsFormatted, json, jsonFormatted };
+    return {
+        endpoint,
+        searchParams,
+        searchParamsFormatted,
+        json,
+        jsonFormatted,
+        unsureEndpoint,
+        endpointSource
+    };
 }
 
-function extractOptionsFromObject(objNode) {
-    let searchParams = null;
-    let searchParamsFormatted = null;
-    let json = null;
-    let jsonFormatted = null;
-
-    for (const prop of objNode.properties) {
-        if (prop.type !== "ObjectProperty") continue;
-
-        // --- searchParams ---
-        if (
-        (prop.key.type === "Identifier" && prop.key.name === "searchParams") ||
-        (prop.key.type === "StringLiteral" && prop.key.value === "searchParams")
-        ) {
-            searchParams = generate(prop.value ?? prop, { concise: true }).code;
-            searchParamsFormatted = extractKeysFromValue(prop.value ?? prop);
+function getEnclosingFunctionName(callPath) {
+    let p = callPath;
+    while (p) {
+        const n = p.node;
+        if (n.type === "FunctionDeclaration" && n.id) {
+            return n.id.name;
         }
-
-        // --- json ---
-        if (
-        (prop.key.type === "Identifier" && prop.key.name === "json") ||
-        (prop.key.type === "StringLiteral" && prop.key.value === "json")
-        ) {
-            json = generate(prop.value ?? prop, { concise: true }).code;
-            jsonFormatted = extractKeysFromValue(prop.value ?? prop);
-        }
-    }
-
-    return { searchParams, searchParamsFormatted, json, jsonFormatted };
-}
-
-function extractKeysFromValue(valueNode) {
-    if (!valueNode) return null;
-
-    if (valueNode.type === "ObjectExpression") {
-        return valueNode.properties
-        .map((prop) => {
-            if (prop.type === "ObjectProperty") {
-                if (prop.key.type === "Identifier") return prop.key.name;
-                if (prop.key.type === "StringLiteral") return prop.key.value;
+        if ((n.type === "FunctionExpression" || n.type === "ArrowFunctionExpression") && p.parentPath) {
+            // Может быть метод объекта или класс
+            const parent = p.parentPath.node;
+            if (parent.type === "ObjectProperty" && parent.key.type === "Identifier") {
+                return parent.key.name;
             }
-            return null;
-        })
-        .filter(Boolean);
-    } else if (valueNode.type === "CallExpression") {
-        const keys = [];
-        for (const arg of valueNode.arguments) {
-            if (arg.type === "ObjectExpression") {
-                const k = arg.properties
-                .map((prop) => {
-                    if (prop.type === "ObjectProperty") {
-                        if (prop.key.type === "Identifier") return prop.key.name;
-                        if (prop.key.type === "StringLiteral") return prop.key.value;
-                    }
-                    return null;
-                })
-                .filter(Boolean);
-                keys.push(...k);
+            if (parent.type === "ClassMethod" && parent.key.type === "Identifier") {
+                return parent.key.name;
+            }
+            if (parent.type === "VariableDeclarator" && parent.id.type === "Identifier") {
+                return parent.id.name;
             }
         }
-        return keys.length ? keys : null;
+        if (n.type === "ClassMethod" || n.type === "ObjectMethod") {
+            if (n.key.type === "Identifier") return n.key.name;
+            if (n.key.type === "StringLiteral") return n.key.value;
+        }
+        p = p.parentPath;
     }
-
     return null;
 }
 
@@ -253,16 +401,13 @@ function extractKeysFromValue(valueNode) {
                     if (!isHttpMethodCallee(callPath.node.callee)) return;
                     if (!isDirectlyAwaited(callPath)) return;
 
-                    const { endpoint, searchParams, searchParamsFormatted, json, jsonFormatted } = extractEndpointAndOptions(callPath.node);
-
-                    results.push({
-                        file: relPath,
-                        line: callPath.node.loc?.start.line ?? null,
-                        column: callPath.node.loc?.start.column ?? null,
-                        method:
-                            callPath.node.callee.property.name ??
-                            callPath.node.callee.property.value,
-                        endpoint: endpoint,
+                    const { endpoint, searchParams, searchParamsFormatted, json, jsonFormatted, unsureEndpoint, endpointSource } =
+                    extractEndpointAndOptions(callPath.node, callPath);
+                    const functionName = getEnclosingFunctionName(callPath);
+                    const result = {
+                        name: functionName,
+                        method: (callPath.node.callee.property.name ?? callPath.node.callee.property.value).toUpperCase(),
+                        endpoint,
                         searchParamKeys: searchParams,
                         jsonBodyKeys: json,
                         formated: {
@@ -270,7 +415,19 @@ function extractKeysFromValue(valueNode) {
                             searchParamKeys: searchParamsFormatted,
                             jsonBodyKeys: jsonFormatted,
                         },
-                    });
+                        position: {
+                            file: relPath,
+                            line: callPath.node.loc?.start.line ?? null,
+                            column: callPath.node.loc?.start.column ?? null,
+                        }
+                    };
+
+                    if (unsureEndpoint) {
+                        result.unsureEndpoint = true;
+                        result.endpointSource = endpointSource;
+                    }
+
+                    results.push(result);
                 },
             });
         } catch (err) {
@@ -281,10 +438,11 @@ function extractKeysFromValue(valueNode) {
     console.log(`\n\n\n✅ Готово. Найдено вызовов: ${results.length}`);
 
     console.log(`\n\nСортирую результат...`);
-    results.sort((a, b) => a.formated.endpoint.localeCompare(b.formated.endpoint));
+    results.sort((a, b) => (a.formated.endpoint ?? "").localeCompare(b.formated.endpoint ?? ""));
     console.log(`\nСортировка завершена\n`);
     console.timeEnd('Анализ завершён за');
     try {
+        fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
         fs.writeFileSync(OUTPUT, JSON.stringify(results, null, 2), "utf8");
         console.log(`\n💾 Результат сохранён в ${OUTPUT}`);
     } catch (err) {
