@@ -6,7 +6,7 @@ const traverse = require("@babel/traverse").default;
 const generate = require("@babel/generator").default;
 
 const ROOT = path.join(process.argv[2] ?? "./src", "/app/_next/static/chunks");
-const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2] ? process.argv[2].split('/')[2].replaceAll('.', '_') : 'src'}.json`);
+const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2] ? process.argv[2].split('/')[2].replaceAll('.', '_') : 'src'}`);
 
 // Список поддерживаемых методов httpClient
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
@@ -344,6 +344,36 @@ function getEnclosingFunctionName(callPath) {
     return null;
 }
 
+function generateSimpleRoutesListFromResults(results) {
+    if (!results) return null;
+
+    const routes = {};
+
+    for (const item of results) {
+        if (!item.endpoint || item.unsureEndpoint) continue;
+
+        let endpointString = `${item.method} ${item.formated.endpoint}`
+
+        if (item.formated.searchParamKeys) endpointString = endpointString.concat('?', item.formated.searchParamKeys.join('&'));
+
+        if (item.formated.jsonBodyKeys) endpointString = endpointString.concat(' { ', item.formated.jsonBodyKeys.join(', '), ' }');
+
+        const name = item.name ?? item.endpoint;
+        let uniqueName = name;
+        let counter = 1;
+        while (routes[uniqueName] && routes[uniqueName] !== endpointString) {
+            const uniqueNameBrackets = [item.formated.endpoint.split('/')[1]];
+            if (counter > 1) uniqueNameBrackets.push(counter);
+            uniqueName = `${name} (${uniqueNameBrackets.join(' ')})`;
+            counter++
+        }
+
+        routes[uniqueName] = endpointString;
+    }
+
+    return routes;
+}
+
 (async function main() {
     console.time('Анализ завершён за');
     console.log(`🔍 Поиск JS/TS файлов в папке: ${ROOT}`);
@@ -442,8 +472,9 @@ function getEnclosingFunctionName(callPath) {
     console.log(`\nСортировка завершена\n`);
     console.timeEnd('Анализ завершён за');
     try {
-        fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
-        fs.writeFileSync(OUTPUT, JSON.stringify(results, null, 2), "utf8");
+        fs.mkdirSync(OUTPUT, { recursive: true });
+        fs.writeFileSync(path.join(OUTPUT, 'detailedRoutes.json'), JSON.stringify(results, null, 2), "utf8");
+        fs.writeFileSync(path.join(OUTPUT, 'simpleRoutes.json'), JSON.stringify(generateSimpleRoutesListFromResults(results), null, 2), "utf8");
         console.log(`\n💾 Результат сохранён в ${OUTPUT}`);
     } catch (err) {
         console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}`);
