@@ -269,10 +269,6 @@ function processNodeRecursive(node, path) {
 function extractEndpointAndOptions(callNode, callPath) {
     const args = callNode.arguments;
     let endpoint = null;
-    let searchParams = null;
-    let searchParamsFormatted = null;
-    let json = null;
-    let jsonFormatted = null;
     let unsureEndpoint = false;
     let endpointSource = null;
 
@@ -285,25 +281,15 @@ function extractEndpointAndOptions(callNode, callPath) {
         }
     }
 
+    let searchParams = null;
+    let searchParamsFormatted = null;
+    let json = null;
+    let jsonFormatted = null;
+
     if (args.length > 1) {
         const second = args[1];
-
-        if (second.type === "ObjectExpression") {
-            ({ searchParams, searchParamsFormatted, json, jsonFormatted } =
-            extractOptionsFromObject(second));
-        }
-
-        else if (second.type === "CallExpression") {
-            for (const arg of second.arguments) {
-                if (arg.type === "ObjectExpression") {
-                    const extracted = extractOptionsFromObject(arg);
-                    searchParams = searchParams ?? extracted.searchParams;
-                    searchParamsFormatted = searchParamsFormatted ?? extracted.searchParamsFormatted;
-                    json = json ?? extracted.json;
-                    jsonFormatted = jsonFormatted ?? extracted.jsonFormatted;
-                }
-            }
-        }
+        ({ searchParams, searchParamsFormatted, json, jsonFormatted } =
+        processNodeRecursive(second, callPath));
     }
 
     return {
