@@ -511,9 +511,11 @@ function generateSimpleRoutesListFromResults(results) {
     console.log(`\n\n\n✅ Готово.\n🌐 Роутов найдено: ${results.length}`);
     console.log(`🔬 Экспериментов найдено: ${experiments.length}`);
 
-    console.log(`\nСортирую роуты...`);
+    console.log(`\nСортирую результаты...`);
+    console.time(`Сортировка завершена`);
     results.sort((a, b) => (a.formated.endpoint ?? "").localeCompare(b.formated.endpoint ?? ""));
-    console.log(`Сортировка завершена\n`);
+    experiments.sort((a, b) => a.localeCompare(b));
+    console.timeEnd(`Сортировка завершена`);
     console.timeEnd('Анализ завершён за');
 
     try {
