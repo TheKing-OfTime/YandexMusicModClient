@@ -342,7 +342,7 @@ function generateSimpleRoutesListFromResults(results) {
 
         let endpointString = `${item.method} ${item.formated.endpoint}`
 
-        if (item.formated.searchParamKeys) endpointString = endpointString.concat('?', item.formated.searchParamKeys.join('&'));
+        if (item.formated.searchParamKeys) endpointString = endpointString.concat('?', item.formated.searchParamKeys.map(item=>`${item}=[${item}]`).join('&'));
 
         if (item.formated.jsonBodyKeys) endpointString = endpointString.concat(' { ', item.formated.jsonBodyKeys.join(', '), ' }');
 
