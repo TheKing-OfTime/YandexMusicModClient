@@ -124,6 +124,13 @@ function getDiffTemplate(title, description, color = 0x378584) {
     };
 }
 
+function getSortedVersionList() {
+    const versions = fs.readdirSync(OUTPUT).filter(f => (fs.statSync(path.join(OUTPUT, f)).isDirectory() && (f !== 'src')));
+    return versions
+      .map((value) => value.replaceAll("_", "."))
+      .sort((a, b) => semver.rcompare(a, b))
+      .map((value) => value.replaceAll(".", "_"));
+}
 
 
 async function run(command, options) {
@@ -135,13 +142,8 @@ async function run(command, options) {
     let newVersion = (options.new ?? options._[2])?.replaceAll('.', '_');
 
     if (!oldVersion || !newVersion) {
-        const versions = fs.readdirSync(OUTPUT).filter(f => (fs.statSync(path.join(OUTPUT, f)).isDirectory() && (f !== 'src')));
-
-        const sortedVersions = versions
-            .map(value => value.replaceAll('_', '.'))
-            .sort((a, b) => semver.rcompare(a, b))
-            .map(value => value.replaceAll('.', '_'));
-
+        const sortedVersions = getSortedVersionList();
+        if (sortedVersions.length < 2) throw new Error('Недостаточно версий для сравнения. Необходимо минимум 2 папки с версиями в папке output.');
         oldVersion = sortedVersions[1];
         newVersion = sortedVersions[0];
     }

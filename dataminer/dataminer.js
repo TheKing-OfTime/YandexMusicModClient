@@ -2,11 +2,31 @@ const fs = require("fs");
 const path = require("path");
 const fg = require("fast-glob");
 const parser = require("@babel/parser");
+const semver = require('semver');
 const traverse = require("@babel/traverse").default;
 const generate = require("@babel/generator").default;
 
-const ROOT = path.join(process.argv[2] ?? "./src", "/app/_next/static/chunks");
-const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2] ? process.argv[2].split('/')[2].replaceAll('.', '_') : 'src'}`);
+const EXTRACTED = './extracted';
+
+function getSortedVersionList() {
+    const versions = fs.readdirSync(EXTRACTED).filter(f => (fs.statSync(path.join(EXTRACTED, f)).isDirectory() && !(f.endsWith('@pure') || f.endsWith('@archive') || f.endsWith('@beta') || f.endsWith('@modded'))));
+    return versions
+    .map((value) => value.replaceAll("_", "."))
+    .sort((a, b) => semver.rcompare(a, b))
+    //.map((value) => value.replaceAll(".", "_"));
+}
+
+const versionList = getSortedVersionList();
+if (!versionList || !versionList.length) {
+    console.warn(`\n❌ Не найдены папки с версиями в ${EXTRACTED}. Фоллбек на ./src\n`);
+}
+
+console.log(`Используемые версии: ${versionList.join(', ')}`);
+
+console.log(process.argv)
+
+const ROOT = path.join(process.argv[2] ?? (versionList?.[0] ? path.join(EXTRACTED, versionList?.[0]) : undefined ) ?? "./src", "/app/_next/static/chunks");
+const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2]?.split('/')?.at(process.argv[2].endsWith('/') ? -2 : -1)?.replaceAll('.', '_') ?? (versionList?.[0] ? versionList?.[0].replaceAll('.', '_') : undefined ) ?? 'src'}`);
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
 
