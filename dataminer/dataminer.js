@@ -8,8 +8,10 @@ const generate = require("@babel/generator").default;
 const ROOT = path.join(process.argv[2] ?? "./src", "/app/_next/static/chunks");
 const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2] ? process.argv[2].split('/')[2].replaceAll('.', '_') : 'src'}`);
 
-// Список поддерживаемых методов httpClient
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
+
+// === experiments ===
+const experiments = [];
 
 function isHttpMethodCallee(node) {
     if (node?.type !== "MemberExpression") return false;
@@ -376,7 +378,7 @@ function generateSimpleRoutesListFromResults(results) {
 
 (async function main() {
     console.time('Анализ завершён за');
-    console.log(`🔍 Поиск JS/TS файлов в папке: ${ROOT}`);
+    console.log(`\n🔍 Поиск JS/TS файлов в папке: ${ROOT}`);
 
     const files = await fg(["**/*.{js,mjs,cjs,jsx,ts,tsx}"], {
         cwd: ROOT,
@@ -384,7 +386,7 @@ function generateSimpleRoutesListFromResults(results) {
         absolute: true,
     });
 
-    console.log(`📂 Найдено файлов: ${files.length}`);
+    console.log(`📂 Найдено файлов: ${files.length}\n`);
 
     const results = [];
 
@@ -398,7 +400,9 @@ function generateSimpleRoutesListFromResults(results) {
         try {
             code = fs.readFileSync(file, "utf8");
         } catch (err) {
-            console.error(`\n❌ Ошибка чтения файла ${relPath}: ${err.message}`);
+            console.error(
+              `\n\n❌ Ошибка чтения файла ${relPath}: ${err.message}\n`,
+            );
             continue;
         }
 
@@ -421,7 +425,9 @@ function generateSimpleRoutesListFromResults(results) {
                 ],
             });
         } catch (err) {
-            console.error(`\n❌ Ошибка парсинга ${relPath}: ${err.message}`);
+            console.error(
+              `\n\n❌ Ошибка парсинга ${relPath}: ${err.message}\n`,
+            );
             continue;
         }
 
@@ -459,25 +465,65 @@ function generateSimpleRoutesListFromResults(results) {
 
                     results.push(result);
                 },
+
+                AssignmentExpression(path) {
+                    const { node } = path;
+
+                    // Ищем присваивание вида ANY.WebNext = "WebNext"
+                    const isWebNextMarker =
+                    node.left.type === "MemberExpression" &&
+                    node.left.property.type === "Identifier" &&
+                    node.left.property.name === "WebNext" &&
+                    node.right.type === "StringLiteral" &&
+                    node.right.value === "WebNext";
+
+                    if (!isWebNextMarker) return;
+
+                    // Находим SequenceExpression-родителя (если есть)
+                    let seqNode = path.parentPath.node;
+                    if (seqNode.type === "SequenceExpression") {
+                        for (const expr of seqNode.expressions) {
+                            if (
+                            expr.type === "AssignmentExpression" &&
+                            expr.left.type === "MemberExpression" &&
+                            expr.left.property.type === "Identifier"
+                            ) {
+                                experiments.push(expr.left.property.name);
+                            }
+                        }
+                    } else {
+                        // Иногда присваивания идут без SequenceExpression (редко, но на всякий случай)
+                        experiments.push(node.left.property.name);
+                    }
+
+                    console.log(
+                      `\n\n🔬 Найден реестр экспериментов, всего ключей: ${experiments.length}\n`,
+                    );
+                }
             });
         } catch (err) {
-            console.error(`\n❌ Ошибка обхода AST в ${relPath}: ${err.message}`);
+            console.error(
+              `\n\n❌ Ошибка обхода AST в ${relPath}: ${err.message}\n`,
+            );
         }
     }
 
-    console.log(`\n\n\n✅ Готово. Найдено вызовов: ${results.length}`);
+    console.log(`\n\n\n✅ Готово.\n🌐 Роутов найдено: ${results.length}`);
+    console.log(`🔬 Экспериментов найдено: ${experiments.length}`);
 
-    console.log(`\n\nСортирую результат...`);
+    console.log(`\nСортирую роуты...`);
     results.sort((a, b) => (a.formated.endpoint ?? "").localeCompare(b.formated.endpoint ?? ""));
-    console.log(`\nСортировка завершена\n`);
+    console.log(`Сортировка завершена\n`);
     console.timeEnd('Анализ завершён за');
+
     try {
         fs.mkdirSync(OUTPUT, { recursive: true });
         fs.writeFileSync(path.join(OUTPUT, 'detailedRoutes.json'), JSON.stringify(results, null, 2), "utf8");
         fs.writeFileSync(path.join(OUTPUT, 'simpleRoutes.json'), JSON.stringify(generateSimpleRoutesListFromResults(results), null, 2), "utf8");
+        fs.writeFileSync(path.join(OUTPUT, 'experiments.json'), JSON.stringify([...new Set(experiments)], null, 2), "utf8");
         console.log(`\n💾 Результат сохранён в ${OUTPUT}`);
     } catch (err) {
-        console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}`);
+        console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}\n`);
     }
     console.log('\n\n');
 })();
