@@ -57,7 +57,7 @@ function formatDiff(diff) {
         message += `## Изменено\n${wrapDiffMarkdown(diff.changed.map(item => `- ${item.key}: ${item.oldValue}\n+ ${item.key}: ${item.newValue}`).join('\n\n'))}`;
     }
     if (diff.removed.length > 0) {
-        message += `## Удалено\n${wrapDiffMarkdown(diff.removed.map(item => `+ ${item.key ?? item}${item.value ? `: ${item.value}` : ''}`).join('\n'))}`;
+        message += `## Удалено\n${wrapDiffMarkdown(diff.removed.map(item => `- ${item.key ?? item}${item.value ? `: ${item.value}` : ''}`).join('\n'))}`;
     }
     return message || undefined;
 }
