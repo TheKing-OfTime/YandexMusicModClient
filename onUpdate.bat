@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 echo === Запуск действий по апдейту ===
 
 node toolset.js extract -pd
