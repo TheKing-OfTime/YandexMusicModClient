@@ -1991,7 +1991,7 @@
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
-          title: "Поведение Моей волны",
+          title: "Поведение Моей Волны",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
