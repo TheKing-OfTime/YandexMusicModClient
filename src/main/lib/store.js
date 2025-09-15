@@ -140,6 +140,8 @@ const init = () => {
       customPathForSessionStorage: "",
     },
     tryEnableSurroundAudio: false,
+    showNonMusicPage: true,
+    enableHardwareAcceleration: true,
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);

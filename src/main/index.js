@@ -40,7 +40,6 @@ const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
-const consoleOverrideLogger = new Logger_js_1.Logger("ConsoleOverride");
 
 // Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
 function initSessionStoragePath() {
@@ -118,6 +117,11 @@ electron_1.app.setLoginItemSettings({
     false,
   path: electron_1.app.getPath("exe"),
 });
+
+if(!(store_js_1.getModFeatures()?.enableHardwareAcceleration ?? true)) {
+    electron_1.app.disableHardwareAcceleration();
+}
+
 if (store_js_1.getModFeatures()?.tryEnableSurroundAudio ?? false) {
   logger.log(
     "--try-supported-channel-layouts:",
