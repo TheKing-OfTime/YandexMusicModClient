@@ -1261,7 +1261,7 @@
           (0, n.jsx)(f.u, {
             className: b().root,
             style: { "max-width": "550px" },
-            title: "Настройки скачивания треков",
+            title: "Скачивание треков",
             headerClassName: B().modalHeader,
             contentClassName: B().modalContent,
             open: t.isOpened,
@@ -1382,7 +1382,7 @@
           }, []),
           (0, n.jsx)(f.u, {
             className: b().root,
-            title: "Настройки скробблинга",
+            title: "Скробблинг",
             headerClassName: B().modalHeader,
             contentClassName: B().modalContent,
             open: t.isOpened,
@@ -1410,11 +1410,12 @@
                     (0, n.jsx)("div", {
                       children: userInfo?.user?.image?.[0]?.["#text"]
                         ? (0, n.jsx)("img", {
-                            src:
-                              (userInfo.user.image?.find(
+                            src: (
+                              userInfo.user.image?.find(
                                 (img) => img.size === "medium",
                               )?.["#text"] ||
-                              userInfo.user.image?.[0]?.["#text"]).replace('64s', 'avatar'), // Dirty workaround
+                              userInfo.user.image?.[0]?.["#text"]
+                            ).replace("64s", "avatar"), // Dirty workaround
                             alt: "Аватар",
                             style: {
                               width: 46,
@@ -1567,7 +1568,7 @@
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "500px" },
-          title: "Улучшения панели плеера",
+          title: "Панель плеера",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
@@ -1685,37 +1686,6 @@
             },
             [],
           ),
-          onPreventDisplaySleepToggle = (0, d.useCallback)(async (e) => {
-            console.log("preventDisplaySleep toggled. Value: ", e);
-            window.nativeSettings.set(
-              "modFeatures.windowBehavior.preventDisplaySleep",
-              e,
-            );
-          }, []),
-          onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(
-            async (e) => {
-              console.log("autoLaunchOnSystemStartup toggled. Value: ", e);
-              window.nativeSettings.set(
-                "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
-                e,
-              );
-              o(
-                (0, n.jsx)(p.Q, {
-                  error:
-                    "Для применения этой настройки требуется перезапуск приложения",
-                }),
-                { containerId: _.W$x.ERROR },
-              );
-            },
-            [i],
-          ),
-          onStartMinimizedToggle = (0, d.useCallback)(async (e) => {
-            console.log("startMinimized toggled. Value: ", e);
-            window.nativeSettings.set(
-              "modFeatures.windowBehavior.startMinimized",
-              e,
-            );
-          }, []),
           onTaskbarExtensionsEnableToggle = (0, d.useCallback)(async (e) => {
             console.log("taskBarExtensions.enable toggled. Value: ", e);
             window.nativeSettings.set(
@@ -1804,40 +1774,6 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Предотвращать отключение монитора",
-                  description:
-                    "Если включено и окно ЯМ видно на экране, он не уйдёт в сон от бездействия",
-                  onChange: onPreventDisplaySleepToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.windowBehavior.preventDisplaySleep",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Запускать приложение при старте системы",
-                  onChange: onAutoLaunchOnSystemStartupToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Запускать свернутым",
-                  description:
-                    "Если включено, приложение запустится свернутым в трей",
-                  onChange: onStartMinimizedToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.windowBehavior.startMinimized",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
                   title: "Включить улучшенное превью окна на панели задач",
                   description:
                     "Добавляет кнопки управления воспроизведением на превью окна в панели задач",
@@ -1867,6 +1803,77 @@
         let { formatMessage: e } = (0, r.Z)(),
           {
             modals: { vibeBehaviorEnhancementsSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: o } = (0, _.d$W)(),
+          onAutoLaunchOnAppStartup = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
+              e,
+            );
+          }, []),
+          onEnableEndlessMusicToggle = (0, d.useCallback)(async (e) => {
+            console.log(
+              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic toggled. Value: ",
+              e,
+            );
+            window.nativeSettings.set(
+              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
+              e,
+            );
+          }, []);
+        return (0, n.jsxs)(f.u, {
+          className: b().root,
+          style: { "max-width": "550px" },
+          title: "Поведение Моей Волны",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsxs)("ul", {
+            className: `${Z().root} ${B().list}`,
+            style: { width: "514px", "max-height": "600px", gap: 0 },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title:
+                    "Запускать воспроизведение трека при старте приложения",
+                  description:
+                    "Запустит последний играющий трек сразу после старта приложения",
+                  onChange: onAutoLaunchOnAppStartup,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Музыка без остановки",
+                  description:
+                    "После окончания воспроизведения очереди, запуститься волна",
+                  onChange: onEnableEndlessMusicToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+      let vibeAnimationEnhancementsSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { vibeAnimationEnhancementsSettingsModal: t },
           } = (0, _.oR4)(),
           { notify: o } = (0, _.d$W)(),
           [maxFps, setMaxFPS] = (0, d.useState)(
@@ -1947,26 +1954,6 @@
               e,
             );
           }, []),
-          onAutoLaunchOnAppStartup = (0, d.useCallback)(async (e) => {
-            console.log(
-              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup toggled. Value: ",
-              e,
-            );
-            window.nativeSettings.set(
-              "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
-              e,
-            );
-          }, []),
-          onEnableEndlessMusicToggle = (0, d.useCallback)(async (e) => {
-            console.log(
-              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic toggled. Value: ",
-              e,
-            );
-            window.nativeSettings.set(
-              "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
-              e,
-            );
-          }, []),
           onEnableUseDynamicEnergy = (0, d.useCallback)(async (e) => {
             console.log(
               "modFeatures.vibeAnimationEnhancement.useDynamicEnergy toggled. Value: ",
@@ -1991,7 +1978,7 @@
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
-          title: "Поведение Моей Волны",
+          title: "Анимация Моей Волны",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
@@ -2004,6 +1991,18 @@
             className: `${Z().root} ${B().list}`,
             style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Реакция анимации Волны на любые треки",
+                  description:
+                    "Анимация будет реагировать на треки запущенные не через Мою Волну",
+                  onChange: onPlayOnAnyEntityToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
+                  ),
+                }),
+              }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -2027,6 +2026,19 @@
                   maxValue: Math.max(window?.DISPLAY_MAX_FPS ?? 60, maxFps),
                   minValue: 1,
                   step: 1,
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithSlider, {
+                  title: "Интенсивность реакции на трек",
+                  description:
+                    "Чем больше, тем сильнее анимация ускоряется под трек",
+                  onChange: onIntensityCoefficientChange,
+                  value: intensityCoefficient,
+                  maxValue: 2.5,
+                  minValue: 0,
+                  step: 0.1,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2055,7 +2067,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(settingBarWithSlider, {
-                  title: "Коэффициент сглаживания энергии",
+                  title: "Коэффициент смягчения энергии",
                   description:
                     "Чем меньше, тем сильнее сглаживаются изменения скорости анимации",
                   onChange: onSmoothDynamicEnergyCoefficientChange,
@@ -2063,56 +2075,6 @@
                   maxValue: 1,
                   minValue: 0.01,
                   step: 0.01,
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(settingBarWithSlider, {
-                  title: "Интенсивность реакции на трек",
-                  description:
-                    "Чем больше, тем сильнее анимация ускоряется под трек",
-                  onChange: onIntensityCoefficientChange,
-                  value: intensityCoefficient,
-                  maxValue: 2.5,
-                  minValue: 0,
-                  step: 0.1,
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Реакция анимации Волны на любые треки",
-                  description:
-                    "Анимация станет реагировать на треки из плейлистов, альбомов и т.п.",
-                  onChange: onPlayOnAnyEntityToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title:
-                    "Запускать воспроизведение трека при старте приложения",
-                  description:
-                    "Запустит последний играющий трек сразу после старта приложения",
-                  onChange: onAutoLaunchOnAppStartup,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Музыка без остановки",
-                  description:
-                    "После окончания воспроизведения очереди, запуститься волна",
-                  onChange: onEnableEndlessMusicToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.enableEndlessMusic",
-                  ),
                 }),
               }),
             ],
@@ -2182,7 +2144,7 @@
         return (0, n.jsx)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
-          title: "Настройки обновлений",
+          title: "Обновления",
           headerClassName: B().modalHeader,
           contentClassName: B().modalContent,
           open: t.isOpened,
@@ -2198,8 +2160,9 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: "Автообновлять приложение",
-                  description: "Обновлять ли приложение автоматически",
+                  title: "Проверять обновления приложения",
+                  description:
+                    "Проверять ли наличие обновлений приложения автоматически",
                   onChange: onAppAutoUpdateToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.appAutoUpdates.enableAppAutoUpdate",
@@ -2227,6 +2190,158 @@
                   onChange: onModAutoUpdateToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.appAutoUpdates.enableModAutoUpdate",
+                  ),
+                }),
+              }),
+            ],
+          }),
+        });
+      });
+      let systemSettings = (0, i.Pi)(() => {
+        let { formatMessage: e } = (0, r.Z)(),
+          {
+            modals: { systemSettingsModal: t },
+          } = (0, _.oR4)(),
+          { notify: i } = (0, _.d$W)(),
+          onPreventDisplaySleepToggle = (0, d.useCallback)((e) => {
+            console.log("preventDisplaySleep toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.preventDisplaySleep",
+              e,
+            );
+          }, []),
+          onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(
+            (e) => {
+              console.log("autoLaunchOnSystemStartup toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          ),
+          onStartMinimizedToggle = (0, d.useCallback)((e) => {
+            console.log("startMinimized toggled. Value: ", e);
+            window.nativeSettings.set(
+              "modFeatures.windowBehavior.startMinimized",
+              e,
+            );
+          }, []),
+          onTryEnableSurroundAudioToggle = (0, d.useCallback)(
+            (e) => {
+              console.log("tryEnableSurroundAudio toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.tryEnableSurroundAudio",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          ),
+          onEnableHardwareAccelerationToggle = (0, d.useCallback)(
+            (e) => {
+              console.log("enableHardwareAcceleration toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.enableHardwareAcceleration",
+                e,
+              );
+              i(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [i],
+          );
+        return (0, n.jsx)(f.u, {
+          className: b().root,
+          style: { "max-width": "570px" },
+          title: "Системные настройки",
+          headerClassName: B().modalHeader,
+          contentClassName: B().modalContent,
+          open: t.isOpened,
+          onOpenChange: t.onOpenChange,
+          onClose: t.close,
+          size: "fitContent",
+          placement: "center",
+          labelClose: e({ id: "interface-actions.close" }),
+          children: (0, n.jsx)("ul", {
+            className: Z().root,
+            style: { width: "536px" },
+            children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Включить аппаратное ускорение",
+                  description:
+                    "Настоятельно рекомендуется не выключать. Отключайте только в крайнем случае",
+                  onChange: onEnableHardwareAccelerationToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.enableHardwareAcceleration",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Предотвращать отключение монитора",
+                  description:
+                    "Если включено и окно ЯМ видно на экране, монитор не уйдёт в сон от бездействия",
+                  onChange: onPreventDisplaySleepToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.preventDisplaySleep",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: [
+                    "Пространственный звук",
+                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                  ],
+                  description:
+                    "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
+                  onChange: onTryEnableSurroundAudioToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.tryEnableSurroundAudio",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Запускать приложение при старте системы",
+                  onChange: onAutoLaunchOnSystemStartupToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.autoLaunchOnSystemStartup",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Запускать свернутым",
+                  description:
+                    "Если включено, приложение запустится свернутым в трей",
+                  onChange: onStartMinimizedToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.windowBehavior.startMinimized",
                   ),
                 }),
               }),
@@ -2705,12 +2820,15 @@
               discordRpcSettingsModal: discordRpcSettingsModal,
               vibeBehaviorEnhancementsSettingsModal:
                 vibeBehaviorEnhancementsSettingsModal,
+              vibeAnimationEnhancementsSettingsModal:
+                vibeAnimationEnhancementsSettingsModal,
               playerBarEnhancementsSettingsModal:
                 playerBarEnhancementsSettingsModal,
               windowBehaviorSettingsModal: windowBehaviorSettingsModal,
               appUpdatesSettingsModal: appUpdatesSettingsModal,
               scrobblersSettingsModal: scrobblersSettingsModal,
               downloaderSettingsModal: downloaderSettingsModal,
+              systemSettingsModal: systemSettingsModal,
             },
             experiments: l,
             wizard: a,
@@ -2751,6 +2869,20 @@
             },
             [c, C, g],
           ),
+          onShowNonMusicToggle = (0, d.useCallback)(
+            async (e) => {
+              console.log("taskBarExtensions.enable toggled. Value: ", e);
+              window.nativeSettings.set("modFeatures.showNonMusicPage", e);
+              g(
+                (0, n.jsx)(p.Q, {
+                  error:
+                    "Для применения этой настройки требуется перезапуск приложения",
+                }),
+                { containerId: _.W$x.ERROR },
+              );
+            },
+            [g],
+          ),
           T = (0, d.useCallback)(
             (e) => {
               f.setOfflineMode(e);
@@ -2788,23 +2920,6 @@
             async (e) => {
               console.log("devtools toggled. Value: ", e);
               window.nativeSettings.set("enableDevTools", e);
-              g(
-                (0, n.jsx)(p.Q, {
-                  error:
-                    "Для применения этой настройки требуется перезапуск приложения",
-                }),
-                { containerId: _.W$x.ERROR },
-              );
-            },
-            [u],
-          ),
-          onTryEnableSurroundAudioToggle = (0, d.useCallback)(
-            async (e) => {
-              console.log("tryEnableSurroundAudio toggled. Value: ", e);
-              window.nativeSettings.set(
-                "modFeatures.tryEnableSurroundAudio",
-                e,
-              );
               g(
                 (0, n.jsx)(p.Q, {
                   error:
@@ -2985,6 +3100,16 @@
                   isChecked: c.settings.isChildModeEnabled,
                 }),
               }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: 'Показывать раздел «Подкасты и книги»',
+                  onChange: onShowNonMusicToggle,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.showNonMusicPage",
+                  ),
+                }),
+              }),
               (0, n.jsxs)("li", {
                 className: Z().item,
                 children: [
@@ -3022,8 +3147,19 @@
                 className: Z().item,
                 children: [
                   (0, n.jsx)(w, {
+                    title: "Анимация Моей Волны",
+                    description: "Настройка анимации Моей Волны",
+                    onClick: vibeAnimationEnhancementsSettingsModal.open,
+                  }),
+                  (0, n.jsx)(vibeAnimationEnhancementsSettings, {}),
+                ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(w, {
                     title: "Поведение Моей Волны",
-                    description: "Настройка поведения и анимации Моей Волны",
+                    description: "Настройка поведения Моей Волны",
                     onClick: vibeBehaviorEnhancementsSettingsModal.open,
                   }),
                   (0, n.jsx)(vibeBehaviorEnhancementsSettings, {}),
@@ -3033,7 +3169,7 @@
                 className: Z().item,
                 children: [
                   (0, n.jsx)(w, {
-                    title: "Улучшения панели плеера",
+                    title: "Панель плеера",
                     description: "Настройки элементов на панели плеера",
                     onClick: playerBarEnhancementsSettingsModal.open,
                   }),
@@ -3055,7 +3191,7 @@
                 className: Z().item,
                 children: [
                   (0, n.jsx)(w, {
-                    title: "Настройки скробблинга",
+                    title: "Скробблинг",
                     description: "Авторизация в Last.fm и другие настройки",
                     onClick: scrobblersSettingsModal.open,
                   }),
@@ -3066,7 +3202,7 @@
                 className: Z().item,
                 children: [
                   (0, n.jsx)(w, {
-                    title: "Настройки скачивания треков",
+                    title: "Скачивание треков",
                     description:
                       "Настройки оффлайн прослушивания, а также скачивания в файл",
                     onClick: downloaderSettingsModal.open,
@@ -3078,7 +3214,18 @@
                 className: Z().item,
                 children: [
                   (0, n.jsx)(w, {
-                    title: "Настройки обновлений",
+                    title: "Системные настройки",
+                    description: "Автозапуск, аппаратное ускорение и т.п.",
+                    onClick: systemSettingsModal.open,
+                  }),
+                  (0, n.jsx)(systemSettings, {}),
+                ],
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: [
+                  (0, n.jsx)(w, {
+                    title: "Обновления",
                     description:
                       "Настройки обновлений как программы, так и модификации",
                     onClick: appUpdatesSettingsModal.open,
@@ -3098,21 +3245,6 @@
                   onChange: onEnableYnisonRemoteControlToggle,
                   isChecked: window.nativeSettings.get(
                     "enableYnisonRemoteControl",
-                  ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: [
-                    "Попробовать включить пространственный звук",
-                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
-                  ],
-                  description:
-                    "Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)",
-                  onChange: onTryEnableSurroundAudioToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.tryEnableSurroundAudio",
                   ),
                 }),
               }),

@@ -200,7 +200,7 @@
               clientId: (0, c.$)(),
               host: "https://widget.afisha.tst.yandex.ru",
             },
-            features: { nonMusic: !0 },
+            features: { nonMusic: window.nativeSettings.get("modFeatures.showNonMusicPage") ?? !0 },
             iframe: { entityBaseUrl: "https://music.qa.yandex.".concat(i.M) },
           })
         );
