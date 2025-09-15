@@ -1277,15 +1277,15 @@
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(toggleBarWithPathChooser, {
-                    title: "Путь для файлов по умолчанию",
-                    description: useDefaultPath
-                      ? "Использовать путь по умолчанию для скачивания треков в файл"
-                      : "Спрашивать путь при каждом скачивании трека",
-                    onChange: onUseDefaultPathToggle,
-                    isChecked: useDefaultPath,
+                    title: "Путь для кеша",
+                    description: useCustomPathForSessionStorage
+                      ? "Использовать путь ниже для кеша (в т.ч. ванильного скачивания треков)"
+                      : "Использовать путь по умолчанию для кеша (в т.ч. ванильного скачивания треков)",
+                    onChange: onUseCustomPathForSessionStorageToggle,
+                    isChecked: useCustomPathForSessionStorage,
                     placeholder: "Укажите путь кнопкой справа",
-                    inputValue: defaultPath,
-                    onClick: onDefaultPathExploreClick,
+                    inputValue: customPathForSessionStorage,
+                    onClick: onCustomPathForSessionStorageExploreClick,
                   }),
                 }),
                 (0, n.jsx)("li", {
@@ -1302,15 +1302,15 @@
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(toggleBarWithPathChooser, {
-                    title: "Путь для кеша",
-                    description: useCustomPathForSessionStorage
-                      ? "Использовать путь ниже для кеша (в т.ч. ванильного скачивания треков)"
-                      : "Использовать путь по умолчанию для кеша (в т.ч. ванильного скачивания треков)",
-                    onChange: onUseCustomPathForSessionStorageToggle,
-                    isChecked: useCustomPathForSessionStorage,
+                    title: "Путь для файлов по умолчанию",
+                    description: useDefaultPath
+                      ? "Использовать путь по умолчанию для скачивания треков в файл"
+                      : "Спрашивать путь при каждом скачивании трека",
+                    onChange: onUseDefaultPathToggle,
+                    isChecked: useDefaultPath,
                     placeholder: "Укажите путь кнопкой справа",
-                    inputValue: customPathForSessionStorage,
-                    onClick: onCustomPathForSessionStorageExploreClick,
+                    inputValue: defaultPath,
+                    onClick: onDefaultPathExploreClick,
                   }),
                 }),
               ],
@@ -3103,7 +3103,7 @@
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
-                  title: 'Показывать раздел «Подкасты и книги»',
+                  title: "Показывать раздел «Подкасты и книги»",
                   onChange: onShowNonMusicToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.showNonMusicPage",
