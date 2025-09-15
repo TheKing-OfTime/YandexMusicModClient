@@ -321,6 +321,9 @@
 .Settings_item__Ksa9h {
   padding-block-end: var(--ym-spacer-size-xxxl);
 }
+.Settings_item__Ksa9h:last-child {
+  padding-block-end: 0;
+}
 .SettingsPage_root__BB4lC {
   padding: 0;
 }
