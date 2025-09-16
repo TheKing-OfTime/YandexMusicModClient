@@ -27,16 +27,26 @@ function calculateObjectDiff(oldObj, newObj) {
     const changed = [];
 
     for (const key in newObj) {
+        const newVal = typeof newObj[key] === 'object' && newObj[key] !== null
+        ? JSON.stringify(newObj[key], null, 2)
+        : newObj[key];
+        const oldVal = typeof oldObj[key] === 'object' && oldObj[key] !== null
+        ? JSON.stringify(oldObj[key], null, 2)
+        : oldObj[key];
+
         if (!(key in oldObj)) {
-            added.push({key, value: newObj[key]});
-        } else if (oldObj[key] !== newObj[key]) {
-            changed.push({key, oldValue: oldObj[key], newValue: newObj[key]});
+            added.push({key, value: newVal});
+        } else if (oldVal !== newVal) {
+            changed.push({key, oldValue: oldVal, newValue: newVal});
         }
     }
 
     for (const key in oldObj) {
         if (!(key in newObj)) {
-            removed.push({key, value: oldObj[key]});
+            const oldVal = typeof oldObj[key] === 'object' && oldObj[key] !== null
+            ? JSON.stringify(oldObj[key], null, 2)
+            : oldObj[key];
+            removed.push({key, value: oldVal});
         }
     }
 
@@ -51,13 +61,13 @@ function formatDiff(diff) {
     let message = '';
 
     if (diff.added.length > 0) {
-        message += `## Добавлено\n${wrapDiffMarkdown(diff.added.map(item => `+ ${item.key ?? item}${item.value ? `: ${item.value}` : ''}`).join('\n'))}`;
+        message += `## Добавлено\n${wrapDiffMarkdown(diff.added.map(item => `+ ${item.key ?? item}${item.value ? `: ${item.value.replace(/(?<!\\)\n/g, "\n+ ")}` : ''}`).join('\n'))}`;
     }
     if (diff.changed && diff.changed.length > 0) {
-        message += `## Изменено\n${wrapDiffMarkdown(diff.changed.map(item => `- ${item.key}: ${item.oldValue}\n+ ${item.key}: ${item.newValue}`).join('\n\n'))}`;
+        message += `## Изменено\n${wrapDiffMarkdown(diff.changed.map(item => `- ${item.key}: ${item.oldValue.replace(/(?<!\\)\n/g, "\n- ")}\n+ ${item.key}: ${item.newValue.replace(/(?<!\\)\n/g, "\n+ ")}`).join('\n\n'))}`;
     }
     if (diff.removed.length > 0) {
-        message += `## Удалено\n${wrapDiffMarkdown(diff.removed.map(item => `- ${item.key ?? item}${item.value ? `: ${item.value}` : ''}`).join('\n'))}`;
+        message += `## Удалено\n${wrapDiffMarkdown(diff.removed.map(item => `- ${item.key ?? item}${item.value ? `: ${item.value.replace(/(?<!\\)\n/g, "\n- ")}` : ''}`).join('\n'))}`;
     }
     return message || undefined;
 }
@@ -93,6 +103,13 @@ function getExperimentsDiff(oldFolder, newFolder) {
 function getRoutesDiff(oldFolder, newFolder) {
     const oldData = readJson(path.join(oldFolder, 'simpleRoutes.json'));
     const newData = readJson(path.join(newFolder, 'simpleRoutes.json'));
+
+    return calculateObjectDiff(oldData, newData);
+}
+
+function getRuLocalizationDiff(oldFolder, newFolder) {
+    const oldData = readJson(path.join(oldFolder, 'formatted_ru.json'));
+    const newData = readJson(path.join(newFolder, 'formatted_ru.json'));
 
     return calculateObjectDiff(oldData, newData);
 }
@@ -148,6 +165,10 @@ async function run(command, options) {
         newVersion = sortedVersions[0];
     }
 
+    function getVersionsString() {
+        return `${oldVersion.replaceAll('_', '.')} → ${newVersion.replaceAll('_', '.')}`
+    }
+
     const oldFolder = path.join(OUTPUT, oldVersion);
     const newFolder = path.join(OUTPUT, newVersion);
 
@@ -162,30 +183,34 @@ async function run(command, options) {
 
             const routesDiff = getRoutesDiff(oldFolder, newFolder);
             const experimentsDiff = getExperimentsDiff(oldFolder, newFolder);
+            const ruLocalizationDiff = getRuLocalizationDiff(oldFolder, newFolder);
 
             if (shouldShowRaw) {
                 console.log('Routes Diff:', JSON.stringify(routesDiff, null, 2));
                 console.log('Experiments Diff:', JSON.stringify(experimentsDiff, null, 2));
+                console.log('Ru Localization Diff:', JSON.stringify(ruLocalizationDiff, null, 2));
                 break;
             }
 
             const routesDiffMessage = formatDiff(routesDiff);
             const experimentsDiffMessage = formatDiff(experimentsDiff);
+            const ruLocalizationDiffMessage = formatDiff(ruLocalizationDiff);
 
-            if (!routesDiffMessage && !experimentsDiffMessage) {
+            if (!routesDiffMessage && !experimentsDiffMessage && !ruLocalizationDiffMessage) {
                 console.log('Изменений не обнаружено.');
                 break;
             }
 
-            console.log(routesDiffMessage);
-            console.log(experimentsDiffMessage);
+            routesDiffMessage && console.log(routesDiffMessage);
+            experimentsDiffMessage && console.log(experimentsDiffMessage);
+            ruLocalizationDiffMessage && console.log(ruLocalizationDiffMessage);
 
             if (shouldSend) {
                 if (routesDiffMessage) {
                     await sendDiscordMessage(
                     {
                         ...getDiffTemplate(
-                            `Эндпоинты изменились ${oldVersion.replaceAll('_', '.')} → ${newVersion.replaceAll('_', '.')}`,
+                            `Эндпоинты изменились ${getVersionsString()}`,
                             routesDiffMessage
                         )
                     });
@@ -194,8 +219,18 @@ async function run(command, options) {
                     await sendDiscordMessage(
                     {
                         ...getDiffTemplate(
-                            `Эксперименты изменились ${oldVersion.replaceAll("_", ".")} → ${newVersion.replaceAll("_", ".")}`,
+                            `Эксперименты изменились ${getVersionsString()}`,
                             experimentsDiffMessage,
+                        ),
+                    }
+                    );
+                }
+                if (ruLocalizationDiffMessage) {
+                    await sendDiscordMessage(
+                    {
+                        ...getDiffTemplate(
+                        `Локализация изменилась ${getVersionsString()}`,
+                        ruLocalizationDiffMessage,
                         ),
                     }
                     );

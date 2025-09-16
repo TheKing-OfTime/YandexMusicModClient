@@ -23,9 +23,9 @@ if (!versionList || !versionList.length) {
 
 console.log(`Используемые версии: ${versionList.join(', ')}`);
 
-console.log(process.argv)
-
-const ROOT = path.join(process.argv[2] ?? (versionList?.[0] ? path.join(EXTRACTED, versionList?.[0]) : undefined ) ?? "./src", "/app/_next/static/chunks");
+const ROOT = process.argv[2] ?? (versionList?.[0] ? path.join(EXTRACTED, versionList?.[0]) : undefined ) ?? "./src"
+const APP_CHUNKS_ROOT = path.join(ROOT, "/app/_next/static/chunks");
+const MAIN_TRANSLATIONS_ROOT = path.join(ROOT, "/main/translations/compiled");
 const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2]?.split('/')?.at(process.argv[2].endsWith('/') ? -2 : -1)?.replaceAll('.', '_') ?? (versionList?.[0] ? versionList?.[0].replaceAll('.', '_') : undefined ) ?? 'src'}`);
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
@@ -382,12 +382,129 @@ function generateSimpleRoutesListFromResults(results) {
     return routes;
 }
 
+function isBranchNode(el) {
+    return el && (el.type === 5 || el.type === 6); // select или plural
+}
+
+function hasPlaceholder(elements = [], argName) {
+    for (const el of elements) {
+        if (!el) continue;
+        if (el.type === 1 && el.value === argName) return true;
+        if (el.type === 7 && argName) return true; // '#' inside plural
+        if (el.type === 8 && el.children && hasPlaceholder(el.children, argName)) return true;
+        if (Array.isArray(el.value) && hasPlaceholder(el.value, argName)) return true;
+    }
+    return false;
+}
+
+function elementToText(el, pluralVar) {
+    if (!el) return '';
+    switch (el.type) {
+        case 0: // literal
+            return el.value || '';
+        case 1: // argument / placeholder
+            if (el.value === 'nbsp') return '\u00A0';
+            if (el.value === 'br') return '\n';
+            return `{${el.value}}`;
+        case 2: // number
+        case 3: // date
+        case 4: // time
+            // упрощённо: оставляем {name}
+            return `{${el.value}}`;
+        case 7: // pound (#) inside plural
+            return pluralVar ? `{${pluralVar}}` : '#';
+        case 8: // tag with children
+            // сохраняем содержимое тегов как текст (можно расширить)
+            return (el.children || []).map(child => elementToText(child, pluralVar)).join('');
+        default:
+            return '';
+    }
+}
+
+function elementsToString(elements = [], pluralVar) {
+    return (elements || []).map(el => {
+        // для вложенных option.value может быть plain array
+        if (!el) return '';
+        if (el.type === 5 || el.type === 6) {
+            // не ожидаем вложенных branch-узлов тут для простой строки
+            return '';
+        }
+        return elementToText(el, pluralVar);
+    }).join('').replaceAll('\n', '\\n').replaceAll('\u00A0', ' ');
+}
+
+/**
+ * Если elements не содержат select/plural => возвращает строку.
+ * Если содержат один branching node (select/plural) => возвращает объект опций.
+ * (Если несколько branching nodes — обрабатывает первый встреченный.)
+ */
+function compileElements(elements = []) {
+    // найти первый branching-узел
+    const idx = elements.findIndex(isBranchNode);
+    if (idx === -1) {
+        return elementsToString(elements);
+    }
+
+    const branch = elements[idx];
+    const prefix = elements.slice(0, idx);
+    const suffix = elements.slice(idx + 1);
+
+    const out = {};
+    const pluralVar = branch.value; // имя переменной, например "count" для plural
+    const options = branch.options || {};
+
+    for (const key of Object.keys(options)) {
+        const opt = options[key];
+        // option может хранить value (array) либо children
+        const optElements = opt.value || opt.children || [];
+        const optText = elementsToString(optElements, pluralVar);
+        const preText = elementsToString(prefix, pluralVar);
+        const postText = elementsToString(suffix, pluralVar);
+
+        let combined = preText + optText + postText;
+
+        // для plural (type 6) гарантируем наличие плейсхолдера {var} в опции
+        if (branch.type === 6) {
+            if (!hasPlaceholder(optElements.concat(prefix, suffix), pluralVar)) {
+                // если плейсхолдер явно отсутствует — добавим после текста (без лишнего пробела если уже есть)
+                if (combined && !combined.endsWith(' ')) combined += ' ';
+                combined += `{${pluralVar}}`;
+            }
+        }
+
+        out[key] = combined;
+    }
+    return out;
+}
+
+function compileMessages(messages) {
+    const out = {};
+    for (const key of Object.keys(messages)) {
+        const msg = messages[key];
+        // ожидается, что msg — массив элементов (FormatJS AST root message)
+        // иногда msg — массив из мета и элементов, возьмём только элементы (если структура сложнее — адаптируйте)
+        const elements = Array.isArray(msg) ? msg : [];
+        const compiled = compileElements(elements);
+        out[key] = compiled;
+    }
+    return out;
+}
+
+function createOutputJson(data, fileName) {
+    try {
+        fs.writeFileSync(path.join(OUTPUT, fileName), JSON.stringify(data, null, 2), "utf8");
+        console.log(`💾 ${fileName} сохранён`);
+    } catch (err) {
+        console.error(`\n❌ Ошибка записи файла ${fileName} в ${OUTPUT}: ${err.message}\n`);
+    }
+}
+
 (async function main() {
     console.time('Анализ завершён за');
-    console.log(`\n🔍 Поиск JS/TS файлов в папке: ${ROOT}`);
+    console.log(`\n🔍 Поиск JS/TS файлов в папке: ${APP_CHUNKS_ROOT}`);
 
     const files = await fg(["**/*.{js,mjs,cjs,jsx,ts,tsx}"], {
-        cwd: ROOT,
+        cwd: APP_CHUNKS_ROOT,
         ignore: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.git/**"],
         absolute: true,
     });
@@ -514,8 +631,17 @@ function generateSimpleRoutesListFromResults(results) {
         }
     }
 
-    console.log(`\n\n\n✅ Готово.\n🌐 Роутов найдено: ${results.length}`);
+    console.log('Анализ файлов локализации...');
+
+    const raw = fs.readFileSync(path.join(MAIN_TRANSLATIONS_ROOT, 'ru.json'), 'utf8');
+    const messages = JSON.parse(raw);
+    const compiled = compileMessages(messages);
+
+    console.log('Анализ файлов локализации завершён...');
+
+    console.log(`\n\n\n✅ Готово\n🌐 Роутов найдено: ${results.length}`);
     console.log(`🔬 Экспериментов найдено: ${experiments.length}`);
+    console.log(`💬 Локализованных сообщений: ${Object.keys(compiled).length}`);
 
     console.log(`\nСортирую результаты...`);
     console.time(`Сортировка завершена`);
@@ -524,12 +650,15 @@ function generateSimpleRoutesListFromResults(results) {
     console.timeEnd(`Сортировка завершена`);
     console.timeEnd('Анализ завершён за');
 
+    console.log('');
+
     try {
         fs.mkdirSync(OUTPUT, { recursive: true });
-        fs.writeFileSync(path.join(OUTPUT, 'detailedRoutes.json'), JSON.stringify(results, null, 2), "utf8");
-        fs.writeFileSync(path.join(OUTPUT, 'simpleRoutes.json'), JSON.stringify(generateSimpleRoutesListFromResults(results), null, 2), "utf8");
-        fs.writeFileSync(path.join(OUTPUT, 'experiments.json'), JSON.stringify([...new Set(experiments)], null, 2), "utf8");
-        console.log(`\n💾 Результат сохранён в ${OUTPUT}`);
+        createOutputJson(results, 'detailedRoutes.json');
+        createOutputJson(generateSimpleRoutesListFromResults(results), 'simpleRoutes.json');
+        createOutputJson([...new Set(experiments)], 'experiments.json');
+        createOutputJson(compiled, 'formatted_ru.json');
+        console.log(`\n💾 Результаты сохранёны в ${OUTPUT}`);
     } catch (err) {
         console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}\n`);
     }
