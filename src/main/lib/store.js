@@ -113,6 +113,7 @@ const init = () => {
       preventDisplaySleep: false,
     },
     globalShortcuts: {
+      enable: true,
       TOGGLE_PLAY: "Ctrl+/",
       MOVE_FORWARD: "Ctrl+,",
       MOVE_BACKWARD: "Ctrl+.",

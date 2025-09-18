@@ -39,20 +39,21 @@ const isBoolean = (value) => {
 
 let mainWindow = undefined;
 
-const handleApplicationEvents = (window) => {
-  mainWindow = window;
-  const updater = (0, updater_js_1.getUpdater)();
-  const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
-  if (store_js_1.getModFeatures()?.globalShortcuts) {
-    const shortcuts = Object.entries(
-      store_js_1.getModFeatures().globalShortcuts,
-    );
+const updateGlobalShortcuts = () => {
+  electron_1.globalShortcut.unregisterAll();
+
+  const modFeatures = (0, store_js_1.getModFeatures)();
+
+  if (modFeatures?.globalShortcuts?.enable) {
+    const shortcuts = Object.entries(modFeatures.globalShortcuts);
     shortcuts.forEach((shortcut) => {
+      if (shortcut[0] === "enable") return;
+
       if (shortcut[1] && isAccelerator(shortcut[1])) {
         electron_1.globalShortcut.register(shortcut[1], () => {
           const actions = shortcut[0].split(" ");
           actions.forEach((action) => {
-            sendPlayerAction(window, playerActions_js_1.PlayerActions[action]);
+            sendPlayerAction(mainWindow, playerActions_js_1.PlayerActions[action]);
           });
         });
       } else {
@@ -61,7 +62,18 @@ const handleApplicationEvents = (window) => {
         );
       }
     });
+    eventsLogger.info("Global shortcuts registered.");
+  } else {
+    eventsLogger.info("Global shortcuts are disabled. Unregistered all.");
   }
+};
+
+const handleApplicationEvents = (window) => {
+  mainWindow = window;
+  const updater = (0, updater_js_1.getUpdater)();
+  const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
+  
+  updateGlobalShortcuts();
 
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
