@@ -21,6 +21,8 @@ exports.useCachedValue =
   exports.getDevtoolsEnabled =
   exports.getModFeatures =
   exports.init =
+  exports.set =
+  exports.get =
     void 0;
 const uuid_1 = require("uuid");
 const semver_1 = require("semver");
@@ -421,6 +423,8 @@ exports.get = getStore;
 const setStore = (key, value) => {
   const result = store.set(key, value);
   cachedStore.set(key, value);
+  const { sendNativeStoreUpdate } = require('../events.js');               // Import here to avoid circular dependency. Cons of using CommonJS.
+  sendNativeStoreUpdate(key, value);
   return result;
 };
 exports.set = setStore;

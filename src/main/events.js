@@ -10,6 +10,7 @@ exports.sendRefreshRepositoryMeta =
   exports.sendLoadReleaseNotes =
   exports.sendProbabilityBucket =
   exports.handleApplicationEvents =
+  exports.sendNativeStoreUpdate =
     void 0;
 const electron_1 = require("electron");
 const events_js_1 = require("./types/events.js");
@@ -352,6 +353,16 @@ electron_1.ipcMain.handle(
 );
 
 exports.handleApplicationEvents = handleApplicationEvents;
+
+const sendNativeStoreUpdate = (key, value, window=undefined) => {
+    (window ?? mainWindow)?.webContents.send(events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
+    if(window ?? mainWindow) {
+        eventsLogger.info("Event send", events_js_1.Events.NATIVE_STORE_UPDATE, key, value)
+    } else {
+        eventsLogger.warn("Event not send, window is undefined", events_js_1.Events.NATIVE_STORE_UPDATE, key, value)
+    }
+};
+exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
 
 const sendLastFmUserInfoUpdated = (window = mainWindow, userinfo) => {
   window.webContents.send(events_js_1.Events.LASTFM_USERINFO_UPDATE, userinfo);
