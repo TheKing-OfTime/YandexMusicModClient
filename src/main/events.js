@@ -273,8 +273,8 @@ const handleApplicationEvents = (window) => {
     },
   );
 
-  electron_1.ipcMain.on(events_js_1.Events.NATIVE_STORE_UPDATE,(event, key, value) => {
-      eventsLogger.info(`Event received`, events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
+  electron_1.ipcMain.on(events_js_1.Events.NATIVE_STORE_SET,(event, key, value) => {
+      eventsLogger.info(`Event received`, events_js_1.Events.NATIVE_STORE_SET, key, value);
         store_js_1.set(key, value);
         if (key === "modFeatures.globalShortcuts.enable") {
           updateGlobalShortcuts();

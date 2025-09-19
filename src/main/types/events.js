@@ -31,4 +31,5 @@ var Events;
   Events["DOWNLOAD_TRACK"] = "DOWNLOAD_TRACK";
   Events["LASTFM_USERINFO_UPDATE"] = "LASTFM_USERINFO_UPDATE";
   Events["NATIVE_STORE_UPDATE"] = "NATIVE_STORE_UPDATE";
+  Events["NATIVE_STORE_SET"] = "NATIVE_STORE_SET";
 })(Events || (exports.Events = Events = {}));

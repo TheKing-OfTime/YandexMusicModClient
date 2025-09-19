@@ -133,7 +133,7 @@ electron_1.contextBridge.exposeInMainWorld("nativeSettings", {
     return store_js_1.get(key);
   },
   set(key, value) {
-    electron_1.ipcRenderer.send(events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
+    electron_1.ipcRenderer.send(events_js_1.Events.NATIVE_STORE_SET, key, value);
   },
   setPathWithNativeDialog(
     key,
