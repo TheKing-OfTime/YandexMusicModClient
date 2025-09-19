@@ -26,10 +26,57 @@ const uuid_1 = require("uuid");
 const semver_1 = require("semver");
 const electron_1 = require("electron");
 const electron_store_1 = __importDefault(require("electron-store"));
+const Logger_js_1 = require("../packages/logger/Logger.js");
 const generateDeviceId_js_1 = require("./generateDeviceId.js");
 const store_js_1 = require("../types/store.js");
 const config_js_1 = require("../config.js");
+
 const store = new electron_store_1.default();
+const logger = new Logger_js_1.Logger("Store");
+
+class CachedStore {
+  constructor(data = {}) {
+    this._data = structuredClone(data);
+  }
+
+  get(path, defaultValue) {
+    return structuredClone(
+      path.split(".").reduce((acc, key) => {
+        return acc && acc[key] !== undefined ? acc[key] : undefined;
+      }, this._data) ?? defaultValue
+    );
+  }
+
+  set(path, value) {
+    const keys = path.split(".");
+    const lastKey = keys.pop();
+
+    let current = this._data;
+    for (const key of keys) {
+      if (current[key] === undefined || typeof current[key] !== "object") {
+        current[key] = {};
+      }
+      current = current[key];
+    }
+    current[lastKey] = structuredClone(value);
+    return this;
+  }
+
+  setData(data) {
+    this._data = structuredClone(data);
+    return this;
+  }
+
+  all() {
+    return structuredClone(this._data);
+  }
+
+  clear() {
+    this._data = {};
+  }
+}
+
+const cachedStore = new CachedStore();
 
 let defaultExperimentOverrides = {
   WebNextPromoVeryBestRecommendations: 'off',
@@ -43,18 +90,24 @@ const useCachedValue = (key) => {
     if (cachedValue) {
       return cachedValue;
     }
-    cachedValue = store.get(key);
+    cachedValue = getStore(key);
     return cachedValue;
   };
   const set = (value) => {
     cachedValue = value;
-    store.set(key, value);
+    setStore(key, value);
   };
   return [get, set];
 };
 exports.useCachedValue = useCachedValue;
 
-const ignoreValuesIn = [`${store_js_1.StoreKeys.MOD_FEATURES}.globalShortcuts`];
+const ignoreList = [
+    {
+        path:`${store_js_1.StoreKeys.MOD_FEATURES}.globalShortcuts`,
+        keyList:['enable'],
+        keyListMode: 'whitelist', // 'whitelist' | 'blacklist' Режим работы keyList. Whitelist - только ключи из keyList будут инициализированы. Blacklist - все ключи кроме указанных в keyList будут инициализированы.
+    }
+];
 
 const init = () => {
   initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
@@ -121,8 +174,7 @@ const init = () => {
       TOGGLE_SHUFFLE: "Ctrl+'",
     },
     appAutoUpdates: {
-      enableAppAutoUpdate:
-        store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES) ?? true,
+      enableAppAutoUpdate: store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES) ?? true,
       enableAppAutoUpdateByProbability: false,
       enableModAutoUpdate: true,
     },
@@ -166,37 +218,56 @@ const init = () => {
       true,
     );
 
+  cachedStore.setData(store.store);
+
   fetchDefaultExperimentOverrides().then((data) => {
     if (data)
       initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, data, true);
   });
+
+
+
 };
 exports.init = init;
 
 const initField = (fieldKey, defaultValue, force = false) => {
   if (
     typeof defaultValue === "object" &&
-    defaultValue !== null &&
-    !ignoreValuesIn.includes(fieldKey)
+    defaultValue !== null
   ) {
-    console.log("Object found checking if values inited");
+    logger.log("Object found checking if values inited");
+    const ignoreRule = ignoreList.find((item) => item.path === fieldKey);
     for (let key in defaultValue) {
+      if (ignoreRule) {
+        if (ignoreRule.keyList && ignoreRule.keyList.length === 0) {
+            logger.log(`Ignoring all keys in ${fieldKey} due to empty keyList rule`);
+            continue;
+        }
+        if (ignoreRule.keyListMode === 'blacklist' && ignoreRule.keyList.includes(key)) {
+            logger.log(`Ignoring key ${fieldKey}.${key} due to blacklist rule`);
+            continue;
+        }
+        if (ignoreRule.keyListMode === 'whitelist' && !ignoreRule.keyList.includes(key)) {
+            logger.log(`Ignoring key ${fieldKey}.${key} due to whitelist rule`);
+            continue;
+        }
+      }
       initField(`${fieldKey}.${key}`, defaultValue[key], force);
     }
     return;
   }
   if (force || typeof store.get(fieldKey) === "undefined") {
     store.set(fieldKey, defaultValue);
-    console.log("Inited", fieldKey, "to", defaultValue);
+    logger.log("Inited", fieldKey, "to", defaultValue);
     return;
   }
-  console.log(fieldKey, "is already inited");
+  logger.log(fieldKey, "is already inited");
 };
 
 const needToShowReleaseNotes = () => {
   const currentVersion = electron_1.app.getVersion();
-  const storeVersion = String(store.get(store_js_1.StoreKeys.VERSION));
-  store.set(store_js_1.StoreKeys.VERSION, currentVersion);
+  const storeVersion = String(getStore(store_js_1.StoreKeys.VERSION));
+  setStore(store_js_1.StoreKeys.VERSION, currentVersion);
   if (
     !(0, semver_1.valid)(storeVersion) ||
     (0, semver_1.gt)(currentVersion, storeVersion)
@@ -209,31 +280,31 @@ const needToShowReleaseNotes = () => {
 };
 exports.needToShowReleaseNotes = needToShowReleaseNotes;
 const isFirstLaunch = () => {
-  const storeVersion = store.get(store_js_1.StoreKeys.VERSION);
+  const storeVersion = getStore(store_js_1.StoreKeys.VERSION);
   const hasRecentlyLaunched = Boolean(
-    store.get(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED),
+    getStore(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED),
   );
   if (storeVersion) {
-    store.set(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
+    setStore(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
     return false;
   }
   if (!hasRecentlyLaunched) {
-    store.set(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
+    setStore(store_js_1.StoreKeys.HAS_RECENTLY_LAUNCHED, true);
   }
   return !hasRecentlyLaunched;
 };
 exports.isFirstLaunch = isFirstLaunch;
 const isRevisionChanged = (type, revision) => {
-  const storeRevision = store.get(type);
-  store.set(type, revision);
+  const storeRevision = getStore(type);
+  setStore(type, revision);
   return storeRevision !== revision;
 };
 exports.isRevisionChanged = isRevisionChanged;
 const getUuid = () => {
-  let uuid = store.get(store_js_1.StoreKeys.UUID);
+  let uuid = getStore(store_js_1.StoreKeys.UUID);
   if (!uuid) {
     uuid = (0, uuid_1.v4)();
-    store.set(store_js_1.StoreKeys.UUID, uuid);
+    setStore(store_js_1.StoreKeys.UUID, uuid);
   }
   return uuid;
 };
@@ -259,12 +330,12 @@ exports.repositoryMetaUpdatedAt = (0, exports.useCachedValue)(
 );
 
 const getWindowDimensions = () => {
-  return store.get(store_js_1.StoreKeys.WINDOW_DIMENSIONS);
+  return getStore(store_js_1.StoreKeys.WINDOW_DIMENSIONS);
 };
 exports.getWindowDimensions = getWindowDimensions;
 
 const setWindowDimensions = (width, height) => {
-  return store.set(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
+  return setStore(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
     width: width,
     height: height,
   });
@@ -272,12 +343,12 @@ const setWindowDimensions = (width, height) => {
 exports.setWindowDimensions = setWindowDimensions;
 
 const getWindowPosition = () => {
-  return store.get(store_js_1.StoreKeys.WINDOW_POSITION);
+  return getStore(store_js_1.StoreKeys.WINDOW_POSITION);
 };
 exports.getWindowPosition = getWindowPosition;
 
 const setWindowPosition = (x, y) => {
-  return store.set(store_js_1.StoreKeys.WINDOW_POSITION, {
+  return setStore(store_js_1.StoreKeys.WINDOW_POSITION, {
     x: x,
     y: y,
   });
@@ -285,23 +356,22 @@ const setWindowPosition = (x, y) => {
 exports.setWindowPosition = setWindowPosition;
 
 const getDevtoolsEnabled = () => {
-  return Boolean(store.get(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED));
+  return Boolean(getStore(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED));
 };
 exports.getDevtoolsEnabled = getDevtoolsEnabled;
 
 const getEnableYnisonRemoteControl = () => {
-  return Boolean(store.get(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL));
+  return Boolean(getStore(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL));
 };
 exports.getEnableYnisonRemoteControl = getEnableYnisonRemoteControl;
 
 const getAutoUpdatesEnabled = () => {
-  return Boolean(store.get(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES));
+  return Boolean(getStore(store_js_1.StoreKeys.ENABLE_AUTO_UPDATES));
 };
 exports.getAutoUpdatesEnabled = getAutoUpdatesEnabled;
 
 const getModFeatures = () => {
-  const [get] = exports.useCachedValue(store_js_1.StoreKeys.MOD_FEATURES);
-  return get();
+  return getStore(store_js_1.StoreKeys.MOD_FEATURES);
 };
 exports.getModFeatures = getModFeatures;
 const fetchDefaultExperimentOverrides = async () => {
@@ -313,7 +383,7 @@ const fetchDefaultExperimentOverrides = async () => {
       return await remoteDefaultExperimentOverrides.json();
     return undefined;
   } catch (e) {
-    console.log(
+    logger.log(
       "Failed to fetch remote default experiment overrides. Using local one",
       e,
     );
@@ -324,31 +394,33 @@ exports.fetchDefaultExperimentOverrides = fetchDefaultExperimentOverrides;
 
 const getDefaultExperimentOverrides = () => {
   return (
-    store.get(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ??
+    getStore(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ??
     defaultExperimentOverrides
   );
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 
 const getDisplayMaxFps = () => {
-  return store.get(store_js_1.StoreKeys.DISPLAY_MAX_FPS) ?? 60;
+  return getStore(store_js_1.StoreKeys.DISPLAY_MAX_FPS) ?? 60;
 };
 exports.getDisplayMaxFps = getDisplayMaxFps;
 
 const setDisplayMaxFps = (value) => {
-  return store.set(
+  return setStore(
     store_js_1.StoreKeys.DISPLAY_MAX_FPS,
     Math.min(Math.max(value ?? 60, 30), 1024),
   );
 };
 exports.setDisplayMaxFps = setDisplayMaxFps;
 
-const get = (key) => {
-  return store.get(key);
+const getStore = (key) => {
+  return cachedStore.get(key, undefined) ?? store.get(key);
 };
-exports.get = get;
+exports.get = getStore;
 
-const set = (key, value) => {
-  return store.set(key, value);
+const setStore = (key, value) => {
+  const result = store.set(key, value);
+  cachedStore.set(key, value);
+  return result;
 };
-exports.set = set;
+exports.set = setStore;

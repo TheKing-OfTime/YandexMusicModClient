@@ -2275,13 +2275,6 @@
                 "modFeatures.globalShortcuts.enable",
                 e,
               );
-              i(
-                (0, n.jsx)(p.Q, {
-                  error:
-                    "Для применения этой настройки требуется перезапуск приложения",
-                }),
-                { containerId: _.W$x.ERROR },
-              );
             },
             []
           );
@@ -2367,7 +2360,7 @@
                 children: (0, n.jsx)(P, {
                   title: "Глобальные горячие клавиши",
                   description:
-                    "Включает поддержку глобальных горячих клавиш",
+                    "Настроить комбинации можно в Настройки -> Остальные настройки",
                   onChange: onToggleGlobalShortcuts,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.globalShortcuts.enable",

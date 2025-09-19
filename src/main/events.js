@@ -40,9 +40,12 @@ const isBoolean = (value) => {
 let mainWindow = undefined;
 
 const updateGlobalShortcuts = () => {
+  eventsLogger.info("(GlobalShortcuts) Update triggered.");
   electron_1.globalShortcut.unregisterAll();
 
-  const modFeatures = (0, store_js_1.getModFeatures)();
+  const modFeatures = store_js_1.getModFeatures();
+
+  eventsLogger.info("(GlobalShortcuts) modFeatures.globalShortcuts:", modFeatures?.globalShortcuts);
 
   if (modFeatures?.globalShortcuts?.enable) {
     const shortcuts = Object.entries(modFeatures.globalShortcuts);
@@ -58,13 +61,13 @@ const updateGlobalShortcuts = () => {
         });
       } else {
         eventsLogger.warn(
-          `Global shortcut ${shortcut[0]} is not registered. Invalid accelerator: ${shortcut[1]}`,
+          `(GlobalShortcuts) ${shortcut[0]} is not registered. Invalid accelerator: ${shortcut[1]}`,
         );
       }
     });
-    eventsLogger.info("Global shortcuts registered.");
+    eventsLogger.info("(GlobalShortcuts) Registered.");
   } else {
-    eventsLogger.info("Global shortcuts are disabled. Unregistered all.");
+    eventsLogger.info("(GlobalShortcuts) Unregistered all.");
   }
 };
 
@@ -72,7 +75,7 @@ const handleApplicationEvents = (window) => {
   mainWindow = window;
   const updater = (0, updater_js_1.getUpdater)();
   const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
-  
+
   updateGlobalShortcuts();
 
   electron_1.ipcMain.on(
@@ -260,15 +263,23 @@ const handleApplicationEvents = (window) => {
   );
 
   electron_1.ipcMain.on(
-      events_js_1.Events.INSTALL_MOD_UPDATE,
-      async (event, data) => {
-        eventsLogger.info(
-            `Event received`,
-            events_js_1.Events.INSTALL_MOD_UPDATE,
-        );
-        await (0, modUpdater_js_1.getModUpdater)().onInstallUpdate();
-        electron_1.ipcMain.emit(events_js_1.Events.APPLICATION_RESTART);
-      },
+    events_js_1.Events.INSTALL_MOD_UPDATE,
+    async (event, data) => {
+      eventsLogger.info(
+        `Event received`,
+        events_js_1.Events.INSTALL_MOD_UPDATE,
+      );
+      await (0, modUpdater_js_1.getModUpdater)().onInstallUpdate();
+    },
+  );
+
+  electron_1.ipcMain.on(events_js_1.Events.NATIVE_STORE_UPDATE,(event, key, value) => {
+      eventsLogger.info(`Event received`, events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
+        store_js_1.set(key, value);
+        if (key === "modFeatures.globalShortcuts.enable") {
+          updateGlobalShortcuts();
+        }
+    }
   );
 
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
@@ -304,8 +315,6 @@ electron_1.ipcMain.handle(
     if (canceled || !filePaths) return;
 
     store_js_1.set(key, filePaths[0]);
-
-    sendNativeStoreUpdate(mainWindow, key, filePaths[0]);
   },
 );
 
@@ -450,16 +459,6 @@ const sendRefreshRepositoryMeta = (window) => {
   eventsLogger.info("Event send", events_js_1.Events.REFRESH_REPOSITORY_META);
 };
 exports.sendRefreshRepositoryMeta = sendRefreshRepositoryMeta;
-const sendNativeStoreUpdate = (window, key, value) => {
-  window.webContents.send(events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
-  eventsLogger.info(
-    "Event send",
-    events_js_1.Events.NATIVE_STORE_UPDATE,
-    key,
-    value,
-  );
-};
-exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
 
 const zoomIn = () => {
   eventsLogger.info("Event handle", "zoom-in");
