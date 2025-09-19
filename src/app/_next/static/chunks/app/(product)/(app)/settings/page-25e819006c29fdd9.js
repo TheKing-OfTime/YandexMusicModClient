@@ -2267,6 +2267,16 @@
               );
             },
             [i],
+          ),
+          onToggleGlobalShortcuts = (0, d.useCallback)(
+            (e) => {
+              console.log("globalShortcuts.enable toggled. Value: ", e);
+              window.nativeSettings.set(
+                "modFeatures.globalShortcuts.enable",
+                e,
+              );
+            },
+            []
           );
         return (0, n.jsx)(f.u, {
           className: b().root,
@@ -2342,6 +2352,18 @@
                   onChange: onStartMinimizedToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.windowBehavior.startMinimized",
+                  ),
+                }),
+              }),
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(P, {
+                  title: "Глобальные горячие клавиши",
+                  description:
+                    "Настроить комбинации можно в Настройки -> Остальные настройки",
+                  onChange: onToggleGlobalShortcuts,
+                  isChecked: window.nativeSettings.get(
+                    "modFeatures.globalShortcuts.enable",
                   ),
                 }),
               }),

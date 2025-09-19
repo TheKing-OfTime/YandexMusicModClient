@@ -7,6 +7,7 @@ const getInitialTheme_js_1 = require("./getInitialTheme.js");
 const deviceInfo_js_1 = require("./deviceInfo.js");
 const theme_js_1 = require("../types/theme.js");
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
+const events_js_1 = require('../types/events.js');
 const deviceInfo = (0, deviceInfo_js_1.getDeviceInfo)();
 
 electron_1.contextBridge.exposeInMainWorld(
@@ -132,7 +133,7 @@ electron_1.contextBridge.exposeInMainWorld("nativeSettings", {
     return store_js_1.get(key);
   },
   set(key, value) {
-    return store_js_1.set(key, value);
+    electron_1.ipcRenderer.send(events_js_1.Events.NATIVE_STORE_SET, key, value);
   },
   setPathWithNativeDialog(
     key,

@@ -10,6 +10,7 @@ exports.sendRefreshRepositoryMeta =
   exports.sendLoadReleaseNotes =
   exports.sendProbabilityBucket =
   exports.handleApplicationEvents =
+  exports.sendNativeStoreUpdate =
     void 0;
 const electron_1 = require("electron");
 const events_js_1 = require("./types/events.js");
@@ -39,29 +40,44 @@ const isBoolean = (value) => {
 
 let mainWindow = undefined;
 
-const handleApplicationEvents = (window) => {
-  mainWindow = window;
-  const updater = (0, updater_js_1.getUpdater)();
-  const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
-  if (store_js_1.getModFeatures()?.globalShortcuts) {
-    const shortcuts = Object.entries(
-      store_js_1.getModFeatures().globalShortcuts,
-    );
+const updateGlobalShortcuts = () => {
+  eventsLogger.info("(GlobalShortcuts) Update triggered.");
+  electron_1.globalShortcut.unregisterAll();
+
+  const modFeatures = store_js_1.getModFeatures();
+
+  eventsLogger.info("(GlobalShortcuts) modFeatures.globalShortcuts:", modFeatures?.globalShortcuts);
+
+  if (modFeatures?.globalShortcuts?.enable) {
+    const shortcuts = Object.entries(modFeatures.globalShortcuts);
     shortcuts.forEach((shortcut) => {
+      if (shortcut[0] === "enable") return;
+
       if (shortcut[1] && isAccelerator(shortcut[1])) {
         electron_1.globalShortcut.register(shortcut[1], () => {
           const actions = shortcut[0].split(" ");
           actions.forEach((action) => {
-            sendPlayerAction(window, playerActions_js_1.PlayerActions[action]);
+            sendPlayerAction(mainWindow, playerActions_js_1.PlayerActions[action]);
           });
         });
       } else {
         eventsLogger.warn(
-          `Global shortcut ${shortcut[0]} is not registered. Invalid accelerator: ${shortcut[1]}`,
+          `(GlobalShortcuts) ${shortcut[0]} is not registered. Invalid accelerator: ${shortcut[1]}`,
         );
       }
     });
+    eventsLogger.info("(GlobalShortcuts) Registered.");
+  } else {
+    eventsLogger.info("(GlobalShortcuts) Unregistered all.");
   }
+};
+
+const handleApplicationEvents = (window) => {
+  mainWindow = window;
+  const updater = (0, updater_js_1.getUpdater)();
+  const trackDownloader = new trackDownloader_js_1.TrackDownloader(window);
+
+  updateGlobalShortcuts();
 
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
@@ -248,15 +264,23 @@ const handleApplicationEvents = (window) => {
   );
 
   electron_1.ipcMain.on(
-      events_js_1.Events.INSTALL_MOD_UPDATE,
-      async (event, data) => {
-        eventsLogger.info(
-            `Event received`,
-            events_js_1.Events.INSTALL_MOD_UPDATE,
-        );
-        await (0, modUpdater_js_1.getModUpdater)().onInstallUpdate();
-        electron_1.ipcMain.emit(events_js_1.Events.APPLICATION_RESTART);
-      },
+    events_js_1.Events.INSTALL_MOD_UPDATE,
+    async (event, data) => {
+      eventsLogger.info(
+        `Event received`,
+        events_js_1.Events.INSTALL_MOD_UPDATE,
+      );
+      await (0, modUpdater_js_1.getModUpdater)().onInstallUpdate();
+    },
+  );
+
+  electron_1.ipcMain.on(events_js_1.Events.NATIVE_STORE_SET,(event, key, value) => {
+      eventsLogger.info(`Event received`, events_js_1.Events.NATIVE_STORE_SET, key, value);
+        store_js_1.set(key, value);
+        if (key === "modFeatures.globalShortcuts.enable") {
+          updateGlobalShortcuts();
+        }
+    }
   );
 
   electron_1.ipcMain.handle(events_js_1.Events.GET_PASSPORT_LOGIN, async () => {
@@ -292,8 +316,6 @@ electron_1.ipcMain.handle(
     if (canceled || !filePaths) return;
 
     store_js_1.set(key, filePaths[0]);
-
-    sendNativeStoreUpdate(mainWindow, key, filePaths[0]);
   },
 );
 
@@ -331,6 +353,16 @@ electron_1.ipcMain.handle(
 );
 
 exports.handleApplicationEvents = handleApplicationEvents;
+
+const sendNativeStoreUpdate = (key, value, window=undefined) => {
+    (window ?? mainWindow)?.webContents.send(events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
+    if(window ?? mainWindow) {
+        eventsLogger.info("Event send", events_js_1.Events.NATIVE_STORE_UPDATE, key, value)
+    } else {
+        eventsLogger.warn("Event not send, window is undefined", events_js_1.Events.NATIVE_STORE_UPDATE, key, value)
+    }
+};
+exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
 
 const sendLastFmUserInfoUpdated = (window = mainWindow, userinfo) => {
   window.webContents.send(events_js_1.Events.LASTFM_USERINFO_UPDATE, userinfo);
@@ -438,16 +470,6 @@ const sendRefreshRepositoryMeta = (window) => {
   eventsLogger.info("Event send", events_js_1.Events.REFRESH_REPOSITORY_META);
 };
 exports.sendRefreshRepositoryMeta = sendRefreshRepositoryMeta;
-const sendNativeStoreUpdate = (window, key, value) => {
-  window.webContents.send(events_js_1.Events.NATIVE_STORE_UPDATE, key, value);
-  eventsLogger.info(
-    "Event send",
-    events_js_1.Events.NATIVE_STORE_UPDATE,
-    key,
-    value,
-  );
-};
-exports.sendNativeStoreUpdate = sendNativeStoreUpdate;
 
 const zoomIn = () => {
   eventsLogger.info("Event handle", "zoom-in");
