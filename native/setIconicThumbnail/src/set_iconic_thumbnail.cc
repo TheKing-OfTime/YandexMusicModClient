@@ -147,7 +147,7 @@ Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info) {
     }
 
 
-    HBITMAP hBitmap = BufferToHBITMAP(imageBuffer, 100);
+    HBITMAP hBitmap = BufferToHBITMAP(imageBuffer, 109, 109, TRUE);
     if (hBitmap == NULL) {
         ShutdownGDIPlus();
         Napi::Error::New(env, "Failed to convert image buffer to HBITMAP").ThrowAsJavaScriptException();

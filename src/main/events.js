@@ -79,6 +79,23 @@ const handleApplicationEvents = (window) => {
 
   updateGlobalShortcuts();
 
+  // TODO Создать лайфсайкл для нативных ивентов. Лучше прямо в нативном модуле. Кроме того. Вычленить из SetIconicThumbnail функцию установки флагов. Использовать её для PROBE. Чтобы определять максимальные размеры превьюшек.
+  // TODO Ещё можно реализовать через WM_DWMSENDICONICLIVEPREVIEWBITMAP установку картинки для peek preview. Чтобы обойти тупость WinAPI, которая не позволяет юзать iconic thumbnail без iconic peek preview.
+  // WM_DWMSENDICONICTHUMBNAIL = 0x323
+  // mainWindow.hookWindowMessage(0x323, (wParam, lParam) => {
+  //   const height = lParam.readUInt16LE(0);
+  //   const width = lParam.readUInt16LE(2);
+  //   eventsLogger.log(`Windows просит иконку превью: ${width}x${height}`);
+  //   // Тут нужно вызвать DwmSetIconicThumbnail — но его нет в Electron
+  // });
+  //
+  // // WM_DWMSENDICONICLIVEPREVIEWBITMAP = 0x326
+  // mainWindow.hookWindowMessage(0x326, () => {
+  //   eventsLogger.log("Windows просит Live Preview");
+  //   // Здесь тоже нужна DwmSetIconicLivePreviewBitmap
+  // });
+  //
+
   electron_1.ipcMain.on(
     events_js_1.Events.DOWNLOAD_TRACK,
     async (event, data) => {
@@ -163,14 +180,12 @@ const handleApplicationEvents = (window) => {
 
       if (
         store_js_1.getModFeatures()?.vibeAnimationEnhancement
-          ?.autoLaunchOnAppStartup &&
-        !state_js_1.state.player.isPlaying
+          ?.autoLaunchOnAppStartup
       ) {
         setTimeout(() => {
-          (0, exports.sendPlayerAction)(
-            window,
-            playerActions_js_1.PlayerActions.TOGGLE_PLAY,
-          );
+          if (!state_js_1.state.player.isPlaying) {
+            exports.sendPlayerAction(window, playerActions_js_1.PlayerActions.TOGGLE_PLAY);
+          }
         }, 4000);
       }
 
