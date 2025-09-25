@@ -1294,9 +1294,15 @@
                 progress: e.progress,
                 availableActions: e.availableActions,
                 actionsStore: e.actionsStore,
+                previousTrack: e.previousTrack,
+                nextTrack: e.nextTrack,
               });
           }),
             sendPlayerStateDefault = (ve) => {
+
+              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
+              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+
               n({
                 status: ve.state.playerState.status.value,
                 isPlaying: ve.state.playerState.status.value === s.FY.PLAYING,
@@ -1337,9 +1343,15 @@
                               .meta.id,
                       ),
                 },
+                previousTrack: previousTrack,
+                nextTrack: nextTrack,
               });
             },
             sendPlayerStatePlaying = (ve) => {
+
+              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
+              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+
               n({
                 status: s.FY.PLAYING,
                 isPlaying: true,
@@ -1380,6 +1392,8 @@
                               .meta.id,
                       ),
                 },
+                previousTrack: previousTrack,
+                nextTrack: nextTrack,
               });
             };
         (0, o.useEffect)(() => {
@@ -1401,6 +1415,10 @@
                     ) {
                       sendPlayerStateDefault(t);
                     }
+                  }),
+              queueStateEntityListTracker =
+                  t?.state.queueState.entityList.onChange((e) => {
+                    sendPlayerStateDefault(t);
                   }),
               onRepeatAvailableChange =
                   t?.state.currentContext.value?.availableActions.repeat?.onChange((e) => {
@@ -1449,6 +1467,7 @@
               null == i || i(),
             null == onEntityChange || onEntityChange(),
             null == seekTracker || seekTracker(),
+            null == queueStateEntityListTracker || queueStateEntityListTracker(),
             null == onRepeatAvailableChange || onRepeatAvailableChange(),
             null == onShuffleAvailableChange || onShuffleAvailableChange(),
             null == onRepeatChange || onRepeatChange(),

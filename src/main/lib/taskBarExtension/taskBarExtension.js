@@ -134,15 +134,43 @@ const setIconicThumbnail = async (playerState) => {
     "%%",
     "200x200",
   );
+
+  const previousCoverUrl = playerState.previousTrack ? `https://${playerState.previousTrack.coverUri}`.replace(
+      "%%",
+      "200x200",
+  ) : undefined;
+
+  const nextCoverUrl = playerState.nextTrack ? `https://${playerState.nextTrack.coverUri}`.replace(
+      "%%",
+      "200x200",
+  ) : undefined;
+
+
   try {
     taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
     const coverImage = await fetch(coverUrl);
     const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
+    let nextImageBuffer, previousImageBuffer;
+
+
+    if ( nextCoverUrl ) {
+      const nextCoverImage = await fetch(nextCoverUrl);
+      nextImageBuffer = Buffer.from(await nextCoverImage.arrayBuffer());
+    }
+
+    if ( previousCoverUrl ) {
+      const previousCoverImage = await fetch(previousCoverUrl);
+      previousImageBuffer = Buffer.from(await previousCoverImage.arrayBuffer());
+    }
+
+    const store = getActionsStoreObject(playerState.actionsStore);
+
+    const isRepeatOne = store.repeat === "one";
 
     const width = native.getDWMIconicThumbnailInstance().maxWidth
     const height = native.getDWMIconicThumbnailInstance().maxHeight
 
-    const thumbnailBuffer = await thumbnailDrawner.drawThumbnail(width, height, imageBuffer, imageBuffer, imageBuffer);
+    const thumbnailBuffer = await thumbnailDrawner.drawThumbnail(width, height, isRepeatOne ? imageBuffer : previousImageBuffer, imageBuffer, isRepeatOne ? imageBuffer : nextImageBuffer, !playerState.isPaused);
 
     if (!thumbnailBuffer) {
       taskBarExtensionLogger.warn("Thumbnail buffer is null fallbacking to cover image");
@@ -297,9 +325,7 @@ const updateTaskbarExtension = (window) => {
   window.setThumbnailToolTip(getTooltipString());
 
   if ((settings?.coverAsThumbnail ?? true) && native) {
-    playerState.isPaused
-      ? clearIconicThumbnail()
-      : setIconicThumbnail(playerState);
+    setIconicThumbnail(playerState);
   }
 
   taskBarExtensionLogger.log(

@@ -933,9 +933,15 @@
                 progress: e.progress,
                 availableActions: e.availableActions,
                 actionsStore: e.actionsStore,
+                previousTrack: e.previousTrack,
+                nextTrack: e.nextTrack,
               });
           }),
         sendPlayerStateDefault = (ve) => {
+
+          const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
+          const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+
           o({
             status: ve.state.playerState.status.value,
             isPlaying: ve.state.playerState.status.value === r.FY.PLAYING,
@@ -976,9 +982,15 @@
                           .meta.id,
                   ),
             },
+            previousTrack: previousTrack,
+            nextTrack: nextTrack,
           });
         },
             sendPlayerStatePlaying = (ve) => {
+
+              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
+              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+
               o({
                 status: r.FY.PLAYING,
                 isPlaying: true,
@@ -1019,6 +1031,8 @@
                               .meta.id,
                       ),
                 },
+                previousTrack: previousTrack,
+                nextTrack: nextTrack,
               });
             };
         (0, t.useEffect)(() => {
@@ -1041,6 +1055,10 @@
                   sendPlayerStateDefault(n);
                 }
               }),
+              queueStateEntityListTracker =
+                  n?.state.queueState.entityList.onChange((e) => {
+                    sendPlayerStateDefault(n);
+                  }),
             onRepeatAvailableChange =
               n?.state.currentContext.value?.availableActions.repeat?.onChange((e) => {
                 sendPlayerStateDefault(n);
@@ -1089,6 +1107,7 @@
               null == t || t(),
               null == onEntityChange || onEntityChange(),
               null == seekTracker || seekTracker(),
+            null == queueStateEntityListTracker || queueStateEntityListTracker(),
               null == onRepeatAvailableChange || onRepeatAvailableChange(),
               null == onShuffleAvailableChange || onShuffleAvailableChange(),
               null == onRepeatChange || onRepeatChange(),

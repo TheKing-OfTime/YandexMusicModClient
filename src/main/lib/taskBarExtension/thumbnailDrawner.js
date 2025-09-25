@@ -1,6 +1,6 @@
 const sharp = requireIfExists("sharp");
 
-async function drawThumbnail(width, height, previousTrack, currentTrack, nextTrack) {
+async function drawThumbnail(width, height, previousTrack, currentTrack, nextTrack, isPlaying = true) {
     if (!sharp || !currentTrack || width <= 0 || height <= 0) {
         return null;
     }
@@ -17,7 +17,7 @@ async function drawThumbnail(width, height, previousTrack, currentTrack, nextTra
     const smallSize = Math.floor(height * 0.9);
     const gap = Math.floor(height * 0.15);
 
-    const currImg = await sharp(currentTrack).resize(height).toBuffer();
+    const currImg = await sharp(currentTrack).resize(isPlaying ? height : smallSize).toBuffer();
     const prevImg = previousTrack
         ? await sharp(previousTrack).resize(smallSize).toBuffer()
         : null;
@@ -35,8 +35,8 @@ async function drawThumbnail(width, height, previousTrack, currentTrack, nextTra
     if (currImg)
         layers.push({
             input: currImg,
-            top: 0,
-            left: Math.floor(width / 2) - Math.floor(height / 2)
+            top: isPlaying ? 0 : Math.floor(height / 2) - Math.floor(smallSize / 2),
+            left: Math.floor((width) / 2) - Math.floor((isPlaying ? height : smallSize) / 2)
         });
     if (nextImg)
         layers.push({
