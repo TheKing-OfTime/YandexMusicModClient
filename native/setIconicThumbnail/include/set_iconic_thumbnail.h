@@ -14,3 +14,6 @@ Napi::Value SetIconicThumbnail(const Napi::CallbackInfo& info);
 
 // Clear iconic thumbnail and revert to live preview
 Napi::Value ClearIconicThumbnail(const Napi::CallbackInfo& info);
+
+// Used as probe. For force triggering WM_DWMSENDICONICTHUMBNAIL
+Napi::Value ForceIconicFlags(const Napi::CallbackInfo& info);

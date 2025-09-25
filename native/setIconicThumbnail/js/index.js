@@ -1,8 +1,13 @@
-const path = require('path');
 const os = require('os');
+const electron = require('electron');
 
 // Load the compiled native addon
 const native = process.platform === 'win32' ? require('./set_iconic_thumbnail.node') : null;
+
+const NATIVE_EVENTS = {
+    WM_DWMSENDICONICTHUMBNAIL: 0x323,
+    WM_DWMSENDICONICLIVEPREVIEWBITMAP: 0x326,
+};
 
 /**
  * Convert Electron's native window handle buffer into a HWND (number).
@@ -12,7 +17,7 @@ const native = process.platform === 'win32' ? require('./set_iconic_thumbnail.no
  */
 function parseHWND(hwndBuffer) {
     if (os.endianness() !== 'LE') {
-        throw new Error('Non-little-endian system not supported');
+        throw new DWMIconicThumbnailError('Non-little-endian system not supported');
     }
 
     // 64-bit Windows (8 bytes)
@@ -25,41 +30,105 @@ function parseHWND(hwndBuffer) {
         return hwndBuffer.readUInt32LE(0);
     }
 
-    throw new Error('Unknown HWND buffer format');
+    throw new DWMIconicThumbnailError('Unknown HWND buffer format');
 }
 
-/**
- * Set the iconic thumbnail for a given window using an image buffer.
- * @param {Buffer|Uint8Array} imageBuffer - PNG or JPEG image buffer
- * @param {Buffer} hwndBuffer - From `BrowserWindow.getNativeWindowHandle()`
- * @returns {number} HRESULT (0 = S_OK)
- */
-function setIconicThumbnail(hwndBuffer, imageBuffer) {
-    if (!native) {
-        throw new Error('Native module IconicThumbnail not available on this platform');
-    }
-    if (!Buffer.isBuffer(imageBuffer)) {
-        throw new Error('imageBuffer must be a Buffer');
-    }
 
-    const hwnd = parseHWND(hwndBuffer);
-    return native.setIconicThumbnail(hwnd, imageBuffer);
+class DWMIconicThumbnailError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'DWMIconicThumbnailError';
+    }
 }
 
-/**
- * Clears the custom iconic thumbnail and resets DWM attributes to display the live preview.
- * @param {Buffer} hwndBuffer - From `BrowserWindow.getNativeWindowHandle()`
- * @returns {number} HRESULT (0 = S_OK)
- */
-function clearIconicThumbnail(hwndBuffer) {
-    if (!native) {
-        throw new Error('Native module IconicThumbnail not available on this platform');
+class DWMIconicThumbnail {
+    /**
+     * Create a DWMIconicThumbnail instance for a given BrowserWindow.
+     * @param {electron.BrowserWindow} window
+     */
+    constructor(window) {
+        if (process.platform !== 'win32') throw new DWMIconicThumbnailError('DWMIconicThumbnail is only supported on Windows');
+        if (!native) throw new DWMIconicThumbnailError('Native module IconicThumbnail not available');
+        this.lastImageBuffer = null;
+        this.maxWidth = 0;
+        this.maxHeight = 0;
+        this.updateWindow(window);
     }
-    const hwnd = parseHWND(hwndBuffer);
-    return native.clearIconicThumbnail(hwnd);
+
+    /**
+     * Update the BrowserWindow instance and HWND.
+     * @param {electron.BrowserWindow} window
+     */
+    updateWindow(window) {
+        if (!(window instanceof electron.BrowserWindow)) throw new DWMIconicThumbnailError('window must be a electron.BrowserWindow');
+        this.window = window;
+        this.hwnd = parseHWND(window.getNativeWindowHandle());
+
+        window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL, (wParam, lParam) => {
+            this.maxHeight = lParam.readUInt16LE(0);
+            this.maxWidth = lParam.readUInt16LE(2);
+            if (this.lastImageBuffer) {
+                this.setIconicThumbnail(this.lastImageBuffer, this.maxWidth, this.maxHeight);
+            }
+        });
+
+        window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICLIVEPREVIEWBITMAP, () => {
+
+        });
+    }
+
+    /**
+     * Set the iconic thumbnail for a given window using an image buffer.
+     * @param {Buffer|Uint8Array} imageBuffer - PNG or JPEG image buffer
+     * @param {0|1} [flags=0] - Currently only one flag defined: 1 = DWM_SIT_DISPLAYFRAME (0x00000001)
+     * @returns {number} HRESULT (0 = S_OK)
+     */
+    setIconicThumbnail(imageBuffer, flags = 0) {
+        if (!Buffer.isBuffer(imageBuffer)) {
+            throw new DWMIconicThumbnailError('imageBuffer must be a Buffer');
+        }
+
+        if (!this.lastImageBuffer) {
+            this.lastImageBuffer = imageBuffer;
+            return this.probe();
+        }
+
+        this.lastImageBuffer = imageBuffer;
+        return native.setIconicThumbnail(this.hwnd, this.lastImageBuffer, this.maxWidth, this.maxHeight, flags);
+    }
+
+    /**
+     * Clears the custom iconic thumbnail and resets DWM attributes to display the live preview.
+     * @param {Buffer} hwndBuffer - From `BrowserWindow.getNativeWindowHandle()`
+     * @returns {number} HRESULT (0 = S_OK)
+     */
+    clearIconicThumbnail() {
+        return native.clearIconicThumbnail(this.hwnd);
+    }
+
+    /**
+     * Probes the window to enable iconic thumbnail support. Forces WM_DWMSENDICONICTHUMBNAIL to be sent. It used for maxWidth and maxHeight determination.
+     * Must be called at least once before setting thumbnails.
+     * @returns {number} HRESULT (0 = S_OK)
+     */
+    probe() {
+        return native.forceIconicFlags(this.hwnd);
+    }
+
 }
+
+const getDWMIconicThumbnailInstance = (() => {
+    let instance;
+    return (window) => {
+        if (!instance) {
+            instance = new DWMIconicThumbnail(window);
+        }
+        return instance;
+    }
+})();
 
 module.exports = {
-    setIconicThumbnail,
-    clearIconicThumbnail
+    getDWMIconicThumbnailInstance,
+    DWMIconicThumbnail,
+    DWMIconicThumbnailError,
 };

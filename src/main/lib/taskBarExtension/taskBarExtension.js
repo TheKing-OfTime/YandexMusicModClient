@@ -31,6 +31,9 @@ const taskBarExtension = (window) => {
     systemTheme = electron_1.nativeTheme.shouldUseDarkColors ? "dark" : "light";
     updateTaskbarExtension(window);
   });
+  if (native) {
+    native.getDWMIconicThumbnailInstance(window);
+  }
 };
 exports.taskBarExtension = taskBarExtension;
 
@@ -119,7 +122,7 @@ const getArtist = () => {
   return artistsLabel;
 };
 
-const setIconicThumbnail = async (window, playerState) => {
+const setIconicThumbnail = async (playerState) => {
   if (!playerState?.track?.coverUri) {
     return;
   }
@@ -132,8 +135,7 @@ const setIconicThumbnail = async (window, playerState) => {
     taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
     const coverImage = await fetch(coverUrl);
     const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
-    const result = native.setIconicThumbnail(
-      window.getNativeWindowHandle(),
+    const result = native.getDWMIconicThumbnailInstance().setIconicThumbnail(
       imageBuffer,
     );
     taskBarExtensionLogger.log("Thumbnail set result:", result);
@@ -142,10 +144,10 @@ const setIconicThumbnail = async (window, playerState) => {
   }
 };
 
-const clearIconicThumbnail = async (window) => {
+const clearIconicThumbnail = async () => {
   try {
     taskBarExtensionLogger.log("Clearing thumbnail");
-    const result = native.clearIconicThumbnail(window.getNativeWindowHandle());
+    const result = native.getDWMIconicThumbnailInstance().clearIconicThumbnail();
     taskBarExtensionLogger.log("Thumbnail cleared result:", result);
   } catch (error) {
     taskBarExtensionLogger.error("Error setting thumbnail:", error);
@@ -283,8 +285,8 @@ const updateTaskbarExtension = (window) => {
 
   if ((settings?.coverAsThumbnail ?? true) && native) {
     playerState.isPaused
-      ? clearIconicThumbnail(window)
-      : setIconicThumbnail(window, playerState);
+      ? clearIconicThumbnail()
+      : setIconicThumbnail(playerState);
   }
 
   taskBarExtensionLogger.log(
