@@ -415,7 +415,7 @@ async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify
 
   console.log("Архивация из " + (noMinify ? srcPath : MINIFIED_SRC_PATH) + " в " + destDir);
   console.time("Архивация завершена");
-  await asar.createPackage(noMinify ? srcPath : MINIFIED_SRC_PATH, destDir);
+  await asar.createPackageWithOptions(noMinify ? srcPath : MINIFIED_SRC_PATH, destDir, { unpackDir: "**/node_modules/{sharp,@img}/**/*" });
   console.timeEnd("Архивация завершена");
   if (!noMinify) {
     await fsp.rm(MINIFIED_SRC_PATH, { recursive: true });
@@ -429,8 +429,10 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false, forceOp
         return false;
     }
     oldYMHash = calcASARHeaderHash(DIRECT_DIST_PATH).hash;
-    await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
+
     const shouldReopen = await closeYandexMusic();
+
+    await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
 
     await new Promise(resolve => setTimeout(resolve, 500)); // Dirty delay. To make sure YM is closed
 
