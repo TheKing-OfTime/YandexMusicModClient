@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/diff" />
       <excludeFolder url="file://$MODULE_DIR$/extracted" />
       <excludeFolder url="file://$MODULE_DIR$/minified" />
+      <excludeFolder url="file://$MODULE_DIR$/native/setIconicThumbnail/.vs" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/native_modules" />
     </content>
     <orderEntry type="inheritedJdk" />

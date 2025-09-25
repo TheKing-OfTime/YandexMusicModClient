@@ -263,11 +263,55 @@ Napi::Value ForceIconicFlags(const Napi::CallbackInfo& info) {
     return Napi::Number::New(env, hr); // Return S_OK if successful
 }
 
+Napi::Value SetIconicLivePreviewBitmap(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+
+    if (info.Length() < 3 ||
+        !info[0].IsNumber() ||
+        !info[1].IsBuffer() ||
+        !info[2].IsObject() // {width, height}
+    ) {
+        Napi::TypeError::New(env,
+            "Expected arguments: hwnd (number), bitmapBuffer (Buffer), size {width, height}")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+
+    HWND hwnd = reinterpret_cast<HWND>(
+        static_cast<uintptr_t>(info[0].As<Napi::Number>().Int64Value())
+    );
+
+    Napi::Buffer<unsigned char> buffer = info[1].As<Napi::Buffer<unsigned char>>();
+    Napi::Object sizeObj = info[2].As<Napi::Object>();
+    UINT width  = sizeObj.Get("width").As<Napi::Number>().Uint32Value();
+    UINT height = sizeObj.Get("height").As<Napi::Number>().Uint32Value();
+
+    BITMAPINFO bmi = {0};
+    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+    bmi.bmiHeader.biWidth = width;
+    bmi.bmiHeader.biHeight = -(LONG)height; // top-down
+    bmi.bmiHeader.biPlanes = 1;
+    bmi.bmiHeader.biBitCount = 32;
+    bmi.bmiHeader.biCompression = BI_RGB;
+
+    void* pvBits = nullptr;
+    HBITMAP hBitmap = CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, &pvBits, NULL, 0);
+    if (!hBitmap) return Napi::Number::New(env, -1);
+
+    memcpy(pvBits, buffer.Data(), width * height * 4);
+
+    HRESULT hr = DwmSetIconicLivePreviewBitmap(hwnd, hBitmap, NULL, 0);
+    DeleteObject(hBitmap);
+
+    return Napi::Number::New(env, hr);
+}
+
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(Napi::String::New(env, "setIconicThumbnail"), Napi::Function::New(env, SetIconicThumbnail));
     exports.Set(Napi::String::New(env, "clearIconicThumbnail"), Napi::Function::New(env, ClearIconicThumbnail));
     exports.Set(Napi::String::New(env, "forceIconicFlags"), Napi::Function::New(env, ForceIconicFlags));
+    exports.Set(Napi::String::New(env, "setIconicLivePreviewBitmap"), Napi::Function::New(env, SetIconicLivePreviewBitmap));
     return exports;
 }
 

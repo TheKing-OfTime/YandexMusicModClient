@@ -76,8 +76,13 @@ class DWMIconicThumbnail {
             }
         });
 
-        window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICLIVEPREVIEWBITMAP, () => {
+        window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICLIVEPREVIEWBITMAP, async () => {
+            const image = await this.window.capturePage();
+            const bitmap = image.getBitmap();
+            const width  = image.getSize().width;
+            const height = image.getSize().height;
 
+            this.setIconicLivePreviewBitmap(bitmap, { width, height });
         });
     }
 
@@ -100,6 +105,19 @@ class DWMIconicThumbnail {
         this.lastIconicThumbnailImageBuffer = imageBuffer;
         this.lastIcomicThumbnailFlags = flags;
         return native.setIconicThumbnail(this.hwnd, this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
+    }
+
+    /**
+     * Set the iconic thumbnail for a given window using an image buffer.
+     * @param {Buffer|Uint8Array} imageBuffer - Bitmap image buffer
+     * @param {{width: number, height: number}} size - Desired size of the thumbnail
+     * @returns {number} HRESULT (0 = S_OK)
+     */
+    setIconicLivePreviewBitmap(imageBuffer, size) {
+        if (!Buffer.isBuffer(imageBuffer)) {
+            throw new DWMIconicThumbnailError('imageBuffer must be a Buffer');
+        }
+        return native.setIconicLivePreviewBitmap(this.hwnd, imageBuffer, {...size});
     }
 
     /**
