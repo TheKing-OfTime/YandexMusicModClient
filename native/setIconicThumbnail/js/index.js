@@ -65,6 +65,9 @@ class DWMIconicThumbnail {
         this.window = window;
         this.hwnd = parseHWND(window.getNativeWindowHandle());
 
+        if (window.isWindowMessageHooked(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL)) window.unhookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL);
+        if (window.isWindowMessageHooked(NATIVE_EVENTS.WM_DWMSENDICONICLIVEPREVIEWBITMAP)) window.unhookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICLIVEPREVIEWBITMAP);
+
         window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL, (wParam, lParam) => {
             this.maxHeight = lParam.readUInt16LE(0);
             this.maxWidth = lParam.readUInt16LE(2);
