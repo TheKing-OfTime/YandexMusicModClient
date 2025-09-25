@@ -49,9 +49,10 @@ class DWMIconicThumbnail {
     constructor(window) {
         if (process.platform !== 'win32') throw new DWMIconicThumbnailError('DWMIconicThumbnail is only supported on Windows');
         if (!native) throw new DWMIconicThumbnailError('Native module IconicThumbnail not available');
-        this.lastImageBuffer = null;
+        this.lastIconicThumbnailImageBuffer = null;
         this.maxWidth = 0;
         this.maxHeight = 0;
+        this.lastIcomicThumbnailFlags = 0;
         this.updateWindow(window);
     }
 
@@ -67,8 +68,8 @@ class DWMIconicThumbnail {
         window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL, (wParam, lParam) => {
             this.maxHeight = lParam.readUInt16LE(0);
             this.maxWidth = lParam.readUInt16LE(2);
-            if (this.lastImageBuffer) {
-                this.setIconicThumbnail(this.lastImageBuffer, this.maxWidth, this.maxHeight);
+            if (this.lastIconicThumbnailImageBuffer) {
+                this.setIconicThumbnail(this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
             }
         });
 
@@ -88,13 +89,14 @@ class DWMIconicThumbnail {
             throw new DWMIconicThumbnailError('imageBuffer must be a Buffer');
         }
 
-        if (!this.lastImageBuffer) {
-            this.lastImageBuffer = imageBuffer;
+        if (!this.lastIconicThumbnailImageBuffer) {
+            this.lastIconicThumbnailImageBuffer = imageBuffer;
             return this.probe();
         }
 
-        this.lastImageBuffer = imageBuffer;
-        return native.setIconicThumbnail(this.hwnd, this.lastImageBuffer, this.maxWidth, this.maxHeight, flags);
+        this.lastIconicThumbnailImageBuffer = imageBuffer;
+        this.lastIcomicThumbnailFlags = flags;
+        return native.setIconicThumbnail(this.hwnd, this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
     }
 
     /**
@@ -103,6 +105,8 @@ class DWMIconicThumbnail {
      * @returns {number} HRESULT (0 = S_OK)
      */
     clearIconicThumbnail() {
+        this.lastIconicThumbnailImageBuffer = null;
+        this.lastIcomicThumbnailFlags = 0;
         return native.clearIconicThumbnail(this.hwnd);
     }
 
