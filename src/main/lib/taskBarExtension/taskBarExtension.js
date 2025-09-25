@@ -8,8 +8,11 @@ const store_js_1 = require("../store.js");
 const playerActions_js_1 = require("../../types/playerActions.js");
 const path = require("node:path");
 const Logger_js_1 = require("../../packages/logger/Logger.js");
+const thumbnailDrawner = require("./thumbnailDrawner.js");
 const taskBarExtensionLogger = new Logger_js_1.Logger("TaskBarExtension");
+
 const native = requireIfExists("./native_modules/set_iconic_thumbnail");
+
 if (!native) {
   taskBarExtensionLogger.warn(
     "Native module for thumbnails is not available. Thumbnail won't work.",
@@ -135,8 +138,18 @@ const setIconicThumbnail = async (playerState) => {
     taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
     const coverImage = await fetch(coverUrl);
     const imageBuffer = Buffer.from(await coverImage.arrayBuffer());
+
+    const width = native.getDWMIconicThumbnailInstance().maxWidth
+    const height = native.getDWMIconicThumbnailInstance().maxHeight
+
+    const thumbnailBuffer = await thumbnailDrawner.drawThumbnail(width, height, imageBuffer, imageBuffer, imageBuffer);
+
+    if (!thumbnailBuffer) {
+      taskBarExtensionLogger.warn("Thumbnail buffer is null fallbacking to cover image");
+    }
+
     const result = native.getDWMIconicThumbnailInstance().setIconicThumbnail(
-      imageBuffer,
+        thumbnailBuffer || imageBuffer,
     );
     taskBarExtensionLogger.log("Thumbnail set result:", result);
   } catch (error) {

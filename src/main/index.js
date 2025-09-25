@@ -166,7 +166,7 @@ initSessionStoragePath();
   (0, handleExternalLink_js_1.handleExternalLink)(window);
   (0, handleDeeplink_js_1.handleDeeplink)(window);
   if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
-    (0, taskBarExtension_js_1.taskBarExtension)(window);
+    await (0, taskBarExtension_js_1.taskBarExtension)(window);
   }
   (0, handleHeadersReceived_js_1.handleHeadersReceived)(window);
   (0, handleBackgroundTasks_js_1.handleBackgroundTasks)(window);

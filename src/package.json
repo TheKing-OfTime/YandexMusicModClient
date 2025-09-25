@@ -8,6 +8,7 @@
   "main": "main/index.js",
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "~2.7.8",
+    "@img/sharp-win32-x64": "^0.34.4",
     "axios": "^1.7.9",
     "discord-rpc": "^4.0.1",
     "electron-is-accelerator": "^0.2.0",
