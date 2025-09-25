@@ -129,7 +129,7 @@ const setIconicThumbnail = async (playerState) => {
 
   const coverUrl = `https://${playerState.track.coverUri}`.replace(
     "%%",
-    "100x100",
+    "200x200",
   );
   try {
     taskBarExtensionLogger.log("Setting thumbnail for cover:", coverUrl);
