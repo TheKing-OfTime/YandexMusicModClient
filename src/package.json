@@ -20,6 +20,7 @@
     "node-cron": "~3.0.3",
     "original-fs": "^1.2.0",
     "semver": "~7.6.3",
+    "sharp": "^0.34.4",
     "uuid": "~9.0.1"
   },
   "devDependencies": {
