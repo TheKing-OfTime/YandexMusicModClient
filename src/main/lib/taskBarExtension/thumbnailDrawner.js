@@ -17,7 +17,7 @@ async function drawThumbnail(width, height, previousTrack, currentTrack, nextTra
     const smallSize = Math.floor(height * 0.9);
     const gap = Math.floor(height * 0.15);
 
-    const currImg = await sharp(currentTrack).resize(isPlaying ? height : smallSize).toBuffer();
+    const currImg = await sharp(currentTrack).resize(isPlaying ? height : smallSize, isPlaying ? height : smallSize, {fit: "inside"}).toBuffer();
     const prevImg = previousTrack
         ? await sharp(previousTrack).resize(smallSize).toBuffer()
         : null;

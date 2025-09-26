@@ -126,11 +126,15 @@ const getArtist = () => {
 };
 
 const setIconicThumbnail = async (playerState) => {
-  if (!playerState?.track?.coverUri) {
+  const isGenerative = playerState.track?.id.startsWith('generative');
+
+  if (!playerState?.track?.coverUri && !isGenerative) {
+    taskBarExtensionLogger.log("No cover URI found, skipping thumbnail update.");
+    await clearIconicThumbnail();
     return;
   }
 
-  const coverUrl = `https://${playerState.track.coverUri}`.replace(
+  const coverUrl = `https://${isGenerative ? playerState.track.imageUrl : playerState.track.coverUri}`.replace(
     "%%",
     "200x200",
   );
@@ -218,6 +222,8 @@ const updateTaskbarExtension = (window) => {
       break;
   }
 
+  const isGenerative = playerState.track?.id.startsWith('generative');
+
   let buttons = [
     {
       tooltip: "Shuffle",
@@ -238,7 +244,7 @@ const updateTaskbarExtension = (window) => {
       icon: store.disliked
         ? assets[systemTheme].disliked
         : assets[systemTheme].dislike,
-      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      flags: isGenerative ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Dislike toggled");
         events_js_1.sendPlayerAction(
@@ -291,7 +297,7 @@ const updateTaskbarExtension = (window) => {
     {
       tooltip: "Like",
       icon: store.liked ? assets[systemTheme].liked : assets[systemTheme].like,
-      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      flags: isGenerative ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Like toggled");
         events_js_1.sendPlayerAction(

@@ -48,6 +48,7 @@ class ScrobblerManager {
    */
   handlePlayingState(playingState) {
     if (!playingState?.track) return;
+    if (playingState.track.id.startsWith('generative')) return;
     if (playingState.status.startsWith("loading")) return;
     if (this.debounceTimeout) {
       clearTimeout(this.debounceTimeout);
