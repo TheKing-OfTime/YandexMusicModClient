@@ -303,6 +303,8 @@ function buildActivityObject(playingState) {
   if (!playingState.track) return undefined;
   if (playingState.status.startsWith("loading")) return undefined;
 
+  const isGenerative = playingState.track?.id.startsWith('generative');
+
   let title = playingState.track?.title;
   if (playingState.track?.version && (settings()?.showVersion ?? true)) {
     title = playingState.track.title + ` (${playingState.track.version})`;
@@ -324,6 +326,12 @@ function buildActivityObject(playingState) {
       "400x400",
     );
 
+  if (playingState.track?.imageUrl)
+    albumArt = `https://${playingState.track.imageUrl}`.replace(
+        "%%",
+        "400x400",
+    );
+
   const shareTrackPath = new convertableLink((playingState.track.albums?.[0]?.id && playingState.track.id) ? `album/${playingState.track.albums?.[0]?.id}/track/${playingState.track.id}`: undefined);
   const shareAlbumPath = new convertableLink(playingState.track.albums?.[0]?.id ? `album/${playingState.track.albums?.[0]?.id}` : undefined);
   const shareArtistPath = new convertableLink(playingState.track.artists?.[0]?.id ? `artist/${playingState.track.artists?.[0]?.id}` : undefined);
@@ -332,7 +340,7 @@ function buildActivityObject(playingState) {
   let startTimestamp = Math.round(
     Date.now() - (playingState.progress ?? 0) * 1000,
   );
-  let endTimestamp = startTimestamp + (playingState.track.durationMs ?? 0);
+  let endTimestamp = isGenerative ? undefined : (startTimestamp + (playingState.track.durationMs ?? 0));
 
   let stateKey = states[playingState.status]?.icon;
   let stateText = states[playingState.status]?.name;
