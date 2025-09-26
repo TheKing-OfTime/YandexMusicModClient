@@ -28,7 +28,7 @@ jobs:
 
       - name: Скачать ассет
         run: |
-          ASSET_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.assets[] | select(.name | test("app.asar")) | .browser_download_url')
+          ASSET_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.assets[] | select(.name == "app.asar") | .browser_download_url')
 
           if [ -z "$ASSET_URL" ]; then
             echo "❌ Asset not found!"
