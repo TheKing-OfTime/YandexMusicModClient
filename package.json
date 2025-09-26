@@ -6,6 +6,7 @@
     "@babel/traverse": "^7.28.3",
     "@electron/asar": "^3.2.13",
     "@octokit/rest": "^21.1.1",
+    "archiver": "^7.0.1",
     "dotenv": "^16.4.7",
     "electron": "^31.0.1",
     "fast-glob": "^3.3.3",

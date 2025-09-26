@@ -13,6 +13,7 @@ const { Octokit } = await import('@octokit/rest');
 const { execSync } = require('child_process');
 const { exec, spawn } = require('child_process');
 const { promisify } = require('util');
+const archiver = require("archiver");
 
 const execAsync = promisify(exec);
 const spawnAsync = promisify(spawn);
@@ -85,6 +86,25 @@ class PatchNote {
         return `## Патч для Яндекс Музыки ${this.ymVersion}\n\n${this.patchNoteString}\n\n![GitHub Downloads (all assets, specific tag)](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/onlyDiscordRPC%40${this.version}/total?label=Downloads)`
     }
 }
+    /**
+     * Архивирует папку в zip
+     * @param {String} folderPath - путь к папке
+     * @param {String} outputZipPath - путь для сохранения архива
+     * @returns {Promise<String>} - путь к архиву
+     */
+    function zipFolder(folderPath, outputZipPath) {
+        return new Promise((resolve, reject) => {
+            const output = fs.createWriteStream(outputZipPath);
+            const archive = archiver("zip", { zlib: { level: 9 } });
+
+            output.on("close", () => resolve(outputZipPath));
+            archive.on("error", reject);
+
+            archive.pipe(output);
+            archive.directory(folderPath, false);
+            archive.finalize();
+        });
+    }
 
 /**
  *
@@ -238,6 +258,99 @@ async function createAndPushSpoofCommit(oldVersion=undefined, newVersion=undefin
 }
 
 /**
+ * Загружает ассет в GitHub релиз с ретраями
+ * @param {Object} octokit
+ * @param {String} gitOwner
+ * @param {String} gitRepo
+ * @param {Number} releaseId
+ * @param {String} asarPath
+ * @param {Number} [maxRetries=3]
+ * @returns {Promise<Object>} uploadResponse
+ */
+async function uploadReleaseAssetWithRetry(octokit, gitOwner, gitRepo, releaseId, asarPath, maxRetries = 3) {
+    const assetData = fs.readFileSync(asarPath);
+    let uploadResponse = undefined;
+
+    const assetName = path.basename(asarPath);
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            console.time(`Ассет успешно загружен ${assetName}`);
+            console.log(`Загрузка ассета ${assetName}...`);
+            uploadResponse = await octokit.repos.uploadReleaseAsset({
+                owner: gitOwner,
+                repo: gitRepo,
+                release_id: releaseId,
+                name: assetName,
+                data: assetData,
+                headers: {
+                    "content-type": "application/octet-stream",
+                    "content-length": assetData.length,
+                },
+            });
+            console.timeEnd(`Ассет успешно загружен ${assetName}`);
+            break;
+        } catch (err) {
+            console.warn(`Попытка #${attempt} загрузки ассета ${assetName} не удалась:`, err.message);
+            if (attempt === maxRetries) throw err;
+            console.warn(`Повторная попытка загрузки ассета через ${(2000 * attempt) / 1000} секунды...`);
+            await new Promise(res => setTimeout(res, 2000 * attempt));
+        }
+    }
+
+    return uploadResponse;
+}
+
+/**
+ * Загружает папку как asset (архивирует и загружает)
+ * @param {Object} octokit
+ * @param {String} gitOwner
+ * @param {String} gitRepo
+ * @param {Number} releaseId
+ * @param {String} folderPath
+ * @param {String} assetName - имя ассета (например, "build.zip")
+ * @param {Number} [maxRetries=3]
+ */
+async function uploadFolderAsAssetWithRetry(octokit, gitOwner, gitRepo, releaseId, folderPath, assetName, maxRetries = 3) {
+    if (!fs.existsSync(folderPath)) return undefined;
+
+    const tmpZipPath = path.join(path.dirname(folderPath), assetName); // например, build.zip
+    await zipFolder(folderPath, tmpZipPath);
+
+    const assetData = fs.readFileSync(tmpZipPath);
+
+    let uploadResponse = undefined;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            console.time(`Ассет успешно загружен ${assetName}`);
+            console.log(`Загрузка ассета ${assetName}...`);
+            uploadResponse = await octokit.repos.uploadReleaseAsset({
+                owner: gitOwner,
+                repo: gitRepo,
+                release_id: releaseId,
+                name: assetName,
+                data: assetData,
+                headers: {
+                    "content-type": "application/zip",
+                    "content-length": assetData.length,
+                },
+            });
+            console.timeEnd(`Ассет успешно загружен ${assetName}`);
+            break;
+        } catch (err) {
+            console.warn(`Попытка #${attempt} загрузки ассета ${assetName} не удалась:`, err.message);
+            if (attempt === maxRetries) throw err;
+            console.warn(`Повторная попытка загрузки ассета через ${(2000 * attempt) / 1000} секунды...`);
+            await new Promise(res => setTimeout(res, 2000 * attempt));
+        }
+    }
+
+    fs.unlinkSync(tmpZipPath); // удаляем временный архив
+    return uploadResponse;
+}
+
+/**
  *
  * @param {String} version
  * @param {String} asarPath
@@ -245,7 +358,6 @@ async function createAndPushSpoofCommit(oldVersion=undefined, newVersion=undefin
  * @return {Promise<void>}
  */
 async function createGitHubRelease(version, asarPath, patchNote) {
-
     const tagCreateResponse = await octokit.git.createRef({
         owner: gitOwner,
         repo: gitRepo,
@@ -253,7 +365,9 @@ async function createGitHubRelease(version, asarPath, patchNote) {
         sha: (await octokit.repos.getCommit({ owner: gitOwner, repo: gitRepo, ref: 'master' })).data.sha,
     });
 
-    if(!tagCreateResponse.status.toString().startsWith('2')) return console.log("Не удалось создать тег", tagCreateResponse.data);
+    if (!tagCreateResponse.status.toString().startsWith('2'))
+        return console.log("Не удалось создать тег", tagCreateResponse.data);
+
     console.log("Тег успешно создан");
 
     const releaseResponse = await octokit.rest.repos.createRelease({
@@ -264,41 +378,39 @@ async function createGitHubRelease(version, asarPath, patchNote) {
         draft: true,
         prerelease: false,
         body: patchNote.toGitHub()
-    })
+    });
 
-    if(!releaseResponse.status.toString().startsWith('2')) return console.log("Не удалось создать драфт:", releaseResponse.data);
+    if (!releaseResponse.status.toString().startsWith('2'))
+        return console.log("Не удалось создать драфт:", releaseResponse.data);
+
     console.log("Драфт успешно создан");
-    const assetData = fs.readFileSync(asarPath)
 
+    const assetName = path.basename(asarPath);
+    const dirPath = path.dirname(asarPath);
+    const asarUnpackedPath = path.join(dirPath, 'app.asar.unpacked');
 
-    let uploadResponse;
-    const maxRetries = 3;
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        try {
-            console.time("Ассет успешно загружен");
-            console.log("Загрузка ассета...");
-            uploadResponse = await octokit.repos.uploadReleaseAsset({
-              owner: gitOwner,
-              repo: gitRepo,
-              release_id: releaseResponse.data.id,
-              name: "app.asar",
-              data: assetData,
-              headers: {
-                "content-type": "application/octet-stream",
-                "content-length": assetData.length,
-              },
-            });
-            break;
-        } catch (err) {
-            console.warn(`Попытка #${attempt} загрузки ассета не удалась:`, err.message);
-            if (attempt === maxRetries) throw err;
-            console.warn(`Повторная попытка загрузки ассета через ${(2000 * attempt)/1000} секунды...`);
-            await new Promise(res => setTimeout(res, 2000 * attempt));
-        }
-    }
+    const asarUploadResponse = await uploadReleaseAssetWithRetry(
+        octokit,
+        gitOwner,
+        gitRepo,
+        releaseResponse.data.id,
+        asarPath
+    );
 
-    if(!uploadResponse.status.toString().startsWith('2')) return console.log("Не удалось загрузить ассет:", releaseResponse.data);
-    console.timeEnd("Ассет успешно загружен");
+    if (!asarUploadResponse.status.toString().startsWith('2'))
+        return console.log(`Не удалось загрузить ассет ${assetName}:`, releaseResponse.data);
+
+    const asarUnpackedUploadResponse = await uploadFolderAsAssetWithRetry(
+        octokit,
+        gitOwner,
+        gitRepo,
+        releaseResponse.data.id,
+        asarUnpackedPath,                   // путь к папке
+        "app.asar.unpacked.zip"   // имя ассета
+    );
+
+    if (!asarUnpackedUploadResponse.status.toString().startsWith('2'))
+        return console.log('Не удалось загрузить ассет app.asar.unpacked:', releaseResponse.data);
 
     const updatedRelease = await octokit.repos.updateRelease({
         owner: gitOwner,
@@ -306,7 +418,10 @@ async function createGitHubRelease(version, asarPath, patchNote) {
         release_id: releaseResponse.data.id,
         draft: false,
     });
-    if(!updatedRelease.status.toString().startsWith('2')) return console.log("Не удалось опубликован релиз:", releaseResponse.data);
+
+    if (!updatedRelease.status.toString().startsWith('2'))
+        return console.log("Не удалось опубликовать релиз:", releaseResponse.data);
+
     console.log("Релиз опубликован");
 }
 
