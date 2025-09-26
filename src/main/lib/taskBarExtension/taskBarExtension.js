@@ -230,7 +230,7 @@ const updateTaskbarExtension = (window) => {
       icon: store.shuffle
         ? assets[systemTheme].shuffled
         : assets[systemTheme].shuffle,
-      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      flags: availability.shuffleUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Shuffle toggled");
         events_js_1.sendPlayerAction(
@@ -309,7 +309,7 @@ const updateTaskbarExtension = (window) => {
     {
       tooltip: "Repeat",
       icon: repeatAsset,
-      //flags: availability.nextUnavailable ? ["disabled"] : undefined,
+      flags: availability.repeatUnavailable ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Like toggled");
         events_js_1.sendPlayerAction(
@@ -320,10 +320,8 @@ const updateTaskbarExtension = (window) => {
     },
   ];
 
-  if (availability.shuffleUnavailable) {
+  if (availability.shuffleUnavailable && availability.repeatUnavailable) {
     buttons.shift();
-  }
-  if (availability.repeatUnavailable) {
     buttons.pop();
   }
 
