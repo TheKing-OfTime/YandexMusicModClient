@@ -1,5 +1,5 @@
 # YandexMusicModClient
-[![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total?label=Загрузок)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
+[![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total?label=Загрузок)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - MacOS](https://img.shields.io/badge/OS-Mac-blue)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - MacOS](https://img.shields.io/badge/OS-Linux-blue)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
 
 <p align="left">
 	<a href="https://discord.gg/HGNKDxwHEH">
