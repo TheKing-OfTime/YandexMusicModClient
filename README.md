@@ -50,36 +50,11 @@
 > [!NOTE]  
 > После установки модификации может потребоваться повторный вход в аккаунт.
 
-## Сборка проекта из исходников
-
-0. Убедитесь что Яндекс Музыка и node.js уже установлены
-1. Склонируйте проект `git clone https://github.com/TheKing-OfTime/YandexMusicModClient.git`
-2. Установите зависимости `npm install` Учтите, что зависимости вам нужно устанавливать в корневой папке проекта, а не в `/src/`
-3. Для удобства сборки в проекте есть cli скрипт `toolset.js`. Он позволят быстро и просто распоковать, упаковать, опубилковать, спуфнуть, или пропатчить код.
-4. `node toolset.js build -d -m`. Эта команда автоматически оптимизирует код (Минифицирует его), а после запакует его по пути Яндекс Музыки по умолчанию `%localappdata%/Programs/YandexMusic/resources/app.asar`
-5. Для быстрой сборки проекта при разработке можете использовать команду `node toolset.js rebuild`. Не обязательные долгие этапы будут пропущены.
 ## Возможности
 
 ### Discord Статус
 <details>
    <summary>Подробнее</summary>
-
-<details>
-   <summary>Настройки</summary>
-
-      "discordRPC": {
-			"enable": true or false,                         //Включает или отключает disocrd RPC
-			"applicationIDForRPC": "1124055337234858005",    //ID пользовательского приложения вашего для discord RPC
-			"showButtons": true or false,                    //Включает или отключает все кнопки в статусе discord 
-			"overrideDeepLinksExperiment": true or false,    //Включает или отключает разделение веб-кнопок и кнопок рабочего стола на одну кнопку
-			"showGitHubButton": true or false,               //Включает или отключает кнопку Github, если для параметра overrideDeepLinksExperiment установлено значение true
-			"afkTimeout": 15,				 //Время в минутах через которое статус в дискорде пропадёт если трек был поставлен на паузу.
-			"showAlbum": true or false,                      //Включает или отключает строчку с информацией о альбоме в статусе discord 
-   			"showSmallIcon": true or false,                  //Включает или отключает икноку статуса прослушивания в статусе discord 
-      }
-
-</details>
-
 
 Добавляет поддержку отображения текущего трека как статуса в Discord
 ![image](https://github.com/user-attachments/assets/ff3b0726-6f83-4849-bce6-c5eb31523efa)
@@ -174,11 +149,11 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 		"MOVE_FORWARD": "Ctrl+,",
 		"MOVE_BACKWARD": "Ctrl+.",
 		"TOGGLE_SHUFFLE": "Ctrl+\'",
-		"REPEAT_NONE": undefined,
-		"REPEAT_CONTEXT": undefined,
-		"REPEAT_NONE": undefined,
-  		"TOGGLE_LIKE": undefined,
-  		"TOGGLE_DISLIKE": undefined,
+		"REPEAT_NONE": "",
+		"REPEAT_CONTEXT": "",
+		"REPEAT_NONE": "",
+  		"TOGGLE_LIKE": "",
+  		"TOGGLE_DISLIKE": ""
 	}
 
 </details>
@@ -192,27 +167,16 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 Добавляет поддержку расширений панели задач (Taskbar Extensions)
 
-<details>
-   <summary>Настройки</summary>
-
-      "taskBarExtensions": {
-			"enable": true or false //Включает или отключает расширения панели задач
-			"coverAsThumbnail": true or false //Включает или отключает замену Live превью на картинку обложки трека
-		}
-
-</details>
-
-
 ![browser_Y2f5KiyCYN](https://github.com/user-attachments/assets/877f5c77-f196-4702-bd44-7da60e1a0d93)
 
 
 </details>
 
-### Возврат кнопки повтора
+### Повтор трека в Моей Волне
 <details>
    <summary>Подробнее</summary>
 
-Возвращает кнопку повтора в плеер на главной когда играет Моя Волна.
+Добавляет возможность включить повтор трека когда играет Моя Волна.
 
 </details>
 
@@ -242,18 +206,6 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
    <summary>Подробнее</summary>
 
 Улучшает поведение анимации Моей Волны. Она начинает лучше адаптироваться к музыке. Также позволяет настраивать частоту кадров в секунду при рендеринге анимации.
-<details>
-   <summary>Настройки</summary>
-
-      "vibeAnimationEnhancement": {
-	    "maxFPS": 25,             	// Максимально допустимая частота кадров в секунду. По умолчанию: 25. Рекомендуемое: 25 - 144. Не устанавливайте значание меньше 1
-	    "intensityCoefficient": 1, 	// Чувствительность музыкального анализа. По умолчанию: 1; Рекомендуемое: 0,5 - 2; При значении 0 отключается улучшение анимации (почти :D)
-	    "linearDeBoost": 5,		// [УСТАРЕЛО] Коэффициент выделения пиков в треке от основного трека. По умолчанию: 5. Рекомендуемое: 2 - 8. Если 1, отключает разделение пиков.
-	    "playOnAnyEntity": false,	// Если включено, анимация воспроизводится, даже если источник трека не Моя Волна.
-	    "disableRendering": false	// Полностью отключает анимацию. Используйте только если почувствуете значительное падение кадров в секунду. В противном случае подберите оптимальное значение параметра maxFPS для вашей системы.
-      }
-
-</details>
 
 До:
 
@@ -333,6 +285,34 @@ Devtools по умолчанию отключены. Чтобы включить
 <p align="left">
 <img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/b9aa1828-476c-4fde-86a8-84fb02eb0817">
 </p>
+
+
+## Сборка проекта из исходников
+
+0. Убедитесь что Яндекс Музыка и node.js уже установлены
+1. Склонируйте проект
+```cmd
+git clone https://github.com/TheKing-OfTime/YandexMusicModClient.git
+```
+2. Установите зависимости
+```cmd
+npm install
+```
+Учтите, что зависимости вам нужно устанавливать в корневой папке проекта, а не в `/src/`
+
+Для удобства сборки в проекте есть cli скрипт `toolset.js`. Он позволят быстро и просто распоковать, упаковать, опубилковать, спуфнуть, или пропатчить код.
+
+3. Собрать проект
+```cmd
+node toolset.js build -d -m
+```
+Эта команда автоматически оптимизирует код (Минифицирует его), а после запакует его по пути Яндекс Музыки по умолчанию `%localappdata%/Programs/YandexMusic/resources/app.asar`
+
+4. Для быстрой сборки проекта при разработке можете использовать команду
+```cmd
+node toolset.js rebuild
+```
+Не обязательные долгие этапы будут пропущены.
 
 
 ## Поддержка
