@@ -197,7 +197,8 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 </details>
 
-![image](https://github.com/user-attachments/assets/ec4017ab-9fb7-4e19-a2e6-d30dfbaa6cdc)
+
+![browser_Y2f5KiyCYN](https://github.com/user-attachments/assets/877f5c77-f196-4702-bd44-7da60e1a0d93)
 
 
 </details>
