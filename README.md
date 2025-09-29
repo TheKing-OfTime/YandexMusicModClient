@@ -13,12 +13,12 @@
    </a>
 </p>
 
-## Это модификация для [настольного приложения Яндекс Музыка](https://music.yandex.com/download/), главная задача которой — добавить недостающие ванильному клиенту функции, которые Яндекс не добавили сами по необъяснимым причинам.
+### Это модификация для [настольного приложения Яндекс Музыка](https://music.yandex.com/download/), главная задача которой — добавить недостающие ванильному клиенту функции, которые Яндекс не добавили сами по необъяснимым причинам.
 
-> [!NOTE]  
-> Данная модификация НЕ даёт возможность пользоваться сервисом БЕЗ подписки Яндекс Плюс
+> [!IMPORTANT]  
+> ### Данная модификация НЕ даёт возможность пользоваться сервисом БЕЗ подписки Яндекс Плюс
 
-### YandexMusicModClient или его разработчик не связаны с Яндексом или какой-либо из их компаний, сотрудников и т.д.
+#### YandexMusicModClient или его разработчик не связаны с Яндексом или какой-либо из их компаний, сотрудников и т.д.
 
 <details>
    <summary>Сообщение для сотрудников Яндекс Музыки</summary>
@@ -125,7 +125,7 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
    <summary>Подробнее</summary>
 
 
-В ванильной версии весь кеш (в том числе скаченные вами треки для оффлейн прослушивания) хранится по пути `%appdata%/YandexMusic/`
+В ванильной версии весь кеш (в том числе скачанные вами треки для офлайн-прослушивания) хранится по пути `%appdata%/YandexMusic/`
 
 Данная функия позволяет использовать для кеша другой путь. Например чтобы 10 гигабайт скаченной вами музыки не тратили место на системном диске
 
@@ -143,18 +143,20 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 <details>
    <summary>Настройки</summary>
-
-	"globalShortcuts": {
-		"TOGGLE_PLAY": "Ctrl+/",
-		"MOVE_FORWARD": "Ctrl+,",
-		"MOVE_BACKWARD": "Ctrl+.",
-		"TOGGLE_SHUFFLE": "Ctrl+\'",
-		"REPEAT_NONE": "",
-		"REPEAT_CONTEXT": "",
-		"REPEAT_NONE": "",
-  		"TOGGLE_LIKE": "",
-  		"TOGGLE_DISLIKE": ""
-	}
+	
+```json
+"globalShortcuts": {
+	"TOGGLE_PLAY": "Ctrl+/",
+	"MOVE_FORWARD": "Ctrl+,",
+	"MOVE_BACKWARD": "Ctrl+.",
+	"TOGGLE_SHUFFLE": "Ctrl+'",
+	"REPEAT_NONE": "",
+	"REPEAT_CONTEXT": "",
+	"REPEAT_NONE": "",
+	"TOGGLE_LIKE": "",
+	"TOGGLE_DISLIKE": ""
+}
+```
 
 </details>
 
@@ -185,16 +187,6 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
    <summary>Подробнее</summary>
 
 Отображает качество либо кодек текущего трека
-
-<details>
-   <summary>Настройки</summary>
-
-	"playerBarEnhancement": {
-  		"showDislikeButton": true //Включает или выключает отображение кнопки дизлайка в проигрывателе.
-		"showCodecInsteadOfQualityMark": true //Показать кодек вместо качества
-	}
-
-</details>
 
 ![image](https://github.com/user-attachments/assets/424434fb-5e66-4a85-8ca2-90179cb7f357)
 
