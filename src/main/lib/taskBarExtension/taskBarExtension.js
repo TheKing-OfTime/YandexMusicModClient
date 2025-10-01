@@ -239,11 +239,9 @@ const updateTaskbarExtension = (window) => {
         );
       },
     },
-    {
+    store_js_1.getModFeatures().playerBarEnhancement.showDislikeButton ? {
       tooltip: "Dislike",
-      icon: store.disliked
-        ? assets[systemTheme].disliked
-        : assets[systemTheme].dislike,
+      icon: store.disliked ? assets[systemTheme].disliked : assets[systemTheme].dislike,
       flags: isGenerative ? ["disabled"] : undefined,
       click() {
         taskBarExtensionLogger.log("Dislike toggled");
@@ -254,6 +252,17 @@ const updateTaskbarExtension = (window) => {
         events_js_1.sendPlayerAction(
           window,
           playerActions_js_1.PlayerActions.MOVE_FORWARD,
+        );
+      },
+    } : {
+      tooltip: "Like",
+      icon: store.liked ? assets[systemTheme].liked : assets[systemTheme].like,
+      flags: isGenerative ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Like toggled");
+        events_js_1.sendPlayerAction(
+            window,
+            playerActions_js_1.PlayerActions.TOGGLE_LIKE,
         );
       },
     },
@@ -294,7 +303,7 @@ const updateTaskbarExtension = (window) => {
         );
       },
     },
-    {
+    store_js_1.getModFeatures().playerBarEnhancement.showDislikeButton ? {
       tooltip: "Like",
       icon: store.liked ? assets[systemTheme].liked : assets[systemTheme].like,
       flags: isGenerative ? ["disabled"] : undefined,
@@ -303,6 +312,21 @@ const updateTaskbarExtension = (window) => {
         events_js_1.sendPlayerAction(
           window,
           playerActions_js_1.PlayerActions.TOGGLE_LIKE,
+        );
+      },
+    } : {
+      tooltip: "Dislike",
+      icon: store.disliked ? assets[systemTheme].disliked : assets[systemTheme].dislike,
+      flags: isGenerative ? ["disabled"] : undefined,
+      click() {
+        taskBarExtensionLogger.log("Dislike toggled");
+        events_js_1.sendPlayerAction(
+            window,
+            playerActions_js_1.PlayerActions.TOGGLE_DISLIKE,
+        );
+        events_js_1.sendPlayerAction(
+            window,
+            playerActions_js_1.PlayerActions.MOVE_FORWARD,
         );
       },
     },
