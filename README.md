@@ -271,7 +271,7 @@ Devtools по умолчанию отключены. Чтобы включить
 
 Настройки внутри приложения:
 <p align="left">
-<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/b9aa1828-476c-4fde-86a8-84fb02eb0817">
+	<img width="590" height="1264" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/c8c96514-4eaa-43eb-8d85-3290e721f5d1" />
 </p>
 
 
