@@ -41,6 +41,8 @@ const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
 
+logger.log('Application starting...');
+
 // Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
 function initSessionStoragePath() {
   if (
@@ -111,6 +113,8 @@ function initSessionStoragePath() {
 (0, handleUncaughtException_js_1.handleUncaughtException)();
 (0, singleInstance_js_1.checkForSingleInstance)();
 (0, handleDeeplink_js_1.handleDeeplinkOnApplicationStartup)();
+
+logger.log(`Auto-launch on system startup: ${store_js_1.getModFeatures()?.windowBehavior?.autoLaunchOnSystemStartup ?? false}`);
 electron_1.app.setLoginItemSettings({
   openAtLogin:
     store_js_1.getModFeatures()?.windowBehavior?.autoLaunchOnSystemStartup ??
@@ -119,6 +123,7 @@ electron_1.app.setLoginItemSettings({
 });
 
 if(!(store_js_1.getModFeatures()?.enableHardwareAcceleration ?? true)) {
+    logger.log('Disabling hardware acceleration as requested');
     electron_1.app.disableHardwareAcceleration();
 }
 
@@ -152,6 +157,9 @@ initSessionStoragePath();
   const updater = (0, updater_js_1.getUpdater)();
   const modUpdater = (0, modUpdater_js_1.getModUpdater)();
   await electron_1.app.whenReady();
+
+  logger.log('Electron.app is ready');
+
   (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
   if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
