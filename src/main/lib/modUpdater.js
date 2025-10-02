@@ -216,8 +216,13 @@ class ModUpdater {
   }
 
   async deleteFile(path) {
-    await fsPromise.unlink(path);
-    this.logger.log("Deleted: ", path);
+    if (fs.existsSync(path)) {
+      await fsPromise.unlink(path);
+      this.logger.log("Deleted: ", path);
+    } else {
+      this.logger.log("File not found, skipping delete: ", path);
+    }
+
   }
 
   async renameFile(oldPath, newPath) {
