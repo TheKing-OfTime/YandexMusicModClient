@@ -166,6 +166,7 @@ const init = () => {
       minimizeToTrayOnWindowClose: true,
       startMinimized: false,
       preventDisplaySleep: false,
+	  startupPage: "/",
     },
     globalShortcuts: {
       enable: true,

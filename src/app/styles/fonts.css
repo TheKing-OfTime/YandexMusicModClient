@@ -1,3 +1,11 @@
+html, body {
+  user-select: none;
+}
+input,
+textarea,
+[contenteditable="true"] {
+  user-select: text;
+}
 @font-face {
   font-display: swap;
   font-family: YSMusic Headline;
