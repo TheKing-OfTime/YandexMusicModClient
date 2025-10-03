@@ -112,15 +112,6 @@ const createWindow = async () => {
       preload: node_path_1.default.join(__dirname, "preload.js"),
     },
   });
-  if (config_js_1.config.enableDevTools || store_js_1.getDevtoolsEnabled()) {
-    window.webContents.on('did-finish-load', () => {
-      window.webContents.insertCSS(`
-        html, body {
-          user-select: text !important;
-        }
-      `);
-    });
-  }
   window.once("ready-to-show", () => {
     window.setSize(dimensions?.width ?? 1280, dimensions?.height ?? 800);
     (0, exports.toggleWindowVisibility)(
