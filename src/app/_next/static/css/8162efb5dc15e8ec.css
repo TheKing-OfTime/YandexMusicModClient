@@ -280,7 +280,7 @@
   transition: border 0.2s;
 }
 
-.settingBarWithDropdown_button:hover {
+.settingBarWithDropdown_button:hover:not(:has(:hover)) {
   border: 1px solid var(--ym-controls-color-secondary-outline-hovered_stroke);
 }
 
@@ -296,7 +296,7 @@
   overflow: hidden;
   background: var(--ym-background-color-primary-enabled-popover);
   z-index: 99999;
-  transition: transform 0.2s;
+  transform: translateX(1px);
 }
 
 .settingBarWithDropdown_menuItem {

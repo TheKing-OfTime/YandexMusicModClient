@@ -2663,6 +2663,7 @@
         direction = "bottom",
       }) => {
         const [isOpen, setIsOpen] = d.useState(false);
+        const [menuWidth, setMenuWidth] = d.useState(160);
         const triggerRef = d.useRef(null);
 
         const handleSelect = d.useCallback(
@@ -2675,10 +2676,7 @@
 
         const handleClickOutside = d.useCallback(
           (event) => {
-            if (
-              isOpen &&
-              !event.target.closest(".settingBarWithDropdown_button")
-            ) {
+            if (isOpen && (event.target !== triggerRef.current)) {
               event.stopPropagation();
               event.preventDefault();
               setIsOpen(false);
@@ -2693,6 +2691,12 @@
             document.removeEventListener("click", handleClickOutside);
           };
         }, [handleClickOutside]);
+
+        d.useEffect(() => {
+            if (triggerRef.current) {
+                setMenuWidth(triggerRef.current.offsetWidth);
+            }
+        }, []);
 
         return n.jsxs("div", {
           className: z().root,
@@ -2735,9 +2739,7 @@
                   style: {
                     display: isOpen ? "flex" : "none",
                     flexDirection: "column",
-                    width: triggerRef.current
-                      ? `${triggerRef.current.width}px`
-                      : "160px",
+                    width: `${menuWidth}px`,
                     top: direction === "bottom" ? "120%" : "unset",
                     bottom: direction === "top" ? "120%" : "unset",
                   },
