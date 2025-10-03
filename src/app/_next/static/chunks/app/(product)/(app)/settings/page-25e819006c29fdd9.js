@@ -1720,17 +1720,18 @@
             },
             [i],
           );
-		const [startupPage, setStartupPage] = (0, d.useState)(
-              window.nativeSettings.get("modFeatures.windowBehavior.startupPage") ?? "/"
+        const [startupPage, setStartupPage] = (0, d.useState)(
+          window.nativeSettings.get("modFeatures.windowBehavior.startupPage") ??
+            "/",
+        );
+        const onStartupPageChange = (0, d.useCallback)(async (e) => {
+          console.log("startupPage changed. Value: ", e);
+          window.nativeSettings.set(
+            "modFeatures.windowBehavior.startupPage",
+            e,
           );
-          const onStartupPageChange = (0, d.useCallback)(async (e) => {
-              console.log("startupPage changed. Value: ", e);
-              window.nativeSettings.set(
-                  "modFeatures.windowBehavior.startupPage",
-                  e,
-              );
-              setStartupPage(e);
-          }, []);
+          setStartupPage(e);
+        }, []);
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
@@ -1747,6 +1748,22 @@
             className: `${Z().root} ${B().list}`,
             style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithDropdown, {
+                  title: "Стартовая страница",
+                  description: "Страница по умолчанию при запуске",
+                  onChange: onStartupPageChange,
+                  value: startupPage,
+                  direction: "bottom",
+                  options: [
+                    { value: "/", label: "Главная" },
+                    { value: "/search", label: "Поиск" },
+                    { value: "/non-music", label: "Подкасты и книги" },
+                    { value: "/collection", label: "Коллекция" },
+                  ],
+                }),
+              }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -1803,21 +1820,6 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.taskBarExtensions.coverAsThumbnail",
                   ),
-                }),
-              }),
-			  (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(settingBarWithDropdown, {
-                  title: "Стартовая страница",
-                  description: "Страница по умолчанию при запуске",
-                  onChange: onStartupPageChange,
-                  value: startupPage,
-                  options: [
-                    { value: "/", label: "Главная" },
-                    { value: "/search", label: "Поиск" },
-                    { value: "/non-music", label: "Подкасты и книги" },
-                    { value: "/collection", label: "Коллекция" }
-                  ],
                 }),
               }),
             ],
@@ -2293,16 +2295,10 @@
             },
             [i],
           ),
-          onToggleGlobalShortcuts = (0, d.useCallback)(
-            (e) => {
-              console.log("globalShortcuts.enable toggled. Value: ", e);
-              window.nativeSettings.set(
-                "modFeatures.globalShortcuts.enable",
-                e,
-              );
-            },
-            []
-          );
+          onToggleGlobalShortcuts = (0, d.useCallback)((e) => {
+            console.log("globalShortcuts.enable toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.globalShortcuts.enable", e);
+          }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
           style: { "max-width": "570px" },
@@ -2598,126 +2594,126 @@
           ],
         });
       };
-	  
-	  
-		const settingBarWithDropdown = ({ title, description, onChange, value, options }) => {
-		  const id = d.useId();
-		  const [isOpen, setIsOpen] = d.useState(false);
-		  const triggerRef = d.useRef(null);
-		  const menuRef = d.useRef(null);
-		  const selectedLabel = options.find(opt => opt.value === value)?.label || '';
 
-		  const handleSelect = (val) => { onChange(val); setIsOpen(false); };
+      const settingBarWithDropdown = ({
+        title,
+        description,
+        onChange,
+        value,
+        options,
+        direction = "bottom",
+      }) => {
+        const [isOpen, setIsOpen] = d.useState(false);
+        const triggerRef = d.useRef(null);
 
-		  d.useEffect(() => {
-			if (!isOpen) return;
+        const handleSelect = d.useCallback(
+          (val) => {
+            onChange(val);
+            setIsOpen(false);
+          },
+          [onChange, setIsOpen],
+        );
 
-			const menu = document.createElement("ul");
-			menuRef.current = menu;
-			menu.style.cssText = `
-			  position: absolute;
-			  list-style: none;
-			  margin: 0;
-			  padding: 0;
-			  border-radius: 8px;
-			  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-			  overflow: hidden;
-			  background: var(--ym-background-color-primary-enabled-popover);
-			  z-index: 99999;
-			  transition: transform 0.2s;
-			`;
+        const handleClickOutside = d.useCallback(
+          (event) => {
+            if (
+              isOpen &&
+              !event.target.closest(".settingBarWithDropdown_button")
+            ) {
+              event.stopPropagation();
+              event.preventDefault();
+              setIsOpen(false);
+            }
+          },
+          [isOpen],
+        );
 
-			options.forEach(opt => {
-			  const btn = document.createElement("button");
-			  btn.type = "button";
-			  btn.role = "menuitem";
-			  btn.id = opt.value;
-			  btn.setAttribute("aria-selected", value === opt.value);
-			  btn.style.cssText = `
-				display: flex; justify-content: space-between; align-items: center;
-				width: 100%; padding: 10px 14px; background: transparent; border: none;
-				cursor: pointer; font-size: 14px; color: var(--ym-controls-color-primary-text-enabled_variant);
-				transition: background 0.2s;
-			  `;
-			  btn.onmouseenter = () => btn.style.background = "var(--ym-controls-color-secondary-default-hovered)";
-			  btn.onmouseleave = () => btn.style.background = "transparent";
-			  btn.onclick = (e) => { e.stopPropagation(); handleSelect(opt.value); };
+        d.useEffect(() => {
+          document.addEventListener("click", handleClickOutside);
+          return () => {
+            document.removeEventListener("click", handleClickOutside);
+          };
+        }, [handleClickOutside]);
 
-			  const span = document.createElement("span");
-			  span.textContent = opt.label;
-			  btn.appendChild(span);
+        return n.jsxs("div", {
+          className: z().root,
+          children: [
+            n.jsxs("div", {
+              className: z().textContainer,
+              children: [
+                n.jsx(c.Caption, {
+                  className: z().title,
+                  variant: "div",
+                  size: "l",
+                  weight: "bold",
+                  lineClamp: 1,
+                  "aria-hidden": true,
+                  children: title,
+                }),
+                description &&
+                  n.jsx(c.Caption, {
+                    variant: "div",
+                    type: "text",
+                    size: "xs",
+                    weight: "medium",
+                    className: z().description,
+                    children: description,
+                  }),
+              ],
+            }),
+            n.jsx("div", {
+              ref: triggerRef,
+              onClick: () => setIsOpen((prevValue) => !prevValue),
+              className:
+                "settingBarWithDropdown_button Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx",
+              children: [
+                ,
+                options.find((opt) => opt.value === value)?.label ||
+                  "Select...",
+                n.jsx("ul", {
+                  role: "menu",
+                  className: "settingBarWithDropdown_menu",
+                  style: {
+                    display: isOpen ? "flex" : "none",
+                    flexDirection: "column",
+                    width: triggerRef.current
+                      ? `${triggerRef.current.width}px`
+                      : "160px",
+                    top: direction === "bottom" ? "120%" : "unset",
+                    bottom: direction === "top" ? "120%" : "unset",
+                  },
+                  children: options.map((opt) =>
+                    n.jsx("li", {
+                      role: "menuitem",
+                      className: "settingBarWithDropdown_menuItem",
+                      id: opt.value,
+                      "aria-selected": value === opt.value,
+                      onClick: (e) => {
+                        e.stopPropagation();
+                        handleSelect(opt.value);
+                      },
+                      children: [
+                        n.jsx("span", { children: opt.label }),
+                        value === opt.value &&
+                          n.jsx("svg", {
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            children: n.jsx("path", {
+                              d: "M6.5 11.5l-3.5-3.5 1.4-1.4L6.5 8.7l5.1-5.1 1.4 1.4z",
+                            }),
+                          }),
+                      ],
+                    }),
+                  ),
+                }),
+              ],
+            }),
+          ],
+        });
+      };
 
-			  if (value === opt.value) {
-				const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-				svg.setAttribute("width", "16");
-				svg.setAttribute("height", "16");
-				svg.setAttribute("fill", "currentColor");
-				svg.innerHTML = `<path d="M6.5 11.5l-3.5-3.5 1.4-1.4L6.5 8.7l5.1-5.1 1.4 1.4z"/>`;
-				btn.appendChild(svg);
-			  }
-
-			  menu.appendChild(btn);
-			});
-
-			document.body.appendChild(menu);
-
-			const updatePosition = () => {
-			  if (!menuRef.current || !triggerRef.current) return;
-			  const rect = triggerRef.current.getBoundingClientRect();
-			  menuRef.current.style.left = `${rect.left}px`;
-			  menuRef.current.style.top = `${rect.top - menuRef.current.offsetHeight}px`;
-			  menuRef.current.style.minWidth = `${rect.width}px`;
-			};
-
-			updatePosition();
-			const handleClickOutside = (e) => {
-			  if (!menu.contains(e.target) && !triggerRef.current.contains(e.target)) setIsOpen(false);
-			};
-
-			window.addEventListener("resize", updatePosition);
-			document.addEventListener("mousedown", handleClickOutside, true);
-
-			return () => {
-			  window.removeEventListener("resize", updatePosition);
-			  document.removeEventListener("mousedown", handleClickOutside, true);
-			  menu.remove();
-			  menuRef.current = null;
-			};
-		  }, [isOpen, value]);
-
-		  return n.jsxs("div", {
-			className: z().root,
-			children: [
-			  n.jsxs("div", {
-				className: z().textContainer,
-				children: [
-				  n.jsx(c.Caption, { className: z().title, id, variant: "div", size: "l", weight: "bold", lineClamp: 1, "aria-hidden": true, children: title }),
-				  description && n.jsx(c.Caption, { variant: "div", type: "text", size: "xs", weight: "medium", className: z().description, children: description }),
-				],
-			  }),
-			  n.jsx("div", {
-				ref: triggerRef,
-				onClick: () => setIsOpen(!isOpen),
-				style: {
-				  backgroundColor: 'var(--ym-input-bg-default)',
-				  color: 'var(--ym-controls-color-primary-text-enabled_variant)',
-				  border: '1px solid var(--ym-border-color)',
-				  padding: '8px 32px 8px 12px',
-				  borderRadius: '8px',
-				  minWidth: '160px',
-				  cursor: 'pointer',
-				  userSelect: 'none',
-				  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238E929C' transform='${isOpen ? 'rotate(180)' : ''}'%3E%3Cpath d='M6 8L3 5h6L6 8z'/%3E%3C/svg%3E")`,
-				  backgroundRepeat: 'no-repeat',
-				  backgroundPosition: 'right 12px center',
-				},
-				children: selectedLabel
-			  })
-			]
-		  });
-		};
-
-		
       let toggleBarWithPathChooser = (e) => {
         let {
             title: t,

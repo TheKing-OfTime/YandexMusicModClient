@@ -266,6 +266,57 @@
     transition: none;
   }
 }
+
+.settingBarWithDropdown_button {
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+  border: 1px solid var(--ym-controls-color-secondary-outline-enabled_stroke);
+  padding: 8px 32px 8px 12px;
+  border-radius: 8px;
+  min-width: 160px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.settingBarWithDropdown_button:hover {
+  border: 1px solid var(--ym-controls-color-secondary-outline-hovered_stroke);
+}
+
+.settingBarWithDropdown_menu {
+  right: 0;
+  border: 1px solid var(--ym-controls-color-secondary-outline-enabled_stroke);
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  overflow: hidden;
+  background: var(--ym-background-color-primary-enabled-popover);
+  z-index: 99999;
+  transition: transform 0.2s;
+}
+
+.settingBarWithDropdown_menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ym-controls-color-primary-text-enabled_variant);
+  transition: background 0.2s;
+}
+
+.settingBarWithDropdown_menuItem:hover {
+  background-color: var(--ym-controls-color-secondary-default-hovered);
+}
+
 .EqualizerPresets_button__D8s_l {
   margin-block-end: 0.125rem;
   margin-inline-end: 0.125rem;
