@@ -916,7 +916,14 @@
         });
       });
       let discordRpcSettings = (0, i.Pi)(() => {
-        let { formatMessage: e } = (0, r.Z)(),
+          const [statusDisplayType, setStatusDisplayType] = (0, d.useState)(
+              window.nativeSettings.get("modFeatures.discordRPC.statusDisplayType") ?? 0,
+          );
+          const [applicationIDForRPC, setApplicationIDForRPC] = (0, d.useState)(
+              window.nativeSettings.get("modFeatures.discordRPC.applicationIDForRPC") ?? "1124055337234858005",
+          );
+
+          let { formatMessage: e } = (0, r.Z)(),
           {
             modals: { discordRpcSettingsModal: t },
           } = (0, _.oR4)(),
@@ -1016,7 +1023,30 @@
               e,
             );
             window.nativeSettings.set("modFeatures.discordRPC.showVersion", e);
-          }, []);
+          }, []),
+          onStatusDisplayTypeChange = (0, d.useCallback)(async (e) => {
+              console.log("statusDisplayType changed. Value: ", e);
+              window.nativeSettings.set(
+                  "modFeatures.discordRPC.statusDisplayType",
+                  e,
+              );
+              setStatusDisplayType(e);
+          }, []),
+              onApplicationIDForRPCChange = (0, d.useCallback)(async (e) => {
+                  console.log("applicationIDForRPC changed. Value: ", e);
+                  window.nativeSettings.set(
+                      "modFeatures.discordRPC.applicationIDForRPC",
+                      e,
+                  );
+                  setApplicationIDForRPC(e);
+                  i(
+                      (0, n.jsx)(p.Q, {
+                          error:
+                              "Для применения этой настройки требуется перезапуск приложения",
+                      }),
+                      { containerId: _.W$x.ERROR },
+                  );
+              }, []);
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "500px" },
@@ -1058,6 +1088,35 @@
                   ),
                 }),
               }),
+                (0, n.jsx)("li", {
+                    className: Z().item,
+                    children: (0, n.jsx)(settingBarWithDropdown, {
+                        title: "Тип отображения статуса",
+                        description: "Что будет отображаться в коротком статусе",
+                        onChange: onStatusDisplayTypeChange,
+                        value: statusDisplayType,
+                        direction: "bottom",
+                        options: [
+                            { value: 0, label: "Платформа" },
+                            { value: 1, label: "Артист" },
+                            { value: 2, label: "Трек" },
+                        ],
+                    }),
+                }),
+                (0, n.jsx)("li", {
+                    className: Z().item,
+                    children: (0, n.jsx)(settingBarWithDropdown, {
+                        title: "Локализация платформы в статусе",
+                        description: applicationIDForRPC === "1290778445370097674" ? "Слушает Яндекс Музыку" : "Listening to Yandex Music",
+                        onChange: onApplicationIDForRPCChange,
+                        value: applicationIDForRPC,
+                        direction: "bottom",
+                        options: [
+                            { value: "1124055337234858005", label: "Английский" },
+                            { value: "1290778445370097674", label: "Русский" },
+                        ],
+                    }),
+                }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
