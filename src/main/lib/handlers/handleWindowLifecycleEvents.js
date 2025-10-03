@@ -22,6 +22,17 @@ const checkAndUpdateApplicationData = (window) => {
 const setBlurredTime = () => {
   state_js_1.state.lastWindowBlurredOrHiddenTime = Date.now();
 };
+
+const updateWindowDimensions = (window) => {
+  const sizesBefore = window.getSize();
+  window.setSize(
+      Math.floor(sizesBefore[0] / 2) * 2,
+      Math.floor(sizesBefore[1] / 2) * 2,
+  ); // Это довольно сомнительная реализация
+  const sizes = window.getSize();
+  store_js_1.setWindowDimensions(sizes[0], sizes[1], window.isMaximized());
+}
+
 const handleWindowLifecycleEvents = (window) => {
   electron_1.app.on("activate", () => {
     (0, createWindow_js_1.toggleWindowVisibility)(window, true);
@@ -52,18 +63,16 @@ const handleWindowLifecycleEvents = (window) => {
   });
   window.on("maximize", () => {
     checkAndUpdateApplicationData(window);
+    updateWindowDimensions(window);
+  });
+  window.on("unmaximize", () => {
+    updateWindowDimensions(window);
   });
   window.on("restore", () => {
     checkAndUpdateApplicationData(window);
   });
   window.on("resized", () => {
-    const sizesBefore = window.getSize();
-    window.setSize(
-      Math.floor(sizesBefore[0] / 2) * 2,
-      Math.floor(sizesBefore[1] / 2) * 2,
-    ); // Это довольно сомнительная реализация
-    const sizes = window.getSize();
-    store_js_1.setWindowDimensions(sizes[0], sizes[1]);
+    updateWindowDimensions(window);
   });
   window.on("moved", () => {
     const position = window.getPosition();
