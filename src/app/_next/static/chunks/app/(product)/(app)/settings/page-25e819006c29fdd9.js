@@ -2692,11 +2692,18 @@
           };
         }, [handleClickOutside]);
 
-        d.useEffect(() => {
-            if (triggerRef.current) {
-                setMenuWidth(triggerRef.current.offsetWidth);
-            }
-        }, []);
+          d.useEffect(() => {
+              const element = triggerRef.current;
+              if (!element) return;
+
+              const observer = new ResizeObserver(([entry]) => {
+                  setMenuWidth(entry.borderBoxSize[0].inlineSize);
+              });
+
+              observer.observe(element);
+
+              return () => observer.disconnect();
+          }, []);
 
         return n.jsxs("div", {
           className: z().root,
