@@ -115,6 +115,7 @@ const init = () => {
   initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
     width: 1280,
     height: 800,
+    maximized: false,
   });
   initField(store_js_1.StoreKeys.WINDOW_POSITION, {
     x: 0,
@@ -337,10 +338,11 @@ const getWindowDimensions = () => {
 };
 exports.getWindowDimensions = getWindowDimensions;
 
-const setWindowDimensions = (width, height) => {
+const setWindowDimensions = (width, height, maximized = false) => {
   return setStore(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
     width: width,
     height: height,
+    maximized: maximized,
   });
 };
 exports.setWindowDimensions = setWindowDimensions;
