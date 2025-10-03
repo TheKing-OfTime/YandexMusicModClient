@@ -1720,7 +1720,18 @@
             },
             [i],
           );
-
+        const [startupPage, setStartupPage] = (0, d.useState)(
+          window.nativeSettings.get("modFeatures.windowBehavior.startupPage") ??
+            "/",
+        );
+        const onStartupPageChange = (0, d.useCallback)(async (e) => {
+          console.log("startupPage changed. Value: ", e);
+          window.nativeSettings.set(
+            "modFeatures.windowBehavior.startupPage",
+            e,
+          );
+          setStartupPage(e);
+        }, []);
         return (0, n.jsxs)(f.u, {
           className: b().root,
           style: { "max-width": "550px" },
@@ -1737,6 +1748,22 @@
             className: `${Z().root} ${B().list}`,
             style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
+              (0, n.jsx)("li", {
+                className: Z().item,
+                children: (0, n.jsx)(settingBarWithDropdown, {
+                  title: "Стартовая страница",
+                  description: "Страница по умолчанию при запуске",
+                  onChange: onStartupPageChange,
+                  value: startupPage,
+                  direction: "bottom",
+                  options: [
+                    { value: "/", label: "Главная" },
+                    { value: "/search", label: "Поиск" },
+                    { value: "/non-music", label: "Подкасты и книги" },
+                    { value: "/collection", label: "Коллекция" },
+                  ],
+                }),
+              }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -2268,16 +2295,10 @@
             },
             [i],
           ),
-          onToggleGlobalShortcuts = (0, d.useCallback)(
-            (e) => {
-              console.log("globalShortcuts.enable toggled. Value: ", e);
-              window.nativeSettings.set(
-                "modFeatures.globalShortcuts.enable",
-                e,
-              );
-            },
-            []
-          );
+          onToggleGlobalShortcuts = (0, d.useCallback)((e) => {
+            console.log("globalShortcuts.enable toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.globalShortcuts.enable", e);
+          }, []);
         return (0, n.jsx)(f.u, {
           className: b().root,
           style: { "max-width": "570px" },
@@ -2573,6 +2594,126 @@
           ],
         });
       };
+
+      const settingBarWithDropdown = ({
+        title,
+        description,
+        onChange,
+        value,
+        options,
+        direction = "bottom",
+      }) => {
+        const [isOpen, setIsOpen] = d.useState(false);
+        const triggerRef = d.useRef(null);
+
+        const handleSelect = d.useCallback(
+          (val) => {
+            onChange(val);
+            setIsOpen(false);
+          },
+          [onChange, setIsOpen],
+        );
+
+        const handleClickOutside = d.useCallback(
+          (event) => {
+            if (
+              isOpen &&
+              !event.target.closest(".settingBarWithDropdown_button")
+            ) {
+              event.stopPropagation();
+              event.preventDefault();
+              setIsOpen(false);
+            }
+          },
+          [isOpen],
+        );
+
+        d.useEffect(() => {
+          document.addEventListener("click", handleClickOutside);
+          return () => {
+            document.removeEventListener("click", handleClickOutside);
+          };
+        }, [handleClickOutside]);
+
+        return n.jsxs("div", {
+          className: z().root,
+          children: [
+            n.jsxs("div", {
+              className: z().textContainer,
+              children: [
+                n.jsx(c.Caption, {
+                  className: z().title,
+                  variant: "div",
+                  size: "l",
+                  weight: "bold",
+                  lineClamp: 1,
+                  "aria-hidden": true,
+                  children: title,
+                }),
+                description &&
+                  n.jsx(c.Caption, {
+                    variant: "div",
+                    type: "text",
+                    size: "xs",
+                    weight: "medium",
+                    className: z().description,
+                    children: description,
+                  }),
+              ],
+            }),
+            n.jsx("div", {
+              ref: triggerRef,
+              onClick: () => setIsOpen((prevValue) => !prevValue),
+              className:
+                "settingBarWithDropdown_button Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx",
+              children: [
+                ,
+                options.find((opt) => opt.value === value)?.label ||
+                  "Select...",
+                n.jsx("ul", {
+                  role: "menu",
+                  className: "settingBarWithDropdown_menu",
+                  style: {
+                    display: isOpen ? "flex" : "none",
+                    flexDirection: "column",
+                    width: triggerRef.current
+                      ? `${triggerRef.current.width}px`
+                      : "160px",
+                    top: direction === "bottom" ? "120%" : "unset",
+                    bottom: direction === "top" ? "120%" : "unset",
+                  },
+                  children: options.map((opt) =>
+                    n.jsx("li", {
+                      role: "menuitem",
+                      className: "settingBarWithDropdown_menuItem",
+                      id: opt.value,
+                      "aria-selected": value === opt.value,
+                      onClick: (e) => {
+                        e.stopPropagation();
+                        handleSelect(opt.value);
+                      },
+                      children: [
+                        n.jsx("span", { children: opt.label }),
+                        value === opt.value &&
+                          n.jsx("svg", {
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            children: n.jsx("path", {
+                              d: "M6.5 11.5l-3.5-3.5 1.4-1.4L6.5 8.7l5.1-5.1 1.4 1.4z",
+                            }),
+                          }),
+                      ],
+                    }),
+                  ),
+                }),
+              ],
+            }),
+          ],
+        });
+      };
+
       let toggleBarWithPathChooser = (e) => {
         let {
             title: t,
