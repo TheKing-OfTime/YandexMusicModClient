@@ -270,7 +270,7 @@
 .settingBarWithDropdown_button {
   color: var(--ym-controls-color-primary-text-enabled_variant);
   border: 1px solid var(--ym-controls-color-secondary-outline-enabled_stroke);
-  padding: 8px 32px 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
   min-width: 160px;
   position: relative;
@@ -304,7 +304,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 12px;
   background: transparent;
   border: none;
   cursor: pointer;
