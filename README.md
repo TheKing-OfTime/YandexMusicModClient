@@ -176,6 +176,11 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 Добавляет возможность включить повтор трека когда играет Моя Волна.
 
+<p align="left">
+	<img width="550" src="https://github.com/user-attachments/assets/85480090-5e19-4ee8-8084-dbb15491451b" />
+</p>
+
+
 </details>
 
 ### Отображение качества трека
@@ -212,7 +217,9 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 Добавляет строку поиска в контекстное меню выбора плейлиста.
 
 ![image](https://github.com/user-attachments/assets/03924f52-6e37-4d6a-ad9e-c079ec739cd8)
-
+<p align="left">
+	<img width="500" alt="Пример настроек внутри приложения" src="https://github.com/user-attachments/assets/03924f52-6e37-4d6a-ad9e-c079ec739cd8" />
+</p>
 
 </details>
 
