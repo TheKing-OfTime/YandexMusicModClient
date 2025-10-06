@@ -102,6 +102,10 @@ const handleApplicationEvents = (window) => {
     electron_1.globalShortcut.unregisterAll();
   });
 
+  electron_1.app.on("child-process-gone", (event, { type, reason }) => {
+    if (type=== 'GPU') mainWindow?.webContents.send(events_js_1.Events.GPU_STALL, reason);
+  });
+
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
     eventsLogger.info("Event received", events_js_1.Events.APPLICATION_RESTART);
     electron_1.app.relaunch();

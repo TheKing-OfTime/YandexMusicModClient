@@ -1011,14 +1011,14 @@
               }, []),
 
           onGPUStall = (0, a.useCallback)(
-              (a, s, newVersion, dedupeTimestamp = 0) => {
+              (event, reason, dedupeTimestamp = 0) => {
                 if (
                     window.onGPUStallEventDedupeNonce === dedupeTimestamp
                 )
                   return;
                 if (dedupeTimestamp)
                   window.onGPUStallEventDedupeNonce = dedupeTimestamp;
-                gpuStallNotify((0, o.jsx)(toastWithProgress, { toastID:'GPU_STALL', message:'Аппаратное ускорение отключилось', buttonLabel: 'Исправить', onButtonClick:onGPUStallFixClick }), {
+                gpuStallNotify((0, o.jsx)(toastWithProgress, { toastID:'GPU_STALL', message:`Аппаратное ускорение отключилось: ${reason}`, buttonLabel: 'Исправить', onButtonClick:onGPUStallFixClick }), {
                   containerId: i.W$x.IMPORTANT,
                 });
               },
