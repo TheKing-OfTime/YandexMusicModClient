@@ -10,12 +10,13 @@ var PlayerActions;
   PlayerActions["MOVE_FORWARD"] = "MOVE_FORWARD";
   PlayerActions["MOVE_BACKWARD"] = "MOVE_BACKWARD";
 
-  PlayerActions["TOGGLE_LIKE"] = "TOGGLE_LIKE";         // TEMPORARY UNAVAILABLE
-  PlayerActions["LIKE"] = "LIKE";                       // TEMPORARY UNAVAILABLE
-  PlayerActions["LIKE_NONE"] = "LIKE_NONE";             // TEMPORARY UNAVAILABLE
-  PlayerActions["TOGGLE_DISLIKE"] = "TOGGLE_DISLIKE";   // TEMPORARY UNAVAILABLE
-  PlayerActions["DISLIKE"] = "DISLIKE";                 // TEMPORARY UNAVAILABLE
-  PlayerActions["DISLIKE_NONE"] = "DISLIKE_NONE";       // TEMPORARY UNAVAILABLE
+  PlayerActions["TOGGLE_LIKE"] = "TOGGLE_LIKE";
+  PlayerActions["LIKE"] = "LIKE";
+  PlayerActions["LIKE_NONE"] = "LIKE_NONE";
+
+  PlayerActions["TOGGLE_DISLIKE"] = "TOGGLE_DISLIKE";
+  PlayerActions["DISLIKE"] = "DISLIKE";
+  PlayerActions["DISLIKE_NONE"] = "DISLIKE_NONE";
 
   PlayerActions["TOGGLE_REPEAT"] = "TOGGLE_REPEAT";
   PlayerActions["REPEAT_NONE"] = "REPEAT_NONE";
