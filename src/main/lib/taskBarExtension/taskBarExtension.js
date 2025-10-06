@@ -174,7 +174,13 @@ const setIconicThumbnail = async (playerState) => {
     const width = native.getDWMIconicThumbnailInstance().maxWidth
     const height = native.getDWMIconicThumbnailInstance().maxHeight
 
-    const thumbnailBuffer = await thumbnailDrawner.drawThumbnail(width, height, isRepeatOne ? imageBuffer : previousImageBuffer, imageBuffer, isRepeatOne ? imageBuffer : nextImageBuffer, !playerState.isPaused);
+    const thumbnailBuffer = await thumbnailDrawner.drawThumbnail(
+        width,
+        height,
+        isRepeatOne ? imageBuffer : previousImageBuffer,
+        imageBuffer,
+        isRepeatOne ? imageBuffer : nextImageBuffer,
+        !playerState.isPaused);
 
     if (!thumbnailBuffer) {
       taskBarExtensionLogger.warn("Thumbnail buffer is null fallbacking to cover image");
