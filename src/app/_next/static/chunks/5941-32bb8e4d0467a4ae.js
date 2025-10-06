@@ -785,7 +785,7 @@
                   null === (e = window.desktopEvents) ||
                   void 0 === e ||
                   e.send(i.BOn.DOWNLOAD_MOD_UPDATE);
-                }, [s]),
+                }, []),
                 formattedMessages = (progressValue) => {
                   let message = n({ id: "offline.download" });
                   if (progressValue < 0) {
@@ -833,6 +833,8 @@
                 ),
                 progressBarUpdate = (0, a.useCallback)(
                     (event, elementType, progress, dedupeTimestamp = 0) => {
+                      if (elementType !== "modUpdateToast") return;
+
                       if (
                           window.dedupeNonces &&
                           window.dedupeNonces[elementType] === dedupeTimestamp
@@ -882,9 +884,102 @@
                   ]
             }));
           },
+
+
+          toastWithProgress = (e) => {
+            let { toastID, message, buttonLabel, onButtonClick, disabled= false } = e,
+                [getProgress, setProgress] = (0, a.useState)(-1),
+                v = (0, a.useMemo)(
+                    () =>
+                        (0, o.jsxs)("div", {
+                          className: _().message,
+                          children: [
+                            (0, o.jsx)(c.Caption, {
+                              className: _().text,
+                              variant: "div",
+                              type: "controls",
+                              size: "m",
+                              children: message
+                            }),
+                            (0, o.jsx)(r.Button, {
+                              className: _().button,
+                              onClick: onButtonClick,
+                              variant: "default",
+                              color: "secondary",
+                              size: "xs",
+                              radius: "xxxl",
+                              disabled: disabled,
+                              children: (0, o.jsx)(c.Caption, {
+                                variant: "div",
+                                type: "controls",
+                                size: "m",
+                                children: buttonLabel,
+                              }),
+                            }),
+                          ],
+                        }),
+                    [n, d, t, getProgress],
+                ),
+                progressBarUpdate = (0, a.useCallback)(
+                    (event, elementType, progress, dedupeTimestamp = 0) => {
+                      if (elementType !== toastID) return;
+
+                      if (
+                          window.dedupeNonces &&
+                          window.dedupeNonces[elementType] === dedupeTimestamp
+                      )
+                        return;
+                      if (!window.dedupeNonces) window.dedupeNonces = {};
+                      if (dedupeTimestamp)
+                        window.dedupeNonces[elementType] = dedupeTimestamp;
+                      setProgress(progress);
+                    },
+                    [setProgress],
+                );
+            return (
+                (0, a.useEffect)(() => {
+                  var e;
+                  return (
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.on(i.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate),
+                          () => {
+                            var e;
+                            null === (e = window.desktopEvents) ||
+                            void 0 === e ||
+                            e.off(i.BOn.PROGRESS_BAR_CHANGE, progressBarUpdate);
+                          }
+                  );
+                }, [progressBarUpdate]),
+                    (0, o.jsx)(u.Yj, {
+                      className: (0, l.W)(_().root, _().important),
+                      message: v,
+                      children: [
+                        (0, o.jsx)("div", {
+                          className: "qaIScXjx1qyXuaIHXQIo",
+                          style: {
+                            overflow: "hidden",
+                            "margin-left": "-16px",
+                            "margin-top": "-6px",
+                            position: "absolute",
+                            width: (500 * getProgress) / 100 + "px",
+                            height: "50px",
+                            "background-color": "rgb(255 255 255)",
+                            opacity: getProgress <= 100 ? 0.1 : 0,
+                            "z-index": 1,
+                            transition: "opacity 0.3s linear 0.5s",
+                          },
+                        }),
+                      ]
+                    }));
+          },
+
+
         p = () => {
           let { formatMessage: e } = (0, s.Z)(),
             { notify: t } = (0, i.d$W)(),
+            { notify: modUpdateNotify, dismiss: modUpdateDismiss} = (0, i.d$W)(),
+            { notify: gpuStallNotify, dismiss: gpuStallDismiss} = (0, i.d$W)(),
             n = (0, a.useRef)(""),
             l = (0, a.useCallback)(
               (a, s) => {
@@ -904,12 +999,32 @@
                   return;
                 if (dedupeTimestamp)
                   window.modUpdateAvailableEventDedupeNonce = dedupeTimestamp;
-                t((0, o.jsx)(modUpdateToast, { formatMessage: e, version: `${s} -> ${newVersion}` }), {
+                modUpdateNotify((0, o.jsx)(modUpdateToast, { formatMessage: e, version: `${s} -> ${newVersion}`, closeToast: modUpdateDismiss }), {
                       containerId: i.W$x.IMPORTANT,
                 });
               },
-              [e, n, t],
+              [e, modUpdateNotify, modUpdateDismiss],
+          ),
+
+              onGPUStallFixClick = (0, a.useCallback)(() => {
+                window.desktopEvents?.send(i.BOn.APPLICATION_RESTART);
+              }, []),
+
+          onGPUStall = (0, a.useCallback)(
+              (a, s, newVersion, dedupeTimestamp = 0) => {
+                if (
+                    window.onGPUStallEventDedupeNonce === dedupeTimestamp
+                )
+                  return;
+                if (dedupeTimestamp)
+                  window.onGPUStallEventDedupeNonce = dedupeTimestamp;
+                gpuStallNotify((0, o.jsx)(toastWithProgress, { toastID:'GPU_STALL', message:'Аппаратное ускорение отключилось', buttonLabel: 'Исправить', onButtonClick:onGPUStallFixClick }), {
+                  containerId: i.W$x.IMPORTANT,
+                });
+              },
+              [gpuStallNotify, gpuStallDismiss],
           );
+
           (0, a.useEffect)(() => {
             var e;
             return (
@@ -924,6 +1039,20 @@
                     }
             );
           }, [modUpdateCallback]);
+          (0, a.useEffect)(() => {
+            var e;
+            return (
+                null === (e = window.desktopEvents) ||
+                void 0 === e ||
+                e.on(i.BOn.GPU_STALL, onGPUStall),
+                    () => {
+                      var e;
+                      null === (e = window.desktopEvents) ||
+                      void 0 === e ||
+                      e.off(i.BOn.GPU_STALL, onGPUStall);
+                    }
+            );
+          }, [onGPUStall]);
           (0, a.useEffect)(() => {
             var e;
             return (

@@ -42,6 +42,9 @@ electron_1.contextBridge.exposeInMainWorld("desktopEvents", {
   invoke(name, ...args) {
     return electron_1.ipcRenderer.invoke(name, ...args);
   },
+  emit(name, ...args) {
+    return electron_1.ipcRenderer.emit(name, ...args);
+  }
 });
 electron_1.contextBridge.exposeInMainWorld(
   "DISPLAY_MAX_FPS",
