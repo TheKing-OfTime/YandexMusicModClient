@@ -622,7 +622,7 @@
         s,
         r = o(65067),
         i = o(13534),
-        feedbackApi = o(26382);
+        feedbackApi = o(32399);
 
       const sendPlayerStateDefault = (ve) => {
         let desktopEvents;
@@ -691,8 +691,8 @@
         (t.MOVE_FORWARD = "MOVE_FORWARD");
       let l = (e) => {
         let { sonataState: sonataState } = (0, i.oR4)(),
-            onLikeClick = (0, feedbackApi.SB)(sonataState.entityMeta),
-            onDislikeClick = (0, feedbackApi.KX)(sonataState.entityMeta);
+            onLikeClick = (0, feedbackApi?.SB)(sonataState.entityMeta),
+            onDislikeClick = (0, feedbackApi?.KX)(sonataState.entityMeta);
         let n = (0, r.useCallback)(
           (n, o, nonce = 1) => {
             if (window.playerActionEventDedupeNonce === nonce) return;
