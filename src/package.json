@@ -34,7 +34,7 @@
     "js-yaml": "~4.1.0"
   },
   "modification": {
-    "version": "1.37.2",
+    "version": "1.37.3",
     "realYMVersion": "5.57.0",
     "lastfm": {
       "apikey": "2b9046ddec8c00edcd0144b3abbea4ba",
