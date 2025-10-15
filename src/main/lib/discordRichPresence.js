@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Logger_js_1 = require("../packages/logger/Logger.js");
 const store_js_1 = require("./store.js");
+const { throttle } = require("./utils.js");
 const config_js_1 = require("../config.js");
 const DiscordRPC = require("discord-rpc");
 const discordRichPresenceLogger = new Logger_js_1.Logger("DiscordRichPresence");
@@ -30,7 +31,7 @@ const settings = () => store_js_1.getModFeatures()?.discordRPC;
 
 const clientId = settings()?.applicationIDForRPC ?? "1124055337234858005";
 const GITHUB_LINK = "https://github.com/TheKing-OfTime/YandexMusicModClient";
-const SET_ACTIVITY_TIMEOUT_MS = 1500;
+const SET_ACTIVITY_TIMEOUT_MS = 3000;
 const STATUS_DISPLAY_TYPES = {
   0: 0, // Name
   1: 1, // State
@@ -257,6 +258,8 @@ function updateActivity(activityObject) {
     });
 }
 
+const throttledUpdateActivity = throttle(updateActivity, SET_ACTIVITY_TIMEOUT_MS);
+
 function sendCurrentActivity() {
   if (!(settings()?.enable ?? true)) {
     if (lastActivity) {
@@ -288,14 +291,7 @@ function sendCurrentActivity() {
   if (activityObject && !compareActivities(activityObject)) {
     lastActivity = activityObject;
 
-    if (updateTimeoutId) {
-      clearTimeout(updateTimeoutId);
-      updateTimeoutId = undefined;
-    }
-
-    updateTimeoutId = setTimeout(() => {
-      updateActivity(activityObject);
-    }, SET_ACTIVITY_TIMEOUT_MS);
+    throttledUpdateActivity(activityObject);
   }
 }
 
