@@ -299,6 +299,10 @@ class TrackDownloader {
       ...(data.track?.albums?.[0]?.title
         ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`]
         : []),
+      // TODO Await fetching tracks in main process
+      // ...(data.track?.isrc
+      //     ? ["-metadata", `${fileExtension === "mp3" ? 'TSRC' : 'ISRC'}="${data.track?.isrc}"`]
+      //     : []),
       `-y "${finalFilepath}"`,
     ];
 
