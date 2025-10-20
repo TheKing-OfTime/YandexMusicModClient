@@ -114,7 +114,7 @@ const createWindow = async () => {
   });
   window.once("ready-to-show", () => {
     window.setSize(dimensions?.width ?? 1280, dimensions?.height ?? 800);
-    if (dimensions.maximized) window.maximize();
+    if (dimensions?.maximized ?? false) window.maximize();
     (0, exports.toggleWindowVisibility)(
       window,
       !(store_js_1.getModFeatures()?.windowBehavior?.startMinimized ?? false),
