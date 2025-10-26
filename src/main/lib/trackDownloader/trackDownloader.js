@@ -1,5 +1,5 @@
-const Logger_js_1 = require("../packages/logger/Logger");
-const store_js_1 = require("./store");
+const Logger_js_1 = require("../../packages/logger/Logger.js");
+const store_js_1 = require("../store.js");
 const electron_1 = require("electron");
 const fs = require("fs").promises;
 const fsSync = require("fs");
@@ -8,7 +8,7 @@ const promisify = require("util").promisify;
 const { exec } = require("child_process");
 const FFMPEG_PATH = require("ffmpeg-static");
 const electron = require("electron");
-const crypto = require('crypto');
+const { downloadFileWithProgress, makeDecryptor } = require('../utils.js');
 
 const execPromise = promisify(exec);
 
@@ -32,35 +32,6 @@ function artists2string(artists) {
     string += " & " + a.name;
   });
   return string;
-}
-
-/**
- * Преобразует строку шестнадцатеричных символов в Uint8Array.
- * @param {string} hexString - Строка, содержащая шестнадцатеричные цифры (например, "a1b2c3...").
- * @returns {Uint8Array} - Массив байтов.
- */
-function hexStringToUint8Array(hexString) {
-  // Разбиваем строку на пары символов
-  const hexPairs = hexString.match(/.{1,2}/g);
-  // Преобразуем каждую пару в число
-  const byteValues = hexPairs.map((pair) => parseInt(pair, 16));
-  return new Uint8Array(byteValues);
-}
-
-/**
- * Преобразует число в 16-байтовый массив, используемый в качестве counter для AES-CTR.
- * @param {number} num - Число, которое нужно преобразовать.
- * @returns {Uint8Array} - 16-байтовый массив, заполненный байтами числа.
- */
-function numberToUint8Counter(num) {
-  let value = num;
-  const counter = new Uint8Array(16);
-  // Записываем число в массив, начиная с младших байтов (с конца массива)
-  for (let i = 0; i < 16; i++) {
-    counter[15 - i] = value & 0xff; // Получаем младший байт
-    value >>= 8; // Сдвигаем число на 8 бит вправо
-  }
-  return counter;
 }
 
 function getFileExtensionFromCodec(codec) {
@@ -114,99 +85,22 @@ class TrackDownloader {
     this.logger.log("Initialized");
   }
 
-  /**
-   * Асинхронно расшифровывает данные с использованием алгоритма AES-CTR.
-   * @param {Object} params - Параметры расшифровки.
-   * @param {string} params.key - Ключ в виде шестнадцатеричной строки.
-   * @param {ArrayBuffer} params.data - Зашифрованные данные.
-   * @param {number} [params.loadedBytes] - Количество загруженных байт (используется для вычисления counter).
-   * @returns {Promise<ArrayBuffer>} - Промис, который при разрешении возвращает расшифрованные данные.
-   */
-  async decryptData({ key, data, loadedBytes }) {
-    // Импортируем ключ: преобразуем строку в Uint8Array и импортируем его для AES-CTR
-    const keyBytes = hexStringToUint8Array(key);
-    const cryptoKey = await crypto.subtle.importKey(
-      "raw",
-      keyBytes,
-      { name: "AES-CTR" },
-      false,
-      ["encrypt", "decrypt"],
-    );
 
-    // Инициализируем counter нулевым массивом
-    let counter = new Uint8Array(16);
-    // Если указано количество загруженных байт, вычисляем номер блока и создаем counter
-    if (loadedBytes) {
-      const blockNumber = loadedBytes / 16;
-      counter = numberToUint8Counter(blockNumber);
+  async downloadRawTrack(data, outputPath, callback = (x, b) => { return null; }) {
+
+    const isEncrypted = data?.transport === "encraw";
+    const decryptor = isEncrypted ? makeDecryptor(data.key) : undefined;
+
+    this.logger.log(`Downloading${isEncrypted ? ' and decrypting': ''} raw track: ${data.trackId}`);
+
+    try {
+      await downloadFileWithProgress(data.downloadURL, outputPath, (x) => { callback(x*0.8,x*0.8) }, decryptor);
+      this.logger.log(`Track ${data.trackId} downloaded${isEncrypted ? ' and decrypted': ''}`);
+      return true;
+    } catch (e) {
+      this.logger.warn(`Track ${data.trackId} download${isEncrypted ? ' or decryption': ''} failed: ${e}`);
+      return false;
     }
-
-    // Выполняем расшифровку данных
-    return await crypto.subtle.decrypt(
-      {
-        name: "AES-CTR",
-        counter: counter,
-        length: 128, // Длина блока в битах
-      },
-      cryptoKey,
-      data,
-    );
-  }
-
-  async fetchTrack(
-    data,
-    callback = (x, b) => {
-      return null;
-    },
-  ) {
-    this.logger.log("Fetching track:", data);
-
-    const res = await fetch(data.downloadURL);
-
-    const contentLength = res.headers.get("content-length");
-    let arrayBuffer;
-
-    if (contentLength) {
-      const total = parseInt(contentLength, 10);
-      let loaded = 0;
-      const reader = res.body.getReader();
-      const chunks = [];
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        loaded += value.length;
-        const result = Math.min((loaded / total) * 0.7, 1);
-        callback(result, result);
-      }
-      arrayBuffer = new Uint8Array(
-        chunks.reduce((acc, val) => acc + val.length, 0),
-      );
-      let offset = 0;
-      for (const chunk of chunks) {
-        arrayBuffer.set(chunk, offset);
-        offset += chunk.length;
-      }
-      arrayBuffer = arrayBuffer.buffer;
-    } else {
-      arrayBuffer = await res.arrayBuffer();
-      callback(0.7, 0.7);
-    }
-
-    if (!arrayBuffer) return this.logger.warn("Failed to fetch:", res);
-
-    this.logger.log("Fetched!");
-
-    if (data?.transport === "encraw") {
-      this.logger.log("Track is encrypted. Decrypting...");
-      arrayBuffer = await this.decryptData({
-        key: data.key,
-        data: arrayBuffer,
-      });
-      this.logger.log("Decrypted!");
-    }
-
-    return Buffer.from(arrayBuffer);
   }
 
   async fetchAlbumCover(data) {
@@ -385,12 +279,7 @@ class TrackDownloader {
 
     callback(0, 0);
 
-    const buffer = await this.fetchTrack(data, callback);
-    this.logger.info("Got track. Saving to:", tempTrackPath);
-
-    await fs.writeFile(tempTrackPath, buffer);
-    this.logger.info("Track saved to temp directory");
-    callback(0.8, 0.8);
+    await this.downloadRawTrack(data, tempTrackPath, callback);
 
     const coverBuffer = await this.fetchAlbumCover(data);
     this.logger.info("Got cover");
