@@ -2616,7 +2616,7 @@
         buttonComponent = o(68208),
         z = o.n(R);
       let P = (e) => {
-        let { title: t, onChange: o, isChecked: i, description: r } = e,
+        let { title: t, onChange: o, isChecked: i, description: r, disabled: disabled=false } = e,
           l = (0, d.useId)();
         return (0, n.jsxs)("div", {
           className: z().root,
@@ -2625,7 +2625,7 @@
               className: z().textContainer,
               children: [
                 (0, n.jsx)(c.Caption, {
-                  className: z().title,
+                  className: disabled ? z().titleDisabled : z().title,
                   id: l,
                   variant: "div",
                   size: "l",
@@ -2640,7 +2640,9 @@
                     type: "text",
                     size: "xs",
                     weight: "medium",
-                    className: z().description,
+                    className: disabled
+                      ? z().descriptionDisabled
+                      : z().description,
                     children: r,
                   }),
               ],
@@ -2649,6 +2651,7 @@
               isChecked: i,
               "aria-describedby": l,
               onChange: o,
+              disabled: disabled,
             }),
           ],
         });
@@ -2661,7 +2664,8 @@
         value,
         options,
         direction = "bottom",
-      }) => {
+        disabled: disabled = false,
+    }) => {
         const [isOpen, setIsOpen] = d.useState(false);
         const [menuWidth, setMenuWidth] = d.useState(160);
         const triggerRef = d.useRef(null);
@@ -2712,7 +2716,7 @@
               className: z().textContainer,
               children: [
                 n.jsx(c.Caption, {
-                  className: z().title,
+                  className: disabled ? z().titleDisabled : z().title,
                   variant: "div",
                   size: "l",
                   weight: "bold",
@@ -2726,16 +2730,16 @@
                     type: "text",
                     size: "xs",
                     weight: "medium",
-                    className: z().description,
+                    className: disabled ? z().descriptionDisabled : z().description,
                     children: description,
                   }),
               ],
             }),
             n.jsx("div", {
               ref: triggerRef,
-              onClick: () => setIsOpen((prevValue) => !prevValue),
+              onClick: () => setIsOpen((prevValue) => {return disabled ? false : !prevValue}),
               className:
-                "settingBarWithDropdown_button Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx",
+                `${ disabled ? 'settingBarWithDropdown_button__disabled' : 'settingBarWithDropdown_button'} Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx`,
               children: [
                 ,
                 options.find((opt) => opt.value === value)?.label ||
@@ -2808,7 +2812,7 @@
                   className: z().textContainer,
                   children: [
                     (0, n.jsx)(c.Caption, {
-                      className: z().title,
+                      className: disabled ? z().titleDisabled : z().title,
                       id: l,
                       variant: "div",
                       size: "l",
@@ -2823,7 +2827,7 @@
                         type: "text",
                         size: "xs",
                         weight: "medium",
-                        className: z().description,
+                        className: disabled ? z().descriptionDisabled : z().description,
                         children: r,
                       }),
                   ],
@@ -2851,6 +2855,7 @@
                   size: "m",
                   onClick: onClick,
                   children: "Обзор",
+                  disabled: disabled,
                 }),
               ],
             }),
@@ -2867,6 +2872,7 @@
             maxValue: maxValue,
             step: step,
             description: r,
+            disabled: disabled,
           } = e,
           l = (0, d.useId)();
         return (0, n.jsxs)("div", {
@@ -2880,7 +2886,7 @@
               className: z().textContainer,
               children: [
                 (0, n.jsx)(c.Caption, {
-                  className: z().title,
+                  className: disabled ? z().titleDisabled : z().title,
                   id: l,
                   variant: "div",
                   size: "l",
@@ -2895,7 +2901,7 @@
                     type: "text",
                     size: "xs",
                     weight: "medium",
-                    className: z().description,
+                    className: disabled ? z().descriptionDisabled : z().description,
                     children: r,
                   }),
               ],
@@ -2913,7 +2919,7 @@
                   type: "text",
                   size: "xs",
                   weight: "medium",
-                  className: z().description,
+                    className: disabled ? z().descriptionDisabled : z().description,
                   children: i,
                 }),
                 (0, n.jsx)(sliderComponent.i, {
@@ -2925,6 +2931,7 @@
                   secondaryValue: maxValue ?? 1,
                   step: step ?? 0.01,
                   onChange: o,
+                  disabled: disabled,
                 }),
               ],
             }),
@@ -2940,6 +2947,7 @@
             title: "Экспериментально",
             description: "Может работать некорректно",
           },
+          disabled: disabled,
           ...i
         } = e;
         return (0, n.jsx)(Tooltip.wx, {
@@ -2952,6 +2960,8 @@
               color: "black",
               "border-radius": "50px",
               "padding-inline": "6px",
+              transition: "opacity var(--ym-duration-transition)",
+              ...(disabled ? { opacity: 0.3 } : {}),
             },
             children: label,
           }),
@@ -3608,6 +3618,8 @@
         textContainer: "SettingsListToggleItem_textContainer__tRjyt",
         title: "SettingsListToggleItem_title__Xz8_Q",
         description: "SettingsListToggleItem_description__JBOzV",
+        titleDisabled: "SettingsListToggleItem_title__Xz8_Q_disabled",
+        descriptionDisabled: "SettingsListToggleItem_description__JBOzV_disabled",
       };
     },
     38955: function (e) {

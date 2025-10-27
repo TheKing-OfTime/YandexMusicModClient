@@ -208,9 +208,19 @@
 }
 .SettingsListToggleItem_title__Xz8_Q {
   color: var(--ym-controls-color-primary-text-enabled_variant);
+  transition: color var(--ym-duration-transition);
 }
 .SettingsListToggleItem_description__JBOzV {
   color: var(--ym-controls-color-primary-text-enabled);
+  transition: color var(--ym-duration-transition);
+}
+.SettingsListToggleItem_title__Xz8_Q_disabled {
+  color: var(--ym-controls-color-primary-text-disabled);
+  transition: color var(--ym-duration-transition);
+}
+.SettingsListToggleItem_description__JBOzV_disabled {
+  color: var(--ym-controls-color-primary-text-disabled);
+  transition: color var(--ym-duration-transition);
 }
 .ShortcutsModal_root__ro7m4 {
   height: 100%;

@@ -277,7 +277,20 @@
   cursor: pointer;
   user-select: none;
   font-size: 14px;
-  transition: border 0.2s;
+  transition: border 0.2s, color 0.2s, border 0.2s;
+}
+
+.settingBarWithDropdown_button__disabled {
+  color: var(--ym-controls-color-primary-text-disabled);
+  border: 1px solid var(--ym-controls-color-secondary-outline-disabled_stroke);
+  padding: 10px 12px;
+  border-radius: 8px;
+  min-width: 160px;
+  position: relative;
+  cursor: default;
+  user-select: none;
+  font-size: 14px;
+  transition: border 0.2s, color 0.2s, border 0.2s;
 }
 
 .settingBarWithDropdown_button:hover:not(:has(:hover)) {
