@@ -188,7 +188,7 @@ const setIconicThumbnail = async (playerState) => {
 
     // Dirty workaround
     if(!width || !height) {
-      native.getDWMIconicThumbnailInstance().onBeforeDWMSendIconicThumbnail(setIconicThumbnail(playerState));
+      native.getDWMIconicThumbnailInstance().onDWMSendIconicThumbnail(setIconicThumbnail(playerState));
     }
 
     const result = native.getDWMIconicThumbnailInstance().setIconicThumbnail(
