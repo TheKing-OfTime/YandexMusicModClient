@@ -3697,7 +3697,7 @@
 }
 .qpvIbN4_hF6CqK0bjCq7:active::-webkit-slider-thumb,
 .qpvIbN4_hF6CqK0bjCq7:focus-visible::-webkit-slider-thumb,
-.qpvIbN4_hF6CqK0bjCq7:not(:disabled):hover::-webkit-slider-thumb {
+.qpvIbN4_hF6CqK0bjCq7:hover::-webkit-slider-thumb {
   box-shadow:
     -0.25rem 0
       var(
@@ -3897,7 +3897,7 @@
   opacity: 0;
 }
 
-.JkKcxRVvjK7lcakkEliC:disabled::before {
+.JkKcxRVvjK7lcakkEliC:disabled:before {
   background-color: var(--ym-slider-color-primary-disabled);
   cursor: default;
 }
