@@ -53,6 +53,7 @@ class DWMIconicThumbnail {
         this.maxWidth = 0;
         this.maxHeight = 0;
         this.lastIcomicThumbnailFlags = 0;
+        this.onBeforeDWMSendIconicThumbnailFunc = () => {};
         this.updateWindow(window);
     }
 
@@ -71,6 +72,10 @@ class DWMIconicThumbnail {
         window.hookWindowMessage(NATIVE_EVENTS.WM_DWMSENDICONICTHUMBNAIL, (wParam, lParam) => {
             this.maxHeight = lParam.readUInt16LE(0);
             this.maxWidth = lParam.readUInt16LE(2);
+
+            this.onBeforeDWMSendIconicThumbnailFunc();
+            this.onBeforeDWMSendIconicThumbnailFunc = () => {};
+
             if (this.lastIconicThumbnailImageBuffer) {
                 this.setIconicThumbnail(this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
             }
@@ -84,6 +89,8 @@ class DWMIconicThumbnail {
 
             this.setIconicLivePreviewBitmap(bitmap, { width, height });
         });
+
+        this.probe();
     }
 
     /**
@@ -105,6 +112,10 @@ class DWMIconicThumbnail {
         this.lastIconicThumbnailImageBuffer = imageBuffer;
         this.lastIcomicThumbnailFlags = flags;
         return native.setIconicThumbnail(this.hwnd, this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
+    }
+
+    onBeforeDWMSendIconicThumbnail(func) {
+        this.onBeforeDWMSendIconicThumbnailFunc = func;
     }
 
     /**
