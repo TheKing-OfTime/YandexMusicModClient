@@ -936,6 +936,21 @@
               "modFeatures.discordRPC.reconnectInterval",
             ),
           ),
+          [isExperimentOverriden, setIsExperimentOverriden] = (0, d.useState)(
+              window.nativeSettings.get(
+                  "modFeatures.discordRPC.overrideDeepLinksExperiment",
+              ),
+          ),
+          [showButtons, setShowButtons] = (0, d.useState)(
+              window.nativeSettings.get(
+                  "modFeatures.discordRPC.showButtons",
+              ),
+          ),
+          [isDiscordStatusEnabled, setIsDiscordStatusEnabled] = (0, d.useState)(
+              window.nativeSettings.get(
+                  "modFeatures.discordRPC.enable",
+              ),
+          ),
           onAfkTimeoutChange = (0, d.useCallback)(async (e) => {
             let value = Math.min(Math.max(e, 1), 30);
             setAfkTimeout(value);
@@ -965,6 +980,7 @@
           onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
             console.log("modFeatures.discordRPC.enable toggled. Value: ", e);
             window.nativeSettings.set("modFeatures.discordRPC.enable", e);
+            setIsDiscordStatusEnabled(e);
           }, []),
           onDiscordFromYnisonToggle = (0, d.useCallback)(async (e) => {
             console.log(
@@ -979,6 +995,7 @@
               e,
             );
             window.nativeSettings.set("modFeatures.discordRPC.showButtons", e);
+            setShowButtons(e);
           }, []),
           onDiscordOverrideDeepLinksExperimentToggle = (0, d.useCallback)(
             async (e) => {
@@ -990,6 +1007,7 @@
                 "modFeatures.discordRPC.overrideDeepLinksExperiment",
                 e,
               );
+              setIsExperimentOverriden(e);
             },
             [],
           ),
@@ -1068,9 +1086,7 @@
                 children: (0, n.jsx)(P, {
                   title: "Включить интеграцию с Discord",
                   onChange: onDiscordStatusToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.discordRPC.enable",
-                  ),
+                  isChecked: isDiscordStatusEnabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1078,7 +1094,7 @@
                 children: (0, n.jsx)(P, {
                   title: [
                     "Использовать Ynison",
-                    (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                    (0, n.jsx)(labeledBubble, { label: "ALPHA", disabled: !isDiscordStatusEnabled, }),
                   ],
                   description:
                     "Использует данные о воспроизведении с других устройств",
@@ -1086,6 +1102,7 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.fromYnison",
                   ),
+                    disabled: !isDiscordStatusEnabled,
                 }),
               }),
                 (0, n.jsx)("li", {
@@ -1101,6 +1118,7 @@
                             { value: 1, label: "Артист" },
                             { value: 2, label: "Трек" },
                         ],
+                        disabled: !isDiscordStatusEnabled,
                     }),
                 }),
                 (0, n.jsx)("li", {
@@ -1115,19 +1133,9 @@
                             { value: "1124055337234858005", label: "Английский" },
                             { value: "1290778445370097674", label: "Русский" },
                         ],
+                        disabled: !isDiscordStatusEnabled,
                     }),
                 }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Отображать кнопки",
-                  description: "Отображает кнопки-ссылки в статусе",
-                  onChange: onDiscordShowButtonsToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.discordRPC.showButtons",
-                  ),
-                }),
-              }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -1137,6 +1145,7 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.showAlbum",
                   ),
+                    disabled: !isDiscordStatusEnabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1148,6 +1157,7 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.showVersion",
                   ),
+                    disabled: !isDiscordStatusEnabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1160,8 +1170,19 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.showSmallIcon",
                   ),
+                    disabled: !isDiscordStatusEnabled,
                 }),
               }),
+                (0, n.jsx)("li", {
+                    className: Z().item,
+                    children: (0, n.jsx)(P, {
+                        title: "Отображать кнопки",
+                        description: "Отображает кнопки-ссылки в статусе",
+                        onChange: onDiscordShowButtonsToggle,
+                        isChecked: showButtons,
+                        disabled: !isDiscordStatusEnabled,
+                    }),
+                }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -1169,9 +1190,8 @@
                   description:
                     "Уберёт ссылку открывающую приложение т.к. это сделает ссылка на сайт",
                   onChange: onDiscordOverrideDeepLinksExperimentToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.discordRPC.overrideDeepLinksExperiment",
-                  ),
+                  isChecked: isExperimentOverriden,
+                  disabled: !(isDiscordStatusEnabled && showButtons)
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1179,11 +1199,12 @@
                 children: (0, n.jsx)(P, {
                   title: "Отображать кнопку на Гитхаб",
                   description:
-                    "Если предыдущий пункт включён, отображает кнопку установки мода",
+                    "Отображает кнопку установки мода",
                   onChange: onDiscordShowGitHubButtonToggle,
                   isChecked: window.nativeSettings.get(
                     "modFeatures.discordRPC.showGitHubButton",
                   ),
+                  disabled: !(isDiscordStatusEnabled && showButtons && isExperimentOverriden),
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1197,6 +1218,7 @@
                   maxValue: 30,
                   minValue: 1,
                   step: 1,
+                  disabled: !isDiscordStatusEnabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1210,6 +1232,7 @@
                   maxValue: 300,
                   minValue: 0,
                   step: 5,
+                  disabled: !isDiscordStatusEnabled,
                 }),
               }),
             ],
@@ -1385,6 +1408,7 @@
           { notify: i } = (0, _.d$W)(),
           [userInfo, setUserInfo] = (0, d.useState)(null),
           [unauthorizedProbe, setUnauthorizedProbe] = (0, d.useState)(false),
+          [isLastFmEnabled, setIsLastFmEnabled] = (0, d.useState)(window.nativeSettings.get("modFeatures.scrobblers.lastfm.enable")),
           onLastFMLoginClick = (0, d.useCallback)(async (e) => {
             console.log("scrobble-lastfm-login triggered.");
             await window.scrobble.lastfmLogin();
@@ -1402,6 +1426,7 @@
               "modFeatures.scrobblers.lastfm.enable",
               e,
             );
+            setIsLastFmEnabled(e);
           }, []),
           onLastFmAutoLikesToggle = (0, d.useCallback)(async (e) => {
             console.log(
@@ -1506,9 +1531,7 @@
                     title: "Скробблинг в LastFM",
                     disabled: !userInfo,
                     onChange: onLastFmScrobblingToggle,
-                    isChecked: window.nativeSettings.get(
-                      "modFeatures.scrobblers.lastfm",
-                    ),
+                    isChecked: isLastFmEnabled,
                   }),
                 }),
                 (0, n.jsx)("li", {
@@ -1517,7 +1540,7 @@
                     title: "Синхронизировать лайки",
                     description:
                       "Автоматически лайкает/анлайкает треки в LastFM",
-                    disabled: !userInfo,
+                    disabled: !(userInfo && isLastFmEnabled),
                     onChange: onLastFmAutoLikesToggle,
                     isChecked: window.nativeSettings.get(
                       "modFeatures.scrobblers.lastfm.autoLike",
@@ -1529,12 +1552,12 @@
                   children: (0, n.jsx)(P, {
                     title: [
                       "Использовать Ynison",
-                      (0, n.jsx)(labeledBubble, { label: "ALPHA" }),
+                      (0, n.jsx)(labeledBubble, { label: "ALPHA", disabled: !(userInfo && isLastFmEnabled && unauthorizedProbe) }),
                     ],
                     description: unauthorizedProbe
                       ? "Скробблить проигрывания даже с других устройств"
                       : "Недоступно в вашем регионе или включён VPN",
-                    disabled: !unauthorizedProbe,
+                    disabled: !(userInfo && isLastFmEnabled && unauthorizedProbe),
                     onChange: onLastFmFromYnisonToggle,
                     isChecked: window.nativeSettings.get(
                       "modFeatures.scrobblers.lastfm.fromYnison",
@@ -1721,6 +1744,7 @@
             modals: { windowBehaviorSettingsModal: t },
           } = (0, _.oR4)(),
           { notify: o } = (0, _.d$W)(),
+          [isTaskbarExtensionsEnabled, setIsTaskbarExtensionsEnabled] = (0, d.useState)(window.nativeSettings.get("modFeatures.taskBarExtensions.enable")),
           onSaveWindowDimensionsToggle = (0, d.useCallback)(async (e) => {
             console.log("saveWindowDimensionsOnRestart toggled. Value: ", e);
             window.nativeSettings.set(
@@ -1758,6 +1782,7 @@
               }),
               { containerId: _.W$x.ERROR },
             );
+            setIsTaskbarExtensionsEnabled(e);
           }, []),
           onTaskbarExtensionsCoverAsThumbnailToggle = (0, d.useCallback)(
             async (e) => {
@@ -1864,9 +1889,7 @@
                   description:
                     "Добавляет кнопки управления воспроизведением на превью окна в панели задач",
                   onChange: onTaskbarExtensionsEnableToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.taskBarExtensions.enable",
-                  ),
+                  isChecked: isTaskbarExtensionsEnabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -1879,6 +1902,7 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.taskBarExtensions.coverAsThumbnail",
                   ),
+                  disabled: !isTaskbarExtensionsEnabled,
                 }),
               }),
             ],
@@ -1967,6 +1991,21 @@
               "modFeatures.vibeAnimationEnhancement.maxFPS",
             ),
           ),
+          [isRenderingDisabled, setIsRenderingDisabled] = (0, d.useState)(
+              window.nativeSettings.get(
+                  "modFeatures.vibeAnimationEnhancement.disableRendering",
+              ),
+          ),
+            [useDynamicEnergy, setUseDynamicEnergy] = (0, d.useState)(
+                window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.useDynamicEnergy",
+                ),
+            ),
+            [smoothDynamicEnergy, setSmoothDynamicEnergy] = (0, d.useState)(
+                window.nativeSettings.get(
+                    "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy",
+                ),
+            ),
           [intensityCoefficient, setIntensityCoefficient] = (0, d.useState)(
             window.nativeSettings.get(
               "modFeatures.vibeAnimationEnhancement.intensityCoefficient",
@@ -1987,6 +2026,7 @@
               "modFeatures.vibeAnimationEnhancement.disableRendering",
               e,
             );
+              setIsRenderingDisabled(e);
           }, []),
           onMaxFPSchange = (0, d.useCallback)(async (e) => {
             let value = Math.max(e, 1);
@@ -2049,6 +2089,7 @@
               "modFeatures.vibeAnimationEnhancement.useDynamicEnergy",
               e,
             );
+            setUseDynamicEnergy(e);
           }, []),
           onEnableSmoothDynamicEnergy = (0, d.useCallback)(async (e) => {
             console.log(
@@ -2059,6 +2100,7 @@
               "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy",
               e,
             );
+            setSmoothDynamicEnergy(e);
           }, []);
 
         return (0, n.jsxs)(f.u, {
@@ -2077,6 +2119,16 @@
             className: `${Z().root} ${B().list}`,
             style: { width: "514px", "max-height": "600px", gap: 0 },
             children: [
+                (0, n.jsx)("li", {
+                    className: Z().item,
+                    children: (0, n.jsx)(P, {
+                        title: "Отключить отрисовку анимации Волны",
+                        description:
+                            "Значительно увеличивает производительность на слабом железе",
+                        onChange: onDisableVibeRenderingToggle,
+                        isChecked: isRenderingDisabled,
+                    }),
+                }),
               (0, n.jsx)("li", {
                 className: Z().item,
                 children: (0, n.jsx)(P, {
@@ -2087,18 +2139,7 @@
                   isChecked: window.nativeSettings.get(
                     "modFeatures.vibeAnimationEnhancement.playOnAnyEntity",
                   ),
-                }),
-              }),
-              (0, n.jsx)("li", {
-                className: Z().item,
-                children: (0, n.jsx)(P, {
-                  title: "Отключить отрисовку анимации Волны",
-                  description:
-                    "Значительно увеличивает производительность на слабом железе",
-                  onChange: onDisableVibeRenderingToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.disableRendering",
-                  ),
+                  disabled: !!isRenderingDisabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2112,6 +2153,7 @@
                   maxValue: Math.max(window?.DISPLAY_MAX_FPS ?? 60, maxFps),
                   minValue: 1,
                   step: 1,
+                    disabled: !!isRenderingDisabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2125,6 +2167,7 @@
                   maxValue: 2.5,
                   minValue: 0,
                   step: 0.1,
+                    disabled: !!isRenderingDisabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2134,9 +2177,8 @@
                   description:
                     "Анимация будет подстраивать скорость под Энергию трека в реальном времени",
                   onChange: onEnableUseDynamicEnergy,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.useDynamicEnergy",
-                  ),
+                  isChecked: useDynamicEnergy,
+                  disabled: !!isRenderingDisabled,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2145,9 +2187,8 @@
                   title: "Смягчать динамическую энергию",
                   description: "Изменения скорости трека будут более плавными",
                   onChange: onEnableSmoothDynamicEnergy,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy",
-                  ),
+                  isChecked: smoothDynamicEnergy,
+                  disabled: !(!isRenderingDisabled && useDynamicEnergy),
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2161,6 +2202,7 @@
                   maxValue: 1,
                   minValue: 0.01,
                   step: 0.01,
+                  disabled: !(!isRenderingDisabled && useDynamicEnergy && smoothDynamicEnergy),
                 }),
               }),
             ],
@@ -2173,6 +2215,7 @@
             modals: { appUpdatesSettingsModal: t },
           } = (0, _.oR4)(),
           { notify: i } = (0, _.d$W)(),
+          [enableAppAutoUpdate, setEnableAppAutoUpdate] = (0, d.useState)(window.nativeSettings.get("modFeatures.appAutoUpdates.enableAppAutoUpdate")),
           onModAutoUpdateToggle = (0, d.useCallback)(
             async (e) => {
               console.log("enableModAutoUpdate toggled. Value: ", e);
@@ -2224,6 +2267,7 @@
                 }),
                 { containerId: _.W$x.ERROR },
               );
+              setEnableAppAutoUpdate(e);
             },
             [i],
           );
@@ -2250,9 +2294,7 @@
                   description:
                     "Проверять ли наличие обновлений приложения автоматически",
                   onChange: onAppAutoUpdateToggle,
-                  isChecked: window.nativeSettings.get(
-                    "modFeatures.appAutoUpdates.enableAppAutoUpdate",
-                  ),
+                  isChecked: enableAppAutoUpdate,
                 }),
               }),
               (0, n.jsx)("li", {
@@ -2265,6 +2307,7 @@
                   isChecked: !window.nativeSettings.get(
                     "modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability",
                   ),
+                  disabled: !enableAppAutoUpdate,
                 }),
               }),
               (0, n.jsx)("li", {
