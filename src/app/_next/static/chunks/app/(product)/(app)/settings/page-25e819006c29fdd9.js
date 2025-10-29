@@ -1375,7 +1375,7 @@
                   children: (0, n.jsx)(P, {
                     title: "Скачивать в MP3",
                     description: useMP3
-                      ? "Треки скачиваются в MP3"
+                      ? "Треки скачиваются только в MP3"
                       : "Треки скачиваются в оригинальном формате",
                     onChange: onUseMP3Toggle,
                     isChecked: useMP3,

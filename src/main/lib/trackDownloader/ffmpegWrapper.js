@@ -94,7 +94,7 @@ class FfmpegWrapper {
         try {
             const { stdout, stderr } = await execPromise(command);
             this.logger.info(stdout);
-            this.logger.error(stderr);
+            this.logger.warn(stderr);
         } catch (error) {
             this.logger.error(`ffmpeg error: ${error.message}`);
         }
