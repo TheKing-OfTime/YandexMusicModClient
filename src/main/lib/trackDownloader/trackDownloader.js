@@ -131,6 +131,7 @@ class TrackDownloader {
     ) {
 
         const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false
+        const useSyncLyrics = store_js_1.getModFeatures()?.downloader?.useSyncLyrics ?? true
 
         this.logger.log(`Downloading track: ${trackId}`);
 
@@ -139,6 +140,14 @@ class TrackDownloader {
                 this.tracksAPI.getFileInfo(trackId, { codecs: useMP3 ? ['mp3'] : undefined }),
                 this.tracksAPI.getTracksMeta(trackId),
             ]);
+
+        let lyricsMeta = undefined;
+
+        const fileExtension = getFileExtensionFromCodec(trackDownloadInfo.codec);
+
+        if (useSyncLyrics && tracksMeta[0]?.lyricsInfo?.hasAvailableSyncLyrics) {
+            lyricsMeta = await this.tracksAPI.getSyncLyrics(trackId);
+        }
 
         const data = {
             downloadURL: trackDownloadInfo.url,
@@ -150,10 +159,8 @@ class TrackDownloader {
             key: trackDownloadInfo.key,
         };
 
-        const fileExtension = getFileExtensionFromCodec(data.codec);
         const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
-        const defaultDirPath =
-            store_js_1.getModFeatures()?.downloader?.defaultPath;
+        const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
 
         const finalTrackPath =
             store_js_1.getModFeatures()?.downloader?.useDefaultPath &&
@@ -190,6 +197,7 @@ class TrackDownloader {
             tempDirPath,
             tempTrackPath,
             fileExtension,
+            lyricsMeta?.lrc,
         );
 
         callback(1.0, 1.0);

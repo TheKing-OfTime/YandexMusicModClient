@@ -204,6 +204,7 @@ const init = () => {
       useDefaultPath: false,
       defaultPath: "",
       useMP3: false,
+      useSyncLyrics: true,
       useCustomPathForSessionStorage: false,
       customPathForSessionStorage: "",
     },

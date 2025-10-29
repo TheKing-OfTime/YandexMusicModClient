@@ -71,7 +71,7 @@ class ScrobblerManager {
   processPlayingState(playingState) {
     if (!playingState) return;
 
-    this.logger.debug("nonYnison", playingState);
+    //this.logger.debug("nonYnison", playingState);
 
     this.currentTrackId = playingState.track.id;
     this.currentTrackPlaying = playingState.isPlaying;

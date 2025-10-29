@@ -1290,6 +1290,10 @@
             window.nativeSettings.set("modFeatures.downloader.useMP3", e);
             setUseMP3(e);
           }, []),
+          onUseSyncLyricsToggle = (0, d.useCallback)(async (e) => {
+            console.log("useSyncLyrics toggled. Value: ", e);
+            window.nativeSettings.set("modFeatures.downloader.useSyncLyrics", e);
+          }, []),
           onUseCustomPathForSessionStorageToggle = (0, d.useCallback)(
             async (e) => {
               console.log("useCustomPathForSessionStorage toggled. Value: ", e);
@@ -1373,7 +1377,7 @@
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(P, {
-                    title: "Скачивать в MP3",
+                    title: "Скачивать только в MP3",
                     description: useMP3
                       ? "Треки скачиваются только в MP3"
                       : "Треки скачиваются в оригинальном формате",
@@ -1381,6 +1385,15 @@
                     isChecked: useMP3,
                   }),
                 }),
+                  (0, n.jsx)("li", {
+                      className: Z().item,
+                      children: (0, n.jsx)(P, {
+                          title: "Скачивать текстомузыку",
+                          description: "Если возможно, записывать синхронный текст трека в метаданные файла",
+                          onChange: onUseSyncLyricsToggle,
+                          isChecked: window.nativeSettings.get("modFeatures.downloader.useSyncLyrics"),
+                      }),
+                  }),
                 (0, n.jsx)("li", {
                   className: Z().item,
                   children: (0, n.jsx)(toggleBarWithPathChooser, {

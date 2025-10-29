@@ -271,3 +271,53 @@ function removeInvalidEndingsFromTrackTitle(str) {
     return str;
 }
 exports.removeInvalidEndingsFromTrackTitle = removeInvalidEndingsFromTrackTitle;
+
+function LRC2SYLT(lrcString) {
+    const lines = lrcString.split(/\r?\n/);
+    const result = [];
+
+    const timeTagRegex = /\[(\d{1,2}):(\d{2})(?:\.(\d{1,2}))?\]/g;
+    const metaTagRegex = /^\[(ar|ti|al|by|offset|re|ve):.*?\]$/i;
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+
+        // Игнорируем метаданные
+        if (metaTagRegex.test(trimmed)) continue;
+
+        let match;
+        const times = [];
+        let text = trimmed;
+
+        // Извлекаем все временные теги
+        while ((match = timeTagRegex.exec(trimmed)) !== null) {
+            const minutes = parseInt(match[1], 10);
+            const seconds = parseInt(match[2], 10);
+            const hundredths = match[3] ? parseInt(match[3].padEnd(2, '0'), 10) : 0;
+            const timestamp = (minutes * 60 + seconds) * 1000 + hundredths * 10;
+            times.push(timestamp);
+        }
+
+        // Убираем временные теги из текста
+        text = trimmed.replace(timeTagRegex, '').trim();
+
+        // Если нет текста — пропускаем
+        if (!text) continue;
+
+        // Добавляем элементы synchronisedText
+        for (const timeStamp of times) {
+            result.push({
+                text,
+                timeStamp
+            });
+        }
+    }
+
+    // Сортируем по времени
+    result.sort((a, b) => a.timeStamp - b.timeStamp);
+
+    return result;
+}
+
+exports.LRC2SYLT = LRC2SYLT;

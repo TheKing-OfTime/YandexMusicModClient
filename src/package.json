@@ -19,6 +19,7 @@
     "ffmpeg-static": "^5.2.0",
     "intl-messageformat": "~10.5.14",
     "node-cron": "~3.0.3",
+    "node-id3": "^0.2.9",
     "original-fs": "^1.2.0",
     "semver": "~7.6.3",
     "sharp": "^0.34.4",

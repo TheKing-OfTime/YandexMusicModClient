@@ -6,7 +6,8 @@ const fsSync = require("fs");
 const path = require("path");
 const { promisify } = require("util");
 const { exec } = require("child_process");
-const { artists2string } = require("../utils.js");
+const { artists2string, LRC2SYLT } = require("../utils.js");
+const NodeID3 = require('node-id3');
 
 const execPromise = promisify(exec);
 
@@ -35,6 +36,7 @@ class FfmpegWrapper {
         tempDirPath,
         tempFilepath,
         fileExtension = undefined,
+        lrc = undefined,
     ) {
         if (!fsSync.existsSync(tempDirPath) || !fsSync.existsSync(tempFilepath))
             return;
@@ -48,42 +50,37 @@ class FfmpegWrapper {
         const args = [
             "-i",
             `"${tempFilepath}"`,
-            ...(withCover
+            ...(fileExtension !== "mp3" && withCover
                 ? ["-i", `"${path.join(tempDirPath, "400x400.jpg")}"`]
                 : []),
             "-map",
             "0:a",
-            ...(withCover ? ["-map", "1"] : []),
+            ...(fileExtension !== "mp3" && withCover ? ["-map", "1"] : []),
             ...(fileExtension === "mp3"
                 ? [
                     "-codec:a",
                     "libmp3lame",
                     "-id3v2_version",
-                    "3",
-                    "-write_id3v1",
-                    "1",
+                    "4",
                     "-b:a",
                     (data.bitrate ?? 320) + "k",
                 ]
                 : ["-c:a", "copy"]),
-            ...(withCover ? ["-c:v", "mjpeg"] : []),
-            ...(withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
-            ...(withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
-            ...(withCover ? ["-disposition:v", "attached_pic"] : []),
-            ...(data.track?.artists && data.track?.artists.length > 0
+            ...(fileExtension !== "mp3" && withCover ? ["-c:v", "mjpeg"] : []),
+            ...(fileExtension !== "mp3" && withCover ? ["-metadata:s:v", 'title="Album cover"'] : []),
+            ...(fileExtension !== "mp3" && withCover ? ["-metadata:s:v", 'comment="Cover (front)"'] : []),
+            ...(fileExtension !== "mp3" && withCover ? ["-disposition:v", "attached_pic"] : []),
+            ...(fileExtension !== "mp3" && data.track?.artists && data.track?.artists.length > 0
                 ? [
                     "-metadata",
                     `artist="${artists2string(data.track?.artists)}"`,
                 ]
                 : []),
-            ...(data.track?.title
+            ...(fileExtension !== "mp3" && data.track?.title
                 ? ["-metadata", `title="${data.track?.title}"`]
                 : []),
-            ...(data.track?.albums?.[0]?.title
+            ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.title
                 ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`]
-                : []),
-            ...(data.track?.isrc
-                ? ["-metadata", `${fileExtension === "mp3" ? 'TSRC' : 'ISRC'}="${data.track?.isrc}"`]
                 : []),
             `-y "${finalFilepath}"`,
         ];
@@ -97,6 +94,48 @@ class FfmpegWrapper {
             this.logger.warn(stderr);
         } catch (error) {
             this.logger.error(`ffmpeg error: ${error.message}`);
+        }
+
+        if (fileExtension === "mp3") {
+
+            const SYLT = lrc ? LRC2SYLT(lrc) : undefined;
+
+            const tags = {
+                title: data.track?.title,
+                artist: artists2string(data.track?.artists),
+                album: data.track?.albums?.[0]?.title,
+                image: withCover ? path.join(tempDirPath, "400x400.jpg") : undefined,
+                year: data.track?.albums?.[0]?.year?.toString(),
+                genre: data.track?.albums?.[0]?.genre,
+                ISRC: data.track?.isrc,
+            };
+
+            if (SYLT) {
+                tags.unsynchronisedLyrics = {
+                    language: "eng",
+                    text: SYLT.reduce((acc, curr) => acc + curr.text + '\n', '').trim(),
+                };
+                tags.synchronisedLyrics = [{
+                    language: "eng",
+                    timeStampFormat: NodeID3.TagConstants.TimeStampFormat.MILLISECONDS,
+                    contentType: NodeID3.TagConstants.SynchronisedLyrics.ContentType.LYRICS,
+                    synchronisedText: SYLT,
+                }];
+            }
+
+            const status = NodeID3.write(tags, finalFilepath);
+            if (!status) {
+                this.logger.error('Failed to write ID3 tags');
+                return;
+            }
+
+            this.logger.info('Added ID3 tags');
+        } else {
+            if (lrc) {
+                const ext = path.extname(finalFilepath);
+                const lrcPath = `${finalFilepath.slice(0, -ext.length)}.lrc`;
+                await fs.writeFile(lrcPath, lrc);
+            }
         }
     }
 

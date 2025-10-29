@@ -18,7 +18,7 @@ class TracksApiWrapper {
         };
     }
 
-    async getSign(signStr) {
+    async getSign(signStr, withSlice=true) {
         let secretKey = 'kzqU4XhfCaY6B6JTHODeq5',
             textEncoder = new TextEncoder(),
             secretKeyEncoded = textEncoder.encode(secretKey);
@@ -35,9 +35,10 @@ class TracksApiWrapper {
             let signStrEncoded = textEncoder.encode(signStr);
             return crypto.subtle
             .sign("HMAC", t, signStrEncoded)
-            .then((t) =>
-                btoa(String.fromCharCode(...new Uint8Array(t))).slice(0, -1),
-            );
+            .then((t) => {
+                const sign = btoa(String.fromCharCode(...new Uint8Array(t)));
+                return withSlice ? sign.slice(0, -1) : sign;
+            });
         });
     };
 
@@ -193,6 +194,23 @@ class TracksApiWrapper {
                 sign: sign,
             }
         })).data;
+    }
+
+    async getSyncLyrics(trackId, { format = 'LRC' } = {}) {
+
+        const timestamp = Math.floor(Date.now() / 1e3);
+        const signStr = "".concat(trackId).concat(timestamp);
+        const sign = await this.getSign(signStr, false);
+
+        const meta = (await this.request("GET", `tracks/${trackId}/lyrics`, {
+            searchParams: {
+                timeStamp: timestamp,
+                format: format,
+                sign: sign,
+            }
+        })).data;
+        meta.lrc = await (await fetch(meta.downloadUrl)).text();
+        return meta;
     }
 
     async fetchTrackCover(track, size=400) {
