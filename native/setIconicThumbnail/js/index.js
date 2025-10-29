@@ -53,7 +53,6 @@ class DWMIconicThumbnail {
         this.maxWidth = 0;
         this.maxHeight = 0;
         this.lastIcomicThumbnailFlags = 0;
-        this.onDWMSendIconicThumbnailFunc = () => {};
         this.updateWindow(window);
     }
 
@@ -76,9 +75,6 @@ class DWMIconicThumbnail {
             if (this.lastIconicThumbnailImageBuffer) {
                 this.setIconicThumbnail(this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
             }
-
-            this.onDWMSendIconicThumbnailFunc();
-            this.onDWMSendIconicThumbnailFunc = () => {};
 
         });
 
@@ -113,10 +109,6 @@ class DWMIconicThumbnail {
         this.lastIconicThumbnailImageBuffer = imageBuffer;
         this.lastIcomicThumbnailFlags = flags;
         return native.setIconicThumbnail(this.hwnd, this.lastIconicThumbnailImageBuffer, this.maxWidth, this.maxHeight, this.lastIcomicThumbnailFlags);
-    }
-
-    onDWMSendIconicThumbnail(func) {
-        this.onDWMSendIconicThumbnailFunc = func;
     }
 
     /**
