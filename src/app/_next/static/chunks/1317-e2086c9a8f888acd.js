@@ -11436,9 +11436,9 @@
         };
         registerYaspAudioElementListener();
         let onDownloadClick = (0, x.useCallback)(() => {
-          if (!downloadInfo?.quality) return;
-          electronBridge.sendDownloadCurrentTrack(downloadInfo?.trackId);
-        }, [a, downloadInfo]);
+          if (!a?.id) return;
+          electronBridge.sendDownloadCurrentTrack(a?.id);
+        }, [a]);
         return (
           (0, x.useEffect)(() => {
             window.desktopEvents.on(
@@ -11673,16 +11673,16 @@
                                 title: "Скачать трек в файл",
                                 description:
                                   window?.DEVICE_INFO?.os === "win32"
-                                    ? downloadInfo?.quality
+                                    ? a?.id
                                       ? "Скачать трек в читаемый файл на вашем ПК"
                                       : "Не удалось получить данные о треке"
                                     : "Пока не доступно на вашей OS",
                                 children: (0, v.jsxs)("button", {
                                   disabled:
-                                    !downloadInfo?.quality ||
+                                    !a?.id ||
                                     window?.DEVICE_INFO?.os !== "win32",
                                   className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${
-                                    !downloadInfo?.quality ||
+                                    !a?.id ||
                                     window?.DEVICE_INFO?.os !== "win32"
                                       ? ""
                                       : "HbaqudSqu7Q3mv3zMPGr"
