@@ -82,6 +82,12 @@ class FfmpegWrapper {
             ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.title
                 ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`]
                 : []),
+            ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.year
+                ? ["-metadata", `year="${data.track?.albums?.[0]?.year}"`]
+                : []),
+            ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.genre
+                ? ["-metadata", `genre="${data.track?.albums?.[0]?.genre}"`]
+                : []),
             `-y "${finalFilepath}"`,
         ];
 
