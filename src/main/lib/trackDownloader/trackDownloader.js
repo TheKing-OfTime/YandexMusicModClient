@@ -219,10 +219,9 @@ class TrackDownloader {
             ...(data.track?.albums?.[0]?.title
                 ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`]
                 : []),
-            // TODO Await fetching tracks in main process
-            // ...(data.track?.isrc
-            //     ? ["-metadata", `${fileExtension === "mp3" ? 'TSRC' : 'ISRC'}="${data.track?.isrc}"`]
-            //     : []),
+            ...(data.track?.isrc
+                ? ["-metadata", `${fileExtension === "mp3" ? 'TSRC' : 'ISRC'}="${data.track?.isrc}"`]
+                : []),
             `-y "${finalFilepath}"`,
         ];
 
@@ -238,40 +237,6 @@ class TrackDownloader {
         }
     }
 
-    async convertToMP3(inputAudioPath, outputAudioPath) {
-        if (!fsSync.existsSync(inputAudioPath)) return;
-
-        const args = [
-            "-i",
-            `"${inputAudioPath}"`,
-            "-map",
-            "0",
-            "-map_metadata",
-            "0",
-            "-codec:a",
-            "libmp3lame",
-            "-b:a",
-            "320k",
-            "-id3v2_version",
-            "3",
-            "-write_id3v1",
-            "1",
-            `-y "${outputAudioPath}"`,
-        ];
-
-        const command = `"${EXTRACTED_FFMPEG_PATH}" ${args.join(" ")}`;
-        this.logger.info(`ReEncoding: ${command}`);
-
-        try {
-            const { stdout, stderr } = await execPromise(command);
-            this.logger.info(stdout);
-            this.logger.error(stderr);
-        } catch (error) {
-            this.logger.error(`ffmpeg error: ${error.message}`);
-            return false;
-        }
-    }
-
     async downloadTrack(
         trackId,
         callback = (x, b) => {
@@ -279,11 +244,13 @@ class TrackDownloader {
         },
     ) {
 
+        const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false
+
         this.logger.log(`Downloading track: ${trackId}`);
 
         const [{ downloadInfo: trackDownloadInfo }, tracksMeta] =
             await Promise.all([
-                this.tracksAPI.getFileInfo(trackId),
+                this.tracksAPI.getFileInfo(trackId, { codecs: useMP3 ? ['mp3'] : undefined }),
                 this.tracksAPI.getTracksMeta(trackId),
             ]);
 
@@ -298,13 +265,7 @@ class TrackDownloader {
         };
 
         const fileExtension = getFileExtensionFromCodec(data.codec);
-        const convertToMP3 =
-            (store_js_1.getModFeatures()?.downloader?.useMP3 ?? false) &&
-            fileExtension !== "mp3";
-        const defaultFilepath =
-            getTrackFilename(data.track) +
-            "." +
-            (convertToMP3 ? "mp3" : fileExtension);
+        const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
         const defaultDirPath =
             store_js_1.getModFeatures()?.downloader?.defaultPath;
 
@@ -343,18 +304,12 @@ class TrackDownloader {
 
         await this.extractWithFfmpeg(
             data,
-            convertToMP3 ? tempExtractedTrackPath : finalTrackPath,
+            finalTrackPath,
             tempDirPath,
             tempTrackPath,
             fileExtension,
         );
 
-        if (convertToMP3) {
-            callback(0.8, 0.9);
-            this.logger.info("Converting to MP3", tempExtractedTrackPath);
-            await this.convertToMP3(tempExtractedTrackPath, finalTrackPath);
-            this.logger.info("Converted to MP3", finalTrackPath);
-        }
 
         callback(1.0, 1.0);
         this.logger.info("Track downloaded");
