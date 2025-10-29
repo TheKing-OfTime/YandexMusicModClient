@@ -288,6 +288,12 @@
         sendDownloadTrack: function () {
           return sendDownloadTrack;
         },
+        sendDownloadCurrentTrack: function () {
+          return sendDownloadCurrentTrack;
+        },
+        sendDownloadTracks: function () {
+          return sendDownloadTracks;
+        },
         sendYnisonState: function () {
           return sendYnisonState;
         },
@@ -305,20 +311,24 @@
             void 0 === n ||
             n.send(s.BOn.APPLICATION_READY, e);
         },
-        sendDownloadTrack = (e) => {
+          sendDownloadCurrentTrack = (trackId) => {
+            var n;
+            null === (n = window.desktopEvents) ||
+            void 0 === n ||
+            n.send(s.BOn.DOWNLOAD_CURRENT_TRACK, trackId);
+          },
+        sendDownloadTrack = (trackId) => {
           var n;
           null === (n = window.desktopEvents) ||
           void 0 === n ||
-          n.send(s.BOn.DOWNLOAD_TRACK, {
-            downloadURL: e.downloadURL,
-            codec: e.codec,
-            bitrate: e.bitrate,
-            trackId: e.trackId,
-            track: e.track,
-            transport: e.transport,
-            key: e.key,
-          });
+          n.send(s.BOn.DOWNLOAD_TRACK, trackId);
         },
+          sendDownloadTracks = (trackIds) => {
+            var n;
+            null === (n = window.desktopEvents) ||
+            void 0 === n ||
+            n.send(s.BOn.DOWNLOAD_TRACKS, trackIds);
+          },
           sendYnisonState = (e) => {
             var t;
             null === (t = window.desktopEvents) ||

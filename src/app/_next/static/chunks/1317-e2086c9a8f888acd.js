@@ -11437,26 +11437,7 @@
         registerYaspAudioElementListener();
         let onDownloadClick = (0, x.useCallback)(() => {
           if (!downloadInfo?.quality) return;
-          electronBridge.sendDownloadTrack({
-            downloadURL: downloadInfo?.url,
-            codec: downloadInfo?.codec,
-            bitrate: downloadInfo?.bitrate,
-            trackId: downloadInfo?.trackId,
-            transport: downloadInfo?.transport,
-            key: downloadInfo?.key,
-            track: {
-              title: a.title ? JSON.parse(JSON.stringify(a.title)) : undefined,
-              artists: a.artists
-                ? JSON.parse(JSON.stringify(a.artists))
-                : undefined,
-              albums: a.albums
-                ? JSON.parse(JSON.stringify(a.albums))
-                : undefined,
-              coverUri: a.coverUri
-                ? JSON.parse(JSON.stringify(a.coverUri))
-                : undefined,
-            },
-          });
+          electronBridge.sendDownloadCurrentTrack(downloadInfo?.trackId);
         }, [a, downloadInfo]);
         return (
           (0, x.useEffect)(() => {

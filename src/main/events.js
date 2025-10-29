@@ -82,8 +82,8 @@ const handleApplicationEvents = (window) => {
 
 
   electron_1.ipcMain.on(
-    events_js_1.Events.DOWNLOAD_TRACK,
-    async (event, data) => {
+    events_js_1.Events.DOWNLOAD_CURRENT_TRACK,
+    async (event, trackId) => {
       let callback = async (progressRenderer, progressWindow) => {
         sendProgressBarChange(
           window,
@@ -93,8 +93,8 @@ const handleApplicationEvents = (window) => {
         window.setProgressBar(progressWindow);
       };
 
-      eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
-      await trackDownloader.downloadTrack(data, callback);
+      eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_CURRENT_TRACK);
+      await trackDownloader.downloadTrack(trackId, callback);
     },
   );
 
@@ -103,7 +103,7 @@ const handleApplicationEvents = (window) => {
   });
 
   electron_1.app.on("child-process-gone", (event, { type, reason }) => {
-    if (type=== 'GPU') mainWindow?.webContents.send(events_js_1.Events.GPU_STALL, reason);
+    if (type === 'GPU') mainWindow?.webContents.send(events_js_1.Events.GPU_STALL, reason);
   });
 
   electron_1.ipcMain.on(events_js_1.Events.APPLICATION_RESTART, () => {
