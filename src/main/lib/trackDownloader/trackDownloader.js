@@ -9,6 +9,7 @@ const { exec } = require("child_process");
 const FFMPEG_PATH = require("ffmpeg-static");
 const electron = require("electron");
 const { downloadFileWithProgress, makeDecryptor } = require('../utils.js');
+const { TracksApiWrapper } = require('./tracksApiWrapper.js');
 
 const execPromise = promisify(exec);
 
@@ -82,7 +83,16 @@ class TrackDownloader {
     extractFfmpeg().then(() => {
       this.logger.info("Extracted ffmpeg");
     });
-    this.logger.log("Initialized");
+
+    this.logger.log("Initializing tracks API wrapper...");
+
+    this.tracksAPI = null;
+
+    window.webContents.executeJavaScript('JSON.parse(localStorage.getItem("oauth")).value;').then((token) => { // Dirty way to get OAuth token from localStorage
+        this.tracksAPI = new TracksApiWrapper(token);
+      this.logger.log("TracksApiWrapper initialized");
+    });
+    this.logger.log("TrackDownloader initialized");
   }
 
 
@@ -252,6 +262,9 @@ class TrackDownloader {
       return null;
     },
   ) {
+
+    //const { downloadInfo: data } = await this.tracksAPI.getFileInfo(rawData.trackId);
+
     const fileExtension = getFileExtensionFromCodec(data.codec);
     const convertToMP3 =
       (store_js_1.getModFeatures()?.downloader?.useMP3 ?? false) &&
