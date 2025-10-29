@@ -1150,8 +1150,8 @@
           }),
             sendPlayerStateDefault = (ve) => {
 
-              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
-              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value-1]]?.entity?.entityData?.meta : undefined;
+              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value+1]]?.entity?.entityData?.meta : undefined;
 
               o({
                 status: ve.state.playerState.status.value,
@@ -1199,8 +1199,8 @@
             },
             sendPlayerStatePlaying = (ve) => {
 
-              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value-1]?.entity?.entityData?.meta : undefined;
-              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.index.value+1]?.entity?.entityData?.meta : undefined;
+              const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value-1]]?.entity?.entityData?.meta : undefined;
+              const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value+1]]?.entity?.entityData?.meta : undefined;
 
               o({
                 status: i.FY.PLAYING,
