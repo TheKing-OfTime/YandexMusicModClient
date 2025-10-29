@@ -236,3 +236,38 @@ function makeDecryptor(keyHex) {
 }
 
 exports.makeDecryptor = makeDecryptor;
+
+function artists2string(artists) {
+    if (!artists || artists?.length === 0) return;
+    if (artists.length <= 1) return artists?.[0].name;
+    let string = artists.shift()?.name;
+    artists.forEach((a) => {
+        string += " & " + a.name;
+    });
+    return string;
+}
+
+exports.artists2string = artists2string;
+
+
+function getFileExtensionFromCodec(codec) {
+    return codec
+    .replaceAll("he-aac", "m4a")
+    .replaceAll("aac", "m4a")
+    .replace(/(.*)-mp4/, "$1");
+}
+exports.getFileExtensionFromCodec = getFileExtensionFromCodec;
+
+function removeInvalidCharsFromFilename(str) {
+    return str.replace(/[/\\?%*:|"<>]/g, "_");
+}
+exports.removeInvalidCharsFromFilename = removeInvalidCharsFromFilename;
+
+function removeInvalidEndingsFromTrackTitle(str) {
+    if (str.endsWith(".mp3")) str.replaceAll(".mp3", "");
+    if (str.endsWith(".mp4")) str.replaceAll(".mp4", "");
+    if (str.endsWith(".m4a")) str.replaceAll(".m4a", "");
+    if (str.endsWith(".flac")) str.replaceAll(".flac", "");
+    return str;
+}
+exports.removeInvalidEndingsFromTrackTitle = removeInvalidEndingsFromTrackTitle;

@@ -149,7 +149,7 @@ class TracksApiWrapper {
         });
     }
 
-    async getTracksMeta(ids, { removeDuplicates = false, withProgress = false }) {
+    async getTracksMeta(ids, { removeDuplicates = false, withProgress = false } = {}) {
         return (await this.request("POST", "tracks", {
             formData: {
                 trackIds: ids,
@@ -159,7 +159,7 @@ class TracksApiWrapper {
         })).data;
     }
 
-    async getFileInfo(trackId, { quality='lossless', codecs=this.codecs, transports = ['encraw'] }) {
+    async getFileInfo(trackId, { quality='lossless', codecs=this.codecs, transports = ['encraw'] } = {}) {
 
         const timestamp = Math.floor(Date.now() / 1e3);
         const signStr = "".concat(timestamp).concat(trackId).concat(quality).concat(codecs.join("")).concat(transports.join(""));
@@ -177,7 +177,7 @@ class TracksApiWrapper {
         })).data;
     }
 
-    async getFileInfoBatch(trackIds, { quality='lossless', codecs=this.codecs, transports = ['encraw'] }) {
+    async getFileInfoBatch(trackIds, { quality='lossless', codecs=this.codecs, transports = ['encraw'] } = {}) {
 
         const timestamp = Math.floor(Date.now() / 1e3);
         const signStr = "".concat(timestamp).concat(trackIds.join(",")).concat(quality).concat(codecs.join("")).concat(transports.join(""));
