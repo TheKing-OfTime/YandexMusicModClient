@@ -159,10 +159,10 @@ class TracksApiWrapper {
         })).data;
     }
 
-    async getFileInfo(trackId, quality='lossless', transports = ['encraw']) {
+    async getFileInfo(trackId, quality='lossless', codecs=this.codecs, transports = ['encraw']) {
 
         const timestamp = Math.floor(Date.now() / 1e3);
-        const signStr = "".concat(timestamp).concat(trackId).concat(quality).concat(this.codecs.join("")).concat(transports.join(""));
+        const signStr = "".concat(timestamp).concat(trackId).concat(quality).concat(codecs.join("")).concat(transports.join(""));
         const sign = await this.getSign(signStr);
 
         return (await this.request("GET", "get-file-info", {
@@ -170,17 +170,17 @@ class TracksApiWrapper {
                 trackId: trackId,
                 ts: timestamp,
                 quality: quality,
-                codecs: this.codecs.join(","),
+                codecs: codecs.join(","),
                 transports: transports.join(","),
                 sign: sign,
             }
         })).data;
     }
 
-    async getFileInfoBatch(trackIds, quality='lossless', transports = ['encraw']) {
+    async getFileInfoBatch(trackIds, quality='lossless', codecs=this.codecs, transports = ['encraw']) {
 
         const timestamp = Math.floor(Date.now() / 1e3);
-        const signStr = "".concat(timestamp).concat(trackIds.join(",")).concat(quality).concat(this.codecs.join("")).concat(transports.join(""));
+        const signStr = "".concat(timestamp).concat(trackIds.join(",")).concat(quality).concat(codecs.join("")).concat(transports.join(""));
         const sign = await this.getSign(signStr);
 
         return (await this.request("GET", "get-file-info", {
@@ -188,7 +188,7 @@ class TracksApiWrapper {
                 trackIds: trackIds.join(","),
                 ts: timestamp,
                 quality: quality,
-                codecs: this.codecs.join(","),
+                codecs: codecs.join(","),
                 transports: transports.join(","),
                 sign: sign,
             }
