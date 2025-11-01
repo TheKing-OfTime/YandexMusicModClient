@@ -1,0 +1,11 @@
+node_modules
+.webpack
+.idea
+out
+tsconfig.json
+README.md
+yarn.lock
+ReactDevTools
+temp_build
+*.html
+*.txt
