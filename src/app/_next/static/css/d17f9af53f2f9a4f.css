@@ -1,1 +1,88 @@
-.SearchPlaylistInput_root__o14iM{margin-block-end:var(--ym-spacer-size-xxl);margin-inline-end:var(--ym-spacer-size-xxl);margin-inline-start:var(--ym-spacer-size-xxl);min-height:var(--ym-spacer-size-xxxl)}@media only screen and (max-width:767.98px){.SearchPlaylistInput_root__o14iM{margin-inline-end:var(--ym-spacer-size-xl);margin-inline-start:var(--ym-spacer-size-xl)}}.SearchPlaylistInput_content__iDyfU{--track-animation-duration:300ms;padding-inline-end:var(--ym-spacer-size-s);padding-inline-start:var(--ym-spacer-size-l)}@media only screen and (max-width:767.98px){.SearchPlaylistInput_content__iDyfU{padding-inline-start:var(--ym-spacer-size-s)}}.SearchPlaylistInput_catalog__5r6Xm{font-family:var(--ym-font-text);font-size:var(--ym-font-size-label-s);font-style:normal;font-weight:var(--ym-font-weight-medium);letter-spacing:normal;line-height:var(--ym-font-line-height-label-s);padding-block-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-xs)}.SearchPlaylistInput_catalog_withTracks__B2ZYF{padding-block-start:var(--ym-spacer-size-xxl)}.SearchPlaylistInput_track__2TGLS+.SearchPlaylistInput_catalog__5r6Xm{padding-block-start:var(--ym-spacer-size-xxxl)}@media only screen and (max-width:767.98px){.SearchPlaylistInput_track__2TGLS+.SearchPlaylistInput_catalog__5r6Xm{padding-block-start:var(--ym-spacer-size-xxl)}}.SearchPlaylistInput_shimmerItem__V0cOt{height:3.5rem}.SearchPlaylistInput_emptyBlockContainer__NSQKG{margin-block-end:calc(var(--player-bar-height) + var(--ym-spacer-size-xxl));margin-block-start:6rem}.SearchPlaylistInput_disappearingTrack__D6ja5{animation:SearchPlaylistInput_disappearing__w48Cd var(--track-animation-duration) forwards;transform-origin:top center}@media(prefers-reduced-motion:reduce){.SearchPlaylistInput_disappearingTrack__D6ja5{animation:none}}.SearchPlaylistInput_appearingTrack__CYHzN{animation:SearchPlaylistInput_appearing__SafaE var(--track-animation-duration) forwards;transform-origin:top center}@media(prefers-reduced-motion:reduce){.SearchPlaylistInput_appearingTrack__CYHzN{animation:none}}@keyframes SearchPlaylistInput_appearing__SafaE{0%{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes SearchPlaylistInput_disappearing__w48Cd{0%{transform:scaleY(1)}to{transform:scaleY(0)}}
+.SearchPlaylistInput_root__o14iM {
+    margin-block-end: var(--ym-spacer-size-xxl);
+    margin-inline-end: var(--ym-spacer-size-xxl);
+    margin-inline-start: var(--ym-spacer-size-xxl);
+    min-height: var(--ym-spacer-size-xxxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .SearchPlaylistInput_root__o14iM {
+        margin-inline-end: var(--ym-spacer-size-xl);
+        margin-inline-start: var(--ym-spacer-size-xl);
+    }
+}
+.SearchPlaylistInput_content__iDyfU {
+    --track-animation-duration: 300ms;
+    padding-inline-end: var(--ym-spacer-size-s);
+    padding-inline-start: var(--ym-spacer-size-l);
+}
+@media only screen and (max-width: 767.98px) {
+    .SearchPlaylistInput_content__iDyfU {
+        padding-inline-start: var(--ym-spacer-size-s);
+    }
+}
+.SearchPlaylistInput_catalog__5r6Xm {
+    font-family: var(--ym-font-text);
+    font-size: var(--ym-font-size-label-s);
+    font-style: normal;
+    font-weight: var(--ym-font-weight-medium);
+    letter-spacing: normal;
+    line-height: var(--ym-font-line-height-label-s);
+    padding-block-end: var(--ym-spacer-size-l);
+    padding-inline-start: var(--ym-spacer-size-xs);
+}
+.SearchPlaylistInput_catalog_withTracks__B2ZYF {
+    padding-block-start: var(--ym-spacer-size-xxl);
+}
+.SearchPlaylistInput_track__2TGLS + .SearchPlaylistInput_catalog__5r6Xm {
+    padding-block-start: var(--ym-spacer-size-xxxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .SearchPlaylistInput_track__2TGLS + .SearchPlaylistInput_catalog__5r6Xm {
+        padding-block-start: var(--ym-spacer-size-xxl);
+    }
+}
+.SearchPlaylistInput_shimmerItem__V0cOt {
+    height: 3.5rem;
+}
+.SearchPlaylistInput_emptyBlockContainer__NSQKG {
+    margin-block-end: calc(
+        var(--player-bar-height) + var(--ym-spacer-size-xxl)
+    );
+    margin-block-start: 6rem;
+}
+.SearchPlaylistInput_disappearingTrack__D6ja5 {
+    animation: SearchPlaylistInput_disappearing__w48Cd
+        var(--track-animation-duration) forwards;
+    transform-origin: top center;
+}
+@media (prefers-reduced-motion: reduce) {
+    .SearchPlaylistInput_disappearingTrack__D6ja5 {
+        animation: none;
+    }
+}
+.SearchPlaylistInput_appearingTrack__CYHzN {
+    animation: SearchPlaylistInput_appearing__SafaE
+        var(--track-animation-duration) forwards;
+    transform-origin: top center;
+}
+@media (prefers-reduced-motion: reduce) {
+    .SearchPlaylistInput_appearingTrack__CYHzN {
+        animation: none;
+    }
+}
+@keyframes SearchPlaylistInput_appearing__SafaE {
+    0% {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+@keyframes SearchPlaylistInput_disappearing__w48Cd {
+    0% {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
+}

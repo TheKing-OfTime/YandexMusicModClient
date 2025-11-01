@@ -1,1 +1,5 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[6822],{86822:()=>{}}]);
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [6822],
+    { 86822: () => {} },
+]);

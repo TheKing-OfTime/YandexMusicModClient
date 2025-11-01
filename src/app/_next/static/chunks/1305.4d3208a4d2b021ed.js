@@ -1,1 +1,1650 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1305],{71305:(e,t,r)=>{r.d(t,{createDesktopContainer:()=>eB});var o=r(51111),n=r(25601),g=r(54960),i=r(30293),a=r(17160),l=r(56053),c=r(57246),u=r(43411),s=r(72009),m=r(90557),p=r(25536),d=r(69900),w=r(47414),G=r(93650),A=r(10064),x=r(42937),f=r(31404),h=r(91628),v=r(28144),k=r(2512),E=r(3850),L=r(17199),H=r(88e3),U=r(89498),_=r(96029),R=r(63554),T=r(38920),B=r(79080),V=r(50594),X=r(49004),Q=r(42558),y=r(90050),C=r(71827),b=r(92643),D=r(59364),P=r(85272),M=r(33747),S=r(49501),N=r(75846),O=r(71068),$=r(2436),q=r(7048),Z=r(55024),K=r(77488),I=r(75416),Y=r(84378),W=r(43564),z=r(75480),J=r(96502),F=r(41536),j=r(83278),ee=r(20757),et=r(29515),er=r(97056),eo=r(58256),en=r(59060),eg=r(94212),ei=r(85897),ea=r(48467),el=r(12580),ec=r(90633),eu=r(94207),es=r(94233),em=r(50145),ep=r(70095),ed=r(92154);class ew{onChangeLanguage(){window.location.reload()}}var eG=r(32100),eA=r(911),ex=r(28779),ef=r(55959),eh=r(8558),ev=r(30868),ek=r(55361),eE=r(66103),eL=r(4760),eH=r(54010),eU=r(49502),e_=r(5626),eR=r(29994),eT=r(10808);async function eB(e){let{tld:t,env:r}=e,eB=(0,eT.J)(await (0,ep.z)(r)),eV=await (0,em.B)(r),eX={};return new l.Dt().registerMany({[eH.SX]:(0,l.Gr)(()=>r),[eH.tw]:(0,l.Gr)(()=>eB),[eH.P0]:(0,l.Gr)(()=>new a.q(eV)),[eH.Zi]:(0,l.Gr)(()=>new ed.Y(eX))}).register(eH.WA,(0,l.Gr)(e=>{let t=e.get(eH.Zi);return new eL.V(t)})).registerMany({[eH.Zf]:(0,l.Gr)(e=>{let t=e.get(eH.P0).get(es.qV);return new m.r({maxLogLevel:s.cm.DEBUG,secureFields:ex.x,disableLogToConsole:!t,additionalData:{get puid(){return e.get(eH.WA).getPassportUid()}}})}),[eH.TK]:(0,l.Gr)(e=>new((0,eA.b)(m.r))({maxLogLevel:s.cm.DEBUG,secureFields:ex.x,disableLogToConsole:"development"!==e.get(eH.SX),additionalData:{get puid(){return e.get(eH.WA).getPassportUid()}}})),[eH.oo]:(0,l.Gr)(()=>new ea.si),[eH.DP]:(0,l.Gr)(()=>new ea.MJ("client ".concat("desktop"),"cookie")),[eH.U2]:(0,l.Gr)(()=>new ea.si),[eH.vH]:(0,l.Gr)(()=>new ea.fW),[eH.Xc]:(0,l.Gr)(e=>{let t=e.get(eH.oo),r=e.get(eH.Zf);return new eG.E({isBuildTypeDesktop:!0,logger:r,changeLanguageHandler:new ew,storage:{get:()=>t.get(ek.c.SavedUserLanguage),set(e){t.set(ek.c.SavedUserLanguage,e)}}})})}).registerMany({[eH.y$]:(0,l.Gr)(e=>{let t=e.get(eH.Zf),r=e.get(eH.oo),o=new ei.Mz({config:{useEntitiesStorage:!0,useFileStorage:!0,useResponseCacheStorage:!0},plugins:[new ei.wK({logger:t})]});return o.createCacheController({repositoryContainer:o.repositoryContainer,variables:{get uid(){return r.get(ek.c.YmUid)},get isOffline(){return!!o.network.status.isOffline}}}),o}),[eH.Hm]:(0,l.P9)(()=>function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return new u.Q(e)}),[eH.gu]:(0,l.P9)(()=>function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return new c.S(e)})}).registerMany({[eH.QG]:(0,l.Gr)(e=>new ec.G(e.get(eH.oo),e.get(eH.tw),e.get(eH.Xc).getLanguage())),[eH.OP]:(0,l.P9)(e=>function(){var t,r,o,n,g;let i=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},a=arguments.length>1?arguments[1]:void 0,l=e.get(eH.Zf),c=e.get(eH.U2),u=new ex.N(l),{resources:{musicExternalApi:s}}=e.get(eH.tw);i.timeout=s.defaultTimeout,i.hooks={afterResponse:[...(null==i||null==(t=i.hooks)?void 0:t.afterResponse)||[]],beforeError:[u.beforeErrorHook,...(null==i||null==(r=i.hooks)?void 0:r.beforeError)||[]],beforeRequest:[e_.x,...(null==i||null==(o=i.hooks)?void 0:o.beforeRequest)||[]],afterTimeout:[u.beforeErrorHook,...(null==i||null==(n=i.hooks)?void 0:n.afterTimeout)||[]],beforeRetry:[eR.i,u.beforeRetryHook,...(null==i||null==(g=i.hooks)?void 0:g.beforeRetry)||[]]};let m=a(i);return(0,ei.sY)(m,{get isOffline(){return(0,ef.g)(c)}})})}).registerMany({[eH.A4]:(0,l.P9)(e=>function(){var r;let o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:e.get(eH.OP),g=e.get(eH.QG),{resources:a}=e.get(eH.tw),l=n({},e.get(eH.Hm)),{prefixUrl:c,timeouts:u,retryPolicyConfig:s}=a.musicExternalApi,m=e.get(eH.Xc).getLanguage(),d=new p.Q(l,{prefixUrl:(0,i.getTldHost)(c,t,eE.B),retryPolicyConfig:s,timeouts:u.accountResource,params:{common:{oauth:g.token,client:(0,el._)(),device:(0,ev.V)(),language:m}}});return o.hooks={beforeError:[(0,eu.o)(g,d),...(null==o||null==(r=o.hooks)?void 0:r.beforeError)||[]]},n(o,e.get(eH.Hm))})}).register(eH.CR,(0,l.P9)(e=>function(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return e.get(eH.A4)(t,e.get(eH.gu))})).registerMany({[eH.$I]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4),c=e.get(eH.y$),u=l(),s=e.get(eH.QG),m={prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.accountResource,params:{common:{oauth:s.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}};return c.cacheController?new ei.wV(u,m,{cacheController:c.cacheController}):new p.Q(u,m)}),[eH._1]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new d.d(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.usersResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.V3]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG),u=e.get(eH.y$),s={prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.landingResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}};return new ei.o7(l,s,{hooks:u.hooks,variables:{get tracksController(){return u.tracksController},get cacheController(){var m;return null!=(m=u.cacheController)?m:null}}})}),[eH.Lb]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new w.H(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.landing3Resource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.tz]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new G.B(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.albumsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.$8]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new A.w(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.libraryResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.Oo]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new x.L(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.tracksResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.$5]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new f._(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.availabilityResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.qT]:(0,l.Gr)(e=>{let{resources:r,player:o}=e.get(eH.tw),{prefixUrl:n,timeouts:g,retryPolicyConfig:a}=r.musicExternalApi,l=e.get(eH.Xc).getLanguage(),c=e.get(eH.A4)(),u=e.get(eH.QG),s=e.get(eH.y$),m=e.get(eH.oo),p={prefixUrl:(0,i.getTldHost)(n,t,eE.B),retryPolicyConfig:a,timeouts:g.getFileInfoResource,params:{common:{oauth:u.token,client:(0,el._)(),device:(0,ev.V)(),language:l}}},d=s.repositoryContainer.fileStorage,w=s.repositoryContainer.tracksRepository,G=s.repositoryContainer.usersTracksRepository;return d&&w&&G?new ei.d7(c,p,{fileStorage:d,tracksRepository:w,usersTracksRepository:G,hooks:s.hooks,variables:{get uid(){return m.get(ek.c.YmUid)},secretKey:o.secretKey}}):new h.v(c,p)}),[eH.X4]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new v.a(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.topResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.O9]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new k.b(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.artistsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.E]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new E.V(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.slidesResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.wH]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4),c=e.get(eH.QG),u=l();return new L.c(u,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.redAlertResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.ok]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new H.Z(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.rotorResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.yq]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new U.p(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.searchResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.NN]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new _.v(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.searchResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.qN]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new R.T(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.playlistResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.ro]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new T.e(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.playlistsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.nM]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new B.o(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.pinResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.Ut]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new V.$(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.metatagsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.K1]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new X.p(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.tagResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.eu]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new Q.D(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.feedResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.aE]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG),u=e.get(eH.y$),s=new y.l(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.pinsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}});return u.cacheController?(0,ei._2)({resource:s,cacheController:u.cacheController,config:{common:{resourceName:y.l.constructor.name},enabled:!0,priority:ei.OU.HIGH,ttl:6048e5}}):s}),[eH.ki]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new C.I(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.musicHistoryResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.c9]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new b.s(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.dynamicPagesResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.en]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new D.B(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.chartResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.jQ]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new P._(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.clipsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.cZ]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new M.c(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.lyricViewsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.Zl]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new S.D(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.nonMusicResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.CN]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new N.N(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.donationResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.JM]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new O.c(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.streamsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.P1]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new $.S(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.loaderResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.re]:(0,l.Gr)(e=>{let{resources:t}=e.get(eH.tw),{timeouts:r,retryPolicyConfig:o}=t.musicExternalApi,n=e.get(eH.Xc).getLanguage(),g=e.get(eH.A4)({credentials:"omit"});return new q.s(g,{prefixUrl:"",retryPolicyConfig:o,timeouts:r.prefixlessResource,params:{common:{client:(0,el._)(),device:(0,ev.V)(),language:n}}})}),[eH.Lk]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new Z.g(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.filtersResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.he]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)();return new K.K(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.offersResource,params:{common:{client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.uM]:(0,l.Gr)(e=>{var t;let{acqOffers:r,rumSettings:n}=e.get(eH.tw),{brand:g,service:i,environment:a,appVersion:l}=r,{platform:c,page:u}=n,s=e.get(eH.QG),m=e.get(eH.Xc).getLanguage(),p=e.get(eH.A4),d=s.token||null,w=p({credentials:"omit"}),{request_id:G,puid:A}=null!=(t=e.get(eH.Zi).getStore())?t:{};return new o.mZ({brand:g,service:i,environment:a,appVersion:l,etld:"yandex.net",platform:"Desktop",lang:m,oAuthToken:d,authMethod:"oauth",requester:(0,eU.n)(w),puid:(null==A?void 0:A.toString())||null,rumOptions:{platform:c,page:u,requestId:G}})}),[eH.$$]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new I.E(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.ugcResource,params:{common:{oauth:c.token,client:(0,el._)(),language:a}}})}),[eH.sv]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new Y.L(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.collectionResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.gd]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new W.z(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.adsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.EN]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new z._(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.afterTrackResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.Ez]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new J.l(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.personalResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.N1]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG),u=e.get(eH.y$),s=new F.H(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.disclaimersResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}});return u.cacheController?(0,ei._2)({resource:s,cacheController:u.cacheController,config:{common:{resourceName:F.H.constructor.name},enabled:!0,priority:ei.OU.HIGH,ttl:6048e5}}):s}),[eH.u2]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new j.J(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.familyResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.TD]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new ee.L(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.childrenLandingResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.wK]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new et.u(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.landingBlocksResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.dh]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new er.q(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.promoResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.LC]:(0,l.Gr)(e=>{let{resources:t,player:r}=e.get(eH.tw),{timeouts:o,retryPolicyConfig:n}=t.musicExternalApi,g=e.get(eH.CR)({credentials:"include"});return new eo.g(g,{prefixUrl:r.telemetry.telemetryUrl,retryPolicyConfig:n,timeouts:o.telemetryResouce,params:{common:{client:(0,el._)()}}})}),[eH.PL]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new en.w(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.labelsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})}),[eH.DT]:(0,l.Gr)(e=>{let{resources:r}=e.get(eH.tw),{prefixUrl:o,timeouts:n,retryPolicyConfig:g}=r.musicExternalApi,a=e.get(eH.Xc).getLanguage(),l=e.get(eH.A4)(),c=e.get(eH.QG);return new eg.O(l,{prefixUrl:(0,i.getTldHost)(o,t,eE.B),retryPolicyConfig:g,timeouts:n.concertsResource,params:{common:{oauth:c.token,client:(0,el._)(),device:(0,ev.V)(),language:a}}})})}).register(eH.by,(0,l.Gr)(e=>{let t=e.get(eH.oo),r=e.get(eH.U2),o=r.get(ek.c.YnisonDeviceId);o||(o=(0,g.A)(),r.set(ek.c.YnisonDeviceId,o));let i={info:{app_name:"Desktop",app_version:(0,eh.H)()||"",title:"Music Desktop App",device_id:o,type:n.bq.WEB_DESKTOP},volumeGranularity:20,get defaultVolume(){var a;return null!=(a=t.get(ek.c.YmPlayerVolume))?a:void 0}},l=e.get(eH.WA).getPassportUid(),c=e.get(eH.QG);return new n.Jd({deviceConfig:i,multiAuthUserId:l,oauth:c.token,ynisonConnectionConfig:eB.ynisonConnectionConfig,variables:{isShadow:!0}})}))}}}]);
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [1305],
+    {
+        71305: (e, t, r) => {
+            r.d(t, { createDesktopContainer: () => eB });
+            var o = r(51111),
+                n = r(25601),
+                g = r(54960),
+                i = r(30293),
+                a = r(17160),
+                l = r(56053),
+                c = r(57246),
+                u = r(43411),
+                s = r(72009),
+                m = r(90557),
+                p = r(25536),
+                d = r(69900),
+                w = r(47414),
+                G = r(93650),
+                A = r(10064),
+                x = r(42937),
+                f = r(31404),
+                h = r(91628),
+                v = r(28144),
+                k = r(2512),
+                E = r(3850),
+                L = r(17199),
+                H = r(88e3),
+                U = r(89498),
+                _ = r(96029),
+                R = r(63554),
+                T = r(38920),
+                B = r(79080),
+                V = r(50594),
+                X = r(49004),
+                Q = r(42558),
+                y = r(90050),
+                C = r(71827),
+                b = r(92643),
+                D = r(59364),
+                P = r(85272),
+                M = r(33747),
+                S = r(49501),
+                N = r(75846),
+                O = r(71068),
+                $ = r(2436),
+                q = r(7048),
+                Z = r(55024),
+                K = r(77488),
+                I = r(75416),
+                Y = r(84378),
+                W = r(43564),
+                z = r(75480),
+                J = r(96502),
+                F = r(41536),
+                j = r(83278),
+                ee = r(20757),
+                et = r(29515),
+                er = r(97056),
+                eo = r(58256),
+                en = r(59060),
+                eg = r(94212),
+                ei = r(85897),
+                ea = r(48467),
+                el = r(12580),
+                ec = r(90633),
+                eu = r(94207),
+                es = r(94233),
+                em = r(50145),
+                ep = r(70095),
+                ed = r(92154);
+            class ew {
+                onChangeLanguage() {
+                    window.location.reload();
+                }
+            }
+            var eG = r(32100),
+                eA = r(911),
+                ex = r(28779),
+                ef = r(55959),
+                eh = r(8558),
+                ev = r(30868),
+                ek = r(55361),
+                eE = r(66103),
+                eL = r(4760),
+                eH = r(54010),
+                eU = r(49502),
+                e_ = r(5626),
+                eR = r(29994),
+                eT = r(10808);
+            async function eB(e) {
+                let { tld: t, env: r } = e,
+                    eB = (0, eT.J)(await (0, ep.z)(r)),
+                    eV = await (0, em.B)(r),
+                    eX = {};
+                return new l.Dt()
+                    .registerMany({
+                        [eH.SX]: (0, l.Gr)(() => r),
+                        [eH.tw]: (0, l.Gr)(() => eB),
+                        [eH.P0]: (0, l.Gr)(() => new a.q(eV)),
+                        [eH.Zi]: (0, l.Gr)(() => new ed.Y(eX)),
+                    })
+                    .register(
+                        eH.WA,
+                        (0, l.Gr)((e) => {
+                            let t = e.get(eH.Zi);
+                            return new eL.V(t);
+                        }),
+                    )
+                    .registerMany({
+                        [eH.Zf]: (0, l.Gr)((e) => {
+                            let t = e.get(eH.P0).get(es.qV);
+                            return new m.r({
+                                maxLogLevel: s.cm.DEBUG,
+                                secureFields: ex.x,
+                                disableLogToConsole: !t,
+                                additionalData: {
+                                    get puid() {
+                                        return e.get(eH.WA).getPassportUid();
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.TK]: (0, l.Gr)(
+                            (e) =>
+                                new ((0, eA.b)(m.r))({
+                                    maxLogLevel: s.cm.DEBUG,
+                                    secureFields: ex.x,
+                                    disableLogToConsole:
+                                        "development" !== e.get(eH.SX),
+                                    additionalData: {
+                                        get puid() {
+                                            return e
+                                                .get(eH.WA)
+                                                .getPassportUid();
+                                        },
+                                    },
+                                }),
+                        ),
+                        [eH.oo]: (0, l.Gr)(() => new ea.si()),
+                        [eH.DP]: (0, l.Gr)(
+                            () =>
+                                new ea.MJ(
+                                    "client ".concat("desktop"),
+                                    "cookie",
+                                ),
+                        ),
+                        [eH.U2]: (0, l.Gr)(() => new ea.si()),
+                        [eH.vH]: (0, l.Gr)(() => new ea.fW()),
+                        [eH.Xc]: (0, l.Gr)((e) => {
+                            let t = e.get(eH.oo),
+                                r = e.get(eH.Zf);
+                            return new eG.E({
+                                isBuildTypeDesktop: !0,
+                                logger: r,
+                                changeLanguageHandler: new ew(),
+                                storage: {
+                                    get: () => t.get(ek.c.SavedUserLanguage),
+                                    set(e) {
+                                        t.set(ek.c.SavedUserLanguage, e);
+                                    },
+                                },
+                            });
+                        }),
+                    })
+                    .registerMany({
+                        [eH.y$]: (0, l.Gr)((e) => {
+                            let t = e.get(eH.Zf),
+                                r = e.get(eH.oo),
+                                o = new ei.Mz({
+                                    config: {
+                                        useEntitiesStorage: !0,
+                                        useFileStorage: !0,
+                                        useResponseCacheStorage: !0,
+                                    },
+                                    plugins: [new ei.wK({ logger: t })],
+                                });
+                            return (
+                                o.createCacheController({
+                                    repositoryContainer: o.repositoryContainer,
+                                    variables: {
+                                        get uid() {
+                                            return r.get(ek.c.YmUid);
+                                        },
+                                        get isOffline() {
+                                            return !!o.network.status.isOffline;
+                                        },
+                                    },
+                                }),
+                                o
+                            );
+                        }),
+                        [eH.Hm]: (0, l.P9)(
+                            () =>
+                                function () {
+                                    let e =
+                                        arguments.length > 0 &&
+                                        void 0 !== arguments[0]
+                                            ? arguments[0]
+                                            : {};
+                                    return new u.Q(e);
+                                },
+                        ),
+                        [eH.gu]: (0, l.P9)(
+                            () =>
+                                function () {
+                                    let e =
+                                        arguments.length > 0 &&
+                                        void 0 !== arguments[0]
+                                            ? arguments[0]
+                                            : {};
+                                    return new c.S(e);
+                                },
+                        ),
+                    })
+                    .registerMany({
+                        [eH.QG]: (0, l.Gr)(
+                            (e) =>
+                                new ec.G(
+                                    e.get(eH.oo),
+                                    e.get(eH.tw),
+                                    e.get(eH.Xc).getLanguage(),
+                                ),
+                        ),
+                        [eH.OP]: (0, l.P9)(
+                            (e) =>
+                                function () {
+                                    var t, r, o, n, g;
+                                    let i =
+                                            arguments.length > 0 &&
+                                            void 0 !== arguments[0]
+                                                ? arguments[0]
+                                                : {},
+                                        a =
+                                            arguments.length > 1
+                                                ? arguments[1]
+                                                : void 0,
+                                        l = e.get(eH.Zf),
+                                        c = e.get(eH.U2),
+                                        u = new ex.N(l),
+                                        {
+                                            resources: { musicExternalApi: s },
+                                        } = e.get(eH.tw);
+                                    (i.timeout = s.defaultTimeout),
+                                        (i.hooks = {
+                                            afterResponse: [
+                                                ...((null == i ||
+                                                null == (t = i.hooks)
+                                                    ? void 0
+                                                    : t.afterResponse) || []),
+                                            ],
+                                            beforeError: [
+                                                u.beforeErrorHook,
+                                                ...((null == i ||
+                                                null == (r = i.hooks)
+                                                    ? void 0
+                                                    : r.beforeError) || []),
+                                            ],
+                                            beforeRequest: [
+                                                e_.x,
+                                                ...((null == i ||
+                                                null == (o = i.hooks)
+                                                    ? void 0
+                                                    : o.beforeRequest) || []),
+                                            ],
+                                            afterTimeout: [
+                                                u.beforeErrorHook,
+                                                ...((null == i ||
+                                                null == (n = i.hooks)
+                                                    ? void 0
+                                                    : n.afterTimeout) || []),
+                                            ],
+                                            beforeRetry: [
+                                                eR.i,
+                                                u.beforeRetryHook,
+                                                ...((null == i ||
+                                                null == (g = i.hooks)
+                                                    ? void 0
+                                                    : g.beforeRetry) || []),
+                                            ],
+                                        });
+                                    let m = a(i);
+                                    return (0, ei.sY)(m, {
+                                        get isOffline() {
+                                            return (0, ef.g)(c);
+                                        },
+                                    });
+                                },
+                        ),
+                    })
+                    .registerMany({
+                        [eH.A4]: (0, l.P9)(
+                            (e) =>
+                                function () {
+                                    var r;
+                                    let o =
+                                            arguments.length > 0 &&
+                                            void 0 !== arguments[0]
+                                                ? arguments[0]
+                                                : {},
+                                        n =
+                                            arguments.length > 1 &&
+                                            void 0 !== arguments[1]
+                                                ? arguments[1]
+                                                : e.get(eH.OP),
+                                        g = e.get(eH.QG),
+                                        { resources: a } = e.get(eH.tw),
+                                        l = n({}, e.get(eH.Hm)),
+                                        {
+                                            prefixUrl: c,
+                                            timeouts: u,
+                                            retryPolicyConfig: s,
+                                        } = a.musicExternalApi,
+                                        m = e.get(eH.Xc).getLanguage(),
+                                        d = new p.Q(l, {
+                                            prefixUrl: (0, i.getTldHost)(
+                                                c,
+                                                t,
+                                                eE.B,
+                                            ),
+                                            retryPolicyConfig: s,
+                                            timeouts: u.accountResource,
+                                            params: {
+                                                common: {
+                                                    oauth: g.token,
+                                                    client: (0, el._)(),
+                                                    device: (0, ev.V)(),
+                                                    language: m,
+                                                },
+                                            },
+                                        });
+                                    return (
+                                        (o.hooks = {
+                                            beforeError: [
+                                                (0, eu.o)(g, d),
+                                                ...((null == o ||
+                                                null == (r = o.hooks)
+                                                    ? void 0
+                                                    : r.beforeError) || []),
+                                            ],
+                                        }),
+                                        n(o, e.get(eH.Hm))
+                                    );
+                                },
+                        ),
+                    })
+                    .register(
+                        eH.CR,
+                        (0, l.P9)(
+                            (e) =>
+                                function () {
+                                    let t =
+                                        arguments.length > 0 &&
+                                        void 0 !== arguments[0]
+                                            ? arguments[0]
+                                            : {};
+                                    return e.get(eH.A4)(t, e.get(eH.gu));
+                                },
+                        ),
+                    )
+                    .registerMany({
+                        [eH.$I]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4),
+                                c = e.get(eH.y$),
+                                u = l(),
+                                s = e.get(eH.QG),
+                                m = {
+                                    prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                    retryPolicyConfig: g,
+                                    timeouts: n.accountResource,
+                                    params: {
+                                        common: {
+                                            oauth: s.token,
+                                            client: (0, el._)(),
+                                            device: (0, ev.V)(),
+                                            language: a,
+                                        },
+                                    },
+                                };
+                            return c.cacheController
+                                ? new ei.wV(u, m, {
+                                      cacheController: c.cacheController,
+                                  })
+                                : new p.Q(u, m);
+                        }),
+                        [eH._1]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new d.d(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.usersResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.V3]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG),
+                                u = e.get(eH.y$),
+                                s = {
+                                    prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                    retryPolicyConfig: g,
+                                    timeouts: n.landingResource,
+                                    params: {
+                                        common: {
+                                            oauth: c.token,
+                                            client: (0, el._)(),
+                                            device: (0, ev.V)(),
+                                            language: a,
+                                        },
+                                    },
+                                };
+                            return new ei.o7(l, s, {
+                                hooks: u.hooks,
+                                variables: {
+                                    get tracksController() {
+                                        return u.tracksController;
+                                    },
+                                    get cacheController() {
+                                        var m;
+                                        return null != (m = u.cacheController)
+                                            ? m
+                                            : null;
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Lb]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new w.H(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.landing3Resource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.tz]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new G.B(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.albumsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.$8]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new A.w(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.libraryResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Oo]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new x.L(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.tracksResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.$5]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new f._(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.availabilityResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.qT]: (0, l.Gr)((e) => {
+                            let { resources: r, player: o } = e.get(eH.tw),
+                                {
+                                    prefixUrl: n,
+                                    timeouts: g,
+                                    retryPolicyConfig: a,
+                                } = r.musicExternalApi,
+                                l = e.get(eH.Xc).getLanguage(),
+                                c = e.get(eH.A4)(),
+                                u = e.get(eH.QG),
+                                s = e.get(eH.y$),
+                                m = e.get(eH.oo),
+                                p = {
+                                    prefixUrl: (0, i.getTldHost)(n, t, eE.B),
+                                    retryPolicyConfig: a,
+                                    timeouts: g.getFileInfoResource,
+                                    params: {
+                                        common: {
+                                            oauth: u.token,
+                                            client: (0, el._)(),
+                                            device: (0, ev.V)(),
+                                            language: l,
+                                        },
+                                    },
+                                },
+                                d = s.repositoryContainer.fileStorage,
+                                w = s.repositoryContainer.tracksRepository,
+                                G = s.repositoryContainer.usersTracksRepository;
+                            return d && w && G
+                                ? new ei.d7(c, p, {
+                                      fileStorage: d,
+                                      tracksRepository: w,
+                                      usersTracksRepository: G,
+                                      hooks: s.hooks,
+                                      variables: {
+                                          get uid() {
+                                              return m.get(ek.c.YmUid);
+                                          },
+                                          secretKey: o.secretKey,
+                                      },
+                                  })
+                                : new h.v(c, p);
+                        }),
+                        [eH.X4]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new v.a(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.topResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.O9]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new k.b(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.artistsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.E]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new E.V(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.slidesResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.wH]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4),
+                                c = e.get(eH.QG),
+                                u = l();
+                            return new L.c(u, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.redAlertResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.ok]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new H.Z(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.rotorResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.yq]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new U.p(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.searchResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.NN]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new _.v(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.searchResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.qN]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new R.T(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.playlistResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.ro]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new T.e(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.playlistsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.nM]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new B.o(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.pinResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Ut]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new V.$(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.metatagsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.K1]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new X.p(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.tagResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.eu]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new Q.D(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.feedResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.aE]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG),
+                                u = e.get(eH.y$),
+                                s = new y.l(l, {
+                                    prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                    retryPolicyConfig: g,
+                                    timeouts: n.pinsResource,
+                                    params: {
+                                        common: {
+                                            oauth: c.token,
+                                            client: (0, el._)(),
+                                            device: (0, ev.V)(),
+                                            language: a,
+                                        },
+                                    },
+                                });
+                            return u.cacheController
+                                ? (0, ei._2)({
+                                      resource: s,
+                                      cacheController: u.cacheController,
+                                      config: {
+                                          common: {
+                                              resourceName:
+                                                  y.l.constructor.name,
+                                          },
+                                          enabled: !0,
+                                          priority: ei.OU.HIGH,
+                                          ttl: 6048e5,
+                                      },
+                                  })
+                                : s;
+                        }),
+                        [eH.ki]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new C.I(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.musicHistoryResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.c9]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new b.s(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.dynamicPagesResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.en]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new D.B(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.chartResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.jQ]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new P._(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.clipsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.cZ]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new M.c(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.lyricViewsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Zl]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new S.D(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.nonMusicResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.CN]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new N.N(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.donationResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.JM]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new O.c(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.streamsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.P1]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new $.S(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.loaderResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.re]: (0, l.Gr)((e) => {
+                            let { resources: t } = e.get(eH.tw),
+                                { timeouts: r, retryPolicyConfig: o } =
+                                    t.musicExternalApi,
+                                n = e.get(eH.Xc).getLanguage(),
+                                g = e.get(eH.A4)({ credentials: "omit" });
+                            return new q.s(g, {
+                                prefixUrl: "",
+                                retryPolicyConfig: o,
+                                timeouts: r.prefixlessResource,
+                                params: {
+                                    common: {
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: n,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Lk]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new Z.g(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.filtersResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.he]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)();
+                            return new K.K(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.offersResource,
+                                params: {
+                                    common: {
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.uM]: (0, l.Gr)((e) => {
+                            var t;
+                            let { acqOffers: r, rumSettings: n } = e.get(eH.tw),
+                                {
+                                    brand: g,
+                                    service: i,
+                                    environment: a,
+                                    appVersion: l,
+                                } = r,
+                                { platform: c, page: u } = n,
+                                s = e.get(eH.QG),
+                                m = e.get(eH.Xc).getLanguage(),
+                                p = e.get(eH.A4),
+                                d = s.token || null,
+                                w = p({ credentials: "omit" }),
+                                { request_id: G, puid: A } =
+                                    null != (t = e.get(eH.Zi).getStore())
+                                        ? t
+                                        : {};
+                            return new o.mZ({
+                                brand: g,
+                                service: i,
+                                environment: a,
+                                appVersion: l,
+                                etld: "yandex.net",
+                                platform: "Desktop",
+                                lang: m,
+                                oAuthToken: d,
+                                authMethod: "oauth",
+                                requester: (0, eU.n)(w),
+                                puid:
+                                    (null == A ? void 0 : A.toString()) || null,
+                                rumOptions: {
+                                    platform: c,
+                                    page: u,
+                                    requestId: G,
+                                },
+                            });
+                        }),
+                        [eH.$$]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new I.E(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.ugcResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.sv]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new Y.L(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.collectionResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.gd]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new W.z(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.adsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.EN]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new z._(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.afterTrackResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.Ez]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new J.l(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.personalResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.N1]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG),
+                                u = e.get(eH.y$),
+                                s = new F.H(l, {
+                                    prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                    retryPolicyConfig: g,
+                                    timeouts: n.disclaimersResource,
+                                    params: {
+                                        common: {
+                                            oauth: c.token,
+                                            client: (0, el._)(),
+                                            device: (0, ev.V)(),
+                                            language: a,
+                                        },
+                                    },
+                                });
+                            return u.cacheController
+                                ? (0, ei._2)({
+                                      resource: s,
+                                      cacheController: u.cacheController,
+                                      config: {
+                                          common: {
+                                              resourceName:
+                                                  F.H.constructor.name,
+                                          },
+                                          enabled: !0,
+                                          priority: ei.OU.HIGH,
+                                          ttl: 6048e5,
+                                      },
+                                  })
+                                : s;
+                        }),
+                        [eH.u2]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new j.J(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.familyResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.TD]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new ee.L(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.childrenLandingResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.wK]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new et.u(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.landingBlocksResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.dh]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new er.q(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.promoResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.LC]: (0, l.Gr)((e) => {
+                            let { resources: t, player: r } = e.get(eH.tw),
+                                { timeouts: o, retryPolicyConfig: n } =
+                                    t.musicExternalApi,
+                                g = e.get(eH.CR)({ credentials: "include" });
+                            return new eo.g(g, {
+                                prefixUrl: r.telemetry.telemetryUrl,
+                                retryPolicyConfig: n,
+                                timeouts: o.telemetryResouce,
+                                params: { common: { client: (0, el._)() } },
+                            });
+                        }),
+                        [eH.PL]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new en.w(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.labelsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                        [eH.DT]: (0, l.Gr)((e) => {
+                            let { resources: r } = e.get(eH.tw),
+                                {
+                                    prefixUrl: o,
+                                    timeouts: n,
+                                    retryPolicyConfig: g,
+                                } = r.musicExternalApi,
+                                a = e.get(eH.Xc).getLanguage(),
+                                l = e.get(eH.A4)(),
+                                c = e.get(eH.QG);
+                            return new eg.O(l, {
+                                prefixUrl: (0, i.getTldHost)(o, t, eE.B),
+                                retryPolicyConfig: g,
+                                timeouts: n.concertsResource,
+                                params: {
+                                    common: {
+                                        oauth: c.token,
+                                        client: (0, el._)(),
+                                        device: (0, ev.V)(),
+                                        language: a,
+                                    },
+                                },
+                            });
+                        }),
+                    })
+                    .register(
+                        eH.by,
+                        (0, l.Gr)((e) => {
+                            let t = e.get(eH.oo),
+                                r = e.get(eH.U2),
+                                o = r.get(ek.c.YnisonDeviceId);
+                            o ||
+                                ((o = (0, g.A)()),
+                                r.set(ek.c.YnisonDeviceId, o));
+                            let i = {
+                                    info: {
+                                        app_name: "Desktop",
+                                        app_version: (0, eh.H)() || "",
+                                        title: "Music Desktop App",
+                                        device_id: o,
+                                        type: n.bq.WEB_DESKTOP,
+                                    },
+                                    volumeGranularity: 20,
+                                    get defaultVolume() {
+                                        var a;
+                                        return null !=
+                                            (a = t.get(ek.c.YmPlayerVolume))
+                                            ? a
+                                            : void 0;
+                                    },
+                                },
+                                l = e.get(eH.WA).getPassportUid(),
+                                c = e.get(eH.QG);
+                            return new n.Jd({
+                                deviceConfig: i,
+                                multiAuthUserId: l,
+                                oauth: c.token,
+                                ynisonConnectionConfig:
+                                    eB.ynisonConnectionConfig,
+                                variables: { isShadow: !0 },
+                            });
+                        }),
+                    );
+            }
+        },
+    },
+]);

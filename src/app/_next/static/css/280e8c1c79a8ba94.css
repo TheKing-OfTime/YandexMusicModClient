@@ -1,1 +1,42 @@
-.HorizontalCardContainer_root__YoAAP{--horizontal-card-fallback-height:3.5rem;--horizontal-card-fallback-background-color:var(--ym-surface-color-primary-enabled-list);align-items:center;display:flex;height:3.5rem;height:var(--horizontal-card-height,var(--horizontal-card-fallback-height));overflow:hidden;position:relative;transition:background-color var(--ym-duration-transition);width:100%}@media only screen and (min-width:768.02px){.HorizontalCardContainer_root__YoAAP:has(:focus-visible),.HorizontalCardContainer_root__YoAAP:hover{background-color:var(--horizontal-card-background-color,var(--horizontal-card-fallback-background-color))}}@supports not selector(:has(*)){@media only screen and (min-width:768.02px){.HorizontalCardContainer_root__YoAAP:focus-within,.HorizontalCardContainer_root__YoAAP:hover{background-color:var(--horizontal-card-background-color,var(--horizontal-card-fallback-background-color))}}}@media(prefers-reduced-motion:reduce){.HorizontalCardContainer_root__YoAAP{transition:none}}
+.HorizontalCardContainer_root__YoAAP {
+    --horizontal-card-fallback-height: 3.5rem;
+    --horizontal-card-fallback-background-color: var(
+        --ym-surface-color-primary-enabled-list
+    );
+    align-items: center;
+    display: flex;
+    height: 3.5rem;
+    height: var(
+        --horizontal-card-height,
+        var(--horizontal-card-fallback-height)
+    );
+    overflow: hidden;
+    position: relative;
+    transition: background-color var(--ym-duration-transition);
+    width: 100%;
+}
+@media only screen and (min-width: 768.02px) {
+    .HorizontalCardContainer_root__YoAAP:has(:focus-visible),
+    .HorizontalCardContainer_root__YoAAP:hover {
+        background-color: var(
+            --horizontal-card-background-color,
+            var(--horizontal-card-fallback-background-color)
+        );
+    }
+}
+@supports not selector(:has(*)) {
+    @media only screen and (min-width: 768.02px) {
+        .HorizontalCardContainer_root__YoAAP:focus-within,
+        .HorizontalCardContainer_root__YoAAP:hover {
+            background-color: var(
+                --horizontal-card-background-color,
+                var(--horizontal-card-fallback-background-color)
+            );
+        }
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .HorizontalCardContainer_root__YoAAP {
+        transition: none;
+    }
+}

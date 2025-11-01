@@ -1,1 +1,5693 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3663],{1826:e=>{e.exports={root:"CollectionShelfPage_root__S0__c",scrollableContainer:"CollectionShelfPage_scrollableContainer__9f317",content:"CollectionShelfPage_content__AG3r8",block:"CollectionShelfPage_block__34jyy",blockHeader:"CollectionShelfPage_blockHeader__Qjoln",footer:"CollectionShelfPage_footer__pgWKV"}},2614:(e,t,l)=>{"use strict";l.d(t,{SortDropdown:()=>x});var s=l(33008),a=l(97531),i=l(66268),o=l(96560),n=l(75729),r=l(42213),c=l(44189),d=l(89492),m=l(78016),u=l(77868),_=l(79169),C=l(25585),h=l(3417),g=l.n(h);let p={[n.g.RATING]:(0,s.jsx)(o.A,{id:"sort.sort-by-rating"}),[n.g.YEAR]:(0,s.jsx)(o.A,{id:"sort.sort-by-year"})},x=(0,a.PA)(e=>{var t;let{sortModel:l,onSort:a}=e,{settings:{isMobile:h}}=(0,_.Pjs)(),x=(0,r.c)(e=>{(0,C.W)(e.id)&&l.sortBy!==e.id&&(l.setSortBy(e.id),a())}),P=(0,i.useMemo)(()=>h?(0,s.jsx)(c.Button,{radius:"xxxl",className:g().button,icon:(0,s.jsx)(m.Icon,{variant:"filter",size:"xs"})}):(0,s.jsxs)(c.Button,{radius:"xxxl",className:g().button,children:[(0,s.jsx)(u.Caption,{variant:"span",size:"m",weight:"medium",children:l.sortBy?p[l.sortBy]:(0,s.jsx)(o.A,{id:"sort.select-filter"})}),(0,s.jsx)(m.Icon,{size:"xxs",variant:"arrowDown"})]}),[h,l.sortBy]);return(0,s.jsx)(d.ms,{placement:h?"bottom":"top",isMobile:h,strategy:"fixed",className:g().root,onSelect:x,reference:P,offsetOptions:{mainAxis:10,crossAxis:-50},defaultValue:null!=(t=l.sortBy)?t:n.g.YEAR,containerClassName:g().container,header:h?(0,s.jsx)("div",{className:g().header}):void 0,children:Object.values(n.g).map(e=>(0,s.jsx)(d.c$,{id:e,label:p[e]},e))})})},3417:e=>{e.exports={root:"SortDropdown_root__d1JmQ",button:"SortDropdown_button__SjTI7",header:"SortDropdown_header__kj8yV",container:"SortDropdown_container__dyVF_"}},3872:e=>{e.exports={root:"CollectionPlaylistsCreatedPage_root__o77CF",scrollContainer:"CollectionPlaylistsCreatedPage_scrollContainer__Spb2M",important:"CollectionPlaylistsCreatedPage_important__DLkOq",content:"CollectionPlaylistsCreatedPage_content___qalr",footer:"CollectionPlaylistsCreatedPage_footer__I2jJa",item:"CollectionPlaylistsCreatedPage_item__2RmBg"}},4136:(e,t,l)=>{"use strict";l.d(t,{F:()=>u});var s=l(33008),a=l(97531),i=l(96560),o=l(44189),n=l(78016),r=l(77868),c=l(79169),d=l(56736),m=l.n(d);let u=(0,a.PA)(e=>{let{title:t}=e,l=(0,c.ZpR)(c.Zyd.nonMusic.href);return(0,s.jsxs)("div",{className:m().root,children:[(0,s.jsx)("div",{className:m().iconBackground,children:(0,s.jsx)(n.Icon,{variant:"like",size:"l"})}),(0,s.jsx)(r.Heading,{className:m().title,variant:"h3",size:"xs",children:t}),(0,s.jsx)(o.Button,{onClick:l,className:m().button,role:"link",color:"secondary",size:"s",radius:"xxxl",children:(0,s.jsx)(r.Caption,{type:"controls",variant:"span",size:"m",children:(0,s.jsx)(i.A,{id:"error-messages.empty-shelf-liked-page-link"})})})]})})},4190:(e,t,l)=>{"use strict";l.d(t,{CollectionKidsPlaylistsPage:()=>j});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(77868),m=l(83888),u=l(64143),_=l(45242),C=l(79169),h=l(18740),g=l(56732),p=l(39082),x=l(23978),P=l.n(x);let j=(0,i.PA)(()=>{let{settings:{isMobile:e},collection:{kids:{playlists:t}}}=(0,C.Pjs)(),{contentScrollRef:l,setContentScrollRef:i}=(0,C.gKY)(),x=(0,C.W6M)(),{formatMessage:j}=(0,n.A)(),y=(0,o.useCallback)(e=>{t.getData({page:e,pageSize:g.c})},[t]);(0,C.XcE)(t.pagesLoader,y);let b=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(h.A,{children:(0,s.jsx)(h.wi,{className:P().footer})})}),[]),A=t.isShimmerVisible?20:t.items.length;return((0,o.useEffect)(()=>()=>{t.reset()},[t]),(0,C.Jzs)(t.isResolved),t.isNeededToLoad&&(0,o.use)(t.getData({pageSize:g.c})),t.isRejected)?(0,s.jsx)(m.w,{}):t.isEmpty?(0,s.jsx)(p.i,{title:j({id:"entity-names.artist-playlist"})}):(0,s.jsx)(C.nVz,{pageId:C._Q$.COLLECTION_KIDS_PLAYLISTS,children:(0,s.jsx)(u.hO,{scrollElement:l,outerTitle:j({id:"entity-names.artist-playlist"}),children:(0,s.jsxs)("div",{className:P().root,...(0,c.Am)(c.Xk.collection.COLLECTION_KIDS_PLAYLISTS_PAGE),children:[(0,s.jsx)(h.Y9,{variant:h.Vw.TEXT,withForwardControl:!1,withBackwardControl:x.canBack,children:(0,s.jsx)(d.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"entity-names.artist-playlist"})})}),(0,s.jsx)(h.$$,{className:(0,a.$)(P().scrollContainer,P().important),customComponents:b,itemContentCallback:e=>{let l=t.items[e],a=j({id:"loading-messages.entity-is-loading"},{entityName:j({id:"entity-names.album"})});return l?(0,s.jsx)(_.B6,{playlist:l,contentLinesCount:3},l.id):(0,s.jsx)(h.Vt,{"aria-label":a,linesCount:3})},initialItemCount:A,totalCount:A,onGetDataByPage:y,totalRequests:t.requestsCount,pageSize:g.c,listClassName:P().content,itemClassName:P().item,handleRef:i,context:{listAriaLabel:j({id:"entity-names.albums"})},isMobileLayout:e,useWindowScroll:e})]})})})})},5112:e=>{e.exports={root:"CollectionKidsPage_root__nfE01",content:"CollectionKidsPage_content__hVB40",carouselBlocks:"CollectionKidsPage_carouselBlocks__q7f0T",tracksCarouselItem:"CollectionKidsPage_tracksCarouselItem__8WvD0",important:"CollectionKidsPage_important__GkZJX",carouselBlock:"CollectionKidsPage_carouselBlock___6XRJ",carouselBlockHeader:"CollectionKidsPage_carouselBlockHeader__fqs_v",emptyBlock:"CollectionKidsPage_emptyBlock__dc50I",emptyBlockIcon:"CollectionKidsPage_emptyBlockIcon__eVAMs",emptyBlockTitle:"CollectionKidsPage_emptyBlockTitle__TYUpU",footer:"CollectionKidsPage_footer__wEREs"}},6949:(e,t,l)=>{"use strict";l.d(t,{CollectionShelfPage:()=>v});var s=l(33008),a=l(97531),i=l(66268),o=l(73827),n=l(96560),r=l(18064),c=l(57747),d=l(77868),m=l(83888),u=l(64143),_=l(79169),C=l(18740),h=l(17031),g=l(85896),p=l(42314),x=l(44078),P=l(87451),j=l(59795),y=l(68687),b=l.n(y);let A=(0,a.PA)(e=>{var t;let{className:l,itemsCount:a,headerClassName:o}=e,{sonataState:n,collection:{shelf:{recentlyPlayed:r}}}=(0,_.Pjs)(),c=(0,p.L)(()=>{var e;return null==(e=r.entities)?void 0:e.map((e,t)=>{let l=(0,P.T)(e,r.typeForFrom);return(0,s.jsx)(x.Kd,{track:e.track,playContextParams:{contextData:l,queueParams:{index:t,entityId:e.track.id},loadContextMeta:!1,entitiesData:n.unloadedEntitiesDataFromModels},withPodcastName:!0},e.track.id)})});return(r.isNeededToLoad&&(0,i.use)(r.getData()),!r.isLoading&&(null==(t=r.entities)?void 0:t.length))?(0,s.jsx)(C.$2,{blockHeaderClassName:(0,g.$)(b().header,o),className:l,carouselItemClassName:(0,g.$)(b().shelfColumn,b().important),shimmer:(0,s.jsx)(C.DS,{variant:_.Xjt.PLAYLIST,isActive:!0}),isShimmerVisible:r.isLoading,isShimmerActive:!0,maxColumnsCount:C.DI.ONE,blockHeaderTitle:r.title,itemsCountPerColumn:null!=a?a:0,viewAllActionLink:_.Zyd.collectionShelfRecentlyPlayed.href,children:c}):(0,s.jsx)(j.E,{className:l})});var k=l(1826),S=l.n(k);let v=(0,a.PA)(()=>{let{collection:{shelf:e}}=(0,_.Pjs)(),{contentScrollRef:t,setContentScrollRef:l}=(0,_.gKY)(),{formatMessage:a}=(0,o.A)(),g=(0,_.W6M)();return((0,i.useEffect)(()=>()=>{e.reset()},[e]),(0,_.Jzs)(e.isResolved),e.isRejected)?(0,s.jsx)(m.w,{}):(0,s.jsxs)(u.hO,{scrollElement:t,outerTitle:a({id:"page.shelf"}),children:[(0,s.jsx)(C.Y9,{variant:C.Vw.TEXT,withForwardControl:!1,withBackwardControl:g.canBack,children:(0,s.jsx)(d.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(n.A,{id:"page.shelf"})})}),(0,s.jsx)(c.N,{ref:l,containerClassName:S().scrollableContainer,className:S().root,...(0,r.Am)(r.Xk.collection.COLLECTION_SHELF_PAGE),children:(0,s.jsxs)("div",{className:S().content,children:[e.hasRecentlyPlayed&&(0,s.jsx)(A,{className:S().block,headerClassName:S().blockHeader,itemsCount:5}),e.hasLiked&&(0,s.jsx)(h.m,{className:S().block,headerClassName:S().blockHeader,itemsCount:5}),(0,s.jsx)(C.A,{children:(0,s.jsx)(C.wi,{className:S().footer})})]})})]})})},8584:(e,t,l)=>{"use strict";l.d(t,{z:()=>n});var s=l(66268),a=l(79169),i=l(58184),o=l(47463);let n=e=>{let t=(0,a.XJ9)();return(0,s.useCallback)(l=>{var s;switch(null==(s=e.onTabChange)||s.call(e,l),l){case o.j.TRACKS:{let{href:e}=(0,a.uvd)(a.Zyd.collectionDislikes.href,{query:{tab:i.h.TRACKS}});t(e);break}case o.j.ARTISTS:{let{href:e}=(0,a.uvd)(a.Zyd.collectionDislikes.href,{query:{tab:i.h.ARTISTS}});t(e)}}},[t,e])}},11718:e=>{e.exports={root:"CollectionNonMusicLikedPage_root__0e_hz",scrollContainer:"CollectionNonMusicLikedPage_scrollContainer__OthtN",important:"CollectionNonMusicLikedPage_important__MNJX3",footer:"CollectionNonMusicLikedPage_footer__F_mtD",item:"CollectionNonMusicLikedPage_item__Rb0yS",emptyBlock:"CollectionNonMusicLikedPage_emptyBlock__WAdri",content:"CollectionNonMusicLikedPage_content__9WDX5"}},16144:e=>{e.exports={root:"CollectionShelfLikedPage_root__KRXgN",footer:"CollectionShelfLikedPage_footer__NgcOJ",scrollContainer:"CollectionShelfLikedPage_scrollContainer__IBlT7",important:"CollectionShelfLikedPage_important__R4MBr",content:"CollectionShelfLikedPage_content__KHWpo",item:"CollectionShelfLikedPage_item__x5cqv"}},17031:(e,t,l)=>{"use strict";l.d(t,{m:()=>g});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(42314),r=l(52732),c=l(44078),d=l(79169),m=l(18740),u=l(50093),_=l(59795),C=l(23871),h=l.n(C);let g=(0,i.PA)(e=>{var t;let{className:l,itemsCount:i,headerClassName:C,carouselClassName:g}=e,{collection:{shelf:{liked:p}}}=(0,d.Pjs)(),x=(0,n.L)(()=>{var e;return null==(e=p.entities)?void 0:e.map((e,t)=>{if(e.album)return(0,s.jsx)(r.M_,{album:e.album},e.album.getKey(t));let l=(0,u.q)(e.track,t,p.typeForFrom);return(0,s.jsx)(c.Kd,{track:e.track,playContextParams:l,withPodcastName:!0},e.track.getKey(t))})});return(p.isNeededToLoad&&(0,o.use)(p.getData()),!p.isLoading&&(null==(t=p.entities)?void 0:t.length))?(0,s.jsx)(m.$2,{shimmer:(0,s.jsx)(m.DS,{variant:d.Xjt.PLAYLIST,isActive:!0}),isShimmerActive:!0,isShimmerVisible:p.isLoading,className:l,carouselItemClassName:(0,a.$)(h().shelfColumn,h().important),blockHeaderClassName:(0,a.$)(h().header,C),carouselClassName:g,blockHeaderTitle:p.title,itemsCountPerColumn:null!=i?i:0,maxColumnsCount:m.DI.ONE,viewAllActionLink:d.Zyd.collectionShelfLiked.href,children:x}):(0,s.jsx)(_.E,{className:l,withHeader:!0})})},17410:e=>{e.exports={root:"CollectionShelfNewEpisodesPage_root__HTWkS",scrollableContainer:"CollectionShelfNewEpisodesPage_scrollableContainer__xGZcJ",footer:"CollectionShelfNewEpisodesPage_footer__0i466"}},18696:(e,t,l)=>{"use strict";l.d(t,{CollectionPlaylistsPage:()=>O});var s=l(33008),a=l(85896),i=l(97531),o=l(17846),n=l(66268),r=l(73827),c=l(18064),d=l(19964),m=l(19980),u=l(42213),_=l(42314),C=l(64143),h=l(45242),g=l(25911),p=l(79169),x=l(18740),P=l(70235),j=l(21741);let y=(0,i.PA)(e=>{let{style:t,forwardRef:l,context:a,...i}=e,{collection:{playlists:{activeTabIndex:o,tabIndexElement:n}}}=(0,p.Pjs)(),r=(0,j.useTabsState)(o),c=null==a?void 0:a.listAriaLabel;return(0,s.jsx)(j.TabPanel,{value:r.value,name:r.value,elementId:n,"aria-label":c,style:t,ref:l,...i})}),b=(0,n.forwardRef)((e,t)=>(0,s.jsx)(y,{forwardRef:t,...e}));var A=l(65362),k=l.n(A),S=l(96560),v=l(78016),N=l(77868),L=l(71327),I=l.n(L);let E=(0,i.PA)(e=>{let{activeTabIndex:t,tabElementId:l}=e;return(0,s.jsxs)(j.TabPanel,{value:t,name:t,elementId:l,className:I().root,children:[(0,s.jsx)(v.Icon,{className:I().icon,size:"l",variant:"album"}),(0,s.jsx)(N.Heading,{className:I().title,variant:"h3",size:"xs",children:(0,s.jsx)(S.A,{id:"error-messages.empty-collection-liked-playlists"})})]})}),T=()=>{let e=(0,p.XJ9)(),{collection:{playlists:t}}=(0,p.Pjs)();return(0,n.useCallback)(l=>{switch(t.setActiveTabIndex(l),l){case P.a.CREATED:{let{href:t}=(0,p.uvd)(p.Zyd.collectionPlaylists.href,{query:{tab:p.W4C.CREATED}});e(t);break}case P.a.LIKED:{let{href:t}=(0,p.uvd)(p.Zyd.collectionPlaylists.href,{query:{tab:p.W4C.LIKED}});e(t)}}},[e,t])};var f=l(42411),w=l.n(f),D=l(91342);let M=()=>(0,s.jsxs)("div",{className:w().tabsShimmer,children:[(0,s.jsx)(D.Shimmer,{className:w().tabShimmer}),(0,s.jsx)(D.Shimmer,{className:w().tabShimmer})]}),B=(0,i.PA)(()=>{var e,t,l,a,i,o;let{collection:{playlists:{playlistsCreated:d,playlistsLiked:m,tabIndexElement:u,activeTabIndex:_}}}=(0,p.Pjs)(),{formatMessage:C}=(0,r.A)(),h=(0,p.W6M)(),{isScrolling:g}=(0,n.useContext)(x.B9),j=T(),y=(0,n.useMemo)(()=>{var e;return(null==(e=d.pager)?void 0:e.total)?"".concat(C({id:"collection.your-created-playlists"})," • ").concat(d.pager.total):C({id:"collection.your-created-playlists"})},[C,null==(e=d.pager)?void 0:e.total]),b=(0,n.useMemo)(()=>{var e;return(null==(e=m.pager)?void 0:e.total)?"".concat(C({id:"collection.your-liked-playlists"})," • ").concat(m.pager.total):C({id:"collection.your-liked-playlists"})},[C,null==(t=m.pager)?void 0:t.total]);return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)("header",{className:w().root,"aria-hidden":g,...(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_PAGE_STATIC_HEADER),children:(0,s.jsxs)("div",{className:w().container,children:[h.canBack&&(0,s.jsx)(x.Lh,{withForwardControl:!1,withBackwardControl:h.canBack,shouldFocusOnMount:!g}),(0,s.jsx)(N.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,className:w().title,...(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_PAGE_STATIC_HEADER_TITLE),children:(0,s.jsx)(S.A,{id:"entity-names.artist-playlist"})})]})}),(0,s.jsxs)(x.wI,{isShimmerVisible:d.isLoading,shimmer:(0,s.jsx)(M,{}),className:w().staticTabs,elementId:u,value:_,onTabChange:j,children:[(0,s.jsx)(x.oz,{className:w().tab,value:P.a.CREATED,title:y,"aria-label":C({id:"entity-names.created-playlists-count"},{value:null!=(i=null==(l=d.pager)?void 0:l.total)?i:0}),"aria-hidden":g,tabIndex:g?-1:0}),(0,s.jsx)(x.oz,{className:w().tab,value:P.a.LIKED,title:b,"aria-label":C({id:"entity-names.liked-playlists-count"},{value:null!=(o=null==(a=m.pager)?void 0:a.total)?o:0}),"aria-hidden":g,tabIndex:g?-1:0})]})]})}),R=(0,i.PA)(e=>{var t,l,i,o,d,m;let{tabElementId:u}=e,{collection:{playlists:{playlistsCreated:_,playlistsLiked:C,activeTabIndex:h}}}=(0,p.Pjs)(),{formatMessage:g}=(0,r.A)(),{isScrolling:j}=(0,n.useContext)(x.B9),y=(0,p.W6M)(),b=T(),A=(0,n.useMemo)(()=>{var e,t;return(null==(e=_.pager)?void 0:e.total)?"".concat(g({id:"collection.your-created-playlists"})," • ").concat(null==(t=_.pager)?void 0:t.total):g({id:"collection.your-created-playlists"})},[g,null==(t=_.pager)?void 0:t.total]),k=(0,n.useMemo)(()=>{var e,t;return(null==(e=C.pager)?void 0:e.total)?"".concat(g({id:"collection.your-liked-playlists"})," • ").concat(null==(t=C.pager)?void 0:t.total):g({id:"collection.your-liked-playlists"})},[g,null==(l=C.pager)?void 0:l.total]);return(0,s.jsx)(x.Y9,{variant:x.Vw.COMPOSITE,staticClassName:(0,a.$)(w().staticHeader,w().important),"aria-hidden":!j,stickyClassName:(0,a.$)(w().stickyHeader,w().important),containerProps:(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_PAGE_STICKY_HEADER),stickyChild:(0,s.jsxs)("div",{className:w().container,children:[y.canBack&&(0,s.jsx)(x.Lh,{withForwardControl:!1,withBackwardControl:y.canBack,shouldFocusOnMount:!1,buttonSize:"xs"}),(0,s.jsxs)(x.wI,{isShimmerVisible:_.isLoading,shimmer:(0,s.jsx)(M,{}),className:w().stickyTabs,elementId:u,value:h,onTabChange:b,children:[(0,s.jsx)(x.oz,{className:w().tab,value:P.a.CREATED,title:A,"aria-label":g({id:"entity-names.created-playlists-count"},{value:null!=(d=null==(i=_.pager)?void 0:i.total)?d:0}),"aria-hidden":!j,tabIndex:j?0:-1}),(0,s.jsx)(x.oz,{className:w().tab,value:P.a.LIKED,title:k,"aria-label":g({id:"entity-names.liked-playlists-count"},{value:null!=(m=null==(o=C.pager)?void 0:o.total)?m:0}),"aria-hidden":!j,tabIndex:j?0:-1})]})]})})}),O=(0,i.PA)(()=>{var e;let t=(0,o.useSearchParams)(),{user:l,collection:{playlists:{playlistsCreated:i,playlistsLiked:j,setTabIndexElement:y,reset:A,setActiveTabIndex:S,isCreatedTabActive:v,isLikedTabActive:N,activeTabIndex:L,activePlaylistsModel:I,isEmptyLikedTab:T}},library:f,settings:{isMobile:w}}=(0,p.Pjs)(),{contentScrollRef:D,setContentScrollRef:M}=(0,p.gKY)(),O=(0,n.useId)();(0,n.useEffect)(()=>{y(O)},[O,y]);let{formatMessage:K}=(0,r.A)();if((0,n.useLayoutEffect)(()=>{switch(t.get(p.K3F.TAB)){case p.W4C.CREATED:S(P.a.CREATED);break;case p.W4C.LIKED:S(P.a.LIKED);break;default:S(P.a.CREATED)}},[t,S]),(0,p.Jzs)(i.isResolved),(0,n.useEffect)(()=>()=>{A()},[A]),l.account.data.uid&&i.isNeededToLoad){let e=[i.getData({userId:l.account.data.uid,page:0,pageSize:20}),j.getData({userId:l.account.data.uid,sortOrder:d.x.DESC,playlistMetaType:m.S.MUSIC,page:0,pageSize:20}),f.getData()];(0,n.use)(Promise.allSettled(e))}let z=(0,n.useMemo)(()=>({Header:()=>(0,s.jsx)(B,{}),Footer:()=>(0,s.jsx)(x.A,{children:(0,s.jsx)(x.wi,{className:k().footer})}),List:b}),[]),H=(0,u.c)(e=>{if(!l.account.data.uid)return;let t={userId:l.account.data.uid,page:e,pageSize:20};switch(L){case P.a.CREATED:i.getData({...t});break;case P.a.LIKED:j.getData({sortOrder:d.x.DESC,playlistMetaType:m.S.MUSIC,...t})}}),F=(0,_.L)(()=>{var e,t,l,s;switch(L){case P.a.CREATED:return(null!=(t=null==(e=i.pager)?void 0:e.total)?t:0)+1;case P.a.LIKED:return T?1:null!=(s=null==(l=j.pager)?void 0:l.total)?s:1;default:return 1}});return(0,s.jsx)(p.nVz,{pageId:p._Q$.OWN_PLAYLISTS,children:(0,s.jsx)(C.hO,{scrollElement:D,headerThreshold:148,children:(0,s.jsxs)("div",{className:k().root,...(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_PAGE),children:[(0,s.jsx)(R,{tabElementId:O}),(0,s.jsx)(x.$$,{className:(0,a.$)(k().scrollContainer,k().important),customComponents:z,itemContentCallback:e=>{var t;if(v&&0===e)return(0,s.jsx)(g.Bw,{});if(N&&T)return(0,s.jsx)(E,{activeTabIndex:L,tabElementId:O});let l=v?e-1:e,a=null==I||null==(t=I.items)?void 0:t[l],i=K({id:"loading-messages.entity-is-loading"},{entityName:K({id:"entity-names.playlist"})});return a?(0,s.jsx)(h.B6,{playlist:a,contentLinesCount:3},a.key):(0,s.jsx)(x.Vt,{"aria-label":i})},totalCount:F,onGetDataByPage:H,pageSize:20,totalRequests:null!=(e=I.requests)?e:0,listClassName:(0,a.$)(k().content,{[k().content_withGridLayout]:v||!T},k().important),itemClassName:k().item,handleRef:M,context:{listAriaLabel:K({id:"collection.liked-playlists-list"})},isMobileLayout:w,useWindowScroll:w})]})})})})},19570:e=>{e.exports={root:"CollectionClipsPage_root__Z1yh9",content:"CollectionClipsPage_content__68gZ1",scrollContent:"CollectionClipsPage_scrollContent__6F_37",header:"CollectionClipsPage_header__L_hq2",footer:"CollectionClipsPage_footer__0IfmB"}},19964:(e,t,l)=>{"use strict";var s;l.d(t,{x:()=>s}),function(e){e.ASC="asc",e.DESC="desc"}(s||(s={}))},19980:(e,t,l)=>{"use strict";var s;l.d(t,{S:()=>s}),function(e){e.MUSIC="music",e.CHILDREN="children"}(s||(s={}))},21002:e=>{e.exports={root:"CollectionDislikesPageEmpty_root__F9g35",icon:"CollectionDislikesPageEmpty_icon__hbz5L",title:"CollectionDislikesPageEmpty_title__AqUTM"}},23144:(e,t,l)=>{"use strict";l.d(t,{CollectionKidsPage:()=>S});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(48509),m=l(6247),u=l(42314),_=l(78016),C=l(57747),h=l(77868),g=l(83888),p=l(52732),x=l(64143),P=l(45242),j=l(44078),y=l(79169),b=l(18740),A=l(5112),k=l.n(A);let S=(0,i.PA)(()=>{let{collection:{kids:e}}=(0,y.Pjs)(),{contentScrollRef:t,setContentScrollRef:l}=(0,y.gKY)(),i=(0,y.W6M)(),{from:A}=(0,y.fyy)({pageId:y._Q$.COLLECTION_KIDS}),{formatMessage:S}=(0,n.A)();(0,o.useEffect)(()=>()=>{e.reset()},[e]),(0,y.Jzs)(e.isResolved);let v=(0,u.L)(()=>e.tracks.loadedItems.slice(0,5).map((t,l)=>{let a={contextData:{type:d.K.Various,meta:{id:t.entityId},from:A},queueParams:{index:l},loadContextMeta:!1,entitiesData:e.tracks.sonataEntitiesData};return t.type===m.S.MUSIC?(0,s.jsx)(j.Kt,{track:t,playContextParams:a},l):(0,s.jsx)(j.Kd,{track:t,playContextParams:a,withPodcastName:t.isTrackPodcast},l)}));if(e.isNeededToLoad){let t=[e.albums.getData({pageSize:8}),e.playlists.getData({pageSize:8}),e.tracks.getData({pageSize:5})];(0,o.use)(Promise.allSettled(t))}return e.isRejected?(0,s.jsx)(g.w,{}):(0,s.jsx)(y.nVz,{pageId:y._Q$.COLLECTION_KIDS,children:(0,s.jsxs)(x.hO,{scrollElement:t,outerTitle:S({id:"kids.for-kids"}),children:[(0,s.jsx)(b.Y9,{variant:b.Vw.TEXT,withForwardControl:!1,withBackwardControl:i.canBack,children:(0,s.jsx)(h.Heading,{variant:"h2",weight:"bold",size:"xl",children:(0,s.jsx)(r.A,{id:"kids.for-kids"})})}),(0,s.jsxs)(C.N,{className:k().root,containerClassName:k().content,ref:l,...(0,c.Am)(c.Xk.collection.COLLECTION_KIDS_PAGE),children:[!e.shouldShowContent&&(0,s.jsxs)("div",{className:k().emptyBlock,children:[(0,s.jsx)(_.Icon,{className:k().emptyBlockIcon,variant:"album"}),(0,s.jsx)(h.Heading,{className:k().emptyBlockTitle,variant:"h3",size:"xs",children:(0,s.jsx)(r.A,{id:"kids.empty-collection-text"})})]}),e.tracks.shouldShowContent&&(0,s.jsx)(b.$2,{blockHeaderClassName:(0,a.$)(k().carouselBlockHeader,k().carouselBlock),carouselItemClassName:(0,a.$)(k().tracksCarouselItem,k().important),blockHeaderTitle:S({id:"kids.favourite-tracks-and-episodes"}),shimmer:(0,s.jsx)(b.DS,{variant:y.Xjt.PLAYLIST,isActive:!0}),maxColumnsCount:b.DI.ONE,isShimmerVisible:e.tracks.isShimmerVisible,isShimmerActive:!0,itemsCountPerColumn:5,viewAllActionLink:y.Zyd.collectionKidsTracks.href,children:v}),e.albums.shouldShowContent&&(0,s.jsx)(p.pZ,{headerClassName:(0,a.$)(k().carouselBlock,k().carouselBlockHeader),containerClassName:k().carouselBlock,title:S({id:"kids.albums-and-podcasts"}),albums:e.albums.loadedItems,headingVariant:"h2",isShimmerVisible:e.albums.isShimmerVisible,isShimmerActive:!0,viewAllActionLink:y.Zyd.collectionKidsAlbums.href}),e.playlists.shouldShowContent&&(0,s.jsx)(P.EC,{headerClassName:(0,a.$)(k().carouselBlock,k().carouselBlockHeader),containerClassName:k().carouselBlock,title:S({id:"entity-names.artist-playlist"}),playlists:e.playlists.loadedItems,headingVariant:"h2",isShimmerVisible:e.playlists.isShimmerVisible,isShimmerActive:!0,viewAllActionLink:y.Zyd.collectionKidsPlaylists.href}),(0,s.jsx)(b.A,{children:(0,s.jsx)(b.wi,{className:k().footer})})]})]})})})},23871:e=>{e.exports={header:"CollectionShelfLiked_header__u9MqV",shelfColumn:"CollectionShelfLiked_shelfColumn__4KX_5",important:"CollectionShelfLiked_important__0K3qk"}},23978:e=>{e.exports={root:"CollectionKidsPlaylistsPage_root__RXH06",scrollContainer:"CollectionKidsPlaylistsPage_scrollContainer__F_oj2",important:"CollectionKidsPlaylistsPage_important__5V_zc",footer:"CollectionKidsPlaylistsPage_footer__R41Ol",item:"CollectionKidsPlaylistsPage_item__ht83l",content:"CollectionKidsPlaylistsPage_content__6Oo1m"}},24238:(e,t,l)=>{"use strict";l.d(t,{CollectionShelfRecentlyPlayedPage:()=>b});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(42213),m=l(77868),u=l(83888),_=l(64143),C=l(44078),h=l(79169),g=l(18740),p=l(56732),x=l(87451),P=l(4136),j=l(38802),y=l.n(j);let b=(0,i.PA)(()=>{let{settings:{isMobile:e},collection:{shelfRecentlyPlayed:t}}=(0,h.Pjs)(),{contentScrollRef:l,setContentScrollRef:i}=(0,h.gKY)(),j=(0,h.W6M)(),{formatMessage:b}=(0,n.A)(),A=(0,h.wZZ)(),k=(0,d.c)(e=>{t.getData({page:e,pageSize:p.c})});(0,h.XcE)(t.pagesLoader,k);let S=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(g.A,{children:(0,s.jsx)(g.wi,{className:y().footer})})}),[]),v=t.isShimmerVisible?20:t.items.length;return((0,o.useEffect)(()=>()=>{t.reset()},[t]),(0,h.Jzs)(t.isResolved),t.isNeededToLoad&&(0,o.use)(t.getData({pageSize:p.c})),t.isRejected)?(0,s.jsx)(u.w,{}):t.isEmpty?(0,s.jsx)(P.F,{title:b({id:"error-messages.empty-shelf-page-title"})}):(0,s.jsx)(_.hO,{scrollElement:l,outerTitle:b({id:"podcast.shelf-recently-played-title"}),children:(0,s.jsxs)("div",{className:y().root,...(0,c.Am)(c.Xk.collection.COLLECTION_SHELF_RECENTLY_PLAYED_PAGE),children:[(0,s.jsx)(g.Y9,{variant:g.Vw.TEXT,withForwardControl:!1,withBackwardControl:j.canBack,children:(0,s.jsx)(m.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"podcast.shelf-recently-played-title"})})}),(0,s.jsx)(g.$$,{className:(0,a.$)(y().scrollContainer,y().important),customComponents:S,itemContentCallback:e=>{let l=t.items[e];if(!l)return(0,s.jsx)(g.DS,{variant:h.Xjt.PLAYLIST,isActive:!0},e);let a=(0,x.T)(l,t.typeForFrom);return(0,s.jsx)(C.Kd,{track:l.track,playContextParams:A(e,{contextData:a,queueParams:{entityId:l.track.id,index:e}}),withPodcastName:!0},e)},initialItemCount:v,totalCount:v,onGetDataByPage:k,pageSize:p.c,totalRequests:t.requestsCount,listClassName:y().content,itemClassName:y().item,handleRef:i,context:{listAriaLabel:b({id:"podcast.shelf-recently-played-title"})},isMobileLayout:e,useWindowScroll:e})]})})})},25504:e=>{e.exports={root:"CollectionDislikesPageHeader_root__lZ6LT",container:"CollectionDislikesPageHeader_container__ACUbW",title:"CollectionDislikesPageHeader_title__6h9Km",tabs:"CollectionDislikesPageHeader_tabs__gt5AJ",tab:"CollectionDislikesPageHeader_tab__bxN5I",tabsShimmer:"CollectionDislikesPageHeader_tabsShimmer__akKoq",tabShimmer:"CollectionDislikesPageHeader_tabShimmer__0QLuH",staticHeader:"CollectionDislikesPageHeader_staticHeader__75rsF",important:"CollectionDislikesPageHeader_important__5ZM6D",stickyHeader:"CollectionDislikesPageHeader_stickyHeader__cAkxR"}},25585:(e,t,l)=>{"use strict";l.d(t,{W:()=>a});var s=l(75729);let a=e=>!!e&&(e===s.g.RATING||e===s.g.YEAR)},26389:(e,t,l)=>{"use strict";l.d(t,{CollectionClipsPage:()=>R});var s=l(33008),a=l(97531),i=l(17846),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(53984),m=l(77868),u=l(83888),_=l(64143),C=l(60030),h=l(79169),g=l(18740),p=l(19570),x=l.n(p),P=l(85896),j=l(13201),y=l(42213),b=l(44612),A=l(64641),k=l(95227);let S=()=>window.innerWidth>1920?4:window.innerWidth>1200?3:2;var v=l(74261),N=l.n(v);let L=(0,a.PA)(e=>{var t;let{className:l}=e,{formatMessage:a}=(0,n.A)(),{clipsWillLike:i}=(0,h.Pjs)().collection.clips;return i.isNeededToLoad&&(0,o.use)(i.getData()),(0,s.jsx)(h.FoH,{blockId:h.hf$.CLIPS_CAROUSEL,blockType:h.hf$.CLIPS_CAROUSEL,blockPosX:1,blockPosY:7,objectsCount:null==(t=i.clips)?void 0:t.length,children:(0,s.jsx)(A.KR,{className:(0,P.$)(N().root,l),containerClassName:N().carouselBlock,carouselItemClassName:(0,P.$)(N().carouselItem,N().important),headerClassName:(0,P.$)(N().carouselBlockHeader,N().carouselBlock),isShimmerVisible:i.isLoading,isShimmerActive:!0,title:a({id:"entity-names.clips-will-like"}),clips:i.clips||[],headingVariant:"h2"})})});var I=l(78016),E=l(72111),T=l.n(E);let f=(0,a.PA)(()=>{let{collection:{clips:{clipsWillLike:e}}}=(0,h.Pjs)(),t=!e.isEmpty&&!e.isRejected;return(0,s.jsxs)("div",{className:T().root,children:[(0,s.jsxs)("div",{className:T().content,children:[(0,s.jsx)(I.Icon,{className:T().icon,size:"xl",variant:"clip"}),(0,s.jsx)(m.Heading,{className:T().title,variant:"h3",size:"xs",...(0,c.Am)(c.e8.landing.COLLECTION_CLIPS_BLOCK_LIKED_EMPTY_BLOCK_TITLE),children:(0,s.jsx)(r.A,{id:"error-messages.empty-collection-clips-title"})}),(0,s.jsx)(m.Caption,{className:T().text,variant:"span",type:"controls",size:"l",weight:"normal",...(0,c.Am)(c.e8.landing.COLLECTION_CLIPS_BLOCK_LIKED_EMPTY_BLOCK_TEXT),children:(0,s.jsx)(r.A,{id:"error-messages.empty-collection-clips-text"})})]}),t&&(0,s.jsx)(L,{})]})});var w=l(33867),D=l.n(w);let M=(0,a.PA)(e=>{let{virtualItem:t,resizeObserver:l,columns:a}=e,[i,r]=(0,b.d)(),{formatMessage:c}=(0,n.A)(),{collection:{clips:d}}=(0,h.Pjs)();(0,o.useEffect)(()=>(i&&l&&l.observe(i),()=>{i&&l&&l.unobserve(i)}),[i,l]);let m=d.items.slice(t.index*a,t.index*a+a),u=d.pager&&d.pager.total<=a?0:1,_=!d.clipsWillLike.isEmpty&&!d.clipsWillLike.isRejected;return(0,s.jsxs)("div",{ref:r,"data-index":t.index,className:D().virtualItem,style:{transform:"translateY(".concat(t.start,"px)")},children:[(0,s.jsx)("div",{style:{gridTemplateColumns:"repeat(".concat(a,", minmax(0, 1fr))")},className:(0,P.$)(D().virtualItemRow,{[D().virtualItemRow_withTopBorder]:t.index===u+1&&_,[D().virtualItemRow_withBottomBorder]:t.index===u&&_}),children:null==m?void 0:m.map((e,t)=>{if(!e){let e=c({id:"loading-messages.entity-is-loading"},{entityName:c({id:"entity-names.clip"})});return(0,s.jsx)(A.kV,{"aria-label":e},t)}return(0,s.jsx)(A.FC,{clip:e},e.clipId)})}),t.index===u&&_&&(0,s.jsx)(L,{className:D().clipsWillLike})]},t.key)}),B=(0,a.PA)(e=>{var t;let{contentScrollRef:l}=e,{collection:{clips:a},user:i}=(0,h.Pjs)(),[n,r]=(0,o.useState)(S),[c,d]=(0,b.d)(),m=a.pager&&a.pager.total<=n?0:1,{virtualizer:_,resizeObserver:C}=(0,k.rA)({gap:24,count:a.pager?Math.ceil((null==(t=a.pager)?void 0:t.total)/n):5,getEstimateSize:e=>e===m?800:400,containerRef:c}),g=(0,y.c)(e=>{i.account.data.uid&&a.getData({userId:i.account.data.uid,page:e,pageSize:20})}),p=_.getTotalSize(),x=_.getVirtualItems(),P=(0,y.c)(e=>{let t=Math.floor(e.startIndex*n/20),l=Math.ceil(e.endIndex*n/20);for(let e=t;e<=l;e++)g(e)});(0,o.useEffect)(()=>{a.isNeededToLoad&&(null==l||l.scrollTo({top:0,behavior:"instant"}),a.setInitialShimmer(),g())},[a,a.isNeededToLoad,g,l]),(0,o.useEffect)(()=>{!_.isScrolling&&_.range&&P(_.range)},[P,_.range,_.isScrolling]);let A=(0,j.A)(()=>{r(S)},100);return((0,o.useEffect)(()=>(A(),window.addEventListener("resize",A),()=>{window.removeEventListener("resize",A)}),[A]),a.isEmpty)?(0,s.jsx)(f,{}):a.isRejected?(0,s.jsx)(u.w,{}):(0,s.jsx)("div",{className:D().virtualScroll,style:{height:"".concat(p,"px")},ref:d,children:x.map(e=>(0,s.jsx)(M,{virtualItem:e,resizeObserver:C,columns:n},e.index))})}),R=(0,a.PA)(()=>{let{collection:{clips:e}}=(0,h.Pjs)(),{formatMessage:t}=(0,n.A)(),l=(0,h.W6M)(),a=(0,C.df)(),{contentScrollRef:p,setContentScrollRef:P}=(0,h.gKY)();return(!a&&e.isLoaded&&(0,i.redirect)(h.Zyd.collection.href),(0,h.Jzs)(e.isResolved),(0,o.useEffect)(()=>()=>{e.reset()},[e]),e.isRejected)?(0,s.jsx)(u.w,{}):(0,s.jsx)(h.nVz,{pageId:h._Q$.OWN_CLIPS,children:(0,s.jsx)(h.jPc,{children:(0,s.jsxs)(_.hO,{scrollElement:p,outerTitle:t({id:"entity-names.clips"}),children:[(0,s.jsx)(g.Y9,{variant:g.Vw.TEXT,withForwardControl:!1,withBackwardControl:l.canBack,children:(0,s.jsx)(m.Heading,{id:"collection-artists-header",variant:"h1",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"entity-names.clips"})})}),(0,s.jsxs)(d.C,{scrollableContainerRef:P,className:x().root,containerClassName:x().content,scrollContentClassName:x().scrollContent,...(0,c.Am)(c.Xk.collection.COLLECTION_CLIPS_PAGE),children:[(0,s.jsx)(B,{contentScrollRef:p}),(0,s.jsx)(g.A,{children:(0,s.jsx)(g.wi,{className:x().footer})})]})]})})})})},30034:e=>{e.exports={root:"CollectionDislikesPageContent_root__3AoS5",scrollContainer:"CollectionDislikesPageContent_scrollContainer__px7Vr",important:"CollectionDislikesPageContent_important__Oz6io",content:"CollectionDislikesPageContent_content__fScA9",content_withGrid:"CollectionDislikesPageContent_content_withGrid__wcx80",content_tracks:"CollectionDislikesPageContent_content_tracks__Hyiz_",footer:"CollectionDislikesPageContent_footer__E6nZG",item:"CollectionDislikesPageContent_item__aty4k",tabPanel:"CollectionDislikesPageContent_tabPanel__5L5T_",shimmerItem:"CollectionDislikesPageContent_shimmerItem__FMFR5"}},33867:e=>{e.exports={root:"CollectionClipsPageClips_root__uB8s_",virtualScroll:"CollectionClipsPageClips_virtualScroll__o3uWm",virtualItem:"CollectionClipsPageClips_virtualItem__UDzx8",virtualItemRow:"CollectionClipsPageClips_virtualItemRow__RPIOY",virtualItemRow_withTopBorder:"CollectionClipsPageClips_virtualItemRow_withTopBorder__Q6k2l",virtualItemRow_withBottomBorder:"CollectionClipsPageClips_virtualItemRow_withBottomBorder__D5Dep",clipsWillLike:"CollectionClipsPageClips_clipsWillLike__IhK8Q"}},34620:(e,t,l)=>{"use strict";l.d(t,{CollectionKidsTracksPage:()=>b});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(48509),m=l(6247),u=l(77868),_=l(83888),C=l(64143),h=l(44078),g=l(79169),p=l(18740),x=l(56732),P=l(39082),j=l(37212),y=l.n(j);let b=(0,i.PA)(()=>{let{collection:{kids:{tracks:e}},settings:{isMobile:t}}=(0,g.Pjs)(),{contentScrollRef:l,setContentScrollRef:i}=(0,g.gKY)(),j=(0,g.W6M)(),{from:b}=(0,g.fyy)({pageId:g._Q$.COLLECTION_KIDS_TRACKS}),{formatMessage:A}=(0,n.A)(),k=(0,g.wZZ)();(0,o.useEffect)(()=>()=>{e.reset()},[e]),(0,g.Jzs)(e.isResolved);let S=(0,o.useCallback)(t=>{e.getData({page:t,pageSize:x.c})},[e]);(0,g.XcE)(e.pagesLoader,S);let v=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:y().footer})})}),[]),N=e.isShimmerVisible?20:e.items.length;return(e.isNeededToLoad&&(0,o.use)(e.getData({pageSize:x.c})),e.isRejected)?(0,s.jsx)(_.w,{}):e.isEmpty?(0,s.jsx)(P.i,{title:A({id:"kids.favourite-tracks-and-episodes"})}):(0,s.jsx)(g.nVz,{pageId:g._Q$.COLLECTION_KIDS_TRACKS,children:(0,s.jsx)(C.hO,{scrollElement:l,outerTitle:A({id:"kids.favourite-tracks-and-episodes"}),children:(0,s.jsxs)("div",{className:y().root,...(0,c.Am)(c.Xk.collection.COLLECTION_KIDS_TRACKS_PAGE),children:[(0,s.jsx)(p.Y9,{variant:p.Vw.TEXT,withForwardControl:!1,withBackwardControl:j.canBack,children:(0,s.jsx)(u.Heading,{variant:"h2",weight:"bold",size:t?"m":"xl",lineClamp:2,children:(0,s.jsx)(r.A,{id:"kids.favourite-tracks-and-episodes"})})}),(0,s.jsx)(p.$$,{className:(0,a.$)(y().scrollContainer,y().important),listClassName:y().content,customComponents:v,itemContentCallback:t=>{let l=e.items[t];if(!l)return(0,s.jsx)(p.DS,{isActive:!0,className:y().shimmerItem,variant:g.Xjt.PLAYLIST});let a=k(l.entityId,{contextData:{type:d.K.Various,meta:{id:l.entityId},from:b},queueParams:{index:t},loadContextMeta:!1,entitiesData:e.sonataEntitiesData});return l.type===m.S.MUSIC?(0,s.jsx)(h.Kt,{track:l,playContextParams:a},t):(0,s.jsx)(h.Kd,{track:l,playContextParams:a,withPodcastName:l.isTrackPodcast},t)},initialItemCount:N,totalCount:N,onGetDataByPage:S,pageSize:x.c,totalRequests:e.requestsCount,handleRef:i,context:{listAriaLabel:A({id:"entity-names.tracks"})},isMobileLayout:t,useWindowScroll:t})]})})})})},34914:e=>{e.exports={root:"CollectionPlaylistsLikedPage_root__ZyIwA",scrollContainer:"CollectionPlaylistsLikedPage_scrollContainer__H_vPA",important:"CollectionPlaylistsLikedPage_important__GjYTU",content:"CollectionPlaylistsLikedPage_content__WIxhp",footer:"CollectionPlaylistsLikedPage_footer__A60Ui",item:"CollectionPlaylistsLikedPage_item__PpCht"}},35233:(e,t,l)=>{"use strict";l.d(t,{M:()=>s.NotFound});var s=l(27618)},36422:(e,t,l)=>{"use strict";l.d(t,{CollectionNonMusicPage:()=>b});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(42314),m=l(57747),u=l(77868),_=l(83888),C=l(52732),h=l(64143),g=l(79169),p=l(18740),x=l(17031),P=l(71886),j=l(59834),y=l.n(j);let b=(0,i.PA)(()=>{var e;let{user:t,collection:{nonMusicLiked:l,shelf:i},library:j}=(0,g.Pjs)(),{formatMessage:b}=(0,n.A)(),{contentScrollRef:A,setContentScrollRef:k}=(0,g.gKY)(),S=(0,g.W6M)();if((0,g.Jzs)(l.isResolved),l.isRejected&&!i.hasLiked)return(0,s.jsx)(_.w,{});(0,o.useEffect)(()=>()=>{l.reset(),i.reset()},[l,i]);let v=(0,d.L)(()=>{var e;return null==(e=l.items)?void 0:e.slice(0,10).map((e,t)=>e?(0,s.jsx)(C.aX,{album:e,contentLinesCount:3,withLikesCount:!0,withAddition:!1},null==e?void 0:e.id):(0,s.jsx)(p.Vt,{},"shimmer-".concat(t)))}),N=(0,o.useMemo)(()=>{var e;return!l.isEmptyItems||l.isRejected||i.hasLiked?l.isRejected||!(null==(e=l.items)?void 0:e.length)&&l.requestsCount?null:(0,s.jsx)(p.OY,{headerClassName:y().blockHeader,containerClassName:y().carousel,isShimmerVisible:l.isLoading,isShimmerActive:!0,title:b({id:"page.delayed-non-music"}),viewAllActionLink:g.Zyd.collectionNonMusicLiked.href,children:v}):(0,s.jsx)(P.M,{})},[l.isLoading,b,v,l.isRejected,i.hasLiked,l.isEmptyItems,null==(e=l.items)?void 0:e.length,l.requestsCount]);if(t.account.data.uid&&l.isNeededToLoad){let e=[l.getData({userId:t.account.data.uid,metaType:"podcast",pageSize:10}),j.getData()];(0,o.use)(Promise.allSettled(e))}return(0,s.jsx)(g.nVz,{pageId:g._Q$.OWN_PODCASTS,children:(0,s.jsx)(h.hO,{scrollElement:A,outerTitle:b({id:"page.podcasts-and-books"}),children:(0,s.jsxs)("div",{className:y().root,...(0,c.Am)(c.Xk.collection.COLLECTION_NON_MUSIC_PAGE),children:[(0,s.jsx)(p.Y9,{variant:p.Vw.TEXT,withForwardControl:!1,withBackwardControl:S.canBack,children:(0,s.jsx)(u.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"page.podcasts-and-books"})})}),(0,s.jsx)(m.N,{ref:k,containerClassName:(0,a.$)(y().scrollableContainer,y().important),className:y().root,children:(0,s.jsxs)("div",{className:y().content,children:[(0,s.jsxs)("div",{className:y().likedBlocks,children:[N,i.hasLiked&&(0,s.jsx)(x.m,{carouselClassName:y().shelfBlockCarousel,headerClassName:y().shelfBlockHeader,itemsCount:5})]}),(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:y().footer})})]})})]})})})})},37212:e=>{e.exports={root:"CollectionKidsTracksPage_root__8nP0n",scrollContainer:"CollectionKidsTracksPage_scrollContainer__1d9Pm",important:"CollectionKidsTracksPage_important__oX_Ny",footer:"CollectionKidsTracksPage_footer__dujIV",content:"CollectionKidsTracksPage_content__Vf43s"}},38802:e=>{e.exports={root:"CollectionShelfRecentlyPlayedPage_root__1eSLj",footer:"CollectionShelfRecentlyPlayedPage_footer__5pPcU",scrollContainer:"CollectionShelfRecentlyPlayedPage_scrollContainer__2ErJI",important:"CollectionShelfRecentlyPlayedPage_important___ajYP",content:"CollectionShelfRecentlyPlayedPage_content__p4qEp",item:"CollectionShelfRecentlyPlayedPage_item__gQR_c"}},39082:(e,t,l)=>{"use strict";l.d(t,{i:()=>h});var s=l(33008),a=l(97531),i=l(96560),o=l(44189),n=l(78016),r=l(57747),c=l(77868),d=l(64143),m=l(79169),u=l(18740),_=l(78434),C=l.n(_);let h=(0,a.PA)(e=>{let{title:t}=e,{settings:{isMobile:l}}=(0,m.Pjs)(),{contentScrollRef:a,setContentScrollRef:_}=(0,m.gKY)(),h=(0,m.W6M)(),g=(0,m.ZpR)(m.Zyd.collectionKids.href);return(0,s.jsxs)(d.hO,{scrollElement:a,outerTitle:t,children:[(0,s.jsx)(u.Y9,{variant:u.Vw.TEXT,withForwardControl:!1,withBackwardControl:h.canBack,children:(0,s.jsx)(c.Heading,{variant:"h2",weight:"bold",size:l?"m":"xl",lineClamp:2,children:t})}),(0,s.jsxs)(r.N,{ref:_,containerClassName:C().scrollableContainer,className:C().root,children:[(0,s.jsxs)("div",{className:C().content,children:[(0,s.jsx)("div",{className:C().icon,children:(0,s.jsx)(n.Icon,{variant:"like",size:"l"})}),(0,s.jsx)(c.Heading,{className:C().title,variant:"h3",size:"xs",children:(0,s.jsx)(i.A,{id:"error-messages.empty-collection-kids-sub-page-title"})}),(0,s.jsx)(o.Button,{onClick:g,className:C().button,role:"link",color:"secondary",size:"s",radius:"xxxl",children:(0,s.jsx)(c.Caption,{type:"controls",variant:"span",size:"m",children:(0,s.jsx)(i.A,{id:"error-messages.empty-collection-kids-sub-page-link"})})})]}),(0,s.jsx)(u.A,{children:(0,s.jsx)(u.wi,{className:C().footer})})]})]})})},41420:e=>{e.exports={root:"CollectionKidsAlbumsPage_root__Fjk4C",scrollContainer:"CollectionKidsAlbumsPage_scrollContainer__OWiCy",important:"CollectionKidsAlbumsPage_important__1ghiQ",footer:"CollectionKidsAlbumsPage_footer__9niUH",item:"CollectionKidsAlbumsPage_item__A5TuB",content:"CollectionKidsAlbumsPage_content__6w_jh"}},42411:e=>{e.exports={root:"CollectionPlaylistsPageHeader_root__GfGIl",container:"CollectionPlaylistsPageHeader_container__oh7C2",title:"CollectionPlaylistsPageHeader_title__2D23I",staticTabs:"CollectionPlaylistsPageHeader_staticTabs__9c9yq",stickyTabs:"CollectionPlaylistsPageHeader_stickyTabs__Iot6U",tab:"CollectionPlaylistsPageHeader_tab__aNTOB",tabsShimmer:"CollectionPlaylistsPageHeader_tabsShimmer__u9JIN",tabShimmer:"CollectionPlaylistsPageHeader_tabShimmer__ekXeT",staticHeader:"CollectionPlaylistsPageHeader_staticHeader__lzc4l",important:"CollectionPlaylistsPageHeader_important__uR36G",stickyHeader:"CollectionPlaylistsPageHeader_stickyHeader__ojvbQ"}},45324:(e,t,l)=>{"use strict";l.d(t,{CollectionShelfLikedPage:()=>A});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(42314),m=l(77868),u=l(83888),_=l(52732),C=l(64143),h=l(44078),g=l(79169),p=l(18740),x=l(56732),P=l(50093),j=l(4136),y=l(16144),b=l.n(y);let A=(0,i.PA)(()=>{let{settings:{isMobile:e},collection:{shelfLiked:t}}=(0,g.Pjs)(),{contentScrollRef:l,setContentScrollRef:i}=(0,g.gKY)(),y=(0,g.W6M)(),{formatMessage:A}=(0,n.A)(),k=(0,g.wZZ)(),S=(0,o.useCallback)(e=>{t.getData({page:e,pageSize:x.c})},[t]);(0,g.XcE)(t.pagesLoader,S);let v=(0,d.L)(()=>({Footer:()=>(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:b().footer})})})),N=t.isShimmerVisible?20:t.items.length;return((0,o.useEffect)(()=>()=>{t.reset()},[t]),(0,g.Jzs)(t.isResolved),t.isNeededToLoad&&(0,o.use)(t.getData({pageSize:x.c})),t.isRejected)?(0,s.jsx)(u.w,{}):t.isEmpty?(0,s.jsx)(j.F,{title:A({id:"error-messages.empty-shelf-liked-page-title"})}):(0,s.jsx)(C.hO,{scrollElement:l,outerTitle:A({id:"podcast.shelf-liked-title"}),children:(0,s.jsxs)("div",{className:b().root,...(0,c.Am)(c.Xk.collection.COLLECTION_SHELF_LIKED_PAGE),children:[(0,s.jsx)(p.Y9,{variant:p.Vw.TEXT,withForwardControl:!1,withBackwardControl:y.canBack,children:(0,s.jsx)(m.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"podcast.shelf-liked-title"})})}),(0,s.jsx)(p.$$,{className:(0,a.$)(b().scrollContainer,b().important),customComponents:v,itemContentCallback:e=>{let l=t.items[e];if(!l)return(0,s.jsx)(p.DS,{variant:g.Xjt.PLAYLIST,isActive:!0},e);if(l.album)return(0,s.jsx)(_.M_,{album:l.album},l.album.getKey(e));let a=k(e,(0,P.q)(l.track,e,t.typeForFrom));return(0,s.jsx)(h.Kd,{track:l.track,playContextParams:a,withPodcastName:!0},l.track.getKey(e))},initialItemCount:N,totalCount:N,onGetDataByPage:S,pageSize:x.c,totalRequests:t.requestsCount,listClassName:b().content,itemClassName:b().item,handleRef:i,context:{listAriaLabel:A({id:"podcast.shelf-liked-title"})},isMobileLayout:e,useWindowScroll:e})]})})})},47052:(e,t,l)=>{"use strict";l.d(t,{CollectionNotFoundPage:()=>o});var s=l(33008),a=l(97531),i=l(35233);let o=(0,a.PA)(()=>(0,s.jsx)(i.M,{}))},47463:(e,t,l)=>{"use strict";l.d(t,{j:()=>s});var s=function(e){return e[e.TRACKS=0]="TRACKS",e[e.ARTISTS=1]="ARTISTS",e}({})},49762:e=>{e.exports={root:"CollectionArtistsPage_root__EH25F",scrollContainer:"CollectionArtistsPage_scrollContainer__tT6NQ",important:"CollectionArtistsPage_important__MG_XV",footer:"CollectionArtistsPage_footer__aZrx3",item:"CollectionArtistsPage_item___cy_9",contentBlock:"CollectionArtistsPage_contentBlock__5QDcr",contentBlock_withMarginTop:"CollectionArtistsPage_contentBlock_withMarginTop__e4_VX",gridLayout:"CollectionArtistsPage_gridLayout__00brJ",subTitle:"CollectionArtistsPage_subTitle__My70z"}},50093:(e,t,l)=>{"use strict";l.d(t,{q:()=>a});var s=l(48509);let a=(e,t,l)=>{let a={type:s.K.Various,meta:{id:e.id},from:l||""};return void 0!==e.albumId&&(a={type:s.K.Album,meta:{id:e.albumId},from:l||""}),{contextData:a,queueParams:{entityId:e.id,index:t},loadContextMeta:!0}}},51460:(e,t,l)=>{"use strict";l.d(t,{CollectionKidsAlbumsPage:()=>j});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(77868),m=l(83888),u=l(52732),_=l(64143),C=l(79169),h=l(18740),g=l(56732),p=l(39082),x=l(41420),P=l.n(x);let j=(0,i.PA)(()=>{let{settings:{isMobile:e},collection:{kids:{albums:t}}}=(0,C.Pjs)(),{contentScrollRef:l,setContentScrollRef:i}=(0,C.gKY)(),x=(0,C.W6M)(),{formatMessage:j}=(0,n.A)(),y=(0,o.useCallback)(e=>{t.getData({page:e,pageSize:g.c})},[t]);(0,C.XcE)(t.pagesLoader,y);let b=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(h.A,{children:(0,s.jsx)(h.wi,{className:P().footer})})}),[]),A=t.isShimmerVisible?20:t.items.length;return((0,o.useEffect)(()=>()=>{t.reset()},[t]),(0,C.Jzs)(t.isResolved),t.isNeededToLoad&&(0,o.use)(t.getData({pageSize:g.c})),t.isRejected)?(0,s.jsx)(m.w,{}):t.isEmpty?(0,s.jsx)(p.i,{title:j({id:"kids.albums-and-podcasts"})}):(0,s.jsx)(C.nVz,{pageId:C._Q$.COLLECTION_KIDS_ALBUMS,children:(0,s.jsx)(_.hO,{scrollElement:l,outerTitle:j({id:"kids.albums-and-podcasts"}),children:(0,s.jsxs)("div",{className:P().root,...(0,c.Am)(c.Xk.collection.COLLECTION_KIDS_ALBUMS_PAGE),children:[(0,s.jsx)(h.Y9,{variant:h.Vw.TEXT,withForwardControl:!1,withBackwardControl:x.canBack,children:(0,s.jsx)(d.Heading,{variant:"h2",weight:"bold",size:e?"m":"xl",lineClamp:2,children:(0,s.jsx)(r.A,{id:"kids.albums-and-podcasts"})})}),(0,s.jsx)(h.$$,{className:(0,a.$)(P().scrollContainer,P().important),listClassName:P().content,itemClassName:P().item,customComponents:b,itemContentCallback:e=>{let l=t.items[e],a=j({id:"loading-messages.entity-is-loading"},{entityName:j({id:"entity-names.album"})});return l?(0,s.jsx)(u.aX,{album:l,contentLinesCount:4,withLikesCount:!0},l.id):(0,s.jsx)(h.Vt,{"aria-label":a,linesCount:4})},initialItemCount:A,totalCount:A,onGetDataByPage:y,pageSize:g.c,totalRequests:t.requestsCount,handleRef:i,context:{listAriaLabel:j({id:"entity-names.albums"})},isMobileLayout:e,useWindowScroll:e})]})})})})},53827:(e,t,l)=>{"use strict";l.d(t,{CollectionShelfNewEpisodesPage:()=>v});var s=l(33008),a=l(97531),i=l(17846),o=l(66268),n=l(18064),r=l(42213),c=l(57747),d=l(77868),m=l(83888),u=l(64143),_=l(79169),C=l(18740),h=l(85896),g=l(96560),p=l(48509),x=l(44189),P=l(78016),j=l(44078),y=l(59417),b=l.n(y);let A=(0,a.PA)(()=>{let{sonataState:e,collection:{shelf:{newEpisodes:t}}}=(0,_.Pjs)(),l=(0,_.ZpR)(_.Zyd.nonMusic.href),a=(0,o.useMemo)(()=>{var l;return null==(l=t.tracks)?void 0:l.map((l,a)=>(0,s.jsx)(j.Kd,{track:l,playContextParams:{contextData:{type:p.K.Album,meta:{id:l.entityId},from:t.typeForFrom||""},queueParams:{index:a,entityId:l.id},loadContextMeta:!0,entitiesData:e.unloadedEntitiesDataFromModels},withPodcastName:!0},l.entityId))},[t.tracks,t.typeForFrom,e.unloadedEntitiesDataFromModels]),i=(0,o.useMemo)(()=>t.isEmpty?(0,s.jsx)(g.A,{id:"error-messages.empty-shelf-new-episodes-title-no-tracks"}):(0,s.jsx)(g.A,{id:"error-messages.empty-shelf-new-episodes-title"}),[t.isEmpty]);return(t.isNeededToLoad&&(0,o.use)(t.getData()),t.isLoading)?(0,s.jsx)(C.DS,{variant:_.Xjt.PLAYLIST,isActive:!0}):(0,s.jsxs)("div",{className:(0,h.$)(b().root,{[b().root_emptyList]:t.isEmpty}),children:[a,(0,s.jsxs)("div",{className:b().wrapper,children:[(0,s.jsx)("div",{className:b().iconBackground,children:(0,s.jsx)(P.Icon,{variant:"like",size:"l"})}),(0,s.jsx)(d.Heading,{className:b().title,variant:"h3",size:"xs",children:i}),!t.isEmpty&&(0,s.jsx)(d.Caption,{type:"controls",variant:"span",size:"l",weight:"normal",children:(0,s.jsx)(g.A,{id:"error-messages.empty-shelf-new-episodes-text"})}),(0,s.jsx)(x.Button,{onClick:l,className:b().button,role:"link",color:"secondary",size:"s",radius:"xxxl",children:(0,s.jsx)(d.Caption,{type:"controls",variant:"span",size:"m",children:(0,s.jsx)(g.A,{id:"error-messages.empty-shelf-liked-page-link"})})})]})]})});var k=l(17410),S=l.n(k);let v=(0,a.PA)(()=>{let{collection:{shelf:{newEpisodes:e}}}=(0,_.Pjs)(),{contentScrollRef:t,setContentScrollRef:l}=(0,_.gKY)(),a=(0,_.W6M)(),h=(0,i.useRouter)(),g=(0,r.c)(()=>{var t;(null==(t=e.playlist)?void 0:t.uuid)&&h.replace(e.playlist.url)});return((0,o.useEffect)(()=>{e.isResolved&&e.withPlaylist&&g()},[e.isResolved,e.withPlaylist,g]),(0,o.useEffect)(()=>()=>{e.reset()},[e]),(0,_.Jzs)(e.isResolved),e.isRejected)?(0,s.jsx)(m.w,{}):(0,s.jsxs)(u.hO,{scrollElement:t,outerTitle:e.title,children:[(0,s.jsx)(C.Y9,{variant:C.Vw.TEXT,withForwardControl:!1,withBackwardControl:a.canBack,children:(0,s.jsx)(d.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:e.title})}),(0,s.jsxs)(c.N,{ref:l,containerClassName:S().scrollableContainer,className:S().root,...(0,n.Am)(n.Xk.collection.COLLECTION_SHELF_NEW_EPISODES_PAGE),children:[(0,s.jsx)(A,{}),(0,s.jsx)(C.A,{children:(0,s.jsx)(C.wi,{className:S().footer})})]})]})})},56732:(e,t,l)=>{"use strict";l.d(t,{c:()=>s});let s=20},56736:e=>{e.exports={root:"CollectionShelfPageEmpty_root__KrMco",iconBackground:"CollectionShelfPageEmpty_iconBackground__limUg",title:"CollectionShelfPageEmpty_title__cwF4m",button:"CollectionShelfPageEmpty_button___uzMX"}},58184:(e,t,l)=>{"use strict";l.d(t,{h:()=>s});var s=function(e){return e.TRACKS="tracks",e.ARTISTS="artists",e}({})},58640:e=>{e.exports={root:"CollectionAlbumsPageHeader_root__87L_c",container:"CollectionAlbumsPageHeader_container__96cIo",title:"CollectionAlbumsPageHeader_title__1Ps8d",tabs:"CollectionAlbumsPageHeader_tabs__P4GTY",tab:"CollectionAlbumsPageHeader_tab__JSFBc",tabsShimmer:"CollectionAlbumsPageHeader_tabsShimmer__fGlR0",tabShimmer:"CollectionAlbumsPageHeader_tabShimmer__9hCc6",staticHeader:"CollectionAlbumsPageHeader_staticHeader__YNfX4",important:"CollectionAlbumsPageHeader_important__0dgC2",stickyHeader:"CollectionAlbumsPageHeader_stickyHeader__L_1IS"}},59417:e=>{e.exports={title:"CollectionShelfNewEpisodes_title__y_SoT",root:"CollectionShelfNewEpisodes_root__VojSS",root_emptyList:"CollectionShelfNewEpisodes_root_emptyList__jsjSW",wrapper:"CollectionShelfNewEpisodes_wrapper__Z2EOe",iconBackground:"CollectionShelfNewEpisodes_iconBackground__K4Xui",button:"CollectionShelfNewEpisodes_button__3DALk"}},59795:(e,t,l)=>{"use strict";l.d(t,{E:()=>m});var s=l(33008),a=l(97531),i=l(91342),o=l(79169),n=l(18740),r=l(69167),c=l.n(r);let d=()=>Array.from({length:5},e=>(0,s.jsx)(n.DS,{variant:o.Xjt.PLAYLIST,className:c().track,isActive:!0},e)),m=(0,a.PA)(e=>{let{className:t,withHeader:l}=e;return(0,s.jsxs)("div",{className:t,children:[l&&(0,s.jsx)(i.Shimmer,{radius:"l",width:100,height:24,className:c().title,isActive:!0}),(0,s.jsx)(d,{})]})})},59834:e=>{e.exports={root:"CollectionNonMusicPage_root__U6DRX",scrollableContainer:"CollectionNonMusicPage_scrollableContainer__iIZvl",important:"CollectionNonMusicPage_important__Y9D5x",content:"CollectionNonMusicPage_content__d8E7R",likedBlocks:"CollectionNonMusicPage_likedBlocks__cNqyq",carousel:"CollectionNonMusicPage_carousel__zDCY0",blockHeader:"CollectionNonMusicPage_blockHeader__PoAFY",footer:"CollectionNonMusicPage_footer__9feIA",shelfBlockCarousel:"CollectionNonMusicPage_shelfBlockCarousel__Kd6DB",shelfBlockHeader:"CollectionNonMusicPage_shelfBlockHeader__yfFcf"}},65362:e=>{e.exports={root:"CollectionPlaylistsPage_root__1QnBw",content:"CollectionPlaylistsPage_content__P3Br2",content_withGridLayout:"CollectionPlaylistsPage_content_withGridLayout__ytZKv",footer:"CollectionPlaylistsPage_footer__8nXuA",item:"CollectionPlaylistsPage_item__SvtpO",scrollContainer:"CollectionPlaylistsPage_scrollContainer__ECphU",important:"CollectionPlaylistsPage_important__YtxxZ"}},68687:e=>{e.exports={header:"CollectionShelfRecentlyPlayed_header__Nx7Cc",shelfColumn:"CollectionShelfRecentlyPlayed_shelfColumn__9xHhf",important:"CollectionShelfRecentlyPlayed_important__HS0GM"}},69077:(e,t,l)=>{"use strict";l.d(t,{CollectionAlbumsPage:()=>B});var s=l(33008),a=l(97531),i=l(17846),o=l(66268),n=l(18064),r=l(21741),c=l(64143),d=l(79169),m=function(e){return e[e.LIKED_ALBUMS=0]="LIKED_ALBUMS",e[e.UPCOMING_ALBUMS=1]="UPCOMING_ALBUMS",e}({}),u=l(92810),_=l.n(u),C=l(85896),h=l(73827),g=l(52732),p=l(18740),x=l(96560),P=l(77868);let j=e=>{let t=(0,d.XJ9)();return(0,o.useCallback)(l=>{var s;switch(null==(s=e.onTabChange)||s.call(e,l),l){case m.LIKED_ALBUMS:{let{href:e}=(0,d.uvd)(d.Zyd.collectionAlbums.href,{query:{tab:d.Hl3.LIKED_ALBUMS}});t(e);break}case m.UPCOMING_ALBUMS:{let{href:e}=(0,d.uvd)(d.Zyd.collectionAlbums.href,{query:{tab:d.Hl3.UPCOMING_ALBUMS}});t(e)}}},[t,e])};var y=l(58640),b=l.n(y),A=l(91342);let k=()=>(0,s.jsxs)("div",{className:b().tabsShimmer,children:[(0,s.jsx)(A.Shimmer,{className:b().tabShimmer}),(0,s.jsx)(A.Shimmer,{className:b().tabShimmer})]}),S=(0,a.PA)(e=>{var t,l,a;let{tabsState:i,tabElementId:r}=e,{collection:c}=(0,d.Pjs)(),{formatMessage:u}=(0,h.A)(),_=(0,d.W6M)(),{isScrolling:C}=(0,o.useContext)(p.B9),g=j(i),y=(0,o.useMemo)(()=>c.albums.items.length?"".concat(u({id:"entity-names.albums"})," • ").concat(c.albums.items.length):u({id:"entity-names.albums"}),[c.albums.items.length,u]),A=(0,o.useMemo)(()=>{var e;return(null==(e=c.albums.upcomingAlbums.items)?void 0:e.length)?"".concat(u({id:"entity-names.upcoming-albums"})," • ").concat(c.albums.upcomingAlbums.items.length):u({id:"entity-names.upcoming-albums"})},[null==(t=c.albums.upcomingAlbums.items)?void 0:t.length,u]);return(0,s.jsxs)("header",{className:b().root,"aria-hidden":C,...(0,n.Am)(n.Xk.collection.COLLECTION_ALBUMS_PAGE_STATIC_HEADER),children:[(0,s.jsxs)("div",{className:b().container,children:[_.canBack&&(0,s.jsx)(p.Lh,{withForwardControl:!1,withBackwardControl:_.canBack,shouldFocusOnMount:!C}),(0,s.jsx)(P.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,className:b().title,...(0,n.Am)(n.Xk.collection.COLLECTION_ALBUMS_PAGE_STATIC_HEADER_TITLE),children:(0,s.jsx)(x.A,{id:"entity-names.favourite-albums"})})]}),(0,s.jsxs)(p.wI,{isShimmerVisible:c.albums.isLoading,shimmer:(0,s.jsx)(k,{}),className:b().tabs,elementId:r,...i,onTabChange:g,children:[(0,s.jsx)(p.oz,{className:b().tab,value:m.LIKED_ALBUMS,title:y,"aria-label":u({id:"entity-names.albums-count"},{value:c.albums.items.length}),"aria-hidden":C,tabIndex:C?-1:0}),(0,s.jsx)(p.oz,{className:b().tab,value:m.UPCOMING_ALBUMS,title:A,"aria-label":u({id:"entity-names.upcoming-albums-count"},{value:null!=(a=null==(l=c.albums.upcomingAlbums.items)?void 0:l.length)?a:0}),"aria-hidden":C,tabIndex:C?-1:0})]})]})});var v=l(95606),N=l.n(v);let L=(0,a.PA)(e=>{var t,l,a;let{forwardRef:i,tabsState:n,tabElementId:c}=e,{user:u,collection:_,settings:{isMobile:x}}=(0,d.Pjs)(),{formatMessage:P}=(0,h.A)(),j=(0,o.useCallback)(e=>{u.account.data.uid&&_.albums.getData({userId:u.account.data.uid,metaType:"music",page:e,pageSize:20})},[_.albums,u.account.data.uid]),y=(0,o.useMemo)(()=>({Header:()=>(0,s.jsx)(S,{tabsState:n,tabElementId:c}),Footer:()=>(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:N().footer})})}),[c,n]);return(0,s.jsx)("div",{className:N().root,children:(0,s.jsx)(r.TabPanel,{value:n.value,name:m.LIKED_ALBUMS,elementId:c,className:N().tabPanel,children:(0,s.jsx)(p.$$,{className:(0,C.$)(N().scrollContainer,N().important),customComponents:y,itemContentCallback:e=>{var t;let l=null==(t=_.albums.items)?void 0:t[e],a=P({id:"loading-messages.entity-is-loading"},{entityName:P({id:"entity-names.album"})});return l?(0,s.jsx)(g.aX,{album:l,contentLinesCount:4},l.id):(0,s.jsx)(p.Vt,{"aria-label":a,linesCount:4})},totalCount:null!=(l=null==(t=_.albums.pager)?void 0:t.total)?l:0,onGetDataByPage:j,pageSize:20,totalRequests:null!=(a=_.albums.requestsCount)?a:0,listClassName:N().content,itemClassName:N().item,handleRef:i,context:{listAriaLabel:P({id:"collection.liked-albums-list"})},isMobileLayout:x,useWindowScroll:x})})})});var I=l(57747);let E=(0,a.PA)(e=>{let{forwardRef:t,tabsState:l,tabElementId:a}=e,{collection:i}=(0,d.Pjs)(),{formatMessage:n}=(0,h.A)(),c=(0,o.useMemo)(()=>{var e;let t=n({id:"loading-messages.entity-is-loading"},{entityName:n({id:"entity-names.album"})});return i.albums.isUpcomingAlbumsLoading?(0,s.jsx)(p.eI,{isActive:!0,"aria-label":t}):null==(e=i.albums.upcomingAlbums.items)?void 0:e.map(e=>(0,s.jsx)(g.M3,{upcomingAlbum:e},e.id))},[i.albums.isUpcomingAlbumsLoading,i.albums.upcomingAlbums,n]);return(0,s.jsxs)(I.N,{className:N().root,containerClassName:(0,C.$)(N().scrollContainer,N().important),ref:t,children:[(0,s.jsx)(S,{tabsState:l,tabElementId:a}),(0,s.jsx)(r.TabPanel,{value:l.value,name:m.UPCOMING_ALBUMS,elementId:a,className:N().content,children:c}),(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:N().footer})})]})});var T=l(78016),f=l(88742),w=l.n(f);let D=(0,a.PA)(e=>{let{tabsState:t,tabElementId:l}=e,a=(0,o.useMemo)(()=>{switch(t.value){case m.LIKED_ALBUMS:return(0,s.jsx)(x.A,{id:"error-messages.empty-collection-albums-title"});case m.UPCOMING_ALBUMS:return(0,s.jsx)(x.A,{id:"error-messages.empty-collection-upcoming-albums-title"})}},[t.value]),i=t.value===m.LIKED_ALBUMS;return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(S,{tabsState:t,tabElementId:l}),(0,s.jsxs)(r.TabPanel,{value:t.value,name:t.value,elementId:l,className:w().root,children:[(0,s.jsx)(T.Icon,{className:w().icon,size:"l",variant:"album"}),(0,s.jsx)(P.Heading,{className:w().title,variant:"h3",size:"xs",...(0,n.Am)(n.Xk.collection.COLLECTION_ALBUMS_PAGE_EMPTY_TITLE),children:a}),i&&(0,s.jsx)(P.Caption,{className:w().text,variant:"span",type:"controls",size:"l",weight:"normal",children:(0,s.jsx)(x.A,{id:"error-messages.empty-collection-albums-description"})})]})]})}),M=(0,a.PA)(e=>{var t,l,a;let{tabsState:i,tabElementId:r}=e,{collection:c}=(0,d.Pjs)(),{formatMessage:u}=(0,h.A)(),{isScrolling:_}=(0,o.useContext)(p.B9),g=(0,d.W6M)(),x=j(i),P=(0,o.useMemo)(()=>c.albums.items.length?"".concat(u({id:"entity-names.albums"})," • ").concat(c.albums.items.length):u({id:"entity-names.albums"}),[c.albums.items.length,u]),y=(0,o.useMemo)(()=>{var e,t;return(null==(e=c.albums.upcomingAlbums.items)?void 0:e.length)?"".concat(u({id:"entity-names.upcoming-albums"})," • ").concat(null==(t=c.albums.upcomingAlbums.items)?void 0:t.length):u({id:"entity-names.upcoming-albums"})},[null==(t=c.albums.upcomingAlbums.items)?void 0:t.length,u]);return(0,s.jsx)(p.Y9,{variant:p.Vw.COMPOSITE,staticClassName:(0,C.$)(b().staticHeader,b().important),"aria-hidden":!_,stickyClassName:(0,C.$)(b().stickyHeader,b().important),containerProps:(0,n.Am)(n.Xk.collection.COLLECTION_ALBUMS_PAGE_STICKY_HEADER),stickyChild:(0,s.jsxs)("div",{className:b().container,children:[g.canBack&&(0,s.jsx)(p.Lh,{withForwardControl:!1,withBackwardControl:g.canBack,shouldFocusOnMount:!1,buttonSize:"xs"}),(0,s.jsxs)(p.wI,{isShimmerVisible:c.albums.isLoading,shimmer:(0,s.jsx)(k,{}),className:b().tabs,elementId:r,...i,onTabChange:x,children:[(0,s.jsx)(p.oz,{className:b().tab,value:m.LIKED_ALBUMS,title:P,"aria-label":u({id:"entity-names.albums-count"},{value:c.albums.items.length}),"aria-hidden":!_,tabIndex:_?0:-1}),(0,s.jsx)(p.oz,{className:b().tab,value:m.UPCOMING_ALBUMS,title:y,"aria-label":u({id:"entity-names.upcoming-albums-count"},{value:null!=(a=null==(l=c.albums.upcomingAlbums.items)?void 0:l.length)?a:0}),"aria-hidden":!_,tabIndex:_?0:-1})]})]})})}),B=(0,a.PA)(()=>{let e=(0,i.useSearchParams)(),{user:t,collection:l,library:a}=(0,d.Pjs)(),{contentScrollRef:u,setContentScrollRef:C}=(0,d.gKY)(),h=(0,o.useId)(),g=(0,o.useMemo)(()=>{switch(e.get(d.K3F.TAB)){case d.Hl3.LIKED_ALBUMS:break;case d.Hl3.UPCOMING_ALBUMS:return m.UPCOMING_ALBUMS}return m.LIKED_ALBUMS},[e]),p=(0,r.useTabsState)(g);(0,d.Jzs)(l.albums.isResolved),(0,o.useEffect)(()=>()=>{l.albums.reset()},[l.albums]);let x=(0,o.useMemo)(()=>{switch(p.value){case m.LIKED_ALBUMS:if(l.albums.isAlbumsEmpty)return(0,s.jsx)(D,{tabsState:p,tabElementId:h});return(0,s.jsx)(L,{forwardRef:C,tabsState:p,tabElementId:h});case m.UPCOMING_ALBUMS:if(l.albums.isUpcomingAlbumsEmpty)return(0,s.jsx)(D,{tabsState:p,tabElementId:h});return(0,s.jsx)(E,{forwardRef:C,tabsState:p,tabElementId:h})}},[l.albums.isAlbumsEmpty,l.albums.isUpcomingAlbumsEmpty,C,h,p]);if(t.account.data.uid&&l.albums.isNeededToLoad){let e=[l.albums.getData({userId:t.account.data.uid,metaType:"music",page:0,pageSize:20}),l.albums.getPresaves({userId:t.account.data.uid}),a.getData()];(0,o.use)(Promise.allSettled(e))}return(0,s.jsx)(d.nVz,{pageId:d._Q$.OWN_ALBUMS,children:(0,s.jsx)(c.hO,{scrollElement:u,headerThreshold:148,children:(0,s.jsxs)("div",{className:_().root,...(0,n.Am)(n.Xk.collection.COLLECTION_ALBUMS_PAGE),children:[(0,s.jsx)(M,{tabsState:p,tabElementId:h}),x]})})})})},69167:e=>{e.exports={title:"CollectionShelfShimmer_title__X3d9J"}},70235:(e,t,l)=>{"use strict";l.d(t,{a:()=>s});var s=function(e){return e[e.CREATED=0]="CREATED",e[e.LIKED=1]="LIKED",e}({})},71327:e=>{e.exports={root:"CollectionPlaylistsPageEmpty_root__mKZt2",icon:"CollectionPlaylistsPageEmpty_icon__x9v_P",title:"CollectionPlaylistsPageEmpty_title__8RfSi"}},71886:(e,t,l)=>{"use strict";l.d(t,{M:()=>d});var s=l(33008),a=l(85896),i=l(96560),o=l(78016),n=l(77868),r=l(95448),c=l.n(r);let d=e=>{let{className:t}=e;return(0,s.jsxs)("div",{className:(0,a.$)(c().emptyContent,t),children:[(0,s.jsx)(o.Icon,{className:c().emptyContentIcon,size:"l",variant:"album"}),(0,s.jsx)(n.Heading,{className:c().emptyContentTitle,variant:"h3",size:"xs",children:(0,s.jsx)(i.A,{id:"error-messages.empty-collection-podcasts-and-books"})})]})}},72111:e=>{e.exports={root:"CollectionClipsPageEmpty_root__P29ns",content:"CollectionClipsPageEmpty_content__gIM_C",icon:"CollectionClipsPageEmpty_icon__jDAZP",title:"CollectionClipsPageEmpty_title__DKJ_3",text:"CollectionClipsPageEmpty_text__F_Too"}},73250:(e,t,l)=>{"use strict";l.d(t,{CollectionArtistsPage:()=>b});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(93967),d=l(18064),m=l(77868),u=l(90317),_=l(64143),C=l(79169),h=l(18740),g=l(49762),p=l.n(g),x=l(16285),P=l(82374),j=l.n(P);let y=(0,i.PA)(()=>{let{collection:e}=(0,C.Pjs)(),{formatMessage:t}=(0,n.A)(),l=t({id:"loading-messages.entity-is-loading"},{entityName:t({id:"entity-names.artist"})}),a=(0,o.useMemo)(()=>e.artists.topArtists.isResolved?e.artists.topArtists.items.map((l,a)=>{var i;let o=null;if(l.listenTimeSeconds){let e=l.listenTimeSeconds/60;o=e<=45?t({id:"time.minutes-left"},{minutes:Math.round(e)}):t({id:"time.hours"},{hours:Math.round(e/60*2)/2})}return(0,s.jsx)(C.Bki,{objectType:c.ky.Artist,objectId:l.artist.id,objectPosX:a+1,objectPosY:1,objectsCount:e.artists.topArtists.items.length,children:(0,s.jsx)(u.ao,{topTitleElement:l.top&&(0,s.jsx)(x.t1,{className:j().chart,position:l.top.position,progress:l.top.progress,weight:"bold",positionClassName:j().position,withIcon:0===a,withCrownIcon:0===a},l.getKey("ArtistTop")),bottomTitleElement:o?(0,s.jsx)(m.Caption,{className:j().listenTime,variant:"div",type:"entity",size:"s",weight:"medium",lineClamp:1,...(0,d.Am)(d.Xk.collection.COLLECTION_TOP_ARTISTS_LISTEN_TIME),children:o}):void 0,artist:l.artist,contentLinesCount:4},null==(i=l.artist)?void 0:i.id)},l.artist.id)}):(0,s.jsx)(h.eI,{linesCount:4,count:3,isActive:!0,"aria-label":l,round:!0,centered:!0}),[t,l,e.artists.topArtists.isResolved,e.artists.topArtists.items]);return(0,s.jsxs)(C.FoH,{blockId:"collection_artists_top",blockType:"ARTISTS_TOP",blockPosX:1,blockPosY:1,blockIdForFrom:"collection_artists_top",objectsCount:e.artists.topArtists.items.length,children:[(0,s.jsx)(m.Heading,{size:"s",weight:"bold",variant:"h2",className:j().subTitle,...(0,d.Am)(d.Xk.collection.COLLECTION_TOP_ARTISTS_HEADING),children:(0,s.jsx)(r.A,{id:"entity-names.top-artists"})}),(0,s.jsx)("div",{className:j().gridLayout,...(0,d.Am)(d.Xk.collection.COLLECTION_TOP_ARTISTS_GRID),children:a})]})}),b=(0,i.PA)(()=>{var e,t,l,i;let{user:g,collection:x,settings:{isMobile:P},library:j}=(0,C.Pjs)(),{formatMessage:b}=(0,n.A)(),{contentScrollRef:A,setContentScrollRef:k}=(0,C.gKY)(),S=(0,C.W6M)();(0,C.Jzs)(x.artists.isResolved),(0,o.useEffect)(()=>()=>{x.artists.reset()},[x.artists]);let v=(0,o.useCallback)(e=>{g.account.data.uid&&x.artists.getData({userId:g.account.data.uid,page:e,pageSize:20})},[x.artists,g.account.data.uid]),N=b({id:"loading-messages.entity-is-loading"},{entityName:b({id:"entity-names.artist"})}),L=x.artists.topArtists.items.length||!x.artists.topArtists.isResolved,I=(0,o.useMemo)(()=>L?()=>(0,s.jsxs)("div",{className:(0,a.$)(p().contentBlock,p().contentBlock_withMarginTop),children:[(0,s.jsx)(y,{}),(x.artists.items.length>0||!x.artists.isResolved)&&(0,s.jsx)(m.Heading,{size:"s",weight:"bold",variant:"h2",className:p().subTitle,children:(0,s.jsx)(r.A,{id:"entity-names.liked-artist"})})]}):null,[L,x.artists.items.length,x.artists.isResolved]),E=(0,o.useMemo)(()=>({Header:I,Footer:()=>(0,s.jsx)(h.A,{children:(0,s.jsx)(h.wi,{className:p().footer})})}),[I]);if(g.account.data.uid&&x.artists.isNeededToLoad){let e=[x.artists.getData({userId:g.account.data.uid}),x.artists.getDataTopArtists(),j.getData()];(0,o.use)(Promise.allSettled(e))}let T=!x.artists.isLoading||(null==(e=x.artists.pager)?void 0:e.total)?null!=(l=null==(t=x.artists.pager)?void 0:t.total)?l:0:10;return(0,s.jsx)(C.nVz,{pageId:C._Q$.OWN_ARTISTS,children:(0,s.jsx)(C.jPc,{children:(0,s.jsx)(_.hO,{scrollElement:A,outerTitle:b({id:"entity-names.artists"}),children:(0,s.jsxs)("div",{className:p().root,...(0,d.Am)(d.Xk.collection.COLLECTION_ARTISTS_PAGE),children:[(0,s.jsx)(h.Y9,{variant:h.Vw.TEXT,withForwardControl:!1,withBackwardControl:S.canBack,children:(0,s.jsx)(m.Heading,{id:"collection-artists-header",variant:"h1",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"entity-names.artists"})})}),(0,s.jsx)(h.$$,{className:(0,a.$)(p().scrollContainer,p().important),customComponents:E,itemContentCallback:e=>{var t;let l=null==(t=x.artists.items)?void 0:t[e];return l?(0,s.jsx)(C.FoH,{blockId:"collection_artist",blockType:"ARTIST",blockPosX:e+1,blockPosY:1,blockIdForFrom:l.id,objectsCount:x.artists.items.length,children:(0,s.jsx)(C.Bki,{objectType:c.ky.Artist,objectId:l.id,objectPosX:1,objectPosY:1,objectsCount:x.artists.items.length,children:(0,s.jsx)(u.ao,{artist:l,contentLinesCount:3},l.id)})}):(0,s.jsx)(h.Vt,{isActive:!0,"aria-label":N,round:!0,centered:!0})},initialItemCount:T,totalCount:T,onGetDataByPage:v,pageSize:20,totalRequests:null!=(i=x.artists.requests)?i:0,listClassName:(0,a.$)(p().contentBlock,p().gridLayout,{[p().contentBlock_withMarginTop]:!L}),itemClassName:p().item,handleRef:k,context:{listAriaLabel:b({id:"collection.liked-artists-list"})},isMobileLayout:P,useWindowScroll:P})]})})})})})},74261:e=>{e.exports={root:"CollectionClipsPageClipsWillLike_root__uS0_8",carouselItem:"CollectionClipsPageClipsWillLike_carouselItem__0C0_W",important:"CollectionClipsPageClipsWillLike_important__U_2ET",carouselBlockHeader:"CollectionClipsPageClipsWillLike_carouselBlockHeader__wDnJp",carouselBlock:"CollectionClipsPageClipsWillLike_carouselBlock__La_8Q"}},77154:e=>{e.exports={root:"CollectionPage_root__CZAxL",root_withCollectionColor:"CollectionPage_root_withCollectionColor__4kV02",content:"CollectionPage_content__c3f8z",header:"CollectionPage_header__z193s",description:"CollectionPage_description__A3dny",collectionColor:"CollectionPage_collectionColor__M5l1f",landing:"CollectionPage_landing__B4jW_",landing_onlyWizard:"CollectionPage_landing_onlyWizard__umeEK",footer:"CollectionPage_footer__9kzD0",footer_onlyWizard:"CollectionPage_footer_onlyWizard__FxCwa",error:"CollectionPage_error__xs4ZH"}},78434:e=>{e.exports={root:"CollectionKidsSubPageEmpty_root__53xVY",scrollableContainer:"CollectionKidsSubPageEmpty_scrollableContainer__Dh6Sp",content:"CollectionKidsSubPageEmpty_content__VZZg5",icon:"CollectionKidsSubPageEmpty_icon__IQAON",title:"CollectionKidsSubPageEmpty_title__t9H4h",button:"CollectionKidsSubPageEmpty_button__26EKY",footer:"CollectionKidsSubPageEmpty_footer__XQnAw"}},82374:e=>{e.exports={subTitle:"CollectionArtistsPageTopArtists_subTitle__xJdoJ",gridLayout:"CollectionArtistsPageTopArtists_gridLayout__H2AR_",chart:"CollectionArtistsPageTopArtists_chart__inbPE",position:"CollectionArtistsPageTopArtists_position__YDoRC",listenTime:"CollectionArtistsPageTopArtists_listenTime__NqxRf"}},83708:(e,t,l)=>{"use strict";l.d(t,{CollectionPage:()=>j});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(43836),m=l(57747),u=l(77868),_=l(12898),C=l(83888),h=l(64143),g=l(79169),p=l(18740),x=l(77154),P=l.n(x);let j=(0,i.PA)(()=>{let{collection:e,user:t,library:l}=(0,g.Pjs)(),{contentScrollRef:i,setContentScrollRef:x}=(0,g.gKY)(),{formatMessage:j}=(0,n.A)(),y=!e.landing.isRejected&&!!t.collectionHue;(0,o.useEffect)(()=>()=>e.landing.reset(),[e.landing]),(0,g.Jzs)(e.landing.isResolved);let b=(0,_._9)(e.landing),A=(0,o.useMemo)(()=>y&&t.collectionHue?{"--collection-color":(0,g.eWZ)(t.collectionHue)}:null,[y,t.collectionHue]),k=(0,o.useMemo)(()=>({color:e=>(0,s.jsx)(p.hj,{title:j({id:"collection.collection-color-title"}),description:j({id:"collection.collection-color-description"}),placement:"right",children:(0,s.jsx)("span",{className:P().collectionColor,style:A,children:e})})}),[A,j]);if(e.landing.isNeededToLoad){let s=[e.landing.getSkeleton({id:d.p.WEB_COLLECTION,showWizard:t.settings.showWizard},{preloadBlocksCount:2}),l.getData()];(0,o.use)(Promise.allSettled(s))}return(0,s.jsx)(g.nVz,{pageId:g._Q$.OWN_COLLECTION,children:(0,s.jsxs)(h.hO,{scrollElement:i,outerTitle:j({id:"entity-names.collection"}),children:[(0,s.jsx)(p.Y9,{variant:p.Vw.TEXT,showControls:!1,children:(0,s.jsxs)("div",{className:P().header,children:[(0,s.jsx)(u.Heading,{variant:"h1",weight:"bold",size:"xl",children:(0,s.jsx)(r.A,{id:"entity-names.collection"})}),y&&(0,s.jsx)(u.Caption,{className:P().description,variant:"div",size:"m",children:(0,s.jsx)(r.A,{id:"collection.collection-color",values:k})})]})}),(0,s.jsxs)(m.N,{className:(0,a.$)(P().root,{[P().root_withCollectionColor]:y}),containerClassName:P().content,ref:x,children:[(0,s.jsx)("div",{className:(0,a.$)(P().landing,{[P().landing_onlyWizard]:b}),...(0,c.Am)(c.Xk.collection.COLLECTION_PAGE),children:(0,s.jsx)(_.EA,{landing:e.landing,errorComponent:(0,s.jsx)(C.w,{className:P().error,withBackwardControl:!1})})}),(0,s.jsx)(p.A,{children:(0,s.jsx)(p.wi,{className:P().footer})})]})]})})})},84674:(e,t,l)=>{"use strict";l.d(t,{CollectionNonMusicLikedPage:()=>P});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(77868),m=l(83888),u=l(52732),_=l(64143),C=l(79169),h=l(18740),g=l(71886),p=l(11718),x=l.n(p);let P=(0,i.PA)(()=>{var e,t,l;let{user:i,collection:{nonMusicLiked:p},settings:{isMobile:P},library:j}=(0,C.Pjs)(),{formatMessage:y}=(0,n.A)(),{contentScrollRef:b,setContentScrollRef:A}=(0,C.gKY)(),k=(0,C.W6M)();(0,C.Jzs)(p.isResolved);let S=(0,o.useCallback)(e=>{i.account.data.uid&&p.getData({userId:i.account.data.uid,metaType:"podcast",page:e,pageSize:20})},[p,i.account.data.uid]);if(p.isRejected)return(0,s.jsx)(m.w,{});(0,o.useEffect)(()=>()=>{p.reset()},[p]);let v=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(h.A,{children:(0,s.jsx)(h.wi,{className:x().footer})})}),[]);if(i.account.data.uid&&p.isNeededToLoad){let e=[p.getData({userId:i.account.data.uid,metaType:"podcast",pageSize:20}),j.getData()];(0,o.use)(Promise.allSettled(e))}return(0,s.jsx)(C.nVz,{pageId:C._Q$.OWN_PODCASTS,children:(0,s.jsx)(_.hO,{scrollElement:b,outerTitle:y({id:"page.delayed-non-music"}),children:(0,s.jsxs)("div",{className:x().root,...(0,c.Am)(c.Xk.collection.COLLECTION_NON_MUSIC_LIKED_PAGE),children:[(0,s.jsx)(h.Y9,{variant:h.Vw.TEXT,withForwardControl:!1,withBackwardControl:k.canBack,children:(0,s.jsx)(d.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"page.delayed-non-music"})})}),p.isEmptyItems&&!p.isRejected&&(0,s.jsx)(g.M,{className:x().emptyBlock}),(0,s.jsx)(h.$$,{className:(0,a.$)(x().scrollContainer,x().important),listClassName:x().content,itemClassName:x().item,customComponents:v,itemContentCallback:e=>{var t;let l=null==(t=p.items)?void 0:t[e],a=y({id:"loading-messages.entity-is-loading"},{entityName:y({id:"entity-names.podcast"})});return l?(0,s.jsx)(u.aX,{album:l,contentLinesCount:3,withLikesCount:!0,withAddition:!1},l.id):(0,s.jsx)(h.Vt,{"aria-label":a})},totalCount:null!=(t=null==(e=p.pager)?void 0:e.total)?t:0,onGetDataByPage:S,pageSize:20,totalRequests:null!=(l=p.requestsCount)?l:0,handleRef:A,context:{listAriaLabel:y({id:"collection.liked-non-music-list"})},isMobileLayout:P,useWindowScroll:P})]})})})})},87451:(e,t,l)=>{"use strict";l.d(t,{T:()=>i});var s,a=l(48509);!function(e){e.ALBUM="album",e.PLAYLIST="playlist"}(s||(s={}));let i=(e,t)=>{var l,i;return e.type===s.ALBUM?{type:a.K.Album,meta:{id:(null==(i=e.album)?void 0:i.id)||0},from:t||""}:{type:a.K.Playlist,meta:{id:(null==(l=e.playlist)?void 0:l.id)||""},from:t||""}}},88742:e=>{e.exports={root:"CollectionAlbumsPageEmpty_root__7yn1F",icon:"CollectionAlbumsPageEmpty_icon__XFf9x",title:"CollectionAlbumsPageEmpty_title__hMQde",text:"CollectionAlbumsPageEmpty_text__jp_lj"}},91302:(e,t,l)=>{"use strict";l.d(t,{CollectionPlaylistsLikedPage:()=>P});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(19964),m=l(19980),u=l(77868),_=l(64143),C=l(45242),h=l(79169),g=l(18740),p=l(34914),x=l.n(p);let P=(0,i.PA)(()=>{var e,t,l;let{user:i,collection:{playlists:{playlistsLiked:p}},settings:{isMobile:P}}=(0,h.Pjs)(),{formatMessage:j}=(0,n.A)(),{contentScrollRef:y,setContentScrollRef:b}=(0,h.gKY)(),A=(0,h.W6M)(),k=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(g.A,{children:(0,s.jsx)(g.wi,{className:x().footer})})}),[]);(0,h.Jzs)(p.isResolved);let S=(0,o.useCallback)(e=>{i.account.data.uid&&p.getData({userId:i.account.data.uid,sortOrder:d.x.DESC,playlistMetaType:m.S.MUSIC,page:e,pageSize:20})},[p,i.account.data.uid]);return(0,o.useEffect)(()=>()=>{p.reset()},[p]),i.account.data.uid&&p.isNeededToLoad&&(0,o.use)(p.getData({userId:i.account.data.uid,sortOrder:d.x.DESC,playlistMetaType:m.S.MUSIC,page:0,pageSize:20})),(0,s.jsx)(h.nVz,{pageId:h._Q$.OWN_PLAYLISTS,children:(0,s.jsx)(_.hO,{scrollElement:y,outerTitle:j({id:"entity-names.favourite-playlists"}),children:(0,s.jsxs)("div",{className:x().root,...(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_LIKED_PAGE),children:[(0,s.jsx)(g.Y9,{variant:g.Vw.TEXT,withForwardControl:!1,withBackwardControl:A.canBack,children:(0,s.jsx)(u.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"entity-names.favourite-playlists"})})}),(0,s.jsx)(g.$$,{className:(0,a.$)(x().scrollContainer,x().important),customComponents:k,itemContentCallback:e=>{var t;let l=null==p||null==(t=p.items)?void 0:t[e],a=j({id:"loading-messages.entity-is-loading"},{entityName:j({id:"entity-names.playlist"})});return l?(0,s.jsx)(C.B6,{playlist:l,contentLinesCount:3},l.key):(0,s.jsx)(g.Vt,{"aria-label":a})},totalCount:null!=(t=null==p||null==(e=p.pager)?void 0:e.total)?t:0,onGetDataByPage:S,pageSize:20,totalRequests:null!=(l=p.requests)?l:0,listClassName:x().content,itemClassName:x().item,handleRef:b,context:{listAriaLabel:j({id:"collection.liked-playlists-list"})},isMobileLayout:P,useWindowScroll:P})]})})})})},91410:e=>{e.exports={root:"CollectionDislikesPage_root__Qnohu"}},92810:e=>{e.exports={root:"CollectionAlbumsPage_root__qMtcC"}},94800:(e,t,l)=>{"use strict";l.d(t,{CollectionPlaylistsCreatedPage:()=>p});var s=l(33008),a=l(85896),i=l(97531),o=l(66268),n=l(73827),r=l(96560),c=l(18064),d=l(77868),m=l(64143),u=l(45242),_=l(79169),C=l(18740),h=l(3872),g=l.n(h);let p=(0,i.PA)(()=>{var e,t,l;let{user:i,collection:{playlists:{playlistsCreated:h}},settings:{isMobile:p}}=(0,_.Pjs)(),{formatMessage:x}=(0,n.A)(),{contentScrollRef:P,setContentScrollRef:j}=(0,_.gKY)(),y=(0,_.W6M)(),b=(0,o.useMemo)(()=>({Footer:()=>(0,s.jsx)(C.A,{children:(0,s.jsx)(C.wi,{className:g().footer})})}),[]);(0,_.Jzs)(h.isResolved);let A=(0,o.useCallback)(e=>{i.account.data.uid&&h.getData({userId:i.account.data.uid,page:e,pageSize:20})},[h,i.account.data.uid]);return(0,o.useEffect)(()=>()=>{h.reset()},[h]),i.account.data.uid&&h.isNeededToLoad&&(0,o.use)(h.getData({userId:i.account.data.uid,page:0,pageSize:20})),(0,s.jsx)(_.nVz,{pageId:_._Q$.OWN_PLAYLISTS,children:(0,s.jsx)(m.hO,{scrollElement:P,outerTitle:x({id:"entity-names.my-playlists"}),children:(0,s.jsxs)("div",{className:g().root,...(0,c.Am)(c.Xk.collection.COLLECTION_PLAYLISTS_CREATED_PAGE),children:[(0,s.jsx)(C.Y9,{variant:C.Vw.TEXT,withForwardControl:!1,withBackwardControl:y.canBack,children:(0,s.jsx)(d.Heading,{id:"collection-playlistsCreated-header",variant:"h2",weight:"bold",size:"xl",lineClamp:1,children:(0,s.jsx)(r.A,{id:"entity-names.my-playlists"})})}),(0,s.jsx)(C.$$,{className:(0,a.$)(g().scrollContainer,g().important),customComponents:b,itemContentCallback:e=>{var t;let l=null==h||null==(t=h.items)?void 0:t[e],a=x({id:"loading-messages.entity-is-loading"},{entityName:x({id:"entity-names.playlist"})});return l?(0,s.jsx)(u.B6,{playlist:l,contentLinesCount:3},l.key):(0,s.jsx)(C.Vt,{"aria-label":a})},totalCount:null!=(t=null==h||null==(e=h.pager)?void 0:e.total)?t:0,onGetDataByPage:A,pageSize:20,totalRequests:null!=(l=h.requests)?l:0,listClassName:g().content,itemClassName:g().item,handleRef:j,context:{listAriaLabel:x({id:"collection.created-playlists-list"})},isMobileLayout:p,useWindowScroll:p})]})})})})},95448:e=>{e.exports={emptyContent:"CollectionNonMusicEmpty_emptyContent__Km4Xo",emptyContentIcon:"CollectionNonMusicEmpty_emptyContentIcon__ZHVte",emptyContentTitle:"CollectionNonMusicEmpty_emptyContentTitle__PJIFd"}},95606:e=>{e.exports={root:"CollectionAlbumsPageContent_root__2Ya18",scrollContainer:"CollectionAlbumsPageContent_scrollContainer__0TjJm",important:"CollectionAlbumsPageContent_important__fixM8",content:"CollectionAlbumsPageContent_content__jcwRU",footer:"CollectionAlbumsPageContent_footer__ZkUKY",item:"CollectionAlbumsPageContent_item__I_Wuz",tabPanel:"CollectionAlbumsPageContent_tabPanel__0qXKZ"}},98150:(e,t,l)=>{"use strict";l.d(t,{CollectionDislikesPage:()=>z});var s=l(33008),a=l(97531),i=l(17846),o=l(66268),n=l(18064),r=l(21741),c=l(64143),d=l(79169),m=l(58184),u=l(47463),_=l(91410),C=l.n(_),h=l(85896),g=l(73827),p=l(83888),x=l(90317),P=l(18740),j=l(96560),y=l(77868),b=l(25504),A=l.n(b),k=l(8584),S=l(91342);let v=()=>(0,s.jsxs)("div",{className:A().tabsShimmer,children:[(0,s.jsx)(S.Shimmer,{className:A().tabShimmer}),(0,s.jsx)(S.Shimmer,{className:A().tabShimmer})]}),N=(0,a.PA)(e=>{var t,l,a,i,n,r,c,m,_,C;let{tabsState:h,tabElementId:p,isStickyHeader:x=!1}=e,{collection:{dislikes:j}}=(0,d.Pjs)(),{formatMessage:y}=(0,g.A)(),{isScrolling:b}=(0,o.useContext)(P.B9),S=(0,k.z)(h),N=b?-1:0;x&&(N=b?0:-1);let L=(0,o.useMemo)(()=>{var e,t;return(null==(t=j.tracks)||null==(e=t.items)?void 0:e.length)?"".concat(y({id:"entity-names.tracks"})," • ").concat(j.tracks.items.length):y({id:"entity-names.tracks"})},[null==(l=j.tracks)||null==(t=l.items)?void 0:t.length,y]),I=(0,o.useMemo)(()=>{var e,t;return(null==(t=j.artists)||null==(e=t.items)?void 0:e.length)?"".concat(y({id:"entity-names.artists"})," • ").concat(j.artists.items.length):y({id:"entity-names.artists"})},[null==(i=j.artists)||null==(a=i.items)?void 0:a.length,y]);return(0,s.jsxs)(P.wI,{isShimmerVisible:j.isLoading,shimmer:(0,s.jsx)(v,{}),className:A().tabs,elementId:p,...h,onTabChange:S,children:[(0,s.jsx)(P.oz,{className:A().tab,value:u.j.TRACKS,title:L,"aria-label":y({id:"entity-names.tracks-count"},{value:null!=(_=null==(r=j.tracks)||null==(n=r.items)?void 0:n.length)?_:0}),"aria-hidden":b,tabIndex:N}),(0,s.jsx)(P.oz,{className:A().tab,value:u.j.ARTISTS,title:I,"aria-label":y({id:"entity-names.artists-count"},{value:null!=(C=null==(m=j.artists)||null==(c=m.items)?void 0:c.length)?C:0}),"aria-hidden":b,tabIndex:N})]})}),L=(0,a.PA)(e=>{let{tabsState:t,tabElementId:l}=e,a=(0,d.W6M)(),{isScrolling:i}=(0,o.useContext)(P.B9);return(0,s.jsxs)("header",{className:A().root,"aria-hidden":i,...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_STATIC_HEADER),children:[(0,s.jsxs)("div",{className:A().container,children:[a.canBack&&(0,s.jsx)(P.Lh,{withForwardControl:!1,withBackwardControl:a.canBack,shouldFocusOnMount:!i}),(0,s.jsx)(y.Heading,{variant:"h2",weight:"bold",size:"xl",lineClamp:1,className:A().title,...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_STATIC_HEADER_TITLE),children:(0,s.jsx)(j.A,{id:"collection.my-dislikes"})})]}),(0,s.jsx)(N,{tabsState:t,tabElementId:l})]})});var I=l(30034),E=l.n(I);let T=(0,a.PA)(e=>{var t,l,a;let{forwardRef:i,tabsState:n,tabElementId:c}=e,{collection:{dislikes:m},settings:{isMobile:_}}=(0,d.Pjs)(),{formatMessage:C}=(0,g.A)(),j=m.artists.isLoading?10:null!=(a=null==(l=m.artists)||null==(t=l.items)?void 0:t.length)?a:0,y=(0,o.useMemo)(()=>({Header:()=>(0,s.jsx)(L,{tabsState:n,tabElementId:c}),Footer:()=>(0,s.jsx)(P.A,{children:(0,s.jsx)(P.wi,{className:E().footer})})}),[c,n]);return m.artists.isRejected?(0,s.jsx)(p.w,{}):(0,s.jsx)("div",{className:E().root,children:(0,s.jsx)(r.TabPanel,{value:n.value,name:u.j.ARTISTS,elementId:c,className:E().tabPanel,children:(0,s.jsx)(P.$$,{className:(0,h.$)(E().scrollContainer,E().important),listClassName:(0,h.$)(E().content,E().content_withGrid),customComponents:y,initialItemCount:j,totalCount:j,itemContentCallback:e=>{var t,l;let a=null==(l=m.artists)||null==(t=l.items)?void 0:t[e];if(!a){let e=C({id:"loading-messages.entity-is-loading"},{entityName:C({id:"entity-names.artist"})});return(0,s.jsx)(P.Vt,{"aria-label":e,round:!0,centered:!0})}return(0,s.jsx)(x.ao,{artist:a,contentLinesCount:3,className:E().item},a.id)},handleRef:i,context:{listAriaLabel:C({id:"entity-names.artists"})},isMobileLayout:_,useWindowScroll:_})})})});var f=l(48509),w=l(44078);let D=(0,a.PA)(e=>{var t,l,a;let{forwardRef:i,tabsState:n,tabElementId:c}=e,{from:m}=(0,d.fyy)(),{collection:{dislikes:_},settings:{isMobile:C}}=(0,d.Pjs)(),{formatMessage:x}=(0,g.A)(),j=(0,d.wZZ)(),y=_.tracks.isLoading?10:null!=(a=null==(l=_.tracks)||null==(t=l.items)?void 0:t.length)?a:0,b=(0,o.useCallback)(e=>{var t;null==(t=_.tracks)||t.getTracksByRange(e.startIndex,e.endIndex)},[_.tracks]),A=(0,o.useMemo)(()=>({Header:()=>(0,s.jsx)(L,{tabsState:n,tabElementId:c}),Footer:()=>(0,s.jsx)(P.A,{children:(0,s.jsx)(P.wi,{className:E().footer})})}),[c,n]);return _.tracks.isRejected?(0,s.jsx)(p.w,{}):(0,s.jsx)("div",{className:E().root,children:(0,s.jsx)(r.TabPanel,{value:n.value,name:u.j.TRACKS,elementId:c,className:E().tabPanel,children:(0,s.jsx)(P.$$,{className:(0,h.$)(E().scrollContainer,E().important),listClassName:(0,h.$)(E().content,E().content_tracks),customComponents:A,totalCount:y,itemContentCallback:e=>{var t,l,a;let i=null==(a=_.tracks)||null==(l=a.items)||null==(t=l[e])?void 0:t.data;if(!i)return(0,s.jsx)(P.DS,{isActive:!0,className:E().shimmerItem,variant:d.Xjt.PLAYLIST});let o=j(e,{contextData:{type:f.K.Various,meta:{id:"disliked-tracks"},from:m,playDisliked:!0},entitiesData:_.tracks.sonataEntitiesData,queueParams:{index:e},loadContextMeta:!1});return i.isTrackNonMusic?(0,s.jsx)(w.Kd,{track:i,playContextParams:o,ignoreDislikedStyles:!0,withPodcastName:!0}):(0,s.jsx)(w.Kt,{track:i,playContextParams:o,ignoreDislikedStyles:!0})},onGetDataByRange:b,debounceDurationInMs:300,handleRef:i,context:{listAriaLabel:x({id:"entity-names.tracks"})},isMobileLayout:C,useWindowScroll:C})})})});var M=l(78016),B=l(21002),R=l.n(B);let O=(0,a.PA)(e=>{let{tabsState:t,tabElementId:l}=e;return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(L,{tabsState:t,tabElementId:l}),(0,s.jsxs)(r.TabPanel,{value:t.value,name:t.value,elementId:l,className:R().root,...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_EMPTY_ROOT),children:[(0,s.jsx)(M.Icon,{className:R().icon,size:"l",variant:"album",...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_EMPTY_ICON)}),(0,s.jsx)(y.Heading,{className:R().title,variant:"h3",size:"xs",...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_EMPTY_HEAD),children:(0,s.jsx)(j.A,{id:"entity-names.list-is-empty"})})]})]})}),K=(0,a.PA)(e=>{let{tabsState:t,tabElementId:l}=e,{isScrolling:a}=(0,o.useContext)(P.B9),i=(0,d.W6M)();return(0,s.jsx)(P.Y9,{variant:P.Vw.COMPOSITE,staticClassName:(0,h.$)(A().staticHeader,A().important),"aria-hidden":!a,stickyClassName:(0,h.$)(A().stickyHeader,A().important),containerProps:(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE_STICKY_HEADER),stickyChild:(0,s.jsxs)("div",{className:A().container,children:[i.canBack&&(0,s.jsx)(P.Lh,{withForwardControl:!1,withBackwardControl:i.canBack,shouldFocusOnMount:!1,buttonSize:"xs"}),(0,s.jsx)(N,{tabsState:t,tabElementId:l,isStickyHeader:!0})]})})}),z=(0,a.PA)(()=>{let e=(0,i.useSearchParams)(),{user:t,collection:{dislikes:l},library:a}=(0,d.Pjs)(),{contentScrollRef:_,setContentScrollRef:h}=(0,d.gKY)(),g=(0,o.useId)(),p=(0,o.useMemo)(()=>{switch(e.get(d.K3F.TAB)){case m.h.TRACKS:break;case m.h.ARTISTS:return u.j.ARTISTS}return u.j.TRACKS},[e]),x=(0,r.useTabsState)(p);t.account.data.uid||(0,i.notFound)(),(0,d.Jzs)(l.isResolved),(0,o.useEffect)(()=>()=>{l.reset()},[l]);let P=(0,o.useMemo)(()=>{switch(x.value){case u.j.TRACKS:if(l.tracks.isEmpty)return(0,s.jsx)(O,{tabsState:x,tabElementId:g});return(0,s.jsx)(D,{forwardRef:h,tabsState:x,tabElementId:g});case u.j.ARTISTS:if(l.artists.isEmpty)return(0,s.jsx)(O,{tabsState:x,tabElementId:g});return(0,s.jsx)(T,{forwardRef:h,tabsState:x,tabElementId:g})}},[l.artists.isEmpty,l.tracks.isEmpty,h,g,x]);if(l.isNeededToLoad){let e=[l.tracks.getData(),l.artists.getData(),a.getData()];(0,o.use)(Promise.allSettled(e))}return(0,s.jsx)(d.nVz,{pageId:d._Q$.OWN_DISLIKES,children:(0,s.jsx)(c.hO,{scrollElement:_,headerThreshold:148,children:(0,s.jsxs)("div",{className:C().root,...(0,n.Am)(n.Xk.collection.COLLECTION_DISLIKES_PAGE),children:[(0,s.jsx)(K,{tabsState:x,tabElementId:g}),P]})})})})},99963:(e,t,l)=>{"use strict";l.d(t,{useSort:()=>n});var s=l(66268),a=l(75729),i=l(79169),o=l(25585);let n=e=>{let{sortModel:t}=e,l=(0,i.XJ9)();(0,s.useLayoutEffect)(()=>{let e=new URL(window.location.href).searchParams.get(i.K3F.SORT);e&&(0,o.W)(e)?t.setSortBy(e):t.setSortBy(a.g.YEAR)},[t]),(0,s.useEffect)(()=>{if(t.sortBy){let e=(0,i.bJ)(i.K3F.SORT,t.sortBy);e&&l(e)}},[l,t.sortBy])}}}]);
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [3663],
+    {
+        1826: (e) => {
+            e.exports = {
+                root: "CollectionShelfPage_root__S0__c",
+                scrollableContainer:
+                    "CollectionShelfPage_scrollableContainer__9f317",
+                content: "CollectionShelfPage_content__AG3r8",
+                block: "CollectionShelfPage_block__34jyy",
+                blockHeader: "CollectionShelfPage_blockHeader__Qjoln",
+                footer: "CollectionShelfPage_footer__pgWKV",
+            };
+        },
+        2614: (e, t, l) => {
+            "use strict";
+            l.d(t, { SortDropdown: () => x });
+            var s = l(33008),
+                a = l(97531),
+                i = l(66268),
+                o = l(96560),
+                n = l(75729),
+                r = l(42213),
+                c = l(44189),
+                d = l(89492),
+                m = l(78016),
+                u = l(77868),
+                _ = l(79169),
+                C = l(25585),
+                h = l(3417),
+                g = l.n(h);
+            let p = {
+                    [n.g.RATING]: (0, s.jsx)(o.A, {
+                        id: "sort.sort-by-rating",
+                    }),
+                    [n.g.YEAR]: (0, s.jsx)(o.A, { id: "sort.sort-by-year" }),
+                },
+                x = (0, a.PA)((e) => {
+                    var t;
+                    let { sortModel: l, onSort: a } = e,
+                        {
+                            settings: { isMobile: h },
+                        } = (0, _.Pjs)(),
+                        x = (0, r.c)((e) => {
+                            (0, C.W)(e.id) &&
+                                l.sortBy !== e.id &&
+                                (l.setSortBy(e.id), a());
+                        }),
+                        P = (0, i.useMemo)(
+                            () =>
+                                h
+                                    ? (0, s.jsx)(c.Button, {
+                                          radius: "xxxl",
+                                          className: g().button,
+                                          icon: (0, s.jsx)(m.Icon, {
+                                              variant: "filter",
+                                              size: "xs",
+                                          }),
+                                      })
+                                    : (0, s.jsxs)(c.Button, {
+                                          radius: "xxxl",
+                                          className: g().button,
+                                          children: [
+                                              (0, s.jsx)(u.Caption, {
+                                                  variant: "span",
+                                                  size: "m",
+                                                  weight: "medium",
+                                                  children: l.sortBy
+                                                      ? p[l.sortBy]
+                                                      : (0, s.jsx)(o.A, {
+                                                            id: "sort.select-filter",
+                                                        }),
+                                              }),
+                                              (0, s.jsx)(m.Icon, {
+                                                  size: "xxs",
+                                                  variant: "arrowDown",
+                                              }),
+                                          ],
+                                      }),
+                            [h, l.sortBy],
+                        );
+                    return (0, s.jsx)(d.ms, {
+                        placement: h ? "bottom" : "top",
+                        isMobile: h,
+                        strategy: "fixed",
+                        className: g().root,
+                        onSelect: x,
+                        reference: P,
+                        offsetOptions: { mainAxis: 10, crossAxis: -50 },
+                        defaultValue: null != (t = l.sortBy) ? t : n.g.YEAR,
+                        containerClassName: g().container,
+                        header: h
+                            ? (0, s.jsx)("div", { className: g().header })
+                            : void 0,
+                        children: Object.values(n.g).map((e) =>
+                            (0, s.jsx)(d.c$, { id: e, label: p[e] }, e),
+                        ),
+                    });
+                });
+        },
+        3417: (e) => {
+            e.exports = {
+                root: "SortDropdown_root__d1JmQ",
+                button: "SortDropdown_button__SjTI7",
+                header: "SortDropdown_header__kj8yV",
+                container: "SortDropdown_container__dyVF_",
+            };
+        },
+        3872: (e) => {
+            e.exports = {
+                root: "CollectionPlaylistsCreatedPage_root__o77CF",
+                scrollContainer:
+                    "CollectionPlaylistsCreatedPage_scrollContainer__Spb2M",
+                important: "CollectionPlaylistsCreatedPage_important__DLkOq",
+                content: "CollectionPlaylistsCreatedPage_content___qalr",
+                footer: "CollectionPlaylistsCreatedPage_footer__I2jJa",
+                item: "CollectionPlaylistsCreatedPage_item__2RmBg",
+            };
+        },
+        4136: (e, t, l) => {
+            "use strict";
+            l.d(t, { F: () => u });
+            var s = l(33008),
+                a = l(97531),
+                i = l(96560),
+                o = l(44189),
+                n = l(78016),
+                r = l(77868),
+                c = l(79169),
+                d = l(56736),
+                m = l.n(d);
+            let u = (0, a.PA)((e) => {
+                let { title: t } = e,
+                    l = (0, c.ZpR)(c.Zyd.nonMusic.href);
+                return (0, s.jsxs)("div", {
+                    className: m().root,
+                    children: [
+                        (0, s.jsx)("div", {
+                            className: m().iconBackground,
+                            children: (0, s.jsx)(n.Icon, {
+                                variant: "like",
+                                size: "l",
+                            }),
+                        }),
+                        (0, s.jsx)(r.Heading, {
+                            className: m().title,
+                            variant: "h3",
+                            size: "xs",
+                            children: t,
+                        }),
+                        (0, s.jsx)(o.Button, {
+                            onClick: l,
+                            className: m().button,
+                            role: "link",
+                            color: "secondary",
+                            size: "s",
+                            radius: "xxxl",
+                            children: (0, s.jsx)(r.Caption, {
+                                type: "controls",
+                                variant: "span",
+                                size: "m",
+                                children: (0, s.jsx)(i.A, {
+                                    id: "error-messages.empty-shelf-liked-page-link",
+                                }),
+                            }),
+                        }),
+                    ],
+                });
+            });
+        },
+        4190: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionKidsPlaylistsPage: () => j });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(77868),
+                m = l(83888),
+                u = l(64143),
+                _ = l(45242),
+                C = l(79169),
+                h = l(18740),
+                g = l(56732),
+                p = l(39082),
+                x = l(23978),
+                P = l.n(x);
+            let j = (0, i.PA)(() => {
+                let {
+                        settings: { isMobile: e },
+                        collection: {
+                            kids: { playlists: t },
+                        },
+                    } = (0, C.Pjs)(),
+                    { contentScrollRef: l, setContentScrollRef: i } = (0,
+                    C.gKY)(),
+                    x = (0, C.W6M)(),
+                    { formatMessage: j } = (0, n.A)(),
+                    y = (0, o.useCallback)(
+                        (e) => {
+                            t.getData({ page: e, pageSize: g.c });
+                        },
+                        [t],
+                    );
+                (0, C.XcE)(t.pagesLoader, y);
+                let b = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(h.A, {
+                                    children: (0, s.jsx)(h.wi, {
+                                        className: P().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    A = t.isShimmerVisible ? 20 : t.items.length;
+                return ((0, o.useEffect)(
+                    () => () => {
+                        t.reset();
+                    },
+                    [t],
+                ),
+                (0, C.Jzs)(t.isResolved),
+                t.isNeededToLoad && (0, o.use)(t.getData({ pageSize: g.c })),
+                t.isRejected)
+                    ? (0, s.jsx)(m.w, {})
+                    : t.isEmpty
+                      ? (0, s.jsx)(p.i, {
+                            title: j({ id: "entity-names.artist-playlist" }),
+                        })
+                      : (0, s.jsx)(C.nVz, {
+                            pageId: C._Q$.COLLECTION_KIDS_PLAYLISTS,
+                            children: (0, s.jsx)(u.hO, {
+                                scrollElement: l,
+                                outerTitle: j({
+                                    id: "entity-names.artist-playlist",
+                                }),
+                                children: (0, s.jsxs)("div", {
+                                    className: P().root,
+                                    ...(0, c.Am)(
+                                        c.Xk.collection
+                                            .COLLECTION_KIDS_PLAYLISTS_PAGE,
+                                    ),
+                                    children: [
+                                        (0, s.jsx)(h.Y9, {
+                                            variant: h.Vw.TEXT,
+                                            withForwardControl: !1,
+                                            withBackwardControl: x.canBack,
+                                            children: (0, s.jsx)(d.Heading, {
+                                                variant: "h2",
+                                                weight: "bold",
+                                                size: "xl",
+                                                lineClamp: 1,
+                                                children: (0, s.jsx)(r.A, {
+                                                    id: "entity-names.artist-playlist",
+                                                }),
+                                            }),
+                                        }),
+                                        (0, s.jsx)(h.$$, {
+                                            className: (0, a.$)(
+                                                P().scrollContainer,
+                                                P().important,
+                                            ),
+                                            customComponents: b,
+                                            itemContentCallback: (e) => {
+                                                let l = t.items[e],
+                                                    a = j(
+                                                        {
+                                                            id: "loading-messages.entity-is-loading",
+                                                        },
+                                                        {
+                                                            entityName: j({
+                                                                id: "entity-names.album",
+                                                            }),
+                                                        },
+                                                    );
+                                                return l
+                                                    ? (0, s.jsx)(
+                                                          _.B6,
+                                                          {
+                                                              playlist: l,
+                                                              contentLinesCount: 3,
+                                                          },
+                                                          l.id,
+                                                      )
+                                                    : (0, s.jsx)(h.Vt, {
+                                                          "aria-label": a,
+                                                          linesCount: 3,
+                                                      });
+                                            },
+                                            initialItemCount: A,
+                                            totalCount: A,
+                                            onGetDataByPage: y,
+                                            totalRequests: t.requestsCount,
+                                            pageSize: g.c,
+                                            listClassName: P().content,
+                                            itemClassName: P().item,
+                                            handleRef: i,
+                                            context: {
+                                                listAriaLabel: j({
+                                                    id: "entity-names.albums",
+                                                }),
+                                            },
+                                            isMobileLayout: e,
+                                            useWindowScroll: e,
+                                        }),
+                                    ],
+                                }),
+                            }),
+                        });
+            });
+        },
+        5112: (e) => {
+            e.exports = {
+                root: "CollectionKidsPage_root__nfE01",
+                content: "CollectionKidsPage_content__hVB40",
+                carouselBlocks: "CollectionKidsPage_carouselBlocks__q7f0T",
+                tracksCarouselItem:
+                    "CollectionKidsPage_tracksCarouselItem__8WvD0",
+                important: "CollectionKidsPage_important__GkZJX",
+                carouselBlock: "CollectionKidsPage_carouselBlock___6XRJ",
+                carouselBlockHeader:
+                    "CollectionKidsPage_carouselBlockHeader__fqs_v",
+                emptyBlock: "CollectionKidsPage_emptyBlock__dc50I",
+                emptyBlockIcon: "CollectionKidsPage_emptyBlockIcon__eVAMs",
+                emptyBlockTitle: "CollectionKidsPage_emptyBlockTitle__TYUpU",
+                footer: "CollectionKidsPage_footer__wEREs",
+            };
+        },
+        6949: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionShelfPage: () => v });
+            var s = l(33008),
+                a = l(97531),
+                i = l(66268),
+                o = l(73827),
+                n = l(96560),
+                r = l(18064),
+                c = l(57747),
+                d = l(77868),
+                m = l(83888),
+                u = l(64143),
+                _ = l(79169),
+                C = l(18740),
+                h = l(17031),
+                g = l(85896),
+                p = l(42314),
+                x = l(44078),
+                P = l(87451),
+                j = l(59795),
+                y = l(68687),
+                b = l.n(y);
+            let A = (0, a.PA)((e) => {
+                var t;
+                let { className: l, itemsCount: a, headerClassName: o } = e,
+                    {
+                        sonataState: n,
+                        collection: {
+                            shelf: { recentlyPlayed: r },
+                        },
+                    } = (0, _.Pjs)(),
+                    c = (0, p.L)(() => {
+                        var e;
+                        return null == (e = r.entities)
+                            ? void 0
+                            : e.map((e, t) => {
+                                  let l = (0, P.T)(e, r.typeForFrom);
+                                  return (0, s.jsx)(
+                                      x.Kd,
+                                      {
+                                          track: e.track,
+                                          playContextParams: {
+                                              contextData: l,
+                                              queueParams: {
+                                                  index: t,
+                                                  entityId: e.track.id,
+                                              },
+                                              loadContextMeta: !1,
+                                              entitiesData:
+                                                  n.unloadedEntitiesDataFromModels,
+                                          },
+                                          withPodcastName: !0,
+                                      },
+                                      e.track.id,
+                                  );
+                              });
+                    });
+                return (r.isNeededToLoad && (0, i.use)(r.getData()),
+                !r.isLoading && (null == (t = r.entities) ? void 0 : t.length))
+                    ? (0, s.jsx)(C.$2, {
+                          blockHeaderClassName: (0, g.$)(b().header, o),
+                          className: l,
+                          carouselItemClassName: (0, g.$)(
+                              b().shelfColumn,
+                              b().important,
+                          ),
+                          shimmer: (0, s.jsx)(C.DS, {
+                              variant: _.Xjt.PLAYLIST,
+                              isActive: !0,
+                          }),
+                          isShimmerVisible: r.isLoading,
+                          isShimmerActive: !0,
+                          maxColumnsCount: C.DI.ONE,
+                          blockHeaderTitle: r.title,
+                          itemsCountPerColumn: null != a ? a : 0,
+                          viewAllActionLink:
+                              _.Zyd.collectionShelfRecentlyPlayed.href,
+                          children: c,
+                      })
+                    : (0, s.jsx)(j.E, { className: l });
+            });
+            var k = l(1826),
+                S = l.n(k);
+            let v = (0, a.PA)(() => {
+                let {
+                        collection: { shelf: e },
+                    } = (0, _.Pjs)(),
+                    { contentScrollRef: t, setContentScrollRef: l } = (0,
+                    _.gKY)(),
+                    { formatMessage: a } = (0, o.A)(),
+                    g = (0, _.W6M)();
+                return ((0, i.useEffect)(
+                    () => () => {
+                        e.reset();
+                    },
+                    [e],
+                ),
+                (0, _.Jzs)(e.isResolved),
+                e.isRejected)
+                    ? (0, s.jsx)(m.w, {})
+                    : (0, s.jsxs)(u.hO, {
+                          scrollElement: t,
+                          outerTitle: a({ id: "page.shelf" }),
+                          children: [
+                              (0, s.jsx)(C.Y9, {
+                                  variant: C.Vw.TEXT,
+                                  withForwardControl: !1,
+                                  withBackwardControl: g.canBack,
+                                  children: (0, s.jsx)(d.Heading, {
+                                      variant: "h2",
+                                      weight: "bold",
+                                      size: "xl",
+                                      lineClamp: 1,
+                                      children: (0, s.jsx)(n.A, {
+                                          id: "page.shelf",
+                                      }),
+                                  }),
+                              }),
+                              (0, s.jsx)(c.N, {
+                                  ref: l,
+                                  containerClassName: S().scrollableContainer,
+                                  className: S().root,
+                                  ...(0, r.Am)(
+                                      r.Xk.collection.COLLECTION_SHELF_PAGE,
+                                  ),
+                                  children: (0, s.jsxs)("div", {
+                                      className: S().content,
+                                      children: [
+                                          e.hasRecentlyPlayed &&
+                                              (0, s.jsx)(A, {
+                                                  className: S().block,
+                                                  headerClassName:
+                                                      S().blockHeader,
+                                                  itemsCount: 5,
+                                              }),
+                                          e.hasLiked &&
+                                              (0, s.jsx)(h.m, {
+                                                  className: S().block,
+                                                  headerClassName:
+                                                      S().blockHeader,
+                                                  itemsCount: 5,
+                                              }),
+                                          (0, s.jsx)(C.A, {
+                                              children: (0, s.jsx)(C.wi, {
+                                                  className: S().footer,
+                                              }),
+                                          }),
+                                      ],
+                                  }),
+                              }),
+                          ],
+                      });
+            });
+        },
+        8584: (e, t, l) => {
+            "use strict";
+            l.d(t, { z: () => n });
+            var s = l(66268),
+                a = l(79169),
+                i = l(58184),
+                o = l(47463);
+            let n = (e) => {
+                let t = (0, a.XJ9)();
+                return (0, s.useCallback)(
+                    (l) => {
+                        var s;
+                        switch (
+                            (null == (s = e.onTabChange) || s.call(e, l), l)
+                        ) {
+                            case o.j.TRACKS: {
+                                let { href: e } = (0, a.uvd)(
+                                    a.Zyd.collectionDislikes.href,
+                                    { query: { tab: i.h.TRACKS } },
+                                );
+                                t(e);
+                                break;
+                            }
+                            case o.j.ARTISTS: {
+                                let { href: e } = (0, a.uvd)(
+                                    a.Zyd.collectionDislikes.href,
+                                    { query: { tab: i.h.ARTISTS } },
+                                );
+                                t(e);
+                            }
+                        }
+                    },
+                    [t, e],
+                );
+            };
+        },
+        11718: (e) => {
+            e.exports = {
+                root: "CollectionNonMusicLikedPage_root__0e_hz",
+                scrollContainer:
+                    "CollectionNonMusicLikedPage_scrollContainer__OthtN",
+                important: "CollectionNonMusicLikedPage_important__MNJX3",
+                footer: "CollectionNonMusicLikedPage_footer__F_mtD",
+                item: "CollectionNonMusicLikedPage_item__Rb0yS",
+                emptyBlock: "CollectionNonMusicLikedPage_emptyBlock__WAdri",
+                content: "CollectionNonMusicLikedPage_content__9WDX5",
+            };
+        },
+        16144: (e) => {
+            e.exports = {
+                root: "CollectionShelfLikedPage_root__KRXgN",
+                footer: "CollectionShelfLikedPage_footer__NgcOJ",
+                scrollContainer:
+                    "CollectionShelfLikedPage_scrollContainer__IBlT7",
+                important: "CollectionShelfLikedPage_important__R4MBr",
+                content: "CollectionShelfLikedPage_content__KHWpo",
+                item: "CollectionShelfLikedPage_item__x5cqv",
+            };
+        },
+        17031: (e, t, l) => {
+            "use strict";
+            l.d(t, { m: () => g });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(42314),
+                r = l(52732),
+                c = l(44078),
+                d = l(79169),
+                m = l(18740),
+                u = l(50093),
+                _ = l(59795),
+                C = l(23871),
+                h = l.n(C);
+            let g = (0, i.PA)((e) => {
+                var t;
+                let {
+                        className: l,
+                        itemsCount: i,
+                        headerClassName: C,
+                        carouselClassName: g,
+                    } = e,
+                    {
+                        collection: {
+                            shelf: { liked: p },
+                        },
+                    } = (0, d.Pjs)(),
+                    x = (0, n.L)(() => {
+                        var e;
+                        return null == (e = p.entities)
+                            ? void 0
+                            : e.map((e, t) => {
+                                  if (e.album)
+                                      return (0, s.jsx)(
+                                          r.M_,
+                                          { album: e.album },
+                                          e.album.getKey(t),
+                                      );
+                                  let l = (0, u.q)(e.track, t, p.typeForFrom);
+                                  return (0, s.jsx)(
+                                      c.Kd,
+                                      {
+                                          track: e.track,
+                                          playContextParams: l,
+                                          withPodcastName: !0,
+                                      },
+                                      e.track.getKey(t),
+                                  );
+                              });
+                    });
+                return (p.isNeededToLoad && (0, o.use)(p.getData()),
+                !p.isLoading && (null == (t = p.entities) ? void 0 : t.length))
+                    ? (0, s.jsx)(m.$2, {
+                          shimmer: (0, s.jsx)(m.DS, {
+                              variant: d.Xjt.PLAYLIST,
+                              isActive: !0,
+                          }),
+                          isShimmerActive: !0,
+                          isShimmerVisible: p.isLoading,
+                          className: l,
+                          carouselItemClassName: (0, a.$)(
+                              h().shelfColumn,
+                              h().important,
+                          ),
+                          blockHeaderClassName: (0, a.$)(h().header, C),
+                          carouselClassName: g,
+                          blockHeaderTitle: p.title,
+                          itemsCountPerColumn: null != i ? i : 0,
+                          maxColumnsCount: m.DI.ONE,
+                          viewAllActionLink: d.Zyd.collectionShelfLiked.href,
+                          children: x,
+                      })
+                    : (0, s.jsx)(_.E, { className: l, withHeader: !0 });
+            });
+        },
+        17410: (e) => {
+            e.exports = {
+                root: "CollectionShelfNewEpisodesPage_root__HTWkS",
+                scrollableContainer:
+                    "CollectionShelfNewEpisodesPage_scrollableContainer__xGZcJ",
+                footer: "CollectionShelfNewEpisodesPage_footer__0i466",
+            };
+        },
+        18696: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionPlaylistsPage: () => O });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(17846),
+                n = l(66268),
+                r = l(73827),
+                c = l(18064),
+                d = l(19964),
+                m = l(19980),
+                u = l(42213),
+                _ = l(42314),
+                C = l(64143),
+                h = l(45242),
+                g = l(25911),
+                p = l(79169),
+                x = l(18740),
+                P = l(70235),
+                j = l(21741);
+            let y = (0, i.PA)((e) => {
+                    let { style: t, forwardRef: l, context: a, ...i } = e,
+                        {
+                            collection: {
+                                playlists: {
+                                    activeTabIndex: o,
+                                    tabIndexElement: n,
+                                },
+                            },
+                        } = (0, p.Pjs)(),
+                        r = (0, j.useTabsState)(o),
+                        c = null == a ? void 0 : a.listAriaLabel;
+                    return (0, s.jsx)(j.TabPanel, {
+                        value: r.value,
+                        name: r.value,
+                        elementId: n,
+                        "aria-label": c,
+                        style: t,
+                        ref: l,
+                        ...i,
+                    });
+                }),
+                b = (0, n.forwardRef)((e, t) =>
+                    (0, s.jsx)(y, { forwardRef: t, ...e }),
+                );
+            var A = l(65362),
+                k = l.n(A),
+                S = l(96560),
+                v = l(78016),
+                N = l(77868),
+                L = l(71327),
+                I = l.n(L);
+            let E = (0, i.PA)((e) => {
+                    let { activeTabIndex: t, tabElementId: l } = e;
+                    return (0, s.jsxs)(j.TabPanel, {
+                        value: t,
+                        name: t,
+                        elementId: l,
+                        className: I().root,
+                        children: [
+                            (0, s.jsx)(v.Icon, {
+                                className: I().icon,
+                                size: "l",
+                                variant: "album",
+                            }),
+                            (0, s.jsx)(N.Heading, {
+                                className: I().title,
+                                variant: "h3",
+                                size: "xs",
+                                children: (0, s.jsx)(S.A, {
+                                    id: "error-messages.empty-collection-liked-playlists",
+                                }),
+                            }),
+                        ],
+                    });
+                }),
+                T = () => {
+                    let e = (0, p.XJ9)(),
+                        {
+                            collection: { playlists: t },
+                        } = (0, p.Pjs)();
+                    return (0, n.useCallback)(
+                        (l) => {
+                            switch ((t.setActiveTabIndex(l), l)) {
+                                case P.a.CREATED: {
+                                    let { href: t } = (0, p.uvd)(
+                                        p.Zyd.collectionPlaylists.href,
+                                        { query: { tab: p.W4C.CREATED } },
+                                    );
+                                    e(t);
+                                    break;
+                                }
+                                case P.a.LIKED: {
+                                    let { href: t } = (0, p.uvd)(
+                                        p.Zyd.collectionPlaylists.href,
+                                        { query: { tab: p.W4C.LIKED } },
+                                    );
+                                    e(t);
+                                }
+                            }
+                        },
+                        [e, t],
+                    );
+                };
+            var f = l(42411),
+                w = l.n(f),
+                D = l(91342);
+            let M = () =>
+                    (0, s.jsxs)("div", {
+                        className: w().tabsShimmer,
+                        children: [
+                            (0, s.jsx)(D.Shimmer, {
+                                className: w().tabShimmer,
+                            }),
+                            (0, s.jsx)(D.Shimmer, {
+                                className: w().tabShimmer,
+                            }),
+                        ],
+                    }),
+                B = (0, i.PA)(() => {
+                    var e, t, l, a, i, o;
+                    let {
+                            collection: {
+                                playlists: {
+                                    playlistsCreated: d,
+                                    playlistsLiked: m,
+                                    tabIndexElement: u,
+                                    activeTabIndex: _,
+                                },
+                            },
+                        } = (0, p.Pjs)(),
+                        { formatMessage: C } = (0, r.A)(),
+                        h = (0, p.W6M)(),
+                        { isScrolling: g } = (0, n.useContext)(x.B9),
+                        j = T(),
+                        y = (0, n.useMemo)(() => {
+                            var e;
+                            return (null == (e = d.pager) ? void 0 : e.total)
+                                ? ""
+                                      .concat(
+                                          C({
+                                              id: "collection.your-created-playlists",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(d.pager.total)
+                                : C({
+                                      id: "collection.your-created-playlists",
+                                  });
+                        }, [C, null == (e = d.pager) ? void 0 : e.total]),
+                        b = (0, n.useMemo)(() => {
+                            var e;
+                            return (null == (e = m.pager) ? void 0 : e.total)
+                                ? ""
+                                      .concat(
+                                          C({
+                                              id: "collection.your-liked-playlists",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(m.pager.total)
+                                : C({ id: "collection.your-liked-playlists" });
+                        }, [C, null == (t = m.pager) ? void 0 : t.total]);
+                    return (0, s.jsxs)(s.Fragment, {
+                        children: [
+                            (0, s.jsx)("header", {
+                                className: w().root,
+                                "aria-hidden": g,
+                                ...(0, c.Am)(
+                                    c.Xk.collection
+                                        .COLLECTION_PLAYLISTS_PAGE_STATIC_HEADER,
+                                ),
+                                children: (0, s.jsxs)("div", {
+                                    className: w().container,
+                                    children: [
+                                        h.canBack &&
+                                            (0, s.jsx)(x.Lh, {
+                                                withForwardControl: !1,
+                                                withBackwardControl: h.canBack,
+                                                shouldFocusOnMount: !g,
+                                            }),
+                                        (0, s.jsx)(N.Heading, {
+                                            variant: "h2",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            className: w().title,
+                                            ...(0, c.Am)(
+                                                c.Xk.collection
+                                                    .COLLECTION_PLAYLISTS_PAGE_STATIC_HEADER_TITLE,
+                                            ),
+                                            children: (0, s.jsx)(S.A, {
+                                                id: "entity-names.artist-playlist",
+                                            }),
+                                        }),
+                                    ],
+                                }),
+                            }),
+                            (0, s.jsxs)(x.wI, {
+                                isShimmerVisible: d.isLoading,
+                                shimmer: (0, s.jsx)(M, {}),
+                                className: w().staticTabs,
+                                elementId: u,
+                                value: _,
+                                onTabChange: j,
+                                children: [
+                                    (0, s.jsx)(x.oz, {
+                                        className: w().tab,
+                                        value: P.a.CREATED,
+                                        title: y,
+                                        "aria-label": C(
+                                            {
+                                                id: "entity-names.created-playlists-count",
+                                            },
+                                            {
+                                                value:
+                                                    null !=
+                                                    (i =
+                                                        null == (l = d.pager)
+                                                            ? void 0
+                                                            : l.total)
+                                                        ? i
+                                                        : 0,
+                                            },
+                                        ),
+                                        "aria-hidden": g,
+                                        tabIndex: g ? -1 : 0,
+                                    }),
+                                    (0, s.jsx)(x.oz, {
+                                        className: w().tab,
+                                        value: P.a.LIKED,
+                                        title: b,
+                                        "aria-label": C(
+                                            {
+                                                id: "entity-names.liked-playlists-count",
+                                            },
+                                            {
+                                                value:
+                                                    null !=
+                                                    (o =
+                                                        null == (a = m.pager)
+                                                            ? void 0
+                                                            : a.total)
+                                                        ? o
+                                                        : 0,
+                                            },
+                                        ),
+                                        "aria-hidden": g,
+                                        tabIndex: g ? -1 : 0,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    });
+                }),
+                R = (0, i.PA)((e) => {
+                    var t, l, i, o, d, m;
+                    let { tabElementId: u } = e,
+                        {
+                            collection: {
+                                playlists: {
+                                    playlistsCreated: _,
+                                    playlistsLiked: C,
+                                    activeTabIndex: h,
+                                },
+                            },
+                        } = (0, p.Pjs)(),
+                        { formatMessage: g } = (0, r.A)(),
+                        { isScrolling: j } = (0, n.useContext)(x.B9),
+                        y = (0, p.W6M)(),
+                        b = T(),
+                        A = (0, n.useMemo)(() => {
+                            var e, t;
+                            return (null == (e = _.pager) ? void 0 : e.total)
+                                ? ""
+                                      .concat(
+                                          g({
+                                              id: "collection.your-created-playlists",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(
+                                          null == (t = _.pager)
+                                              ? void 0
+                                              : t.total,
+                                      )
+                                : g({
+                                      id: "collection.your-created-playlists",
+                                  });
+                        }, [g, null == (t = _.pager) ? void 0 : t.total]),
+                        k = (0, n.useMemo)(() => {
+                            var e, t;
+                            return (null == (e = C.pager) ? void 0 : e.total)
+                                ? ""
+                                      .concat(
+                                          g({
+                                              id: "collection.your-liked-playlists",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(
+                                          null == (t = C.pager)
+                                              ? void 0
+                                              : t.total,
+                                      )
+                                : g({ id: "collection.your-liked-playlists" });
+                        }, [g, null == (l = C.pager) ? void 0 : l.total]);
+                    return (0, s.jsx)(x.Y9, {
+                        variant: x.Vw.COMPOSITE,
+                        staticClassName: (0, a.$)(
+                            w().staticHeader,
+                            w().important,
+                        ),
+                        "aria-hidden": !j,
+                        stickyClassName: (0, a.$)(
+                            w().stickyHeader,
+                            w().important,
+                        ),
+                        containerProps: (0, c.Am)(
+                            c.Xk.collection
+                                .COLLECTION_PLAYLISTS_PAGE_STICKY_HEADER,
+                        ),
+                        stickyChild: (0, s.jsxs)("div", {
+                            className: w().container,
+                            children: [
+                                y.canBack &&
+                                    (0, s.jsx)(x.Lh, {
+                                        withForwardControl: !1,
+                                        withBackwardControl: y.canBack,
+                                        shouldFocusOnMount: !1,
+                                        buttonSize: "xs",
+                                    }),
+                                (0, s.jsxs)(x.wI, {
+                                    isShimmerVisible: _.isLoading,
+                                    shimmer: (0, s.jsx)(M, {}),
+                                    className: w().stickyTabs,
+                                    elementId: u,
+                                    value: h,
+                                    onTabChange: b,
+                                    children: [
+                                        (0, s.jsx)(x.oz, {
+                                            className: w().tab,
+                                            value: P.a.CREATED,
+                                            title: A,
+                                            "aria-label": g(
+                                                {
+                                                    id: "entity-names.created-playlists-count",
+                                                },
+                                                {
+                                                    value:
+                                                        null !=
+                                                        (d =
+                                                            null ==
+                                                            (i = _.pager)
+                                                                ? void 0
+                                                                : i.total)
+                                                            ? d
+                                                            : 0,
+                                                },
+                                            ),
+                                            "aria-hidden": !j,
+                                            tabIndex: j ? 0 : -1,
+                                        }),
+                                        (0, s.jsx)(x.oz, {
+                                            className: w().tab,
+                                            value: P.a.LIKED,
+                                            title: k,
+                                            "aria-label": g(
+                                                {
+                                                    id: "entity-names.liked-playlists-count",
+                                                },
+                                                {
+                                                    value:
+                                                        null !=
+                                                        (m =
+                                                            null ==
+                                                            (o = C.pager)
+                                                                ? void 0
+                                                                : o.total)
+                                                            ? m
+                                                            : 0,
+                                                },
+                                            ),
+                                            "aria-hidden": !j,
+                                            tabIndex: j ? 0 : -1,
+                                        }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                    });
+                }),
+                O = (0, i.PA)(() => {
+                    var e;
+                    let t = (0, o.useSearchParams)(),
+                        {
+                            user: l,
+                            collection: {
+                                playlists: {
+                                    playlistsCreated: i,
+                                    playlistsLiked: j,
+                                    setTabIndexElement: y,
+                                    reset: A,
+                                    setActiveTabIndex: S,
+                                    isCreatedTabActive: v,
+                                    isLikedTabActive: N,
+                                    activeTabIndex: L,
+                                    activePlaylistsModel: I,
+                                    isEmptyLikedTab: T,
+                                },
+                            },
+                            library: f,
+                            settings: { isMobile: w },
+                        } = (0, p.Pjs)(),
+                        { contentScrollRef: D, setContentScrollRef: M } = (0,
+                        p.gKY)(),
+                        O = (0, n.useId)();
+                    (0, n.useEffect)(() => {
+                        y(O);
+                    }, [O, y]);
+                    let { formatMessage: K } = (0, r.A)();
+                    if (
+                        ((0, n.useLayoutEffect)(() => {
+                            switch (t.get(p.K3F.TAB)) {
+                                case p.W4C.CREATED:
+                                    S(P.a.CREATED);
+                                    break;
+                                case p.W4C.LIKED:
+                                    S(P.a.LIKED);
+                                    break;
+                                default:
+                                    S(P.a.CREATED);
+                            }
+                        }, [t, S]),
+                        (0, p.Jzs)(i.isResolved),
+                        (0, n.useEffect)(
+                            () => () => {
+                                A();
+                            },
+                            [A],
+                        ),
+                        l.account.data.uid && i.isNeededToLoad)
+                    ) {
+                        let e = [
+                            i.getData({
+                                userId: l.account.data.uid,
+                                page: 0,
+                                pageSize: 20,
+                            }),
+                            j.getData({
+                                userId: l.account.data.uid,
+                                sortOrder: d.x.DESC,
+                                playlistMetaType: m.S.MUSIC,
+                                page: 0,
+                                pageSize: 20,
+                            }),
+                            f.getData(),
+                        ];
+                        (0, n.use)(Promise.allSettled(e));
+                    }
+                    let z = (0, n.useMemo)(
+                            () => ({
+                                Header: () => (0, s.jsx)(B, {}),
+                                Footer: () =>
+                                    (0, s.jsx)(x.A, {
+                                        children: (0, s.jsx)(x.wi, {
+                                            className: k().footer,
+                                        }),
+                                    }),
+                                List: b,
+                            }),
+                            [],
+                        ),
+                        H = (0, u.c)((e) => {
+                            if (!l.account.data.uid) return;
+                            let t = {
+                                userId: l.account.data.uid,
+                                page: e,
+                                pageSize: 20,
+                            };
+                            switch (L) {
+                                case P.a.CREATED:
+                                    i.getData({ ...t });
+                                    break;
+                                case P.a.LIKED:
+                                    j.getData({
+                                        sortOrder: d.x.DESC,
+                                        playlistMetaType: m.S.MUSIC,
+                                        ...t,
+                                    });
+                            }
+                        }),
+                        F = (0, _.L)(() => {
+                            var e, t, l, s;
+                            switch (L) {
+                                case P.a.CREATED:
+                                    return (
+                                        (null !=
+                                        (t =
+                                            null == (e = i.pager)
+                                                ? void 0
+                                                : e.total)
+                                            ? t
+                                            : 0) + 1
+                                    );
+                                case P.a.LIKED:
+                                    return T
+                                        ? 1
+                                        : null !=
+                                            (s =
+                                                null == (l = j.pager)
+                                                    ? void 0
+                                                    : l.total)
+                                          ? s
+                                          : 1;
+                                default:
+                                    return 1;
+                            }
+                        });
+                    return (0, s.jsx)(p.nVz, {
+                        pageId: p._Q$.OWN_PLAYLISTS,
+                        children: (0, s.jsx)(C.hO, {
+                            scrollElement: D,
+                            headerThreshold: 148,
+                            children: (0, s.jsxs)("div", {
+                                className: k().root,
+                                ...(0, c.Am)(
+                                    c.Xk.collection.COLLECTION_PLAYLISTS_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(R, { tabElementId: O }),
+                                    (0, s.jsx)(x.$$, {
+                                        className: (0, a.$)(
+                                            k().scrollContainer,
+                                            k().important,
+                                        ),
+                                        customComponents: z,
+                                        itemContentCallback: (e) => {
+                                            var t;
+                                            if (v && 0 === e)
+                                                return (0, s.jsx)(g.Bw, {});
+                                            if (N && T)
+                                                return (0, s.jsx)(E, {
+                                                    activeTabIndex: L,
+                                                    tabElementId: O,
+                                                });
+                                            let l = v ? e - 1 : e,
+                                                a =
+                                                    null == I ||
+                                                    null == (t = I.items)
+                                                        ? void 0
+                                                        : t[l],
+                                                i = K(
+                                                    {
+                                                        id: "loading-messages.entity-is-loading",
+                                                    },
+                                                    {
+                                                        entityName: K({
+                                                            id: "entity-names.playlist",
+                                                        }),
+                                                    },
+                                                );
+                                            return a
+                                                ? (0, s.jsx)(
+                                                      h.B6,
+                                                      {
+                                                          playlist: a,
+                                                          contentLinesCount: 3,
+                                                      },
+                                                      a.key,
+                                                  )
+                                                : (0, s.jsx)(x.Vt, {
+                                                      "aria-label": i,
+                                                  });
+                                        },
+                                        totalCount: F,
+                                        onGetDataByPage: H,
+                                        pageSize: 20,
+                                        totalRequests:
+                                            null != (e = I.requests) ? e : 0,
+                                        listClassName: (0, a.$)(
+                                            k().content,
+                                            {
+                                                [k().content_withGridLayout]:
+                                                    v || !T,
+                                            },
+                                            k().important,
+                                        ),
+                                        itemClassName: k().item,
+                                        handleRef: M,
+                                        context: {
+                                            listAriaLabel: K({
+                                                id: "collection.liked-playlists-list",
+                                            }),
+                                        },
+                                        isMobileLayout: w,
+                                        useWindowScroll: w,
+                                    }),
+                                ],
+                            }),
+                        }),
+                    });
+                });
+        },
+        19570: (e) => {
+            e.exports = {
+                root: "CollectionClipsPage_root__Z1yh9",
+                content: "CollectionClipsPage_content__68gZ1",
+                scrollContent: "CollectionClipsPage_scrollContent__6F_37",
+                header: "CollectionClipsPage_header__L_hq2",
+                footer: "CollectionClipsPage_footer__0IfmB",
+            };
+        },
+        19964: (e, t, l) => {
+            "use strict";
+            var s;
+            l.d(t, { x: () => s }),
+                (function (e) {
+                    (e.ASC = "asc"), (e.DESC = "desc");
+                })(s || (s = {}));
+        },
+        19980: (e, t, l) => {
+            "use strict";
+            var s;
+            l.d(t, { S: () => s }),
+                (function (e) {
+                    (e.MUSIC = "music"), (e.CHILDREN = "children");
+                })(s || (s = {}));
+        },
+        21002: (e) => {
+            e.exports = {
+                root: "CollectionDislikesPageEmpty_root__F9g35",
+                icon: "CollectionDislikesPageEmpty_icon__hbz5L",
+                title: "CollectionDislikesPageEmpty_title__AqUTM",
+            };
+        },
+        23144: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionKidsPage: () => S });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(48509),
+                m = l(6247),
+                u = l(42314),
+                _ = l(78016),
+                C = l(57747),
+                h = l(77868),
+                g = l(83888),
+                p = l(52732),
+                x = l(64143),
+                P = l(45242),
+                j = l(44078),
+                y = l(79169),
+                b = l(18740),
+                A = l(5112),
+                k = l.n(A);
+            let S = (0, i.PA)(() => {
+                let {
+                        collection: { kids: e },
+                    } = (0, y.Pjs)(),
+                    { contentScrollRef: t, setContentScrollRef: l } = (0,
+                    y.gKY)(),
+                    i = (0, y.W6M)(),
+                    { from: A } = (0, y.fyy)({ pageId: y._Q$.COLLECTION_KIDS }),
+                    { formatMessage: S } = (0, n.A)();
+                (0, o.useEffect)(
+                    () => () => {
+                        e.reset();
+                    },
+                    [e],
+                ),
+                    (0, y.Jzs)(e.isResolved);
+                let v = (0, u.L)(() =>
+                    e.tracks.loadedItems.slice(0, 5).map((t, l) => {
+                        let a = {
+                            contextData: {
+                                type: d.K.Various,
+                                meta: { id: t.entityId },
+                                from: A,
+                            },
+                            queueParams: { index: l },
+                            loadContextMeta: !1,
+                            entitiesData: e.tracks.sonataEntitiesData,
+                        };
+                        return t.type === m.S.MUSIC
+                            ? (0, s.jsx)(
+                                  j.Kt,
+                                  { track: t, playContextParams: a },
+                                  l,
+                              )
+                            : (0, s.jsx)(
+                                  j.Kd,
+                                  {
+                                      track: t,
+                                      playContextParams: a,
+                                      withPodcastName: t.isTrackPodcast,
+                                  },
+                                  l,
+                              );
+                    }),
+                );
+                if (e.isNeededToLoad) {
+                    let t = [
+                        e.albums.getData({ pageSize: 8 }),
+                        e.playlists.getData({ pageSize: 8 }),
+                        e.tracks.getData({ pageSize: 5 }),
+                    ];
+                    (0, o.use)(Promise.allSettled(t));
+                }
+                return e.isRejected
+                    ? (0, s.jsx)(g.w, {})
+                    : (0, s.jsx)(y.nVz, {
+                          pageId: y._Q$.COLLECTION_KIDS,
+                          children: (0, s.jsxs)(x.hO, {
+                              scrollElement: t,
+                              outerTitle: S({ id: "kids.for-kids" }),
+                              children: [
+                                  (0, s.jsx)(b.Y9, {
+                                      variant: b.Vw.TEXT,
+                                      withForwardControl: !1,
+                                      withBackwardControl: i.canBack,
+                                      children: (0, s.jsx)(h.Heading, {
+                                          variant: "h2",
+                                          weight: "bold",
+                                          size: "xl",
+                                          children: (0, s.jsx)(r.A, {
+                                              id: "kids.for-kids",
+                                          }),
+                                      }),
+                                  }),
+                                  (0, s.jsxs)(C.N, {
+                                      className: k().root,
+                                      containerClassName: k().content,
+                                      ref: l,
+                                      ...(0, c.Am)(
+                                          c.Xk.collection.COLLECTION_KIDS_PAGE,
+                                      ),
+                                      children: [
+                                          !e.shouldShowContent &&
+                                              (0, s.jsxs)("div", {
+                                                  className: k().emptyBlock,
+                                                  children: [
+                                                      (0, s.jsx)(_.Icon, {
+                                                          className:
+                                                              k()
+                                                                  .emptyBlockIcon,
+                                                          variant: "album",
+                                                      }),
+                                                      (0, s.jsx)(h.Heading, {
+                                                          className:
+                                                              k()
+                                                                  .emptyBlockTitle,
+                                                          variant: "h3",
+                                                          size: "xs",
+                                                          children: (0, s.jsx)(
+                                                              r.A,
+                                                              {
+                                                                  id: "kids.empty-collection-text",
+                                                              },
+                                                          ),
+                                                      }),
+                                                  ],
+                                              }),
+                                          e.tracks.shouldShowContent &&
+                                              (0, s.jsx)(b.$2, {
+                                                  blockHeaderClassName: (0,
+                                                  a.$)(
+                                                      k().carouselBlockHeader,
+                                                      k().carouselBlock,
+                                                  ),
+                                                  carouselItemClassName: (0,
+                                                  a.$)(
+                                                      k().tracksCarouselItem,
+                                                      k().important,
+                                                  ),
+                                                  blockHeaderTitle: S({
+                                                      id: "kids.favourite-tracks-and-episodes",
+                                                  }),
+                                                  shimmer: (0, s.jsx)(b.DS, {
+                                                      variant: y.Xjt.PLAYLIST,
+                                                      isActive: !0,
+                                                  }),
+                                                  maxColumnsCount: b.DI.ONE,
+                                                  isShimmerVisible:
+                                                      e.tracks.isShimmerVisible,
+                                                  isShimmerActive: !0,
+                                                  itemsCountPerColumn: 5,
+                                                  viewAllActionLink:
+                                                      y.Zyd.collectionKidsTracks
+                                                          .href,
+                                                  children: v,
+                                              }),
+                                          e.albums.shouldShowContent &&
+                                              (0, s.jsx)(p.pZ, {
+                                                  headerClassName: (0, a.$)(
+                                                      k().carouselBlock,
+                                                      k().carouselBlockHeader,
+                                                  ),
+                                                  containerClassName:
+                                                      k().carouselBlock,
+                                                  title: S({
+                                                      id: "kids.albums-and-podcasts",
+                                                  }),
+                                                  albums: e.albums.loadedItems,
+                                                  headingVariant: "h2",
+                                                  isShimmerVisible:
+                                                      e.albums.isShimmerVisible,
+                                                  isShimmerActive: !0,
+                                                  viewAllActionLink:
+                                                      y.Zyd.collectionKidsAlbums
+                                                          .href,
+                                              }),
+                                          e.playlists.shouldShowContent &&
+                                              (0, s.jsx)(P.EC, {
+                                                  headerClassName: (0, a.$)(
+                                                      k().carouselBlock,
+                                                      k().carouselBlockHeader,
+                                                  ),
+                                                  containerClassName:
+                                                      k().carouselBlock,
+                                                  title: S({
+                                                      id: "entity-names.artist-playlist",
+                                                  }),
+                                                  playlists:
+                                                      e.playlists.loadedItems,
+                                                  headingVariant: "h2",
+                                                  isShimmerVisible:
+                                                      e.playlists
+                                                          .isShimmerVisible,
+                                                  isShimmerActive: !0,
+                                                  viewAllActionLink:
+                                                      y.Zyd
+                                                          .collectionKidsPlaylists
+                                                          .href,
+                                              }),
+                                          (0, s.jsx)(b.A, {
+                                              children: (0, s.jsx)(b.wi, {
+                                                  className: k().footer,
+                                              }),
+                                          }),
+                                      ],
+                                  }),
+                              ],
+                          }),
+                      });
+            });
+        },
+        23871: (e) => {
+            e.exports = {
+                header: "CollectionShelfLiked_header__u9MqV",
+                shelfColumn: "CollectionShelfLiked_shelfColumn__4KX_5",
+                important: "CollectionShelfLiked_important__0K3qk",
+            };
+        },
+        23978: (e) => {
+            e.exports = {
+                root: "CollectionKidsPlaylistsPage_root__RXH06",
+                scrollContainer:
+                    "CollectionKidsPlaylistsPage_scrollContainer__F_oj2",
+                important: "CollectionKidsPlaylistsPage_important__5V_zc",
+                footer: "CollectionKidsPlaylistsPage_footer__R41Ol",
+                item: "CollectionKidsPlaylistsPage_item__ht83l",
+                content: "CollectionKidsPlaylistsPage_content__6Oo1m",
+            };
+        },
+        24238: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionShelfRecentlyPlayedPage: () => b });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(42213),
+                m = l(77868),
+                u = l(83888),
+                _ = l(64143),
+                C = l(44078),
+                h = l(79169),
+                g = l(18740),
+                p = l(56732),
+                x = l(87451),
+                P = l(4136),
+                j = l(38802),
+                y = l.n(j);
+            let b = (0, i.PA)(() => {
+                let {
+                        settings: { isMobile: e },
+                        collection: { shelfRecentlyPlayed: t },
+                    } = (0, h.Pjs)(),
+                    { contentScrollRef: l, setContentScrollRef: i } = (0,
+                    h.gKY)(),
+                    j = (0, h.W6M)(),
+                    { formatMessage: b } = (0, n.A)(),
+                    A = (0, h.wZZ)(),
+                    k = (0, d.c)((e) => {
+                        t.getData({ page: e, pageSize: p.c });
+                    });
+                (0, h.XcE)(t.pagesLoader, k);
+                let S = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(g.A, {
+                                    children: (0, s.jsx)(g.wi, {
+                                        className: y().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    v = t.isShimmerVisible ? 20 : t.items.length;
+                return ((0, o.useEffect)(
+                    () => () => {
+                        t.reset();
+                    },
+                    [t],
+                ),
+                (0, h.Jzs)(t.isResolved),
+                t.isNeededToLoad && (0, o.use)(t.getData({ pageSize: p.c })),
+                t.isRejected)
+                    ? (0, s.jsx)(u.w, {})
+                    : t.isEmpty
+                      ? (0, s.jsx)(P.F, {
+                            title: b({
+                                id: "error-messages.empty-shelf-page-title",
+                            }),
+                        })
+                      : (0, s.jsx)(_.hO, {
+                            scrollElement: l,
+                            outerTitle: b({
+                                id: "podcast.shelf-recently-played-title",
+                            }),
+                            children: (0, s.jsxs)("div", {
+                                className: y().root,
+                                ...(0, c.Am)(
+                                    c.Xk.collection
+                                        .COLLECTION_SHELF_RECENTLY_PLAYED_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(g.Y9, {
+                                        variant: g.Vw.TEXT,
+                                        withForwardControl: !1,
+                                        withBackwardControl: j.canBack,
+                                        children: (0, s.jsx)(m.Heading, {
+                                            variant: "h2",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            children: (0, s.jsx)(r.A, {
+                                                id: "podcast.shelf-recently-played-title",
+                                            }),
+                                        }),
+                                    }),
+                                    (0, s.jsx)(g.$$, {
+                                        className: (0, a.$)(
+                                            y().scrollContainer,
+                                            y().important,
+                                        ),
+                                        customComponents: S,
+                                        itemContentCallback: (e) => {
+                                            let l = t.items[e];
+                                            if (!l)
+                                                return (0, s.jsx)(
+                                                    g.DS,
+                                                    {
+                                                        variant: h.Xjt.PLAYLIST,
+                                                        isActive: !0,
+                                                    },
+                                                    e,
+                                                );
+                                            let a = (0, x.T)(l, t.typeForFrom);
+                                            return (0, s.jsx)(
+                                                C.Kd,
+                                                {
+                                                    track: l.track,
+                                                    playContextParams: A(e, {
+                                                        contextData: a,
+                                                        queueParams: {
+                                                            entityId:
+                                                                l.track.id,
+                                                            index: e,
+                                                        },
+                                                    }),
+                                                    withPodcastName: !0,
+                                                },
+                                                e,
+                                            );
+                                        },
+                                        initialItemCount: v,
+                                        totalCount: v,
+                                        onGetDataByPage: k,
+                                        pageSize: p.c,
+                                        totalRequests: t.requestsCount,
+                                        listClassName: y().content,
+                                        itemClassName: y().item,
+                                        handleRef: i,
+                                        context: {
+                                            listAriaLabel: b({
+                                                id: "podcast.shelf-recently-played-title",
+                                            }),
+                                        },
+                                        isMobileLayout: e,
+                                        useWindowScroll: e,
+                                    }),
+                                ],
+                            }),
+                        });
+            });
+        },
+        25504: (e) => {
+            e.exports = {
+                root: "CollectionDislikesPageHeader_root__lZ6LT",
+                container: "CollectionDislikesPageHeader_container__ACUbW",
+                title: "CollectionDislikesPageHeader_title__6h9Km",
+                tabs: "CollectionDislikesPageHeader_tabs__gt5AJ",
+                tab: "CollectionDislikesPageHeader_tab__bxN5I",
+                tabsShimmer: "CollectionDislikesPageHeader_tabsShimmer__akKoq",
+                tabShimmer: "CollectionDislikesPageHeader_tabShimmer__0QLuH",
+                staticHeader:
+                    "CollectionDislikesPageHeader_staticHeader__75rsF",
+                important: "CollectionDislikesPageHeader_important__5ZM6D",
+                stickyHeader:
+                    "CollectionDislikesPageHeader_stickyHeader__cAkxR",
+            };
+        },
+        25585: (e, t, l) => {
+            "use strict";
+            l.d(t, { W: () => a });
+            var s = l(75729);
+            let a = (e) => !!e && (e === s.g.RATING || e === s.g.YEAR);
+        },
+        26389: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionClipsPage: () => R });
+            var s = l(33008),
+                a = l(97531),
+                i = l(17846),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(53984),
+                m = l(77868),
+                u = l(83888),
+                _ = l(64143),
+                C = l(60030),
+                h = l(79169),
+                g = l(18740),
+                p = l(19570),
+                x = l.n(p),
+                P = l(85896),
+                j = l(13201),
+                y = l(42213),
+                b = l(44612),
+                A = l(64641),
+                k = l(95227);
+            let S = () =>
+                window.innerWidth > 1920 ? 4 : window.innerWidth > 1200 ? 3 : 2;
+            var v = l(74261),
+                N = l.n(v);
+            let L = (0, a.PA)((e) => {
+                var t;
+                let { className: l } = e,
+                    { formatMessage: a } = (0, n.A)(),
+                    { clipsWillLike: i } = (0, h.Pjs)().collection.clips;
+                return (
+                    i.isNeededToLoad && (0, o.use)(i.getData()),
+                    (0, s.jsx)(h.FoH, {
+                        blockId: h.hf$.CLIPS_CAROUSEL,
+                        blockType: h.hf$.CLIPS_CAROUSEL,
+                        blockPosX: 1,
+                        blockPosY: 7,
+                        objectsCount: null == (t = i.clips) ? void 0 : t.length,
+                        children: (0, s.jsx)(A.KR, {
+                            className: (0, P.$)(N().root, l),
+                            containerClassName: N().carouselBlock,
+                            carouselItemClassName: (0, P.$)(
+                                N().carouselItem,
+                                N().important,
+                            ),
+                            headerClassName: (0, P.$)(
+                                N().carouselBlockHeader,
+                                N().carouselBlock,
+                            ),
+                            isShimmerVisible: i.isLoading,
+                            isShimmerActive: !0,
+                            title: a({ id: "entity-names.clips-will-like" }),
+                            clips: i.clips || [],
+                            headingVariant: "h2",
+                        }),
+                    })
+                );
+            });
+            var I = l(78016),
+                E = l(72111),
+                T = l.n(E);
+            let f = (0, a.PA)(() => {
+                let {
+                        collection: {
+                            clips: { clipsWillLike: e },
+                        },
+                    } = (0, h.Pjs)(),
+                    t = !e.isEmpty && !e.isRejected;
+                return (0, s.jsxs)("div", {
+                    className: T().root,
+                    children: [
+                        (0, s.jsxs)("div", {
+                            className: T().content,
+                            children: [
+                                (0, s.jsx)(I.Icon, {
+                                    className: T().icon,
+                                    size: "xl",
+                                    variant: "clip",
+                                }),
+                                (0, s.jsx)(m.Heading, {
+                                    className: T().title,
+                                    variant: "h3",
+                                    size: "xs",
+                                    ...(0, c.Am)(
+                                        c.e8.landing
+                                            .COLLECTION_CLIPS_BLOCK_LIKED_EMPTY_BLOCK_TITLE,
+                                    ),
+                                    children: (0, s.jsx)(r.A, {
+                                        id: "error-messages.empty-collection-clips-title",
+                                    }),
+                                }),
+                                (0, s.jsx)(m.Caption, {
+                                    className: T().text,
+                                    variant: "span",
+                                    type: "controls",
+                                    size: "l",
+                                    weight: "normal",
+                                    ...(0, c.Am)(
+                                        c.e8.landing
+                                            .COLLECTION_CLIPS_BLOCK_LIKED_EMPTY_BLOCK_TEXT,
+                                    ),
+                                    children: (0, s.jsx)(r.A, {
+                                        id: "error-messages.empty-collection-clips-text",
+                                    }),
+                                }),
+                            ],
+                        }),
+                        t && (0, s.jsx)(L, {}),
+                    ],
+                });
+            });
+            var w = l(33867),
+                D = l.n(w);
+            let M = (0, a.PA)((e) => {
+                    let { virtualItem: t, resizeObserver: l, columns: a } = e,
+                        [i, r] = (0, b.d)(),
+                        { formatMessage: c } = (0, n.A)(),
+                        {
+                            collection: { clips: d },
+                        } = (0, h.Pjs)();
+                    (0, o.useEffect)(
+                        () => (
+                            i && l && l.observe(i),
+                            () => {
+                                i && l && l.unobserve(i);
+                            }
+                        ),
+                        [i, l],
+                    );
+                    let m = d.items.slice(t.index * a, t.index * a + a),
+                        u = d.pager && d.pager.total <= a ? 0 : 1,
+                        _ =
+                            !d.clipsWillLike.isEmpty &&
+                            !d.clipsWillLike.isRejected;
+                    return (0, s.jsxs)(
+                        "div",
+                        {
+                            ref: r,
+                            "data-index": t.index,
+                            className: D().virtualItem,
+                            style: {
+                                transform: "translateY(".concat(t.start, "px)"),
+                            },
+                            children: [
+                                (0, s.jsx)("div", {
+                                    style: {
+                                        gridTemplateColumns: "repeat(".concat(
+                                            a,
+                                            ", minmax(0, 1fr))",
+                                        ),
+                                    },
+                                    className: (0, P.$)(D().virtualItemRow, {
+                                        [D().virtualItemRow_withTopBorder]:
+                                            t.index === u + 1 && _,
+                                        [D().virtualItemRow_withBottomBorder]:
+                                            t.index === u && _,
+                                    }),
+                                    children:
+                                        null == m
+                                            ? void 0
+                                            : m.map((e, t) => {
+                                                  if (!e) {
+                                                      let e = c(
+                                                          {
+                                                              id: "loading-messages.entity-is-loading",
+                                                          },
+                                                          {
+                                                              entityName: c({
+                                                                  id: "entity-names.clip",
+                                                              }),
+                                                          },
+                                                      );
+                                                      return (0, s.jsx)(
+                                                          A.kV,
+                                                          { "aria-label": e },
+                                                          t,
+                                                      );
+                                                  }
+                                                  return (0, s.jsx)(
+                                                      A.FC,
+                                                      { clip: e },
+                                                      e.clipId,
+                                                  );
+                                              }),
+                                }),
+                                t.index === u &&
+                                    _ &&
+                                    (0, s.jsx)(L, {
+                                        className: D().clipsWillLike,
+                                    }),
+                            ],
+                        },
+                        t.key,
+                    );
+                }),
+                B = (0, a.PA)((e) => {
+                    var t;
+                    let { contentScrollRef: l } = e,
+                        {
+                            collection: { clips: a },
+                            user: i,
+                        } = (0, h.Pjs)(),
+                        [n, r] = (0, o.useState)(S),
+                        [c, d] = (0, b.d)(),
+                        m = a.pager && a.pager.total <= n ? 0 : 1,
+                        { virtualizer: _, resizeObserver: C } = (0, k.rA)({
+                            gap: 24,
+                            count: a.pager
+                                ? Math.ceil(
+                                      (null == (t = a.pager)
+                                          ? void 0
+                                          : t.total) / n,
+                                  )
+                                : 5,
+                            getEstimateSize: (e) => (e === m ? 800 : 400),
+                            containerRef: c,
+                        }),
+                        g = (0, y.c)((e) => {
+                            i.account.data.uid &&
+                                a.getData({
+                                    userId: i.account.data.uid,
+                                    page: e,
+                                    pageSize: 20,
+                                });
+                        }),
+                        p = _.getTotalSize(),
+                        x = _.getVirtualItems(),
+                        P = (0, y.c)((e) => {
+                            let t = Math.floor((e.startIndex * n) / 20),
+                                l = Math.ceil((e.endIndex * n) / 20);
+                            for (let e = t; e <= l; e++) g(e);
+                        });
+                    (0, o.useEffect)(() => {
+                        a.isNeededToLoad &&
+                            (null == l ||
+                                l.scrollTo({ top: 0, behavior: "instant" }),
+                            a.setInitialShimmer(),
+                            g());
+                    }, [a, a.isNeededToLoad, g, l]),
+                        (0, o.useEffect)(() => {
+                            !_.isScrolling && _.range && P(_.range);
+                        }, [P, _.range, _.isScrolling]);
+                    let A = (0, j.A)(() => {
+                        r(S);
+                    }, 100);
+                    return ((0, o.useEffect)(
+                        () => (
+                            A(),
+                            window.addEventListener("resize", A),
+                            () => {
+                                window.removeEventListener("resize", A);
+                            }
+                        ),
+                        [A],
+                    ),
+                    a.isEmpty)
+                        ? (0, s.jsx)(f, {})
+                        : a.isRejected
+                          ? (0, s.jsx)(u.w, {})
+                          : (0, s.jsx)("div", {
+                                className: D().virtualScroll,
+                                style: { height: "".concat(p, "px") },
+                                ref: d,
+                                children: x.map((e) =>
+                                    (0, s.jsx)(
+                                        M,
+                                        {
+                                            virtualItem: e,
+                                            resizeObserver: C,
+                                            columns: n,
+                                        },
+                                        e.index,
+                                    ),
+                                ),
+                            });
+                }),
+                R = (0, a.PA)(() => {
+                    let {
+                            collection: { clips: e },
+                        } = (0, h.Pjs)(),
+                        { formatMessage: t } = (0, n.A)(),
+                        l = (0, h.W6M)(),
+                        a = (0, C.df)(),
+                        { contentScrollRef: p, setContentScrollRef: P } = (0,
+                        h.gKY)();
+                    return (!a &&
+                        e.isLoaded &&
+                        (0, i.redirect)(h.Zyd.collection.href),
+                    (0, h.Jzs)(e.isResolved),
+                    (0, o.useEffect)(
+                        () => () => {
+                            e.reset();
+                        },
+                        [e],
+                    ),
+                    e.isRejected)
+                        ? (0, s.jsx)(u.w, {})
+                        : (0, s.jsx)(h.nVz, {
+                              pageId: h._Q$.OWN_CLIPS,
+                              children: (0, s.jsx)(h.jPc, {
+                                  children: (0, s.jsxs)(_.hO, {
+                                      scrollElement: p,
+                                      outerTitle: t({
+                                          id: "entity-names.clips",
+                                      }),
+                                      children: [
+                                          (0, s.jsx)(g.Y9, {
+                                              variant: g.Vw.TEXT,
+                                              withForwardControl: !1,
+                                              withBackwardControl: l.canBack,
+                                              children: (0, s.jsx)(m.Heading, {
+                                                  id: "collection-artists-header",
+                                                  variant: "h1",
+                                                  weight: "bold",
+                                                  size: "xl",
+                                                  lineClamp: 1,
+                                                  children: (0, s.jsx)(r.A, {
+                                                      id: "entity-names.clips",
+                                                  }),
+                                              }),
+                                          }),
+                                          (0, s.jsxs)(d.C, {
+                                              scrollableContainerRef: P,
+                                              className: x().root,
+                                              containerClassName: x().content,
+                                              scrollContentClassName:
+                                                  x().scrollContent,
+                                              ...(0, c.Am)(
+                                                  c.Xk.collection
+                                                      .COLLECTION_CLIPS_PAGE,
+                                              ),
+                                              children: [
+                                                  (0, s.jsx)(B, {
+                                                      contentScrollRef: p,
+                                                  }),
+                                                  (0, s.jsx)(g.A, {
+                                                      children: (0, s.jsx)(
+                                                          g.wi,
+                                                          {
+                                                              className:
+                                                                  x().footer,
+                                                          },
+                                                      ),
+                                                  }),
+                                              ],
+                                          }),
+                                      ],
+                                  }),
+                              }),
+                          });
+                });
+        },
+        30034: (e) => {
+            e.exports = {
+                root: "CollectionDislikesPageContent_root__3AoS5",
+                scrollContainer:
+                    "CollectionDislikesPageContent_scrollContainer__px7Vr",
+                important: "CollectionDislikesPageContent_important__Oz6io",
+                content: "CollectionDislikesPageContent_content__fScA9",
+                content_withGrid:
+                    "CollectionDislikesPageContent_content_withGrid__wcx80",
+                content_tracks:
+                    "CollectionDislikesPageContent_content_tracks__Hyiz_",
+                footer: "CollectionDislikesPageContent_footer__E6nZG",
+                item: "CollectionDislikesPageContent_item__aty4k",
+                tabPanel: "CollectionDislikesPageContent_tabPanel__5L5T_",
+                shimmerItem: "CollectionDislikesPageContent_shimmerItem__FMFR5",
+            };
+        },
+        33867: (e) => {
+            e.exports = {
+                root: "CollectionClipsPageClips_root__uB8s_",
+                virtualScroll: "CollectionClipsPageClips_virtualScroll__o3uWm",
+                virtualItem: "CollectionClipsPageClips_virtualItem__UDzx8",
+                virtualItemRow:
+                    "CollectionClipsPageClips_virtualItemRow__RPIOY",
+                virtualItemRow_withTopBorder:
+                    "CollectionClipsPageClips_virtualItemRow_withTopBorder__Q6k2l",
+                virtualItemRow_withBottomBorder:
+                    "CollectionClipsPageClips_virtualItemRow_withBottomBorder__D5Dep",
+                clipsWillLike: "CollectionClipsPageClips_clipsWillLike__IhK8Q",
+            };
+        },
+        34620: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionKidsTracksPage: () => b });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(48509),
+                m = l(6247),
+                u = l(77868),
+                _ = l(83888),
+                C = l(64143),
+                h = l(44078),
+                g = l(79169),
+                p = l(18740),
+                x = l(56732),
+                P = l(39082),
+                j = l(37212),
+                y = l.n(j);
+            let b = (0, i.PA)(() => {
+                let {
+                        collection: {
+                            kids: { tracks: e },
+                        },
+                        settings: { isMobile: t },
+                    } = (0, g.Pjs)(),
+                    { contentScrollRef: l, setContentScrollRef: i } = (0,
+                    g.gKY)(),
+                    j = (0, g.W6M)(),
+                    { from: b } = (0, g.fyy)({
+                        pageId: g._Q$.COLLECTION_KIDS_TRACKS,
+                    }),
+                    { formatMessage: A } = (0, n.A)(),
+                    k = (0, g.wZZ)();
+                (0, o.useEffect)(
+                    () => () => {
+                        e.reset();
+                    },
+                    [e],
+                ),
+                    (0, g.Jzs)(e.isResolved);
+                let S = (0, o.useCallback)(
+                    (t) => {
+                        e.getData({ page: t, pageSize: x.c });
+                    },
+                    [e],
+                );
+                (0, g.XcE)(e.pagesLoader, S);
+                let v = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(p.A, {
+                                    children: (0, s.jsx)(p.wi, {
+                                        className: y().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    N = e.isShimmerVisible ? 20 : e.items.length;
+                return (e.isNeededToLoad &&
+                    (0, o.use)(e.getData({ pageSize: x.c })),
+                e.isRejected)
+                    ? (0, s.jsx)(_.w, {})
+                    : e.isEmpty
+                      ? (0, s.jsx)(P.i, {
+                            title: A({
+                                id: "kids.favourite-tracks-and-episodes",
+                            }),
+                        })
+                      : (0, s.jsx)(g.nVz, {
+                            pageId: g._Q$.COLLECTION_KIDS_TRACKS,
+                            children: (0, s.jsx)(C.hO, {
+                                scrollElement: l,
+                                outerTitle: A({
+                                    id: "kids.favourite-tracks-and-episodes",
+                                }),
+                                children: (0, s.jsxs)("div", {
+                                    className: y().root,
+                                    ...(0, c.Am)(
+                                        c.Xk.collection
+                                            .COLLECTION_KIDS_TRACKS_PAGE,
+                                    ),
+                                    children: [
+                                        (0, s.jsx)(p.Y9, {
+                                            variant: p.Vw.TEXT,
+                                            withForwardControl: !1,
+                                            withBackwardControl: j.canBack,
+                                            children: (0, s.jsx)(u.Heading, {
+                                                variant: "h2",
+                                                weight: "bold",
+                                                size: t ? "m" : "xl",
+                                                lineClamp: 2,
+                                                children: (0, s.jsx)(r.A, {
+                                                    id: "kids.favourite-tracks-and-episodes",
+                                                }),
+                                            }),
+                                        }),
+                                        (0, s.jsx)(p.$$, {
+                                            className: (0, a.$)(
+                                                y().scrollContainer,
+                                                y().important,
+                                            ),
+                                            listClassName: y().content,
+                                            customComponents: v,
+                                            itemContentCallback: (t) => {
+                                                let l = e.items[t];
+                                                if (!l)
+                                                    return (0, s.jsx)(p.DS, {
+                                                        isActive: !0,
+                                                        className:
+                                                            y().shimmerItem,
+                                                        variant: g.Xjt.PLAYLIST,
+                                                    });
+                                                let a = k(l.entityId, {
+                                                    contextData: {
+                                                        type: d.K.Various,
+                                                        meta: {
+                                                            id: l.entityId,
+                                                        },
+                                                        from: b,
+                                                    },
+                                                    queueParams: { index: t },
+                                                    loadContextMeta: !1,
+                                                    entitiesData:
+                                                        e.sonataEntitiesData,
+                                                });
+                                                return l.type === m.S.MUSIC
+                                                    ? (0, s.jsx)(
+                                                          h.Kt,
+                                                          {
+                                                              track: l,
+                                                              playContextParams:
+                                                                  a,
+                                                          },
+                                                          t,
+                                                      )
+                                                    : (0, s.jsx)(
+                                                          h.Kd,
+                                                          {
+                                                              track: l,
+                                                              playContextParams:
+                                                                  a,
+                                                              withPodcastName:
+                                                                  l.isTrackPodcast,
+                                                          },
+                                                          t,
+                                                      );
+                                            },
+                                            initialItemCount: N,
+                                            totalCount: N,
+                                            onGetDataByPage: S,
+                                            pageSize: x.c,
+                                            totalRequests: e.requestsCount,
+                                            handleRef: i,
+                                            context: {
+                                                listAriaLabel: A({
+                                                    id: "entity-names.tracks",
+                                                }),
+                                            },
+                                            isMobileLayout: t,
+                                            useWindowScroll: t,
+                                        }),
+                                    ],
+                                }),
+                            }),
+                        });
+            });
+        },
+        34914: (e) => {
+            e.exports = {
+                root: "CollectionPlaylistsLikedPage_root__ZyIwA",
+                scrollContainer:
+                    "CollectionPlaylistsLikedPage_scrollContainer__H_vPA",
+                important: "CollectionPlaylistsLikedPage_important__GjYTU",
+                content: "CollectionPlaylistsLikedPage_content__WIxhp",
+                footer: "CollectionPlaylistsLikedPage_footer__A60Ui",
+                item: "CollectionPlaylistsLikedPage_item__PpCht",
+            };
+        },
+        35233: (e, t, l) => {
+            "use strict";
+            l.d(t, { M: () => s.NotFound });
+            var s = l(27618);
+        },
+        36422: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionNonMusicPage: () => b });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(42314),
+                m = l(57747),
+                u = l(77868),
+                _ = l(83888),
+                C = l(52732),
+                h = l(64143),
+                g = l(79169),
+                p = l(18740),
+                x = l(17031),
+                P = l(71886),
+                j = l(59834),
+                y = l.n(j);
+            let b = (0, i.PA)(() => {
+                var e;
+                let {
+                        user: t,
+                        collection: { nonMusicLiked: l, shelf: i },
+                        library: j,
+                    } = (0, g.Pjs)(),
+                    { formatMessage: b } = (0, n.A)(),
+                    { contentScrollRef: A, setContentScrollRef: k } = (0,
+                    g.gKY)(),
+                    S = (0, g.W6M)();
+                if (((0, g.Jzs)(l.isResolved), l.isRejected && !i.hasLiked))
+                    return (0, s.jsx)(_.w, {});
+                (0, o.useEffect)(
+                    () => () => {
+                        l.reset(), i.reset();
+                    },
+                    [l, i],
+                );
+                let v = (0, d.L)(() => {
+                        var e;
+                        return null == (e = l.items)
+                            ? void 0
+                            : e
+                                  .slice(0, 10)
+                                  .map((e, t) =>
+                                      e
+                                          ? (0, s.jsx)(
+                                                C.aX,
+                                                {
+                                                    album: e,
+                                                    contentLinesCount: 3,
+                                                    withLikesCount: !0,
+                                                    withAddition: !1,
+                                                },
+                                                null == e ? void 0 : e.id,
+                                            )
+                                          : (0, s.jsx)(
+                                                p.Vt,
+                                                {},
+                                                "shimmer-".concat(t),
+                                            ),
+                                  );
+                    }),
+                    N = (0, o.useMemo)(() => {
+                        var e;
+                        return !l.isEmptyItems || l.isRejected || i.hasLiked
+                            ? l.isRejected ||
+                              (!(null == (e = l.items) ? void 0 : e.length) &&
+                                  l.requestsCount)
+                                ? null
+                                : (0, s.jsx)(p.OY, {
+                                      headerClassName: y().blockHeader,
+                                      containerClassName: y().carousel,
+                                      isShimmerVisible: l.isLoading,
+                                      isShimmerActive: !0,
+                                      title: b({
+                                          id: "page.delayed-non-music",
+                                      }),
+                                      viewAllActionLink:
+                                          g.Zyd.collectionNonMusicLiked.href,
+                                      children: v,
+                                  })
+                            : (0, s.jsx)(P.M, {});
+                    }, [
+                        l.isLoading,
+                        b,
+                        v,
+                        l.isRejected,
+                        i.hasLiked,
+                        l.isEmptyItems,
+                        null == (e = l.items) ? void 0 : e.length,
+                        l.requestsCount,
+                    ]);
+                if (t.account.data.uid && l.isNeededToLoad) {
+                    let e = [
+                        l.getData({
+                            userId: t.account.data.uid,
+                            metaType: "podcast",
+                            pageSize: 10,
+                        }),
+                        j.getData(),
+                    ];
+                    (0, o.use)(Promise.allSettled(e));
+                }
+                return (0, s.jsx)(g.nVz, {
+                    pageId: g._Q$.OWN_PODCASTS,
+                    children: (0, s.jsx)(h.hO, {
+                        scrollElement: A,
+                        outerTitle: b({ id: "page.podcasts-and-books" }),
+                        children: (0, s.jsxs)("div", {
+                            className: y().root,
+                            ...(0, c.Am)(
+                                c.Xk.collection.COLLECTION_NON_MUSIC_PAGE,
+                            ),
+                            children: [
+                                (0, s.jsx)(p.Y9, {
+                                    variant: p.Vw.TEXT,
+                                    withForwardControl: !1,
+                                    withBackwardControl: S.canBack,
+                                    children: (0, s.jsx)(u.Heading, {
+                                        variant: "h2",
+                                        weight: "bold",
+                                        size: "xl",
+                                        lineClamp: 1,
+                                        children: (0, s.jsx)(r.A, {
+                                            id: "page.podcasts-and-books",
+                                        }),
+                                    }),
+                                }),
+                                (0, s.jsx)(m.N, {
+                                    ref: k,
+                                    containerClassName: (0, a.$)(
+                                        y().scrollableContainer,
+                                        y().important,
+                                    ),
+                                    className: y().root,
+                                    children: (0, s.jsxs)("div", {
+                                        className: y().content,
+                                        children: [
+                                            (0, s.jsxs)("div", {
+                                                className: y().likedBlocks,
+                                                children: [
+                                                    N,
+                                                    i.hasLiked &&
+                                                        (0, s.jsx)(x.m, {
+                                                            carouselClassName:
+                                                                y()
+                                                                    .shelfBlockCarousel,
+                                                            headerClassName:
+                                                                y()
+                                                                    .shelfBlockHeader,
+                                                            itemsCount: 5,
+                                                        }),
+                                                ],
+                                            }),
+                                            (0, s.jsx)(p.A, {
+                                                children: (0, s.jsx)(p.wi, {
+                                                    className: y().footer,
+                                                }),
+                                            }),
+                                        ],
+                                    }),
+                                }),
+                            ],
+                        }),
+                    }),
+                });
+            });
+        },
+        37212: (e) => {
+            e.exports = {
+                root: "CollectionKidsTracksPage_root__8nP0n",
+                scrollContainer:
+                    "CollectionKidsTracksPage_scrollContainer__1d9Pm",
+                important: "CollectionKidsTracksPage_important__oX_Ny",
+                footer: "CollectionKidsTracksPage_footer__dujIV",
+                content: "CollectionKidsTracksPage_content__Vf43s",
+            };
+        },
+        38802: (e) => {
+            e.exports = {
+                root: "CollectionShelfRecentlyPlayedPage_root__1eSLj",
+                footer: "CollectionShelfRecentlyPlayedPage_footer__5pPcU",
+                scrollContainer:
+                    "CollectionShelfRecentlyPlayedPage_scrollContainer__2ErJI",
+                important: "CollectionShelfRecentlyPlayedPage_important___ajYP",
+                content: "CollectionShelfRecentlyPlayedPage_content__p4qEp",
+                item: "CollectionShelfRecentlyPlayedPage_item__gQR_c",
+            };
+        },
+        39082: (e, t, l) => {
+            "use strict";
+            l.d(t, { i: () => h });
+            var s = l(33008),
+                a = l(97531),
+                i = l(96560),
+                o = l(44189),
+                n = l(78016),
+                r = l(57747),
+                c = l(77868),
+                d = l(64143),
+                m = l(79169),
+                u = l(18740),
+                _ = l(78434),
+                C = l.n(_);
+            let h = (0, a.PA)((e) => {
+                let { title: t } = e,
+                    {
+                        settings: { isMobile: l },
+                    } = (0, m.Pjs)(),
+                    { contentScrollRef: a, setContentScrollRef: _ } = (0,
+                    m.gKY)(),
+                    h = (0, m.W6M)(),
+                    g = (0, m.ZpR)(m.Zyd.collectionKids.href);
+                return (0, s.jsxs)(d.hO, {
+                    scrollElement: a,
+                    outerTitle: t,
+                    children: [
+                        (0, s.jsx)(u.Y9, {
+                            variant: u.Vw.TEXT,
+                            withForwardControl: !1,
+                            withBackwardControl: h.canBack,
+                            children: (0, s.jsx)(c.Heading, {
+                                variant: "h2",
+                                weight: "bold",
+                                size: l ? "m" : "xl",
+                                lineClamp: 2,
+                                children: t,
+                            }),
+                        }),
+                        (0, s.jsxs)(r.N, {
+                            ref: _,
+                            containerClassName: C().scrollableContainer,
+                            className: C().root,
+                            children: [
+                                (0, s.jsxs)("div", {
+                                    className: C().content,
+                                    children: [
+                                        (0, s.jsx)("div", {
+                                            className: C().icon,
+                                            children: (0, s.jsx)(n.Icon, {
+                                                variant: "like",
+                                                size: "l",
+                                            }),
+                                        }),
+                                        (0, s.jsx)(c.Heading, {
+                                            className: C().title,
+                                            variant: "h3",
+                                            size: "xs",
+                                            children: (0, s.jsx)(i.A, {
+                                                id: "error-messages.empty-collection-kids-sub-page-title",
+                                            }),
+                                        }),
+                                        (0, s.jsx)(o.Button, {
+                                            onClick: g,
+                                            className: C().button,
+                                            role: "link",
+                                            color: "secondary",
+                                            size: "s",
+                                            radius: "xxxl",
+                                            children: (0, s.jsx)(c.Caption, {
+                                                type: "controls",
+                                                variant: "span",
+                                                size: "m",
+                                                children: (0, s.jsx)(i.A, {
+                                                    id: "error-messages.empty-collection-kids-sub-page-link",
+                                                }),
+                                            }),
+                                        }),
+                                    ],
+                                }),
+                                (0, s.jsx)(u.A, {
+                                    children: (0, s.jsx)(u.wi, {
+                                        className: C().footer,
+                                    }),
+                                }),
+                            ],
+                        }),
+                    ],
+                });
+            });
+        },
+        41420: (e) => {
+            e.exports = {
+                root: "CollectionKidsAlbumsPage_root__Fjk4C",
+                scrollContainer:
+                    "CollectionKidsAlbumsPage_scrollContainer__OWiCy",
+                important: "CollectionKidsAlbumsPage_important__1ghiQ",
+                footer: "CollectionKidsAlbumsPage_footer__9niUH",
+                item: "CollectionKidsAlbumsPage_item__A5TuB",
+                content: "CollectionKidsAlbumsPage_content__6w_jh",
+            };
+        },
+        42411: (e) => {
+            e.exports = {
+                root: "CollectionPlaylistsPageHeader_root__GfGIl",
+                container: "CollectionPlaylistsPageHeader_container__oh7C2",
+                title: "CollectionPlaylistsPageHeader_title__2D23I",
+                staticTabs: "CollectionPlaylistsPageHeader_staticTabs__9c9yq",
+                stickyTabs: "CollectionPlaylistsPageHeader_stickyTabs__Iot6U",
+                tab: "CollectionPlaylistsPageHeader_tab__aNTOB",
+                tabsShimmer: "CollectionPlaylistsPageHeader_tabsShimmer__u9JIN",
+                tabShimmer: "CollectionPlaylistsPageHeader_tabShimmer__ekXeT",
+                staticHeader:
+                    "CollectionPlaylistsPageHeader_staticHeader__lzc4l",
+                important: "CollectionPlaylistsPageHeader_important__uR36G",
+                stickyHeader:
+                    "CollectionPlaylistsPageHeader_stickyHeader__ojvbQ",
+            };
+        },
+        45324: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionShelfLikedPage: () => A });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(42314),
+                m = l(77868),
+                u = l(83888),
+                _ = l(52732),
+                C = l(64143),
+                h = l(44078),
+                g = l(79169),
+                p = l(18740),
+                x = l(56732),
+                P = l(50093),
+                j = l(4136),
+                y = l(16144),
+                b = l.n(y);
+            let A = (0, i.PA)(() => {
+                let {
+                        settings: { isMobile: e },
+                        collection: { shelfLiked: t },
+                    } = (0, g.Pjs)(),
+                    { contentScrollRef: l, setContentScrollRef: i } = (0,
+                    g.gKY)(),
+                    y = (0, g.W6M)(),
+                    { formatMessage: A } = (0, n.A)(),
+                    k = (0, g.wZZ)(),
+                    S = (0, o.useCallback)(
+                        (e) => {
+                            t.getData({ page: e, pageSize: x.c });
+                        },
+                        [t],
+                    );
+                (0, g.XcE)(t.pagesLoader, S);
+                let v = (0, d.L)(() => ({
+                        Footer: () =>
+                            (0, s.jsx)(p.A, {
+                                children: (0, s.jsx)(p.wi, {
+                                    className: b().footer,
+                                }),
+                            }),
+                    })),
+                    N = t.isShimmerVisible ? 20 : t.items.length;
+                return ((0, o.useEffect)(
+                    () => () => {
+                        t.reset();
+                    },
+                    [t],
+                ),
+                (0, g.Jzs)(t.isResolved),
+                t.isNeededToLoad && (0, o.use)(t.getData({ pageSize: x.c })),
+                t.isRejected)
+                    ? (0, s.jsx)(u.w, {})
+                    : t.isEmpty
+                      ? (0, s.jsx)(j.F, {
+                            title: A({
+                                id: "error-messages.empty-shelf-liked-page-title",
+                            }),
+                        })
+                      : (0, s.jsx)(C.hO, {
+                            scrollElement: l,
+                            outerTitle: A({ id: "podcast.shelf-liked-title" }),
+                            children: (0, s.jsxs)("div", {
+                                className: b().root,
+                                ...(0, c.Am)(
+                                    c.Xk.collection.COLLECTION_SHELF_LIKED_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(p.Y9, {
+                                        variant: p.Vw.TEXT,
+                                        withForwardControl: !1,
+                                        withBackwardControl: y.canBack,
+                                        children: (0, s.jsx)(m.Heading, {
+                                            variant: "h2",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            children: (0, s.jsx)(r.A, {
+                                                id: "podcast.shelf-liked-title",
+                                            }),
+                                        }),
+                                    }),
+                                    (0, s.jsx)(p.$$, {
+                                        className: (0, a.$)(
+                                            b().scrollContainer,
+                                            b().important,
+                                        ),
+                                        customComponents: v,
+                                        itemContentCallback: (e) => {
+                                            let l = t.items[e];
+                                            if (!l)
+                                                return (0, s.jsx)(
+                                                    p.DS,
+                                                    {
+                                                        variant: g.Xjt.PLAYLIST,
+                                                        isActive: !0,
+                                                    },
+                                                    e,
+                                                );
+                                            if (l.album)
+                                                return (0, s.jsx)(
+                                                    _.M_,
+                                                    { album: l.album },
+                                                    l.album.getKey(e),
+                                                );
+                                            let a = k(
+                                                e,
+                                                (0, P.q)(
+                                                    l.track,
+                                                    e,
+                                                    t.typeForFrom,
+                                                ),
+                                            );
+                                            return (0, s.jsx)(
+                                                h.Kd,
+                                                {
+                                                    track: l.track,
+                                                    playContextParams: a,
+                                                    withPodcastName: !0,
+                                                },
+                                                l.track.getKey(e),
+                                            );
+                                        },
+                                        initialItemCount: N,
+                                        totalCount: N,
+                                        onGetDataByPage: S,
+                                        pageSize: x.c,
+                                        totalRequests: t.requestsCount,
+                                        listClassName: b().content,
+                                        itemClassName: b().item,
+                                        handleRef: i,
+                                        context: {
+                                            listAriaLabel: A({
+                                                id: "podcast.shelf-liked-title",
+                                            }),
+                                        },
+                                        isMobileLayout: e,
+                                        useWindowScroll: e,
+                                    }),
+                                ],
+                            }),
+                        });
+            });
+        },
+        47052: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionNotFoundPage: () => o });
+            var s = l(33008),
+                a = l(97531),
+                i = l(35233);
+            let o = (0, a.PA)(() => (0, s.jsx)(i.M, {}));
+        },
+        47463: (e, t, l) => {
+            "use strict";
+            l.d(t, { j: () => s });
+            var s = (function (e) {
+                return (
+                    (e[(e.TRACKS = 0)] = "TRACKS"),
+                    (e[(e.ARTISTS = 1)] = "ARTISTS"),
+                    e
+                );
+            })({});
+        },
+        49762: (e) => {
+            e.exports = {
+                root: "CollectionArtistsPage_root__EH25F",
+                scrollContainer: "CollectionArtistsPage_scrollContainer__tT6NQ",
+                important: "CollectionArtistsPage_important__MG_XV",
+                footer: "CollectionArtistsPage_footer__aZrx3",
+                item: "CollectionArtistsPage_item___cy_9",
+                contentBlock: "CollectionArtistsPage_contentBlock__5QDcr",
+                contentBlock_withMarginTop:
+                    "CollectionArtistsPage_contentBlock_withMarginTop__e4_VX",
+                gridLayout: "CollectionArtistsPage_gridLayout__00brJ",
+                subTitle: "CollectionArtistsPage_subTitle__My70z",
+            };
+        },
+        50093: (e, t, l) => {
+            "use strict";
+            l.d(t, { q: () => a });
+            var s = l(48509);
+            let a = (e, t, l) => {
+                let a = {
+                    type: s.K.Various,
+                    meta: { id: e.id },
+                    from: l || "",
+                };
+                return (
+                    void 0 !== e.albumId &&
+                        (a = {
+                            type: s.K.Album,
+                            meta: { id: e.albumId },
+                            from: l || "",
+                        }),
+                    {
+                        contextData: a,
+                        queueParams: { entityId: e.id, index: t },
+                        loadContextMeta: !0,
+                    }
+                );
+            };
+        },
+        51460: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionKidsAlbumsPage: () => j });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(77868),
+                m = l(83888),
+                u = l(52732),
+                _ = l(64143),
+                C = l(79169),
+                h = l(18740),
+                g = l(56732),
+                p = l(39082),
+                x = l(41420),
+                P = l.n(x);
+            let j = (0, i.PA)(() => {
+                let {
+                        settings: { isMobile: e },
+                        collection: {
+                            kids: { albums: t },
+                        },
+                    } = (0, C.Pjs)(),
+                    { contentScrollRef: l, setContentScrollRef: i } = (0,
+                    C.gKY)(),
+                    x = (0, C.W6M)(),
+                    { formatMessage: j } = (0, n.A)(),
+                    y = (0, o.useCallback)(
+                        (e) => {
+                            t.getData({ page: e, pageSize: g.c });
+                        },
+                        [t],
+                    );
+                (0, C.XcE)(t.pagesLoader, y);
+                let b = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(h.A, {
+                                    children: (0, s.jsx)(h.wi, {
+                                        className: P().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    A = t.isShimmerVisible ? 20 : t.items.length;
+                return ((0, o.useEffect)(
+                    () => () => {
+                        t.reset();
+                    },
+                    [t],
+                ),
+                (0, C.Jzs)(t.isResolved),
+                t.isNeededToLoad && (0, o.use)(t.getData({ pageSize: g.c })),
+                t.isRejected)
+                    ? (0, s.jsx)(m.w, {})
+                    : t.isEmpty
+                      ? (0, s.jsx)(p.i, {
+                            title: j({ id: "kids.albums-and-podcasts" }),
+                        })
+                      : (0, s.jsx)(C.nVz, {
+                            pageId: C._Q$.COLLECTION_KIDS_ALBUMS,
+                            children: (0, s.jsx)(_.hO, {
+                                scrollElement: l,
+                                outerTitle: j({
+                                    id: "kids.albums-and-podcasts",
+                                }),
+                                children: (0, s.jsxs)("div", {
+                                    className: P().root,
+                                    ...(0, c.Am)(
+                                        c.Xk.collection
+                                            .COLLECTION_KIDS_ALBUMS_PAGE,
+                                    ),
+                                    children: [
+                                        (0, s.jsx)(h.Y9, {
+                                            variant: h.Vw.TEXT,
+                                            withForwardControl: !1,
+                                            withBackwardControl: x.canBack,
+                                            children: (0, s.jsx)(d.Heading, {
+                                                variant: "h2",
+                                                weight: "bold",
+                                                size: e ? "m" : "xl",
+                                                lineClamp: 2,
+                                                children: (0, s.jsx)(r.A, {
+                                                    id: "kids.albums-and-podcasts",
+                                                }),
+                                            }),
+                                        }),
+                                        (0, s.jsx)(h.$$, {
+                                            className: (0, a.$)(
+                                                P().scrollContainer,
+                                                P().important,
+                                            ),
+                                            listClassName: P().content,
+                                            itemClassName: P().item,
+                                            customComponents: b,
+                                            itemContentCallback: (e) => {
+                                                let l = t.items[e],
+                                                    a = j(
+                                                        {
+                                                            id: "loading-messages.entity-is-loading",
+                                                        },
+                                                        {
+                                                            entityName: j({
+                                                                id: "entity-names.album",
+                                                            }),
+                                                        },
+                                                    );
+                                                return l
+                                                    ? (0, s.jsx)(
+                                                          u.aX,
+                                                          {
+                                                              album: l,
+                                                              contentLinesCount: 4,
+                                                              withLikesCount:
+                                                                  !0,
+                                                          },
+                                                          l.id,
+                                                      )
+                                                    : (0, s.jsx)(h.Vt, {
+                                                          "aria-label": a,
+                                                          linesCount: 4,
+                                                      });
+                                            },
+                                            initialItemCount: A,
+                                            totalCount: A,
+                                            onGetDataByPage: y,
+                                            pageSize: g.c,
+                                            totalRequests: t.requestsCount,
+                                            handleRef: i,
+                                            context: {
+                                                listAriaLabel: j({
+                                                    id: "entity-names.albums",
+                                                }),
+                                            },
+                                            isMobileLayout: e,
+                                            useWindowScroll: e,
+                                        }),
+                                    ],
+                                }),
+                            }),
+                        });
+            });
+        },
+        53827: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionShelfNewEpisodesPage: () => v });
+            var s = l(33008),
+                a = l(97531),
+                i = l(17846),
+                o = l(66268),
+                n = l(18064),
+                r = l(42213),
+                c = l(57747),
+                d = l(77868),
+                m = l(83888),
+                u = l(64143),
+                _ = l(79169),
+                C = l(18740),
+                h = l(85896),
+                g = l(96560),
+                p = l(48509),
+                x = l(44189),
+                P = l(78016),
+                j = l(44078),
+                y = l(59417),
+                b = l.n(y);
+            let A = (0, a.PA)(() => {
+                let {
+                        sonataState: e,
+                        collection: {
+                            shelf: { newEpisodes: t },
+                        },
+                    } = (0, _.Pjs)(),
+                    l = (0, _.ZpR)(_.Zyd.nonMusic.href),
+                    a = (0, o.useMemo)(() => {
+                        var l;
+                        return null == (l = t.tracks)
+                            ? void 0
+                            : l.map((l, a) =>
+                                  (0, s.jsx)(
+                                      j.Kd,
+                                      {
+                                          track: l,
+                                          playContextParams: {
+                                              contextData: {
+                                                  type: p.K.Album,
+                                                  meta: { id: l.entityId },
+                                                  from: t.typeForFrom || "",
+                                              },
+                                              queueParams: {
+                                                  index: a,
+                                                  entityId: l.id,
+                                              },
+                                              loadContextMeta: !0,
+                                              entitiesData:
+                                                  e.unloadedEntitiesDataFromModels,
+                                          },
+                                          withPodcastName: !0,
+                                      },
+                                      l.entityId,
+                                  ),
+                              );
+                    }, [
+                        t.tracks,
+                        t.typeForFrom,
+                        e.unloadedEntitiesDataFromModels,
+                    ]),
+                    i = (0, o.useMemo)(
+                        () =>
+                            t.isEmpty
+                                ? (0, s.jsx)(g.A, {
+                                      id: "error-messages.empty-shelf-new-episodes-title-no-tracks",
+                                  })
+                                : (0, s.jsx)(g.A, {
+                                      id: "error-messages.empty-shelf-new-episodes-title",
+                                  }),
+                        [t.isEmpty],
+                    );
+                return (t.isNeededToLoad && (0, o.use)(t.getData()),
+                t.isLoading)
+                    ? (0, s.jsx)(C.DS, {
+                          variant: _.Xjt.PLAYLIST,
+                          isActive: !0,
+                      })
+                    : (0, s.jsxs)("div", {
+                          className: (0, h.$)(b().root, {
+                              [b().root_emptyList]: t.isEmpty,
+                          }),
+                          children: [
+                              a,
+                              (0, s.jsxs)("div", {
+                                  className: b().wrapper,
+                                  children: [
+                                      (0, s.jsx)("div", {
+                                          className: b().iconBackground,
+                                          children: (0, s.jsx)(P.Icon, {
+                                              variant: "like",
+                                              size: "l",
+                                          }),
+                                      }),
+                                      (0, s.jsx)(d.Heading, {
+                                          className: b().title,
+                                          variant: "h3",
+                                          size: "xs",
+                                          children: i,
+                                      }),
+                                      !t.isEmpty &&
+                                          (0, s.jsx)(d.Caption, {
+                                              type: "controls",
+                                              variant: "span",
+                                              size: "l",
+                                              weight: "normal",
+                                              children: (0, s.jsx)(g.A, {
+                                                  id: "error-messages.empty-shelf-new-episodes-text",
+                                              }),
+                                          }),
+                                      (0, s.jsx)(x.Button, {
+                                          onClick: l,
+                                          className: b().button,
+                                          role: "link",
+                                          color: "secondary",
+                                          size: "s",
+                                          radius: "xxxl",
+                                          children: (0, s.jsx)(d.Caption, {
+                                              type: "controls",
+                                              variant: "span",
+                                              size: "m",
+                                              children: (0, s.jsx)(g.A, {
+                                                  id: "error-messages.empty-shelf-liked-page-link",
+                                              }),
+                                          }),
+                                      }),
+                                  ],
+                              }),
+                          ],
+                      });
+            });
+            var k = l(17410),
+                S = l.n(k);
+            let v = (0, a.PA)(() => {
+                let {
+                        collection: {
+                            shelf: { newEpisodes: e },
+                        },
+                    } = (0, _.Pjs)(),
+                    { contentScrollRef: t, setContentScrollRef: l } = (0,
+                    _.gKY)(),
+                    a = (0, _.W6M)(),
+                    h = (0, i.useRouter)(),
+                    g = (0, r.c)(() => {
+                        var t;
+                        (null == (t = e.playlist) ? void 0 : t.uuid) &&
+                            h.replace(e.playlist.url);
+                    });
+                return ((0, o.useEffect)(() => {
+                    e.isResolved && e.withPlaylist && g();
+                }, [e.isResolved, e.withPlaylist, g]),
+                (0, o.useEffect)(
+                    () => () => {
+                        e.reset();
+                    },
+                    [e],
+                ),
+                (0, _.Jzs)(e.isResolved),
+                e.isRejected)
+                    ? (0, s.jsx)(m.w, {})
+                    : (0, s.jsxs)(u.hO, {
+                          scrollElement: t,
+                          outerTitle: e.title,
+                          children: [
+                              (0, s.jsx)(C.Y9, {
+                                  variant: C.Vw.TEXT,
+                                  withForwardControl: !1,
+                                  withBackwardControl: a.canBack,
+                                  children: (0, s.jsx)(d.Heading, {
+                                      variant: "h2",
+                                      weight: "bold",
+                                      size: "xl",
+                                      lineClamp: 1,
+                                      children: e.title,
+                                  }),
+                              }),
+                              (0, s.jsxs)(c.N, {
+                                  ref: l,
+                                  containerClassName: S().scrollableContainer,
+                                  className: S().root,
+                                  ...(0, n.Am)(
+                                      n.Xk.collection
+                                          .COLLECTION_SHELF_NEW_EPISODES_PAGE,
+                                  ),
+                                  children: [
+                                      (0, s.jsx)(A, {}),
+                                      (0, s.jsx)(C.A, {
+                                          children: (0, s.jsx)(C.wi, {
+                                              className: S().footer,
+                                          }),
+                                      }),
+                                  ],
+                              }),
+                          ],
+                      });
+            });
+        },
+        56732: (e, t, l) => {
+            "use strict";
+            l.d(t, { c: () => s });
+            let s = 20;
+        },
+        56736: (e) => {
+            e.exports = {
+                root: "CollectionShelfPageEmpty_root__KrMco",
+                iconBackground:
+                    "CollectionShelfPageEmpty_iconBackground__limUg",
+                title: "CollectionShelfPageEmpty_title__cwF4m",
+                button: "CollectionShelfPageEmpty_button___uzMX",
+            };
+        },
+        58184: (e, t, l) => {
+            "use strict";
+            l.d(t, { h: () => s });
+            var s = (function (e) {
+                return (e.TRACKS = "tracks"), (e.ARTISTS = "artists"), e;
+            })({});
+        },
+        58640: (e) => {
+            e.exports = {
+                root: "CollectionAlbumsPageHeader_root__87L_c",
+                container: "CollectionAlbumsPageHeader_container__96cIo",
+                title: "CollectionAlbumsPageHeader_title__1Ps8d",
+                tabs: "CollectionAlbumsPageHeader_tabs__P4GTY",
+                tab: "CollectionAlbumsPageHeader_tab__JSFBc",
+                tabsShimmer: "CollectionAlbumsPageHeader_tabsShimmer__fGlR0",
+                tabShimmer: "CollectionAlbumsPageHeader_tabShimmer__9hCc6",
+                staticHeader: "CollectionAlbumsPageHeader_staticHeader__YNfX4",
+                important: "CollectionAlbumsPageHeader_important__0dgC2",
+                stickyHeader: "CollectionAlbumsPageHeader_stickyHeader__L_1IS",
+            };
+        },
+        59417: (e) => {
+            e.exports = {
+                title: "CollectionShelfNewEpisodes_title__y_SoT",
+                root: "CollectionShelfNewEpisodes_root__VojSS",
+                root_emptyList:
+                    "CollectionShelfNewEpisodes_root_emptyList__jsjSW",
+                wrapper: "CollectionShelfNewEpisodes_wrapper__Z2EOe",
+                iconBackground:
+                    "CollectionShelfNewEpisodes_iconBackground__K4Xui",
+                button: "CollectionShelfNewEpisodes_button__3DALk",
+            };
+        },
+        59795: (e, t, l) => {
+            "use strict";
+            l.d(t, { E: () => m });
+            var s = l(33008),
+                a = l(97531),
+                i = l(91342),
+                o = l(79169),
+                n = l(18740),
+                r = l(69167),
+                c = l.n(r);
+            let d = () =>
+                    Array.from({ length: 5 }, (e) =>
+                        (0, s.jsx)(
+                            n.DS,
+                            {
+                                variant: o.Xjt.PLAYLIST,
+                                className: c().track,
+                                isActive: !0,
+                            },
+                            e,
+                        ),
+                    ),
+                m = (0, a.PA)((e) => {
+                    let { className: t, withHeader: l } = e;
+                    return (0, s.jsxs)("div", {
+                        className: t,
+                        children: [
+                            l &&
+                                (0, s.jsx)(i.Shimmer, {
+                                    radius: "l",
+                                    width: 100,
+                                    height: 24,
+                                    className: c().title,
+                                    isActive: !0,
+                                }),
+                            (0, s.jsx)(d, {}),
+                        ],
+                    });
+                });
+        },
+        59834: (e) => {
+            e.exports = {
+                root: "CollectionNonMusicPage_root__U6DRX",
+                scrollableContainer:
+                    "CollectionNonMusicPage_scrollableContainer__iIZvl",
+                important: "CollectionNonMusicPage_important__Y9D5x",
+                content: "CollectionNonMusicPage_content__d8E7R",
+                likedBlocks: "CollectionNonMusicPage_likedBlocks__cNqyq",
+                carousel: "CollectionNonMusicPage_carousel__zDCY0",
+                blockHeader: "CollectionNonMusicPage_blockHeader__PoAFY",
+                footer: "CollectionNonMusicPage_footer__9feIA",
+                shelfBlockCarousel:
+                    "CollectionNonMusicPage_shelfBlockCarousel__Kd6DB",
+                shelfBlockHeader:
+                    "CollectionNonMusicPage_shelfBlockHeader__yfFcf",
+            };
+        },
+        65362: (e) => {
+            e.exports = {
+                root: "CollectionPlaylistsPage_root__1QnBw",
+                content: "CollectionPlaylistsPage_content__P3Br2",
+                content_withGridLayout:
+                    "CollectionPlaylistsPage_content_withGridLayout__ytZKv",
+                footer: "CollectionPlaylistsPage_footer__8nXuA",
+                item: "CollectionPlaylistsPage_item__SvtpO",
+                scrollContainer:
+                    "CollectionPlaylistsPage_scrollContainer__ECphU",
+                important: "CollectionPlaylistsPage_important__YtxxZ",
+            };
+        },
+        68687: (e) => {
+            e.exports = {
+                header: "CollectionShelfRecentlyPlayed_header__Nx7Cc",
+                shelfColumn: "CollectionShelfRecentlyPlayed_shelfColumn__9xHhf",
+                important: "CollectionShelfRecentlyPlayed_important__HS0GM",
+            };
+        },
+        69077: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionAlbumsPage: () => B });
+            var s = l(33008),
+                a = l(97531),
+                i = l(17846),
+                o = l(66268),
+                n = l(18064),
+                r = l(21741),
+                c = l(64143),
+                d = l(79169),
+                m = (function (e) {
+                    return (
+                        (e[(e.LIKED_ALBUMS = 0)] = "LIKED_ALBUMS"),
+                        (e[(e.UPCOMING_ALBUMS = 1)] = "UPCOMING_ALBUMS"),
+                        e
+                    );
+                })({}),
+                u = l(92810),
+                _ = l.n(u),
+                C = l(85896),
+                h = l(73827),
+                g = l(52732),
+                p = l(18740),
+                x = l(96560),
+                P = l(77868);
+            let j = (e) => {
+                let t = (0, d.XJ9)();
+                return (0, o.useCallback)(
+                    (l) => {
+                        var s;
+                        switch (
+                            (null == (s = e.onTabChange) || s.call(e, l), l)
+                        ) {
+                            case m.LIKED_ALBUMS: {
+                                let { href: e } = (0, d.uvd)(
+                                    d.Zyd.collectionAlbums.href,
+                                    { query: { tab: d.Hl3.LIKED_ALBUMS } },
+                                );
+                                t(e);
+                                break;
+                            }
+                            case m.UPCOMING_ALBUMS: {
+                                let { href: e } = (0, d.uvd)(
+                                    d.Zyd.collectionAlbums.href,
+                                    { query: { tab: d.Hl3.UPCOMING_ALBUMS } },
+                                );
+                                t(e);
+                            }
+                        }
+                    },
+                    [t, e],
+                );
+            };
+            var y = l(58640),
+                b = l.n(y),
+                A = l(91342);
+            let k = () =>
+                    (0, s.jsxs)("div", {
+                        className: b().tabsShimmer,
+                        children: [
+                            (0, s.jsx)(A.Shimmer, {
+                                className: b().tabShimmer,
+                            }),
+                            (0, s.jsx)(A.Shimmer, {
+                                className: b().tabShimmer,
+                            }),
+                        ],
+                    }),
+                S = (0, a.PA)((e) => {
+                    var t, l, a;
+                    let { tabsState: i, tabElementId: r } = e,
+                        { collection: c } = (0, d.Pjs)(),
+                        { formatMessage: u } = (0, h.A)(),
+                        _ = (0, d.W6M)(),
+                        { isScrolling: C } = (0, o.useContext)(p.B9),
+                        g = j(i),
+                        y = (0, o.useMemo)(
+                            () =>
+                                c.albums.items.length
+                                    ? ""
+                                          .concat(
+                                              u({ id: "entity-names.albums" }),
+                                              " • ",
+                                          )
+                                          .concat(c.albums.items.length)
+                                    : u({ id: "entity-names.albums" }),
+                            [c.albums.items.length, u],
+                        ),
+                        A = (0, o.useMemo)(() => {
+                            var e;
+                            return (
+                                null == (e = c.albums.upcomingAlbums.items)
+                                    ? void 0
+                                    : e.length
+                            )
+                                ? ""
+                                      .concat(
+                                          u({
+                                              id: "entity-names.upcoming-albums",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(
+                                          c.albums.upcomingAlbums.items.length,
+                                      )
+                                : u({ id: "entity-names.upcoming-albums" });
+                        }, [
+                            null == (t = c.albums.upcomingAlbums.items)
+                                ? void 0
+                                : t.length,
+                            u,
+                        ]);
+                    return (0, s.jsxs)("header", {
+                        className: b().root,
+                        "aria-hidden": C,
+                        ...(0, n.Am)(
+                            n.Xk.collection
+                                .COLLECTION_ALBUMS_PAGE_STATIC_HEADER,
+                        ),
+                        children: [
+                            (0, s.jsxs)("div", {
+                                className: b().container,
+                                children: [
+                                    _.canBack &&
+                                        (0, s.jsx)(p.Lh, {
+                                            withForwardControl: !1,
+                                            withBackwardControl: _.canBack,
+                                            shouldFocusOnMount: !C,
+                                        }),
+                                    (0, s.jsx)(P.Heading, {
+                                        variant: "h2",
+                                        weight: "bold",
+                                        size: "xl",
+                                        lineClamp: 1,
+                                        className: b().title,
+                                        ...(0, n.Am)(
+                                            n.Xk.collection
+                                                .COLLECTION_ALBUMS_PAGE_STATIC_HEADER_TITLE,
+                                        ),
+                                        children: (0, s.jsx)(x.A, {
+                                            id: "entity-names.favourite-albums",
+                                        }),
+                                    }),
+                                ],
+                            }),
+                            (0, s.jsxs)(p.wI, {
+                                isShimmerVisible: c.albums.isLoading,
+                                shimmer: (0, s.jsx)(k, {}),
+                                className: b().tabs,
+                                elementId: r,
+                                ...i,
+                                onTabChange: g,
+                                children: [
+                                    (0, s.jsx)(p.oz, {
+                                        className: b().tab,
+                                        value: m.LIKED_ALBUMS,
+                                        title: y,
+                                        "aria-label": u(
+                                            { id: "entity-names.albums-count" },
+                                            { value: c.albums.items.length },
+                                        ),
+                                        "aria-hidden": C,
+                                        tabIndex: C ? -1 : 0,
+                                    }),
+                                    (0, s.jsx)(p.oz, {
+                                        className: b().tab,
+                                        value: m.UPCOMING_ALBUMS,
+                                        title: A,
+                                        "aria-label": u(
+                                            {
+                                                id: "entity-names.upcoming-albums-count",
+                                            },
+                                            {
+                                                value:
+                                                    null !=
+                                                    (a =
+                                                        null ==
+                                                        (l =
+                                                            c.albums
+                                                                .upcomingAlbums
+                                                                .items)
+                                                            ? void 0
+                                                            : l.length)
+                                                        ? a
+                                                        : 0,
+                                            },
+                                        ),
+                                        "aria-hidden": C,
+                                        tabIndex: C ? -1 : 0,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    });
+                });
+            var v = l(95606),
+                N = l.n(v);
+            let L = (0, a.PA)((e) => {
+                var t, l, a;
+                let { forwardRef: i, tabsState: n, tabElementId: c } = e,
+                    {
+                        user: u,
+                        collection: _,
+                        settings: { isMobile: x },
+                    } = (0, d.Pjs)(),
+                    { formatMessage: P } = (0, h.A)(),
+                    j = (0, o.useCallback)(
+                        (e) => {
+                            u.account.data.uid &&
+                                _.albums.getData({
+                                    userId: u.account.data.uid,
+                                    metaType: "music",
+                                    page: e,
+                                    pageSize: 20,
+                                });
+                        },
+                        [_.albums, u.account.data.uid],
+                    ),
+                    y = (0, o.useMemo)(
+                        () => ({
+                            Header: () =>
+                                (0, s.jsx)(S, {
+                                    tabsState: n,
+                                    tabElementId: c,
+                                }),
+                            Footer: () =>
+                                (0, s.jsx)(p.A, {
+                                    children: (0, s.jsx)(p.wi, {
+                                        className: N().footer,
+                                    }),
+                                }),
+                        }),
+                        [c, n],
+                    );
+                return (0, s.jsx)("div", {
+                    className: N().root,
+                    children: (0, s.jsx)(r.TabPanel, {
+                        value: n.value,
+                        name: m.LIKED_ALBUMS,
+                        elementId: c,
+                        className: N().tabPanel,
+                        children: (0, s.jsx)(p.$$, {
+                            className: (0, C.$)(
+                                N().scrollContainer,
+                                N().important,
+                            ),
+                            customComponents: y,
+                            itemContentCallback: (e) => {
+                                var t;
+                                let l =
+                                        null == (t = _.albums.items)
+                                            ? void 0
+                                            : t[e],
+                                    a = P(
+                                        {
+                                            id: "loading-messages.entity-is-loading",
+                                        },
+                                        {
+                                            entityName: P({
+                                                id: "entity-names.album",
+                                            }),
+                                        },
+                                    );
+                                return l
+                                    ? (0, s.jsx)(
+                                          g.aX,
+                                          { album: l, contentLinesCount: 4 },
+                                          l.id,
+                                      )
+                                    : (0, s.jsx)(p.Vt, {
+                                          "aria-label": a,
+                                          linesCount: 4,
+                                      });
+                            },
+                            totalCount:
+                                null !=
+                                (l =
+                                    null == (t = _.albums.pager)
+                                        ? void 0
+                                        : t.total)
+                                    ? l
+                                    : 0,
+                            onGetDataByPage: j,
+                            pageSize: 20,
+                            totalRequests:
+                                null != (a = _.albums.requestsCount) ? a : 0,
+                            listClassName: N().content,
+                            itemClassName: N().item,
+                            handleRef: i,
+                            context: {
+                                listAriaLabel: P({
+                                    id: "collection.liked-albums-list",
+                                }),
+                            },
+                            isMobileLayout: x,
+                            useWindowScroll: x,
+                        }),
+                    }),
+                });
+            });
+            var I = l(57747);
+            let E = (0, a.PA)((e) => {
+                let { forwardRef: t, tabsState: l, tabElementId: a } = e,
+                    { collection: i } = (0, d.Pjs)(),
+                    { formatMessage: n } = (0, h.A)(),
+                    c = (0, o.useMemo)(() => {
+                        var e;
+                        let t = n(
+                            { id: "loading-messages.entity-is-loading" },
+                            { entityName: n({ id: "entity-names.album" }) },
+                        );
+                        return i.albums.isUpcomingAlbumsLoading
+                            ? (0, s.jsx)(p.eI, {
+                                  isActive: !0,
+                                  "aria-label": t,
+                              })
+                            : null == (e = i.albums.upcomingAlbums.items)
+                              ? void 0
+                              : e.map((e) =>
+                                    (0, s.jsx)(
+                                        g.M3,
+                                        { upcomingAlbum: e },
+                                        e.id,
+                                    ),
+                                );
+                    }, [
+                        i.albums.isUpcomingAlbumsLoading,
+                        i.albums.upcomingAlbums,
+                        n,
+                    ]);
+                return (0, s.jsxs)(I.N, {
+                    className: N().root,
+                    containerClassName: (0, C.$)(
+                        N().scrollContainer,
+                        N().important,
+                    ),
+                    ref: t,
+                    children: [
+                        (0, s.jsx)(S, { tabsState: l, tabElementId: a }),
+                        (0, s.jsx)(r.TabPanel, {
+                            value: l.value,
+                            name: m.UPCOMING_ALBUMS,
+                            elementId: a,
+                            className: N().content,
+                            children: c,
+                        }),
+                        (0, s.jsx)(p.A, {
+                            children: (0, s.jsx)(p.wi, {
+                                className: N().footer,
+                            }),
+                        }),
+                    ],
+                });
+            });
+            var T = l(78016),
+                f = l(88742),
+                w = l.n(f);
+            let D = (0, a.PA)((e) => {
+                    let { tabsState: t, tabElementId: l } = e,
+                        a = (0, o.useMemo)(() => {
+                            switch (t.value) {
+                                case m.LIKED_ALBUMS:
+                                    return (0, s.jsx)(x.A, {
+                                        id: "error-messages.empty-collection-albums-title",
+                                    });
+                                case m.UPCOMING_ALBUMS:
+                                    return (0, s.jsx)(x.A, {
+                                        id: "error-messages.empty-collection-upcoming-albums-title",
+                                    });
+                            }
+                        }, [t.value]),
+                        i = t.value === m.LIKED_ALBUMS;
+                    return (0, s.jsxs)(s.Fragment, {
+                        children: [
+                            (0, s.jsx)(S, { tabsState: t, tabElementId: l }),
+                            (0, s.jsxs)(r.TabPanel, {
+                                value: t.value,
+                                name: t.value,
+                                elementId: l,
+                                className: w().root,
+                                children: [
+                                    (0, s.jsx)(T.Icon, {
+                                        className: w().icon,
+                                        size: "l",
+                                        variant: "album",
+                                    }),
+                                    (0, s.jsx)(P.Heading, {
+                                        className: w().title,
+                                        variant: "h3",
+                                        size: "xs",
+                                        ...(0, n.Am)(
+                                            n.Xk.collection
+                                                .COLLECTION_ALBUMS_PAGE_EMPTY_TITLE,
+                                        ),
+                                        children: a,
+                                    }),
+                                    i &&
+                                        (0, s.jsx)(P.Caption, {
+                                            className: w().text,
+                                            variant: "span",
+                                            type: "controls",
+                                            size: "l",
+                                            weight: "normal",
+                                            children: (0, s.jsx)(x.A, {
+                                                id: "error-messages.empty-collection-albums-description",
+                                            }),
+                                        }),
+                                ],
+                            }),
+                        ],
+                    });
+                }),
+                M = (0, a.PA)((e) => {
+                    var t, l, a;
+                    let { tabsState: i, tabElementId: r } = e,
+                        { collection: c } = (0, d.Pjs)(),
+                        { formatMessage: u } = (0, h.A)(),
+                        { isScrolling: _ } = (0, o.useContext)(p.B9),
+                        g = (0, d.W6M)(),
+                        x = j(i),
+                        P = (0, o.useMemo)(
+                            () =>
+                                c.albums.items.length
+                                    ? ""
+                                          .concat(
+                                              u({ id: "entity-names.albums" }),
+                                              " • ",
+                                          )
+                                          .concat(c.albums.items.length)
+                                    : u({ id: "entity-names.albums" }),
+                            [c.albums.items.length, u],
+                        ),
+                        y = (0, o.useMemo)(() => {
+                            var e, t;
+                            return (
+                                null == (e = c.albums.upcomingAlbums.items)
+                                    ? void 0
+                                    : e.length
+                            )
+                                ? ""
+                                      .concat(
+                                          u({
+                                              id: "entity-names.upcoming-albums",
+                                          }),
+                                          " • ",
+                                      )
+                                      .concat(
+                                          null ==
+                                              (t =
+                                                  c.albums.upcomingAlbums.items)
+                                              ? void 0
+                                              : t.length,
+                                      )
+                                : u({ id: "entity-names.upcoming-albums" });
+                        }, [
+                            null == (t = c.albums.upcomingAlbums.items)
+                                ? void 0
+                                : t.length,
+                            u,
+                        ]);
+                    return (0, s.jsx)(p.Y9, {
+                        variant: p.Vw.COMPOSITE,
+                        staticClassName: (0, C.$)(
+                            b().staticHeader,
+                            b().important,
+                        ),
+                        "aria-hidden": !_,
+                        stickyClassName: (0, C.$)(
+                            b().stickyHeader,
+                            b().important,
+                        ),
+                        containerProps: (0, n.Am)(
+                            n.Xk.collection
+                                .COLLECTION_ALBUMS_PAGE_STICKY_HEADER,
+                        ),
+                        stickyChild: (0, s.jsxs)("div", {
+                            className: b().container,
+                            children: [
+                                g.canBack &&
+                                    (0, s.jsx)(p.Lh, {
+                                        withForwardControl: !1,
+                                        withBackwardControl: g.canBack,
+                                        shouldFocusOnMount: !1,
+                                        buttonSize: "xs",
+                                    }),
+                                (0, s.jsxs)(p.wI, {
+                                    isShimmerVisible: c.albums.isLoading,
+                                    shimmer: (0, s.jsx)(k, {}),
+                                    className: b().tabs,
+                                    elementId: r,
+                                    ...i,
+                                    onTabChange: x,
+                                    children: [
+                                        (0, s.jsx)(p.oz, {
+                                            className: b().tab,
+                                            value: m.LIKED_ALBUMS,
+                                            title: P,
+                                            "aria-label": u(
+                                                {
+                                                    id: "entity-names.albums-count",
+                                                },
+                                                {
+                                                    value: c.albums.items
+                                                        .length,
+                                                },
+                                            ),
+                                            "aria-hidden": !_,
+                                            tabIndex: _ ? 0 : -1,
+                                        }),
+                                        (0, s.jsx)(p.oz, {
+                                            className: b().tab,
+                                            value: m.UPCOMING_ALBUMS,
+                                            title: y,
+                                            "aria-label": u(
+                                                {
+                                                    id: "entity-names.upcoming-albums-count",
+                                                },
+                                                {
+                                                    value:
+                                                        null !=
+                                                        (a =
+                                                            null ==
+                                                            (l =
+                                                                c.albums
+                                                                    .upcomingAlbums
+                                                                    .items)
+                                                                ? void 0
+                                                                : l.length)
+                                                            ? a
+                                                            : 0,
+                                                },
+                                            ),
+                                            "aria-hidden": !_,
+                                            tabIndex: _ ? 0 : -1,
+                                        }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                    });
+                }),
+                B = (0, a.PA)(() => {
+                    let e = (0, i.useSearchParams)(),
+                        { user: t, collection: l, library: a } = (0, d.Pjs)(),
+                        { contentScrollRef: u, setContentScrollRef: C } = (0,
+                        d.gKY)(),
+                        h = (0, o.useId)(),
+                        g = (0, o.useMemo)(() => {
+                            switch (e.get(d.K3F.TAB)) {
+                                case d.Hl3.LIKED_ALBUMS:
+                                    break;
+                                case d.Hl3.UPCOMING_ALBUMS:
+                                    return m.UPCOMING_ALBUMS;
+                            }
+                            return m.LIKED_ALBUMS;
+                        }, [e]),
+                        p = (0, r.useTabsState)(g);
+                    (0, d.Jzs)(l.albums.isResolved),
+                        (0, o.useEffect)(
+                            () => () => {
+                                l.albums.reset();
+                            },
+                            [l.albums],
+                        );
+                    let x = (0, o.useMemo)(() => {
+                        switch (p.value) {
+                            case m.LIKED_ALBUMS:
+                                if (l.albums.isAlbumsEmpty)
+                                    return (0, s.jsx)(D, {
+                                        tabsState: p,
+                                        tabElementId: h,
+                                    });
+                                return (0, s.jsx)(L, {
+                                    forwardRef: C,
+                                    tabsState: p,
+                                    tabElementId: h,
+                                });
+                            case m.UPCOMING_ALBUMS:
+                                if (l.albums.isUpcomingAlbumsEmpty)
+                                    return (0, s.jsx)(D, {
+                                        tabsState: p,
+                                        tabElementId: h,
+                                    });
+                                return (0, s.jsx)(E, {
+                                    forwardRef: C,
+                                    tabsState: p,
+                                    tabElementId: h,
+                                });
+                        }
+                    }, [
+                        l.albums.isAlbumsEmpty,
+                        l.albums.isUpcomingAlbumsEmpty,
+                        C,
+                        h,
+                        p,
+                    ]);
+                    if (t.account.data.uid && l.albums.isNeededToLoad) {
+                        let e = [
+                            l.albums.getData({
+                                userId: t.account.data.uid,
+                                metaType: "music",
+                                page: 0,
+                                pageSize: 20,
+                            }),
+                            l.albums.getPresaves({
+                                userId: t.account.data.uid,
+                            }),
+                            a.getData(),
+                        ];
+                        (0, o.use)(Promise.allSettled(e));
+                    }
+                    return (0, s.jsx)(d.nVz, {
+                        pageId: d._Q$.OWN_ALBUMS,
+                        children: (0, s.jsx)(c.hO, {
+                            scrollElement: u,
+                            headerThreshold: 148,
+                            children: (0, s.jsxs)("div", {
+                                className: _().root,
+                                ...(0, n.Am)(
+                                    n.Xk.collection.COLLECTION_ALBUMS_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(M, {
+                                        tabsState: p,
+                                        tabElementId: h,
+                                    }),
+                                    x,
+                                ],
+                            }),
+                        }),
+                    });
+                });
+        },
+        69167: (e) => {
+            e.exports = { title: "CollectionShelfShimmer_title__X3d9J" };
+        },
+        70235: (e, t, l) => {
+            "use strict";
+            l.d(t, { a: () => s });
+            var s = (function (e) {
+                return (
+                    (e[(e.CREATED = 0)] = "CREATED"),
+                    (e[(e.LIKED = 1)] = "LIKED"),
+                    e
+                );
+            })({});
+        },
+        71327: (e) => {
+            e.exports = {
+                root: "CollectionPlaylistsPageEmpty_root__mKZt2",
+                icon: "CollectionPlaylistsPageEmpty_icon__x9v_P",
+                title: "CollectionPlaylistsPageEmpty_title__8RfSi",
+            };
+        },
+        71886: (e, t, l) => {
+            "use strict";
+            l.d(t, { M: () => d });
+            var s = l(33008),
+                a = l(85896),
+                i = l(96560),
+                o = l(78016),
+                n = l(77868),
+                r = l(95448),
+                c = l.n(r);
+            let d = (e) => {
+                let { className: t } = e;
+                return (0, s.jsxs)("div", {
+                    className: (0, a.$)(c().emptyContent, t),
+                    children: [
+                        (0, s.jsx)(o.Icon, {
+                            className: c().emptyContentIcon,
+                            size: "l",
+                            variant: "album",
+                        }),
+                        (0, s.jsx)(n.Heading, {
+                            className: c().emptyContentTitle,
+                            variant: "h3",
+                            size: "xs",
+                            children: (0, s.jsx)(i.A, {
+                                id: "error-messages.empty-collection-podcasts-and-books",
+                            }),
+                        }),
+                    ],
+                });
+            };
+        },
+        72111: (e) => {
+            e.exports = {
+                root: "CollectionClipsPageEmpty_root__P29ns",
+                content: "CollectionClipsPageEmpty_content__gIM_C",
+                icon: "CollectionClipsPageEmpty_icon__jDAZP",
+                title: "CollectionClipsPageEmpty_title__DKJ_3",
+                text: "CollectionClipsPageEmpty_text__F_Too",
+            };
+        },
+        73250: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionArtistsPage: () => b });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(93967),
+                d = l(18064),
+                m = l(77868),
+                u = l(90317),
+                _ = l(64143),
+                C = l(79169),
+                h = l(18740),
+                g = l(49762),
+                p = l.n(g),
+                x = l(16285),
+                P = l(82374),
+                j = l.n(P);
+            let y = (0, i.PA)(() => {
+                    let { collection: e } = (0, C.Pjs)(),
+                        { formatMessage: t } = (0, n.A)(),
+                        l = t(
+                            { id: "loading-messages.entity-is-loading" },
+                            { entityName: t({ id: "entity-names.artist" }) },
+                        ),
+                        a = (0, o.useMemo)(
+                            () =>
+                                e.artists.topArtists.isResolved
+                                    ? e.artists.topArtists.items.map((l, a) => {
+                                          var i;
+                                          let o = null;
+                                          if (l.listenTimeSeconds) {
+                                              let e = l.listenTimeSeconds / 60;
+                                              o =
+                                                  e <= 45
+                                                      ? t(
+                                                            {
+                                                                id: "time.minutes-left",
+                                                            },
+                                                            {
+                                                                minutes:
+                                                                    Math.round(
+                                                                        e,
+                                                                    ),
+                                                            },
+                                                        )
+                                                      : t(
+                                                            {
+                                                                id: "time.hours",
+                                                            },
+                                                            {
+                                                                hours:
+                                                                    Math.round(
+                                                                        (e /
+                                                                            60) *
+                                                                            2,
+                                                                    ) / 2,
+                                                            },
+                                                        );
+                                          }
+                                          return (0, s.jsx)(
+                                              C.Bki,
+                                              {
+                                                  objectType: c.ky.Artist,
+                                                  objectId: l.artist.id,
+                                                  objectPosX: a + 1,
+                                                  objectPosY: 1,
+                                                  objectsCount:
+                                                      e.artists.topArtists.items
+                                                          .length,
+                                                  children: (0, s.jsx)(
+                                                      u.ao,
+                                                      {
+                                                          topTitleElement:
+                                                              l.top &&
+                                                              (0, s.jsx)(
+                                                                  x.t1,
+                                                                  {
+                                                                      className:
+                                                                          j()
+                                                                              .chart,
+                                                                      position:
+                                                                          l.top
+                                                                              .position,
+                                                                      progress:
+                                                                          l.top
+                                                                              .progress,
+                                                                      weight: "bold",
+                                                                      positionClassName:
+                                                                          j()
+                                                                              .position,
+                                                                      withIcon:
+                                                                          0 ===
+                                                                          a,
+                                                                      withCrownIcon:
+                                                                          0 ===
+                                                                          a,
+                                                                  },
+                                                                  l.getKey(
+                                                                      "ArtistTop",
+                                                                  ),
+                                                              ),
+                                                          bottomTitleElement: o
+                                                              ? (0, s.jsx)(
+                                                                    m.Caption,
+                                                                    {
+                                                                        className:
+                                                                            j()
+                                                                                .listenTime,
+                                                                        variant:
+                                                                            "div",
+                                                                        type: "entity",
+                                                                        size: "s",
+                                                                        weight: "medium",
+                                                                        lineClamp: 1,
+                                                                        ...(0,
+                                                                        d.Am)(
+                                                                            d.Xk
+                                                                                .collection
+                                                                                .COLLECTION_TOP_ARTISTS_LISTEN_TIME,
+                                                                        ),
+                                                                        children:
+                                                                            o,
+                                                                    },
+                                                                )
+                                                              : void 0,
+                                                          artist: l.artist,
+                                                          contentLinesCount: 4,
+                                                      },
+                                                      null == (i = l.artist)
+                                                          ? void 0
+                                                          : i.id,
+                                                  ),
+                                              },
+                                              l.artist.id,
+                                          );
+                                      })
+                                    : (0, s.jsx)(h.eI, {
+                                          linesCount: 4,
+                                          count: 3,
+                                          isActive: !0,
+                                          "aria-label": l,
+                                          round: !0,
+                                          centered: !0,
+                                      }),
+                            [
+                                t,
+                                l,
+                                e.artists.topArtists.isResolved,
+                                e.artists.topArtists.items,
+                            ],
+                        );
+                    return (0, s.jsxs)(C.FoH, {
+                        blockId: "collection_artists_top",
+                        blockType: "ARTISTS_TOP",
+                        blockPosX: 1,
+                        blockPosY: 1,
+                        blockIdForFrom: "collection_artists_top",
+                        objectsCount: e.artists.topArtists.items.length,
+                        children: [
+                            (0, s.jsx)(m.Heading, {
+                                size: "s",
+                                weight: "bold",
+                                variant: "h2",
+                                className: j().subTitle,
+                                ...(0, d.Am)(
+                                    d.Xk.collection
+                                        .COLLECTION_TOP_ARTISTS_HEADING,
+                                ),
+                                children: (0, s.jsx)(r.A, {
+                                    id: "entity-names.top-artists",
+                                }),
+                            }),
+                            (0, s.jsx)("div", {
+                                className: j().gridLayout,
+                                ...(0, d.Am)(
+                                    d.Xk.collection.COLLECTION_TOP_ARTISTS_GRID,
+                                ),
+                                children: a,
+                            }),
+                        ],
+                    });
+                }),
+                b = (0, i.PA)(() => {
+                    var e, t, l, i;
+                    let {
+                            user: g,
+                            collection: x,
+                            settings: { isMobile: P },
+                            library: j,
+                        } = (0, C.Pjs)(),
+                        { formatMessage: b } = (0, n.A)(),
+                        { contentScrollRef: A, setContentScrollRef: k } = (0,
+                        C.gKY)(),
+                        S = (0, C.W6M)();
+                    (0, C.Jzs)(x.artists.isResolved),
+                        (0, o.useEffect)(
+                            () => () => {
+                                x.artists.reset();
+                            },
+                            [x.artists],
+                        );
+                    let v = (0, o.useCallback)(
+                            (e) => {
+                                g.account.data.uid &&
+                                    x.artists.getData({
+                                        userId: g.account.data.uid,
+                                        page: e,
+                                        pageSize: 20,
+                                    });
+                            },
+                            [x.artists, g.account.data.uid],
+                        ),
+                        N = b(
+                            { id: "loading-messages.entity-is-loading" },
+                            { entityName: b({ id: "entity-names.artist" }) },
+                        ),
+                        L =
+                            x.artists.topArtists.items.length ||
+                            !x.artists.topArtists.isResolved,
+                        I = (0, o.useMemo)(
+                            () =>
+                                L
+                                    ? () =>
+                                          (0, s.jsxs)("div", {
+                                              className: (0, a.$)(
+                                                  p().contentBlock,
+                                                  p()
+                                                      .contentBlock_withMarginTop,
+                                              ),
+                                              children: [
+                                                  (0, s.jsx)(y, {}),
+                                                  (x.artists.items.length > 0 ||
+                                                      !x.artists.isResolved) &&
+                                                      (0, s.jsx)(m.Heading, {
+                                                          size: "s",
+                                                          weight: "bold",
+                                                          variant: "h2",
+                                                          className:
+                                                              p().subTitle,
+                                                          children: (0, s.jsx)(
+                                                              r.A,
+                                                              {
+                                                                  id: "entity-names.liked-artist",
+                                                              },
+                                                          ),
+                                                      }),
+                                              ],
+                                          })
+                                    : null,
+                            [L, x.artists.items.length, x.artists.isResolved],
+                        ),
+                        E = (0, o.useMemo)(
+                            () => ({
+                                Header: I,
+                                Footer: () =>
+                                    (0, s.jsx)(h.A, {
+                                        children: (0, s.jsx)(h.wi, {
+                                            className: p().footer,
+                                        }),
+                                    }),
+                            }),
+                            [I],
+                        );
+                    if (g.account.data.uid && x.artists.isNeededToLoad) {
+                        let e = [
+                            x.artists.getData({ userId: g.account.data.uid }),
+                            x.artists.getDataTopArtists(),
+                            j.getData(),
+                        ];
+                        (0, o.use)(Promise.allSettled(e));
+                    }
+                    let T =
+                        !x.artists.isLoading ||
+                        (null == (e = x.artists.pager) ? void 0 : e.total)
+                            ? null !=
+                              (l =
+                                  null == (t = x.artists.pager)
+                                      ? void 0
+                                      : t.total)
+                                ? l
+                                : 0
+                            : 10;
+                    return (0, s.jsx)(C.nVz, {
+                        pageId: C._Q$.OWN_ARTISTS,
+                        children: (0, s.jsx)(C.jPc, {
+                            children: (0, s.jsx)(_.hO, {
+                                scrollElement: A,
+                                outerTitle: b({ id: "entity-names.artists" }),
+                                children: (0, s.jsxs)("div", {
+                                    className: p().root,
+                                    ...(0, d.Am)(
+                                        d.Xk.collection.COLLECTION_ARTISTS_PAGE,
+                                    ),
+                                    children: [
+                                        (0, s.jsx)(h.Y9, {
+                                            variant: h.Vw.TEXT,
+                                            withForwardControl: !1,
+                                            withBackwardControl: S.canBack,
+                                            children: (0, s.jsx)(m.Heading, {
+                                                id: "collection-artists-header",
+                                                variant: "h1",
+                                                weight: "bold",
+                                                size: "xl",
+                                                lineClamp: 1,
+                                                children: (0, s.jsx)(r.A, {
+                                                    id: "entity-names.artists",
+                                                }),
+                                            }),
+                                        }),
+                                        (0, s.jsx)(h.$$, {
+                                            className: (0, a.$)(
+                                                p().scrollContainer,
+                                                p().important,
+                                            ),
+                                            customComponents: E,
+                                            itemContentCallback: (e) => {
+                                                var t;
+                                                let l =
+                                                    null ==
+                                                    (t = x.artists.items)
+                                                        ? void 0
+                                                        : t[e];
+                                                return l
+                                                    ? (0, s.jsx)(C.FoH, {
+                                                          blockId:
+                                                              "collection_artist",
+                                                          blockType: "ARTIST",
+                                                          blockPosX: e + 1,
+                                                          blockPosY: 1,
+                                                          blockIdForFrom: l.id,
+                                                          objectsCount:
+                                                              x.artists.items
+                                                                  .length,
+                                                          children: (0, s.jsx)(
+                                                              C.Bki,
+                                                              {
+                                                                  objectType:
+                                                                      c.ky
+                                                                          .Artist,
+                                                                  objectId:
+                                                                      l.id,
+                                                                  objectPosX: 1,
+                                                                  objectPosY: 1,
+                                                                  objectsCount:
+                                                                      x.artists
+                                                                          .items
+                                                                          .length,
+                                                                  children: (0,
+                                                                  s.jsx)(
+                                                                      u.ao,
+                                                                      {
+                                                                          artist: l,
+                                                                          contentLinesCount: 3,
+                                                                      },
+                                                                      l.id,
+                                                                  ),
+                                                              },
+                                                          ),
+                                                      })
+                                                    : (0, s.jsx)(h.Vt, {
+                                                          isActive: !0,
+                                                          "aria-label": N,
+                                                          round: !0,
+                                                          centered: !0,
+                                                      });
+                                            },
+                                            initialItemCount: T,
+                                            totalCount: T,
+                                            onGetDataByPage: v,
+                                            pageSize: 20,
+                                            totalRequests:
+                                                null != (i = x.artists.requests)
+                                                    ? i
+                                                    : 0,
+                                            listClassName: (0, a.$)(
+                                                p().contentBlock,
+                                                p().gridLayout,
+                                                {
+                                                    [p()
+                                                        .contentBlock_withMarginTop]:
+                                                        !L,
+                                                },
+                                            ),
+                                            itemClassName: p().item,
+                                            handleRef: k,
+                                            context: {
+                                                listAriaLabel: b({
+                                                    id: "collection.liked-artists-list",
+                                                }),
+                                            },
+                                            isMobileLayout: P,
+                                            useWindowScroll: P,
+                                        }),
+                                    ],
+                                }),
+                            }),
+                        }),
+                    });
+                });
+        },
+        74261: (e) => {
+            e.exports = {
+                root: "CollectionClipsPageClipsWillLike_root__uS0_8",
+                carouselItem:
+                    "CollectionClipsPageClipsWillLike_carouselItem__0C0_W",
+                important: "CollectionClipsPageClipsWillLike_important__U_2ET",
+                carouselBlockHeader:
+                    "CollectionClipsPageClipsWillLike_carouselBlockHeader__wDnJp",
+                carouselBlock:
+                    "CollectionClipsPageClipsWillLike_carouselBlock__La_8Q",
+            };
+        },
+        77154: (e) => {
+            e.exports = {
+                root: "CollectionPage_root__CZAxL",
+                root_withCollectionColor:
+                    "CollectionPage_root_withCollectionColor__4kV02",
+                content: "CollectionPage_content__c3f8z",
+                header: "CollectionPage_header__z193s",
+                description: "CollectionPage_description__A3dny",
+                collectionColor: "CollectionPage_collectionColor__M5l1f",
+                landing: "CollectionPage_landing__B4jW_",
+                landing_onlyWizard: "CollectionPage_landing_onlyWizard__umeEK",
+                footer: "CollectionPage_footer__9kzD0",
+                footer_onlyWizard: "CollectionPage_footer_onlyWizard__FxCwa",
+                error: "CollectionPage_error__xs4ZH",
+            };
+        },
+        78434: (e) => {
+            e.exports = {
+                root: "CollectionKidsSubPageEmpty_root__53xVY",
+                scrollableContainer:
+                    "CollectionKidsSubPageEmpty_scrollableContainer__Dh6Sp",
+                content: "CollectionKidsSubPageEmpty_content__VZZg5",
+                icon: "CollectionKidsSubPageEmpty_icon__IQAON",
+                title: "CollectionKidsSubPageEmpty_title__t9H4h",
+                button: "CollectionKidsSubPageEmpty_button__26EKY",
+                footer: "CollectionKidsSubPageEmpty_footer__XQnAw",
+            };
+        },
+        82374: (e) => {
+            e.exports = {
+                subTitle: "CollectionArtistsPageTopArtists_subTitle__xJdoJ",
+                gridLayout: "CollectionArtistsPageTopArtists_gridLayout__H2AR_",
+                chart: "CollectionArtistsPageTopArtists_chart__inbPE",
+                position: "CollectionArtistsPageTopArtists_position__YDoRC",
+                listenTime: "CollectionArtistsPageTopArtists_listenTime__NqxRf",
+            };
+        },
+        83708: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionPage: () => j });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(43836),
+                m = l(57747),
+                u = l(77868),
+                _ = l(12898),
+                C = l(83888),
+                h = l(64143),
+                g = l(79169),
+                p = l(18740),
+                x = l(77154),
+                P = l.n(x);
+            let j = (0, i.PA)(() => {
+                let { collection: e, user: t, library: l } = (0, g.Pjs)(),
+                    { contentScrollRef: i, setContentScrollRef: x } = (0,
+                    g.gKY)(),
+                    { formatMessage: j } = (0, n.A)(),
+                    y = !e.landing.isRejected && !!t.collectionHue;
+                (0, o.useEffect)(() => () => e.landing.reset(), [e.landing]),
+                    (0, g.Jzs)(e.landing.isResolved);
+                let b = (0, _._9)(e.landing),
+                    A = (0, o.useMemo)(
+                        () =>
+                            y && t.collectionHue
+                                ? {
+                                      "--collection-color": (0, g.eWZ)(
+                                          t.collectionHue,
+                                      ),
+                                  }
+                                : null,
+                        [y, t.collectionHue],
+                    ),
+                    k = (0, o.useMemo)(
+                        () => ({
+                            color: (e) =>
+                                (0, s.jsx)(p.hj, {
+                                    title: j({
+                                        id: "collection.collection-color-title",
+                                    }),
+                                    description: j({
+                                        id: "collection.collection-color-description",
+                                    }),
+                                    placement: "right",
+                                    children: (0, s.jsx)("span", {
+                                        className: P().collectionColor,
+                                        style: A,
+                                        children: e,
+                                    }),
+                                }),
+                        }),
+                        [A, j],
+                    );
+                if (e.landing.isNeededToLoad) {
+                    let s = [
+                        e.landing.getSkeleton(
+                            {
+                                id: d.p.WEB_COLLECTION,
+                                showWizard: t.settings.showWizard,
+                            },
+                            { preloadBlocksCount: 2 },
+                        ),
+                        l.getData(),
+                    ];
+                    (0, o.use)(Promise.allSettled(s));
+                }
+                return (0, s.jsx)(g.nVz, {
+                    pageId: g._Q$.OWN_COLLECTION,
+                    children: (0, s.jsxs)(h.hO, {
+                        scrollElement: i,
+                        outerTitle: j({ id: "entity-names.collection" }),
+                        children: [
+                            (0, s.jsx)(p.Y9, {
+                                variant: p.Vw.TEXT,
+                                showControls: !1,
+                                children: (0, s.jsxs)("div", {
+                                    className: P().header,
+                                    children: [
+                                        (0, s.jsx)(u.Heading, {
+                                            variant: "h1",
+                                            weight: "bold",
+                                            size: "xl",
+                                            children: (0, s.jsx)(r.A, {
+                                                id: "entity-names.collection",
+                                            }),
+                                        }),
+                                        y &&
+                                            (0, s.jsx)(u.Caption, {
+                                                className: P().description,
+                                                variant: "div",
+                                                size: "m",
+                                                children: (0, s.jsx)(r.A, {
+                                                    id: "collection.collection-color",
+                                                    values: k,
+                                                }),
+                                            }),
+                                    ],
+                                }),
+                            }),
+                            (0, s.jsxs)(m.N, {
+                                className: (0, a.$)(P().root, {
+                                    [P().root_withCollectionColor]: y,
+                                }),
+                                containerClassName: P().content,
+                                ref: x,
+                                children: [
+                                    (0, s.jsx)("div", {
+                                        className: (0, a.$)(P().landing, {
+                                            [P().landing_onlyWizard]: b,
+                                        }),
+                                        ...(0, c.Am)(
+                                            c.Xk.collection.COLLECTION_PAGE,
+                                        ),
+                                        children: (0, s.jsx)(_.EA, {
+                                            landing: e.landing,
+                                            errorComponent: (0, s.jsx)(C.w, {
+                                                className: P().error,
+                                                withBackwardControl: !1,
+                                            }),
+                                        }),
+                                    }),
+                                    (0, s.jsx)(p.A, {
+                                        children: (0, s.jsx)(p.wi, {
+                                            className: P().footer,
+                                        }),
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                });
+            });
+        },
+        84674: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionNonMusicLikedPage: () => P });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(77868),
+                m = l(83888),
+                u = l(52732),
+                _ = l(64143),
+                C = l(79169),
+                h = l(18740),
+                g = l(71886),
+                p = l(11718),
+                x = l.n(p);
+            let P = (0, i.PA)(() => {
+                var e, t, l;
+                let {
+                        user: i,
+                        collection: { nonMusicLiked: p },
+                        settings: { isMobile: P },
+                        library: j,
+                    } = (0, C.Pjs)(),
+                    { formatMessage: y } = (0, n.A)(),
+                    { contentScrollRef: b, setContentScrollRef: A } = (0,
+                    C.gKY)(),
+                    k = (0, C.W6M)();
+                (0, C.Jzs)(p.isResolved);
+                let S = (0, o.useCallback)(
+                    (e) => {
+                        i.account.data.uid &&
+                            p.getData({
+                                userId: i.account.data.uid,
+                                metaType: "podcast",
+                                page: e,
+                                pageSize: 20,
+                            });
+                    },
+                    [p, i.account.data.uid],
+                );
+                if (p.isRejected) return (0, s.jsx)(m.w, {});
+                (0, o.useEffect)(
+                    () => () => {
+                        p.reset();
+                    },
+                    [p],
+                );
+                let v = (0, o.useMemo)(
+                    () => ({
+                        Footer: () =>
+                            (0, s.jsx)(h.A, {
+                                children: (0, s.jsx)(h.wi, {
+                                    className: x().footer,
+                                }),
+                            }),
+                    }),
+                    [],
+                );
+                if (i.account.data.uid && p.isNeededToLoad) {
+                    let e = [
+                        p.getData({
+                            userId: i.account.data.uid,
+                            metaType: "podcast",
+                            pageSize: 20,
+                        }),
+                        j.getData(),
+                    ];
+                    (0, o.use)(Promise.allSettled(e));
+                }
+                return (0, s.jsx)(C.nVz, {
+                    pageId: C._Q$.OWN_PODCASTS,
+                    children: (0, s.jsx)(_.hO, {
+                        scrollElement: b,
+                        outerTitle: y({ id: "page.delayed-non-music" }),
+                        children: (0, s.jsxs)("div", {
+                            className: x().root,
+                            ...(0, c.Am)(
+                                c.Xk.collection.COLLECTION_NON_MUSIC_LIKED_PAGE,
+                            ),
+                            children: [
+                                (0, s.jsx)(h.Y9, {
+                                    variant: h.Vw.TEXT,
+                                    withForwardControl: !1,
+                                    withBackwardControl: k.canBack,
+                                    children: (0, s.jsx)(d.Heading, {
+                                        variant: "h2",
+                                        weight: "bold",
+                                        size: "xl",
+                                        lineClamp: 1,
+                                        children: (0, s.jsx)(r.A, {
+                                            id: "page.delayed-non-music",
+                                        }),
+                                    }),
+                                }),
+                                p.isEmptyItems &&
+                                    !p.isRejected &&
+                                    (0, s.jsx)(g.M, {
+                                        className: x().emptyBlock,
+                                    }),
+                                (0, s.jsx)(h.$$, {
+                                    className: (0, a.$)(
+                                        x().scrollContainer,
+                                        x().important,
+                                    ),
+                                    listClassName: x().content,
+                                    itemClassName: x().item,
+                                    customComponents: v,
+                                    itemContentCallback: (e) => {
+                                        var t;
+                                        let l =
+                                                null == (t = p.items)
+                                                    ? void 0
+                                                    : t[e],
+                                            a = y(
+                                                {
+                                                    id: "loading-messages.entity-is-loading",
+                                                },
+                                                {
+                                                    entityName: y({
+                                                        id: "entity-names.podcast",
+                                                    }),
+                                                },
+                                            );
+                                        return l
+                                            ? (0, s.jsx)(
+                                                  u.aX,
+                                                  {
+                                                      album: l,
+                                                      contentLinesCount: 3,
+                                                      withLikesCount: !0,
+                                                      withAddition: !1,
+                                                  },
+                                                  l.id,
+                                              )
+                                            : (0, s.jsx)(h.Vt, {
+                                                  "aria-label": a,
+                                              });
+                                    },
+                                    totalCount:
+                                        null !=
+                                        (t =
+                                            null == (e = p.pager)
+                                                ? void 0
+                                                : e.total)
+                                            ? t
+                                            : 0,
+                                    onGetDataByPage: S,
+                                    pageSize: 20,
+                                    totalRequests:
+                                        null != (l = p.requestsCount) ? l : 0,
+                                    handleRef: A,
+                                    context: {
+                                        listAriaLabel: y({
+                                            id: "collection.liked-non-music-list",
+                                        }),
+                                    },
+                                    isMobileLayout: P,
+                                    useWindowScroll: P,
+                                }),
+                            ],
+                        }),
+                    }),
+                });
+            });
+        },
+        87451: (e, t, l) => {
+            "use strict";
+            l.d(t, { T: () => i });
+            var s,
+                a = l(48509);
+            !(function (e) {
+                (e.ALBUM = "album"), (e.PLAYLIST = "playlist");
+            })(s || (s = {}));
+            let i = (e, t) => {
+                var l, i;
+                return e.type === s.ALBUM
+                    ? {
+                          type: a.K.Album,
+                          meta: {
+                              id: (null == (i = e.album) ? void 0 : i.id) || 0,
+                          },
+                          from: t || "",
+                      }
+                    : {
+                          type: a.K.Playlist,
+                          meta: {
+                              id:
+                                  (null == (l = e.playlist) ? void 0 : l.id) ||
+                                  "",
+                          },
+                          from: t || "",
+                      };
+            };
+        },
+        88742: (e) => {
+            e.exports = {
+                root: "CollectionAlbumsPageEmpty_root__7yn1F",
+                icon: "CollectionAlbumsPageEmpty_icon__XFf9x",
+                title: "CollectionAlbumsPageEmpty_title__hMQde",
+                text: "CollectionAlbumsPageEmpty_text__jp_lj",
+            };
+        },
+        91302: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionPlaylistsLikedPage: () => P });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(19964),
+                m = l(19980),
+                u = l(77868),
+                _ = l(64143),
+                C = l(45242),
+                h = l(79169),
+                g = l(18740),
+                p = l(34914),
+                x = l.n(p);
+            let P = (0, i.PA)(() => {
+                var e, t, l;
+                let {
+                        user: i,
+                        collection: {
+                            playlists: { playlistsLiked: p },
+                        },
+                        settings: { isMobile: P },
+                    } = (0, h.Pjs)(),
+                    { formatMessage: j } = (0, n.A)(),
+                    { contentScrollRef: y, setContentScrollRef: b } = (0,
+                    h.gKY)(),
+                    A = (0, h.W6M)(),
+                    k = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(g.A, {
+                                    children: (0, s.jsx)(g.wi, {
+                                        className: x().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    );
+                (0, h.Jzs)(p.isResolved);
+                let S = (0, o.useCallback)(
+                    (e) => {
+                        i.account.data.uid &&
+                            p.getData({
+                                userId: i.account.data.uid,
+                                sortOrder: d.x.DESC,
+                                playlistMetaType: m.S.MUSIC,
+                                page: e,
+                                pageSize: 20,
+                            });
+                    },
+                    [p, i.account.data.uid],
+                );
+                return (
+                    (0, o.useEffect)(
+                        () => () => {
+                            p.reset();
+                        },
+                        [p],
+                    ),
+                    i.account.data.uid &&
+                        p.isNeededToLoad &&
+                        (0, o.use)(
+                            p.getData({
+                                userId: i.account.data.uid,
+                                sortOrder: d.x.DESC,
+                                playlistMetaType: m.S.MUSIC,
+                                page: 0,
+                                pageSize: 20,
+                            }),
+                        ),
+                    (0, s.jsx)(h.nVz, {
+                        pageId: h._Q$.OWN_PLAYLISTS,
+                        children: (0, s.jsx)(_.hO, {
+                            scrollElement: y,
+                            outerTitle: j({
+                                id: "entity-names.favourite-playlists",
+                            }),
+                            children: (0, s.jsxs)("div", {
+                                className: x().root,
+                                ...(0, c.Am)(
+                                    c.Xk.collection
+                                        .COLLECTION_PLAYLISTS_LIKED_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(g.Y9, {
+                                        variant: g.Vw.TEXT,
+                                        withForwardControl: !1,
+                                        withBackwardControl: A.canBack,
+                                        children: (0, s.jsx)(u.Heading, {
+                                            variant: "h2",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            children: (0, s.jsx)(r.A, {
+                                                id: "entity-names.favourite-playlists",
+                                            }),
+                                        }),
+                                    }),
+                                    (0, s.jsx)(g.$$, {
+                                        className: (0, a.$)(
+                                            x().scrollContainer,
+                                            x().important,
+                                        ),
+                                        customComponents: k,
+                                        itemContentCallback: (e) => {
+                                            var t;
+                                            let l =
+                                                    null == p ||
+                                                    null == (t = p.items)
+                                                        ? void 0
+                                                        : t[e],
+                                                a = j(
+                                                    {
+                                                        id: "loading-messages.entity-is-loading",
+                                                    },
+                                                    {
+                                                        entityName: j({
+                                                            id: "entity-names.playlist",
+                                                        }),
+                                                    },
+                                                );
+                                            return l
+                                                ? (0, s.jsx)(
+                                                      C.B6,
+                                                      {
+                                                          playlist: l,
+                                                          contentLinesCount: 3,
+                                                      },
+                                                      l.key,
+                                                  )
+                                                : (0, s.jsx)(g.Vt, {
+                                                      "aria-label": a,
+                                                  });
+                                        },
+                                        totalCount:
+                                            null !=
+                                            (t =
+                                                null == p ||
+                                                null == (e = p.pager)
+                                                    ? void 0
+                                                    : e.total)
+                                                ? t
+                                                : 0,
+                                        onGetDataByPage: S,
+                                        pageSize: 20,
+                                        totalRequests:
+                                            null != (l = p.requests) ? l : 0,
+                                        listClassName: x().content,
+                                        itemClassName: x().item,
+                                        handleRef: b,
+                                        context: {
+                                            listAriaLabel: j({
+                                                id: "collection.liked-playlists-list",
+                                            }),
+                                        },
+                                        isMobileLayout: P,
+                                        useWindowScroll: P,
+                                    }),
+                                ],
+                            }),
+                        }),
+                    })
+                );
+            });
+        },
+        91410: (e) => {
+            e.exports = { root: "CollectionDislikesPage_root__Qnohu" };
+        },
+        92810: (e) => {
+            e.exports = { root: "CollectionAlbumsPage_root__qMtcC" };
+        },
+        94800: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionPlaylistsCreatedPage: () => p });
+            var s = l(33008),
+                a = l(85896),
+                i = l(97531),
+                o = l(66268),
+                n = l(73827),
+                r = l(96560),
+                c = l(18064),
+                d = l(77868),
+                m = l(64143),
+                u = l(45242),
+                _ = l(79169),
+                C = l(18740),
+                h = l(3872),
+                g = l.n(h);
+            let p = (0, i.PA)(() => {
+                var e, t, l;
+                let {
+                        user: i,
+                        collection: {
+                            playlists: { playlistsCreated: h },
+                        },
+                        settings: { isMobile: p },
+                    } = (0, _.Pjs)(),
+                    { formatMessage: x } = (0, n.A)(),
+                    { contentScrollRef: P, setContentScrollRef: j } = (0,
+                    _.gKY)(),
+                    y = (0, _.W6M)(),
+                    b = (0, o.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, s.jsx)(C.A, {
+                                    children: (0, s.jsx)(C.wi, {
+                                        className: g().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    );
+                (0, _.Jzs)(h.isResolved);
+                let A = (0, o.useCallback)(
+                    (e) => {
+                        i.account.data.uid &&
+                            h.getData({
+                                userId: i.account.data.uid,
+                                page: e,
+                                pageSize: 20,
+                            });
+                    },
+                    [h, i.account.data.uid],
+                );
+                return (
+                    (0, o.useEffect)(
+                        () => () => {
+                            h.reset();
+                        },
+                        [h],
+                    ),
+                    i.account.data.uid &&
+                        h.isNeededToLoad &&
+                        (0, o.use)(
+                            h.getData({
+                                userId: i.account.data.uid,
+                                page: 0,
+                                pageSize: 20,
+                            }),
+                        ),
+                    (0, s.jsx)(_.nVz, {
+                        pageId: _._Q$.OWN_PLAYLISTS,
+                        children: (0, s.jsx)(m.hO, {
+                            scrollElement: P,
+                            outerTitle: x({ id: "entity-names.my-playlists" }),
+                            children: (0, s.jsxs)("div", {
+                                className: g().root,
+                                ...(0, c.Am)(
+                                    c.Xk.collection
+                                        .COLLECTION_PLAYLISTS_CREATED_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(C.Y9, {
+                                        variant: C.Vw.TEXT,
+                                        withForwardControl: !1,
+                                        withBackwardControl: y.canBack,
+                                        children: (0, s.jsx)(d.Heading, {
+                                            id: "collection-playlistsCreated-header",
+                                            variant: "h2",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            children: (0, s.jsx)(r.A, {
+                                                id: "entity-names.my-playlists",
+                                            }),
+                                        }),
+                                    }),
+                                    (0, s.jsx)(C.$$, {
+                                        className: (0, a.$)(
+                                            g().scrollContainer,
+                                            g().important,
+                                        ),
+                                        customComponents: b,
+                                        itemContentCallback: (e) => {
+                                            var t;
+                                            let l =
+                                                    null == h ||
+                                                    null == (t = h.items)
+                                                        ? void 0
+                                                        : t[e],
+                                                a = x(
+                                                    {
+                                                        id: "loading-messages.entity-is-loading",
+                                                    },
+                                                    {
+                                                        entityName: x({
+                                                            id: "entity-names.playlist",
+                                                        }),
+                                                    },
+                                                );
+                                            return l
+                                                ? (0, s.jsx)(
+                                                      u.B6,
+                                                      {
+                                                          playlist: l,
+                                                          contentLinesCount: 3,
+                                                      },
+                                                      l.key,
+                                                  )
+                                                : (0, s.jsx)(C.Vt, {
+                                                      "aria-label": a,
+                                                  });
+                                        },
+                                        totalCount:
+                                            null !=
+                                            (t =
+                                                null == h ||
+                                                null == (e = h.pager)
+                                                    ? void 0
+                                                    : e.total)
+                                                ? t
+                                                : 0,
+                                        onGetDataByPage: A,
+                                        pageSize: 20,
+                                        totalRequests:
+                                            null != (l = h.requests) ? l : 0,
+                                        listClassName: g().content,
+                                        itemClassName: g().item,
+                                        handleRef: j,
+                                        context: {
+                                            listAriaLabel: x({
+                                                id: "collection.created-playlists-list",
+                                            }),
+                                        },
+                                        isMobileLayout: p,
+                                        useWindowScroll: p,
+                                    }),
+                                ],
+                            }),
+                        }),
+                    })
+                );
+            });
+        },
+        95448: (e) => {
+            e.exports = {
+                emptyContent: "CollectionNonMusicEmpty_emptyContent__Km4Xo",
+                emptyContentIcon:
+                    "CollectionNonMusicEmpty_emptyContentIcon__ZHVte",
+                emptyContentTitle:
+                    "CollectionNonMusicEmpty_emptyContentTitle__PJIFd",
+            };
+        },
+        95606: (e) => {
+            e.exports = {
+                root: "CollectionAlbumsPageContent_root__2Ya18",
+                scrollContainer:
+                    "CollectionAlbumsPageContent_scrollContainer__0TjJm",
+                important: "CollectionAlbumsPageContent_important__fixM8",
+                content: "CollectionAlbumsPageContent_content__jcwRU",
+                footer: "CollectionAlbumsPageContent_footer__ZkUKY",
+                item: "CollectionAlbumsPageContent_item__I_Wuz",
+                tabPanel: "CollectionAlbumsPageContent_tabPanel__0qXKZ",
+            };
+        },
+        98150: (e, t, l) => {
+            "use strict";
+            l.d(t, { CollectionDislikesPage: () => z });
+            var s = l(33008),
+                a = l(97531),
+                i = l(17846),
+                o = l(66268),
+                n = l(18064),
+                r = l(21741),
+                c = l(64143),
+                d = l(79169),
+                m = l(58184),
+                u = l(47463),
+                _ = l(91410),
+                C = l.n(_),
+                h = l(85896),
+                g = l(73827),
+                p = l(83888),
+                x = l(90317),
+                P = l(18740),
+                j = l(96560),
+                y = l(77868),
+                b = l(25504),
+                A = l.n(b),
+                k = l(8584),
+                S = l(91342);
+            let v = () =>
+                    (0, s.jsxs)("div", {
+                        className: A().tabsShimmer,
+                        children: [
+                            (0, s.jsx)(S.Shimmer, {
+                                className: A().tabShimmer,
+                            }),
+                            (0, s.jsx)(S.Shimmer, {
+                                className: A().tabShimmer,
+                            }),
+                        ],
+                    }),
+                N = (0, a.PA)((e) => {
+                    var t, l, a, i, n, r, c, m, _, C;
+                    let {
+                            tabsState: h,
+                            tabElementId: p,
+                            isStickyHeader: x = !1,
+                        } = e,
+                        {
+                            collection: { dislikes: j },
+                        } = (0, d.Pjs)(),
+                        { formatMessage: y } = (0, g.A)(),
+                        { isScrolling: b } = (0, o.useContext)(P.B9),
+                        S = (0, k.z)(h),
+                        N = b ? -1 : 0;
+                    x && (N = b ? 0 : -1);
+                    let L = (0, o.useMemo)(() => {
+                            var e, t;
+                            return (
+                                null == (t = j.tracks) || null == (e = t.items)
+                                    ? void 0
+                                    : e.length
+                            )
+                                ? ""
+                                      .concat(
+                                          y({ id: "entity-names.tracks" }),
+                                          " • ",
+                                      )
+                                      .concat(j.tracks.items.length)
+                                : y({ id: "entity-names.tracks" });
+                        }, [
+                            null == (l = j.tracks) || null == (t = l.items)
+                                ? void 0
+                                : t.length,
+                            y,
+                        ]),
+                        I = (0, o.useMemo)(() => {
+                            var e, t;
+                            return (
+                                null == (t = j.artists) || null == (e = t.items)
+                                    ? void 0
+                                    : e.length
+                            )
+                                ? ""
+                                      .concat(
+                                          y({ id: "entity-names.artists" }),
+                                          " • ",
+                                      )
+                                      .concat(j.artists.items.length)
+                                : y({ id: "entity-names.artists" });
+                        }, [
+                            null == (i = j.artists) || null == (a = i.items)
+                                ? void 0
+                                : a.length,
+                            y,
+                        ]);
+                    return (0, s.jsxs)(P.wI, {
+                        isShimmerVisible: j.isLoading,
+                        shimmer: (0, s.jsx)(v, {}),
+                        className: A().tabs,
+                        elementId: p,
+                        ...h,
+                        onTabChange: S,
+                        children: [
+                            (0, s.jsx)(P.oz, {
+                                className: A().tab,
+                                value: u.j.TRACKS,
+                                title: L,
+                                "aria-label": y(
+                                    { id: "entity-names.tracks-count" },
+                                    {
+                                        value:
+                                            null !=
+                                            (_ =
+                                                null == (r = j.tracks) ||
+                                                null == (n = r.items)
+                                                    ? void 0
+                                                    : n.length)
+                                                ? _
+                                                : 0,
+                                    },
+                                ),
+                                "aria-hidden": b,
+                                tabIndex: N,
+                            }),
+                            (0, s.jsx)(P.oz, {
+                                className: A().tab,
+                                value: u.j.ARTISTS,
+                                title: I,
+                                "aria-label": y(
+                                    { id: "entity-names.artists-count" },
+                                    {
+                                        value:
+                                            null !=
+                                            (C =
+                                                null == (m = j.artists) ||
+                                                null == (c = m.items)
+                                                    ? void 0
+                                                    : c.length)
+                                                ? C
+                                                : 0,
+                                    },
+                                ),
+                                "aria-hidden": b,
+                                tabIndex: N,
+                            }),
+                        ],
+                    });
+                }),
+                L = (0, a.PA)((e) => {
+                    let { tabsState: t, tabElementId: l } = e,
+                        a = (0, d.W6M)(),
+                        { isScrolling: i } = (0, o.useContext)(P.B9);
+                    return (0, s.jsxs)("header", {
+                        className: A().root,
+                        "aria-hidden": i,
+                        ...(0, n.Am)(
+                            n.Xk.collection
+                                .COLLECTION_DISLIKES_PAGE_STATIC_HEADER,
+                        ),
+                        children: [
+                            (0, s.jsxs)("div", {
+                                className: A().container,
+                                children: [
+                                    a.canBack &&
+                                        (0, s.jsx)(P.Lh, {
+                                            withForwardControl: !1,
+                                            withBackwardControl: a.canBack,
+                                            shouldFocusOnMount: !i,
+                                        }),
+                                    (0, s.jsx)(y.Heading, {
+                                        variant: "h2",
+                                        weight: "bold",
+                                        size: "xl",
+                                        lineClamp: 1,
+                                        className: A().title,
+                                        ...(0, n.Am)(
+                                            n.Xk.collection
+                                                .COLLECTION_DISLIKES_PAGE_STATIC_HEADER_TITLE,
+                                        ),
+                                        children: (0, s.jsx)(j.A, {
+                                            id: "collection.my-dislikes",
+                                        }),
+                                    }),
+                                ],
+                            }),
+                            (0, s.jsx)(N, { tabsState: t, tabElementId: l }),
+                        ],
+                    });
+                });
+            var I = l(30034),
+                E = l.n(I);
+            let T = (0, a.PA)((e) => {
+                var t, l, a;
+                let { forwardRef: i, tabsState: n, tabElementId: c } = e,
+                    {
+                        collection: { dislikes: m },
+                        settings: { isMobile: _ },
+                    } = (0, d.Pjs)(),
+                    { formatMessage: C } = (0, g.A)(),
+                    j = m.artists.isLoading
+                        ? 10
+                        : null !=
+                            (a =
+                                null == (l = m.artists) || null == (t = l.items)
+                                    ? void 0
+                                    : t.length)
+                          ? a
+                          : 0,
+                    y = (0, o.useMemo)(
+                        () => ({
+                            Header: () =>
+                                (0, s.jsx)(L, {
+                                    tabsState: n,
+                                    tabElementId: c,
+                                }),
+                            Footer: () =>
+                                (0, s.jsx)(P.A, {
+                                    children: (0, s.jsx)(P.wi, {
+                                        className: E().footer,
+                                    }),
+                                }),
+                        }),
+                        [c, n],
+                    );
+                return m.artists.isRejected
+                    ? (0, s.jsx)(p.w, {})
+                    : (0, s.jsx)("div", {
+                          className: E().root,
+                          children: (0, s.jsx)(r.TabPanel, {
+                              value: n.value,
+                              name: u.j.ARTISTS,
+                              elementId: c,
+                              className: E().tabPanel,
+                              children: (0, s.jsx)(P.$$, {
+                                  className: (0, h.$)(
+                                      E().scrollContainer,
+                                      E().important,
+                                  ),
+                                  listClassName: (0, h.$)(
+                                      E().content,
+                                      E().content_withGrid,
+                                  ),
+                                  customComponents: y,
+                                  initialItemCount: j,
+                                  totalCount: j,
+                                  itemContentCallback: (e) => {
+                                      var t, l;
+                                      let a =
+                                          null == (l = m.artists) ||
+                                          null == (t = l.items)
+                                              ? void 0
+                                              : t[e];
+                                      if (!a) {
+                                          let e = C(
+                                              {
+                                                  id: "loading-messages.entity-is-loading",
+                                              },
+                                              {
+                                                  entityName: C({
+                                                      id: "entity-names.artist",
+                                                  }),
+                                              },
+                                          );
+                                          return (0, s.jsx)(P.Vt, {
+                                              "aria-label": e,
+                                              round: !0,
+                                              centered: !0,
+                                          });
+                                      }
+                                      return (0, s.jsx)(
+                                          x.ao,
+                                          {
+                                              artist: a,
+                                              contentLinesCount: 3,
+                                              className: E().item,
+                                          },
+                                          a.id,
+                                      );
+                                  },
+                                  handleRef: i,
+                                  context: {
+                                      listAriaLabel: C({
+                                          id: "entity-names.artists",
+                                      }),
+                                  },
+                                  isMobileLayout: _,
+                                  useWindowScroll: _,
+                              }),
+                          }),
+                      });
+            });
+            var f = l(48509),
+                w = l(44078);
+            let D = (0, a.PA)((e) => {
+                var t, l, a;
+                let { forwardRef: i, tabsState: n, tabElementId: c } = e,
+                    { from: m } = (0, d.fyy)(),
+                    {
+                        collection: { dislikes: _ },
+                        settings: { isMobile: C },
+                    } = (0, d.Pjs)(),
+                    { formatMessage: x } = (0, g.A)(),
+                    j = (0, d.wZZ)(),
+                    y = _.tracks.isLoading
+                        ? 10
+                        : null !=
+                            (a =
+                                null == (l = _.tracks) || null == (t = l.items)
+                                    ? void 0
+                                    : t.length)
+                          ? a
+                          : 0,
+                    b = (0, o.useCallback)(
+                        (e) => {
+                            var t;
+                            null == (t = _.tracks) ||
+                                t.getTracksByRange(e.startIndex, e.endIndex);
+                        },
+                        [_.tracks],
+                    ),
+                    A = (0, o.useMemo)(
+                        () => ({
+                            Header: () =>
+                                (0, s.jsx)(L, {
+                                    tabsState: n,
+                                    tabElementId: c,
+                                }),
+                            Footer: () =>
+                                (0, s.jsx)(P.A, {
+                                    children: (0, s.jsx)(P.wi, {
+                                        className: E().footer,
+                                    }),
+                                }),
+                        }),
+                        [c, n],
+                    );
+                return _.tracks.isRejected
+                    ? (0, s.jsx)(p.w, {})
+                    : (0, s.jsx)("div", {
+                          className: E().root,
+                          children: (0, s.jsx)(r.TabPanel, {
+                              value: n.value,
+                              name: u.j.TRACKS,
+                              elementId: c,
+                              className: E().tabPanel,
+                              children: (0, s.jsx)(P.$$, {
+                                  className: (0, h.$)(
+                                      E().scrollContainer,
+                                      E().important,
+                                  ),
+                                  listClassName: (0, h.$)(
+                                      E().content,
+                                      E().content_tracks,
+                                  ),
+                                  customComponents: A,
+                                  totalCount: y,
+                                  itemContentCallback: (e) => {
+                                      var t, l, a;
+                                      let i =
+                                          null == (a = _.tracks) ||
+                                          null == (l = a.items) ||
+                                          null == (t = l[e])
+                                              ? void 0
+                                              : t.data;
+                                      if (!i)
+                                          return (0, s.jsx)(P.DS, {
+                                              isActive: !0,
+                                              className: E().shimmerItem,
+                                              variant: d.Xjt.PLAYLIST,
+                                          });
+                                      let o = j(e, {
+                                          contextData: {
+                                              type: f.K.Various,
+                                              meta: { id: "disliked-tracks" },
+                                              from: m,
+                                              playDisliked: !0,
+                                          },
+                                          entitiesData:
+                                              _.tracks.sonataEntitiesData,
+                                          queueParams: { index: e },
+                                          loadContextMeta: !1,
+                                      });
+                                      return i.isTrackNonMusic
+                                          ? (0, s.jsx)(w.Kd, {
+                                                track: i,
+                                                playContextParams: o,
+                                                ignoreDislikedStyles: !0,
+                                                withPodcastName: !0,
+                                            })
+                                          : (0, s.jsx)(w.Kt, {
+                                                track: i,
+                                                playContextParams: o,
+                                                ignoreDislikedStyles: !0,
+                                            });
+                                  },
+                                  onGetDataByRange: b,
+                                  debounceDurationInMs: 300,
+                                  handleRef: i,
+                                  context: {
+                                      listAriaLabel: x({
+                                          id: "entity-names.tracks",
+                                      }),
+                                  },
+                                  isMobileLayout: C,
+                                  useWindowScroll: C,
+                              }),
+                          }),
+                      });
+            });
+            var M = l(78016),
+                B = l(21002),
+                R = l.n(B);
+            let O = (0, a.PA)((e) => {
+                    let { tabsState: t, tabElementId: l } = e;
+                    return (0, s.jsxs)(s.Fragment, {
+                        children: [
+                            (0, s.jsx)(L, { tabsState: t, tabElementId: l }),
+                            (0, s.jsxs)(r.TabPanel, {
+                                value: t.value,
+                                name: t.value,
+                                elementId: l,
+                                className: R().root,
+                                ...(0, n.Am)(
+                                    n.Xk.collection
+                                        .COLLECTION_DISLIKES_PAGE_EMPTY_ROOT,
+                                ),
+                                children: [
+                                    (0, s.jsx)(M.Icon, {
+                                        className: R().icon,
+                                        size: "l",
+                                        variant: "album",
+                                        ...(0, n.Am)(
+                                            n.Xk.collection
+                                                .COLLECTION_DISLIKES_PAGE_EMPTY_ICON,
+                                        ),
+                                    }),
+                                    (0, s.jsx)(y.Heading, {
+                                        className: R().title,
+                                        variant: "h3",
+                                        size: "xs",
+                                        ...(0, n.Am)(
+                                            n.Xk.collection
+                                                .COLLECTION_DISLIKES_PAGE_EMPTY_HEAD,
+                                        ),
+                                        children: (0, s.jsx)(j.A, {
+                                            id: "entity-names.list-is-empty",
+                                        }),
+                                    }),
+                                ],
+                            }),
+                        ],
+                    });
+                }),
+                K = (0, a.PA)((e) => {
+                    let { tabsState: t, tabElementId: l } = e,
+                        { isScrolling: a } = (0, o.useContext)(P.B9),
+                        i = (0, d.W6M)();
+                    return (0, s.jsx)(P.Y9, {
+                        variant: P.Vw.COMPOSITE,
+                        staticClassName: (0, h.$)(
+                            A().staticHeader,
+                            A().important,
+                        ),
+                        "aria-hidden": !a,
+                        stickyClassName: (0, h.$)(
+                            A().stickyHeader,
+                            A().important,
+                        ),
+                        containerProps: (0, n.Am)(
+                            n.Xk.collection
+                                .COLLECTION_DISLIKES_PAGE_STICKY_HEADER,
+                        ),
+                        stickyChild: (0, s.jsxs)("div", {
+                            className: A().container,
+                            children: [
+                                i.canBack &&
+                                    (0, s.jsx)(P.Lh, {
+                                        withForwardControl: !1,
+                                        withBackwardControl: i.canBack,
+                                        shouldFocusOnMount: !1,
+                                        buttonSize: "xs",
+                                    }),
+                                (0, s.jsx)(N, {
+                                    tabsState: t,
+                                    tabElementId: l,
+                                    isStickyHeader: !0,
+                                }),
+                            ],
+                        }),
+                    });
+                }),
+                z = (0, a.PA)(() => {
+                    let e = (0, i.useSearchParams)(),
+                        {
+                            user: t,
+                            collection: { dislikes: l },
+                            library: a,
+                        } = (0, d.Pjs)(),
+                        { contentScrollRef: _, setContentScrollRef: h } = (0,
+                        d.gKY)(),
+                        g = (0, o.useId)(),
+                        p = (0, o.useMemo)(() => {
+                            switch (e.get(d.K3F.TAB)) {
+                                case m.h.TRACKS:
+                                    break;
+                                case m.h.ARTISTS:
+                                    return u.j.ARTISTS;
+                            }
+                            return u.j.TRACKS;
+                        }, [e]),
+                        x = (0, r.useTabsState)(p);
+                    t.account.data.uid || (0, i.notFound)(),
+                        (0, d.Jzs)(l.isResolved),
+                        (0, o.useEffect)(
+                            () => () => {
+                                l.reset();
+                            },
+                            [l],
+                        );
+                    let P = (0, o.useMemo)(() => {
+                        switch (x.value) {
+                            case u.j.TRACKS:
+                                if (l.tracks.isEmpty)
+                                    return (0, s.jsx)(O, {
+                                        tabsState: x,
+                                        tabElementId: g,
+                                    });
+                                return (0, s.jsx)(D, {
+                                    forwardRef: h,
+                                    tabsState: x,
+                                    tabElementId: g,
+                                });
+                            case u.j.ARTISTS:
+                                if (l.artists.isEmpty)
+                                    return (0, s.jsx)(O, {
+                                        tabsState: x,
+                                        tabElementId: g,
+                                    });
+                                return (0, s.jsx)(T, {
+                                    forwardRef: h,
+                                    tabsState: x,
+                                    tabElementId: g,
+                                });
+                        }
+                    }, [l.artists.isEmpty, l.tracks.isEmpty, h, g, x]);
+                    if (l.isNeededToLoad) {
+                        let e = [
+                            l.tracks.getData(),
+                            l.artists.getData(),
+                            a.getData(),
+                        ];
+                        (0, o.use)(Promise.allSettled(e));
+                    }
+                    return (0, s.jsx)(d.nVz, {
+                        pageId: d._Q$.OWN_DISLIKES,
+                        children: (0, s.jsx)(c.hO, {
+                            scrollElement: _,
+                            headerThreshold: 148,
+                            children: (0, s.jsxs)("div", {
+                                className: C().root,
+                                ...(0, n.Am)(
+                                    n.Xk.collection.COLLECTION_DISLIKES_PAGE,
+                                ),
+                                children: [
+                                    (0, s.jsx)(K, {
+                                        tabsState: x,
+                                        tabElementId: g,
+                                    }),
+                                    P,
+                                ],
+                            }),
+                        }),
+                    });
+                });
+        },
+        99963: (e, t, l) => {
+            "use strict";
+            l.d(t, { useSort: () => n });
+            var s = l(66268),
+                a = l(75729),
+                i = l(79169),
+                o = l(25585);
+            let n = (e) => {
+                let { sortModel: t } = e,
+                    l = (0, i.XJ9)();
+                (0, s.useLayoutEffect)(() => {
+                    let e = new URL(window.location.href).searchParams.get(
+                        i.K3F.SORT,
+                    );
+                    e && (0, o.W)(e) ? t.setSortBy(e) : t.setSortBy(a.g.YEAR);
+                }, [t]),
+                    (0, s.useEffect)(() => {
+                        if (t.sortBy) {
+                            let e = (0, i.bJ)(i.K3F.SORT, t.sortBy);
+                            e && l(e);
+                        }
+                    }, [l, t.sortBy]);
+            };
+        },
+    },
+]);

@@ -1,1 +1,244 @@
-.TopConcertsCarousel_root__opMbb{--concert-card-aspect-ratio:0.963}.TopConcertsCarousel_root__opMbb:hover .TopConcertsCarousel_controls__c92PW{opacity:1}.TopConcertsCarousel_header__3h3Zn{padding-block-end:var(--ym-spacer-size-l);padding-block-start:var(--ym-spacer-size-m)}@media only screen and (max-width:767.98px){.TopConcertsCarousel_header__3h3Zn{padding-block-end:var(--ym-spacer-size-xs);padding-block-start:var(--ym-spacer-size-l)}}.TopConcertsCarousel_carousel__uMke6{scroll-padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.TopConcertsCarousel_carousel__uMke6{scroll-padding-inline-start:var(--ym-spacer-size-l)}}.TopConcertsCarousel_carousel__uMke6,.TopConcertsCarousel_header__3h3Zn{padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.TopConcertsCarousel_carousel__uMke6,.TopConcertsCarousel_header__3h3Zn{padding-inline-start:var(--ym-spacer-size-l)}}.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:20.625rem;min-width:19.375rem;width:100%}@media only screen and (max-width:767.98px){.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:18.75rem;min-width:18.125rem}}@media only screen and (max-width:479.98px){.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:15.625rem;min-width:15rem}}@media only screen and (min-width:1240px)and (max-width:1450px){.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:none;min-width:0;min-width:auto;width:calc(33.33333% - var(--ym-spacer-size-l)*2/3)}}@media only screen and (min-width:1450px)and (max-width:1850px){.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:none;min-width:0;min-width:auto;width:calc(25% - var(--ym-spacer-size-l)*3/4)}}@media only screen and (min-width:1850px)and (max-width:1920px){.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z{max-width:none;min-width:0;min-width:auto;width:calc(20% - var(--ym-spacer-size-l)*4/5)}}.ConcertsPage_root__olabl{padding:0}.ConcertsPage_container__qS7xA{--subpage-sticky-header-height:5rem;display:flex;flex-direction:column;margin-block-start:5rem;margin-block-start:var(--subpage-sticky-header-height);padding:0;row-gap:var(--ym-spacer-size-xxl)}.ConcertsPage_footer__GYRwF{padding-block-end:var(--ym-spacer-size-xxl);padding-block-start:var(--ym-spacer-size-xxxl);padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.ConcertsPage_footer__GYRwF{padding-block-end:var(--ym-spacer-size-xxxl);padding-inline-start:var(--ym-spacer-size-l)}}.GenreAlbumsPage_root__r_Sts{container-name:genre-albums-page;container-type:inline-size;height:100%;padding:0;position:relative}@media only screen and (max-width:767.98px){.GenreAlbumsPage_root__r_Sts{container-type:normal}}.GenreAlbumsPage_scrollContainer__K_v_b.GenreAlbumsPage_important__r3P2T{height:100%;padding-inline-start:0}@media only screen and (max-width:767.98px){.GenreAlbumsPage_scrollContainer__K_v_b.GenreAlbumsPage_important__r3P2T{height:auto;padding-block-start:var(--subpage-sticky-header-height)}}.GenreAlbumsPage_footer__vmCiR{padding-block-end:var(--ym-spacer-size-xxl);padding-block-start:var(--ym-spacer-size-xxxl);padding-inline-end:var(--ym-spacer-size-s);padding-inline-start:var(--ym-spacer-size-xxl)}@supports(-moz-appearance:none){.GenreAlbumsPage_footer__vmCiR{padding-inline-end:var(--ym-spacer-size-xxl)}}@media only screen and (max-width:767.98px){.GenreAlbumsPage_footer__vmCiR{padding-block-end:var(--ym-spacer-size-xxxl);padding-block-start:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}@supports(-moz-appearance:none){.GenreAlbumsPage_footer__vmCiR{padding-inline-end:var(--ym-spacer-size-l)}}}.GenreAlbumsPage_item__zRzB0{display:flex;min-width:8.75rem}.GenreAlbumsPage_content__PRJUm{display:grid;grid-template-columns:repeat(2,1fr);margin-block-start:var(--subpage-sticky-header-height);padding-inline-end:var(--ym-spacer-size-s);padding-inline-start:var(--ym-spacer-size-xxl);grid-gap:var(--ym-spacer-size-m);gap:var(--ym-spacer-size-m)}@supports(-moz-appearance:none){.GenreAlbumsPage_content__PRJUm{padding-inline-end:var(--ym-spacer-size-xxl)}}@media only screen and (max-width:767.98px){.GenreAlbumsPage_content__PRJUm{margin-block-start:0;padding-inline-start:var(--ym-spacer-size-l)}@supports(-moz-appearance:none){.GenreAlbumsPage_content__PRJUm{padding-inline-end:var(--ym-spacer-size-l)}}}@media only screen and (min-width:360px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(2,1fr)}}@media only screen and (min-width:500px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(3,1fr)}}@media only screen and (min-width:768px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(3,1fr)}}@media only screen and (min-width:890px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(4,1fr)}}@media only screen and (min-width:960px){.GenreAlbumsPage_content__PRJUm{gap:calc(var(--ym-spacer-size-m)*2)}}@media only screen and (min-width:1024px)and (max-width:1920px){.GenreAlbumsPage_content__PRJUm{--min-column-size:10.75rem;grid-template-columns:repeat(2,minmax(10.75rem,1fr))!important;grid-template-columns:repeat(2,minmax(var(--min-column-size),1fr))!important}@container genre-albums-page (width >= 618px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(3,minmax(var(--min-column-size),1fr))!important}}@container genre-albums-page (width >= 815px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(4,minmax(var(--min-column-size),1fr))!important}}@container genre-albums-page (width >= 1010px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(5,minmax(var(--min-column-size),1fr))!important}}@container genre-albums-page (width >= 1206px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(6,minmax(var(--min-column-size),1fr))!important}}}@media only screen and (min-width:1920px){.GenreAlbumsPage_content__PRJUm{grid-template-columns:repeat(7,1fr)}}
+.TopConcertsCarousel_root__opMbb {
+    --concert-card-aspect-ratio: 0.963;
+}
+.TopConcertsCarousel_root__opMbb:hover .TopConcertsCarousel_controls__c92PW {
+    opacity: 1;
+}
+.TopConcertsCarousel_header__3h3Zn {
+    padding-block-end: var(--ym-spacer-size-l);
+    padding-block-start: var(--ym-spacer-size-m);
+}
+@media only screen and (max-width: 767.98px) {
+    .TopConcertsCarousel_header__3h3Zn {
+        padding-block-end: var(--ym-spacer-size-xs);
+        padding-block-start: var(--ym-spacer-size-l);
+    }
+}
+.TopConcertsCarousel_carousel__uMke6 {
+    scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .TopConcertsCarousel_carousel__uMke6 {
+        scroll-padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.TopConcertsCarousel_carousel__uMke6,
+.TopConcertsCarousel_header__3h3Zn {
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .TopConcertsCarousel_carousel__uMke6,
+    .TopConcertsCarousel_header__3h3Zn {
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+    max-width: 20.625rem;
+    min-width: 19.375rem;
+    width: 100%;
+}
+@media only screen and (max-width: 767.98px) {
+    .TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+        max-width: 18.75rem;
+        min-width: 18.125rem;
+    }
+}
+@media only screen and (max-width: 479.98px) {
+    .TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+        max-width: 15.625rem;
+        min-width: 15rem;
+    }
+}
+@media only screen and (min-width: 1240px) and (max-width: 1450px) {
+    .TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+        max-width: none;
+        min-width: 0;
+        min-width: auto;
+        width: calc(33.33333% - var(--ym-spacer-size-l) * 2 / 3);
+    }
+}
+@media only screen and (min-width: 1450px) and (max-width: 1850px) {
+    .TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+        max-width: none;
+        min-width: 0;
+        min-width: auto;
+        width: calc(25% - var(--ym-spacer-size-l) * 3 / 4);
+    }
+}
+@media only screen and (min-width: 1850px) and (max-width: 1920px) {
+    .TopConcertsCarousel_item__fz8lR.TopConcertsCarousel_important__ZcT6Z {
+        max-width: none;
+        min-width: 0;
+        min-width: auto;
+        width: calc(20% - var(--ym-spacer-size-l) * 4 / 5);
+    }
+}
+.ConcertsPage_root__olabl {
+    padding: 0;
+}
+.ConcertsPage_container__qS7xA {
+    --subpage-sticky-header-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 5rem;
+    margin-block-start: var(--subpage-sticky-header-height);
+    padding: 0;
+    row-gap: var(--ym-spacer-size-xxl);
+}
+.ConcertsPage_footer__GYRwF {
+    padding-block-end: var(--ym-spacer-size-xxl);
+    padding-block-start: var(--ym-spacer-size-xxxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .ConcertsPage_footer__GYRwF {
+        padding-block-end: var(--ym-spacer-size-xxxl);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.GenreAlbumsPage_root__r_Sts {
+    container-name: genre-albums-page;
+    container-type: inline-size;
+    height: 100%;
+    padding: 0;
+    position: relative;
+}
+@media only screen and (max-width: 767.98px) {
+    .GenreAlbumsPage_root__r_Sts {
+        container-type: normal;
+    }
+}
+.GenreAlbumsPage_scrollContainer__K_v_b.GenreAlbumsPage_important__r3P2T {
+    height: 100%;
+    padding-inline-start: 0;
+}
+@media only screen and (max-width: 767.98px) {
+    .GenreAlbumsPage_scrollContainer__K_v_b.GenreAlbumsPage_important__r3P2T {
+        height: auto;
+        padding-block-start: var(--subpage-sticky-header-height);
+    }
+}
+.GenreAlbumsPage_footer__vmCiR {
+    padding-block-end: var(--ym-spacer-size-xxl);
+    padding-block-start: var(--ym-spacer-size-xxxl);
+    padding-inline-end: var(--ym-spacer-size-s);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@supports (-moz-appearance: none) {
+    .GenreAlbumsPage_footer__vmCiR {
+        padding-inline-end: var(--ym-spacer-size-xxl);
+    }
+}
+@media only screen and (max-width: 767.98px) {
+    .GenreAlbumsPage_footer__vmCiR {
+        padding-block-end: var(--ym-spacer-size-xxxl);
+        padding-block-start: var(--ym-spacer-size-l);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+    @supports (-moz-appearance: none) {
+        .GenreAlbumsPage_footer__vmCiR {
+            padding-inline-end: var(--ym-spacer-size-l);
+        }
+    }
+}
+.GenreAlbumsPage_item__zRzB0 {
+    display: flex;
+    min-width: 8.75rem;
+}
+.GenreAlbumsPage_content__PRJUm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-block-start: var(--subpage-sticky-header-height);
+    padding-inline-end: var(--ym-spacer-size-s);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+    grid-gap: var(--ym-spacer-size-m);
+    gap: var(--ym-spacer-size-m);
+}
+@supports (-moz-appearance: none) {
+    .GenreAlbumsPage_content__PRJUm {
+        padding-inline-end: var(--ym-spacer-size-xxl);
+    }
+}
+@media only screen and (max-width: 767.98px) {
+    .GenreAlbumsPage_content__PRJUm {
+        margin-block-start: 0;
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+    @supports (-moz-appearance: none) {
+        .GenreAlbumsPage_content__PRJUm {
+            padding-inline-end: var(--ym-spacer-size-l);
+        }
+    }
+}
+@media only screen and (min-width: 360px) {
+    .GenreAlbumsPage_content__PRJUm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media only screen and (min-width: 500px) {
+    .GenreAlbumsPage_content__PRJUm {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media only screen and (min-width: 768px) {
+    .GenreAlbumsPage_content__PRJUm {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media only screen and (min-width: 890px) {
+    .GenreAlbumsPage_content__PRJUm {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media only screen and (min-width: 960px) {
+    .GenreAlbumsPage_content__PRJUm {
+        gap: calc(var(--ym-spacer-size-m) * 2);
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1920px) {
+    .GenreAlbumsPage_content__PRJUm {
+        --min-column-size: 10.75rem;
+        grid-template-columns: repeat(2, minmax(10.75rem, 1fr)) !important;
+        grid-template-columns: repeat(
+            2,
+            minmax(var(--min-column-size), 1fr)
+        ) !important;
+    }
+    @container genre-albums-page (width >= 618px) {
+        .GenreAlbumsPage_content__PRJUm {
+            grid-template-columns: repeat(
+                3,
+                minmax(var(--min-column-size), 1fr)
+            ) !important;
+        }
+    }
+    @container genre-albums-page (width >= 815px) {
+        .GenreAlbumsPage_content__PRJUm {
+            grid-template-columns: repeat(
+                4,
+                minmax(var(--min-column-size), 1fr)
+            ) !important;
+        }
+    }
+    @container genre-albums-page (width >= 1010px) {
+        .GenreAlbumsPage_content__PRJUm {
+            grid-template-columns: repeat(
+                5,
+                minmax(var(--min-column-size), 1fr)
+            ) !important;
+        }
+    }
+    @container genre-albums-page (width >= 1206px) {
+        .GenreAlbumsPage_content__PRJUm {
+            grid-template-columns: repeat(
+                6,
+                minmax(var(--min-column-size), 1fr)
+            ) !important;
+        }
+    }
+}
+@media only screen and (min-width: 1920px) {
+    .GenreAlbumsPage_content__PRJUm {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}

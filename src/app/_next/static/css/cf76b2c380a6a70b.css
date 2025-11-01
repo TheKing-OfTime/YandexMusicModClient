@@ -1,1 +1,272 @@
-.MusicHistoryTrack_trackShimmer__yxcx9{height:3.5rem}.MusicHistoryBlock_header__sIFVC{padding-block-end:var(--ym-spacer-size-m);padding-inline-end:var(--ym-spacer-size-xxl);padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.MusicHistoryBlock_header__sIFVC{padding-inline-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryBlock_vibeHeader__HWzD5{--horizontal-card-height:4.375rem;--horizontal-card-background-color:transparent;display:flex;gap:var(--ym-spacer-size-m)}.MusicHistoryBlock_vibeCover__RnM_6{--cover-size:3.625rem}.MusicHistoryBlock_vibeTextBlock__nvhPk{width:100%}.MusicHistoryBlock_heading__HEfmk{color:var(--ym-controls-color-primary-text-enabled)}.MusicHistoryBlock_header__sIFVC.MusicHistoryBlock_heading__HEfmk{font-family:var(--ym-font-text);font-size:var(--ym-font-size-label-s);font-style:normal;font-weight:var(--ym-font-weight-medium);letter-spacing:normal;line-height:var(--ym-font-line-height-label-s)}.MusicHistoryBlock_headerTitle__Yhyst{max-width:100%}.MusicHistoryBlock_content__S9lfi{padding-inline-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}@media only screen and (max-width:767.98px){.MusicHistoryBlock_content__S9lfi{padding-inline-end:var(--ym-spacer-size-xs);padding-inline-start:var(--ym-spacer-size-xs)}}.MusicHistoryBlock_artists__AjuWP{color:var(--ym-controls-color-primary-text-enabled)}.MusicHistoryBlock_artistLink__yFHPE{color:inherit}.MusicHistoryBlock_artistLink__yFHPE:focus-visible,.MusicHistoryBlock_artistLink__yFHPE:hover{color:var(--ym-controls-color-primary-text-enabled_variant)}.MusicHistoryBlock_shimmerTitle__Mx1IC{height:3.75rem;margin-block-end:var(--ym-spacer-size-m);margin-inline-start:var(--ym-spacer-size-xxl);width:12.5rem}@media only screen and (max-width:767.98px){.MusicHistoryBlock_shimmerTitle__Mx1IC{margin-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryTab_date__Fjy3P{color:var(--ym-controls-color-primary-text-enabled_variant);padding-block-end:var(--ym-spacer-size-l);padding-inline-end:var(--ym-spacer-size-xxl);padding-inline-start:var(--ym-spacer-size-xxl)}.MusicHistoryTab_date__Fjy3P:first-letter{text-transform:uppercase}@media only screen and (max-width:767.98px){.MusicHistoryTab_date__Fjy3P{padding-inline-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryTab_content__Jt15j{display:flex;flex-direction:column;gap:var(--ym-spacer-size-xxl)}.MusicHistoryPage_root__FYB2m{--music-history-header-height:8.75rem;height:100%;padding-block-start:8.75rem;padding-block-start:var(--music-history-header-height);width:100%}.MusicHistoryPage_scroll__ykpDX{padding:0;width:100%}.MusicHistoryPage_scrollContainer__eemvg{justify-content:space-between;min-height:100%;padding:0}.MusicHistoryPage_headerContainer__QG0L3,.MusicHistoryPage_scrollContainer__eemvg{display:flex;flex-direction:column}.MusicHistoryPage_headerContainer__QG0L3{gap:var(--ym-spacer-size-l);inset-block-start:0;inset-inline-start:0;padding-block-start:var(--ym-spacer-size-xxl);position:absolute;width:100%;z-index:var(--ym-z-index-header)}@media only screen and (max-width:767.98px){.MusicHistoryPage_headerContainer__QG0L3{padding-block-start:var(--ym-spacer-size-l)}}.MusicHistoryPage_header__dzEvD{align-items:center;background-color:var(--ym-background-color-primary-enabled-content);color:var(--ym-controls-color-primary-text-enabled_variant);display:flex;gap:var(--ym-spacer-size-xl);padding-inline-end:var(--ym-spacer-size-xxl);padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.MusicHistoryPage_header__dzEvD{gap:var(--ym-spacer-size-m);padding-inline-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPage_content__j4evw{display:flex;flex-direction:column;gap:var(--ym-spacer-size-xxxl)}.MusicHistoryPage_footer__Vu7aC{padding-block-end:var(--ym-spacer-size-xxl);padding-block-start:var(--ym-spacer-size-xxxl);padding-inline-end:var(--ym-spacer-size-xxl);padding-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.MusicHistoryPage_footer__Vu7aC{padding-block-end:var(--ym-spacer-size-l);padding-block-start:var(--ym-spacer-size-l);padding-inline-end:var(--ym-spacer-size-l);padding-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPage_empty__fQRHA{align-items:center;display:flex;justify-content:center}.MusicHistoryPage_carousel__jcl8l{padding-inline-end:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.MusicHistoryPage_carousel__jcl8l{padding-inline-end:0}}.MusicHistoryPage_tabs__v_5Zg{--tabs-height:2.25rem;display:flex;gap:var(--ym-spacer-size-xs);height:2.25rem;height:var(--tabs-height);padding-inline-end:var(--ym-spacer-size-xxl);padding-inline-start:var(--ym-spacer-size-xxl);scroll-padding-inline-start:var(--ym-spacer-size-xxl);width:100%}@media only screen and (max-width:1024px){.MusicHistoryPage_tabs__v_5Zg{padding-inline-end:var(--ym-spacer-size-m)}}@media only screen and (max-width:767.98px){.MusicHistoryPage_tabs__v_5Zg{padding-inline-start:var(--ym-spacer-size-l);scroll-padding-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPage_tab__WDE1e{background-color:var(--ym-controls-color-primary-outline-enabled);border:.125rem solid var(--ym-controls-color-primary-outline-enabled);border-radius:var(--ym-radius-size-xxxl);box-sizing:border-box;flex-shrink:0;height:100%;list-style-type:none;max-width:12.5rem;scroll-snap-align:start}.MusicHistoryPage_tab_isLoading__nNqd2:first-child,.MusicHistoryPage_tab_selected__nmn8P{border-color:var(--ym-controls-color-primary-outline-selected_stroke)}.MusicHistoryPage_tab_isLoading__nNqd2:first-child{padding:var(--ym-spacer-size-l)}.MusicHistoryPage_date__OV6rR{text-align:center}.MusicHistoryPage_date__OV6rR:first-letter{text-transform:uppercase}.MusicHistoryPage_error__9f_8i.MusicHistoryPage_important__qNFO8{height:auto;margin-block-start:var(--ym-spacer-size-xxxxl)}.MusicHistoryPageContentShimmer_shimmersContainer__82cj6{display:flex;flex-direction:column}.MusicHistoryPageContentShimmer_dateShimmer__d4_te{height:var(--ym-font-line-height-headline-m);margin-block-end:var(--ym-spacer-size-xxl);margin-inline-start:var(--ym-spacer-size-xxl);width:11.875rem}@media only screen and (max-width:767.98px){.MusicHistoryPageContentShimmer_dateShimmer__d4_te{margin-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPageContentShimmer_contextNameShimmer__Tzbqr{height:var(--ym-font-line-height-label-s);margin-block-end:var(--ym-spacer-size-xl);margin-inline-start:var(--ym-spacer-size-xxl);width:4rem}@media only screen and (max-width:767.98px){.MusicHistoryPageContentShimmer_contextNameShimmer__Tzbqr{margin-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPageContentShimmer_contextHeaderShimmer__Tq0PZ{margin-block-end:var(--ym-spacer-size-xl);margin-inline-start:var(--ym-spacer-size-xxl)}@media only screen and (max-width:767.98px){.MusicHistoryPageContentShimmer_contextHeaderShimmer__Tq0PZ{margin-inline-start:var(--ym-spacer-size-l)}}.MusicHistoryPageContentShimmer_trackListShimmers__4GSp8{display:flex;flex-direction:column;gap:var(--ym-spacer-size-l);margin-block-end:var(--ym-spacer-size-xxxl);margin-inline-end:var(--ym-spacer-size-xxl);margin-inline-start:var(--ym-spacer-size-l)}@media only screen and (max-width:767.98px){.MusicHistoryPageContentShimmer_trackListShimmers__4GSp8{margin-inline-start:var(--ym-spacer-size-l)}}
+.MusicHistoryTrack_trackShimmer__yxcx9 {
+    height: 3.5rem;
+}
+.MusicHistoryBlock_header__sIFVC {
+    padding-block-end: var(--ym-spacer-size-m);
+    padding-inline-end: var(--ym-spacer-size-xxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryBlock_header__sIFVC {
+        padding-inline-end: var(--ym-spacer-size-l);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryBlock_vibeHeader__HWzD5 {
+    --horizontal-card-height: 4.375rem;
+    --horizontal-card-background-color: transparent;
+    display: flex;
+    gap: var(--ym-spacer-size-m);
+}
+.MusicHistoryBlock_vibeCover__RnM_6 {
+    --cover-size: 3.625rem;
+}
+.MusicHistoryBlock_vibeTextBlock__nvhPk {
+    width: 100%;
+}
+.MusicHistoryBlock_heading__HEfmk {
+    color: var(--ym-controls-color-primary-text-enabled);
+}
+.MusicHistoryBlock_header__sIFVC.MusicHistoryBlock_heading__HEfmk {
+    font-family: var(--ym-font-text);
+    font-size: var(--ym-font-size-label-s);
+    font-style: normal;
+    font-weight: var(--ym-font-weight-medium);
+    letter-spacing: normal;
+    line-height: var(--ym-font-line-height-label-s);
+}
+.MusicHistoryBlock_headerTitle__Yhyst {
+    max-width: 100%;
+}
+.MusicHistoryBlock_content__S9lfi {
+    padding-inline-end: var(--ym-spacer-size-l);
+    padding-inline-start: var(--ym-spacer-size-l);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryBlock_content__S9lfi {
+        padding-inline-end: var(--ym-spacer-size-xs);
+        padding-inline-start: var(--ym-spacer-size-xs);
+    }
+}
+.MusicHistoryBlock_artists__AjuWP {
+    color: var(--ym-controls-color-primary-text-enabled);
+}
+.MusicHistoryBlock_artistLink__yFHPE {
+    color: inherit;
+}
+.MusicHistoryBlock_artistLink__yFHPE:focus-visible,
+.MusicHistoryBlock_artistLink__yFHPE:hover {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.MusicHistoryBlock_shimmerTitle__Mx1IC {
+    height: 3.75rem;
+    margin-block-end: var(--ym-spacer-size-m);
+    margin-inline-start: var(--ym-spacer-size-xxl);
+    width: 12.5rem;
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryBlock_shimmerTitle__Mx1IC {
+        margin-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryTab_date__Fjy3P {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    padding-block-end: var(--ym-spacer-size-l);
+    padding-inline-end: var(--ym-spacer-size-xxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+.MusicHistoryTab_date__Fjy3P:first-letter {
+    text-transform: uppercase;
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryTab_date__Fjy3P {
+        padding-inline-end: var(--ym-spacer-size-l);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryTab_content__Jt15j {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ym-spacer-size-xxl);
+}
+.MusicHistoryPage_root__FYB2m {
+    --music-history-header-height: 8.75rem;
+    height: 100%;
+    padding-block-start: 8.75rem;
+    padding-block-start: var(--music-history-header-height);
+    width: 100%;
+}
+.MusicHistoryPage_scroll__ykpDX {
+    padding: 0;
+    width: 100%;
+}
+.MusicHistoryPage_scrollContainer__eemvg {
+    justify-content: space-between;
+    min-height: 100%;
+    padding: 0;
+}
+.MusicHistoryPage_headerContainer__QG0L3,
+.MusicHistoryPage_scrollContainer__eemvg {
+    display: flex;
+    flex-direction: column;
+}
+.MusicHistoryPage_headerContainer__QG0L3 {
+    gap: var(--ym-spacer-size-l);
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    padding-block-start: var(--ym-spacer-size-xxl);
+    position: absolute;
+    width: 100%;
+    z-index: var(--ym-z-index-header);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPage_headerContainer__QG0L3 {
+        padding-block-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPage_header__dzEvD {
+    align-items: center;
+    background-color: var(--ym-background-color-primary-enabled-content);
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    display: flex;
+    gap: var(--ym-spacer-size-xl);
+    padding-inline-end: var(--ym-spacer-size-xxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPage_header__dzEvD {
+        gap: var(--ym-spacer-size-m);
+        padding-inline-end: var(--ym-spacer-size-l);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPage_content__j4evw {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ym-spacer-size-xxxl);
+}
+.MusicHistoryPage_footer__Vu7aC {
+    padding-block-end: var(--ym-spacer-size-xxl);
+    padding-block-start: var(--ym-spacer-size-xxxl);
+    padding-inline-end: var(--ym-spacer-size-xxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPage_footer__Vu7aC {
+        padding-block-end: var(--ym-spacer-size-l);
+        padding-block-start: var(--ym-spacer-size-l);
+        padding-inline-end: var(--ym-spacer-size-l);
+        padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPage_empty__fQRHA {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.MusicHistoryPage_carousel__jcl8l {
+    padding-inline-end: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPage_carousel__jcl8l {
+        padding-inline-end: 0;
+    }
+}
+.MusicHistoryPage_tabs__v_5Zg {
+    --tabs-height: 2.25rem;
+    display: flex;
+    gap: var(--ym-spacer-size-xs);
+    height: 2.25rem;
+    height: var(--tabs-height);
+    padding-inline-end: var(--ym-spacer-size-xxl);
+    padding-inline-start: var(--ym-spacer-size-xxl);
+    scroll-padding-inline-start: var(--ym-spacer-size-xxl);
+    width: 100%;
+}
+@media only screen and (max-width: 1024px) {
+    .MusicHistoryPage_tabs__v_5Zg {
+        padding-inline-end: var(--ym-spacer-size-m);
+    }
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPage_tabs__v_5Zg {
+        padding-inline-start: var(--ym-spacer-size-l);
+        scroll-padding-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPage_tab__WDE1e {
+    background-color: var(--ym-controls-color-primary-outline-enabled);
+    border: 0.125rem solid var(--ym-controls-color-primary-outline-enabled);
+    border-radius: var(--ym-radius-size-xxxl);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    height: 100%;
+    list-style-type: none;
+    max-width: 12.5rem;
+    scroll-snap-align: start;
+}
+.MusicHistoryPage_tab_isLoading__nNqd2:first-child,
+.MusicHistoryPage_tab_selected__nmn8P {
+    border-color: var(--ym-controls-color-primary-outline-selected_stroke);
+}
+.MusicHistoryPage_tab_isLoading__nNqd2:first-child {
+    padding: var(--ym-spacer-size-l);
+}
+.MusicHistoryPage_date__OV6rR {
+    text-align: center;
+}
+.MusicHistoryPage_date__OV6rR:first-letter {
+    text-transform: uppercase;
+}
+.MusicHistoryPage_error__9f_8i.MusicHistoryPage_important__qNFO8 {
+    height: auto;
+    margin-block-start: var(--ym-spacer-size-xxxxl);
+}
+.MusicHistoryPageContentShimmer_shimmersContainer__82cj6 {
+    display: flex;
+    flex-direction: column;
+}
+.MusicHistoryPageContentShimmer_dateShimmer__d4_te {
+    height: var(--ym-font-line-height-headline-m);
+    margin-block-end: var(--ym-spacer-size-xxl);
+    margin-inline-start: var(--ym-spacer-size-xxl);
+    width: 11.875rem;
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPageContentShimmer_dateShimmer__d4_te {
+        margin-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPageContentShimmer_contextNameShimmer__Tzbqr {
+    height: var(--ym-font-line-height-label-s);
+    margin-block-end: var(--ym-spacer-size-xl);
+    margin-inline-start: var(--ym-spacer-size-xxl);
+    width: 4rem;
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPageContentShimmer_contextNameShimmer__Tzbqr {
+        margin-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPageContentShimmer_contextHeaderShimmer__Tq0PZ {
+    margin-block-end: var(--ym-spacer-size-xl);
+    margin-inline-start: var(--ym-spacer-size-xxl);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPageContentShimmer_contextHeaderShimmer__Tq0PZ {
+        margin-inline-start: var(--ym-spacer-size-l);
+    }
+}
+.MusicHistoryPageContentShimmer_trackListShimmers__4GSp8 {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ym-spacer-size-l);
+    margin-block-end: var(--ym-spacer-size-xxxl);
+    margin-inline-end: var(--ym-spacer-size-xxl);
+    margin-inline-start: var(--ym-spacer-size-l);
+}
+@media only screen and (max-width: 767.98px) {
+    .MusicHistoryPageContentShimmer_trackListShimmers__4GSp8 {
+        margin-inline-start: var(--ym-spacer-size-l);
+    }
+}

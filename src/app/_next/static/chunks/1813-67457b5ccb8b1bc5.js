@@ -1,1 +1,1406 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1813],{537:(e,s,t)=>{"use strict";t.d(s,{mi:()=>m.SortDropdown,wY:()=>d,WG:()=>i.W,hl:()=>r,y8:()=>n.useSort});var i=t(25585),o=t(19964);let r=e=>!!e&&(e===o.x.ASC||e===o.x.DESC);var n=t(99963),l=t(41028),a=t(75729);let d=l.gK.model("Sort",{sortBy:l.gK.maybe(l.gK.enumeration(Object.values(a.g))),sortOrder:l.gK.maybe(l.gK.enumeration(Object.values(o.x)))}).actions(e=>({setSortBy(s){e.sortBy=s},setSortOrder(s){e.sortOrder=s}}));var m=t(2614)},2614:(e,s,t)=>{"use strict";t.d(s,{SortDropdown:()=>x});var i=t(33008),o=t(97531),r=t(66268),n=t(96560),l=t(75729),a=t(42213),d=t(44189),m=t(89492),b=t(78016),h=t(77868),v=t(79169),u=t(25585),P=t(3417),c=t.n(P);let p={[l.g.RATING]:(0,i.jsx)(n.A,{id:"sort.sort-by-rating"}),[l.g.YEAR]:(0,i.jsx)(n.A,{id:"sort.sort-by-year"})},x=(0,o.PA)(e=>{var s;let{sortModel:t,onSort:o}=e,{settings:{isMobile:P}}=(0,v.Pjs)(),x=(0,a.c)(e=>{(0,u.W)(e.id)&&t.sortBy!==e.id&&(t.setSortBy(e.id),o())}),_=(0,r.useMemo)(()=>P?(0,i.jsx)(d.Button,{radius:"xxxl",className:c().button,icon:(0,i.jsx)(b.Icon,{variant:"filter",size:"xs"})}):(0,i.jsxs)(d.Button,{radius:"xxxl",className:c().button,children:[(0,i.jsx)(h.Caption,{variant:"span",size:"m",weight:"medium",children:t.sortBy?p[t.sortBy]:(0,i.jsx)(n.A,{id:"sort.select-filter"})}),(0,i.jsx)(b.Icon,{size:"xxs",variant:"arrowDown"})]}),[P,t.sortBy]);return(0,i.jsx)(m.ms,{placement:P?"bottom":"top",isMobile:P,strategy:"fixed",className:c().root,onSelect:x,reference:_,offsetOptions:{mainAxis:10,crossAxis:-50},defaultValue:null!=(s=t.sortBy)?s:l.g.YEAR,containerClassName:c().container,header:P?(0,i.jsx)("div",{className:c().header}):void 0,children:Object.values(l.g).map(e=>(0,i.jsx)(m.c$,{id:e,label:p[e]},e))})})},3417:e=>{e.exports={root:"SortDropdown_root__d1JmQ",button:"SortDropdown_button__SjTI7",header:"SortDropdown_header__kj8yV",container:"SortDropdown_container__dyVF_"}},19964:(e,s,t)=>{"use strict";var i;t.d(s,{x:()=>i}),function(e){e.ASC="asc",e.DESC="desc"}(i||(i={}))},25585:(e,s,t)=>{"use strict";t.d(s,{W:()=>o});var i=t(75729);let o=e=>!!e&&(e===i.g.RATING||e===i.g.YEAR)},26271:e=>{e.exports={root:"NotFound_root__47ZX6",root_desktop:"NotFound_root_desktop___QqSb",navigation:"NotFound_navigation__q8rIW",content:"NotFound_content__3kry_",icon:"NotFound_icon___Wa9y",title:"NotFound_title__akG_o",important:"NotFound_important__z1LWl",text:"NotFound_text__oxDZv",button:"NotFound_button__jF4uH"}},27618:(e,s,t)=>{"use strict";t.d(s,{NotFound:()=>P});var i=t(33008),o=t(85896),r=t(97531),n=t(96560),l=t(44189),a=t(78016),d=t(77868),m=t(79169),b=t(18740),h=t(66268),v=t(26271),u=t.n(v);let P=(0,r.PA)(e=>{let{className:s,title:t,description:r,iconVariant:v="musicLogo",iconClassName:P,iconSize:c}=e,{contentRef:p}=(0,m.gKY)(),x=(0,m.ZpR)(m.Zyd.main.href);(0,m.LZB)();let{handleNavigateToMain:_}=(0,m.D5F)(x);return(0,m.NBO)(!0),!function(){let{location:e}=(0,m.Pjs)();(0,h.useEffect)(()=>(e.setNotFound(!0),()=>{e.setNotFound(!1)}),[e])}(),(0,i.jsxs)("div",{className:(0,o.$)(u().root,{[u().root_desktop]:!p},s),children:[(0,i.jsx)(b.Lh,{withBackwardFallback:"/",className:u().navigation,withForwardControl:!1}),(0,i.jsxs)("div",{className:u().content,children:[(0,i.jsx)(a.Icon,{className:(0,o.$)(u().icon,P),variant:v,size:c}),(0,i.jsx)(d.Heading,{className:(0,o.$)(u().title,u().important),variant:"h3",size:"xs",children:t||(0,i.jsx)(n.A,{id:"page-error.page-does-not-exist"})}),(0,i.jsx)(d.Caption,{className:(0,o.$)(u().text,u().important),variant:"span",type:"text",size:"l",weight:"normal",children:r||(0,i.jsx)(n.A,{id:"page-error.page-does-not-exist-description"})}),(0,i.jsx)(l.Button,{onClick:_,className:u().button,role:"link",color:"secondary",size:"l",radius:"xxxl",children:(0,i.jsx)(d.Caption,{type:"controls",variant:"span",size:"m",children:(0,i.jsx)(n.A,{id:"navigation.page-main"})})})]})]})})},30624:e=>{e.exports={root:"LabelArtistsPage_root__smTJJ",scrollContainer:"LabelArtistsPage_scrollContainer__alDjs",important:"LabelArtistsPage_important__pOZpi",footer:"LabelArtistsPage_footer__JU2P3",item:"LabelArtistsPage_item__kol2m",content:"LabelArtistsPage_content__4hjcX"}},31813:(e,s,t)=>{Promise.resolve().then(t.bind(t,52756)),Promise.resolve().then(t.bind(t,41458)),Promise.resolve().then(t.bind(t,80922)),Promise.resolve().then(t.bind(t,54487)),Promise.resolve().then(t.bind(t,91342)),Promise.resolve().then(t.bind(t,21741)),Promise.resolve().then(t.bind(t,77868)),Promise.resolve().then(t.bind(t,80810)),Promise.resolve().then(t.bind(t,57609)),Promise.resolve().then(t.bind(t,82548)),Promise.resolve().then(t.bind(t,92725)),Promise.resolve().then(t.bind(t,91450)),Promise.resolve().then(t.bind(t,60343)),Promise.resolve().then(t.bind(t,2202)),Promise.resolve().then(t.bind(t,89414)),Promise.resolve().then(t.bind(t,59173)),Promise.resolve().then(t.bind(t,75227)),Promise.resolve().then(t.bind(t,55717)),Promise.resolve().then(t.bind(t,86600)),Promise.resolve().then(t.bind(t,73480)),Promise.resolve().then(t.bind(t,55142)),Promise.resolve().then(t.bind(t,37548)),Promise.resolve().then(t.bind(t,70278)),Promise.resolve().then(t.bind(t,40160)),Promise.resolve().then(t.bind(t,70400)),Promise.resolve().then(t.bind(t,93652)),Promise.resolve().then(t.bind(t,47407)),Promise.resolve().then(t.bind(t,86335)),Promise.resolve().then(t.bind(t,38340)),Promise.resolve().then(t.bind(t,57176)),Promise.resolve().then(t.bind(t,144)),Promise.resolve().then(t.bind(t,99963)),Promise.resolve().then(t.bind(t,2614)),Promise.resolve().then(t.bind(t,87666)),Promise.resolve().then(t.bind(t,87754)),Promise.resolve().then(t.bind(t,71029)),Promise.resolve().then(t.bind(t,56932)),Promise.resolve().then(t.bind(t,8910)),Promise.resolve().then(t.bind(t,39500)),Promise.resolve().then(t.bind(t,31978)),Promise.resolve().then(t.bind(t,12005)),Promise.resolve().then(t.bind(t,12327)),Promise.resolve().then(t.bind(t,71562)),Promise.resolve().then(t.bind(t,39900)),Promise.resolve().then(t.bind(t,62565)),Promise.resolve().then(t.bind(t,83641)),Promise.resolve().then(t.bind(t,88081)),Promise.resolve().then(t.bind(t,60862)),Promise.resolve().then(t.bind(t,2294)),Promise.resolve().then(t.bind(t,65297)),Promise.resolve().then(t.bind(t,23197)),Promise.resolve().then(t.bind(t,86943)),Promise.resolve().then(t.bind(t,27575)),Promise.resolve().then(t.bind(t,45019)),Promise.resolve().then(t.bind(t,76808)),Promise.resolve().then(t.bind(t,84651)),Promise.resolve().then(t.bind(t,18674)),Promise.resolve().then(t.bind(t,65930)),Promise.resolve().then(t.bind(t,45576)),Promise.resolve().then(t.bind(t,75142)),Promise.resolve().then(t.bind(t,46791)),Promise.resolve().then(t.bind(t,22851)),Promise.resolve().then(t.bind(t,11959)),Promise.resolve().then(t.bind(t,72775)),Promise.resolve().then(t.bind(t,53350)),Promise.resolve().then(t.bind(t,41170)),Promise.resolve().then(t.bind(t,63838)),Promise.resolve().then(t.bind(t,58977)),Promise.resolve().then(t.bind(t,76801)),Promise.resolve().then(t.bind(t,59544)),Promise.resolve().then(t.bind(t,72925)),Promise.resolve().then(t.bind(t,11960)),Promise.resolve().then(t.bind(t,51229)),Promise.resolve().then(t.bind(t,38592)),Promise.resolve().then(t.bind(t,9586)),Promise.resolve().then(t.bind(t,69458)),Promise.resolve().then(t.bind(t,29418)),Promise.resolve().then(t.bind(t,98200)),Promise.resolve().then(t.bind(t,12170)),Promise.resolve().then(t.bind(t,60722)),Promise.resolve().then(t.bind(t,83958)),Promise.resolve().then(t.bind(t,67190)),Promise.resolve().then(t.bind(t,56770)),Promise.resolve().then(t.bind(t,26836)),Promise.resolve().then(t.bind(t,94954)),Promise.resolve().then(t.bind(t,66423)),Promise.resolve().then(t.bind(t,31014)),Promise.resolve().then(t.bind(t,46532)),Promise.resolve().then(t.bind(t,40706)),Promise.resolve().then(t.bind(t,6726)),Promise.resolve().then(t.bind(t,56973)),Promise.resolve().then(t.bind(t,92998)),Promise.resolve().then(t.bind(t,93214)),Promise.resolve().then(t.bind(t,76084)),Promise.resolve().then(t.bind(t,80677)),Promise.resolve().then(t.bind(t,33247)),Promise.resolve().then(t.bind(t,34610)),Promise.resolve().then(t.bind(t,45789)),Promise.resolve().then(t.bind(t,89711)),Promise.resolve().then(t.bind(t,25154)),Promise.resolve().then(t.bind(t,28159)),Promise.resolve().then(t.bind(t,13050)),Promise.resolve().then(t.bind(t,79400)),Promise.resolve().then(t.bind(t,30039)),Promise.resolve().then(t.bind(t,71228)),Promise.resolve().then(t.bind(t,2054)),Promise.resolve().then(t.bind(t,16561)),Promise.resolve().then(t.bind(t,78419)),Promise.resolve().then(t.bind(t,25486)),Promise.resolve().then(t.bind(t,35217)),Promise.resolve().then(t.bind(t,26595)),Promise.resolve().then(t.bind(t,78221)),Promise.resolve().then(t.bind(t,32772)),Promise.resolve().then(t.bind(t,70065)),Promise.resolve().then(t.bind(t,60374)),Promise.resolve().then(t.bind(t,4520)),Promise.resolve().then(t.bind(t,28558)),Promise.resolve().then(t.bind(t,21509)),Promise.resolve().then(t.bind(t,52224)),Promise.resolve().then(t.bind(t,25379)),Promise.resolve().then(t.bind(t,97053)),Promise.resolve().then(t.bind(t,70106)),Promise.resolve().then(t.bind(t,83192)),Promise.resolve().then(t.bind(t,49562)),Promise.resolve().then(t.bind(t,95007)),Promise.resolve().then(t.bind(t,86067)),Promise.resolve().then(t.bind(t,67556)),Promise.resolve().then(t.bind(t,5572)),Promise.resolve().then(t.bind(t,85598)),Promise.resolve().then(t.bind(t,34302)),Promise.resolve().then(t.bind(t,77887)),Promise.resolve().then(t.bind(t,22682)),Promise.resolve().then(t.bind(t,48684)),Promise.resolve().then(t.bind(t,35123)),Promise.resolve().then(t.bind(t,87884)),Promise.resolve().then(t.bind(t,95068)),Promise.resolve().then(t.bind(t,73011)),Promise.resolve().then(t.bind(t,75706)),Promise.resolve().then(t.bind(t,59618)),Promise.resolve().then(t.bind(t,3886)),Promise.resolve().then(t.bind(t,43634)),Promise.resolve().then(t.bind(t,34200)),Promise.resolve().then(t.bind(t,1627)),Promise.resolve().then(t.bind(t,41460)),Promise.resolve().then(t.bind(t,25680)),Promise.resolve().then(t.bind(t,54793)),Promise.resolve().then(t.bind(t,35111)),Promise.resolve().then(t.bind(t,6735)),Promise.resolve().then(t.bind(t,98205)),Promise.resolve().then(t.bind(t,65276)),Promise.resolve().then(t.bind(t,41507)),Promise.resolve().then(t.bind(t,24984)),Promise.resolve().then(t.bind(t,70504)),Promise.resolve().then(t.bind(t,23845)),Promise.resolve().then(t.bind(t,8110)),Promise.resolve().then(t.bind(t,81416)),Promise.resolve().then(t.bind(t,6925)),Promise.resolve().then(t.bind(t,75618)),Promise.resolve().then(t.bind(t,83894)),Promise.resolve().then(t.bind(t,42589)),Promise.resolve().then(t.bind(t,56106)),Promise.resolve().then(t.bind(t,92796)),Promise.resolve().then(t.bind(t,80858)),Promise.resolve().then(t.bind(t,32850)),Promise.resolve().then(t.bind(t,90242)),Promise.resolve().then(t.bind(t,4112)),Promise.resolve().then(t.bind(t,73756)),Promise.resolve().then(t.bind(t,25474)),Promise.resolve().then(t.bind(t,85878)),Promise.resolve().then(t.bind(t,44156)),Promise.resolve().then(t.bind(t,75958)),Promise.resolve().then(t.bind(t,12183)),Promise.resolve().then(t.bind(t,89913)),Promise.resolve().then(t.bind(t,57323)),Promise.resolve().then(t.bind(t,97698)),Promise.resolve().then(t.bind(t,67342)),Promise.resolve().then(t.bind(t,64960)),Promise.resolve().then(t.bind(t,51838)),Promise.resolve().then(t.bind(t,81304)),Promise.resolve().then(t.bind(t,38742)),Promise.resolve().then(t.bind(t,12332)),Promise.resolve().then(t.bind(t,47676)),Promise.resolve().then(t.bind(t,12952)),Promise.resolve().then(t.bind(t,76532)),Promise.resolve().then(t.bind(t,28395)),Promise.resolve().then(t.bind(t,69614)),Promise.resolve().then(t.bind(t,55487)),Promise.resolve().then(t.bind(t,65710)),Promise.resolve().then(t.bind(t,91442)),Promise.resolve().then(t.bind(t,69332)),Promise.resolve().then(t.bind(t,60951)),Promise.resolve().then(t.bind(t,95045)),Promise.resolve().then(t.bind(t,4367)),Promise.resolve().then(t.bind(t,15336)),Promise.resolve().then(t.bind(t,2097)),Promise.resolve().then(t.bind(t,55675)),Promise.resolve().then(t.bind(t,86134)),Promise.resolve().then(t.bind(t,49120)),Promise.resolve().then(t.bind(t,26078)),Promise.resolve().then(t.bind(t,3218)),Promise.resolve().then(t.bind(t,82658)),Promise.resolve().then(t.bind(t,2406)),Promise.resolve().then(t.bind(t,49247)),Promise.resolve().then(t.bind(t,8681)),Promise.resolve().then(t.bind(t,69594)),Promise.resolve().then(t.bind(t,86722)),Promise.resolve().then(t.bind(t,77104)),Promise.resolve().then(t.bind(t,73682)),Promise.resolve().then(t.bind(t,62066)),Promise.resolve().then(t.bind(t,61258)),Promise.resolve().then(t.bind(t,41035)),Promise.resolve().then(t.bind(t,28160)),Promise.resolve().then(t.bind(t,31922)),Promise.resolve().then(t.bind(t,51886)),Promise.resolve().then(t.bind(t,43701)),Promise.resolve().then(t.bind(t,45228))},35233:(e,s,t)=>{"use strict";t.d(s,{M:()=>i.NotFound});var i=t(27618)},56932:(e,s,t)=>{"use strict";t.d(s,{LabelPage:()=>f});var i=t(33008),o=t(85896),r=t(97531),n=t(17846),l=t(66268),a=t(73827),d=t(96560),m=t(18064),b=t(42213),h=t(44189),v=t(78016),u=t(57747),P=t(77868),c=t(74837),p=t(83888),x=t(52732),_=t(90317),g=t(64143),N=t(79169),y=t(18740),j=t(58005),A=t(71990),L=t.n(A);let f=(0,r.PA)(e=>{var s,t,r,A;let{labelId:f,preloadedLabel:S}=e,{label:w,settings:{isMobile:B},experiments:C}=(0,N.Pjs)(),{formatMessage:T}=(0,a.A)(),{contentScrollRef:k,setContentScrollRef:E}=(0,N.gKY)(),{notify:R}=(0,N.lkh)(),{shareLink:F}=(0,N.bNS)("/label/:labelId",{params:{labelId:null!=(t=w.id)?t:""}}),I=(0,l.useRef)(null),z=(0,l.useRef)(0);(0,j.Q)({id:Number(w.id),name:null!=(r=w.name)?r:"",type:null!=(A=w.type)?A:""},j.T.ROOT);let O=(0,b.c)(async()=>{await window.navigator.clipboard.writeText(F),R((0,i.jsx)(y.Do,{entityVariant:N.Yxq.LABEL,entityTitle:w.name||""}),{containerId:N.uQT.INFO})}),U=(0,l.useMemo)(()=>B?(0,i.jsx)(h.Button,{className:L().button,onClick:O,icon:(0,i.jsx)(v.Icon,{variant:"share",size:"xxs"}),size:"l",radius:"xxxl",...(0,m.Am)(m.Xk.label.SHARE_COPY_LINK_BUTTON)}):(0,i.jsx)(h.Button,{className:L().button,onClick:O,icon:(0,i.jsx)(v.Icon,{variant:"share",size:"xxs"}),size:"l",radius:"xxxl",...(0,m.Am)(m.Xk.label.SHARE_COPY_LINK_BUTTON),children:(0,i.jsx)(d.A,{id:"interface-actions.share"})}),[B,O]),W=w.isPublisher?T({id:"entity-names.publisher"}):T({id:"entity-names.label"}),D=w.isPublisher?T({id:"entity-names.non-music-releases"}):T({id:"entity-names.releases"});return((0,l.useEffect)(()=>()=>{w.reset()},[w]),(w.isNotFound||!C.checkExperiment(N.zal.WebNextLabelPage,"on"))&&(0,n.notFound)(),(0,l.useEffect)(()=>()=>{z.current=0},[w]),(0,l.useEffect)(()=>{w.isRejected&&z&&!(z.current>0)&&(R((0,i.jsx)(y.hT,{error:T({id:"error-messages.error-load-part-page"})}),{containerId:N.uQT.ERROR}),z.current++)},[w.isRejected,R,T]),(0,N.Jzs)(w.isResolved),w.isNeededToLoad&&(0,l.use)(w.getData({labelId:Number(f),preloadedLabel:S})),w.isRejected&&!w.isNotFound)?(0,i.jsx)(p.w,{}):(0,i.jsx)(N.nVz,{pageId:N._Q$.LABEL,children:(0,i.jsxs)(g.hO,{scrollElement:k,children:[(0,i.jsx)(y.Y9,{innerHeaderRef:I}),(0,i.jsxs)(u.N,{className:L().root,containerClassName:L().content,ref:E,...(0,m.Am)(m.Xk.label.LABEL_PAGE),children:[(0,i.jsxs)("div",{className:L().header,children:[(0,i.jsx)(P.Caption,{variant:"div",type:"text",size:"m",weight:"medium",children:W}),(0,i.jsx)(c.RR,{className:L().title,title:w.name||"",headingVariant:"h1"}),U]}),w.hasAlbums&&w.albums&&(0,i.jsx)(x.pZ,{isShimmerVisible:w.isLoading,isShimmerActive:!0,className:L().carouselContainer,headerClassName:(0,o.$)(L().carouselBlock,L().carouselBlockHeader),containerClassName:L().carouselBlock,title:D,viewAllActionLink:w.albumsUrl,albums:w.albums,headingVariant:"h2",...(0,m.Am)(m.Xk.label.RELEASES_CAROUSEL)}),w.hasArtists&&(0,i.jsx)(y.OY,{isShimmerVisible:w.isLoading,isShimmerActive:!0,headerClassName:(0,o.$)(L().carouselBlockHeader,L().carouselBlock),containerClassName:L().carouselBlock,viewAllActionLink:w.artistsUrl,title:T({id:"entity-names.artists"}),headingVariant:"h2",...(0,m.Am)(m.Xk.label.ARTISTS_CAROUSEL),children:null==(s=w.artists)?void 0:s.map(e=>(0,i.jsx)(_.ao,{artist:e,contentLinesCount:3},e.id))}),(0,i.jsx)(y.A,{children:(0,i.jsx)(y.wi,{className:L().footer})})]})]})})})},58005:(e,s,t)=>{"use strict";t.d(s,{Q:()=>d,T:()=>a});var i=t(66268),o=t(79169),r=t(68811),n=t(62175),l=t(74295),a=function(e){return e.ROOT="root",e.ALBUMS="albums",e.ARTISTS="artists",e}({});let d=(e,s)=>{(0,i.useEffect)(()=>{switch(s){case"root":(0,l.I)(e,{fullUrl:null,locale:null,url:null,tld:"",host:""}).then(e=>{(0,o.jxB)(e)});break;case"albums":(0,r._)(e,{fullUrl:null,locale:null,url:null,tld:"",host:""}).then(e=>{(0,o.jxB)(e)});break;case"artists":(0,n.M)(e,{fullUrl:null,locale:null,url:null,tld:"",host:""}).then(e=>{(0,o.jxB)(e)})}},[null==e?void 0:e.id,null==e?void 0:e.type,null==e?void 0:e.name,s,e])}},62175:(e,s,t)=>{"use strict";t.d(s,{M:()=>o});var i=t(79169);async function o(e,s){var t,o,r;if(!e)return{title:"",description:"",openGraph:{},twitter:{},appLinks:{},other:{}};let n=await (0,i.WGy)(s.locale),l=n({id:"metadata.label-artists-title"},{labelName:e.name,labelType:e.type}),a=n({id:"metadata.label-artists-description"},{labelName:e.name,labelType:e.type});return{title:l,description:a,openGraph:(0,i.i$E)({ogTitle:l,ogDescription:a,fullUrl:null!=(t=s.fullUrl)?t:"",locale:s.locale,siteName:n({id:"metadata.yandex-music"}),ogType:"music.playlist"}),twitter:(0,i.HRN)({cardType:i.WfF.APP,title:l,url:s.url,appName:n({id:"metadata.yandex-music"})}),appLinks:(0,i.X5i)({additional:{...s,url:null!=(o=s.url)?o:"",fullUrl:null!=(r=s.fullUrl)?r:"",host:s.host},appName:n({id:"metadata.yandex-music"})}),alternates:(0,i.SEs)("/label/:labelId/artists",s.tld,{params:{labelId:e.id}})}}},68544:e=>{e.exports={root:"LabelAlbumsPage_root__xyWi4",scrollContainer:"LabelAlbumsPage_scrollContainer__zRUlM",important:"LabelAlbumsPage_important__s18oL",footer:"LabelAlbumsPage_footer__dcXFk",item:"LabelAlbumsPage_item__Qjz9F",content:"LabelAlbumsPage_content__jOWKZ"}},68811:(e,s,t)=>{"use strict";t.d(s,{_:()=>o});var i=t(79169);async function o(e,s){var t,o,r;if(!e)return{title:"",description:"",openGraph:{},twitter:{},appLinks:{},other:{}};let n=await (0,i.WGy)(s.locale),l=n({id:"metadata.label-albums-title"},{labelName:e.name,labelType:e.type}),a=n({id:"metadata.label-albums-description"},{labelName:e.name,labelType:e.type});return{title:l,description:a,openGraph:(0,i.i$E)({ogTitle:l,ogDescription:a,fullUrl:null!=(t=s.fullUrl)?t:"",locale:s.locale,siteName:n({id:"metadata.yandex-music"}),ogType:"music.playlist"}),twitter:(0,i.HRN)({cardType:i.WfF.APP,title:l,url:s.url,appName:n({id:"metadata.yandex-music"})}),appLinks:(0,i.X5i)({additional:{...s,url:null!=(o=s.url)?o:"",fullUrl:null!=(r=s.fullUrl)?r:"",host:s.host},appName:n({id:"metadata.yandex-music"})}),alternates:(0,i.SEs)("/label/:labelId/albums",s.tld,{params:{labelId:e.id}})}}},71029:(e,s,t)=>{"use strict";t.d(s,{LabelNotFoundPage:()=>r});var i=t(33008),o=t(35233);let r=()=>(0,i.jsx)(o.M,{})},71990:e=>{e.exports={root:"LabelPage_root__jquyP",content:"LabelPage_content__9st_X",header:"LabelPage_header__G2xY_",title:"LabelPage_title__BNxeX",button:"LabelPage_button__JXw3C",carouselBlock:"LabelPage_carouselBlock__zPJmW",carouselBlockHeader:"LabelPage_carouselBlockHeader__dvYqJ",carouselContainer:"LabelPage_carouselContainer__bRVMp",footer:"LabelPage_footer__lvKmF"}},74295:(e,s,t)=>{"use strict";t.d(s,{I:()=>o});var i=t(79169);async function o(e,s){var t,o,r;if(!e)return{title:"",description:"",openGraph:{},twitter:{},appLinks:{},other:{}};let n=await (0,i.WGy)(s.locale),l=n({id:"metadata.label-title"},{labelTitle:e.name,labelType:e.type}),a=n({id:"metadata.label-description"},{labelTitle:e.name,labelType:e.type});return{title:l,description:a,openGraph:(0,i.i$E)({ogTitle:l,ogDescription:a,fullUrl:null!=(t=s.fullUrl)?t:"",locale:s.locale,siteName:n({id:"metadata.yandex-music"}),ogType:"music.playlist"}),twitter:(0,i.HRN)({cardType:i.WfF.APP,title:l,url:s.url,appName:n({id:"metadata.yandex-music"})}),appLinks:(0,i.X5i)({additional:{...s,url:null!=(o=s.url)?o:"",fullUrl:null!=(r=s.fullUrl)?r:"",host:s.host},appName:n({id:"metadata.yandex-music"})}),alternates:(0,i.SEs)("/label/:labelId",s.tld,{params:{labelId:e.id}})}}},87666:(e,s,t)=>{"use strict";t.d(s,{LabelAlbumsPage:()=>N});var i=t(33008),o=t(85896),r=t(97531),n=t(17846),l=t(66268),a=t(73827),d=t(18064),m=t(42213),b=t(77868),h=t(83888),v=t(52732),u=t(64143),P=t(537),c=t(79169),p=t(18740),x=t(58005),_=t(68544),g=t.n(_);let N=(0,r.PA)(e=>{let{labelId:s,preloadedLabel:t,preloadedAlbums:r,sortBy:_}=e,{label:{id:N,type:y,name:j,albumsSubpage:A,reset:L,isNeededToLoad:f,getData:S,isPublisher:w},settings:{isMobile:B},experiments:C}=(0,c.Pjs)(),{formatMessage:T}=(0,a.A)(),{contentScrollRef:k,setContentScrollRef:E}=(0,c.gKY)(),R=(0,c.W6M)(),F=w?T({id:"page.label-podcast-header"},{labelName:j}):T({id:"page.label-albums-header"},{labelName:j}),I=(0,m.c)(e=>{var t;A.getData({labelId:Number(s),page:e,pageSize:20,sortBy:null!=(t=A.sort.sortBy)?t:_})}),z=(0,m.c)(()=>{A.reset(),I(0)});(0,P.y8)({sortModel:A.sort}),(0,c.XcE)(A.pagesLoader,I),(0,l.useEffect)(()=>()=>{L(),A.reset()},[L,A]),(A.isNotFound||!C.checkExperiment(c.zal.WebNextLabelPage,"on"))&&(0,n.notFound)(),(0,x.Q)({id:Number(N),name:null!=j?j:"",type:null!=y?y:""},x.T.ALBUMS),(0,c.Jzs)(A.isResolved);let O=(0,l.useMemo)(()=>({Footer:()=>(0,i.jsx)(p.A,{children:(0,i.jsx)(p.wi,{className:g().footer})})}),[]),U=T({id:"entity-names.label-albums-list"}),W=[];if(A.isNeededToLoad){var D;let e=A.sort.sortBy===_||void 0===A.sort.sortBy;W.push(A.getData({labelId:Number(s),page:0,pageSize:20,preloadedAlbums:e?r:void 0,sortBy:null!=(D=A.sort.sortBy)?D:_}))}if(f&&W.push(S({labelId:Number(s),preloadedLabel:t,withLabelEntities:!1})),W.length&&(0,l.use)(Promise.allSettled(W)),A.isRejected&&!A.isNotFound)return(0,i.jsx)(h.w,{});let M=A.isShimmerVisible?20:A.items.length;return(0,i.jsx)(c.nVz,{pageId:c._Q$.LABEL_ALBUMS,children:(0,i.jsx)(u.hO,{scrollElement:k,outerTitle:F,children:(0,i.jsxs)("div",{className:g().root,...(0,d.Am)(d.Xk.label.LABEL_ALBUMS_PAGE),children:[(0,i.jsxs)(p.Y9,{variant:p.Vw.TEXT,withForwardControl:!1,withBackwardControl:R.canBack,children:[(0,i.jsx)(b.Heading,{variant:"h1",weight:"bold",size:"xl",lineClamp:1,children:F}),(0,i.jsx)(P.mi,{sortModel:A.sort,onSort:z})]}),(0,i.jsx)(p.$$,{className:(0,o.$)(g().scrollContainer,g().important),listClassName:g().content,itemClassName:g().item,customComponents:O,itemContentCallback:e=>{let s=A.items[e],t=T({id:"loading-messages.entity-is-loading"},{entityName:T({id:"entity-names.album"})});return s?(0,i.jsx)(v.aX,{album:s,contentLinesCount:4,withAddition:!s.isNonMusic,withLikesCount:s.isNonMusic},s.id):(0,i.jsx)(p.Vt,{"aria-label":t,linesCount:4})},totalCount:M,onGetDataByPage:I,pageSize:20,totalRequests:A.requestsCount,handleRef:E,context:{listAriaLabel:U},isMobileLayout:B,useWindowScroll:B})]})})})})},87754:(e,s,t)=>{"use strict";t.d(s,{LabelArtistsPage:()=>g});var i=t(33008),o=t(85896),r=t(97531),n=t(17846),l=t(66268),a=t(73827),d=t(18064),m=t(42213),b=t(77868),h=t(83888),v=t(90317),u=t(64143),P=t(79169),c=t(18740),p=t(58005),x=t(30624),_=t.n(x);let g=(0,r.PA)(e=>{let{labelId:s,preloadedLabel:t,preloadedArtists:r}=e,{label:{id:x,name:g,type:N,artistsSubpage:y,reset:j,isNeededToLoad:A,getData:L},settings:{isMobile:f},experiments:S}=(0,P.Pjs)(),{formatMessage:w}=(0,a.A)(),{contentScrollRef:B,setContentScrollRef:C}=(0,P.gKY)(),T=(0,P.W6M)(),k=w({id:"page.label-artists-header"},{labelName:g}),E=(0,m.c)(e=>{y.getData({labelId:Number(s),page:e,pageSize:20})});(0,P.XcE)(y.pagesLoader,E),(0,l.useEffect)(()=>()=>{j(),y.reset()},[j,y]),(y.isNotFound||!S.checkExperiment(P.zal.WebNextLabelPage,"on"))&&(0,n.notFound)(),(0,p.Q)({id:Number(x),name:null!=g?g:"",type:null!=N?N:""},p.T.ARTISTS),(0,P.Jzs)(y.isResolved);let R=(0,l.useMemo)(()=>({Footer:()=>(0,i.jsx)(c.A,{children:(0,i.jsx)(c.wi,{className:_().footer})})}),[]),F=w({id:"entity-names.label-artists-list"}),I=[];if(y.isNeededToLoad&&I.push(y.getData({labelId:Number(s),page:0,pageSize:20,preloadedArtists:r})),A&&I.push(L({labelId:Number(s),preloadedLabel:t,withLabelEntities:!1})),I.length&&(0,l.use)(Promise.allSettled(I)),y.isRejected&&!y.isNotFound)return(0,i.jsx)(h.w,{});let z=y.isShimmerVisible?20:y.items.length;return(0,i.jsx)(P.nVz,{pageId:P._Q$.LABEL_ARTISTS,children:(0,i.jsx)(u.hO,{scrollElement:B,outerTitle:k,children:(0,i.jsxs)("div",{className:_().root,...(0,d.Am)(d.Xk.label.LABEL_ARTISTS_PAGE),children:[(0,i.jsx)(c.Y9,{variant:c.Vw.TEXT,withForwardControl:!1,withBackwardControl:T.canBack,className:_().header,children:(0,i.jsx)(b.Heading,{variant:"h1",weight:"bold",size:"xl",lineClamp:1,children:k})}),(0,i.jsx)(c.$$,{className:(0,o.$)(_().scrollContainer,_().important),listClassName:_().content,itemClassName:_().item,customComponents:R,itemContentCallback:e=>{let s=y.items[e],t=w({id:"loading-messages.entity-is-loading"},{entityName:w({id:"entity-names.artist"})});return s?(0,i.jsx)(v.ao,{artist:s,contentLinesCount:4},s.id):(0,i.jsx)(c.Vt,{"aria-label":t,round:!0,centered:!0,linesCount:4})},totalCount:z,onGetDataByPage:E,pageSize:20,totalRequests:y.requestsCount,handleRef:C,context:{listAriaLabel:F},isMobileLayout:f,useWindowScroll:f})]})})})})},99963:(e,s,t)=>{"use strict";t.d(s,{useSort:()=>l});var i=t(66268),o=t(75729),r=t(79169),n=t(25585);let l=e=>{let{sortModel:s}=e,t=(0,r.XJ9)();(0,i.useLayoutEffect)(()=>{let e=new URL(window.location.href).searchParams.get(r.K3F.SORT);e&&(0,n.W)(e)?s.setSortBy(e):s.setSortBy(o.g.YEAR)},[s]),(0,i.useEffect)(()=>{if(s.sortBy){let e=(0,r.bJ)(r.K3F.SORT,s.sortBy);e&&t(e)}},[t,s.sortBy])}}}]);
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [1813],
+    {
+        537: (e, s, t) => {
+            "use strict";
+            t.d(s, {
+                mi: () => m.SortDropdown,
+                wY: () => d,
+                WG: () => i.W,
+                hl: () => r,
+                y8: () => n.useSort,
+            });
+            var i = t(25585),
+                o = t(19964);
+            let r = (e) => !!e && (e === o.x.ASC || e === o.x.DESC);
+            var n = t(99963),
+                l = t(41028),
+                a = t(75729);
+            let d = l.gK
+                .model("Sort", {
+                    sortBy: l.gK.maybe(l.gK.enumeration(Object.values(a.g))),
+                    sortOrder: l.gK.maybe(l.gK.enumeration(Object.values(o.x))),
+                })
+                .actions((e) => ({
+                    setSortBy(s) {
+                        e.sortBy = s;
+                    },
+                    setSortOrder(s) {
+                        e.sortOrder = s;
+                    },
+                }));
+            var m = t(2614);
+        },
+        2614: (e, s, t) => {
+            "use strict";
+            t.d(s, { SortDropdown: () => x });
+            var i = t(33008),
+                o = t(97531),
+                r = t(66268),
+                n = t(96560),
+                l = t(75729),
+                a = t(42213),
+                d = t(44189),
+                m = t(89492),
+                b = t(78016),
+                h = t(77868),
+                v = t(79169),
+                u = t(25585),
+                P = t(3417),
+                c = t.n(P);
+            let p = {
+                    [l.g.RATING]: (0, i.jsx)(n.A, {
+                        id: "sort.sort-by-rating",
+                    }),
+                    [l.g.YEAR]: (0, i.jsx)(n.A, { id: "sort.sort-by-year" }),
+                },
+                x = (0, o.PA)((e) => {
+                    var s;
+                    let { sortModel: t, onSort: o } = e,
+                        {
+                            settings: { isMobile: P },
+                        } = (0, v.Pjs)(),
+                        x = (0, a.c)((e) => {
+                            (0, u.W)(e.id) &&
+                                t.sortBy !== e.id &&
+                                (t.setSortBy(e.id), o());
+                        }),
+                        _ = (0, r.useMemo)(
+                            () =>
+                                P
+                                    ? (0, i.jsx)(d.Button, {
+                                          radius: "xxxl",
+                                          className: c().button,
+                                          icon: (0, i.jsx)(b.Icon, {
+                                              variant: "filter",
+                                              size: "xs",
+                                          }),
+                                      })
+                                    : (0, i.jsxs)(d.Button, {
+                                          radius: "xxxl",
+                                          className: c().button,
+                                          children: [
+                                              (0, i.jsx)(h.Caption, {
+                                                  variant: "span",
+                                                  size: "m",
+                                                  weight: "medium",
+                                                  children: t.sortBy
+                                                      ? p[t.sortBy]
+                                                      : (0, i.jsx)(n.A, {
+                                                            id: "sort.select-filter",
+                                                        }),
+                                              }),
+                                              (0, i.jsx)(b.Icon, {
+                                                  size: "xxs",
+                                                  variant: "arrowDown",
+                                              }),
+                                          ],
+                                      }),
+                            [P, t.sortBy],
+                        );
+                    return (0, i.jsx)(m.ms, {
+                        placement: P ? "bottom" : "top",
+                        isMobile: P,
+                        strategy: "fixed",
+                        className: c().root,
+                        onSelect: x,
+                        reference: _,
+                        offsetOptions: { mainAxis: 10, crossAxis: -50 },
+                        defaultValue: null != (s = t.sortBy) ? s : l.g.YEAR,
+                        containerClassName: c().container,
+                        header: P
+                            ? (0, i.jsx)("div", { className: c().header })
+                            : void 0,
+                        children: Object.values(l.g).map((e) =>
+                            (0, i.jsx)(m.c$, { id: e, label: p[e] }, e),
+                        ),
+                    });
+                });
+        },
+        3417: (e) => {
+            e.exports = {
+                root: "SortDropdown_root__d1JmQ",
+                button: "SortDropdown_button__SjTI7",
+                header: "SortDropdown_header__kj8yV",
+                container: "SortDropdown_container__dyVF_",
+            };
+        },
+        19964: (e, s, t) => {
+            "use strict";
+            var i;
+            t.d(s, { x: () => i }),
+                (function (e) {
+                    (e.ASC = "asc"), (e.DESC = "desc");
+                })(i || (i = {}));
+        },
+        25585: (e, s, t) => {
+            "use strict";
+            t.d(s, { W: () => o });
+            var i = t(75729);
+            let o = (e) => !!e && (e === i.g.RATING || e === i.g.YEAR);
+        },
+        26271: (e) => {
+            e.exports = {
+                root: "NotFound_root__47ZX6",
+                root_desktop: "NotFound_root_desktop___QqSb",
+                navigation: "NotFound_navigation__q8rIW",
+                content: "NotFound_content__3kry_",
+                icon: "NotFound_icon___Wa9y",
+                title: "NotFound_title__akG_o",
+                important: "NotFound_important__z1LWl",
+                text: "NotFound_text__oxDZv",
+                button: "NotFound_button__jF4uH",
+            };
+        },
+        27618: (e, s, t) => {
+            "use strict";
+            t.d(s, { NotFound: () => P });
+            var i = t(33008),
+                o = t(85896),
+                r = t(97531),
+                n = t(96560),
+                l = t(44189),
+                a = t(78016),
+                d = t(77868),
+                m = t(79169),
+                b = t(18740),
+                h = t(66268),
+                v = t(26271),
+                u = t.n(v);
+            let P = (0, r.PA)((e) => {
+                let {
+                        className: s,
+                        title: t,
+                        description: r,
+                        iconVariant: v = "musicLogo",
+                        iconClassName: P,
+                        iconSize: c,
+                    } = e,
+                    { contentRef: p } = (0, m.gKY)(),
+                    x = (0, m.ZpR)(m.Zyd.main.href);
+                (0, m.LZB)();
+                let { handleNavigateToMain: _ } = (0, m.D5F)(x);
+                return (
+                    (0, m.NBO)(!0),
+                    !(function () {
+                        let { location: e } = (0, m.Pjs)();
+                        (0, h.useEffect)(
+                            () => (
+                                e.setNotFound(!0),
+                                () => {
+                                    e.setNotFound(!1);
+                                }
+                            ),
+                            [e],
+                        );
+                    })(),
+                    (0, i.jsxs)("div", {
+                        className: (0, o.$)(
+                            u().root,
+                            { [u().root_desktop]: !p },
+                            s,
+                        ),
+                        children: [
+                            (0, i.jsx)(b.Lh, {
+                                withBackwardFallback: "/",
+                                className: u().navigation,
+                                withForwardControl: !1,
+                            }),
+                            (0, i.jsxs)("div", {
+                                className: u().content,
+                                children: [
+                                    (0, i.jsx)(a.Icon, {
+                                        className: (0, o.$)(u().icon, P),
+                                        variant: v,
+                                        size: c,
+                                    }),
+                                    (0, i.jsx)(d.Heading, {
+                                        className: (0, o.$)(
+                                            u().title,
+                                            u().important,
+                                        ),
+                                        variant: "h3",
+                                        size: "xs",
+                                        children:
+                                            t ||
+                                            (0, i.jsx)(n.A, {
+                                                id: "page-error.page-does-not-exist",
+                                            }),
+                                    }),
+                                    (0, i.jsx)(d.Caption, {
+                                        className: (0, o.$)(
+                                            u().text,
+                                            u().important,
+                                        ),
+                                        variant: "span",
+                                        type: "text",
+                                        size: "l",
+                                        weight: "normal",
+                                        children:
+                                            r ||
+                                            (0, i.jsx)(n.A, {
+                                                id: "page-error.page-does-not-exist-description",
+                                            }),
+                                    }),
+                                    (0, i.jsx)(l.Button, {
+                                        onClick: _,
+                                        className: u().button,
+                                        role: "link",
+                                        color: "secondary",
+                                        size: "l",
+                                        radius: "xxxl",
+                                        children: (0, i.jsx)(d.Caption, {
+                                            type: "controls",
+                                            variant: "span",
+                                            size: "m",
+                                            children: (0, i.jsx)(n.A, {
+                                                id: "navigation.page-main",
+                                            }),
+                                        }),
+                                    }),
+                                ],
+                            }),
+                        ],
+                    })
+                );
+            });
+        },
+        30624: (e) => {
+            e.exports = {
+                root: "LabelArtistsPage_root__smTJJ",
+                scrollContainer: "LabelArtistsPage_scrollContainer__alDjs",
+                important: "LabelArtistsPage_important__pOZpi",
+                footer: "LabelArtistsPage_footer__JU2P3",
+                item: "LabelArtistsPage_item__kol2m",
+                content: "LabelArtistsPage_content__4hjcX",
+            };
+        },
+        31813: (e, s, t) => {
+            Promise.resolve().then(t.bind(t, 52756)),
+                Promise.resolve().then(t.bind(t, 41458)),
+                Promise.resolve().then(t.bind(t, 80922)),
+                Promise.resolve().then(t.bind(t, 54487)),
+                Promise.resolve().then(t.bind(t, 91342)),
+                Promise.resolve().then(t.bind(t, 21741)),
+                Promise.resolve().then(t.bind(t, 77868)),
+                Promise.resolve().then(t.bind(t, 80810)),
+                Promise.resolve().then(t.bind(t, 57609)),
+                Promise.resolve().then(t.bind(t, 82548)),
+                Promise.resolve().then(t.bind(t, 92725)),
+                Promise.resolve().then(t.bind(t, 91450)),
+                Promise.resolve().then(t.bind(t, 60343)),
+                Promise.resolve().then(t.bind(t, 2202)),
+                Promise.resolve().then(t.bind(t, 89414)),
+                Promise.resolve().then(t.bind(t, 59173)),
+                Promise.resolve().then(t.bind(t, 75227)),
+                Promise.resolve().then(t.bind(t, 55717)),
+                Promise.resolve().then(t.bind(t, 86600)),
+                Promise.resolve().then(t.bind(t, 73480)),
+                Promise.resolve().then(t.bind(t, 55142)),
+                Promise.resolve().then(t.bind(t, 37548)),
+                Promise.resolve().then(t.bind(t, 70278)),
+                Promise.resolve().then(t.bind(t, 40160)),
+                Promise.resolve().then(t.bind(t, 70400)),
+                Promise.resolve().then(t.bind(t, 93652)),
+                Promise.resolve().then(t.bind(t, 47407)),
+                Promise.resolve().then(t.bind(t, 86335)),
+                Promise.resolve().then(t.bind(t, 38340)),
+                Promise.resolve().then(t.bind(t, 57176)),
+                Promise.resolve().then(t.bind(t, 144)),
+                Promise.resolve().then(t.bind(t, 99963)),
+                Promise.resolve().then(t.bind(t, 2614)),
+                Promise.resolve().then(t.bind(t, 87666)),
+                Promise.resolve().then(t.bind(t, 87754)),
+                Promise.resolve().then(t.bind(t, 71029)),
+                Promise.resolve().then(t.bind(t, 56932)),
+                Promise.resolve().then(t.bind(t, 8910)),
+                Promise.resolve().then(t.bind(t, 39500)),
+                Promise.resolve().then(t.bind(t, 31978)),
+                Promise.resolve().then(t.bind(t, 12005)),
+                Promise.resolve().then(t.bind(t, 12327)),
+                Promise.resolve().then(t.bind(t, 71562)),
+                Promise.resolve().then(t.bind(t, 39900)),
+                Promise.resolve().then(t.bind(t, 62565)),
+                Promise.resolve().then(t.bind(t, 83641)),
+                Promise.resolve().then(t.bind(t, 88081)),
+                Promise.resolve().then(t.bind(t, 60862)),
+                Promise.resolve().then(t.bind(t, 2294)),
+                Promise.resolve().then(t.bind(t, 65297)),
+                Promise.resolve().then(t.bind(t, 23197)),
+                Promise.resolve().then(t.bind(t, 86943)),
+                Promise.resolve().then(t.bind(t, 27575)),
+                Promise.resolve().then(t.bind(t, 45019)),
+                Promise.resolve().then(t.bind(t, 76808)),
+                Promise.resolve().then(t.bind(t, 84651)),
+                Promise.resolve().then(t.bind(t, 18674)),
+                Promise.resolve().then(t.bind(t, 65930)),
+                Promise.resolve().then(t.bind(t, 45576)),
+                Promise.resolve().then(t.bind(t, 75142)),
+                Promise.resolve().then(t.bind(t, 46791)),
+                Promise.resolve().then(t.bind(t, 22851)),
+                Promise.resolve().then(t.bind(t, 11959)),
+                Promise.resolve().then(t.bind(t, 72775)),
+                Promise.resolve().then(t.bind(t, 53350)),
+                Promise.resolve().then(t.bind(t, 41170)),
+                Promise.resolve().then(t.bind(t, 63838)),
+                Promise.resolve().then(t.bind(t, 58977)),
+                Promise.resolve().then(t.bind(t, 76801)),
+                Promise.resolve().then(t.bind(t, 59544)),
+                Promise.resolve().then(t.bind(t, 72925)),
+                Promise.resolve().then(t.bind(t, 11960)),
+                Promise.resolve().then(t.bind(t, 51229)),
+                Promise.resolve().then(t.bind(t, 38592)),
+                Promise.resolve().then(t.bind(t, 9586)),
+                Promise.resolve().then(t.bind(t, 69458)),
+                Promise.resolve().then(t.bind(t, 29418)),
+                Promise.resolve().then(t.bind(t, 98200)),
+                Promise.resolve().then(t.bind(t, 12170)),
+                Promise.resolve().then(t.bind(t, 60722)),
+                Promise.resolve().then(t.bind(t, 83958)),
+                Promise.resolve().then(t.bind(t, 67190)),
+                Promise.resolve().then(t.bind(t, 56770)),
+                Promise.resolve().then(t.bind(t, 26836)),
+                Promise.resolve().then(t.bind(t, 94954)),
+                Promise.resolve().then(t.bind(t, 66423)),
+                Promise.resolve().then(t.bind(t, 31014)),
+                Promise.resolve().then(t.bind(t, 46532)),
+                Promise.resolve().then(t.bind(t, 40706)),
+                Promise.resolve().then(t.bind(t, 6726)),
+                Promise.resolve().then(t.bind(t, 56973)),
+                Promise.resolve().then(t.bind(t, 92998)),
+                Promise.resolve().then(t.bind(t, 93214)),
+                Promise.resolve().then(t.bind(t, 76084)),
+                Promise.resolve().then(t.bind(t, 80677)),
+                Promise.resolve().then(t.bind(t, 33247)),
+                Promise.resolve().then(t.bind(t, 34610)),
+                Promise.resolve().then(t.bind(t, 45789)),
+                Promise.resolve().then(t.bind(t, 89711)),
+                Promise.resolve().then(t.bind(t, 25154)),
+                Promise.resolve().then(t.bind(t, 28159)),
+                Promise.resolve().then(t.bind(t, 13050)),
+                Promise.resolve().then(t.bind(t, 79400)),
+                Promise.resolve().then(t.bind(t, 30039)),
+                Promise.resolve().then(t.bind(t, 71228)),
+                Promise.resolve().then(t.bind(t, 2054)),
+                Promise.resolve().then(t.bind(t, 16561)),
+                Promise.resolve().then(t.bind(t, 78419)),
+                Promise.resolve().then(t.bind(t, 25486)),
+                Promise.resolve().then(t.bind(t, 35217)),
+                Promise.resolve().then(t.bind(t, 26595)),
+                Promise.resolve().then(t.bind(t, 78221)),
+                Promise.resolve().then(t.bind(t, 32772)),
+                Promise.resolve().then(t.bind(t, 70065)),
+                Promise.resolve().then(t.bind(t, 60374)),
+                Promise.resolve().then(t.bind(t, 4520)),
+                Promise.resolve().then(t.bind(t, 28558)),
+                Promise.resolve().then(t.bind(t, 21509)),
+                Promise.resolve().then(t.bind(t, 52224)),
+                Promise.resolve().then(t.bind(t, 25379)),
+                Promise.resolve().then(t.bind(t, 97053)),
+                Promise.resolve().then(t.bind(t, 70106)),
+                Promise.resolve().then(t.bind(t, 83192)),
+                Promise.resolve().then(t.bind(t, 49562)),
+                Promise.resolve().then(t.bind(t, 95007)),
+                Promise.resolve().then(t.bind(t, 86067)),
+                Promise.resolve().then(t.bind(t, 67556)),
+                Promise.resolve().then(t.bind(t, 5572)),
+                Promise.resolve().then(t.bind(t, 85598)),
+                Promise.resolve().then(t.bind(t, 34302)),
+                Promise.resolve().then(t.bind(t, 77887)),
+                Promise.resolve().then(t.bind(t, 22682)),
+                Promise.resolve().then(t.bind(t, 48684)),
+                Promise.resolve().then(t.bind(t, 35123)),
+                Promise.resolve().then(t.bind(t, 87884)),
+                Promise.resolve().then(t.bind(t, 95068)),
+                Promise.resolve().then(t.bind(t, 73011)),
+                Promise.resolve().then(t.bind(t, 75706)),
+                Promise.resolve().then(t.bind(t, 59618)),
+                Promise.resolve().then(t.bind(t, 3886)),
+                Promise.resolve().then(t.bind(t, 43634)),
+                Promise.resolve().then(t.bind(t, 34200)),
+                Promise.resolve().then(t.bind(t, 1627)),
+                Promise.resolve().then(t.bind(t, 41460)),
+                Promise.resolve().then(t.bind(t, 25680)),
+                Promise.resolve().then(t.bind(t, 54793)),
+                Promise.resolve().then(t.bind(t, 35111)),
+                Promise.resolve().then(t.bind(t, 6735)),
+                Promise.resolve().then(t.bind(t, 98205)),
+                Promise.resolve().then(t.bind(t, 65276)),
+                Promise.resolve().then(t.bind(t, 41507)),
+                Promise.resolve().then(t.bind(t, 24984)),
+                Promise.resolve().then(t.bind(t, 70504)),
+                Promise.resolve().then(t.bind(t, 23845)),
+                Promise.resolve().then(t.bind(t, 8110)),
+                Promise.resolve().then(t.bind(t, 81416)),
+                Promise.resolve().then(t.bind(t, 6925)),
+                Promise.resolve().then(t.bind(t, 75618)),
+                Promise.resolve().then(t.bind(t, 83894)),
+                Promise.resolve().then(t.bind(t, 42589)),
+                Promise.resolve().then(t.bind(t, 56106)),
+                Promise.resolve().then(t.bind(t, 92796)),
+                Promise.resolve().then(t.bind(t, 80858)),
+                Promise.resolve().then(t.bind(t, 32850)),
+                Promise.resolve().then(t.bind(t, 90242)),
+                Promise.resolve().then(t.bind(t, 4112)),
+                Promise.resolve().then(t.bind(t, 73756)),
+                Promise.resolve().then(t.bind(t, 25474)),
+                Promise.resolve().then(t.bind(t, 85878)),
+                Promise.resolve().then(t.bind(t, 44156)),
+                Promise.resolve().then(t.bind(t, 75958)),
+                Promise.resolve().then(t.bind(t, 12183)),
+                Promise.resolve().then(t.bind(t, 89913)),
+                Promise.resolve().then(t.bind(t, 57323)),
+                Promise.resolve().then(t.bind(t, 97698)),
+                Promise.resolve().then(t.bind(t, 67342)),
+                Promise.resolve().then(t.bind(t, 64960)),
+                Promise.resolve().then(t.bind(t, 51838)),
+                Promise.resolve().then(t.bind(t, 81304)),
+                Promise.resolve().then(t.bind(t, 38742)),
+                Promise.resolve().then(t.bind(t, 12332)),
+                Promise.resolve().then(t.bind(t, 47676)),
+                Promise.resolve().then(t.bind(t, 12952)),
+                Promise.resolve().then(t.bind(t, 76532)),
+                Promise.resolve().then(t.bind(t, 28395)),
+                Promise.resolve().then(t.bind(t, 69614)),
+                Promise.resolve().then(t.bind(t, 55487)),
+                Promise.resolve().then(t.bind(t, 65710)),
+                Promise.resolve().then(t.bind(t, 91442)),
+                Promise.resolve().then(t.bind(t, 69332)),
+                Promise.resolve().then(t.bind(t, 60951)),
+                Promise.resolve().then(t.bind(t, 95045)),
+                Promise.resolve().then(t.bind(t, 4367)),
+                Promise.resolve().then(t.bind(t, 15336)),
+                Promise.resolve().then(t.bind(t, 2097)),
+                Promise.resolve().then(t.bind(t, 55675)),
+                Promise.resolve().then(t.bind(t, 86134)),
+                Promise.resolve().then(t.bind(t, 49120)),
+                Promise.resolve().then(t.bind(t, 26078)),
+                Promise.resolve().then(t.bind(t, 3218)),
+                Promise.resolve().then(t.bind(t, 82658)),
+                Promise.resolve().then(t.bind(t, 2406)),
+                Promise.resolve().then(t.bind(t, 49247)),
+                Promise.resolve().then(t.bind(t, 8681)),
+                Promise.resolve().then(t.bind(t, 69594)),
+                Promise.resolve().then(t.bind(t, 86722)),
+                Promise.resolve().then(t.bind(t, 77104)),
+                Promise.resolve().then(t.bind(t, 73682)),
+                Promise.resolve().then(t.bind(t, 62066)),
+                Promise.resolve().then(t.bind(t, 61258)),
+                Promise.resolve().then(t.bind(t, 41035)),
+                Promise.resolve().then(t.bind(t, 28160)),
+                Promise.resolve().then(t.bind(t, 31922)),
+                Promise.resolve().then(t.bind(t, 51886)),
+                Promise.resolve().then(t.bind(t, 43701)),
+                Promise.resolve().then(t.bind(t, 45228));
+        },
+        35233: (e, s, t) => {
+            "use strict";
+            t.d(s, { M: () => i.NotFound });
+            var i = t(27618);
+        },
+        56932: (e, s, t) => {
+            "use strict";
+            t.d(s, { LabelPage: () => f });
+            var i = t(33008),
+                o = t(85896),
+                r = t(97531),
+                n = t(17846),
+                l = t(66268),
+                a = t(73827),
+                d = t(96560),
+                m = t(18064),
+                b = t(42213),
+                h = t(44189),
+                v = t(78016),
+                u = t(57747),
+                P = t(77868),
+                c = t(74837),
+                p = t(83888),
+                x = t(52732),
+                _ = t(90317),
+                g = t(64143),
+                N = t(79169),
+                y = t(18740),
+                j = t(58005),
+                A = t(71990),
+                L = t.n(A);
+            let f = (0, r.PA)((e) => {
+                var s, t, r, A;
+                let { labelId: f, preloadedLabel: S } = e,
+                    {
+                        label: w,
+                        settings: { isMobile: B },
+                        experiments: C,
+                    } = (0, N.Pjs)(),
+                    { formatMessage: T } = (0, a.A)(),
+                    { contentScrollRef: k, setContentScrollRef: E } = (0,
+                    N.gKY)(),
+                    { notify: R } = (0, N.lkh)(),
+                    { shareLink: F } = (0, N.bNS)("/label/:labelId", {
+                        params: { labelId: null != (t = w.id) ? t : "" },
+                    }),
+                    I = (0, l.useRef)(null),
+                    z = (0, l.useRef)(0);
+                (0, j.Q)(
+                    {
+                        id: Number(w.id),
+                        name: null != (r = w.name) ? r : "",
+                        type: null != (A = w.type) ? A : "",
+                    },
+                    j.T.ROOT,
+                );
+                let O = (0, b.c)(async () => {
+                        await window.navigator.clipboard.writeText(F),
+                            R(
+                                (0, i.jsx)(y.Do, {
+                                    entityVariant: N.Yxq.LABEL,
+                                    entityTitle: w.name || "",
+                                }),
+                                { containerId: N.uQT.INFO },
+                            );
+                    }),
+                    U = (0, l.useMemo)(
+                        () =>
+                            B
+                                ? (0, i.jsx)(h.Button, {
+                                      className: L().button,
+                                      onClick: O,
+                                      icon: (0, i.jsx)(v.Icon, {
+                                          variant: "share",
+                                          size: "xxs",
+                                      }),
+                                      size: "l",
+                                      radius: "xxxl",
+                                      ...(0, m.Am)(
+                                          m.Xk.label.SHARE_COPY_LINK_BUTTON,
+                                      ),
+                                  })
+                                : (0, i.jsx)(h.Button, {
+                                      className: L().button,
+                                      onClick: O,
+                                      icon: (0, i.jsx)(v.Icon, {
+                                          variant: "share",
+                                          size: "xxs",
+                                      }),
+                                      size: "l",
+                                      radius: "xxxl",
+                                      ...(0, m.Am)(
+                                          m.Xk.label.SHARE_COPY_LINK_BUTTON,
+                                      ),
+                                      children: (0, i.jsx)(d.A, {
+                                          id: "interface-actions.share",
+                                      }),
+                                  }),
+                        [B, O],
+                    ),
+                    W = w.isPublisher
+                        ? T({ id: "entity-names.publisher" })
+                        : T({ id: "entity-names.label" }),
+                    D = w.isPublisher
+                        ? T({ id: "entity-names.non-music-releases" })
+                        : T({ id: "entity-names.releases" });
+                return ((0, l.useEffect)(
+                    () => () => {
+                        w.reset();
+                    },
+                    [w],
+                ),
+                (w.isNotFound ||
+                    !C.checkExperiment(N.zal.WebNextLabelPage, "on")) &&
+                    (0, n.notFound)(),
+                (0, l.useEffect)(
+                    () => () => {
+                        z.current = 0;
+                    },
+                    [w],
+                ),
+                (0, l.useEffect)(() => {
+                    w.isRejected &&
+                        z &&
+                        !(z.current > 0) &&
+                        (R(
+                            (0, i.jsx)(y.hT, {
+                                error: T({
+                                    id: "error-messages.error-load-part-page",
+                                }),
+                            }),
+                            { containerId: N.uQT.ERROR },
+                        ),
+                        z.current++);
+                }, [w.isRejected, R, T]),
+                (0, N.Jzs)(w.isResolved),
+                w.isNeededToLoad &&
+                    (0, l.use)(
+                        w.getData({ labelId: Number(f), preloadedLabel: S }),
+                    ),
+                w.isRejected && !w.isNotFound)
+                    ? (0, i.jsx)(p.w, {})
+                    : (0, i.jsx)(N.nVz, {
+                          pageId: N._Q$.LABEL,
+                          children: (0, i.jsxs)(g.hO, {
+                              scrollElement: k,
+                              children: [
+                                  (0, i.jsx)(y.Y9, { innerHeaderRef: I }),
+                                  (0, i.jsxs)(u.N, {
+                                      className: L().root,
+                                      containerClassName: L().content,
+                                      ref: E,
+                                      ...(0, m.Am)(m.Xk.label.LABEL_PAGE),
+                                      children: [
+                                          (0, i.jsxs)("div", {
+                                              className: L().header,
+                                              children: [
+                                                  (0, i.jsx)(P.Caption, {
+                                                      variant: "div",
+                                                      type: "text",
+                                                      size: "m",
+                                                      weight: "medium",
+                                                      children: W,
+                                                  }),
+                                                  (0, i.jsx)(c.RR, {
+                                                      className: L().title,
+                                                      title: w.name || "",
+                                                      headingVariant: "h1",
+                                                  }),
+                                                  U,
+                                              ],
+                                          }),
+                                          w.hasAlbums &&
+                                              w.albums &&
+                                              (0, i.jsx)(x.pZ, {
+                                                  isShimmerVisible: w.isLoading,
+                                                  isShimmerActive: !0,
+                                                  className:
+                                                      L().carouselContainer,
+                                                  headerClassName: (0, o.$)(
+                                                      L().carouselBlock,
+                                                      L().carouselBlockHeader,
+                                                  ),
+                                                  containerClassName:
+                                                      L().carouselBlock,
+                                                  title: D,
+                                                  viewAllActionLink:
+                                                      w.albumsUrl,
+                                                  albums: w.albums,
+                                                  headingVariant: "h2",
+                                                  ...(0, m.Am)(
+                                                      m.Xk.label
+                                                          .RELEASES_CAROUSEL,
+                                                  ),
+                                              }),
+                                          w.hasArtists &&
+                                              (0, i.jsx)(y.OY, {
+                                                  isShimmerVisible: w.isLoading,
+                                                  isShimmerActive: !0,
+                                                  headerClassName: (0, o.$)(
+                                                      L().carouselBlockHeader,
+                                                      L().carouselBlock,
+                                                  ),
+                                                  containerClassName:
+                                                      L().carouselBlock,
+                                                  viewAllActionLink:
+                                                      w.artistsUrl,
+                                                  title: T({
+                                                      id: "entity-names.artists",
+                                                  }),
+                                                  headingVariant: "h2",
+                                                  ...(0, m.Am)(
+                                                      m.Xk.label
+                                                          .ARTISTS_CAROUSEL,
+                                                  ),
+                                                  children:
+                                                      null == (s = w.artists)
+                                                          ? void 0
+                                                          : s.map((e) =>
+                                                                (0, i.jsx)(
+                                                                    _.ao,
+                                                                    {
+                                                                        artist: e,
+                                                                        contentLinesCount: 3,
+                                                                    },
+                                                                    e.id,
+                                                                ),
+                                                            ),
+                                              }),
+                                          (0, i.jsx)(y.A, {
+                                              children: (0, i.jsx)(y.wi, {
+                                                  className: L().footer,
+                                              }),
+                                          }),
+                                      ],
+                                  }),
+                              ],
+                          }),
+                      });
+            });
+        },
+        58005: (e, s, t) => {
+            "use strict";
+            t.d(s, { Q: () => d, T: () => a });
+            var i = t(66268),
+                o = t(79169),
+                r = t(68811),
+                n = t(62175),
+                l = t(74295),
+                a = (function (e) {
+                    return (
+                        (e.ROOT = "root"),
+                        (e.ALBUMS = "albums"),
+                        (e.ARTISTS = "artists"),
+                        e
+                    );
+                })({});
+            let d = (e, s) => {
+                (0, i.useEffect)(() => {
+                    switch (s) {
+                        case "root":
+                            (0, l.I)(e, {
+                                fullUrl: null,
+                                locale: null,
+                                url: null,
+                                tld: "",
+                                host: "",
+                            }).then((e) => {
+                                (0, o.jxB)(e);
+                            });
+                            break;
+                        case "albums":
+                            (0, r._)(e, {
+                                fullUrl: null,
+                                locale: null,
+                                url: null,
+                                tld: "",
+                                host: "",
+                            }).then((e) => {
+                                (0, o.jxB)(e);
+                            });
+                            break;
+                        case "artists":
+                            (0, n.M)(e, {
+                                fullUrl: null,
+                                locale: null,
+                                url: null,
+                                tld: "",
+                                host: "",
+                            }).then((e) => {
+                                (0, o.jxB)(e);
+                            });
+                    }
+                }, [
+                    null == e ? void 0 : e.id,
+                    null == e ? void 0 : e.type,
+                    null == e ? void 0 : e.name,
+                    s,
+                    e,
+                ]);
+            };
+        },
+        62175: (e, s, t) => {
+            "use strict";
+            t.d(s, { M: () => o });
+            var i = t(79169);
+            async function o(e, s) {
+                var t, o, r;
+                if (!e)
+                    return {
+                        title: "",
+                        description: "",
+                        openGraph: {},
+                        twitter: {},
+                        appLinks: {},
+                        other: {},
+                    };
+                let n = await (0, i.WGy)(s.locale),
+                    l = n(
+                        { id: "metadata.label-artists-title" },
+                        { labelName: e.name, labelType: e.type },
+                    ),
+                    a = n(
+                        { id: "metadata.label-artists-description" },
+                        { labelName: e.name, labelType: e.type },
+                    );
+                return {
+                    title: l,
+                    description: a,
+                    openGraph: (0, i.i$E)({
+                        ogTitle: l,
+                        ogDescription: a,
+                        fullUrl: null != (t = s.fullUrl) ? t : "",
+                        locale: s.locale,
+                        siteName: n({ id: "metadata.yandex-music" }),
+                        ogType: "music.playlist",
+                    }),
+                    twitter: (0, i.HRN)({
+                        cardType: i.WfF.APP,
+                        title: l,
+                        url: s.url,
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, i.X5i)({
+                        additional: {
+                            ...s,
+                            url: null != (o = s.url) ? o : "",
+                            fullUrl: null != (r = s.fullUrl) ? r : "",
+                            host: s.host,
+                        },
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, i.SEs)("/label/:labelId/artists", s.tld, {
+                        params: { labelId: e.id },
+                    }),
+                };
+            }
+        },
+        68544: (e) => {
+            e.exports = {
+                root: "LabelAlbumsPage_root__xyWi4",
+                scrollContainer: "LabelAlbumsPage_scrollContainer__zRUlM",
+                important: "LabelAlbumsPage_important__s18oL",
+                footer: "LabelAlbumsPage_footer__dcXFk",
+                item: "LabelAlbumsPage_item__Qjz9F",
+                content: "LabelAlbumsPage_content__jOWKZ",
+            };
+        },
+        68811: (e, s, t) => {
+            "use strict";
+            t.d(s, { _: () => o });
+            var i = t(79169);
+            async function o(e, s) {
+                var t, o, r;
+                if (!e)
+                    return {
+                        title: "",
+                        description: "",
+                        openGraph: {},
+                        twitter: {},
+                        appLinks: {},
+                        other: {},
+                    };
+                let n = await (0, i.WGy)(s.locale),
+                    l = n(
+                        { id: "metadata.label-albums-title" },
+                        { labelName: e.name, labelType: e.type },
+                    ),
+                    a = n(
+                        { id: "metadata.label-albums-description" },
+                        { labelName: e.name, labelType: e.type },
+                    );
+                return {
+                    title: l,
+                    description: a,
+                    openGraph: (0, i.i$E)({
+                        ogTitle: l,
+                        ogDescription: a,
+                        fullUrl: null != (t = s.fullUrl) ? t : "",
+                        locale: s.locale,
+                        siteName: n({ id: "metadata.yandex-music" }),
+                        ogType: "music.playlist",
+                    }),
+                    twitter: (0, i.HRN)({
+                        cardType: i.WfF.APP,
+                        title: l,
+                        url: s.url,
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, i.X5i)({
+                        additional: {
+                            ...s,
+                            url: null != (o = s.url) ? o : "",
+                            fullUrl: null != (r = s.fullUrl) ? r : "",
+                            host: s.host,
+                        },
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, i.SEs)("/label/:labelId/albums", s.tld, {
+                        params: { labelId: e.id },
+                    }),
+                };
+            }
+        },
+        71029: (e, s, t) => {
+            "use strict";
+            t.d(s, { LabelNotFoundPage: () => r });
+            var i = t(33008),
+                o = t(35233);
+            let r = () => (0, i.jsx)(o.M, {});
+        },
+        71990: (e) => {
+            e.exports = {
+                root: "LabelPage_root__jquyP",
+                content: "LabelPage_content__9st_X",
+                header: "LabelPage_header__G2xY_",
+                title: "LabelPage_title__BNxeX",
+                button: "LabelPage_button__JXw3C",
+                carouselBlock: "LabelPage_carouselBlock__zPJmW",
+                carouselBlockHeader: "LabelPage_carouselBlockHeader__dvYqJ",
+                carouselContainer: "LabelPage_carouselContainer__bRVMp",
+                footer: "LabelPage_footer__lvKmF",
+            };
+        },
+        74295: (e, s, t) => {
+            "use strict";
+            t.d(s, { I: () => o });
+            var i = t(79169);
+            async function o(e, s) {
+                var t, o, r;
+                if (!e)
+                    return {
+                        title: "",
+                        description: "",
+                        openGraph: {},
+                        twitter: {},
+                        appLinks: {},
+                        other: {},
+                    };
+                let n = await (0, i.WGy)(s.locale),
+                    l = n(
+                        { id: "metadata.label-title" },
+                        { labelTitle: e.name, labelType: e.type },
+                    ),
+                    a = n(
+                        { id: "metadata.label-description" },
+                        { labelTitle: e.name, labelType: e.type },
+                    );
+                return {
+                    title: l,
+                    description: a,
+                    openGraph: (0, i.i$E)({
+                        ogTitle: l,
+                        ogDescription: a,
+                        fullUrl: null != (t = s.fullUrl) ? t : "",
+                        locale: s.locale,
+                        siteName: n({ id: "metadata.yandex-music" }),
+                        ogType: "music.playlist",
+                    }),
+                    twitter: (0, i.HRN)({
+                        cardType: i.WfF.APP,
+                        title: l,
+                        url: s.url,
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, i.X5i)({
+                        additional: {
+                            ...s,
+                            url: null != (o = s.url) ? o : "",
+                            fullUrl: null != (r = s.fullUrl) ? r : "",
+                            host: s.host,
+                        },
+                        appName: n({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, i.SEs)("/label/:labelId", s.tld, {
+                        params: { labelId: e.id },
+                    }),
+                };
+            }
+        },
+        87666: (e, s, t) => {
+            "use strict";
+            t.d(s, { LabelAlbumsPage: () => N });
+            var i = t(33008),
+                o = t(85896),
+                r = t(97531),
+                n = t(17846),
+                l = t(66268),
+                a = t(73827),
+                d = t(18064),
+                m = t(42213),
+                b = t(77868),
+                h = t(83888),
+                v = t(52732),
+                u = t(64143),
+                P = t(537),
+                c = t(79169),
+                p = t(18740),
+                x = t(58005),
+                _ = t(68544),
+                g = t.n(_);
+            let N = (0, r.PA)((e) => {
+                let {
+                        labelId: s,
+                        preloadedLabel: t,
+                        preloadedAlbums: r,
+                        sortBy: _,
+                    } = e,
+                    {
+                        label: {
+                            id: N,
+                            type: y,
+                            name: j,
+                            albumsSubpage: A,
+                            reset: L,
+                            isNeededToLoad: f,
+                            getData: S,
+                            isPublisher: w,
+                        },
+                        settings: { isMobile: B },
+                        experiments: C,
+                    } = (0, c.Pjs)(),
+                    { formatMessage: T } = (0, a.A)(),
+                    { contentScrollRef: k, setContentScrollRef: E } = (0,
+                    c.gKY)(),
+                    R = (0, c.W6M)(),
+                    F = w
+                        ? T(
+                              { id: "page.label-podcast-header" },
+                              { labelName: j },
+                          )
+                        : T(
+                              { id: "page.label-albums-header" },
+                              { labelName: j },
+                          ),
+                    I = (0, m.c)((e) => {
+                        var t;
+                        A.getData({
+                            labelId: Number(s),
+                            page: e,
+                            pageSize: 20,
+                            sortBy: null != (t = A.sort.sortBy) ? t : _,
+                        });
+                    }),
+                    z = (0, m.c)(() => {
+                        A.reset(), I(0);
+                    });
+                (0, P.y8)({ sortModel: A.sort }),
+                    (0, c.XcE)(A.pagesLoader, I),
+                    (0, l.useEffect)(
+                        () => () => {
+                            L(), A.reset();
+                        },
+                        [L, A],
+                    ),
+                    (A.isNotFound ||
+                        !C.checkExperiment(c.zal.WebNextLabelPage, "on")) &&
+                        (0, n.notFound)(),
+                    (0, x.Q)(
+                        {
+                            id: Number(N),
+                            name: null != j ? j : "",
+                            type: null != y ? y : "",
+                        },
+                        x.T.ALBUMS,
+                    ),
+                    (0, c.Jzs)(A.isResolved);
+                let O = (0, l.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, i.jsx)(p.A, {
+                                    children: (0, i.jsx)(p.wi, {
+                                        className: g().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    U = T({ id: "entity-names.label-albums-list" }),
+                    W = [];
+                if (A.isNeededToLoad) {
+                    var D;
+                    let e = A.sort.sortBy === _ || void 0 === A.sort.sortBy;
+                    W.push(
+                        A.getData({
+                            labelId: Number(s),
+                            page: 0,
+                            pageSize: 20,
+                            preloadedAlbums: e ? r : void 0,
+                            sortBy: null != (D = A.sort.sortBy) ? D : _,
+                        }),
+                    );
+                }
+                if (
+                    (f &&
+                        W.push(
+                            S({
+                                labelId: Number(s),
+                                preloadedLabel: t,
+                                withLabelEntities: !1,
+                            }),
+                        ),
+                    W.length && (0, l.use)(Promise.allSettled(W)),
+                    A.isRejected && !A.isNotFound)
+                )
+                    return (0, i.jsx)(h.w, {});
+                let M = A.isShimmerVisible ? 20 : A.items.length;
+                return (0, i.jsx)(c.nVz, {
+                    pageId: c._Q$.LABEL_ALBUMS,
+                    children: (0, i.jsx)(u.hO, {
+                        scrollElement: k,
+                        outerTitle: F,
+                        children: (0, i.jsxs)("div", {
+                            className: g().root,
+                            ...(0, d.Am)(d.Xk.label.LABEL_ALBUMS_PAGE),
+                            children: [
+                                (0, i.jsxs)(p.Y9, {
+                                    variant: p.Vw.TEXT,
+                                    withForwardControl: !1,
+                                    withBackwardControl: R.canBack,
+                                    children: [
+                                        (0, i.jsx)(b.Heading, {
+                                            variant: "h1",
+                                            weight: "bold",
+                                            size: "xl",
+                                            lineClamp: 1,
+                                            children: F,
+                                        }),
+                                        (0, i.jsx)(P.mi, {
+                                            sortModel: A.sort,
+                                            onSort: z,
+                                        }),
+                                    ],
+                                }),
+                                (0, i.jsx)(p.$$, {
+                                    className: (0, o.$)(
+                                        g().scrollContainer,
+                                        g().important,
+                                    ),
+                                    listClassName: g().content,
+                                    itemClassName: g().item,
+                                    customComponents: O,
+                                    itemContentCallback: (e) => {
+                                        let s = A.items[e],
+                                            t = T(
+                                                {
+                                                    id: "loading-messages.entity-is-loading",
+                                                },
+                                                {
+                                                    entityName: T({
+                                                        id: "entity-names.album",
+                                                    }),
+                                                },
+                                            );
+                                        return s
+                                            ? (0, i.jsx)(
+                                                  v.aX,
+                                                  {
+                                                      album: s,
+                                                      contentLinesCount: 4,
+                                                      withAddition:
+                                                          !s.isNonMusic,
+                                                      withLikesCount:
+                                                          s.isNonMusic,
+                                                  },
+                                                  s.id,
+                                              )
+                                            : (0, i.jsx)(p.Vt, {
+                                                  "aria-label": t,
+                                                  linesCount: 4,
+                                              });
+                                    },
+                                    totalCount: M,
+                                    onGetDataByPage: I,
+                                    pageSize: 20,
+                                    totalRequests: A.requestsCount,
+                                    handleRef: E,
+                                    context: { listAriaLabel: U },
+                                    isMobileLayout: B,
+                                    useWindowScroll: B,
+                                }),
+                            ],
+                        }),
+                    }),
+                });
+            });
+        },
+        87754: (e, s, t) => {
+            "use strict";
+            t.d(s, { LabelArtistsPage: () => g });
+            var i = t(33008),
+                o = t(85896),
+                r = t(97531),
+                n = t(17846),
+                l = t(66268),
+                a = t(73827),
+                d = t(18064),
+                m = t(42213),
+                b = t(77868),
+                h = t(83888),
+                v = t(90317),
+                u = t(64143),
+                P = t(79169),
+                c = t(18740),
+                p = t(58005),
+                x = t(30624),
+                _ = t.n(x);
+            let g = (0, r.PA)((e) => {
+                let { labelId: s, preloadedLabel: t, preloadedArtists: r } = e,
+                    {
+                        label: {
+                            id: x,
+                            name: g,
+                            type: N,
+                            artistsSubpage: y,
+                            reset: j,
+                            isNeededToLoad: A,
+                            getData: L,
+                        },
+                        settings: { isMobile: f },
+                        experiments: S,
+                    } = (0, P.Pjs)(),
+                    { formatMessage: w } = (0, a.A)(),
+                    { contentScrollRef: B, setContentScrollRef: C } = (0,
+                    P.gKY)(),
+                    T = (0, P.W6M)(),
+                    k = w(
+                        { id: "page.label-artists-header" },
+                        { labelName: g },
+                    ),
+                    E = (0, m.c)((e) => {
+                        y.getData({
+                            labelId: Number(s),
+                            page: e,
+                            pageSize: 20,
+                        });
+                    });
+                (0, P.XcE)(y.pagesLoader, E),
+                    (0, l.useEffect)(
+                        () => () => {
+                            j(), y.reset();
+                        },
+                        [j, y],
+                    ),
+                    (y.isNotFound ||
+                        !S.checkExperiment(P.zal.WebNextLabelPage, "on")) &&
+                        (0, n.notFound)(),
+                    (0, p.Q)(
+                        {
+                            id: Number(x),
+                            name: null != g ? g : "",
+                            type: null != N ? N : "",
+                        },
+                        p.T.ARTISTS,
+                    ),
+                    (0, P.Jzs)(y.isResolved);
+                let R = (0, l.useMemo)(
+                        () => ({
+                            Footer: () =>
+                                (0, i.jsx)(c.A, {
+                                    children: (0, i.jsx)(c.wi, {
+                                        className: _().footer,
+                                    }),
+                                }),
+                        }),
+                        [],
+                    ),
+                    F = w({ id: "entity-names.label-artists-list" }),
+                    I = [];
+                if (
+                    (y.isNeededToLoad &&
+                        I.push(
+                            y.getData({
+                                labelId: Number(s),
+                                page: 0,
+                                pageSize: 20,
+                                preloadedArtists: r,
+                            }),
+                        ),
+                    A &&
+                        I.push(
+                            L({
+                                labelId: Number(s),
+                                preloadedLabel: t,
+                                withLabelEntities: !1,
+                            }),
+                        ),
+                    I.length && (0, l.use)(Promise.allSettled(I)),
+                    y.isRejected && !y.isNotFound)
+                )
+                    return (0, i.jsx)(h.w, {});
+                let z = y.isShimmerVisible ? 20 : y.items.length;
+                return (0, i.jsx)(P.nVz, {
+                    pageId: P._Q$.LABEL_ARTISTS,
+                    children: (0, i.jsx)(u.hO, {
+                        scrollElement: B,
+                        outerTitle: k,
+                        children: (0, i.jsxs)("div", {
+                            className: _().root,
+                            ...(0, d.Am)(d.Xk.label.LABEL_ARTISTS_PAGE),
+                            children: [
+                                (0, i.jsx)(c.Y9, {
+                                    variant: c.Vw.TEXT,
+                                    withForwardControl: !1,
+                                    withBackwardControl: T.canBack,
+                                    className: _().header,
+                                    children: (0, i.jsx)(b.Heading, {
+                                        variant: "h1",
+                                        weight: "bold",
+                                        size: "xl",
+                                        lineClamp: 1,
+                                        children: k,
+                                    }),
+                                }),
+                                (0, i.jsx)(c.$$, {
+                                    className: (0, o.$)(
+                                        _().scrollContainer,
+                                        _().important,
+                                    ),
+                                    listClassName: _().content,
+                                    itemClassName: _().item,
+                                    customComponents: R,
+                                    itemContentCallback: (e) => {
+                                        let s = y.items[e],
+                                            t = w(
+                                                {
+                                                    id: "loading-messages.entity-is-loading",
+                                                },
+                                                {
+                                                    entityName: w({
+                                                        id: "entity-names.artist",
+                                                    }),
+                                                },
+                                            );
+                                        return s
+                                            ? (0, i.jsx)(
+                                                  v.ao,
+                                                  {
+                                                      artist: s,
+                                                      contentLinesCount: 4,
+                                                  },
+                                                  s.id,
+                                              )
+                                            : (0, i.jsx)(c.Vt, {
+                                                  "aria-label": t,
+                                                  round: !0,
+                                                  centered: !0,
+                                                  linesCount: 4,
+                                              });
+                                    },
+                                    totalCount: z,
+                                    onGetDataByPage: E,
+                                    pageSize: 20,
+                                    totalRequests: y.requestsCount,
+                                    handleRef: C,
+                                    context: { listAriaLabel: F },
+                                    isMobileLayout: f,
+                                    useWindowScroll: f,
+                                }),
+                            ],
+                        }),
+                    }),
+                });
+            });
+        },
+        99963: (e, s, t) => {
+            "use strict";
+            t.d(s, { useSort: () => l });
+            var i = t(66268),
+                o = t(75729),
+                r = t(79169),
+                n = t(25585);
+            let l = (e) => {
+                let { sortModel: s } = e,
+                    t = (0, r.XJ9)();
+                (0, i.useLayoutEffect)(() => {
+                    let e = new URL(window.location.href).searchParams.get(
+                        r.K3F.SORT,
+                    );
+                    e && (0, n.W)(e) ? s.setSortBy(e) : s.setSortBy(o.g.YEAR);
+                }, [s]),
+                    (0, i.useEffect)(() => {
+                        if (s.sortBy) {
+                            let e = (0, r.bJ)(r.K3F.SORT, s.sortBy);
+                            e && t(e);
+                        }
+                    }, [t, s.sortBy]);
+            };
+        },
+    },
+]);

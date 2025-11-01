@@ -1,46 +1,1713 @@
+!(function (e, t) {
+    if (((e.Ya = e.Ya || {}), Ya.Rum))
+        throw new Error("Rum: interface is already defined");
+    var n = e.performance,
+        i =
+            (n && n.timing && n.timing.navigationStart) ||
+            Ya.startPageLoad ||
+            +new Date(),
+        s = e.requestAnimationFrame,
+        r = function () {},
+        a = (Ya.Rum = {
+            _defTimes: [],
+            _defRes: [],
+            _countersToExposeAsEvents: ["2325", "2616.85.1928", "react.inited"],
+            enabled: !!n,
+            version: "6.1.21",
+            vsStart: document.visibilityState,
+            vsChanged: !1,
+            vsChangeTime: 1 / 0,
+            _deltaMarks: {},
+            _markListeners: {},
+            _onComplete: [],
+            _onInit: [],
+            _unsubscribers: [],
+            _eventLisneters: {},
+            _settings: {},
+            _vars: {},
+            init: function (e, t) {
+                (a._settings = e), (a._vars = t);
+            },
+            getTime:
+                n && n.now
+                    ? function () {
+                          return n.now();
+                      }
+                    : Date.now
+                      ? function () {
+                            return Date.now() - i;
+                        }
+                      : function () {
+                            return new Date() - i;
+                        },
+            time: function (e) {
+                a._deltaMarks[e] = [a.getTime()];
+            },
+            timeEnd: function (e, t) {
+                var n = a._deltaMarks[e];
+                n && 0 !== n.length && n.push(a.getTime(), t);
+            },
+            sendTimeMark: function (e, t, n, i) {
+                void 0 === t && (t = a.getTime()),
+                    a.emit({ metricName: "defTimes", data: [e, t, i] }),
+                    a.mark(e, t);
+            },
+            sendDelta: function (e, t, n, i) {
+                var s,
+                    r = a._deltaMarks;
+                r[e] ||
+                    void 0 === t ||
+                    ((s =
+                        i && i.originalEndTime
+                            ? i.originalEndTime
+                            : a.getTime()),
+                    (r[e] = [s - t, s, n]));
+            },
+            sendResTiming: function (e, t) {
+                a.emit({ metricName: "defRes", data: [e, t] });
+            },
+            sendRaf: function (e) {
+                var t = a.getSetting("forcePaintTimeSending");
+                if (s && (t || a.isTimeAfterPageShow(a.getTime()))) {
+                    var n = "2616." + e;
+                    s(function () {
+                        a.getSetting("sendFirstRaf") &&
+                            a.sendTimeMark(n + ".205"),
+                            s(function () {
+                                a.sendTimeMark(n + ".1928");
+                            });
+                    });
+                }
+            },
+            isVisibilityChanged: function () {
+                return a.vsStart && ("visible" !== a.vsStart || a.vsChanged);
+            },
+            isTimeAfterPageShow: function (e) {
+                return "visible" === a.vsStart || a.vsChangeTime < e;
+            },
+            mark:
+                n && n.mark
+                    ? function (e, t) {
+                          n.mark(e + (t ? ": " + t : ""));
+                      }
+                    : function () {},
+            getSetting: function (e) {
+                var t = a._settings[e];
+                return null === t ? null : t || "";
+            },
+            on: function (e, t) {
+                if ("function" == typeof t)
+                    return (
+                        (a._markListeners[e] = a._markListeners[e] || []).push(
+                            t,
+                        ),
+                        function () {
+                            if (a._markListeners[e]) {
+                                var n = a._markListeners[e].indexOf(t);
+                                n > -1 && a._markListeners[e].splice(n, 1);
+                            }
+                        }
+                    );
+            },
+            noop: r,
+            sendTrafficData: r,
+            finalizeLayoutShiftScore: r,
+            finalizeLargestContentfulPaint: r,
+            getLCPAdditionalParams: r,
+            getCLSAdditionalParams: r,
+            getINPAdditionalParams: r,
+            getImageGoodnessAdditionalParams: r,
+            _eventListeners: {},
+            _eventsBuffer: {},
+            subscribe: function (e, t) {
+                if (!a.getSetting("noEvents"))
+                    return (
+                        (this._eventLisneters[e] =
+                            this._eventLisneters[e] || new Set()),
+                        this._eventLisneters[e].add(t),
+                        function () {
+                            this.unsubscribe(e, t);
+                        }.bind(this)
+                    );
+            },
+            unsubscribe: function (e, t) {
+                this._eventLisneters[e].delete(t);
+            },
+            emit: function (e) {
+                if (!a.getSetting("noEvents")) {
+                    var t =
+                        (a.getSetting("eventsLimits") &&
+                            a.getSetting("eventsLimits")[e.metricName]) ||
+                        20;
+                    this._eventLisneters[e.metricName] &&
+                        this._eventLisneters[e.metricName].forEach(
+                            function (t) {
+                                t(e);
+                            },
+                        ),
+                        (this._eventsBuffer[e.metricName] =
+                            this._eventsBuffer[e.metricName] || []),
+                        this._eventsBuffer[e.metricName].push(e),
+                        this._eventsBuffer[e.metricName].length > t &&
+                            (this._eventsBuffer[e.metricName].length =
+                                Math.floor(t / 2));
+                }
+            },
+            getBufferedEvents: function (e) {
+                var t = this._eventsBuffer,
+                    n = {};
+                return (
+                    Object.keys(t).forEach(function (i) {
+                        -1 !== e.indexOf(i) && (n[i] = t[i]);
+                    }),
+                    n
+                );
+            },
+            clearEvents: function (e) {
+                this._eventsBuffer[e] && (this._eventsBuffer[e].length = 0);
+            },
+        });
+    function f() {
+        (Ya.Rum.vsChanged = !0),
+            (Ya.Rum.vsChangeTime = a.getTime()),
+            removeEventListener("visibilitychange", f);
+    }
+    addEventListener("visibilitychange", f), (a._onVisibilityChange = f);
+})(window);
 
-        !function(e,t){if(e.Ya=e.Ya||{},Ya.Rum)throw new Error("Rum: interface is already defined");var n=e.performance,i=n&&n.timing&&n.timing.navigationStart||Ya.startPageLoad||+new Date,s=e.requestAnimationFrame,r=function(){},a=Ya.Rum={_defTimes:[],_defRes:[],_countersToExposeAsEvents:["2325","2616.85.1928","react.inited"],enabled:!!n,version:"6.1.21",vsStart:document.visibilityState,vsChanged:!1,vsChangeTime:1/0,_deltaMarks:{},_markListeners:{},_onComplete:[],_onInit:[],_unsubscribers:[],_eventLisneters:{},_settings:{},_vars:{},init:function(e,t){a._settings=e,a._vars=t},getTime:n&&n.now?function(){return n.now()}:Date.now?function(){return Date.now()-i}:function(){return new Date-i},time:function(e){a._deltaMarks[e]=[a.getTime()]},timeEnd:function(e,t){var n=a._deltaMarks[e];n&&0!==n.length&&n.push(a.getTime(),t)},sendTimeMark:function(e,t,n,i){void 0===t&&(t=a.getTime()),a.emit({metricName:"defTimes",data:[e,t,i]}),a.mark(e,t)},sendDelta:function(e,t,n,i){var s,r=a._deltaMarks;r[e]||void 0===t||(s=i&&i.originalEndTime?i.originalEndTime:a.getTime(),r[e]=[s-t,s,n])},sendResTiming:function(e,t){a.emit({metricName:"defRes",data:[e,t]})},sendRaf:function(e){var t=a.getSetting("forcePaintTimeSending");if(s&&(t||a.isTimeAfterPageShow(a.getTime()))){var n="2616."+e;s((function(){a.getSetting("sendFirstRaf")&&a.sendTimeMark(n+".205"),s((function(){a.sendTimeMark(n+".1928")}))}))}},isVisibilityChanged:function(){return a.vsStart&&("visible"!==a.vsStart||a.vsChanged)},isTimeAfterPageShow:function(e){return"visible"===a.vsStart||a.vsChangeTime<e},mark:n&&n.mark?function(e,t){n.mark(e+(t?": "+t:""))}:function(){},getSetting:function(e){var t=a._settings[e];return null===t?null:t||""},on:function(e,t){if("function"==typeof t)return(a._markListeners[e]=a._markListeners[e]||[]).push(t),function(){if(a._markListeners[e]){var n=a._markListeners[e].indexOf(t);n>-1&&a._markListeners[e].splice(n,1)}}},noop:r,sendTrafficData:r,finalizeLayoutShiftScore:r,finalizeLargestContentfulPaint:r,getLCPAdditionalParams:r,getCLSAdditionalParams:r,getINPAdditionalParams:r,getImageGoodnessAdditionalParams:r,_eventListeners:{},_eventsBuffer:{},subscribe:function(e,t){if(!a.getSetting("noEvents"))return this._eventLisneters[e]=this._eventLisneters[e]||new Set,this._eventLisneters[e].add(t),function(){this.unsubscribe(e,t)}.bind(this)},unsubscribe:function(e,t){this._eventLisneters[e].delete(t)},emit:function(e){if(!a.getSetting("noEvents")){var t=a.getSetting("eventsLimits")&&a.getSetting("eventsLimits")[e.metricName]||20;this._eventLisneters[e.metricName]&&this._eventLisneters[e.metricName].forEach((function(t){t(e)})),this._eventsBuffer[e.metricName]=this._eventsBuffer[e.metricName]||[],this._eventsBuffer[e.metricName].push(e),this._eventsBuffer[e.metricName].length>t&&(this._eventsBuffer[e.metricName].length=Math.floor(t/2))}},getBufferedEvents:function(e){var t=this._eventsBuffer,n={};return Object.keys(t).forEach((function(i){-1!==e.indexOf(i)&&(n[i]=t[i])})),n},clearEvents:function(e){this._eventsBuffer[e]&&(this._eventsBuffer[e].length=0)}};function f(){Ya.Rum.vsChanged=!0,Ya.Rum.vsChangeTime=a.getTime(),removeEventListener("visibilitychange",f)}addEventListener("visibilitychange",f),a._onVisibilityChange=f}(window);
+!(function () {
+    var e,
+        t,
+        n,
+        i = Ya.Rum,
+        o = 42,
+        r = 4e4,
+        g = 15,
+        a = [],
+        s = "\r\n",
+        l = i.getSetting("countersInitialDelay") || 0;
+    if (l) {
+        var c;
+        function u() {
+            removeEventListener("visibilitychange", h),
+                clearTimeout(c),
+                (l = 0),
+                f();
+        }
+        function h() {
+            document.hidden && u();
+        }
+        (c = setTimeout(u, l)), addEventListener("visibilitychange", h);
+    }
+    function f() {
+        if (t && a.length) {
+            for (var n = 0, i = 0, l = 0; i < a.length && l <= r && n < o; i++)
+                (l += (i ? s.length : 0) + a[i].length) <= r && n++;
+            var c = a.splice(0, n);
+            d(t, c.join(s)), a.length && (e = setTimeout(f, g));
+        } else a.length = 0;
+    }
+    function d(e, t) {
+        if (!(navigator.sendBeacon && n && navigator.sendBeacon(e, t))) {
+            var o = Boolean(i.getSetting("sendCookie")),
+                r = new XMLHttpRequest();
+            r.open("POST", e), (r.withCredentials = o), r.send(t);
+        }
+    }
+    i.send = function (c, u, h, d, v, m, S, p) {
+        (t = i.getSetting("clck")),
+            (n = i.getSetting("beacon")),
+            (o = i.getSetting("maxBatchCounters") || o),
+            (r = i.getSetting("maxBatchLength") || r),
+            (g = i.getSetting("countersBatchTimeout") || g),
+            (function (t, n, i, c, u, h, d, v, m, S) {
+                clearTimeout(e);
+                var p = [
+                    t ? "/reqid=" + t : "",
+                    n ? "/" + n.join("/") : "",
+                    i ? "/path=" + i : "",
+                    c ? "/events=" + c : "",
+                    u ? "/slots=" + u.join(";") : "",
+                    h ? "/experiments=" + h.join(";") : "",
+                    d ? "/vars=" + d : "",
+                    "/cts=" + new Date().getTime(),
+                    "",
+                    "/*",
+                ].join("");
+                p.length > r
+                    ? "undefined" != typeof console &&
+                      console.error &&
+                      console.error(
+                          "Counter length " +
+                              p.length +
+                              " is more than allowed " +
+                              r,
+                          p,
+                      )
+                    : (a.push(p),
+                      l ||
+                          ((function () {
+                              if (a.length >= o) return !0;
+                              for (var e = 0, t = 0; t < a.length; t++)
+                                  if (
+                                      (e += (t ? s.length : 0) + a[t].length) >=
+                                      r
+                                  )
+                                      return !0;
+                              return !1;
+                          })()
+                              ? f()
+                              : (e = setTimeout(f, g))));
+            })(
+                i.getSetting("reqid"),
+                S,
+                u,
+                v,
+                i.getSetting("slots"),
+                i.getSetting("experiments"),
+                h,
+            );
+    };
+})();
 
-        !function(){var e,t,n,i=Ya.Rum,o=42,r=4e4,g=15,a=[],s="\r\n",l=i.getSetting("countersInitialDelay")||0;if(l){var c;function u(){removeEventListener("visibilitychange",h),clearTimeout(c),l=0,f()}function h(){document.hidden&&u()}c=setTimeout(u,l),addEventListener("visibilitychange",h)}function f(){if(t&&a.length){for(var n=0,i=0,l=0;i<a.length&&l<=r&&n<o;i++)(l+=(i?s.length:0)+a[i].length)<=r&&n++;var c=a.splice(0,n);d(t,c.join(s)),a.length&&(e=setTimeout(f,g))}else a.length=0}function d(e,t){if(!(navigator.sendBeacon&&n&&navigator.sendBeacon(e,t))){var o=Boolean(i.getSetting("sendCookie")),r=new XMLHttpRequest;r.open("POST",e),r.withCredentials=o,r.send(t)}}i.send=function(c,u,h,d,v,m,S,p){t=i.getSetting("clck"),n=i.getSetting("beacon"),o=i.getSetting("maxBatchCounters")||o,r=i.getSetting("maxBatchLength")||r,g=i.getSetting("countersBatchTimeout")||g,function(t,n,i,c,u,h,d,v,m,S){clearTimeout(e);var p=[t?"/reqid="+t:"",n?"/"+n.join("/"):"",i?"/path="+i:"",c?"/events="+c:"",u?"/slots="+u.join(";"):"",h?"/experiments="+h.join(";"):"",d?"/vars="+d:"","/cts="+(new Date).getTime(),"","/*"].join("");p.length>r?"undefined"!=typeof console&&console.error&&console.error("Counter length "+p.length+" is more than allowed "+r,p):(a.push(p),l||(function(){if(a.length>=o)return!0;for(var e=0,t=0;t<a.length;t++)if((e+=(t?s.length:0)+a[t].length)>=r)return!0;return!1}()?f():e=setTimeout(f,g)))}(i.getSetting("reqid"),S,u,v,i.getSetting("slots"),i.getSetting("experiments"),h)}}();
+!(function () {
+    if (window.PerformanceLongTaskTiming) {
+        var e = function (e, n) {
+                return (
+                    (e = e.concat(n)).length > 300 &&
+                        (e = e.slice(e.length - 300)),
+                    e
+                );
+            },
+            n = "undefined" != typeof PerformanceLongAnimationFrameTiming,
+            t = n ? ["longtask", "long-animation-frame"] : ["longtask"];
+        function r() {
+            var r = (Ya.Rum._tti = {
+                events: [],
+                loafEvents: n ? [] : void 0,
+                eventsAfterTTI: [],
+                fired: !1,
+                observer: new PerformanceObserver(function (t) {
+                    var o = t.getEntriesByType("longtask"),
+                        s = t.getEntriesByType("long-animation-frame");
+                    (r.events = e(r.events, o)),
+                        n && (r.loafEvents = e(r.loafEvents, s)),
+                        r.fired && (r.eventsAfterTTI = e(r.eventsAfterTTI, o));
+                }),
+            });
+            r.observer.observe({ entryTypes: t }),
+                Ya.Rum._unsubscribers &&
+                    Ya.Rum._unsubscribers.push(function () {
+                        r.observer.disconnect();
+                    });
+        }
+        r(), Ya.Rum._onInit.push(r);
+    }
+})();
 
-        !function(){if(window.PerformanceLongTaskTiming){var e=function(e,n){return(e=e.concat(n)).length>300&&(e=e.slice(e.length-300)),e},n="undefined"!=typeof PerformanceLongAnimationFrameTiming,t=n?["longtask","long-animation-frame"]:["longtask"];function r(){var r=Ya.Rum._tti={events:[],loafEvents:n?[]:void 0,eventsAfterTTI:[],fired:!1,observer:new PerformanceObserver((function(t){var o=t.getEntriesByType("longtask"),s=t.getEntriesByType("long-animation-frame");r.events=e(r.events,o),n&&(r.loafEvents=e(r.loafEvents,s)),r.fired&&(r.eventsAfterTTI=e(r.eventsAfterTTI,o))}))};r.observer.observe({entryTypes:t}),Ya.Rum._unsubscribers&&Ya.Rum._unsubscribers.push((function(){r.observer.disconnect()}))}r(),Ya.Rum._onInit.push(r)}}();
+Ya.Rum.observeDOMNode = window.IntersectionObserver
+    ? function (e, i, n) {
+          var t = this,
+              o = Ya.Rum.getSetting("forcePaintTimeSending");
+          !(function r() {
+              if (o || !t.isVisibilityChanged()) {
+                  var s = "string" == typeof i ? document.querySelector(i) : i;
+                  s
+                      ? new IntersectionObserver(function (i, n) {
+                            (!o && t.isVisibilityChanged()) ||
+                                (Ya.Rum.sendTimeMark(e), n.unobserve(s));
+                        }, n).observe(s)
+                      : setTimeout(r, 100);
+              }
+          })();
+      }
+    : function () {};
 
-        Ya.Rum.observeDOMNode=window.IntersectionObserver?function(e,i,n){var t=this,o=Ya.Rum.getSetting("forcePaintTimeSending");!function r(){if(o||!t.isVisibilityChanged()){var s="string"==typeof i?document.querySelector(i):i;s?new IntersectionObserver((function(i,n){!o&&t.isVisibilityChanged()||(Ya.Rum.sendTimeMark(e),n.unobserve(s))}),n).observe(s):setTimeout(r,100)}}()}:function(){};
-
-        !function(e){var t=window.requestAnimationFrame,a=console;if(!e)throw new Error("Rum: interface is not included");if(e.enabled){e.sendAnimationSpeed=function(a,i,r){if(t){var n=[],s=e.getTime(),o=e.getTime();!function d(){t((function(){var t=e.getTime();n.push(t-o),o=t,t-s<i?d():(e.sendDelta(a+".avg",function(e){for(var t=e.length,a=0,i=0;i<t;i++)a+=e[i];return a/t}(n),r),e.sendDelta(a+".mdn",function(e){var t=e.sort((function(e,t){return e-t})),a=e.length>>1;return t.length%2?t[a]:(t[a-1]+t[a])/2}(n),r))}))}()}};var i={},r={};e.spa={makeSpaSubPage:function(t,a,n,s,o){a=a||{finishDataLoadingMetric:!0,startDataRenderingMetric:!0,finishDataRenderingMetric:!0},n=n||!1,(s=s||!1)&&e.completeSession();var d=e.makeSubPage((n?"block":"page")+"."+t);return o&&Object.keys(o).forEach((function(e){d[e]=o[e]})),r[t]={spaMetricsOptions:a},i[t]=d,d},startStubRendering:function(s,o){o=!1!==o;var d=i[s],g=r[s];if(d&&g)if(g.stubRenderingStartTime)a.error("startStubRendering have been called repeatedly for subpage "+s+".");else{var p=e.getTime();g.stubRenderingStartTime=p,g.spaMetricsOptions&&g.spaMetricsOptions.startStubRenderingMetric&&e.sendDelta("stub.render.start",p-Number(d[689.2322]),d),o&&t&&t((function(){n(s)}))}else a.error("No subpage "+s+".")},finishStubRendering:n,startDataLoading:function(t){var n=i[t],s=r[t];if(n&&s)if(s.dataLoadingStartTime)a.error("startDataLoading have been called repeatedly for subpage "+t+".");else{var o=e.getTime();s.dataLoadingStartTime=o,s.spaMetricsOptions&&s.spaMetricsOptions.startDataLoadingMetric&&e.sendDelta("data.load.start",o-Number(n[689.2322]),n)}else a.error("No subpage "+t+".")},finishDataLoading:function(t,n){n=n||!1;var s=i[t],o=r[t];if(s&&o)if(o.dataLoadingFinishTime)a.error("finishDataLoading have been called repeatedly for subpage "+t+".");else{var d=e.getTime();o.dataLoadingFinishTime=d,!o.dataLoadingStartTime&&o.spaMetricsOptions&&o.spaMetricsOptions.startDataLoadingMetric&&a.error("No dataLoadingStartTime for subpage "+t+"."),o.spaMetricsOptions&&o.spaMetricsOptions.finishDataLoadingMetric&&e.sendDelta("data.load.finish."+(n?"cache":"network"),d-(o.dataLoadingStartTime||Number(s[689.2322])),s)}else a.error("No subpage "+t+".")},startDataRendering:function(n,o,d,g){o=o||"",d=!1!==d,g="number"==typeof g?g:1e3;var p=i[n],u=r[n];if(p&&u)if(u.dataLoadingFinishTime)if(u.dataRenderingStartTime)a.error("startDataRendering have been called repeatedly for subpage "+n+".");else{var c=e.getTime();u.dataRenderingStartTime=c,u.spaMetricsOptions&&u.spaMetricsOptions.startDataRenderingMetric&&e.sendDelta("data.render.start"+(o?"."+o:""),c-u.dataLoadingFinishTime,p),d&&t&&t((function(){s(n,o,g)}))}else a.error("No dataLoadingFinishTime for subpage "+n+".");else a.error("No subpage "+n+".")},finishDataRendering:s,getLastSpaSubPage:function(e){return i[e]||(a.error("No subpage "+e+"."),null)},setLogger:function(e){a=e}}}function n(t){var n=i[t],s=r[t];if(n&&s)if(s.stubRenderingFinishTime)a.error("finishStubRendering have been called repeatedly for subpage "+t+".");else{var o=e.getTime();s.stubRenderingFinishTime=o,!s.stubRenderingStartTime&&s.spaMetricsOptions&&s.spaMetricsOptions.startStubRenderingMetric&&a.error("No stubRenderingStartTime for subpage "+t+"."),s.spaMetricsOptions&&s.spaMetricsOptions.finishStubRenderingMetric&&e.sendDelta("stub.render.finish",o-(s.stubRenderingStartTime||Number(n[689.2322])),n)}else a.error("No subpage "+t+".")}function s(t,n,s){n=n||"",s="number"==typeof s?s:1e3;var o=i[t],d=r[t];if(o&&d)if(d.dataRenderingStartTime)if(d.dataRenderingFinishTime)a.error("finishDataRendering have been called repeatedly for subpage "+t+".");else{var g=e.getTime();d.dataRenderingFinishTime=g,d.spaMetricsOptions&&d.spaMetricsOptions.finishDataRenderingMetric&&e.sendDelta("data.render.finish"+(n?"."+n:""),g-d.dataRenderingStartTime,o),d.spaMetricsOptions&&d.spaMetricsOptions.animationSpeedMetric&&e.sendAnimationSpeed&&e.sendAnimationSpeed("data.render"+(n?"."+n:"")+".animation",s,o)}else a.error("No dataRenderingStartTime for subpage "+t+".");else a.error("No subpage "+t+".")}}(Ya.Rum);
+!(function (e) {
+    var t = window.requestAnimationFrame,
+        a = console;
+    if (!e) throw new Error("Rum: interface is not included");
+    if (e.enabled) {
+        e.sendAnimationSpeed = function (a, i, r) {
+            if (t) {
+                var n = [],
+                    s = e.getTime(),
+                    o = e.getTime();
+                !(function d() {
+                    t(function () {
+                        var t = e.getTime();
+                        n.push(t - o),
+                            (o = t),
+                            t - s < i
+                                ? d()
+                                : (e.sendDelta(
+                                      a + ".avg",
+                                      (function (e) {
+                                          for (
+                                              var t = e.length, a = 0, i = 0;
+                                              i < t;
+                                              i++
+                                          )
+                                              a += e[i];
+                                          return a / t;
+                                      })(n),
+                                      r,
+                                  ),
+                                  e.sendDelta(
+                                      a + ".mdn",
+                                      (function (e) {
+                                          var t = e.sort(function (e, t) {
+                                                  return e - t;
+                                              }),
+                                              a = e.length >> 1;
+                                          return t.length % 2
+                                              ? t[a]
+                                              : (t[a - 1] + t[a]) / 2;
+                                      })(n),
+                                      r,
+                                  ));
+                    });
+                })();
+            }
+        };
+        var i = {},
+            r = {};
+        e.spa = {
+            makeSpaSubPage: function (t, a, n, s, o) {
+                (a = a || {
+                    finishDataLoadingMetric: !0,
+                    startDataRenderingMetric: !0,
+                    finishDataRenderingMetric: !0,
+                }),
+                    (n = n || !1),
+                    (s = s || !1) && e.completeSession();
+                var d = e.makeSubPage((n ? "block" : "page") + "." + t);
+                return (
+                    o &&
+                        Object.keys(o).forEach(function (e) {
+                            d[e] = o[e];
+                        }),
+                    (r[t] = { spaMetricsOptions: a }),
+                    (i[t] = d),
+                    d
+                );
+            },
+            startStubRendering: function (s, o) {
+                o = !1 !== o;
+                var d = i[s],
+                    g = r[s];
+                if (d && g)
+                    if (g.stubRenderingStartTime)
+                        a.error(
+                            "startStubRendering have been called repeatedly for subpage " +
+                                s +
+                                ".",
+                        );
+                    else {
+                        var p = e.getTime();
+                        (g.stubRenderingStartTime = p),
+                            g.spaMetricsOptions &&
+                                g.spaMetricsOptions.startStubRenderingMetric &&
+                                e.sendDelta(
+                                    "stub.render.start",
+                                    p - Number(d[689.2322]),
+                                    d,
+                                ),
+                            o &&
+                                t &&
+                                t(function () {
+                                    n(s);
+                                });
+                    }
+                else a.error("No subpage " + s + ".");
+            },
+            finishStubRendering: n,
+            startDataLoading: function (t) {
+                var n = i[t],
+                    s = r[t];
+                if (n && s)
+                    if (s.dataLoadingStartTime)
+                        a.error(
+                            "startDataLoading have been called repeatedly for subpage " +
+                                t +
+                                ".",
+                        );
+                    else {
+                        var o = e.getTime();
+                        (s.dataLoadingStartTime = o),
+                            s.spaMetricsOptions &&
+                                s.spaMetricsOptions.startDataLoadingMetric &&
+                                e.sendDelta(
+                                    "data.load.start",
+                                    o - Number(n[689.2322]),
+                                    n,
+                                );
+                    }
+                else a.error("No subpage " + t + ".");
+            },
+            finishDataLoading: function (t, n) {
+                n = n || !1;
+                var s = i[t],
+                    o = r[t];
+                if (s && o)
+                    if (o.dataLoadingFinishTime)
+                        a.error(
+                            "finishDataLoading have been called repeatedly for subpage " +
+                                t +
+                                ".",
+                        );
+                    else {
+                        var d = e.getTime();
+                        (o.dataLoadingFinishTime = d),
+                            !o.dataLoadingStartTime &&
+                                o.spaMetricsOptions &&
+                                o.spaMetricsOptions.startDataLoadingMetric &&
+                                a.error(
+                                    "No dataLoadingStartTime for subpage " +
+                                        t +
+                                        ".",
+                                ),
+                            o.spaMetricsOptions &&
+                                o.spaMetricsOptions.finishDataLoadingMetric &&
+                                e.sendDelta(
+                                    "data.load.finish." +
+                                        (n ? "cache" : "network"),
+                                    d -
+                                        (o.dataLoadingStartTime ||
+                                            Number(s[689.2322])),
+                                    s,
+                                );
+                    }
+                else a.error("No subpage " + t + ".");
+            },
+            startDataRendering: function (n, o, d, g) {
+                (o = o || ""),
+                    (d = !1 !== d),
+                    (g = "number" == typeof g ? g : 1e3);
+                var p = i[n],
+                    u = r[n];
+                if (p && u)
+                    if (u.dataLoadingFinishTime)
+                        if (u.dataRenderingStartTime)
+                            a.error(
+                                "startDataRendering have been called repeatedly for subpage " +
+                                    n +
+                                    ".",
+                            );
+                        else {
+                            var c = e.getTime();
+                            (u.dataRenderingStartTime = c),
+                                u.spaMetricsOptions &&
+                                    u.spaMetricsOptions
+                                        .startDataRenderingMetric &&
+                                    e.sendDelta(
+                                        "data.render.start" +
+                                            (o ? "." + o : ""),
+                                        c - u.dataLoadingFinishTime,
+                                        p,
+                                    ),
+                                d &&
+                                    t &&
+                                    t(function () {
+                                        s(n, o, g);
+                                    });
+                        }
+                    else
+                        a.error(
+                            "No dataLoadingFinishTime for subpage " + n + ".",
+                        );
+                else a.error("No subpage " + n + ".");
+            },
+            finishDataRendering: s,
+            getLastSpaSubPage: function (e) {
+                return i[e] || (a.error("No subpage " + e + "."), null);
+            },
+            setLogger: function (e) {
+                a = e;
+            },
+        };
+    }
+    function n(t) {
+        var n = i[t],
+            s = r[t];
+        if (n && s)
+            if (s.stubRenderingFinishTime)
+                a.error(
+                    "finishStubRendering have been called repeatedly for subpage " +
+                        t +
+                        ".",
+                );
+            else {
+                var o = e.getTime();
+                (s.stubRenderingFinishTime = o),
+                    !s.stubRenderingStartTime &&
+                        s.spaMetricsOptions &&
+                        s.spaMetricsOptions.startStubRenderingMetric &&
+                        a.error(
+                            "No stubRenderingStartTime for subpage " + t + ".",
+                        ),
+                    s.spaMetricsOptions &&
+                        s.spaMetricsOptions.finishStubRenderingMetric &&
+                        e.sendDelta(
+                            "stub.render.finish",
+                            o -
+                                (s.stubRenderingStartTime ||
+                                    Number(n[689.2322])),
+                            n,
+                        );
+            }
+        else a.error("No subpage " + t + ".");
+    }
+    function s(t, n, s) {
+        (n = n || ""), (s = "number" == typeof s ? s : 1e3);
+        var o = i[t],
+            d = r[t];
+        if (o && d)
+            if (d.dataRenderingStartTime)
+                if (d.dataRenderingFinishTime)
+                    a.error(
+                        "finishDataRendering have been called repeatedly for subpage " +
+                            t +
+                            ".",
+                    );
+                else {
+                    var g = e.getTime();
+                    (d.dataRenderingFinishTime = g),
+                        d.spaMetricsOptions &&
+                            d.spaMetricsOptions.finishDataRenderingMetric &&
+                            e.sendDelta(
+                                "data.render.finish" + (n ? "." + n : ""),
+                                g - d.dataRenderingStartTime,
+                                o,
+                            ),
+                        d.spaMetricsOptions &&
+                            d.spaMetricsOptions.animationSpeedMetric &&
+                            e.sendAnimationSpeed &&
+                            e.sendAnimationSpeed(
+                                "data.render" +
+                                    (n ? "." + n : "") +
+                                    ".animation",
+                                s,
+                                o,
+                            );
+                }
+            else a.error("No dataRenderingStartTime for subpage " + t + ".");
+        else a.error("No subpage " + t + ".");
+    }
+})(Ya.Rum);
 
 function initRum({
-            environment,
-            heroElement,
-            page,
-            platform,
-            project,
-            regionId,
-            requestId,
-            rumId,
-            sendClientUa,
-            service,
-            testIds,
-            version
-        }) {
-        const slots = testIds?.join("','");
-        Ya.Rum.init({
+    environment,
+    heroElement,
+    page,
+    platform,
+    project,
+    regionId,
+    requestId,
+    rumId,
+    sendClientUa,
+    service,
+    testIds,
+    version,
+}) {
+    const slots = testIds?.join("','");
+    Ya.Rum.init(
+        {
             beacon: !!navigator.sendBeacon,
-            clck: 'https://yandex.ru/clck/click',
+            clck: "https://yandex.ru/clck/click",
             ...(slots ? { slots } : {}),
             reqid: `'${requestId}'`,
-            sendClientUa: sendClientUa
-        }, {
-            rum_id: `'${rumId}'`, 
-            '-region': `'${regionId}'`,
-            '-project': `'${project}'`,
-            ...(platform ? {'-platform': `'${platform}'`} : {}),
-            ...(service ? {'-service': `'${service}'`} : {}),
-            '-env': `'${environment}'`,
-            '-page': `'${page}'`,
-            '-version': `'${version}'`
-        });
-        !function(){var e=Ya.Rum,n=!window.BigInt||!("PerformanceObserver"in window);function t(n){e._unsubscribers.push(n)}function i(e,i,o){if(!n){var a=o||{};if(e){a.type=e,a.hasOwnProperty("buffered")||(a.buffered=!0);var s=new PerformanceObserver((function(e,n){return i(e.getEntries(),n)}));return r((function(){try{s.observe(a)}catch(e){return void console.error(e.message)}t((function(){s.disconnect()}))}),0),s}throw new Error("PO without type field is forbidden")}}function r(e,n){var i=setTimeout(e,n);return t((function(){clearInterval(i)})),i}function o(e,n,i){addEventListener(e,n,i),t((function(){removeEventListener(e,n,i)}))}function a(e,n,t){o("visibilitychange",(function i(){if("hidden"===document.visibilityState){try{t||(removeEventListener("visibilitychange",i),e.disconnect())}catch(e){}n()}})),o("beforeunload",n)}function s(e,n){return"string"==typeof e?encodeURIComponent(e):Math.round(1e3*(e-(n||0)))/1e3}function u(e){if(!e)return"";var n=(e.tagName||"").toLowerCase(),t=e.className&&void 0!==e.className.baseVal?e.className.baseVal:e.className;return n+(t?(" "+t).replace(/\s+/g,"."):"")}function c(e){function n(){removeEventListener("DOMContentLoaded",n),removeEventListener("load",n),e()}"loading"===document.readyState?(o("DOMContentLoaded",n),o("load",n)):e()}function d(n){e._onComplete.push(n)}function f(){return e._periodicTasks}function l(){var n=e._vars;return Object.keys(n).map((function(e){return e+"="+encodeURIComponent(n[e]).replace(/\*/g,"%2A")}))}var m={connectEnd:2116,connectStart:2114,decodedBodySize:2886,domComplete:2124,domContentLoadedEventEnd:2131,domContentLoadedEventStart:2123,domInteractive:2770,domLoading:2769,domainLookupEnd:2113,domainLookupStart:2112,duration:2136,encodedBodySize:2887,entryType:2888,fetchStart:2111,initiatorType:2889,loadEventEnd:2126,loadEventStart:2125,nextHopProtocol:2890,redirectCount:1385,redirectEnd:2110,redirectStart:2109,requestStart:2117,responseEnd:2120,responseStart:2119,secureConnectionStart:2115,startTime:2322,transferSize:2323,type:76,unloadEventEnd:2128,unloadEventStart:2127,workerStart:2137},v=625;function g(n,t){Object.keys(m).forEach((function(e){if(e in t){var i=t[e];(i||0===i)&&n.push(m[e]+"="+s(i))}})),n.push("".concat(v,"=").concat(e.version))}var p,h,y,S,T,b="690.2096.2877",w="690.2096.207",E="690.2096.2044",C=3,k=e.getSetting("savedDeltasLimit")||0,L=document.createElement("link"),P=window.performance||{},M="function"==typeof P.getEntriesByType,_=0;function O(n,t,i,r,o){void 0===t&&(t=e.getTime()),void 0!==i&&!0!==i||e.mark(n,t);var a=I(n);if(a.push("207="+s(t)),x(a,r)){j(w,a,o&&o.force),p[n]=p[n]||[],p[n].push(t);var u=e._markListeners[n];u&&u.length&&u.forEach((function(e){e(t)})),e.emit({metricName:n,value:t,params:r})}}function I(n){return T.concat([e.isVisibilityChanged()?"-vsChanged=1":"","1701="+n,e.ajaxStart&&"1201.2154="+s(e.ajaxStart),e.ajaxComplete&&"1201.2052="+s(e.ajaxComplete)])}function N(){S=l(),e.getSetting("sendClientUa")&&S.push("1042="+encodeURIComponent(navigator.userAgent))}function R(){var e=window.performance&&window.performance.timing&&window.performance.timing.navigationStart;T=S.concat(["143.2129="+e])}function x(e,n){if(n){if(n.isCanceled&&n.isCanceled())return!1;var t=e.reduce((function(e,n,t){return"string"==typeof n&&(e[n.split("=")[0]]=t),e}),{});Object.keys(n).forEach((function(i){if("function"!=typeof n[i]){var r=t[i],o=i+"="+n[i];void 0===r?e.push(o):e[r]=o}}))}return!0}function j(n,t,i){var r=encodeURIComponent(window.YaStaticRegion||"unknown");t.push("-cdn="+r);var o=t.filter(Boolean).join(",");e.send(null,n,o,void 0,void 0,void 0,void 0,i)}function z(e,n,t){j(e,F().concat(n),t)}function B(n,t){var i=y[n];i&&0!==i.length&&(i.push(e.getTime(),t),A(n))}function A(n,t,i,r){var o,a,u,c=y[n];if(void 0!==t?o=(a=r&&r.originalEndTime?r.originalEndTime:e.getTime())-t:c&&(o=c[0],a=c[1],u=c[2]),void 0!==o&&void 0!==a){var d=I(n);d.push("207.2154="+s(o),"207.1428="+s(a),"2877="+s(a-o)),x(d,i)&&x(d,u)&&(j(b,d,r&&r.force),_<k&&(h[n]=h[n]||[],h[n].push(a-o),_++),e.emit({metricName:n,value:a-o,params:{start:o,end:a}}),delete y[n])}}function V(e,n){if(!M)return n(null);L.href=e;var t=0,i=100,o=L.href;r((function e(){var a=P.getEntriesByName(o);if(a.length)return n(a);t++<C?(r(e,i),i+=i):n(null)}),0)}function U(e,n,t){V(n,(function(i){i&&D(e,i[i.length-1],n,t)}))}function D(n,t,i,r){var o=I(n);e.getSetting("sendUrlInResTiming")&&o.push("13="+encodeURIComponent(i)),g(o,t),x(o,r),j(E,o)}function F(){return S}var W={bluetooth:2064,cellular:2065,ethernet:2066,none:1229,wifi:2067,wimax:2068,other:861,unknown:836,0:836,1:2066,2:2067,3:2070,4:2071,5:2768},H=navigator.connection;function Q(e){if(H){var n=W[H.type];e.push("2437="+(n||2771),void 0!==H.downlinkMax&&"2439="+H.downlinkMax,H.effectiveType&&"2870="+H.effectiveType,void 0!==H.rtt&&"rtt="+H.rtt,void 0!==H.downlink&&"dwl="+H.downlink,!n&&"rawType="+H.type)}}var Y,q,G,J,$,K,X,Z,ee="690.2096.4004",ne=!1,te=1/0,ie=1/0,re=("layout-shift",Boolean(window.PerformanceObserver&&window.PerformanceObserver.supportedEntryTypes&&-1!==window.PerformanceObserver.supportedEntryTypes.indexOf("layout-shift"))?0:null);function oe(){$>q&&(q=$,G=J,e.emit({metricName:"cls-debug",value:q,params:{clsEntries:G,target:ae(G)}}))}function ae(e){var n;if(!e)return null;var t=null;if((n=e.reduce((function(e,n){return e&&e.value>n.value?e:n})))&&n.sources&&n.sources.length){for(var i=0;i<n.sources.length;i++){var r=n.sources[i];if(r.node&&1===r.node.nodeType){t=r;break}}t=t||n.sources[0]}return t}function se(e){null==q&&(q=0);for(var n=0;n<e.length;n++){var t=e[n];t.hadRecentInput||($&&t.startTime-J[J.length-1].startTime<te&&t.startTime-J[0].startTime<ie?($+=t.value,J.push(t)):(oe(),$=t.value,J=[t]))}oe()}function ue(){q=re,Y=void 0,G=null,J=null,$=null,ne=!1}function ce(n){if(null!=q&&!ne){var t=Math.round(1e6*q)/1e6;if(Y!==t){Y=t,e.getSetting("enableContinuousCollection")||(ne=!0);var i=ae(G),r=["s="+t];r.push("target="+u(i&&i.node));var o=e.getCLSAdditionalParams(i);o&&x(r,o),z(ee,r,n),e.emit({metricName:"cls-debug",value:q,params:{clsEntries:J,target:i,isFinalized:ne}})}}}function de(n){var t=n[n.length-1];K=t.renderTime||t.loadTime,X=t,e.emit({metricName:"largest-contentful-paint-debug",value:K,params:{entry:t}}),Z||(O("largest-loading-elem-paint",K),Z=!0)}function fe(n){if(null!=K){var t=e.getLCPAdditionalParams(X);O("largest-contentful-paint",K,!1,t,n&&{force:!0}),e.emit({metricName:"largest-contentful-paint-debug",value:K,params:{additionalParams:t,entry:X,isFinalized:!0}}),K=null,X=null}}e.getLCPAdditionalParams===e.noop&&(e.getLCPAdditionalParams=function(){var n={},t=X.element;if(t){n["-className"]=e.getSelector(t),n["-tagName"]=t.tagName.toLowerCase();var i=t.getBoundingClientRect();n["-width"]=i.width,n["-height"]=i.height}return X.size&&(n["-size"]=X.size),n});var le={"first-paint":2793,"first-contentful-paint":2794},me=Object.keys(le).length,ve={},ge=window.performance||{},pe="function"==typeof ge.getEntriesByType,he=0;function ye(){if(pe&&(e.getSetting("forcePaintTimeSending")||!e.isVisibilityChanged()))for(var n=ge.getEntriesByType("paint"),t=0;t<n.length;t++){var i=n[t],r=le[i.name];r&&!ve[i.name]&&(ve[i.name]=!0,he++,O("1926."+r,i.startTime))}}var Se=3e3,Te=1;function be(){return e._tti.events||[]}function we(){return e._tti.loafEvents}function Ee(){return e._tti}function Ce(n){return n?n===e.getPageUrl()?"<page>":n.replace(/\?.*$/,""):n}function ke(n,t,i){if(Ee()){var r=e.getTime(),o="undefined"!=typeof PerformanceLongAnimationFrameTiming&&e.getSetting("sendLongAnimationFrames");Le((function(a){var u,c={2796.2797:Pe(be(),t),689.2322:s(r)};if(o){var d=function(e){var n=we();if(n)return e?n.filter((function(n){return n.startTime+n.duration>=e})):n}(t);d&&(c["loaf.2797"]=Pe(d,void 0,{useName:!1}),1===e.getSetting("longAnimationFramesMode")&&(c["-additional"]=encodeURIComponent(JSON.stringify({loaf:(u=d,u.map(Me))}))))}i&&Object.keys(i).forEach((function(e){c[e]=i[e]})),O(n||"2795",a,!0,c,{force:Boolean(o)}),e._tti.fired=!0}),t)}}function Le(n,t){var i=(arguments.length>2&&void 0!==arguments[2]?arguments[2]:{}).mode,o=void 0===i?Te:i;Ee()&&(t||(t=e.getTime()),function i(){var a,s=t,u=e.getTime(),c=o===Te?be():we()||[],d=c.length;0!==d&&(a=c[d-1],s=Math.max(s,Math.floor(a.startTime+a.duration))),u-s>=Se?n(s):r(i,1e3)}())}function Pe(e,n){var t=(arguments.length>2&&void 0!==arguments[2]?arguments[2]:{}).useName,i=void 0===t||t;return n=n||0,(e=e||[]).filter((function(e){return n-e.startTime<=50})).map((function(e){var n=Math.floor(e.startTime),t=Math.floor(n+e.duration);return i?(e.name?e.name.split("-").map((function(e){return e[0]})).join(""):"u")+"-"+n+"-"+t:n+"-"+t})).join(".")}function Me(e){var n=e.blockingDuration,t=e.duration,i=e.firstUIEventTimestamp,r=e.renderStart,o=e.scripts,a=e.startTime,s=e.styleAndLayoutStart;return[Math.round(a),Math.round(t),o.map(Oe),Math.round(n),Math.round(i),Math.round(r),Math.round(s)]}function _e(e){return{"user-callback":1,"event-listener":2,"resolve-promise":3,"reject-promise":4,"classic-script":5,"module-script":6}[e]||0}function Oe(e){var n=e.invoker,t=e.sourceURL,i=e.sourceFunctionName,r=e.sourceCharPosition,o=e.startTime,a=e.duration,s=e.windowAttribution,u=e.executionStart,c=e.forcedStyleAndLayoutDuration,d=e.pauseDuration,f=e.invokerType;return[Ce(n),Ce(t),i,r,Math.round(o),Math.round(a),s,Math.round(u),Math.round(c),Math.round(d),_e(f)]}var Ie="690.2096.361",Ne=document.createElement("a"),Re=0,xe={};function je(e){var n=e.transferSize;if(null!=n){Ne.href=e.name;var t=Ne.pathname;if(0!==t.indexOf("/clck")){var i=t.lastIndexOf("."),r="";return-1!==i&&t.lastIndexOf("/")<i&&t.length-i<=5&&(r=t.slice(i+1)),{size:n,domain:Ne.hostname,extension:r}}}}function ze(){var n=e.getSetting("maxTrafficCounters")||250;if(Re>=n)return!1;for(var t=Object.keys(xe),i="",r=0;r<t.length;r++){var o=t[r],a=xe[o];i+=encodeURIComponent(o)+"!"+a.count+"!"+a.size+";"}return i.length&&(Re++,z(Ie,["d="+i,"t="+s(e.getTime())])),xe={},Re<n}d(ze);var Be="690.1033",Ae={visible:1,hidden:2,prerender:3},Ve=window.performance||{},Ue=Ve.navigation||{},De=Ve.timing||{},Fe=De.navigationStart;function We(){var n=De.domContentLoadedEventStart,t=De.domContentLoadedEventEnd;if(0!==n||0!==t){var i=0===De.responseStart?Fe:De.responseStart,o=0===De.domainLookupStart?Fe:De.domainLookupStart,a=["2129="+Fe,"1036="+(o-Fe),"1037="+(De.domainLookupEnd-De.domainLookupStart),"1038="+(De.connectEnd-De.connectStart),De.secureConnectionStart&&"1383="+(De.connectEnd-De.secureConnectionStart),"1039="+(De.responseStart-De.connectEnd),"1040="+(De.responseEnd-i),"1040.906="+(De.responseEnd-o),"1310.2084="+(De.domLoading-i),"1310.2085="+(De.domInteractive-i),"1310.1309="+(t-n),"1310.1007="+(n-i),navigator.deviceMemory&&"3140="+navigator.deviceMemory,navigator.hardwareConcurrency&&"3141="+navigator.hardwareConcurrency];Object.keys(m).forEach((function(e){e in De&&De[e]&&a.push(m[e]+"="+s(De[e],Fe))})),e.vsStart?(a.push("1484="+(Ae[e.vsStart]||2771)),e.vsChanged&&a.push("1484.719=1")):a.push("1484="+Ae.visible),Ue&&(Ue.redirectCount&&a.push("1384.1385="+Ue.redirectCount),1!==Ue.type&&2!==Ue.type||a.push("770.76="+Ue.type)),Q(a),z(Be,a)}else r(We,50)}var He="690.2096.2892",Qe=window.performance||{},Ye="function"==typeof Qe.getEntriesByType;if(!e)throw new Error("Rum: interface is not included");if(e.enabled){function qe(){p={},h={},_=0,y=e._deltaMarks,N(),R(),e.ajaxStart=0,e.ajaxComplete=0,c(Je)}function Ge(){var n;e.sendTimeMark=O,e.sendResTiming=U,e.sendTiming=D,e.timeEnd=B;var t=(e.getBufferedEvents(["defRes"]).defRes||[]).map((function(e){return e.data}));for(n=0;n<t.length;n++)U(t[n][0],t[n][1]);e.clearEvents("defRes");var i=(e.getBufferedEvents(["defTimes"]).defTimes||[]).map((function(e){return e.data}));for(n=0;n<i.length;n++)O(i[n][0],i[n][1],!1,i[n][2]);e.clearEvents("defTimes"),Object.keys(y).forEach((function(e){A(e)}))}function Je(){var n=window.performance&&window.performance.timing&&window.performance.timing.navigationStart,t=e.getSetting("skipTiming"),a=e.getSetting("techParamsByVisible");n&&(a&&addEventListener("visibilitychange",(function n(){"visible"!==e.vsStart?"visible"===document.visibilityState&&(e.vsStart="visible",removeEventListener("visibilitychange",n),We()):removeEventListener("visibilitychange",n)})),r((function(){Ge(),(!t&&!a||a&&"visible"===e.vsStart)&&We(),e.getSetting("disableFCP")||(ye(),he<me&&i("paint",(function(e,n){ye(),n&&he>=me&&n.disconnect()}),{buffered:!0})),e.getSetting("sendAutoElementTiming")&&(!window.PerformanceObserver||!e.getSetting("forcePaintTimeSending")&&e.isVisibilityChanged()||i("element",(function(e){for(var n=0;n<e.length;n++){var t=e[n];O("element-timing."+t.identifier,t.startTime)}}))),o("pageshow",Xe),ke(),"complete"===document.readyState?$e({skipTimingApi:t}):o("load",$e.bind(void 0,{skipTimingApi:t}))}),0))}function $e(n){var r,s;e.getSetting("disableOnLoadTasks")||(removeEventListener("load",$e),n.skipTimingApi||function(){if(Ye){var e=Qe.getEntriesByType("navigation")[0];if(e){var n=[];g(n,e),Q(n);var t=Qe.getEntriesByName("yndxNavigationSource")[0];t&&n.push("2091.186="+t.value);var i=Qe.getEntriesByName("yndxNavigationToken","yndxEntry")[0];i&&n.push("2091.3649="+i.value),z(He,n)}}}(),(s=e.getSetting("periodicStatsIntervalMs"))||null===s||(s=15e3),s&&(r=setInterval(Ze,s),t((function(){clearInterval(r)})),Ke=r),o("beforeunload",Ze),function(){if(window.PerformanceObserver){xe={},Re=0;var e=function(e){!function(e){if(e&&e.length)for(var n=xe,t=0;t<e.length;t++){var i=je(e[t]);if(i){var r=i.domain+"-"+i.extension,o=n[r]=n[r]||{count:0,size:0};o.count++,o.size+=i.size}}}(e)};i("resource",e),i("navigation",e),f().push(ze)}}(),e.getSetting("disableFID")||i("first-input",(function(n,t){var i=n[0];if(i){var r=i.processingStart,o={duration:i.duration,js:i.processingEnd-r,name:i.name};i.target&&(o.target=u(i.target));var a=r-i.startTime;A("first-input",a,o),e.emit({metricName:"first-input-debug",value:a,params:{entry:i,additionalParams:o}}),t.disconnect()}}),{buffered:!0}),e.getSetting("disableCLS")||window.PerformanceObserver&&(d(ce),d(ue),q=re,G=null,J=null,$=null,te=e.getSetting("clsWindowGap")||te,ie=e.getSetting("clsWindowSize")||ie,a(i("layout-shift",se),(function(){return ce(!0)}),!0)),e.getSetting("disableLCP")||!window.PerformanceObserver||!e.getSetting("forcePaintTimeSending")&&e.isVisibilityChanged()||(d(fe),K=null,X=null,Z=!1,a(i("largest-contentful-paint",de),(function(){return fe(!0)}),!1)))}var Ke;function Xe(e){e.persisted&&O("bfcache")}function Ze(){var e=!1;f().forEach((function(n){n()&&(e=!0)})),e||clearInterval(Ke)}d(Ge),e.destroy=function(n){var t=e._unsubscribers;n.shouldComplete&&e.completeSession(!0),e._onComplete=[];for(var i=0;i<t.length;i++)t[i]();removeEventListener("visibilitychange",e._onVisibilityChange),e._unsubscribers=[],e._periodicTasks=[],e._markListeners={},e._deltaMarks={}},e.restart=function(n,t,i){e.destroy({shouldComplete:i}),e.init(n,t),addEventListener("visibilitychange",e._onVisibilityChange),qe(),function(){for(var n=0;n<e._onInit.length;n++)e._onInit[n]()}()},e.setVars=function(n){Object.keys(n).forEach((function(t){e._vars[t]=n[t]})),N(),R()},e.completeSession=function(n){for(var t=e._onComplete,i=0;i<t.length;i++)t[i](n)},qe(),e._periodicTasks=[],e.sendHeroElement=function(e){O("2876",e)},e.getPageUrl=function(){return window.location.href},e._subpages={},e.makeSubPage=function(n,t){var i=e._subpages[n];e._subpages[n]=void 0===i?i=0:++i;var r=!1;return{689.2322:s(void 0!==t?t:e.getTime()),2924:n,2925:i,isCanceled:function(){return r},cancel:function(){r=!0}}},e.getTimeMarks=function(){return p},e.getDeltas=function(){return h},e.getVarsList=l,e.getResourceTimings=V,e.pushConnectionTypeTo=Q,e.pushTimingTo=g,e.normalize=s,e.sendCounter=j,e.sendDelta=A,e.onReady=c,e.getSelector=u,e.getSetting("disableCLS")||(e.finalizeLayoutShiftScore=ce),e.getSetting("disableLCP")||(e.finalizeLargestContentfulPaint=fe),e.sendTrafficData=ze,e._getCommonVars=F,e._addListener=o,e._observe=i,e._timeout=r,e.sendTTI=ke,e._getLongtasksStringValue=Pe,e.onQuietWindow=Le,e.sendBFCacheTimeMark=Xe}else e.getSetting=function(){return""},e.getVarsList=function(){return[]},e.getResourceTimings=e.completeSession=e.pushConnectionTypeTo=e.pushTimingTo=e.normalize=e.sendCounter=e.destroy=e.restart=e.setVars=e.completeSession=e.sendDelta=e.sendTimeMark=e.sendResTiming=e.sendTiming=e.sendTTI=e.makeSubPage=e.sendHeroElement=e.onReady=e.onQuietWindow=function(){}}();
+            sendClientUa: sendClientUa,
+        },
+        {
+            rum_id: `'${rumId}'`,
+            "-region": `'${regionId}'`,
+            "-project": `'${project}'`,
+            ...(platform ? { "-platform": `'${platform}'` } : {}),
+            ...(service ? { "-service": `'${service}'` } : {}),
+            "-env": `'${environment}'`,
+            "-page": `'${page}'`,
+            "-version": `'${version}'`,
+        },
+    );
+    !(function () {
+        var e = Ya.Rum,
+            n = !window.BigInt || !("PerformanceObserver" in window);
+        function t(n) {
+            e._unsubscribers.push(n);
+        }
+        function i(e, i, o) {
+            if (!n) {
+                var a = o || {};
+                if (e) {
+                    (a.type = e),
+                        a.hasOwnProperty("buffered") || (a.buffered = !0);
+                    var s = new PerformanceObserver(function (e, n) {
+                        return i(e.getEntries(), n);
+                    });
+                    return (
+                        r(function () {
+                            try {
+                                s.observe(a);
+                            } catch (e) {
+                                return void console.error(e.message);
+                            }
+                            t(function () {
+                                s.disconnect();
+                            });
+                        }, 0),
+                        s
+                    );
+                }
+                throw new Error("PO without type field is forbidden");
+            }
+        }
+        function r(e, n) {
+            var i = setTimeout(e, n);
+            return (
+                t(function () {
+                    clearInterval(i);
+                }),
+                i
+            );
+        }
+        function o(e, n, i) {
+            addEventListener(e, n, i),
+                t(function () {
+                    removeEventListener(e, n, i);
+                });
+        }
+        function a(e, n, t) {
+            o("visibilitychange", function i() {
+                if ("hidden" === document.visibilityState) {
+                    try {
+                        t ||
+                            (removeEventListener("visibilitychange", i),
+                            e.disconnect());
+                    } catch (e) {}
+                    n();
+                }
+            }),
+                o("beforeunload", n);
+        }
+        function s(e, n) {
+            return "string" == typeof e
+                ? encodeURIComponent(e)
+                : Math.round(1e3 * (e - (n || 0))) / 1e3;
+        }
+        function u(e) {
+            if (!e) return "";
+            var n = (e.tagName || "").toLowerCase(),
+                t =
+                    e.className && void 0 !== e.className.baseVal
+                        ? e.className.baseVal
+                        : e.className;
+            return n + (t ? (" " + t).replace(/\s+/g, ".") : "");
+        }
+        function c(e) {
+            function n() {
+                removeEventListener("DOMContentLoaded", n),
+                    removeEventListener("load", n),
+                    e();
+            }
+            "loading" === document.readyState
+                ? (o("DOMContentLoaded", n), o("load", n))
+                : e();
+        }
+        function d(n) {
+            e._onComplete.push(n);
+        }
+        function f() {
+            return e._periodicTasks;
+        }
+        function l() {
+            var n = e._vars;
+            return Object.keys(n).map(function (e) {
+                return e + "=" + encodeURIComponent(n[e]).replace(/\*/g, "%2A");
+            });
+        }
+        var m = {
+                connectEnd: 2116,
+                connectStart: 2114,
+                decodedBodySize: 2886,
+                domComplete: 2124,
+                domContentLoadedEventEnd: 2131,
+                domContentLoadedEventStart: 2123,
+                domInteractive: 2770,
+                domLoading: 2769,
+                domainLookupEnd: 2113,
+                domainLookupStart: 2112,
+                duration: 2136,
+                encodedBodySize: 2887,
+                entryType: 2888,
+                fetchStart: 2111,
+                initiatorType: 2889,
+                loadEventEnd: 2126,
+                loadEventStart: 2125,
+                nextHopProtocol: 2890,
+                redirectCount: 1385,
+                redirectEnd: 2110,
+                redirectStart: 2109,
+                requestStart: 2117,
+                responseEnd: 2120,
+                responseStart: 2119,
+                secureConnectionStart: 2115,
+                startTime: 2322,
+                transferSize: 2323,
+                type: 76,
+                unloadEventEnd: 2128,
+                unloadEventStart: 2127,
+                workerStart: 2137,
+            },
+            v = 625;
+        function g(n, t) {
+            Object.keys(m).forEach(function (e) {
+                if (e in t) {
+                    var i = t[e];
+                    (i || 0 === i) && n.push(m[e] + "=" + s(i));
+                }
+            }),
+                n.push("".concat(v, "=").concat(e.version));
+        }
+        var p,
+            h,
+            y,
+            S,
+            T,
+            b = "690.2096.2877",
+            w = "690.2096.207",
+            E = "690.2096.2044",
+            C = 3,
+            k = e.getSetting("savedDeltasLimit") || 0,
+            L = document.createElement("link"),
+            P = window.performance || {},
+            M = "function" == typeof P.getEntriesByType,
+            _ = 0;
+        function O(n, t, i, r, o) {
+            void 0 === t && (t = e.getTime()),
+                (void 0 !== i && !0 !== i) || e.mark(n, t);
+            var a = I(n);
+            if ((a.push("207=" + s(t)), x(a, r))) {
+                j(w, a, o && o.force), (p[n] = p[n] || []), p[n].push(t);
+                var u = e._markListeners[n];
+                u &&
+                    u.length &&
+                    u.forEach(function (e) {
+                        e(t);
+                    }),
+                    e.emit({ metricName: n, value: t, params: r });
+            }
+        }
+        function I(n) {
+            return T.concat([
+                e.isVisibilityChanged() ? "-vsChanged=1" : "",
+                "1701=" + n,
+                e.ajaxStart && "1201.2154=" + s(e.ajaxStart),
+                e.ajaxComplete && "1201.2052=" + s(e.ajaxComplete),
+            ]);
+        }
+        function N() {
+            (S = l()),
+                e.getSetting("sendClientUa") &&
+                    S.push("1042=" + encodeURIComponent(navigator.userAgent));
+        }
+        function R() {
+            var e =
+                window.performance &&
+                window.performance.timing &&
+                window.performance.timing.navigationStart;
+            T = S.concat(["143.2129=" + e]);
+        }
+        function x(e, n) {
+            if (n) {
+                if (n.isCanceled && n.isCanceled()) return !1;
+                var t = e.reduce(function (e, n, t) {
+                    return "string" == typeof n && (e[n.split("=")[0]] = t), e;
+                }, {});
+                Object.keys(n).forEach(function (i) {
+                    if ("function" != typeof n[i]) {
+                        var r = t[i],
+                            o = i + "=" + n[i];
+                        void 0 === r ? e.push(o) : (e[r] = o);
+                    }
+                });
+            }
+            return !0;
+        }
+        function j(n, t, i) {
+            var r = encodeURIComponent(window.YaStaticRegion || "unknown");
+            t.push("-cdn=" + r);
+            var o = t.filter(Boolean).join(",");
+            e.send(null, n, o, void 0, void 0, void 0, void 0, i);
+        }
+        function z(e, n, t) {
+            j(e, F().concat(n), t);
+        }
+        function B(n, t) {
+            var i = y[n];
+            i && 0 !== i.length && (i.push(e.getTime(), t), A(n));
+        }
+        function A(n, t, i, r) {
+            var o,
+                a,
+                u,
+                c = y[n];
+            if (
+                (void 0 !== t
+                    ? (o =
+                          (a =
+                              r && r.originalEndTime
+                                  ? r.originalEndTime
+                                  : e.getTime()) - t)
+                    : c && ((o = c[0]), (a = c[1]), (u = c[2])),
+                void 0 !== o && void 0 !== a)
+            ) {
+                var d = I(n);
+                d.push(
+                    "207.2154=" + s(o),
+                    "207.1428=" + s(a),
+                    "2877=" + s(a - o),
+                ),
+                    x(d, i) &&
+                        x(d, u) &&
+                        (j(b, d, r && r.force),
+                        _ < k && ((h[n] = h[n] || []), h[n].push(a - o), _++),
+                        e.emit({
+                            metricName: n,
+                            value: a - o,
+                            params: { start: o, end: a },
+                        }),
+                        delete y[n]);
+            }
+        }
+        function V(e, n) {
+            if (!M) return n(null);
+            L.href = e;
+            var t = 0,
+                i = 100,
+                o = L.href;
+            r(function e() {
+                var a = P.getEntriesByName(o);
+                if (a.length) return n(a);
+                t++ < C ? (r(e, i), (i += i)) : n(null);
+            }, 0);
+        }
+        function U(e, n, t) {
+            V(n, function (i) {
+                i && D(e, i[i.length - 1], n, t);
+            });
+        }
+        function D(n, t, i, r) {
+            var o = I(n);
+            e.getSetting("sendUrlInResTiming") &&
+                o.push("13=" + encodeURIComponent(i)),
+                g(o, t),
+                x(o, r),
+                j(E, o);
+        }
+        function F() {
+            return S;
+        }
+        var W = {
+                bluetooth: 2064,
+                cellular: 2065,
+                ethernet: 2066,
+                none: 1229,
+                wifi: 2067,
+                wimax: 2068,
+                other: 861,
+                unknown: 836,
+                0: 836,
+                1: 2066,
+                2: 2067,
+                3: 2070,
+                4: 2071,
+                5: 2768,
+            },
+            H = navigator.connection;
+        function Q(e) {
+            if (H) {
+                var n = W[H.type];
+                e.push(
+                    "2437=" + (n || 2771),
+                    void 0 !== H.downlinkMax && "2439=" + H.downlinkMax,
+                    H.effectiveType && "2870=" + H.effectiveType,
+                    void 0 !== H.rtt && "rtt=" + H.rtt,
+                    void 0 !== H.downlink && "dwl=" + H.downlink,
+                    !n && "rawType=" + H.type,
+                );
+            }
+        }
+        var Y,
+            q,
+            G,
+            J,
+            $,
+            K,
+            X,
+            Z,
+            ee = "690.2096.4004",
+            ne = !1,
+            te = 1 / 0,
+            ie = 1 / 0,
+            re =
+                ("layout-shift",
+                Boolean(
+                    window.PerformanceObserver &&
+                        window.PerformanceObserver.supportedEntryTypes &&
+                        -1 !==
+                            window.PerformanceObserver.supportedEntryTypes.indexOf(
+                                "layout-shift",
+                            ),
+                )
+                    ? 0
+                    : null);
+        function oe() {
+            $ > q &&
+                ((q = $),
+                (G = J),
+                e.emit({
+                    metricName: "cls-debug",
+                    value: q,
+                    params: { clsEntries: G, target: ae(G) },
+                }));
+        }
+        function ae(e) {
+            var n;
+            if (!e) return null;
+            var t = null;
+            if (
+                (n = e.reduce(function (e, n) {
+                    return e && e.value > n.value ? e : n;
+                })) &&
+                n.sources &&
+                n.sources.length
+            ) {
+                for (var i = 0; i < n.sources.length; i++) {
+                    var r = n.sources[i];
+                    if (r.node && 1 === r.node.nodeType) {
+                        t = r;
+                        break;
+                    }
+                }
+                t = t || n.sources[0];
+            }
+            return t;
+        }
+        function se(e) {
+            null == q && (q = 0);
+            for (var n = 0; n < e.length; n++) {
+                var t = e[n];
+                t.hadRecentInput ||
+                    ($ &&
+                    t.startTime - J[J.length - 1].startTime < te &&
+                    t.startTime - J[0].startTime < ie
+                        ? (($ += t.value), J.push(t))
+                        : (oe(), ($ = t.value), (J = [t])));
+            }
+            oe();
+        }
+        function ue() {
+            (q = re),
+                (Y = void 0),
+                (G = null),
+                (J = null),
+                ($ = null),
+                (ne = !1);
+        }
+        function ce(n) {
+            if (null != q && !ne) {
+                var t = Math.round(1e6 * q) / 1e6;
+                if (Y !== t) {
+                    (Y = t),
+                        e.getSetting("enableContinuousCollection") || (ne = !0);
+                    var i = ae(G),
+                        r = ["s=" + t];
+                    r.push("target=" + u(i && i.node));
+                    var o = e.getCLSAdditionalParams(i);
+                    o && x(r, o),
+                        z(ee, r, n),
+                        e.emit({
+                            metricName: "cls-debug",
+                            value: q,
+                            params: {
+                                clsEntries: J,
+                                target: i,
+                                isFinalized: ne,
+                            },
+                        });
+                }
+            }
+        }
+        function de(n) {
+            var t = n[n.length - 1];
+            (K = t.renderTime || t.loadTime),
+                (X = t),
+                e.emit({
+                    metricName: "largest-contentful-paint-debug",
+                    value: K,
+                    params: { entry: t },
+                }),
+                Z || (O("largest-loading-elem-paint", K), (Z = !0));
+        }
+        function fe(n) {
+            if (null != K) {
+                var t = e.getLCPAdditionalParams(X);
+                O("largest-contentful-paint", K, !1, t, n && { force: !0 }),
+                    e.emit({
+                        metricName: "largest-contentful-paint-debug",
+                        value: K,
+                        params: {
+                            additionalParams: t,
+                            entry: X,
+                            isFinalized: !0,
+                        },
+                    }),
+                    (K = null),
+                    (X = null);
+            }
+        }
+        e.getLCPAdditionalParams === e.noop &&
+            (e.getLCPAdditionalParams = function () {
+                var n = {},
+                    t = X.element;
+                if (t) {
+                    (n["-className"] = e.getSelector(t)),
+                        (n["-tagName"] = t.tagName.toLowerCase());
+                    var i = t.getBoundingClientRect();
+                    (n["-width"] = i.width), (n["-height"] = i.height);
+                }
+                return X.size && (n["-size"] = X.size), n;
+            });
+        var le = { "first-paint": 2793, "first-contentful-paint": 2794 },
+            me = Object.keys(le).length,
+            ve = {},
+            ge = window.performance || {},
+            pe = "function" == typeof ge.getEntriesByType,
+            he = 0;
+        function ye() {
+            if (
+                pe &&
+                (e.getSetting("forcePaintTimeSending") ||
+                    !e.isVisibilityChanged())
+            )
+                for (
+                    var n = ge.getEntriesByType("paint"), t = 0;
+                    t < n.length;
+                    t++
+                ) {
+                    var i = n[t],
+                        r = le[i.name];
+                    r &&
+                        !ve[i.name] &&
+                        ((ve[i.name] = !0), he++, O("1926." + r, i.startTime));
+                }
+        }
+        var Se = 3e3,
+            Te = 1;
+        function be() {
+            return e._tti.events || [];
+        }
+        function we() {
+            return e._tti.loafEvents;
+        }
+        function Ee() {
+            return e._tti;
+        }
+        function Ce(n) {
+            return n
+                ? n === e.getPageUrl()
+                    ? "<page>"
+                    : n.replace(/\?.*$/, "")
+                : n;
+        }
+        function ke(n, t, i) {
+            if (Ee()) {
+                var r = e.getTime(),
+                    o =
+                        "undefined" !=
+                            typeof PerformanceLongAnimationFrameTiming &&
+                        e.getSetting("sendLongAnimationFrames");
+                Le(function (a) {
+                    var u,
+                        c = { 2796.2797: Pe(be(), t), 689.2322: s(r) };
+                    if (o) {
+                        var d = (function (e) {
+                            var n = we();
+                            if (n)
+                                return e
+                                    ? n.filter(function (n) {
+                                          return n.startTime + n.duration >= e;
+                                      })
+                                    : n;
+                        })(t);
+                        d &&
+                            ((c["loaf.2797"] = Pe(d, void 0, { useName: !1 })),
+                            1 === e.getSetting("longAnimationFramesMode") &&
+                                (c["-additional"] = encodeURIComponent(
+                                    JSON.stringify({
+                                        loaf: ((u = d), u.map(Me)),
+                                    }),
+                                )));
+                    }
+                    i &&
+                        Object.keys(i).forEach(function (e) {
+                            c[e] = i[e];
+                        }),
+                        O(n || "2795", a, !0, c, { force: Boolean(o) }),
+                        (e._tti.fired = !0);
+                }, t);
+            }
+        }
+        function Le(n, t) {
+            var i = (
+                    arguments.length > 2 && void 0 !== arguments[2]
+                        ? arguments[2]
+                        : {}
+                ).mode,
+                o = void 0 === i ? Te : i;
+            Ee() &&
+                (t || (t = e.getTime()),
+                (function i() {
+                    var a,
+                        s = t,
+                        u = e.getTime(),
+                        c = o === Te ? be() : we() || [],
+                        d = c.length;
+                    0 !== d &&
+                        ((a = c[d - 1]),
+                        (s = Math.max(
+                            s,
+                            Math.floor(a.startTime + a.duration),
+                        ))),
+                        u - s >= Se ? n(s) : r(i, 1e3);
+                })());
+        }
+        function Pe(e, n) {
+            var t = (
+                    arguments.length > 2 && void 0 !== arguments[2]
+                        ? arguments[2]
+                        : {}
+                ).useName,
+                i = void 0 === t || t;
+            return (
+                (n = n || 0),
+                (e = e || [])
+                    .filter(function (e) {
+                        return n - e.startTime <= 50;
+                    })
+                    .map(function (e) {
+                        var n = Math.floor(e.startTime),
+                            t = Math.floor(n + e.duration);
+                        return i
+                            ? (e.name
+                                  ? e.name
+                                        .split("-")
+                                        .map(function (e) {
+                                            return e[0];
+                                        })
+                                        .join("")
+                                  : "u") +
+                                  "-" +
+                                  n +
+                                  "-" +
+                                  t
+                            : n + "-" + t;
+                    })
+                    .join(".")
+            );
+        }
+        function Me(e) {
+            var n = e.blockingDuration,
+                t = e.duration,
+                i = e.firstUIEventTimestamp,
+                r = e.renderStart,
+                o = e.scripts,
+                a = e.startTime,
+                s = e.styleAndLayoutStart;
+            return [
+                Math.round(a),
+                Math.round(t),
+                o.map(Oe),
+                Math.round(n),
+                Math.round(i),
+                Math.round(r),
+                Math.round(s),
+            ];
+        }
+        function _e(e) {
+            return (
+                {
+                    "user-callback": 1,
+                    "event-listener": 2,
+                    "resolve-promise": 3,
+                    "reject-promise": 4,
+                    "classic-script": 5,
+                    "module-script": 6,
+                }[e] || 0
+            );
+        }
+        function Oe(e) {
+            var n = e.invoker,
+                t = e.sourceURL,
+                i = e.sourceFunctionName,
+                r = e.sourceCharPosition,
+                o = e.startTime,
+                a = e.duration,
+                s = e.windowAttribution,
+                u = e.executionStart,
+                c = e.forcedStyleAndLayoutDuration,
+                d = e.pauseDuration,
+                f = e.invokerType;
+            return [
+                Ce(n),
+                Ce(t),
+                i,
+                r,
+                Math.round(o),
+                Math.round(a),
+                s,
+                Math.round(u),
+                Math.round(c),
+                Math.round(d),
+                _e(f),
+            ];
+        }
+        var Ie = "690.2096.361",
+            Ne = document.createElement("a"),
+            Re = 0,
+            xe = {};
+        function je(e) {
+            var n = e.transferSize;
+            if (null != n) {
+                Ne.href = e.name;
+                var t = Ne.pathname;
+                if (0 !== t.indexOf("/clck")) {
+                    var i = t.lastIndexOf("."),
+                        r = "";
+                    return (
+                        -1 !== i &&
+                            t.lastIndexOf("/") < i &&
+                            t.length - i <= 5 &&
+                            (r = t.slice(i + 1)),
+                        { size: n, domain: Ne.hostname, extension: r }
+                    );
+                }
+            }
+        }
+        function ze() {
+            var n = e.getSetting("maxTrafficCounters") || 250;
+            if (Re >= n) return !1;
+            for (var t = Object.keys(xe), i = "", r = 0; r < t.length; r++) {
+                var o = t[r],
+                    a = xe[o];
+                i += encodeURIComponent(o) + "!" + a.count + "!" + a.size + ";";
+            }
+            return (
+                i.length && (Re++, z(Ie, ["d=" + i, "t=" + s(e.getTime())])),
+                (xe = {}),
+                Re < n
+            );
+        }
+        d(ze);
+        var Be = "690.1033",
+            Ae = { visible: 1, hidden: 2, prerender: 3 },
+            Ve = window.performance || {},
+            Ue = Ve.navigation || {},
+            De = Ve.timing || {},
+            Fe = De.navigationStart;
+        function We() {
+            var n = De.domContentLoadedEventStart,
+                t = De.domContentLoadedEventEnd;
+            if (0 !== n || 0 !== t) {
+                var i = 0 === De.responseStart ? Fe : De.responseStart,
+                    o = 0 === De.domainLookupStart ? Fe : De.domainLookupStart,
+                    a = [
+                        "2129=" + Fe,
+                        "1036=" + (o - Fe),
+                        "1037=" + (De.domainLookupEnd - De.domainLookupStart),
+                        "1038=" + (De.connectEnd - De.connectStart),
+                        De.secureConnectionStart &&
+                            "1383=" +
+                                (De.connectEnd - De.secureConnectionStart),
+                        "1039=" + (De.responseStart - De.connectEnd),
+                        "1040=" + (De.responseEnd - i),
+                        "1040.906=" + (De.responseEnd - o),
+                        "1310.2084=" + (De.domLoading - i),
+                        "1310.2085=" + (De.domInteractive - i),
+                        "1310.1309=" + (t - n),
+                        "1310.1007=" + (n - i),
+                        navigator.deviceMemory &&
+                            "3140=" + navigator.deviceMemory,
+                        navigator.hardwareConcurrency &&
+                            "3141=" + navigator.hardwareConcurrency,
+                    ];
+                Object.keys(m).forEach(function (e) {
+                    e in De && De[e] && a.push(m[e] + "=" + s(De[e], Fe));
+                }),
+                    e.vsStart
+                        ? (a.push("1484=" + (Ae[e.vsStart] || 2771)),
+                          e.vsChanged && a.push("1484.719=1"))
+                        : a.push("1484=" + Ae.visible),
+                    Ue &&
+                        (Ue.redirectCount &&
+                            a.push("1384.1385=" + Ue.redirectCount),
+                        (1 !== Ue.type && 2 !== Ue.type) ||
+                            a.push("770.76=" + Ue.type)),
+                    Q(a),
+                    z(Be, a);
+            } else r(We, 50);
+        }
+        var He = "690.2096.2892",
+            Qe = window.performance || {},
+            Ye = "function" == typeof Qe.getEntriesByType;
+        if (!e) throw new Error("Rum: interface is not included");
+        if (e.enabled) {
+            function qe() {
+                (p = {}),
+                    (h = {}),
+                    (_ = 0),
+                    (y = e._deltaMarks),
+                    N(),
+                    R(),
+                    (e.ajaxStart = 0),
+                    (e.ajaxComplete = 0),
+                    c(Je);
+            }
+            function Ge() {
+                var n;
+                (e.sendTimeMark = O),
+                    (e.sendResTiming = U),
+                    (e.sendTiming = D),
+                    (e.timeEnd = B);
+                var t = (e.getBufferedEvents(["defRes"]).defRes || []).map(
+                    function (e) {
+                        return e.data;
+                    },
+                );
+                for (n = 0; n < t.length; n++) U(t[n][0], t[n][1]);
+                e.clearEvents("defRes");
+                var i = (e.getBufferedEvents(["defTimes"]).defTimes || []).map(
+                    function (e) {
+                        return e.data;
+                    },
+                );
+                for (n = 0; n < i.length; n++) O(i[n][0], i[n][1], !1, i[n][2]);
+                e.clearEvents("defTimes"),
+                    Object.keys(y).forEach(function (e) {
+                        A(e);
+                    });
+            }
+            function Je() {
+                var n =
+                        window.performance &&
+                        window.performance.timing &&
+                        window.performance.timing.navigationStart,
+                    t = e.getSetting("skipTiming"),
+                    a = e.getSetting("techParamsByVisible");
+                n &&
+                    (a &&
+                        addEventListener("visibilitychange", function n() {
+                            "visible" !== e.vsStart
+                                ? "visible" === document.visibilityState &&
+                                  ((e.vsStart = "visible"),
+                                  removeEventListener("visibilitychange", n),
+                                  We())
+                                : removeEventListener("visibilitychange", n);
+                        }),
+                    r(function () {
+                        Ge(),
+                            ((!t && !a) || (a && "visible" === e.vsStart)) &&
+                                We(),
+                            e.getSetting("disableFCP") ||
+                                (ye(),
+                                he < me &&
+                                    i(
+                                        "paint",
+                                        function (e, n) {
+                                            ye(),
+                                                n && he >= me && n.disconnect();
+                                        },
+                                        { buffered: !0 },
+                                    )),
+                            e.getSetting("sendAutoElementTiming") &&
+                                (!window.PerformanceObserver ||
+                                    (!e.getSetting("forcePaintTimeSending") &&
+                                        e.isVisibilityChanged()) ||
+                                    i("element", function (e) {
+                                        for (var n = 0; n < e.length; n++) {
+                                            var t = e[n];
+                                            O(
+                                                "element-timing." +
+                                                    t.identifier,
+                                                t.startTime,
+                                            );
+                                        }
+                                    })),
+                            o("pageshow", Xe),
+                            ke(),
+                            "complete" === document.readyState
+                                ? $e({ skipTimingApi: t })
+                                : o(
+                                      "load",
+                                      $e.bind(void 0, { skipTimingApi: t }),
+                                  );
+                    }, 0));
+            }
+            function $e(n) {
+                var r, s;
+                e.getSetting("disableOnLoadTasks") ||
+                    (removeEventListener("load", $e),
+                    n.skipTimingApi ||
+                        (function () {
+                            if (Ye) {
+                                var e = Qe.getEntriesByType("navigation")[0];
+                                if (e) {
+                                    var n = [];
+                                    g(n, e), Q(n);
+                                    var t = Qe.getEntriesByName(
+                                        "yndxNavigationSource",
+                                    )[0];
+                                    t && n.push("2091.186=" + t.value);
+                                    var i = Qe.getEntriesByName(
+                                        "yndxNavigationToken",
+                                        "yndxEntry",
+                                    )[0];
+                                    i && n.push("2091.3649=" + i.value),
+                                        z(He, n);
+                                }
+                            }
+                        })(),
+                    (s = e.getSetting("periodicStatsIntervalMs")) ||
+                        null === s ||
+                        (s = 15e3),
+                    s &&
+                        ((r = setInterval(Ze, s)),
+                        t(function () {
+                            clearInterval(r);
+                        }),
+                        (Ke = r)),
+                    o("beforeunload", Ze),
+                    (function () {
+                        if (window.PerformanceObserver) {
+                            (xe = {}), (Re = 0);
+                            var e = function (e) {
+                                !(function (e) {
+                                    if (e && e.length)
+                                        for (
+                                            var n = xe, t = 0;
+                                            t < e.length;
+                                            t++
+                                        ) {
+                                            var i = je(e[t]);
+                                            if (i) {
+                                                var r =
+                                                        i.domain +
+                                                        "-" +
+                                                        i.extension,
+                                                    o = (n[r] = n[r] || {
+                                                        count: 0,
+                                                        size: 0,
+                                                    });
+                                                o.count++, (o.size += i.size);
+                                            }
+                                        }
+                                })(e);
+                            };
+                            i("resource", e), i("navigation", e), f().push(ze);
+                        }
+                    })(),
+                    e.getSetting("disableFID") ||
+                        i(
+                            "first-input",
+                            function (n, t) {
+                                var i = n[0];
+                                if (i) {
+                                    var r = i.processingStart,
+                                        o = {
+                                            duration: i.duration,
+                                            js: i.processingEnd - r,
+                                            name: i.name,
+                                        };
+                                    i.target && (o.target = u(i.target));
+                                    var a = r - i.startTime;
+                                    A("first-input", a, o),
+                                        e.emit({
+                                            metricName: "first-input-debug",
+                                            value: a,
+                                            params: {
+                                                entry: i,
+                                                additionalParams: o,
+                                            },
+                                        }),
+                                        t.disconnect();
+                                }
+                            },
+                            { buffered: !0 },
+                        ),
+                    e.getSetting("disableCLS") ||
+                        (window.PerformanceObserver &&
+                            (d(ce),
+                            d(ue),
+                            (q = re),
+                            (G = null),
+                            (J = null),
+                            ($ = null),
+                            (te = e.getSetting("clsWindowGap") || te),
+                            (ie = e.getSetting("clsWindowSize") || ie),
+                            a(
+                                i("layout-shift", se),
+                                function () {
+                                    return ce(!0);
+                                },
+                                !0,
+                            ))),
+                    e.getSetting("disableLCP") ||
+                        !window.PerformanceObserver ||
+                        (!e.getSetting("forcePaintTimeSending") &&
+                            e.isVisibilityChanged()) ||
+                        (d(fe),
+                        (K = null),
+                        (X = null),
+                        (Z = !1),
+                        a(
+                            i("largest-contentful-paint", de),
+                            function () {
+                                return fe(!0);
+                            },
+                            !1,
+                        )));
+            }
+            var Ke;
+            function Xe(e) {
+                e.persisted && O("bfcache");
+            }
+            function Ze() {
+                var e = !1;
+                f().forEach(function (n) {
+                    n() && (e = !0);
+                }),
+                    e || clearInterval(Ke);
+            }
+            d(Ge),
+                (e.destroy = function (n) {
+                    var t = e._unsubscribers;
+                    n.shouldComplete && e.completeSession(!0),
+                        (e._onComplete = []);
+                    for (var i = 0; i < t.length; i++) t[i]();
+                    removeEventListener(
+                        "visibilitychange",
+                        e._onVisibilityChange,
+                    ),
+                        (e._unsubscribers = []),
+                        (e._periodicTasks = []),
+                        (e._markListeners = {}),
+                        (e._deltaMarks = {});
+                }),
+                (e.restart = function (n, t, i) {
+                    e.destroy({ shouldComplete: i }),
+                        e.init(n, t),
+                        addEventListener(
+                            "visibilitychange",
+                            e._onVisibilityChange,
+                        ),
+                        qe(),
+                        (function () {
+                            for (var n = 0; n < e._onInit.length; n++)
+                                e._onInit[n]();
+                        })();
+                }),
+                (e.setVars = function (n) {
+                    Object.keys(n).forEach(function (t) {
+                        e._vars[t] = n[t];
+                    }),
+                        N(),
+                        R();
+                }),
+                (e.completeSession = function (n) {
+                    for (var t = e._onComplete, i = 0; i < t.length; i++)
+                        t[i](n);
+                }),
+                qe(),
+                (e._periodicTasks = []),
+                (e.sendHeroElement = function (e) {
+                    O("2876", e);
+                }),
+                (e.getPageUrl = function () {
+                    return window.location.href;
+                }),
+                (e._subpages = {}),
+                (e.makeSubPage = function (n, t) {
+                    var i = e._subpages[n];
+                    e._subpages[n] = void 0 === i ? (i = 0) : ++i;
+                    var r = !1;
+                    return {
+                        689.2322: s(void 0 !== t ? t : e.getTime()),
+                        2924: n,
+                        2925: i,
+                        isCanceled: function () {
+                            return r;
+                        },
+                        cancel: function () {
+                            r = !0;
+                        },
+                    };
+                }),
+                (e.getTimeMarks = function () {
+                    return p;
+                }),
+                (e.getDeltas = function () {
+                    return h;
+                }),
+                (e.getVarsList = l),
+                (e.getResourceTimings = V),
+                (e.pushConnectionTypeTo = Q),
+                (e.pushTimingTo = g),
+                (e.normalize = s),
+                (e.sendCounter = j),
+                (e.sendDelta = A),
+                (e.onReady = c),
+                (e.getSelector = u),
+                e.getSetting("disableCLS") || (e.finalizeLayoutShiftScore = ce),
+                e.getSetting("disableLCP") ||
+                    (e.finalizeLargestContentfulPaint = fe),
+                (e.sendTrafficData = ze),
+                (e._getCommonVars = F),
+                (e._addListener = o),
+                (e._observe = i),
+                (e._timeout = r),
+                (e.sendTTI = ke),
+                (e._getLongtasksStringValue = Pe),
+                (e.onQuietWindow = Le),
+                (e.sendBFCacheTimeMark = Xe);
+        } else
+            (e.getSetting = function () {
+                return "";
+            }),
+                (e.getVarsList = function () {
+                    return [];
+                }),
+                (e.getResourceTimings =
+                    e.completeSession =
+                    e.pushConnectionTypeTo =
+                    e.pushTimingTo =
+                    e.normalize =
+                    e.sendCounter =
+                    e.destroy =
+                    e.restart =
+                    e.setVars =
+                    e.completeSession =
+                    e.sendDelta =
+                    e.sendTimeMark =
+                    e.sendResTiming =
+                    e.sendTiming =
+                    e.sendTTI =
+                    e.makeSubPage =
+                    e.sendHeroElement =
+                    e.onReady =
+                    e.onQuietWindow =
+                        function () {});
+    })();
 
-        Ya.Rum.observeDOMNode('2876', heroElement);
+    Ya.Rum.observeDOMNode("2876", heroElement);
 }
