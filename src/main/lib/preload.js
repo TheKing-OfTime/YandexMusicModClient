@@ -28,6 +28,10 @@ electron_1.contextBridge.exposeInMainWorld(
 );
 electron_1.contextBridge.exposeInMainWorld("PLATFORM", deviceInfo.os);
 electron_1.contextBridge.exposeInMainWorld("DEVICE_INFO", deviceInfo);
+electron_1.contextBridge.exposeInMainWorld(
+    "DEVICE_HOSTNAME",
+    (0, deviceInfo_js_1.getDeviceHostname)(),
+);
 electron_1.contextBridge.exposeInMainWorld("desktopEvents", {
   send(name, ...args) {
     electron_1.ipcRenderer.send(name, ...args);

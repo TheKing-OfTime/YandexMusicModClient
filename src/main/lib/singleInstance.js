@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkForSingleInstance = void 0;
 const electron_1 = require("electron");
-const createWindow_js_1 = require("./createWindow.js");
+const toggleWindowVisibility_js_1 = require("./window/toggleWindowVisibility.js");
 const handleDeeplink_js_1 = require("./handlers/handleDeeplink.js");
 const Logger_js_1 = require("../packages/logger/Logger.js");
 const singleInstanceLogger = new Logger_js_1.Logger("SingleInstance");
@@ -26,7 +26,7 @@ const checkForSingleInstance = () => {
             lastCommandLineArg,
           );
         }
-        (0, createWindow_js_1.toggleWindowVisibility)(window, true);
+        (0, toggleWindowVisibility_js_1.toggleWindowVisibility)(window, true);
         singleInstanceLogger.log("Show window");
       }
     });

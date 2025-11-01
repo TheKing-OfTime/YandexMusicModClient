@@ -1,0 +1,16 @@
+export { BlockMap } from "./blockMapApi";
+export { CancellationError, CancellationToken } from "./CancellationToken";
+export { newError } from "./error";
+export { configureRequestOptions, configureRequestOptionsFromUrl, configureRequestUrl, createHttpError, DigestTransform, DownloadOptions, HttpError, HttpExecutor, parseJson, RequestHeaders, safeGetHeader, safeStringifyJson, } from "./httpExecutor";
+export { MemoLazy } from "./MemoLazy";
+export { ProgressCallbackTransform, ProgressInfo } from "./ProgressCallbackTransform";
+export { AllPublishOptions, BaseS3Options, BitbucketOptions, CustomPublishOptions, GenericServerOptions, getS3LikeProviderBaseUrl, GithubOptions, githubUrl, KeygenOptions, PublishConfiguration, PublishProvider, S3Options, SnapStoreOptions, SpacesOptions, } from "./publishOptions";
+export { retry } from "./retry";
+export { parseDn } from "./rfc2253Parser";
+export { BlockMapDataHolder, PackageFileInfo, ReleaseNoteInfo, UpdateFileInfo, UpdateInfo, WindowsUpdateInfo } from "./updateInfo";
+export { UUID } from "./uuid";
+export { parseXml, XElement } from "./xml";
+export declare const CURRENT_APP_INSTALLER_FILE_NAME = "installer.exe";
+export declare const CURRENT_APP_PACKAGE_FILE_NAME = "package.7z";
+export declare function asArray<T>(v: Nullish | T | Array<T>): Array<T>;
+export type Nullish = null | undefined;

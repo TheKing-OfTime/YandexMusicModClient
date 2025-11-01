@@ -6,7 +6,7 @@ type MethodsHeaders = Partial<{
   [Key in axios.Method as Lowercase<Key>]: AxiosHeaders;
 } & {common: AxiosHeaders}>;
 
-type AxiosHeaderMatcher = (this: AxiosHeaders, value: string, name: string, headers: RawAxiosHeaders) => boolean;
+type AxiosHeaderMatcher = string | RegExp | ((this: AxiosHeaders, value: string, name: string) => boolean);
 
 type AxiosHeaderParser = (this: AxiosHeaders, value: axios.AxiosHeaderValue, header: string) => any;
 
@@ -15,6 +15,8 @@ type CommonRequestHeadersList = 'Accept' | 'Content-Length' | 'User-Agent'| 'Con
 type ContentType = axios.AxiosHeaderValue | 'text/html' | 'text/plain' | 'multipart/form-data' | 'application/json' | 'application/x-www-form-urlencoded' | 'application/octet-stream';
 
 type CommonResponseHeadersList = 'Server' | 'Content-Type' | 'Content-Length' | 'Cache-Control'| 'Content-Encoding';
+
+type BrowserProgressEvent = any;
 
 declare class AxiosHeaders {
   constructor(
@@ -77,6 +79,8 @@ declare class AxiosHeaders {
   getAuthorization(matcher?: AxiosHeaderMatcher): axios.AxiosHeaderValue;
   hasAuthorization(matcher?: AxiosHeaderMatcher): boolean;
 
+  getSetCookie(): string[];
+
   [Symbol.iterator](): IterableIterator<[string, axios.AxiosHeaderValue]>;
 }
 
@@ -96,7 +100,16 @@ declare class AxiosError<T = unknown, D = any> extends Error {
   isAxiosError: boolean;
   status?: number;
   toJSON: () => object;
-  cause?: Error;
+  cause?: unknown;
+  event?: BrowserProgressEvent;
+  static from<T = unknown, D = any>(
+    error: Error | unknown,
+    code?: string,
+    config?: axios.InternalAxiosRequestConfig<D>,
+    request?: any,
+    response?: axios.AxiosResponse<T, D>,
+    customProps?: object,
+): AxiosError<T, D>;
   static readonly ERR_FR_TOO_MANY_REDIRECTS = "ERR_FR_TOO_MANY_REDIRECTS";
   static readonly ERR_BAD_OPTION_VALUE = "ERR_BAD_OPTION_VALUE";
   static readonly ERR_BAD_OPTION = "ERR_BAD_OPTION";
@@ -342,8 +355,6 @@ declare namespace axios {
 
   type MaxDownloadRate = number;
 
-  type BrowserProgressEvent = any;
-
   interface AxiosProgressEvent {
     loaded: number;
     total?: number;
@@ -412,6 +423,12 @@ declare namespace axios {
     insecureHTTPParser?: boolean;
     env?: {
       FormData?: new (...args: any[]) => object;
+      fetch?: (input: URL | Request | string, init?: RequestInit) => Promise<Response>;
+      Request?: new (input: URL | Request | string, init?: RequestInit) => Request;
+      Response?: new (
+          body?: ArrayBuffer | ArrayBufferView | Blob | FormData | URLSearchParams | string | null,
+          init?: ResponseInit
+      ) => Response;
     };
     formSerializer?: FormSerializerOptions;
     family?: AddressFamily;
@@ -419,12 +436,16 @@ declare namespace axios {
         ((hostname: string, options: object) => Promise<[address: LookupAddressEntry | LookupAddressEntry[], family?: AddressFamily] | LookupAddress>);
     withXSRFToken?: boolean | ((config: InternalAxiosRequestConfig) => boolean | undefined);
     fetchOptions?: Omit<RequestInit, 'body' | 'headers' | 'method' | 'signal'> | Record<string, any>;
+    httpVersion?: 1 | 2;
+    http2Options?: Record<string, any> & {
+      sessionTimeout?: number;
+    };
   }
 
   // Alias
   type RawAxiosRequestConfig<D = any> = AxiosRequestConfig<D>;
 
-  interface InternalAxiosRequestConfig<D = any> extends AxiosRequestConfig {
+  interface InternalAxiosRequestConfig<D = any> extends AxiosRequestConfig<D> {
     headers: AxiosRequestHeaders;
   }
 
@@ -450,11 +471,11 @@ declare namespace axios {
     headers?: RawAxiosRequestHeaders | AxiosHeaders | Partial<HeadersDefaults>;
   }
 
-  interface AxiosResponse<T = any, D = any>  {
+  interface AxiosResponse<T = any, D = any, H = {}>  {
     data: T;
     status: number;
     statusText: string;
-    headers: RawAxiosResponseHeaders | AxiosResponseHeaders;
+    headers: H & RawAxiosResponseHeaders | AxiosResponseHeaders;
     config: InternalAxiosRequestConfig<D>;
     request?: any;
   }
@@ -542,6 +563,7 @@ declare namespace axios {
     formToJSON(form: GenericFormData|GenericHTMLFormElement): object;
     getAdapter(adapters: AxiosAdapterConfig | AxiosAdapterConfig[] | undefined): AxiosAdapter;
     AxiosHeaders: typeof AxiosHeaders;
+    mergeConfig<D = any>(config1: AxiosRequestConfig<D>, config2: AxiosRequestConfig<D>): AxiosRequestConfig<D>;
   }
 }
 

@@ -2,13 +2,13 @@
 var __importDefault =
   (this && this.__importDefault) ||
   function (mod) {
-    return mod && mod.__esModule ? mod : { default: mod };
+    return (mod && mod.__esModule) ? mod : { "default": mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCustomTitleBar = void 0;
 const node_url_1 = __importDefault(require("node:url"));
 const hostnamePatterns_js_1 = require("../constants/hostnamePatterns.js");
-const i18n_js_1 = require("./i18n.js");
+const formatters_js_1 = require("./i18n/formatters.js");
 const isAllowed = (hostname) => {
   return hostnamePatterns_js_1.passportYandexHostnamePattern.test(hostname);
 };
@@ -68,7 +68,7 @@ const closeIconTemplate = () => {
     `;
 };
 const render = () => {
-  const ariaLabel = (0, i18n_js_1.formatMessage)({ id: "windows-menu.close" });
+    const ariaLabel = (0, formatters_js_1.formatMessage)({ id: 'windows-menu.close' });
   return `
         const style = document.createElement('style');
         style.innerHTML = \`${styleTemplate()}\`;
@@ -91,7 +91,7 @@ const render = () => {
     `;
 };
 const createCustomTitleBar = (window) => {
-  window.webContents.on("did-navigate", (event, targetUrl) => {
+    window.webContents.on('did-navigate', (event, targetUrl) => {
     const { hostname } = node_url_1.default.parse(targetUrl);
     if (hostname && isAllowed(hostname)) {
       window.webContents.executeJavaScript(render());

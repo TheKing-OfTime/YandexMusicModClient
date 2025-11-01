@@ -82,19 +82,10 @@ const cachedStore = new CachedStore();
 
 let defaultExperimentOverrides = {
   WebNextPromoVeryBestRecommendations: 'off',
-  WebNextUGC: 'on',
-  WebNextEnableDownloadControls: 'on',
-  WebNextLanguageSwitcher: 'on',
-  WebNextClipsArtist: 'on',
-  WebNextClipsCollection: 'on',
-  WebNextClipsMain: 'on',
-  WebNextClipsSearch: 'on',
-  WebNextClipsTrackContextMenu: 'default',
-  WebNextEnableUpdatedForwardSkipInWave: 'on',
-  WebNextNotSendDuplicatedFeedbacks: 'on',
-  WebNextSearchBestResults: 'on',
-  WebNextLimitTracksFromYnison: 'on',
-  WebNextPlayerBarBackgroundProgress: 'on',
+  WebNextYnisonActivityInterception: 'on',
+  WebNextCrossMediaPlayer: 'on',
+  WebNextTracksPreload: 'on',
+  WebNextGetFileInfoPreload: 'on',
 };
 
 const useCachedValue = (key) => {

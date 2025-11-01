@@ -43,7 +43,6 @@ let isReady = false;
 let isReconnecting = false;
 let isListeningType = true;
 
-let updateTimeoutId = undefined;
 let afkTimeoutId = undefined;
 let reconnectTimeoutId = undefined;
 
