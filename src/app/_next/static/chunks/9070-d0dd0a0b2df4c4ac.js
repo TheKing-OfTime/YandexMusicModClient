@@ -1481,6 +1481,7 @@
                                                 K || Y,
                                             [$().root_withBarBelow]:
                                                 X.isVisible || el,
+                                            ["modFeatures_alwaysWideBar"]: window.ALWAYS_WIDE_BAR?.(),
                                         },
                                         f,
                                     ),

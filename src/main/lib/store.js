@@ -404,7 +404,7 @@ const getDefaultExperimentOverrides = () => {
   return (
     getStore(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ??
     defaultExperimentOverrides
-  );
+  ).WebNextYnisonActivityInterception = (getStore(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL) ? 'on' : 'off');
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 

@@ -779,7 +779,8 @@
                 n = a(10663),
                 s = a(42213),
                 l = a(79169),
-                i = a(75797);
+                i = a(75797),
+                isVibeContainer = a(58624);
             let r = () => {
                 let { notify: e } = (0, l.lkh)(),
                     { fullscreenPlayer: t } = (0, l.Pjs)(),
@@ -787,12 +788,16 @@
                 return (0, s.c)((s, r) => {
                     if (null === s.entityMeta || !s.canChangeRepeatMode) return;
                     let c = n.pM.NONE;
+                    if(isVibeContainer.i({data: {type: s?.contextType}}) && s.repeatMode === n.pM.NONE) {
+                        c = n.pM.ONE;
+                    } else {
                     switch (s.repeatMode) {
                         case n.pM.NONE:
                             c = n.pM.CONTEXT;
                             break;
                         case n.pM.CONTEXT:
                             c = n.pM.ONE;
+                    }
                     }
                     null == a || a.setRepeatMode(c, r),
                         e((0, o.jsx)(i.NotificationRepeat, { repeatMode: c }), {

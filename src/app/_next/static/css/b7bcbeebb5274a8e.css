@@ -728,6 +728,14 @@
         margin-block-start: var(--ym-spacer-size-xxl);
     }
 }
+
+
+.ToggleBarWithPathChooser_input {
+    flex: 1;
+    margin-right: 15px;
+}
+
+
 .EditContentModal_button__usS1Z {
     padding-inline-end: var(--ym-spacer-size-xxl);
     padding-inline-start: var(--ym-spacer-size-xxl);
@@ -3281,6 +3289,72 @@
 .EqualizerPresets_root__b2gp7 {
     min-width: 23.125rem;
 }
+
+
+.settingBarWithDropdown_button {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    border: 1px solid var(--ym-controls-color-secondary-outline-enabled_stroke);
+    padding: 10px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    transition: border 0.2s, color 0.2s, border 0.2s;
+}
+
+.settingBarWithDropdown_button__disabled {
+    color: var(--ym-controls-color-primary-text-disabled);
+    border: 1px solid var(--ym-controls-color-secondary-outline-disabled_stroke);
+    padding: 10px 12px;
+    border-radius: 8px;
+    min-width: 160px;
+    position: relative;
+    cursor: default;
+    user-select: none;
+    font-size: 14px;
+    transition: border 0.2s, color 0.2s, border 0.2s;
+}
+
+.settingBarWithDropdown_button:hover:not(:has(:hover)) {
+    border: 1px solid var(--ym-controls-color-secondary-outline-hovered_stroke);
+}
+
+.settingBarWithDropdown_menu {
+    right: 0;
+    border: 1px solid var(--ym-controls-color-secondary-outline-enabled_stroke);
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    overflow: hidden;
+    background: var(--ym-background-color-primary-enabled-popover);
+    z-index: 99999;
+    transform: translateX(1px);
+}
+
+.settingBarWithDropdown_menuItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    transition: background 0.2s;
+}
+
+.settingBarWithDropdown_menuItem:hover {
+    background-color: var(--ym-controls-color-secondary-default-hovered);
+}
+
+
 .EqualizerPresets_buttonIcon__DgPG8,
 .EqualizerPresets_buttonText__cy2_S {
     color: var(--ym-controls-color-primary-text-enabled_variant);

@@ -180,6 +180,14 @@
     height: auto;
     overflow: hidden;
 }
+
+.modFeatures_alwaysWideBar {
+    grid-template: "navbar content" minmax(
+      auto,
+      calc(100% - var(--player-bar-height) - var(--ym-spacer-size-m))
+    ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr !important;
+}
+
 .PromoLandingLayout_root__nFZZ7 {
     grid-template: "content" 1fr "playerbar" auto/1fr;
     height: 100vh;

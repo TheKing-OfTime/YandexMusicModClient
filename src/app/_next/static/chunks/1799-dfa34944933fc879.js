@@ -6159,7 +6159,8 @@
                 }
             }
             var eM = a(43459),
-                eK = a(47635);
+                eK = a(47635),
+                nVal = a(79169);
             class eF {
                 getAverageFrequencies(e) {
                     if (null === this.currentGraph) return [];
@@ -6196,6 +6197,40 @@
                             ? 0
                             : (r - i) / (a - t + 1);
                     });
+                }
+                getExponentialVolume = (e) => {
+                    let t = Math.pow(0.01, 1 - e);
+                    return t > 0.01 ? t : 0;
+                };
+                getRMS() {
+                    const { analyserNode } = this.currentGraph;
+                    const bufferLength = analyserNode.fftSize;
+                    const dataArray = new Uint8Array(bufferLength);
+                    analyserNode.getByteTimeDomainData(dataArray);
+
+                    let sumSquares = 0;
+                    const stored = JSON.parse(window.localStorage.getItem(nVal.cYZ.YmPlayerVolume));
+                    const volume = this.getExponentialVolume(stored?.value ?? 1);
+
+                    for (let i = 0; i < bufferLength; i++) {
+                        const normalized = volume !== 0 ? ((dataArray[i] - 128) / 128) / volume : 0;
+                        sumSquares += normalized * normalized;
+                    }
+
+                    const meanSquare = sumSquares / bufferLength;
+                    const rawRMS = Math.sqrt(meanSquare);
+
+                    if (window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY?.() ?? false) {
+                        const alpha = window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY_COEFFICENT?.() ?? 0.2;
+                        this._prevRms =
+                            this._prevRms !== undefined
+                                ? this._prevRms * (1 - alpha) + rawRMS * alpha
+                                : rawRMS;
+
+                        return this._prevRms;
+                    }
+
+                    return rawRMS;
                 }
                 constructor({ currentAudioElement: e, graphs: t }) {
                     (0, w._)(this, "currentGraph", null),
@@ -6643,7 +6678,7 @@
                 }
                 createAnalyzerNode(e) {
                     let t = e.createAnalyser();
-                    return (t.fftSize = 32), (t.smoothingTimeConstant = 0), t;
+                    return (t.fftSize = 1024), (t.smoothingTimeConstant = 0.4), t;
                 }
                 checkAndResumeAudioContext(e) {
                     let t = () => {
@@ -10163,18 +10198,25 @@
                                 i = void 0 !== t;
                             if (void 0 !== e && i) {
                                 let { meta: i } = t.entity.data;
-                                (0, eN.i)(e) ||
-                                (0, e2.S)(e) ||
+                                (window?.SHOW_REPEAT_BUTTON_ON_VIBE()
+                                    ? false
+                                    : (0, eN.i)(e)) || // is track type Vibe
+                                (0, e2.S)(e) || // is track type Generative
                                 ("type" in i && i.type && t$.includes(i.type))
                                     ? ((e.availableActions.repeat.value = !1),
-                                      (e.availableActions.shuffle.value = !1),
-                                      a.state.queueState.repeat.value !==
-                                          O.pM.NONE &&
-                                          a.setRepeatMode(O.pM.NONE),
-                                      a.state.queueState.shuffle.value &&
-                                          a.toggleShuffle())
+                                      a.state.queueState.repeat.value !== O.pM.NONE &&
+                                          a.setRepeatMode(O.pM.NONE))
                                     : ((e.availableActions.repeat.value = !0),
-                                      (e.availableActions.shuffle.value = !0));
+                                        (0, eN.i)(e) &&
+                                        a.state.queueState.repeat.value === O.pM.CONTEXT &&
+                                        a.setRepeatMode(O.pM.NONE));
+
+                                (0, eN.i)(e) || // is track type Vibe
+                                (0, e2.S)(e) || // is track type Generative
+                                ("type" in i && i.type && t$.includes(i.type))
+                                    ? ((e.availableActions.shuffle.value = !1),
+                                    a.state.queueState.shuffle.value && a.toggleShuffle())
+                                    : (e.availableActions.shuffle.value = !0);
                             }
                             let { value: r } = a.state.currentContext,
                                 { value: s } = a.state.queueState.currentEntity,
@@ -11736,8 +11778,58 @@
                         return t;
                 }
             }
+            const electronBridge = a(77575);
+            window.onRemoteDeviceConnected = [];
+            window.onRemoteDeviceDisconnected = [];
             class aA {
                 onYnisonStateUpdated(e) {
+
+                    const isRemoteControlEnabled = window.ENABLE_YNISON_REMOTE_CONTROL;
+                    const allowedStatuses1 = [
+                        O.MT.ENDED,
+                        O.MT.IDLE,
+                        O.MT.PAUSED,
+                        O.MT.STOPPED,
+                        O.MT.MEDIA_ELEMENT_ERROR,
+                    ];
+                    const allowedStatuses2 = [
+                        O.MT.ENDED,
+                        O.MT.IDLE,
+                        O.MT.STOPPED,
+                        O.MT.MEDIA_ELEMENT_ERROR,
+                    ];
+                    const current_device_id = JSON.parse(localStorage.getItem('ynisonDeviceId'))?.value;
+                    const currentStatus = this.playback.state.playerState.status.value;
+                    const shouldApplyState = this.variables.shouldApplyState;
+                    const isDeviceMatch = e.state.active_device_id_optional === current_device_id;
+                    const selfStateDuped = e.state.player_state.status.version.device_id === current_device_id;
+
+                    if (!selfStateDuped) {
+                        // Отправляем состояние Ynison в main процесс
+                        electronBridge.sendYnisonState({ rawData: e.state });
+                    }
+
+                    if (isRemoteControlEnabled
+                            ? shouldApplyState &&
+                            ((!selfStateDuped && isDeviceMatch) || allowedStatuses2.includes(currentStatus))
+                            : allowedStatuses1.includes(currentStatus) && shouldApplyState
+                    ) {
+                        if (isRemoteControlEnabled && !selfStateDuped) {
+                            const currentDevice = e.state.devices.find(
+                                (device) =>
+                                    device.info.device_id ===
+                                    e.state.player_state.status.version.device_id,
+                            );
+                            window.onRemoteDeviceConnected.forEach((listener) =>
+                                listener(currentDevice),
+                            );
+                            window.remoteDeviceConnected = true;
+                        }
+                    } else if (isRemoteControlEnabled && !isDeviceMatch) {
+                        window.onRemoteDeviceDisconnected.forEach((listener) => listener());
+                        window.remoteDeviceConnected = false;
+                    }
+
                     this.variables.shouldApplyState && this.applyYnisonDiff(e);
                 }
                 applyYnisonDiff(e) {
@@ -12900,6 +12992,7 @@
                     });
                 }
                 playAutoflow(e) {
+                    if (!(window.ENABLE_ENDLESS_MUSIC?.() ?? true)) return;
                     var t, a, i;
                     let r =
                         null == (t = e.state.currentContext.value)
@@ -22201,6 +22294,15 @@
                     clearMemoryModal: {},
                     imageSliderModal: { modal: {} },
                     artistAboutModal: { loadingState: u.GuX.IDLE, modal: {} },
+                    discordRpcSettingsModal: {},
+                    vibeBehaviorEnhancementsSettingsModal: {},
+                    vibeAnimationEnhancementsSettingsModal: {},
+                    playerBarEnhancementsSettingsModal: {},
+                    windowBehaviorSettingsModal: {},
+                    appUpdatesSettingsModal: {},
+                    scrobblersSettingsModal: {},
+                    downloaderSettingsModal: {},
+                    systemSettingsModal: {},
                 },
                 landing: {
                     loadingState: u.GuX.IDLE,
@@ -23510,214 +23612,223 @@
                     .actions((e) => {
                         let t = {
                             getData: (0, n.L3)(function* () {
-                                let {
-                                    dynamicPagesResource: a,
-                                    modelActionsLogger: r,
-                                } = (0, n._$)(e);
-                                if (
-                                    e.loadingState !== u.GuX.PENDING &&
-                                    e.loadingState !== u.GuX.RESOLVE
-                                )
-                                    try {
-                                        var s;
-                                        let r;
-                                        if (
-                                            (((e.loadingState = u.GuX.PENDING),
-                                            (s = r =
-                                                e.withTriggersV2
-                                                    ? yield a.getTriggersV2({
-                                                          anchorIds:
-                                                              Object.values(
-                                                                  ez.v,
-                                                              ),
-                                                      })
-                                                    : yield a.getTriggers({
-                                                          anchorIds:
-                                                              Object.values(
-                                                                  ez.v,
-                                                              ),
-                                                      })) &&
-                                                s.triggers &&
-                                                Array.isArray(s.triggers) &&
-                                                s.triggers.every(
-                                                    (e) =>
-                                                        !!(
-                                                            e &&
-                                                            "object" ==
-                                                                typeof e &&
-                                                            "anchorId" in e &&
-                                                            "triggers" in e &&
-                                                            Array.isArray(
-                                                                e.triggers,
-                                                            ) &&
-                                                            e.triggers.every(
-                                                                (e) =>
-                                                                    !!(
-                                                                        e &&
-                                                                        "object" ==
-                                                                            typeof e &&
-                                                                        "screenId" in
-                                                                            e &&
-                                                                        "feedbackToken" in
-                                                                            e &&
-                                                                        "data" in
-                                                                            e &&
-                                                                        "meta" in
-                                                                            e
-                                                                    ),
-                                                            )
-                                                        ),
-                                                ))
-                                                ? (e.list = ((e) => {
-                                                      let t = [],
-                                                          a = [];
-                                                      return (
-                                                          e.triggers.forEach(
-                                                              (e) => {
-                                                                  var r;
-                                                                  switch (
-                                                                      null ==
-                                                                      (r =
-                                                                          e
-                                                                              .triggers[0])
-                                                                          ? void 0
-                                                                          : r
-                                                                                .meta
-                                                                                .notificationId
-                                                                  ) {
-                                                                      case i.BAR_BELOW:
-                                                                          return void e.triggers.forEach(
-                                                                              (
-                                                                                  e,
-                                                                              ) => {
-                                                                                  t.push(
-                                                                                      (0,
-                                                                                      eH.S3)(
-                                                                                          e,
-                                                                                      ),
-                                                                                  );
-                                                                              },
-                                                                          );
-                                                                      case i.FULLSCREEN:
-                                                                          return void e.triggers.forEach(
-                                                                              (
-                                                                                  e,
-                                                                              ) => {
-                                                                                  a.push(
-                                                                                      (0,
-                                                                                      eQ.fZ)(
-                                                                                          e,
-                                                                                      ),
-                                                                                  );
-                                                                              },
-                                                                          );
-                                                                  }
-                                                              },
-                                                          ),
-                                                          (0, n.wg)({
-                                                              barBelow: {
-                                                                  list: t,
-                                                              },
-                                                              modal: {
-                                                                  list: a,
-                                                              },
-                                                          })
-                                                      );
-                                                  })(r))
-                                                : r &&
-                                                  r.triggers &&
-                                                  Array.isArray(r.triggers) &&
-                                                  r.triggers.every(
-                                                      (e) =>
-                                                          !!(
-                                                              e &&
-                                                              "object" ==
-                                                                  typeof e &&
-                                                              "anchorId" in e &&
-                                                              "screenId" in e &&
-                                                              "div" in e &&
-                                                              "meta" in e &&
-                                                              !("triggers" in e)
-                                                          ),
-                                                  ) &&
-                                                  (e.list = ((e) => {
-                                                      let t = [],
-                                                          a = [];
-                                                      return (
-                                                          e.triggers.forEach(
-                                                              (e) => {
-                                                                  switch (
-                                                                      e.meta
-                                                                          .notificationId
-                                                                  ) {
-                                                                      case i.BAR_BELOW:
-                                                                          t.push(
-                                                                              (0,
-                                                                              eH.S3)(
-                                                                                  e,
-                                                                              ),
-                                                                          );
-                                                                          return;
-                                                                      case i.FULLSCREEN:
-                                                                          a.push(
-                                                                              (0,
-                                                                              eQ.fZ)(
-                                                                                  e,
-                                                                              ),
-                                                                          );
-                                                                          return;
-                                                                  }
-                                                              },
-                                                          ),
-                                                          (0, n.wg)({
-                                                              barBelow: {
-                                                                  list: t,
-                                                              },
-                                                              modal: {
-                                                                  list: a,
-                                                              },
-                                                          })
-                                                      );
-                                                  })(r)),
-                                            e.loadingState !== u.GuX.IDLE &&
-                                                (e.loadingState =
-                                                    u.GuX.RESOLVE),
-                                            !e.list)
-                                        )
-                                            return;
-                                        let { barBelow: l, modal: o } = e.list;
-                                        l.setAnchorId(ez.v.ON_START_BAR_BELOW),
-                                            l.barBelowItem &&
-                                                (l.show(),
-                                                t.shown(
-                                                    l.barBelowItem.anchorId,
-                                                    l.barBelowItem.screenId,
-                                                    l.barBelowItem
-                                                        .feedbackToken,
-                                                )),
-                                            o.setAnchorId(
-                                                ez.v.ON_START_FULLSCREEN,
-                                            ),
-                                            o.modalItem &&
-                                                (o.open(),
-                                                t.shown(
-                                                    o.modalItem.anchorId,
-                                                    o.modalItem.screenId,
-                                                    o.modalItem.feedbackToken,
-                                                ));
-                                    } catch (t) {
-                                        r.error(t),
-                                            t instanceof ec.GX &&
-                                                (t.statusCode ===
-                                                    ec.X1.NOT_FOUND ||
-                                                    t.statusCode ===
-                                                        ec.X1.BAD_REQUEST) &&
-                                                (e.errorStatusCode =
-                                                    ec.X1.NOT_FOUND),
-                                            e.loadingState !== u.GuX.IDLE &&
-                                                (e.loadingState = u.GuX.REJECT);
-                                    }
+                                    let {
+                                        dynamicPagesResource: a,
+                                        modelActionsLogger: r,
+                                    } = (0, n._$)(e);
+
+                                    return (e.loadingState = u.GuX.RESOLVE);
+
                             }),
+                            // getData: (0, n.L3)(function* () {
+                            //     let {
+                            //         dynamicPagesResource: a,
+                            //         modelActionsLogger: r,
+                            //     } = (0, n._$)(e);
+                            //     if (
+                            //         e.loadingState !== u.GuX.PENDING &&
+                            //         e.loadingState !== u.GuX.RESOLVE
+                            //     )
+                            //         try {
+                            //             var s;
+                            //             let r;
+                            //             if (
+                            //                 (((e.loadingState = u.GuX.PENDING),
+                            //                 (s = r =
+                            //                     e.withTriggersV2
+                            //                         ? yield a.getTriggersV2({
+                            //                               anchorIds:
+                            //                                   Object.values(
+                            //                                       ez.v,
+                            //                                   ),
+                            //                           })
+                            //                         : yield a.getTriggers({
+                            //                               anchorIds:
+                            //                                   Object.values(
+                            //                                       ez.v,
+                            //                                   ),
+                            //                           })) &&
+                            //                     s.triggers &&
+                            //                     Array.isArray(s.triggers) &&
+                            //                     s.triggers.every(
+                            //                         (e) =>
+                            //                             !!(
+                            //                                 e &&
+                            //                                 "object" ==
+                            //                                     typeof e &&
+                            //                                 "anchorId" in e &&
+                            //                                 "triggers" in e &&
+                            //                                 Array.isArray(
+                            //                                     e.triggers,
+                            //                                 ) &&
+                            //                                 e.triggers.every(
+                            //                                     (e) =>
+                            //                                         !!(
+                            //                                             e &&
+                            //                                             "object" ==
+                            //                                                 typeof e &&
+                            //                                             "screenId" in
+                            //                                                 e &&
+                            //                                             "feedbackToken" in
+                            //                                                 e &&
+                            //                                             "data" in
+                            //                                                 e &&
+                            //                                             "meta" in
+                            //                                                 e
+                            //                                         ),
+                            //                                 )
+                            //                             ),
+                            //                     ))
+                            //                     ? (e.list = ((e) => {
+                            //                           let t = [],
+                            //                               a = [];
+                            //                           return (
+                            //                               e.triggers.forEach(
+                            //                                   (e) => {
+                            //                                       var r;
+                            //                                       switch (
+                            //                                           null ==
+                            //                                           (r =
+                            //                                               e
+                            //                                                   .triggers[0])
+                            //                                               ? void 0
+                            //                                               : r
+                            //                                                     .meta
+                            //                                                     .notificationId
+                            //                                       ) {
+                            //                                           case i.BAR_BELOW:
+                            //                                               return void e.triggers.forEach(
+                            //                                                   (
+                            //                                                       e,
+                            //                                                   ) => {
+                            //                                                       t.push(
+                            //                                                           (0,
+                            //                                                           eH.S3)(
+                            //                                                               e,
+                            //                                                           ),
+                            //                                                       );
+                            //                                                   },
+                            //                                               );
+                            //                                           case i.FULLSCREEN:
+                            //                                               return void e.triggers.forEach(
+                            //                                                   (
+                            //                                                       e,
+                            //                                                   ) => {
+                            //                                                       a.push(
+                            //                                                           (0,
+                            //                                                           eQ.fZ)(
+                            //                                                               e,
+                            //                                                           ),
+                            //                                                       );
+                            //                                                   },
+                            //                                               );
+                            //                                       }
+                            //                                   },
+                            //                               ),
+                            //                               (0, n.wg)({
+                            //                                   barBelow: {
+                            //                                       list: t,
+                            //                                   },
+                            //                                   modal: {
+                            //                                       list: a,
+                            //                                   },
+                            //                               })
+                            //                           );
+                            //                       })(r))
+                            //                     : r &&
+                            //                       r.triggers &&
+                            //                       Array.isArray(r.triggers) &&
+                            //                       r.triggers.every(
+                            //                           (e) =>
+                            //                               !!(
+                            //                                   e &&
+                            //                                   "object" ==
+                            //                                       typeof e &&
+                            //                                   "anchorId" in e &&
+                            //                                   "screenId" in e &&
+                            //                                   "div" in e &&
+                            //                                   "meta" in e &&
+                            //                                   !("triggers" in e)
+                            //                               ),
+                            //                       ) &&
+                            //                       (e.list = ((e) => {
+                            //                           let t = [],
+                            //                               a = [];
+                            //                           return (
+                            //                               e.triggers.forEach(
+                            //                                   (e) => {
+                            //                                       switch (
+                            //                                           e.meta
+                            //                                               .notificationId
+                            //                                       ) {
+                            //                                           case i.BAR_BELOW:
+                            //                                               t.push(
+                            //                                                   (0,
+                            //                                                   eH.S3)(
+                            //                                                       e,
+                            //                                                   ),
+                            //                                               );
+                            //                                               return;
+                            //                                           case i.FULLSCREEN:
+                            //                                               a.push(
+                            //                                                   (0,
+                            //                                                   eQ.fZ)(
+                            //                                                       e,
+                            //                                                   ),
+                            //                                               );
+                            //                                               return;
+                            //                                       }
+                            //                                   },
+                            //                               ),
+                            //                               (0, n.wg)({
+                            //                                   barBelow: {
+                            //                                       list: t,
+                            //                                   },
+                            //                                   modal: {
+                            //                                       list: a,
+                            //                                   },
+                            //                               })
+                            //                           );
+                            //                       })(r)),
+                            //                 e.loadingState !== u.GuX.IDLE &&
+                            //                     (e.loadingState =
+                            //                         u.GuX.RESOLVE),
+                            //                 !e.list)
+                            //             )
+                            //                 return;
+                            //             let { barBelow: l, modal: o } = e.list;
+                            //             l.setAnchorId(ez.v.ON_START_BAR_BELOW),
+                            //                 l.barBelowItem &&
+                            //                     (l.show(),
+                            //                     t.shown(
+                            //                         l.barBelowItem.anchorId,
+                            //                         l.barBelowItem.screenId,
+                            //                         l.barBelowItem
+                            //                             .feedbackToken,
+                            //                     )),
+                            //                 o.setAnchorId(
+                            //                     ez.v.ON_START_FULLSCREEN,
+                            //                 ),
+                            //                 o.modalItem &&
+                            //                     (o.open(),
+                            //                     t.shown(
+                            //                         o.modalItem.anchorId,
+                            //                         o.modalItem.screenId,
+                            //                         o.modalItem.feedbackToken,
+                            //                     ));
+                            //         } catch (t) {
+                            //             r.error(t),
+                            //                 t instanceof ec.GX &&
+                            //                     (t.statusCode ===
+                            //                         ec.X1.NOT_FOUND ||
+                            //                         t.statusCode ===
+                            //                             ec.X1.BAD_REQUEST) &&
+                            //                     (e.errorStatusCode =
+                            //                         ec.X1.NOT_FOUND),
+                            //                 e.loadingState !== u.GuX.IDLE &&
+                            //                     (e.loadingState = u.GuX.REJECT);
+                            //         }
+                            // }),
                             shown: (0, n.L3)(function* (t, a, i) {
                                 let {
                                     dynamicPagesResource: r,
@@ -23778,6 +23889,15 @@
                 imageSliderModal: e1.J,
                 promoLandingBuySubscriptionModal: S.qt,
                 artistAboutModal: b.Xj,
+                discordRpcSettingsModal: S.qt,
+                vibeBehaviorEnhancementsSettingsModal: S.qt,
+                vibeAnimationEnhancementsSettingsModal: S.qt,
+                playerBarEnhancementsSettingsModal: S.qt,
+                windowBehaviorSettingsModal: S.qt,
+                appUpdatesSettingsModal: S.qt,
+                scrobblersSettingsModal: S.qt,
+                downloaderSettingsModal: S.qt,
+                systemSettingsModal: S.qt,
             });
             var e6 = a(22307),
                 e8 = a(44748),

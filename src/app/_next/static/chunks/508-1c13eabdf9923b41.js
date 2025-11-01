@@ -4328,9 +4328,7 @@
                         }),
                         eC =
                             B.hasPlus &&
-                            !x &&
-                            o.isFavouritePlaylist &&
-                            o.isOwnPlaylist,
+                            !x,
                         eP = (0, n.useMemo)(
                             () =>
                                 (0, r.jsxs)("div", {

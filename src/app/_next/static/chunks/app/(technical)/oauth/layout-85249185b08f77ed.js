@@ -6,7 +6,68 @@
             o.d(s, { usePlayerAction: () => i });
             var n = o(66268),
                 t = o(79169),
-                r = (function (e) {
+                feedbackApi = o(61744);
+            const sendPlayerStateDefault = (ve) => {
+                let desktopEvents;
+                const previousTrack =
+                    (ve.state.queueState.index.value ?? 0) - 1 >= 0
+                        ? ve.state.queueState?.entityList.value?.[
+                        ve.state.queueState.index.value - 1
+                            ]?.entity?.entityData?.meta
+                        : undefined;
+                const nextTrack =
+                    (ve.state.queueState.index.value ?? 0) + 1 >= 0
+                        ? ve.state.queueState?.entityList.value?.[
+                        ve.state.queueState.index.value + 1
+                            ]?.entity?.entityData?.meta
+                        : undefined;
+
+                null === (desktopEvents = window.desktopEvents) ||
+                void 0 === desktopEvents ||
+                desktopEvents.send(t.EE.PLAYER_STATE, {
+                    status: ve.state.playerState.status.value,
+                    isPlaying: ve.state.playerState.status.value === "playing",
+                    canMoveForward:
+                    ve.state.currentContext.value?.availableActions.moveForward.value,
+                    canMoveBackward:
+                    ve.state.currentContext.value?.availableActions.moveBackward
+                        .value,
+                    track:
+                    ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+                    progress: ve.state.playerState.progress.value,
+                    availableActions: {
+                        moveBackward:
+                        ve.state.currentContext.value?.availableActions.moveBackward
+                            .value,
+                        moveForward:
+                        ve.state.currentContext.value?.availableActions.moveForward
+                            .value,
+                        repeat:
+                        ve.state.currentContext.value?.availableActions.repeat.value,
+                        shuffle:
+                        ve.state.currentContext.value?.availableActions.shuffle.value,
+                        speed:
+                        ve.state.currentContext.value?.availableActions.speed.value,
+                    },
+                    actionsStore: {
+                        repeat: ve.state.queueState.repeat.value,
+                        shuffle: ve.state.queueState.shuffle.value,
+                        isLiked:
+                            ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                ve.state.queueState.currentEntity.value?.entity.entityData
+                                    .meta.id,
+                            ),
+                        isDisliked:
+                            ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                ve.state.queueState.currentEntity.value?.entity.entityData
+                                    .meta.id,
+                            ),
+                    },
+                    previousTrack,
+                    nextTrack,
+                });
+            };
+            var r = (function (e) {
                     return (
                         (e.PLAY = "PLAY"),
                         (e.PAUSE = "PAUSE"),
@@ -16,11 +77,15 @@
                     );
                 })(r || {});
             let i = (e) => {
+                let { sonataState: sonataState } = (0, t.Pjs)(),
+                    onLikeClick = (0, feedbackApi.KX)(sonataState.entityMeta),
+                    onDislikeClick = (0, feedbackApi.mW)(sonataState.entityMeta);
                 let s = (0, n.useCallback)(
-                    (s, o) => {
+                    (s, o, nonce = 1) => {
                         switch (o) {
                             case "PLAY":
                             case "PAUSE":
+                            case "TOGGLE_PLAY":
                                 null == e || e.togglePause();
                                 break;
                             case "MOVE_BACKWARD":
@@ -28,6 +93,51 @@
                                 break;
                             case "MOVE_FORWARD":
                                 null == e || e.moveForward();
+                                break;
+                            case "REPEAT_NONE":
+                                null == e || e.setRepeatMode("none");
+                                break;
+                            case "REPEAT_CONTEXT":
+                                null == e || e.setRepeatMode("context");
+                                break;
+                            case "REPEAT_ONE":
+                                null == e || e.setRepeatMode("one");
+                                break;
+                            case "TOGGLE_REPEAT":
+                                let nextMode = "none";
+                                switch (e?.state?.queueState?.repeat?.value) {
+                                    case "none":
+                                        nextMode =
+                                            e?.state?.currentContext?.value?.contextData?.type ===
+                                            "vibe"
+                                                ? "one"
+                                                : "context";
+                                        break;
+                                    case "context":
+                                        nextMode = "one";
+                                        break;
+                                    case "one":
+                                    default:
+                                        nextMode = "none";
+                                        break;
+                                }
+                                null == e || e.setRepeatMode(nextMode);
+                                break;
+                            case "TOGGLE_SHUFFLE":
+                                null == e || e.toggleShuffle();
+                                break;
+                            case "TOGGLE_LIKE":
+                            case "LIKE":
+                            case "LIKE_NONE":
+                                null == e || onLikeClick?.(sonataState.entityMeta, o);
+                                sendPlayerStateDefault?.(e);
+                                break;
+                            case "DISLIKE":
+                            case "DISLIKE_NONE":
+                            case "TOGGLE_DISLIKE":
+                                null == e || onDislikeClick?.(sonataState.entityMeta, o);
+                                sendPlayerStateDefault?.(e);
+                                break;
                         }
                     },
                     [e],
@@ -525,8 +635,113 @@
                                 isPlaying: o,
                                 canMoveBackward: n,
                                 canMoveForward: t,
+                                status: e.status,
+                                track: e.track,
+                                progress: e.progress,
+                                availableActions: e.availableActions,
+                                actionsStore: e.actionsStore,
+                                previousTrack: e.previousTrack,
+                                nextTrack: e.nextTrack,
                             });
+                    }),
+                sendPlayerStateDefault = (ve) => {
+
+                    const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value-1]]?.entity?.entityData?.meta : undefined;
+                    const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value+1]]?.entity?.entityData?.meta : undefined;
+
+                    o({
+                        status: ve.state.playerState.status.value,
+                        isPlaying: ve.state.playerState.status.value === r.MT.PLAYING,
+                        canMoveForward:
+                        ve.state.currentContext.value?.availableActions.moveForward
+                            .value,
+                        canMoveBackward:
+                        ve.state.currentContext.value?.availableActions.moveBackward
+                            .value,
+                        track:
+                        ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+                        progress: ve.state.playerState.progress.value?.position,
+                        availableActions: {
+                            moveBackward:
+                            ve.state.currentContext.value?.availableActions.moveBackward
+                                .value,
+                            moveForward:
+                            ve.state.currentContext.value?.availableActions.moveForward
+                                .value,
+                            repeat:
+                            ve.state.currentContext.value?.availableActions.repeat.value,
+                            shuffle:
+                            ve.state.currentContext.value?.availableActions.shuffle.value,
+                            speed:
+                            ve.state.currentContext.value?.availableActions.speed.value,
+                        },
+                        actionsStore: {
+                            repeat: ve.state.queueState.repeat.value,
+                            shuffle: ve.state.queueState.shuffle.value,
+                            isLiked:
+                                ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                    ve.state.queueState.currentEntity.value?.entity.entityData
+                                        .meta.id,
+                                ),
+                            isDisliked:
+                                ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                    ve.state.queueState.currentEntity.value?.entity.entityData
+                                        .meta.id,
+                                ),
+                        },
+                        previousTrack: previousTrack,
+                        nextTrack: nextTrack,
                     });
+                },
+                    sendPlayerStatePlaying = (ve) => {
+
+                        const previousTrack = ((ve.state.queueState.index.value ?? 0) - 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value-1]]?.entity?.entityData?.meta : undefined;
+                        const nextTrack = ((ve.state.queueState.index.value ?? 0) + 1) >= 0 ? ve.state.queueState?.entityList.value?.[ve.state.queueState.order.value[ve.state.queueState.index.value+1]]?.entity?.entityData?.meta : undefined;
+
+                        o({
+                            status: r.MT.PLAYING,
+                            isPlaying: true,
+                            canMoveForward:
+                            ve.state.currentContext.value?.availableActions.moveForward
+                                .value,
+                            canMoveBackward:
+                            ve.state.currentContext.value?.availableActions.moveBackward
+                                .value,
+                            track:
+                            ve.state.queueState.currentEntity.value?.entity.entityData.meta,
+                            progress: ve.state.playerState.progress.value?.position,
+                            availableActions: {
+                                moveBackward:
+                                ve.state.currentContext.value?.availableActions.moveBackward
+                                    .value,
+                                moveForward:
+                                ve.state.currentContext.value?.availableActions.moveForward
+                                    .value,
+                                repeat:
+                                ve.state.currentContext.value?.availableActions.repeat.value,
+                                shuffle:
+                                ve.state.currentContext.value?.availableActions.shuffle.value,
+                                speed:
+                                ve.state.currentContext.value?.availableActions.speed.value,
+                            },
+                            actionsStore: {
+                                repeat: ve.state.queueState.repeat.value,
+                                shuffle: ve.state.queueState.shuffle.value,
+                                isLiked:
+                                    ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackLiked(
+                                        ve.state.queueState.currentEntity.value?.entity.entityData
+                                            .meta.id,
+                                    ),
+                                isDisliked:
+                                    ve.state.queueState.currentEntity.value?.entity.likeStore.isTrackDisliked(
+                                        ve.state.queueState.currentEntity.value?.entity.entityData
+                                            .meta.id,
+                                    ),
+                            },
+                            previousTrack: previousTrack,
+                            nextTrack: nextTrack,
+                        });
+                    };
                 (0, n.useEffect)(() => {
                     let e,
                         n,
@@ -534,8 +749,40 @@
                             null == s
                                 ? void 0
                                 : s.state.playerState.status.onChange((e) => {
-                                      e && o({ isPlaying: e === r.MT.PLAYING });
+                                      e && sendPlayerStateDefault(t);
                                   }),
+                        onEntityChange =
+                            s?.state.queueState.currentEntity.onChange((e) => {
+                                e && sendPlayerStatePlaying(s);
+                            }),
+                        seekTracker =
+                            s?.state.playerState.event.onChange((e) => {
+                                if (
+                                    s.state.playerState.event.value === r.Iu.SET_PROGRESS
+                                ) {
+                                    sendPlayerStateDefault(s);
+                                }
+                            }),
+                        queueStateEntityListTracker =
+                            s?.state.queueState.entityList.onChange((e) => {
+                                sendPlayerStateDefault(s);
+                            }),
+                        onRepeatAvailableChange =
+                            s?.state.currentContext.value?.availableActions.repeat?.onChange((e) => {
+                                sendPlayerStateDefault(s);
+                            }),
+                        onShuffleAvailableChange =
+                            s?.state.currentContext.value?.availableActions.shuffle?.onChange((e) => {
+                                sendPlayerStateDefault(s);
+                            }),
+                        onRepeatChange =
+                            s?.state.queueState.repeat?.onChange((e) => {
+                                sendPlayerStateDefault(s);
+                            }),
+                        onShuffleChange =
+                            s?.state.queueState.shuffle?.onChange((e) => {
+                                sendPlayerStateDefault(s);
+                            }),
                         i =
                             null == s
                                 ? void 0
@@ -552,10 +799,7 @@
                                                   ? void 0
                                                   : t.availableActions.moveBackward.onChange(
                                                         (e) => {
-                                                            o({
-                                                                canMoveBackward:
-                                                                    !!e,
-                                                            });
+                                                            sendPlayerStateDefault(s);
                                                         },
                                                     )),
                                           (n =
@@ -567,16 +811,20 @@
                                                   ? void 0
                                                   : r.availableActions.moveForward.onChange(
                                                         (e) => {
-                                                            o({
-                                                                canMoveForward:
-                                                                    !!e,
-                                                            });
+                                                            sendPlayerStateDefault(s);
                                                         },
                                                     ));
                                   });
                     return () => {
                         null == t || t(),
                             null == i || i(),
+                            null == onEntityChange || onEntityChange(),
+                            null == seekTracker || seekTracker(),
+                            null == queueStateEntityListTracker || queueStateEntityListTracker(),
+                            null == onRepeatAvailableChange || onRepeatAvailableChange(),
+                            null == onShuffleAvailableChange || onShuffleAvailableChange(),
+                            null == onRepeatChange || onRepeatChange(),
+                            null == onShuffleChange || onShuffleChange(),
                             null == n || n(),
                             null == n || n();
                     };
@@ -649,6 +897,10 @@
                 sb: () => P.useRefreshTracksAvailability,
                 sq: () => c.useReleaseNotes,
                 OM: () => u.useSendPlayerState,
+                sendDownloadTrack: (...args) => sendDownloadTrack(...args),
+                sendDownloadCurrentTrack: (...args) => sendDownloadCurrentTrack(...args),
+                sendDownloadTracks: (...args) => sendDownloadTracks(...args),
+                sendYnisonState: (...args) => sendYnisonState(...args),
             });
             let n = () => {
                 document.addEventListener("auxclick", (e) =>
@@ -664,6 +916,32 @@
                     var s;
                     null == (s = window.desktopEvents) ||
                         s.send(t.EE.APPLICATION_READY, e);
+                },
+                sendDownloadTrack = (trackId) => {
+                    var s;
+                    null === (s = window.desktopEvents) ||
+                    void 0 === s ||
+                    s.send(t.EE.DOWNLOAD_TRACK, trackId);
+                },
+                sendDownloadCurrentTrack = (trackId) => {
+                    var s;
+                    null === (s = window.desktopEvents) ||
+                    void 0 === s ||
+                    s.send(t.EE.DOWNLOAD_CURRENT_TRACK, trackId);
+                },
+                sendDownloadTracks = (trackIds) => {
+                    var s;
+                    null === (s = window.desktopEvents) ||
+                    void 0 === s ||
+                    s.send(t.EE.DOWNLOAD_TRACKS, trackIds);
+                },
+                sendYnisonState = (e) => {
+                    var s;
+                    null === (s = window.desktopEvents) ||
+                    void 0 === s ||
+                    s.send(t.EE.YNISON_STATE, {
+                        rawData: e.rawData,
+                    });
                 },
                 i = (e) => {
                     let s = e === t.Sxu.Light ? "#FFFFFF" : "#000000";

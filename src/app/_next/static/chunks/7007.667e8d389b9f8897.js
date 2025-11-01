@@ -358,7 +358,7 @@
                         U = (0, b.c)(() => {
                             M(!0);
                         }),
-                        K = j.isPlaying && j.isVibeContext;
+                        K = j.isPlaying && (j.isVibeContext || window?.VIBE_ANIMATION_PLAY_ON_ANY_ENTITY());
                     ((e) => {
                         var t, n;
                         let [i, r] = (0, o.useState)({}),
@@ -402,10 +402,14 @@
                     let O = (0, b.c)(() => {
                         if (!(null == S ? void 0 : S.analyser)) return;
                         let [e, t, n] = S.analyser.getAverageFrequencies([
-                            { low: 0, high: 250 },
-                            { low: 500, high: 2e3 },
-                            { low: 2e3, high: 4e3 },
+                            { low: 0, high: 450 },
+                            { low: 400, high: 5e3 },
+                            { low: 5e3, high: 20e3 },
                         ]);
+
+                        const energy = S.analyser.getRMS() * 2 * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) + 0.3;
+                        if (_ != null) _.updateEnergy(window.VIBE_ANIMATION_USE_DYNAMIC_ENERGY?.() ? energy : (j?.entityMeta?.trackParameters?.energy ?? 1));
+
                         null == _ ||
                             _.updateAudioFrequencies({
                                 low: null != e ? e : 0,
@@ -422,6 +426,7 @@
                                 offscreenCanvas: n,
                                 state: d,
                                 collectionHue: P.collectionHue,
+                                fps: window.VIBE_ANIMATION_MAX_FPS?.() ?? 25,
                                 shaderOptions: void 0,
                                 onMessage: F,
                                 onError: U,

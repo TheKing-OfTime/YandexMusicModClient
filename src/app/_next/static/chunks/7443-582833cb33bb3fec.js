@@ -5291,42 +5291,45 @@
                                 className: (0, r.$)(x().sliderContainer, {
                                     [x().sliderContainer_focusVisible]: P,
                                 }),
-                                children: [(0, n.jsx)("span", {
-                                    children: `${Math.round(L.toFixed(2) * 100)}%`,
-                                    style: {
-                                        position: "absolute",
-                                        left: 0,
-                                        right: 0,
-                                        "margin-inline": "auto",
-                                        width: "fit-content",
-                                        top: "0.7rem",
-                                    },
-                                }),(0, n.jsx)("div", {
-                                    className: x().wrapperSlider,
-                                    children: (0, n.jsx)(v.A, {
-                                        onMouseLeave: j,
-                                        className: (0, r.$)(
-                                            x().slider,
-                                            x().important,
-                                            l,
-                                        ),
-                                        thumbSize: "s",
-                                        onFocus: T,
-                                        onBlur: j,
-                                        trackSize: "s",
-                                        value: L,
-                                        maxValue: 1,
-                                        step: 0.01,
-                                        onChange: B,
-                                        "aria-label": f({
-                                            id: "player-actions.volume-control",
-                                        }),
-                                        ...(0, c.Am)(
-                                            c.Kq.changeVolume
-                                                .CHANGE_VOLUME_SLIDER,
-                                        ),
+                                children: [
+                                    (0, n.jsx)("span", {
+                                        children: `${Math.round(L.toFixed(2) * 100)}%`,
+                                        style: {
+                                            position: "absolute",
+                                            left: 0,
+                                            right: 0,
+                                            "margin-inline": "auto",
+                                            width: "fit-content",
+                                            top: "0.7rem",
+                                        },
                                     }),
-                                }),]
+                                    (0, n.jsx)("div", {
+                                        className: x().wrapperSlider,
+                                        children: (0, n.jsx)(v.A, {
+                                            onMouseLeave: j,
+                                            className: (0, r.$)(
+                                                x().slider,
+                                                x().important,
+                                                l,
+                                            ),
+                                            thumbSize: "s",
+                                            onFocus: T,
+                                            onBlur: j,
+                                            trackSize: "s",
+                                            value: L,
+                                            maxValue: 1,
+                                            step: 0.01,
+                                            onChange: B,
+                                            "aria-label": f({
+                                                id: "player-actions.volume-control",
+                                            }),
+                                            ...(0, c.Am)(
+                                                c.Kq.changeVolume
+                                                    .CHANGE_VOLUME_SLIDER,
+                                            ),
+                                        }),
+                                    }),
+                                ],
                             });
                     });
                 return (0, n.jsxs)("div", {
@@ -10883,7 +10886,8 @@
                 v = a(77868),
                 g = a(18740),
                 h = a(29091),
-                x = a.n(h);
+                x = a.n(h),
+                electronBridge = a(77575);
             let y = (0, d.PA)((e) => {
                     let {
                             className: t,
@@ -11081,6 +11085,7 @@
                         } = (0, l.Zn)(e);
                         return (
                             !a &&
+                            (window.ENABLE_ENDLESS_MUSIC?.() ?? true) &&
                             (null == (t = e.afterTracksIds)
                                 ? void 0
                                 : t.length) === 0
@@ -13628,6 +13633,13 @@
                             fullscreenPlayer: r,
                         } = (0, n.Pjs)(),
                         { state: l, toggleTrue: o } = (0, W.e)(!1),
+                        [isRemoteDeviceConnected, setIsRemoteDeviceConnected] =
+                            (0, u.useState)(
+                                window.isRemoteDeviceConnected ?? false,
+                            ),
+                        [remoteDevice, setRemoteDevice] = (0, u.useState)(
+                            window.remoteDevice ?? null,
+                        ),
                         d =
                             (null == i ? void 0 : i.isTrackPodcast) ||
                             (null == i || null == (e = i.mainAlbum)
@@ -13713,6 +13725,18 @@
                             [i, null == i ? void 0 : i.id, d, m, r.isSplitMode],
                         );
                     return (
+                        (0, u.useEffect)(() => {
+                            window.onRemoteDeviceConnected.push(
+                                (device_info) => {
+                                    setIsRemoteDeviceConnected(true);
+                                    setRemoteDevice(device_info);
+                                },
+                            );
+                            window.onRemoteDeviceDisconnected.push(() => {
+                                setIsRemoteDeviceConnected(false);
+                                setRemoteDevice(null);
+                            });
+                        }, []),
                         (0, u.useEffect)(
                             () => (
                                 window.addEventListener("resize", a),
@@ -13752,6 +13776,19 @@
                                             .FULLSCREEN_PLAYER_FULLSCREEN_CONTENT,
                                     ),
                                     children: [
+                                        isRemoteDeviceConnected &&
+                                            (0, s.jsxs)("div", {
+                                                style: {
+                                                    position: "absolute",
+                                                    top: "-25px",
+                                                    color: "var(--ym-controls-color-primary-default-enabled)",
+                                                },
+                                                children: [
+                                                    (0, s.jsxs)("span", {
+                                                        children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                                                    }),
+                                                ],
+                                            }),
                                         (0, s.jsx)(td, {
                                             className: (0, c.$)(
                                                 tm().poster,
@@ -13808,7 +13845,11 @@
                             () => ({
                                 "--player-average-color-background": (0, T.ye)(
                                     t,
-                                    null == i ? void 0 : i.averageColor,
+                                    null == i ||
+                                        (window.DISABLE_PER_TRACK_COLORS?.() ??
+                                            false)
+                                        ? void 0
+                                        : i.averageColor,
                                 ),
                             }),
                             [null == i ? void 0 : i.averageColor, t],
@@ -14836,7 +14877,11 @@
                             () => ({
                                 "--player-average-color-background": (0, T.ye)(
                                     r,
-                                    null == e ? void 0 : e.averageColor,
+                                    null == e ||
+                                        (window.DISABLE_PER_TRACK_COLORS?.() ??
+                                            false)
+                                        ? void 0
+                                        : e.averageColor,
                                 ),
                             }),
                             [null == e ? void 0 : e.averageColor, r],
@@ -15230,7 +15275,10 @@
                     return {
                         "--player-average-color-background": (0, T.ye)(
                             t,
-                            null == e ? void 0 : e.averageColor,
+                            null == e ||
+                                (window.DISABLE_PER_TRACK_COLORS?.() ?? false)
+                                ? void 0
+                                : e.averageColor,
                         ),
                     };
                 };
@@ -15268,6 +15316,11 @@
             var at = a(30179),
                 aa = a.n(at);
             let ai = (0, d.PA)((e) => {
+                let [, forcePlayerBarRerender] = (0, u.useReducer)(
+                    (x) => x + 1,
+                    0,
+                );
+                window.forcePlayerBarRerender = forcePlayerBarRerender;
                 var t;
                 let {
                         className: a,
@@ -15502,201 +15555,586 @@
                                 : null,
                         [H, i, L, E, h.isGenerativeContext],
                     );
-                return (0, s.jsx)("section", {
-                    style: b.isAdvertShown ? void 0 : M,
-                    className: (0, c.$)(aa().root, aa().important, a),
-                    ...(0, O.Am)(O.e8.player.PLAYERBAR_DESKTOP),
-                    "aria-labelledby": t5,
-                    children: (0, s.jsxs)("div", {
-                        className: aa().playerBar,
-                        children: [
-                            !h.isGenerativeContext &&
-                                (0, s.jsx)(G.J, {
-                                    sliderClassName: aa().slider,
-                                    progressbarClassName: aa().progressBar,
-                                    disabled: !i,
-                                    isMobile: !1,
-                                }),
-                            (0, s.jsxs)("div", {
-                                className: (0, c.$)(aa().player, {
-                                    [aa().player_disabled]: !i,
-                                }),
-                                children: [
-                                    (0, s.jsx)("div", {
-                                        onClick: V,
-                                        className: aa().triggerModal,
+                const qualityMap = {
+                    lq: "LQ",
+                    nq: "NQ",
+                    hq: "HQ",
+                    lossless: "HQ+",
+                };
+                const codecMap = {
+                    mp3: "MP3",
+                    "he-aac": "HE-AAC",
+                    aac: "AAC",
+                    flac: "FLAC",
+                    "aac-mp4": "AAC",
+                    "he-aac-mp4": "HE-AAC",
+                    "flac-mp4": "FLAC",
+                };
+                let theState = (0, n.eGp)();
+                let [downloadProgress, setDownloadProgress] = (0, u.useState)(
+                    0,
+                );
+                let [downloadInfo, setDownloadInfo] = (0, u.useState)(
+                    theState?.state?.queueState?.currentEntity?.value?.entity
+                        ?.mediaSourceData?.data,
+                );
+                let [realBitrate, setRealBitrate] = (0, u.useState)(null);
+                let [isRemoteDeviceConnected, setIsRemoteDeviceConnected] = (0,
+                u.useState)(false);
+                let [remoteDevice, setRemoteDevice] = (0, u.useState)(null);
+                const registerYaspAudioElementListener = () => {
+                    const instance =
+                        window?.Ya?.YaspAudioElement?.instances?.find(
+                            (instance) => instance.yaspSrc,
+                        );
+                    if (!instance) {
+                        setTimeout(registerYaspAudioElementListener, 1000);
+                        return console.debug(
+                            "YaspAudioElement not found, retrying...",
+                        );
+                    }
+
+                    const listener = (e) => {
+                        if (e.detail?.name !== "AbrDecisionChange") return;
+                        let bitrate = Math.round(
+                            (Object.values(
+                                JSON.parse(e.detail?.data?.message)?.tracks,
+                            )?.[0]?.bitrate ?? 0) / 1000,
+                        );
+
+                        setRealBitrate(bitrate);
+                    };
+
+                    if (
+                        Array.from(instance?.yaspEventListeners).find(
+                            (connectedListener) =>
+                                connectedListener.toString() ===
+                                listener.toString(),
+                        )
+                    ) {
+                        instance.removeEventListener("yasp-event", listener);
+
+                        console.debug("Removed listener on YaspAudioElement");
+                    }
+
+                    console.debug("Registered listener on YaspAudioElement");
+                    instance.addEventListener("yasp-event", listener);
+                };
+                registerYaspAudioElementListener();
+                let onDownloadClick = (0, u.useCallback)(() => {
+                    if (!i?.id) return;
+                    electronBridge.sendDownloadCurrentTrack(i?.id);
+                }, [i]);
+                return (
+                    (0, u.useEffect)(() => {
+                        window.desktopEvents.on(
+                            "PROGRESS_BAR_CHANGE",
+                            (e, elementType, progress) => {
+                                if (elementType === "trackDownloadCurrent") {
+                                    setDownloadProgress(progress);
+                                }
+                            },
+                        );
+                        window.onRemoteDeviceConnected.push((device_info) => {
+                            setIsRemoteDeviceConnected(true);
+                            setRemoteDevice(device_info);
+                            window.isRemoteDeviceConnected = true;
+                            window.remoteDevice = device_info;
+                        });
+                        window.onRemoteDeviceDisconnected.push(() => {
+                            setIsRemoteDeviceConnected(false);
+                            setRemoteDevice(null);
+                            window.isRemoteDeviceConnected = false;
+                            window.remoteDevice = null;
+                        });
+                    }, []),
+                    (0, u.useEffect)(() => {
+                        let intervalId;
+
+                        const unsubscribe =
+                            theState.state.queueState.currentEntity.onChange(
+                                () => {
+                                    const data =
+                                        theState?.state?.queueState
+                                            ?.currentEntity?.value?.entity
+                                            ?.mediaSourceData?.data;
+
+                                    const dataString = JSON.stringify(data);
+                                    const downloadInfoString =
+                                        JSON.stringify(downloadInfo);
+
+                                    if (dataString !== downloadInfoString) {
+                                        if (data === undefined) {
+                                            let retries = 5;
+                                            intervalId = setInterval(() => {
+                                                const rerequestedData =
+                                                    theState?.state?.queueState
+                                                        ?.currentEntity?.value
+                                                        ?.entity
+                                                        ?.mediaSourceData?.data;
+                                                if (
+                                                    retries <= 0 ||
+                                                    rerequestedData !==
+                                                        undefined
+                                                ) {
+                                                    setDownloadInfo(
+                                                        rerequestedData,
+                                                    );
+                                                    clearInterval(intervalId);
+                                                }
+                                            }, 200);
+                                        } else {
+                                            setDownloadInfo(data);
+                                        }
+                                    }
+                                },
+                            );
+
+                        const data =
+                            theState?.state?.queueState?.currentEntity?.value
+                                ?.entity?.mediaSourceData?.data;
+                        if (data) {
+                            setDownloadInfo(data);
+                        }
+
+                        return () => {
+                            if (intervalId) clearInterval(intervalId);
+                            if (typeof unsubscribe === "function")
+                                unsubscribe();
+                        };
+                    }),
+                    (0, s.jsx)("section", {
+                        style: b.isAdvertShown ? void 0 : M,
+                        className: (0, c.$)(aa().root, aa().important, a),
+                        ...(0, O.Am)(O.e8.player.PLAYERBAR_DESKTOP),
+                        "aria-labelledby": t5,
+                        children: (0, s.jsxs)("div", {
+                            className: aa().playerBar,
+                            children: [
+                                !h.isGenerativeContext &&
+                                    (0, s.jsx)(G.J, {
+                                        sliderClassName: aa().slider,
+                                        progressbarClassName: aa().progressBar,
+                                        disabled: !i,
+                                        isMobile: !1,
                                     }),
-                                    (0, s.jsx)(tA.q, {
-                                        children: (0, s.jsx)(v.Heading, {
-                                            variant: "h3",
-                                            id: t5,
-                                            children: (0, s.jsx)(m.A, {
-                                                id: "a11y-regions.player",
+                                (0, s.jsxs)("div", {
+                                    className: (0, c.$)(aa().player, {
+                                        [aa().player_disabled]: !i,
+                                    }),
+                                    children: [
+                                        (0, s.jsx)("div", {
+                                            onClick: V,
+                                            className: aa().triggerModal,
+                                        }),
+                                        (0, s.jsx)(tA.q, {
+                                            children: (0, s.jsx)(v.Heading, {
+                                                variant: "h3",
+                                                id: t5,
+                                                children: (0, s.jsx)(m.A, {
+                                                    id: "a11y-regions.player",
+                                                }),
                                             }),
                                         }),
-                                    }),
-                                    (0, s.jsx)("div", {
-                                        className: aa().info,
-                                        children: (0, s.jsx)("div", {
-                                            className: aa().infoCard,
-                                            children:
-                                                i &&
-                                                !b.isAdvertShown &&
-                                                (0, s.jsxs)(s.Fragment, {
-                                                    children: [
-                                                        (0, s.jsxs)(to.Paper, {
-                                                            radius: "s",
-                                                            className:
-                                                                aa()
-                                                                    .coverContainer,
-                                                            ...(0, O.Am)(
-                                                                O.e8.player
-                                                                    .PLAYERBAR_DESKTOP_COVER_CONTAINER,
-                                                            ),
-                                                            children: [
-                                                                (0, s.jsx)(
-                                                                    g.BW,
-                                                                    {
-                                                                        className:
-                                                                            aa()
-                                                                                .cover,
-                                                                        src: i.coverUri,
-                                                                        size: 100,
-                                                                        fit: "cover",
-                                                                        withAvatarReplace:
-                                                                            !0,
-                                                                    },
-                                                                ),
-                                                                P &&
-                                                                    (0, s.jsxs)(
-                                                                        t8.m_,
-                                                                        {
-                                                                            placement:
-                                                                                "top",
-                                                                            offsetOptions: 4,
-                                                                            children:
-                                                                                [
-                                                                                    (0,
-                                                                                    s.jsx)(
-                                                                                        ae,
-                                                                                        {
-                                                                                            ariaLabel:
-                                                                                                k(
-                                                                                                    {
-                                                                                                        id: "player-actions.fullscreen-button",
-                                                                                                    },
-                                                                                                ),
-                                                                                            onClick:
-                                                                                                x.showFullscreenPlayerModal,
-                                                                                        },
-                                                                                    ),
-                                                                                    (0,
-                                                                                    s.jsx)(
-                                                                                        t8.ZI,
-                                                                                        {
-                                                                                            children:
-                                                                                                (0,
-                                                                                                s.jsx)(
-                                                                                                    m.A,
-                                                                                                    {
-                                                                                                        id: "player-actions.fullscreen",
-                                                                                                    },
-                                                                                                ),
-                                                                                        },
-                                                                                    ),
-                                                                                ],
-                                                                        },
-                                                                    ),
-                                                            ],
-                                                        }),
-                                                        (0, s.jsx)("div", {
-                                                            className:
-                                                                aa()
-                                                                    .description,
-                                                            children: X,
-                                                        }),
-                                                    ],
-                                                }),
-                                        }),
-                                    }),
-                                    (0, s.jsxs)("div", {
-                                        className: aa().sonata,
-                                        children: [
-                                            (0, s.jsx)(g.aQ, {
-                                                fallback: (0, s.jsx)(g.cy, {
-                                                    disabled:
-                                                        !i || b.isAdvertShown,
-                                                    isLiked: r,
-                                                    onClick: o,
-                                                    iconSize: "xs",
-                                                }),
-                                            }),
-                                            (0, s.jsx)(I.$u, {
-                                                className: (0, c.$)(
-                                                    aa().sonataControls,
-                                                    aa().important,
-                                                ),
-                                                withRepeat: !0,
-                                                withShuffle: !0,
-                                                isMobile: !1,
-                                                entityMeta: i,
-                                            }),
-                                            (0, s.jsx)(g.aQ, {
-                                                fallback: (0, s.jsx)(g._I, {
-                                                    disabled:
-                                                        !i || b.isAdvertShown,
-                                                    isDisliked: l,
-                                                    onClick: d,
-                                                    iconSize: "xs",
-                                                }),
-                                            }),
-                                        ],
-                                    }),
-                                    (0, s.jsxs)("div", {
-                                        className: aa().meta,
-                                        children: [
-                                            !h.isGenerativeContext &&
-                                                !b.isAdvertShown &&
-                                                (0, s.jsxs)(s.Fragment, {
-                                                    children: [
-                                                        j &&
-                                                            (0, s.jsx)(g.ig, {
-                                                                iconSize: "l",
-                                                            }),
-                                                        Y,
-                                                        $,
-                                                        (0, s.jsx)(tM, {
-                                                            placement: "bottom",
-                                                            open: N,
-                                                            onOpenChange: S,
-                                                            icon: (0, s.jsx)(
-                                                                D.Icon,
+                                        (0, s.jsx)("div", {
+                                            className: aa().info,
+                                            children: (0, s.jsx)("div", {
+                                                className: aa().infoCard,
+                                                children:
+                                                    i &&
+                                                    !b.isAdvertShown &&
+                                                    (0, s.jsxs)(s.Fragment, {
+                                                        children: [
+                                                            (0, s.jsxs)(
+                                                                to.Paper,
                                                                 {
-                                                                    variant:
-                                                                        "settings",
-                                                                    size: "xs",
+                                                                    radius: "s",
+                                                                    className:
+                                                                        aa()
+                                                                            .coverContainer,
+                                                                    ...(0,
+                                                                    O.Am)(
+                                                                        O.e8
+                                                                            .player
+                                                                            .PLAYERBAR_DESKTOP_COVER_CONTAINER,
+                                                                    ),
+                                                                    children: [
+                                                                        (0,
+                                                                        s.jsx)(
+                                                                            g.BW,
+                                                                            {
+                                                                                className:
+                                                                                    aa()
+                                                                                        .cover,
+                                                                                src: i.coverUri,
+                                                                                size: 100,
+                                                                                fit: "cover",
+                                                                                withAvatarReplace:
+                                                                                    !0,
+                                                                            },
+                                                                        ),
+                                                                        P &&
+                                                                            (0,
+                                                                            s.jsxs)(
+                                                                                t8.m_,
+                                                                                {
+                                                                                    placement:
+                                                                                        "top",
+                                                                                    offsetOptions: 4,
+                                                                                    children:
+                                                                                        [
+                                                                                            (0,
+                                                                                            s.jsx)(
+                                                                                                ae,
+                                                                                                {
+                                                                                                    ariaLabel:
+                                                                                                        k(
+                                                                                                            {
+                                                                                                                id: "player-actions.fullscreen-button",
+                                                                                                            },
+                                                                                                        ),
+                                                                                                    onClick:
+                                                                                                        x.showFullscreenPlayerModal,
+                                                                                                },
+                                                                                            ),
+                                                                                            (0,
+                                                                                            s.jsx)(
+                                                                                                t8.ZI,
+                                                                                                {
+                                                                                                    children:
+                                                                                                        (0,
+                                                                                                        s.jsx)(
+                                                                                                            m.A,
+                                                                                                            {
+                                                                                                                id: "player-actions.fullscreen",
+                                                                                                            },
+                                                                                                        ),
+                                                                                                },
+                                                                                            ),
+                                                                                        ],
+                                                                                },
+                                                                            ),
+                                                                    ],
                                                                 },
                                                             ),
-                                                            size: "xxxs",
-                                                            referenceClassName:
-                                                                aa()
-                                                                    .settingsButton,
-                                                        }),
-                                                    ],
-                                                }),
-                                            (0, s.jsx)(t4.r, {
-                                                variant: t4.q.VERTICAL,
-                                                sonataVolume: h.volume,
-                                                onVolumeSet: U,
-                                                onVolumeClick: F,
+                                                            (0, s.jsx)("div", {
+                                                                className:
+                                                                    aa()
+                                                                        .description,
+                                                                children: X,
+                                                            }),
+                                                        ],
+                                                    }),
                                             }),
-                                        ],
-                                    }),
-                                ],
-                            }),
-                        ],
-                    }),
-                });
+                                        }),
+                                        (0, s.jsxs)("div", {
+                                            className: aa().sonata,
+                                            children: [
+                                                window.SHOW_DISLIKE_BUTTON()
+                                                    ? (0, s.jsx)(g.aQ, {
+                                                          fallback: (0, s.jsx)(
+                                                              g._I,
+                                                              {
+                                                                  disabled:
+                                                                      !i ||
+                                                                      b.isAdvertShown,
+                                                                  isDisliked: l,
+                                                                  onClick: d,
+                                                                  iconSize:
+                                                                      "xs",
+                                                              },
+                                                          ),
+                                                      })
+                                                    : (0, s.jsx)(g.aQ, {
+                                                          fallback: (0, s.jsx)(
+                                                              g.cy,
+                                                              {
+                                                                  disabled:
+                                                                      !i ||
+                                                                      b.isAdvertShown,
+                                                                  isLiked: r,
+                                                                  onClick: o,
+                                                                  iconSize:
+                                                                      "xs",
+                                                              },
+                                                          ),
+                                                      }),
+                                                (0, s.jsx)(I.$u, {
+                                                    className: (0, c.$)(
+                                                        aa().sonataControls,
+                                                        aa().important,
+                                                    ),
+                                                    withRepeat: !0,
+                                                    withShuffle: !0,
+                                                    isMobile: !1,
+                                                    entityMeta: i,
+                                                }),
+                                                window.SHOW_DISLIKE_BUTTON()
+                                                    ? (0, s.jsx)(g.aQ, {
+                                                          fallback: (0, s.jsx)(
+                                                              g.cy,
+                                                              {
+                                                                  disabled:
+                                                                      !i ||
+                                                                      b.isAdvertShown,
+                                                                  isLiked: r,
+                                                                  onClick: o,
+                                                                  iconSize:
+                                                                      "xs",
+                                                              },
+                                                          ),
+                                                      })
+                                                    : (0, s.jsx)(g.aQ, {
+                                                          fallback: (0, s.jsx)(
+                                                              g._I,
+                                                              {
+                                                                  disabled:
+                                                                      !i ||
+                                                                      b.isAdvertShown,
+                                                                  isDisliked: l,
+                                                                  onClick: d,
+                                                                  iconSize:
+                                                                      "xs",
+                                                              },
+                                                          ),
+                                                      }),
+                                                isRemoteDeviceConnected &&
+                                                    (0, s.jsxs)("div", {
+                                                        style: {
+                                                            position:
+                                                                "absolute",
+                                                            bottom: 0,
+                                                            color: "var(--ym-controls-color-primary-default-enabled)",
+                                                            "font-size":
+                                                                "small",
+                                                        },
+                                                        children: [
+                                                            (0, s.jsxs)(
+                                                                "span",
+                                                                {
+                                                                    children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                                                                },
+                                                            ),
+                                                        ],
+                                                    }),
+                                            ],
+                                        }),
+                                        (0, s.jsxs)("div", {
+                                            className: aa().meta,
+                                            children: [
+                                                !h.isGenerativeContext &&
+                                                    !b.isAdvertShown &&
+                                                    (0, s.jsxs)(s.Fragment, {
+                                                        children: [
+                                                            j &&
+                                                                (0, s.jsx)(
+                                                                    g.ig,
+                                                                    {
+                                                                        iconSize:
+                                                                            "l",
+                                                                    },
+                                                                ),
+                                                            Y,
+                                                            $,
+                                                            (0, s.jsx)(g.hj, {
+                                                                title: "Скачать трек в файл",
+                                                                description:
+                                                                    window
+                                                                        ?.DEVICE_INFO
+                                                                        ?.os ===
+                                                                    "win32"
+                                                                        ? i?.id
+                                                                            ? "Скачать трек в читаемый файл на вашем ПК"
+                                                                            : "Не удалось получить данные о треке"
+                                                                        : "Пока не доступно на вашей OS",
+                                                                children: (0,
+                                                                s.jsxs)(
+                                                                    "button",
+                                                                    {
+                                                                        disabled:
+                                                                            !i?.id ||
+                                                                            window
+                                                                                ?.DEVICE_INFO
+                                                                                ?.os !==
+                                                                                "win32",
+                                                                        className: `cpeagBA1_PblpJn8Xgtv UDMYhpDjiAFT3xUx268O ${
+                                                                            !i?.id ||
+                                                                            window
+                                                                                ?.DEVICE_INFO
+                                                                                ?.os !==
+                                                                                "win32"
+                                                                                ? ""
+                                                                                : "HbaqudSqu7Q3mv3zMPGr"
+                                                                        } qU2apWBO1yyEK0lZ3lPO`,
+                                                                        style: {
+                                                                            display:
+                                                                                "flex",
+                                                                            "flex-direction":
+                                                                                "column",
+                                                                            gap: "2px",
+                                                                            "align-self":
+                                                                                "center",
+                                                                            "padding-top":
+                                                                                "5px",
+                                                                            "padding-inline":
+                                                                                "2px",
+                                                                        },
+                                                                        children:
+                                                                            [
+                                                                                (0,
+                                                                                s.jsxs)(
+                                                                                    "span",
+                                                                                    {
+                                                                                        className:
+                                                                                            "JjlbHZ4FaP9EAcR_1DxF",
+                                                                                        children:
+                                                                                            (0,
+                                                                                            s.jsx)(
+                                                                                                D.Icon,
+                                                                                                {
+                                                                                                    variant:
+                                                                                                        "download",
+                                                                                                    size: "xxs",
+                                                                                                    style: {
+                                                                                                        width: "24px",
+                                                                                                        height: "24px",
+                                                                                                    },
+                                                                                                },
+                                                                                            ),
+                                                                                    },
+                                                                                ),
+                                                                                (0,
+                                                                                s.jsxs)(
+                                                                                    "div",
+                                                                                    {
+                                                                                        style: {
+                                                                                            "background-color":
+                                                                                                "var(--ym-controls-color-secondary-text-enabled)",
+                                                                                            width: `${downloadProgress === -100 ? 0 : downloadProgress}%`,
+                                                                                            transition:
+                                                                                                downloadProgress >=
+                                                                                                    0 &&
+                                                                                                downloadProgress <
+                                                                                                    100
+                                                                                                    ? "width 0.3s"
+                                                                                                    : "width 0.3s, opacity 0.3s linear 0.5s",
+                                                                                            opacity:
+                                                                                                downloadProgress >=
+                                                                                                    0 &&
+                                                                                                downloadProgress <
+                                                                                                    100
+                                                                                                    ? "1"
+                                                                                                    : "0",
+                                                                                            height: "2px",
+                                                                                            "border-radius":
+                                                                                                "10px",
+                                                                                        },
+                                                                                    },
+                                                                                ),
+                                                                            ],
+                                                                        onClick:
+                                                                            onDownloadClick,
+                                                                    },
+                                                                ),
+                                                            }),
+                                                            (0, s.jsx)(g.hj, {
+                                                                title: "Качество трека",
+                                                                description:
+                                                                    downloadInfo?.quality
+                                                                        ? `${qualityMap[downloadInfo?.quality]}: ${codecMap[downloadInfo?.codec]}` +
+                                                                          (downloadInfo?.bitrate
+                                                                              ? `-${downloadInfo?.bitrate}`
+                                                                              : "") +
+                                                                          (downloadInfo?.codec !==
+                                                                              "mp3" &&
+                                                                          realBitrate
+                                                                              ? ` ${realBitrate} kbps`
+                                                                              : "")
+                                                                        : "Не удалось получить качество трека",
+                                                                children: (0,
+                                                                s.jsxs)("div", {
+                                                                    className:
+                                                                        "cpeagBA1_PblpJn8Xgtv HbaqudSqu7Q3mv3zMPGr",
+                                                                    children:
+                                                                        (0,
+                                                                        s.jsx)(
+                                                                            tM,
+                                                                            {
+                                                                                placement:
+                                                                                    "bottom",
+                                                                                open: N,
+                                                                                onOpenChange:
+                                                                                    S,
+                                                                                icon: (
+                                                                                    window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                                                                        ? codecMap[
+                                                                                            downloadInfo
+                                                                                                ?.codec
+                                                                                            ]
+                                                                                        : qualityMap[
+                                                                                            downloadInfo
+                                                                                                ?.quality
+                                                                                            ]
+                                                                                )
+                                                                                    ? (0,
+                                                                                        s.jsxs)(
+                                                                                        "span",
+                                                                                        {
+                                                                                            className:
+                                                                                            aa()
+                                                                                                .settingsButton,
+                                                                                            style: {
+                                                                                                width: "auto",
+                                                                                                height: "auto",
+                                                                                                "align-content":
+                                                                                                    "center",
+                                                                                            },
+                                                                                            children:
+                                                                                                (window?.SHOW_CODEC_INSTEAD_OF_QUALITY_MARK()
+                                                                                                    ? codecMap[
+                                                                                                        downloadInfo
+                                                                                                            ?.codec
+                                                                                                        ]
+                                                                                                    : qualityMap[
+                                                                                                        downloadInfo
+                                                                                                            ?.quality
+                                                                                                        ]) ??
+                                                                                                "NONE",
+                                                                                        },
+                                                                                    )
+                                                                                    : (0,
+                                                                                s.jsx)(
+                                                                                    D.Icon,
+                                                                                    {
+                                                                                        variant:
+                                                                                            "settings",
+                                                                                        size: "xs",
+                                                                                    },
+                                                                                ),
+                                                                                size: "xxxs",
+                                                                                referenceClassName:
+                                                                                    aa()
+                                                                                        .settingsButton,
+                                                                            },
+                                                                        ),
+                                                                }),
+                                                            }),
+                                                        ],
+                                                    }),
+                                                (0, s.jsx)(t4.r, {
+                                                    variant: t4.q.VERTICAL,
+                                                    sonataVolume: h.volume,
+                                                    onVolumeSet: U,
+                                                    onVolumeClick: F,
+                                                }),
+                                            ],
+                                        }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                    })
+                );
             });
             var an = a(91342),
                 ar = a(97831),

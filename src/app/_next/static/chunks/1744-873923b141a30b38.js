@@ -1313,7 +1313,13 @@
                     { notify: u } = (0, l.lkh)(),
                     { formatMessage: d } = (0, n.A)(),
                     c = (0, o.f)();
-                return (0, a.c)(async () => {
+                return (0, a.c)(async (newE, actionSubtype) => {
+                    e = newE?.toggleLike ? newE : e;
+                    if (actionSubtype) {
+                        if (actionSubtype === 'LIKE' && e.isLiked) return;
+                        if (actionSubtype === 'LIKE_NONE' && !e.isLiked) return;
+                    }
+
                     if (!e) return;
                     let n = i.modal.isOpened
                             ? l.uQT.FULLSCREEN_INFO
@@ -1629,7 +1635,12 @@
                     [y, f] = (0, a.useState)(!1),
                     { formatMessage: h } = (0, l.A)(),
                     I = (0, v.b)(e);
-                return (0, d.c)(async () => {
+                return (0, d.c)(async (newE, actionSubtype) => {
+                    e = newE?.toggleDislike ? newE : e;
+                    if (actionSubtype) {
+                        if (actionSubtype === 'DISLIKE' && e.isDisliked) return;
+                        if (actionSubtype === 'DISLIKE_NONE' && !e.isDisliked) return;
+                    }
                     if (e) {
                         let l = i.modal.isOpened
                                 ? c.uQT.FULLSCREEN_INFO

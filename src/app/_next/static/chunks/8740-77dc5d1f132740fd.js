@@ -4116,6 +4116,9 @@
                         children:
                             d ||
                             (0, n.jsx)(l.Caption, {
+                                style: {
+                                    'display': "block"
+                                },
                                 variant: "div",
                                 size: "l",
                                 lineClamp: 1,
@@ -35469,6 +35472,25 @@
                         x = (0, a.useRef)(null),
                         p = (0, a.useRef)(null),
                         _ = i.overwrittenExperiments,
+                        nameInputRef = (0, a.useRef)(null),
+                        groupInputRef = (0, a.useRef)(null),
+                        handlePaste = (0, a.useCallback)((e) => {
+                            const paste = (e.clipboardData || window.clipboardData).getData("text");
+                            const match = paste.match(/^(.+?):\s?(.+)$/);
+
+                            if (match) {
+                                e.preventDefault();
+
+                                const [, name, group] = match;
+
+                                if (nameInputRef.current) {
+                                    nameInputRef.current.value = name.trim();
+                                }
+                                if (groupInputRef.current) {
+                                    groupInputRef.current.value = group.trim();
+                                }
+                            }
+                        }, []),
                         m = (0, a.useCallback)(
                             (e) => {
                                 var t, r, n;
@@ -35523,6 +35545,7 @@
                         ref: x,
                         children: [
                             (0, n.jsx)(k.p, {
+                                ref: nameInputRef,
                                 containerClassName: w().overrideInput,
                                 type: "text",
                                 name: "name",
@@ -35532,12 +35555,14 @@
                                 readOnly: r,
                             }),
                             (0, n.jsx)(k.p, {
+                                ref: groupInputRef,
                                 containerClassName: w().overrideInput,
                                 type: "text",
                                 name: "group",
                                 placeholder: "Experiment group",
                                 required: !0,
                                 defaultValue: t.value.group,
+                                onPaste: handlePaste,
                             }),
                             (0, n.jsx)(k.p, {
                                 ref: p,

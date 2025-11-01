@@ -1,6 +1,6 @@
 .AboutAppModal_root__yBvgU {
     height: 100%;
-    max-height: 28.125rem;
+    max-height: 35.438rem;
     max-width: 26.875rem;
     overflow: hidden;
     width: 100%;
@@ -208,9 +208,19 @@
 }
 .SettingsListToggleItem_title__Xz8_Q {
     color: var(--ym-controls-color-primary-text-enabled_variant);
+    transition: color var(--ym-duration-transition);
 }
 .SettingsListToggleItem_description__JBOzV {
     color: var(--ym-controls-color-primary-text-enabled);
+    transition: color var(--ym-duration-transition);
+}
+.SettingsListToggleItem_title__Xz8_Q_disabled {
+    color: var(--ym-controls-color-primary-text-disabled);
+    transition: color var(--ym-duration-transition);
+}
+.SettingsListToggleItem_description__JBOzV_disabled {
+    color: var(--ym-controls-color-primary-text-disabled);
+    transition: color var(--ym-duration-transition);
 }
 .ShortcutsModal_root__ro7m4 {
     height: 100%;
@@ -320,6 +330,9 @@
 }
 .Settings_item__Ksa9h {
     padding-block-end: var(--ym-spacer-size-xxxl);
+}
+.Settings_item__Ksa9h:last-child {
+    padding-block-end: 0;
 }
 .SettingsPage_root__BB4lC {
     padding: 0;
