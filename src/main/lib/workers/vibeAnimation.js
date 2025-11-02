@@ -2718,8 +2718,7 @@
         updateEnergy(t) {
             this.energy.update(t);
         }
-        updateTestEnergy(t) {
-            workerLog(`Updating energy to ${t}`);
+        updateNewEnergy(t) {
             this.energy.targetValue = t;
         }
         updateReactTop(t) {
@@ -2934,7 +2933,7 @@
             }
             case t.UPDATE_ENERGY: {
                 const t = e.data.payload;
-                mt?.uniforms?.updateTestEnergy(t);
+                mt?.uniforms?.updateNewEnergy(t);
                 break;
             }
             case t.ENABLE:

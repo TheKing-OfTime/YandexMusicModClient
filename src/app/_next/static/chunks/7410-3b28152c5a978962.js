@@ -1,0 +1,1627 @@
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [7410],
+    {
+        320: (e, t, a) => {
+            "use strict";
+            a.d(t, { GenrePlaylistsPage: () => T });
+            var l = a(33008),
+                s = a(85896),
+                i = a(97531),
+                r = a(17846),
+                n = a(66268),
+                o = a(73827),
+                u = a(18064),
+                d = a(77868),
+                g = a(83888),
+                c = a(64143),
+                m = a(45242),
+                p = a(79169),
+                y = a(18740),
+                f = a(83879),
+                N = a(63021),
+                h = a(25911),
+                S = a(88937),
+                P = a.n(S);
+            let T = (0, i.PA)((e) => {
+                var t, a, i;
+                let { metatagId: S, preloadedMeta: T } = e,
+                    {
+                        genre: { playlistsSubpage: _ },
+                        settings: { isMobile: b },
+                    } = (0, p.Pjs)(),
+                    { formatMessage: E } = (0, o.A)(),
+                    { contentScrollRef: C, setContentScrollRef: A } = (0,
+                    p.gKY)(),
+                    L = (0, p.W6M)(),
+                    G = (0, n.useCallback)(
+                        (e) => {
+                            S &&
+                                _.getData({
+                                    metatagId: S,
+                                    page: e,
+                                    pageSize: f.c,
+                                });
+                        },
+                        [_, S],
+                    );
+                (0, n.useEffect)(
+                    () => () => {
+                        _.reset();
+                    },
+                    [_],
+                ),
+                    _.isNotFound && (0, r.notFound)(),
+                    (0, p.Jzs)(_.isResolved),
+                    ((e) => {
+                        (0, n.useEffect)(() => {
+                            if (!e) return;
+                            let t = ((e) => {
+                                var t, a, l;
+                                return {
+                                    id: "",
+                                    title: {
+                                        title: "",
+                                        fullTitle: e.fullTitle || "",
+                                    },
+                                    playlists: e.items.map(h.Ji),
+                                    pager: {
+                                        page:
+                                            (null == (t = e.pager)
+                                                ? void 0
+                                                : t.page) || 0,
+                                        perPage:
+                                            (null == (a = e.pager)
+                                                ? void 0
+                                                : a.perPage) || 0,
+                                        total:
+                                            (null == (l = e.pager)
+                                                ? void 0
+                                                : l.total) || 0,
+                                    },
+                                };
+                            })(e);
+                            (0, N.H)(t, {
+                                fullUrl: null,
+                                locale: null,
+                                url: null,
+                                tld: "",
+                                host: "",
+                            }).then((e) => {
+                                (0, p.jxB)(e);
+                            });
+                        }, [e]);
+                    })(_);
+                let R = (0, n.useMemo)(
+                    () => ({
+                        Footer: () =>
+                            (0, l.jsx)(y.A, {
+                                children: (0, l.jsx)(y.wi, {
+                                    className: P().footer,
+                                }),
+                            }),
+                    }),
+                    [],
+                );
+                return (S &&
+                    _.isNeededToLoad &&
+                    (0, n.use)(
+                        _.getData({
+                            preloadedMeta: T,
+                            metatagId: S,
+                            page: 0,
+                            pageSize: f.c,
+                        }),
+                    ),
+                _.isSomethingWrong)
+                    ? (0, l.jsx)(g.w, {})
+                    : (0, l.jsx)(p.nVz, {
+                          pageId: p._Q$.GENRE_PLAYLISTS,
+                          children: (0, l.jsx)(c.hO, {
+                              scrollElement: C,
+                              outerTitle: _.fullTitle,
+                              children: (0, l.jsxs)("div", {
+                                  className: P().root,
+                                  ...(0, u.Am)(u.Xk.genre.GENRE_PLAYLISTS_PAGE),
+                                  children: [
+                                      (0, l.jsx)(y.Y9, {
+                                          variant: y.Vw.TEXT,
+                                          withForwardControl: !1,
+                                          withBackwardControl: L.canBack,
+                                          children: (0, l.jsx)(d.Heading, {
+                                              variant: "h2",
+                                              weight: "bold",
+                                              size: "xl",
+                                              lineClamp: 1,
+                                              children: _.fullTitle,
+                                          }),
+                                      }),
+                                      (0, l.jsx)(y.$$, {
+                                          className: (0, s.$)(
+                                              P().scrollContainer,
+                                              P().important,
+                                          ),
+                                          customComponents: R,
+                                          itemContentCallback: (e) => {
+                                              var t;
+                                              let a =
+                                                      null == _ ||
+                                                      null == (t = _.items)
+                                                          ? void 0
+                                                          : t[e],
+                                                  s = E(
+                                                      {
+                                                          id: "loading-messages.entity-is-loading",
+                                                      },
+                                                      {
+                                                          entityName: E({
+                                                              id: "entity-names.playlist",
+                                                          }),
+                                                      },
+                                                  );
+                                              return a
+                                                  ? (0, l.jsx)(
+                                                        m.B6,
+                                                        {
+                                                            playlist: a,
+                                                            contentLinesCount: 3,
+                                                        },
+                                                        a.key,
+                                                    )
+                                                  : (0, l.jsx)(y.Vt, {
+                                                        "aria-label": s,
+                                                    });
+                                          },
+                                          totalCount:
+                                              null !=
+                                              (a =
+                                                  null == _ ||
+                                                  null == (t = _.pager)
+                                                      ? void 0
+                                                      : t.total)
+                                                  ? a
+                                                  : 0,
+                                          onGetDataByPage: G,
+                                          pageSize: f.c,
+                                          totalRequests:
+                                              null != (i = _.requests) ? i : 0,
+                                          listClassName: P().content,
+                                          itemClassName: P().item,
+                                          handleRef: A,
+                                          context: {
+                                              listAriaLabel: E(
+                                                  {
+                                                      id: "mixes.playlists-list",
+                                                  },
+                                                  {
+                                                      genreName:
+                                                          _.fullTitle || "",
+                                                  },
+                                              ),
+                                          },
+                                          isMobileLayout: b,
+                                          useWindowScroll: b,
+                                      }),
+                                  ],
+                              }),
+                          }),
+                      });
+            });
+        },
+        7473: (e) => {
+            e.exports = {
+                root: "GenrePage_root___kL_v",
+                content: "GenrePage_content__NRwAJ",
+                shimmerTitle: "GenrePage_shimmerTitle__hrgjK",
+                carouselBlocks: "GenrePage_carouselBlocks__kR63B",
+                carouselBlock: "GenrePage_carouselBlock__QCkpK",
+                carouselBlockHeader: "GenrePage_carouselBlockHeader__u12sn",
+            };
+        },
+        10456: (e, t, a) => {
+            "use strict";
+            a.d(t, { g: () => r });
+            var l = a(79169),
+                s = a(95119),
+                i = a(49124);
+            async function r(e, t) {
+                let { locale: a, fullUrl: r, url: n, tld: o, host: u } = t,
+                    d = await (0, l.WGy)(a),
+                    g = e.title.fullTitle,
+                    c = d({ id: "metadata.genre-title" }, { genreTitle: g }),
+                    m = (0, s.f)({ genreTitle: g, messageFormatter: d }),
+                    p = i.env.ASSET_PREFIX || "",
+                    y = "".concat(u).concat(p, "/meta/og-image.png");
+                return {
+                    title: c,
+                    description: m,
+                    openGraph: (0, l.i$E)({
+                        ogTitle: (0, l.NsT)(g),
+                        ogDescription: m,
+                        fullUrl: null != r ? r : "",
+                        locale: a,
+                        siteName: d({ id: "metadata.yandex-music" }),
+                        ogImage: y,
+                    }),
+                    twitter: (0, l.HRN)({
+                        cardType: l.WfF.APP,
+                        title: c,
+                        url: null != n ? n : "",
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, l.X5i)({
+                        additional: {
+                            tld: o,
+                            url: null != n ? n : "",
+                            fullUrl: null != r ? r : "",
+                            host: u,
+                        },
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, l.SEs)("/genre/:metatagId/albums", t.tld, {
+                        params: { metatagId: e.id },
+                    }),
+                };
+            }
+        },
+        21682: (e, t, a) => {
+            "use strict";
+            a.d(t, { i: () => r });
+            var l = a(79169),
+                s = a(95119),
+                i = a(49124);
+            async function r(e, t) {
+                let { locale: a, fullUrl: r, url: n, tld: o, host: u } = t,
+                    d = await (0, l.WGy)(a),
+                    g = e.title.fullTitle,
+                    c = d({ id: "metadata.genre-title" }, { genreTitle: g }),
+                    m = "artists" in e ? e.artists : void 0,
+                    p = (0, s.f)({
+                        genreTitle: g,
+                        artists: m,
+                        messageFormatter: d,
+                    }),
+                    y = i.env.ASSET_PREFIX || "",
+                    f = "".concat(u).concat(y, "/meta/og-image.png");
+                return {
+                    title: c,
+                    description: p,
+                    openGraph: (0, l.i$E)({
+                        ogTitle: (0, l.NsT)(g),
+                        ogDescription: p,
+                        fullUrl: null != r ? r : "",
+                        locale: a,
+                        siteName: d({ id: "metadata.yandex-music" }),
+                        ogImage: f,
+                    }),
+                    twitter: (0, l.HRN)({
+                        cardType: l.WfF.APP,
+                        title: c,
+                        url: null != n ? n : "",
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, l.X5i)({
+                        additional: {
+                            tld: o,
+                            url: null != n ? n : "",
+                            fullUrl: null != r ? r : "",
+                            host: u,
+                        },
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, l.SEs)("/genre/:metatagId/artists", t.tld, {
+                        params: { metatagId: e.id },
+                    }),
+                };
+            }
+        },
+        30357: (e) => {
+            e.exports = {
+                root: "GenreAlbumsPage_root__r_Sts",
+                scrollContainer: "GenreAlbumsPage_scrollContainer__K_v_b",
+                important: "GenreAlbumsPage_important__r3P2T",
+                footer: "GenreAlbumsPage_footer__vmCiR",
+                item: "GenreAlbumsPage_item__zRzB0",
+                content: "GenreAlbumsPage_content__PRJUm",
+            };
+        },
+        53628: (e, t, a) => {
+            "use strict";
+            a.d(t, { GenreArtistsPage: () => b });
+            var l = a(33008),
+                s = a(97531),
+                i = a(17846),
+                r = a(66268),
+                n = a(73827),
+                o = a(18064),
+                u = a(42213),
+                d = a(57747),
+                g = a(77868),
+                c = a(83888),
+                m = a(90317),
+                p = a(64143),
+                y = a(95227),
+                f = a(79169),
+                N = a(18740),
+                h = a(83879),
+                S = a(21682),
+                P = a(70879),
+                T = a(87636),
+                _ = a.n(T);
+            let b = (0, s.PA)((e) => {
+                let { metatagId: t, preloadedMeta: a } = e,
+                    {
+                        genre: { artistsSubpage: s },
+                    } = (0, f.Pjs)(),
+                    { formatMessage: T } = (0, n.A)(),
+                    { contentScrollRef: b, setContentScrollRef: E } = (0,
+                    f.gKY)(),
+                    C = (0, f.W6M)(),
+                    A = (0, u.c)(() => 315),
+                    L = (0, u.c)(() => {
+                        var e;
+                        return !s.isShimmerVisible &&
+                            (null == (e = s.pagesLoader.pager)
+                                ? void 0
+                                : e.total)
+                            ? s.pagesLoader.pager.total
+                            : 30;
+                    }),
+                    G = (0, r.useCallback)(
+                        (e) => {
+                            t &&
+                                s.getData({
+                                    metatagId: t,
+                                    page: e,
+                                    pageSize: h.c,
+                                });
+                        },
+                        [s, t],
+                    ),
+                    R = (0, f.ws4)({ pageSize: h.c, callback: G });
+                (0, f.XcE)(s.pagesLoader, G);
+                let v = (0, u.c)((e) => {
+                    let t = s.items[e],
+                        a = T(
+                            { id: "loading-messages.entity-is-loading" },
+                            { entityName: T({ id: "entity-names.artist" }) },
+                        );
+                    return t
+                        ? (0, l.jsx)(
+                              m.ao,
+                              { artist: t, contentLinesCount: 3 },
+                              t.id,
+                          )
+                        : (0, l.jsx)(N.Vt, {
+                              "aria-label": a,
+                              round: !0,
+                              centered: !0,
+                          });
+                });
+                return ((0, r.useEffect)(
+                    () => () => {
+                        s.reset();
+                    },
+                    [s],
+                ),
+                s.isNotFound && (0, i.notFound)(),
+                (0, f.Jzs)(s.isResolved),
+                ((e) => {
+                    (0, r.useEffect)(() => {
+                        if (!e) return;
+                        let t = ((e) => {
+                            var t, a, l;
+                            return {
+                                id: "",
+                                title: {
+                                    title: "",
+                                    fullTitle: e.fullTitle || "",
+                                },
+                                artists: e.items.map((e) => ({
+                                    artist: (0, P.NE)(e),
+                                    popularTracks: [],
+                                })),
+                                pager: {
+                                    page:
+                                        (null == (t = e.pagesLoader.pager)
+                                            ? void 0
+                                            : t.page) || 0,
+                                    perPage:
+                                        (null == (a = e.pagesLoader.pager)
+                                            ? void 0
+                                            : a.perPage) || 0,
+                                    total:
+                                        (null == (l = e.pagesLoader.pager)
+                                            ? void 0
+                                            : l.total) || 0,
+                                },
+                            };
+                        })(e);
+                        (0, S.i)(t, {
+                            fullUrl: null,
+                            locale: null,
+                            url: null,
+                            tld: "",
+                            host: "",
+                        }).then((e) => {
+                            (0, f.jxB)(e);
+                        });
+                    }, [e]);
+                })(s),
+                t &&
+                    s.isNeededToLoad &&
+                    (0, r.use)(
+                        s.getData({
+                            preloadedMeta: a,
+                            metatagId: t,
+                            page: 0,
+                            pageSize: h.c,
+                        }),
+                    ),
+                s.isSomethingWrong)
+                    ? (0, l.jsx)(c.w, {})
+                    : (0, l.jsx)(f.nVz, {
+                          pageId: f._Q$.GENRE_ARTISTS,
+                          children: (0, l.jsx)(p.hO, {
+                              scrollElement: b,
+                              outerTitle: s.fullTitle,
+                              children: (0, l.jsxs)("div", {
+                                  className: _().root,
+                                  ...(0, o.Am)(o.Xk.genre.GENRE_ARTISTS_PAGE),
+                                  children: [
+                                      (0, l.jsx)(N.Y9, {
+                                          variant: N.Vw.TEXT,
+                                          withForwardControl: !1,
+                                          withBackwardControl: C.canBack,
+                                          children: (0, l.jsx)(g.Heading, {
+                                              variant: "h2",
+                                              weight: "bold",
+                                              size: "xl",
+                                              lineClamp: 1,
+                                              children: s.fullTitle,
+                                          }),
+                                      }),
+                                      (0, l.jsxs)(d.N, {
+                                          ref: E,
+                                          className: _().root,
+                                          containerClassName: _().container,
+                                          children: [
+                                              (0, l.jsx)(y.Q$, {
+                                                  maxColumnCount: 7,
+                                                  count: L(),
+                                                  rowGap: 16,
+                                                  columnGap: 16,
+                                                  getEstimateRowSize: A,
+                                                  minColumnWidth: 170,
+                                                  maxColumnWidth: 270,
+                                                  onChangeRange: R,
+                                                  renderItemByIndex: v,
+                                              }),
+                                              (0, l.jsx)(N.A, {
+                                                  children: (0, l.jsx)(N.wi, {
+                                                      className: _().footer,
+                                                  }),
+                                              }),
+                                          ],
+                                      }),
+                                  ],
+                              }),
+                          }),
+                      });
+            });
+        },
+        58024: (e, t, a) => {
+            "use strict";
+            a.d(t, { M: () => r });
+            var l = a(79169),
+                s = a(95119),
+                i = a(49124);
+            async function r(e, t) {
+                let { locale: a, fullUrl: r, url: n, tld: o, host: u } = t,
+                    d = await (0, l.WGy)(a),
+                    g = e.title.fullTitle,
+                    c = d({ id: "metadata.genre-title" }, { genreTitle: g }),
+                    m = "artists" in e ? e.artists : void 0,
+                    p = (0, s.f)({
+                        genreTitle: g,
+                        artists: m,
+                        messageFormatter: d,
+                    }),
+                    y = i.env.ASSET_PREFIX || "",
+                    f = "".concat(u).concat(y, "/meta/og-image.png");
+                return {
+                    title: c,
+                    description: p,
+                    openGraph: (0, l.i$E)({
+                        ogTitle: (0, l.NsT)(g),
+                        ogDescription: p,
+                        fullUrl: null != r ? r : "",
+                        locale: a,
+                        siteName: d({ id: "metadata.yandex-music" }),
+                        ogImage: f,
+                    }),
+                    twitter: (0, l.HRN)({
+                        cardType: l.WfF.APP,
+                        title: c,
+                        url: null != n ? n : "",
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, l.X5i)({
+                        additional: {
+                            tld: o,
+                            url: null != n ? n : "",
+                            fullUrl: null != r ? r : "",
+                            host: u,
+                        },
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, l.SEs)("/genre/:metatagId", t.tld, {
+                        params: { metatagId: e.id },
+                    }),
+                };
+            }
+        },
+        63021: (e, t, a) => {
+            "use strict";
+            a.d(t, { H: () => r });
+            var l = a(79169),
+                s = a(95119),
+                i = a(49124);
+            async function r(e, t) {
+                let { locale: a, fullUrl: r, url: n, tld: o, host: u } = t,
+                    d = await (0, l.WGy)(a),
+                    g = e.title.fullTitle,
+                    c = d({ id: "metadata.genre-title" }, { genreTitle: g }),
+                    m = (0, s.f)({ genreTitle: g, messageFormatter: d }),
+                    p = i.env.ASSET_PREFIX || "",
+                    y = "".concat(u).concat(p, "/meta/og-image.png");
+                return {
+                    title: c,
+                    description: m,
+                    openGraph: (0, l.i$E)({
+                        ogTitle: (0, l.NsT)(g),
+                        ogDescription: m,
+                        fullUrl: null != r ? r : "",
+                        locale: a,
+                        siteName: d({ id: "metadata.yandex-music" }),
+                        ogImage: y,
+                    }),
+                    twitter: (0, l.HRN)({
+                        cardType: l.WfF.APP,
+                        title: c,
+                        url: null != n ? n : "",
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    appLinks: (0, l.X5i)({
+                        additional: {
+                            tld: o,
+                            url: null != n ? n : "",
+                            fullUrl: null != r ? r : "",
+                            host: u,
+                        },
+                        appName: d({ id: "metadata.yandex-music" }),
+                    }),
+                    alternates: (0, l.SEs)(
+                        "/genre/:metatagId/playlists",
+                        t.tld,
+                        { params: { metatagId: e.id } },
+                    ),
+                };
+            }
+        },
+        74543: (e, t, a) => {
+            "use strict";
+            a.d(t, { GenreAlbumsPage: () => P });
+            var l = a(33008),
+                s = a(85896),
+                i = a(97531),
+                r = a(17846),
+                n = a(66268),
+                o = a(73827),
+                u = a(18064),
+                d = a(77868),
+                g = a(83888),
+                c = a(52732),
+                m = a(64143),
+                p = a(79169),
+                y = a(18740),
+                f = a(83879),
+                N = a(10456),
+                h = a(30357),
+                S = a.n(h);
+            let P = (0, i.PA)((e) => {
+                var t, a, i;
+                let { metatagId: h, preloadedMeta: P } = e,
+                    {
+                        genre: { albumsSubpage: T },
+                        settings: { isMobile: _ },
+                    } = (0, p.Pjs)(),
+                    { formatMessage: b } = (0, o.A)(),
+                    { contentScrollRef: E, setContentScrollRef: C } = (0,
+                    p.gKY)(),
+                    A = (0, p.W6M)(),
+                    L = (0, n.useCallback)(
+                        (e) => {
+                            h &&
+                                T.getData({
+                                    metatagId: h,
+                                    page: e,
+                                    pageSize: f.c,
+                                });
+                        },
+                        [T, h],
+                    );
+                (0, n.useEffect)(
+                    () => () => {
+                        T.reset();
+                    },
+                    [T],
+                ),
+                    T.isNotFound && (0, r.notFound)(),
+                    (0, p.Jzs)(T.isNeededToLoad),
+                    ((e) => {
+                        (0, n.useEffect)(() => {
+                            if (!e) return;
+                            let t = ((e) => {
+                                var t, a, l;
+                                return {
+                                    id: "",
+                                    title: {
+                                        title: "",
+                                        fullTitle: e.fullTitle || "",
+                                    },
+                                    albums: e.items.map(c.fO),
+                                    pager: {
+                                        page:
+                                            (null == (t = e.pager)
+                                                ? void 0
+                                                : t.page) || 0,
+                                        perPage:
+                                            (null == (a = e.pager)
+                                                ? void 0
+                                                : a.perPage) || 0,
+                                        total:
+                                            (null == (l = e.pager)
+                                                ? void 0
+                                                : l.total) || 0,
+                                    },
+                                };
+                            })(e);
+                            (0, N.g)(t, {
+                                fullUrl: null,
+                                locale: null,
+                                url: null,
+                                tld: "",
+                                host: "",
+                            }).then((e) => {
+                                (0, p.jxB)(e);
+                            });
+                        }, [e]);
+                    })(T);
+                let G = (0, n.useMemo)(
+                    () => ({
+                        Footer: () =>
+                            (0, l.jsx)(y.A, {
+                                children: (0, l.jsx)(y.wi, {
+                                    className: S().footer,
+                                }),
+                            }),
+                    }),
+                    [],
+                );
+                return (h &&
+                    T.isNeededToLoad &&
+                    (0, n.use)(
+                        T.getData({
+                            preloadedMeta: P,
+                            metatagId: h,
+                            page: 0,
+                            pageSize: f.c,
+                        }),
+                    ),
+                T.isSomethingWrong)
+                    ? (0, l.jsx)(g.w, {})
+                    : (0, l.jsx)(p.nVz, {
+                          pageId: p._Q$.GENRE_ALBUMS,
+                          children: (0, l.jsx)(m.hO, {
+                              scrollElement: E,
+                              outerTitle: T.fullTitle,
+                              children: (0, l.jsxs)("div", {
+                                  className: S().root,
+                                  ...(0, u.Am)(u.Xk.genre.GENRE_ALBUMS_PAGE),
+                                  children: [
+                                      (0, l.jsx)(y.Y9, {
+                                          variant: y.Vw.TEXT,
+                                          withForwardControl: !1,
+                                          withBackwardControl: A.canBack,
+                                          children: (0, l.jsx)(d.Heading, {
+                                              variant: "h2",
+                                              weight: "bold",
+                                              size: "xl",
+                                              lineClamp: 1,
+                                              children: T.fullTitle,
+                                          }),
+                                      }),
+                                      (0, l.jsx)(y.$$, {
+                                          className: (0, s.$)(
+                                              S().scrollContainer,
+                                              S().important,
+                                          ),
+                                          customComponents: G,
+                                          itemContentCallback: (e) => {
+                                              let t = T.items[e],
+                                                  a = b(
+                                                      {
+                                                          id: "loading-messages.entity-is-loading",
+                                                      },
+                                                      {
+                                                          entityName: b({
+                                                              id: "entity-names.album",
+                                                          }),
+                                                      },
+                                                  );
+                                              return t
+                                                  ? (0, l.jsx)(
+                                                        c.aX,
+                                                        {
+                                                            album: t,
+                                                            contentLinesCount: 4,
+                                                        },
+                                                        t.id,
+                                                    )
+                                                  : (0, l.jsx)(y.Vt, {
+                                                        "aria-label": a,
+                                                        linesCount: 4,
+                                                    });
+                                          },
+                                          totalCount:
+                                              null !=
+                                              (a =
+                                                  null == T ||
+                                                  null == (t = T.pager)
+                                                      ? void 0
+                                                      : t.total)
+                                                  ? a
+                                                  : 0,
+                                          onGetDataByPage: L,
+                                          pageSize: f.c,
+                                          totalRequests:
+                                              null != (i = T.requests) ? i : 0,
+                                          listClassName: S().content,
+                                          itemClassName: S().item,
+                                          handleRef: C,
+                                          context: {
+                                              listAriaLabel: b(
+                                                  { id: "mixes.albums-list" },
+                                                  {
+                                                      genreName:
+                                                          T.fullTitle || "",
+                                                  },
+                                              ),
+                                          },
+                                          isMobileLayout: _,
+                                          useWindowScroll: _,
+                                      }),
+                                  ],
+                              }),
+                          }),
+                      });
+            });
+        },
+        83879: (e, t, a) => {
+            "use strict";
+            a.d(t, { c: () => l });
+            let l = 30;
+        },
+        87636: (e) => {
+            e.exports = {
+                root: "GenreArtistsPage_root__PgtIz",
+                container: "GenreArtistsPage_container__NruTu",
+                footer: "GenreArtistsPage_footer__fYaCO",
+            };
+        },
+        88351: (e, t, a) => {
+            "use strict";
+            a.d(t, { GenreNotFoundPage: () => r });
+            var l = a(33008),
+                s = a(97531),
+                i = a(35233);
+            let r = (0, s.PA)(() => (0, l.jsx)(i.M, {}));
+        },
+        88937: (e) => {
+            e.exports = {
+                root: "GenrePlaylistsPage_root__WZwkl",
+                scrollContainer: "GenrePlaylistsPage_scrollContainer__N3BZw",
+                important: "GenrePlaylistsPage_important__986BX",
+                footer: "GenrePlaylistsPage_footer__aMDul",
+                item: "GenrePlaylistsPage_item__tUsqJ",
+                content: "GenrePlaylistsPage_content__2rKJY",
+            };
+        },
+        95119: (e, t, a) => {
+            "use strict";
+            function l(e) {
+                let { genreTitle: t, artists: a, messageFormatter: l } = e,
+                    s = null;
+                return (
+                    Array.isArray(a) &&
+                        (s = a
+                            .slice(0, 3)
+                            .map((e) =>
+                                "artist" in e ? e.artist.name : e.name,
+                            )
+                            .join(", ")),
+                    s
+                        ? l(
+                              { id: "metadata.genre-description" },
+                              { genreTitle: t, artistsList: s },
+                          )
+                        : l(
+                              { id: "metadata.genre-description-short" },
+                              { genreTitle: t },
+                          )
+                );
+            }
+            a.d(t, { f: () => l });
+        },
+        97410: (e, t, a) => {
+            "use strict";
+            a.d(t, {
+                Z3: () => y.GenreAlbumsPage,
+                P0: () => f.GenreArtistsPage,
+                L6: () => N.GenrePage,
+                G8: () => p,
+                ys: () => h.GenrePlaylistsPage,
+            });
+            var l = a(41028),
+                s = a(61979),
+                i = a(52732),
+                r = a(45242),
+                n = a(70879),
+                o = a(79169),
+                u = a(59615);
+            let d = l.gK
+                    .compose(
+                        l.gK.model("GenreAlbumsPage", {
+                            pager: l.gK.maybeNull(u.jd),
+                            alreadyRequestedPages: l.gK.map(l.gK.number),
+                            pendingPages: l.gK.map(l.gK.number),
+                            requests: l.gK.maybeNull(l.gK.number),
+                            errorStatusCode: l.gK.maybeNull(l.gK.number),
+                            fullTitle: l.gK.maybeNull(l.gK.string),
+                            items: l.gK.array(l.gK.maybeNull(i.JC)),
+                        }),
+                        u.XT,
+                    )
+                    .views((e) => {
+                        let t = {
+                            get isNotFound() {
+                                var a;
+                                let t =
+                                        e.isResolved &&
+                                        (null == (a = e.pager)
+                                            ? void 0
+                                            : a.total) === 0,
+                                    l =
+                                        e.errorStatusCode === s.X1.NOT_FOUND ||
+                                        e.errorStatusCode === s.X1.BAD_REQUEST;
+                                return (e.isRejected && l) || t;
+                            },
+                            get isSomethingWrong() {
+                                return e.isRejected && !t.isNotFound;
+                            },
+                        };
+                        return t;
+                    })
+                    .actions((e) => ({
+                        getData: (0, l.L3)(function* (t) {
+                            let {
+                                    metatagId: a,
+                                    page: r = 0,
+                                    pageSize: n = 20,
+                                    preloadedMeta: u,
+                                } = t,
+                                { metatagsResource: d, modelActionsLogger: g } =
+                                    (0, l._$)(e);
+                            if (
+                                !(
+                                    e.loadingState === o.GuX.PENDING &&
+                                    e.pendingPages.has("".concat(r))
+                                ) &&
+                                !e.alreadyRequestedPages.has("".concat(r))
+                            ) {
+                                "number" == typeof r &&
+                                    e.alreadyRequestedPages.set(
+                                        "".concat(r),
+                                        r,
+                                    );
+                                try {
+                                    var c;
+                                    (e.loadingState = o.GuX.PENDING),
+                                        e.pendingPages.set("".concat(r), r);
+                                    let t = u;
+                                    t ||
+                                        (t = yield d.getMetatagAlbums({
+                                            id: a,
+                                            offset: r,
+                                            limit: n,
+                                        })),
+                                        (e.fullTitle = t.title.fullTitle);
+                                    let s = {
+                                        page: r,
+                                        perPage: n,
+                                        total: t.pager.total,
+                                    };
+                                    0 === e.items.length &&
+                                        (e.items = (0, l.wg)(
+                                            Array.from(
+                                                { length: s.total },
+                                                () => null,
+                                            ),
+                                        ));
+                                    let g = t.albums.map(i.pp);
+                                    (0, o.Iyy)({
+                                        items: e.items,
+                                        mappedRawItems: g,
+                                        page: r,
+                                        pageSize: n,
+                                    }),
+                                        (e.pager = s),
+                                        (e.requests =
+                                            (null != (c = e.requests) ? c : 0) +
+                                            1),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.RESOLVE);
+                                } catch (t) {
+                                    g.error(t),
+                                        t instanceof s.GX &&
+                                            (t.statusCode === s.X1.NOT_FOUND ||
+                                                t.statusCode ===
+                                                    s.X1.BAD_REQUEST) &&
+                                            (e.errorStatusCode =
+                                                s.X1.NOT_FOUND),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.REJECT);
+                                } finally {
+                                    e.pendingPages.delete("".concat(r));
+                                }
+                            }
+                        }),
+                        reset() {
+                            (e.loadingState = o.GuX.IDLE),
+                                e.pendingPages.clear(),
+                                (e.pager = null),
+                                e.alreadyRequestedPages.clear(),
+                                (e.errorStatusCode = null),
+                                (e.items = (0, l.wg)([]));
+                        },
+                    })),
+                g = l.gK
+                    .compose(
+                        l.gK.model("GenreArtistsPage", {
+                            errorStatusCode: l.gK.maybeNull(l.gK.number),
+                            fullTitle: l.gK.maybeNull(l.gK.string),
+                            pagesLoader: (0, u.Ij)(n.PK),
+                        }),
+                        u.XT,
+                    )
+                    .views((e) => {
+                        let t = {
+                            get isNotFound() {
+                                var a;
+                                let t =
+                                        e.isResolved &&
+                                        (null == (a = e.pagesLoader.pager)
+                                            ? void 0
+                                            : a.total) === 0,
+                                    l =
+                                        e.errorStatusCode === s.X1.NOT_FOUND ||
+                                        e.errorStatusCode === s.X1.BAD_REQUEST;
+                                return (e.isRejected && l) || t;
+                            },
+                            get isSomethingWrong() {
+                                return e.isRejected && !t.isNotFound;
+                            },
+                            get isShimmerVisible() {
+                                return !e.pagesLoader.isSomePageResolved;
+                            },
+                            get isNeededToLoad() {
+                                return e.pagesLoader.isNeedToMakeInitialRequest;
+                            },
+                            get isRejected() {
+                                return e.pagesLoader.isInitialRequestRejected;
+                            },
+                            get isEmpty() {
+                                return e.pagesLoader.isEmpty;
+                            },
+                            get isResolved() {
+                                return e.pagesLoader.isSomePageResolved;
+                            },
+                            get requestsCount() {
+                                return e.pagesLoader.requestsCount;
+                            },
+                            get items() {
+                                return e.pagesLoader.items || [];
+                            },
+                        };
+                        return t;
+                    })
+                    .actions((e) => ({
+                        getData: (0, l.L3)(function* (t) {
+                            let {
+                                    metatagId: a,
+                                    page: i = 0,
+                                    pageSize: r = 20,
+                                    preloadedMeta: u,
+                                } = t,
+                                { metatagsResource: d, modelActionsLogger: g } =
+                                    (0, l._$)(e);
+                            if (e.pagesLoader.isPageNeedToLoad(i))
+                                try {
+                                    e.pagesLoader.setPageState(
+                                        i,
+                                        o.GuX.PENDING,
+                                    );
+                                    let t = u;
+                                    t ||
+                                        (t = yield d.getMetatagArtists({
+                                            id: a,
+                                            offset: i,
+                                            limit: r,
+                                            period: "week",
+                                        })),
+                                        (e.fullTitle = t.title.fullTitle);
+                                    let l = t.artists.map((e) =>
+                                        (0, n.dM)(e.artist),
+                                    );
+                                    e.pagesLoader.setItems(l, {
+                                        page: i,
+                                        pager: t.pager,
+                                    });
+                                } catch (t) {
+                                    g.error(t),
+                                        t instanceof s.GX &&
+                                            (t.statusCode === s.X1.NOT_FOUND ||
+                                                t.statusCode ===
+                                                    s.X1.BAD_REQUEST) &&
+                                            (e.errorStatusCode =
+                                                s.X1.NOT_FOUND),
+                                        e.pagesLoader.setItems(null, {
+                                            responseStatus: o.FlZ.ERROR,
+                                            page: i,
+                                        });
+                                }
+                        }),
+                        reset() {
+                            (e.errorStatusCode = null), e.pagesLoader.reset();
+                        },
+                    }));
+            var c = a(25911);
+            let m = l.gK
+                    .compose(
+                        l.gK.model("GenrePlaylistsPage", {
+                            pager: l.gK.maybeNull(u.jd),
+                            alreadyRequestedPages: l.gK.map(l.gK.number),
+                            pendingPages: l.gK.map(l.gK.number),
+                            requests: l.gK.maybeNull(l.gK.number),
+                            errorStatusCode: l.gK.maybeNull(l.gK.number),
+                            fullTitle: l.gK.maybeNull(l.gK.string),
+                            items: l.gK.array(l.gK.maybeNull(c.$o)),
+                        }),
+                        u.XT,
+                    )
+                    .views((e) => {
+                        let t = {
+                            get isNotFound() {
+                                var a;
+                                let t =
+                                        e.isResolved &&
+                                        (null == (a = e.pager)
+                                            ? void 0
+                                            : a.total) === 0,
+                                    l =
+                                        e.errorStatusCode === s.X1.NOT_FOUND ||
+                                        e.errorStatusCode === s.X1.BAD_REQUEST;
+                                return (e.isRejected && l) || t;
+                            },
+                            get isSomethingWrong() {
+                                return (
+                                    !t.isNotFound &&
+                                    e.isRejected &&
+                                    0 === e.alreadyRequestedPages.size
+                                );
+                            },
+                        };
+                        return t;
+                    })
+                    .actions((e) => ({
+                        getData: (0, l.L3)(function* (t) {
+                            let {
+                                    metatagId: a,
+                                    page: s = 0,
+                                    pageSize: i = 20,
+                                    preloadedMeta: r,
+                                } = t,
+                                { metatagsResource: n, modelActionsLogger: u } =
+                                    (0, l._$)(e);
+                            if (
+                                !(
+                                    e.loadingState === o.GuX.PENDING &&
+                                    e.pendingPages.has("".concat(s))
+                                ) &&
+                                !e.alreadyRequestedPages.has("".concat(s))
+                            ) {
+                                "number" == typeof s &&
+                                    e.alreadyRequestedPages.set(
+                                        "".concat(s),
+                                        s,
+                                    );
+                                try {
+                                    var d;
+                                    (e.loadingState = o.GuX.PENDING),
+                                        e.pendingPages.set("".concat(s), s);
+                                    let t = r;
+                                    t ||
+                                        (t = yield n.getMetatagPlaylists({
+                                            id: a,
+                                            offset: s,
+                                            limit: i,
+                                            withLikesCount: !0,
+                                        })),
+                                        (e.fullTitle = t.title.fullTitle);
+                                    let u = {
+                                        page: s,
+                                        perPage: i,
+                                        total: t.pager.total,
+                                    };
+                                    0 === e.items.length &&
+                                        (e.items = (0, l.wg)(
+                                            Array.from(
+                                                { length: u.total },
+                                                () => null,
+                                            ),
+                                        ));
+                                    let g = t.playlists.map(c.jX);
+                                    (0, o.Iyy)({
+                                        items: e.items,
+                                        mappedRawItems: g,
+                                        page: s,
+                                        pageSize: i,
+                                    }),
+                                        (e.pager = u),
+                                        (e.requests =
+                                            (null != (d = e.requests) ? d : 0) +
+                                            1),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.RESOLVE);
+                                } catch (t) {
+                                    u.error(t),
+                                        e.alreadyRequestedPages.delete(
+                                            "".concat(s),
+                                        ),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.REJECT);
+                                } finally {
+                                    e.pendingPages.delete("".concat(s));
+                                }
+                            }
+                        }),
+                        reset() {
+                            (e.loadingState = o.GuX.IDLE),
+                                e.pendingPages.clear(),
+                                (e.pager = null),
+                                e.alreadyRequestedPages.clear(),
+                                (e.errorStatusCode = null),
+                                (e.items = (0, l.wg)([]));
+                        },
+                    })),
+                p = l.gK
+                    .compose(
+                        l.gK.model("GenrePage", {
+                            id: l.gK.maybeNull(l.gK.string),
+                            errorStatusCode: l.gK.maybeNull(l.gK.number),
+                            fullTitle: l.gK.maybeNull(l.gK.string),
+                            artists: l.gK.array(n.PK),
+                            albums: l.gK.array(i.JC),
+                            playlists: l.gK.array(r.IP),
+                            albumsSubpage: d,
+                            artistsSubpage: g,
+                            playlistsSubpage: m,
+                        }),
+                        u.XT,
+                    )
+                    .views((e) => {
+                        let t = {
+                            get isLoading() {
+                                return (
+                                    e.isNeededToLoad ||
+                                    e.loadingState === o.GuX.PENDING
+                                );
+                            },
+                            get hasAlbums() {
+                                return t.isLoading || e.albums.length > 0;
+                            },
+                            get hasArtists() {
+                                return t.isLoading || e.artists.length > 0;
+                            },
+                            get hasPlaylists() {
+                                return t.isLoading || e.playlists.length > 0;
+                            },
+                            get isNotFound() {
+                                let a =
+                                        e.isResolved &&
+                                        !t.hasAlbums &&
+                                        !t.hasArtists &&
+                                        !t.hasPlaylists,
+                                    l =
+                                        e.errorStatusCode === s.X1.NOT_FOUND ||
+                                        e.errorStatusCode === s.X1.BAD_REQUEST;
+                                return (e.isRejected && l) || a;
+                            },
+                        };
+                        return t;
+                    })
+                    .actions((e) => ({
+                        getData: (0, l.L3)(function* (t) {
+                            let { id: a, preloadedMeta: u } = t,
+                                { metatagsResource: d, modelActionsLogger: g } =
+                                    (0, l._$)(e);
+                            if (e.loadingState !== o.GuX.PENDING)
+                                try {
+                                    e.loadingState = o.GuX.PENDING;
+                                    let t = u;
+                                    t ||
+                                        (t = yield d.getMetatagById({ id: a })),
+                                        (e.id = t.id),
+                                        (e.fullTitle = t.title.fullTitle),
+                                        (e.artists = (0, l.wg)(
+                                            t.artists.map(n.dM),
+                                        )),
+                                        (e.albums = (0, l.wg)(
+                                            t.albums.map(i.pp),
+                                        )),
+                                        (e.playlists = (0, l.wg)(
+                                            t.playlists.map(r.ZC),
+                                        )),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.RESOLVE);
+                                } catch (t) {
+                                    g.error(t),
+                                        t instanceof s.GX &&
+                                            (t.statusCode === s.X1.NOT_FOUND ||
+                                                t.statusCode ===
+                                                    s.X1.BAD_REQUEST) &&
+                                            (e.errorStatusCode =
+                                                s.X1.NOT_FOUND),
+                                        e.loadingState !== o.GuX.IDLE &&
+                                            (e.loadingState = o.GuX.REJECT);
+                                }
+                        }),
+                        reset() {
+                            (e.loadingState = o.GuX.IDLE),
+                                (e.fullTitle = null),
+                                (e.artists = (0, l.wg)([])),
+                                (e.albums = (0, l.wg)([])),
+                                (e.playlists = (0, l.wg)([]));
+                        },
+                    }));
+            var y = a(74543),
+                f = a(53628);
+            a(88351);
+            var N = a(98224),
+                h = a(320);
+            a(10456), a(21682), a(58024), a(63021);
+            var S = a(66268),
+                P = a(83879);
+            let T = async (e, t) => {
+                try {
+                    let {
+                        container: a,
+                        backendHostTld: l,
+                        locale: s,
+                        host: i,
+                        fullUrl: r,
+                        isRSC: n,
+                        requestUrl: u,
+                    } = await (0, o.IhE)();
+                    if (!e || n)
+                        return {
+                            genreMeta: void 0,
+                            tld: "",
+                            locale: null,
+                            host: "",
+                            fullUrl: null,
+                            url: null,
+                        };
+                    let d = a.get(o.UtQ);
+                    return {
+                        genreMeta: await t(d, e),
+                        tld: l,
+                        locale: s,
+                        host: i,
+                        fullUrl: r,
+                        url: u,
+                    };
+                } catch (e) {
+                    return (0, o.tfF)(e, () => ({
+                        genreMeta: void 0,
+                        tld: "",
+                        locale: null,
+                        host: "",
+                        fullUrl: null,
+                        url: null,
+                    }));
+                }
+            };
+            (0, S.cache)(async (e) =>
+                T(e, async (e, t) =>
+                    e.getMetatagAlbums({ id: t, offset: 0, limit: P.c }),
+                ),
+            ),
+                (0, S.cache)(async (e) =>
+                    T(e, async (e, t) =>
+                        e.getMetatagArtists({
+                            id: t,
+                            offset: 0,
+                            limit: P.c,
+                            period: "week",
+                        }),
+                    ),
+                ),
+                (0, S.cache)(async (e) =>
+                    T(e, async (e, t) => e.getMetatagById({ id: t })),
+                ),
+                (0, S.cache)(async (e) =>
+                    T(e, async (e, t) =>
+                        e.getMetatagPlaylists({
+                            id: t,
+                            offset: 0,
+                            limit: P.c,
+                            withLikesCount: !0,
+                        }),
+                    ),
+                );
+        },
+        98224: (e, t, a) => {
+            "use strict";
+            a.d(t, { GenrePage: () => b });
+            var l = a(33008),
+                s = a(85896),
+                i = a(97531),
+                r = a(17846),
+                n = a(66268),
+                o = a(73827),
+                u = a(57747),
+                d = a(77868),
+                g = a(83888),
+                c = a(52732),
+                m = a(90317),
+                p = a(64143),
+                y = a(45242),
+                f = a(79169),
+                N = a(18740),
+                h = a(58024),
+                S = a(70879),
+                P = a(25911),
+                T = a(7473),
+                _ = a.n(T);
+            let b = (0, i.PA)((e) => {
+                let { metatagId: t, preloadedMeta: a } = e,
+                    { genre: i } = (0, f.Pjs)(),
+                    { formatMessage: T } = (0, o.A)(),
+                    { contentScrollRef: b, setContentScrollRef: E } = (0,
+                    f.gKY)(),
+                    C = (0, f.W6M)();
+                return (i.isNotFound && (0, r.notFound)(),
+                (0, n.useEffect)(
+                    () => () => {
+                        i.reset();
+                    },
+                    [i],
+                ),
+                (0, f.Jzs)(i.isResolved),
+                ((e) => {
+                    (0, n.useEffect)(() => {
+                        if (!e) return;
+                        let t = ((e) => ({
+                            id: "",
+                            title: { title: "", fullTitle: e.fullTitle || "" },
+                            liked: !1,
+                            tracks: [],
+                            artists: e.artists.map(S.NE),
+                            composers: [],
+                            albums: e.albums.map(c.fO),
+                            playlists: e.playlists.map(P.Ji),
+                        }))(e);
+                        (0, h.M)(t, {
+                            fullUrl: null,
+                            locale: null,
+                            url: null,
+                            tld: "",
+                            host: "",
+                        }).then((e) => {
+                            (0, f.jxB)(e);
+                        });
+                    }, [e]);
+                })(i),
+                t &&
+                    i.isNeededToLoad &&
+                    (0, n.use)(i.getData({ id: t, preloadedMeta: a })),
+                i.isRejected && !i.isNotFound)
+                    ? (0, l.jsx)(g.w, {})
+                    : (0, l.jsx)(f.nVz, {
+                          pageId: f._Q$.GENRE,
+                          children: (0, l.jsxs)(p.hO, {
+                              scrollElement: b,
+                              outerTitle: i.fullTitle,
+                              children: [
+                                  (0, l.jsx)(N.Y9, {
+                                      variant: N.Vw.TEXT,
+                                      withForwardControl: !1,
+                                      withBackwardControl: C.canBack,
+                                      children: (0, l.jsx)(d.Heading, {
+                                          variant: "h2",
+                                          weight: "bold",
+                                          size: "xl",
+                                          lineClamp: 1,
+                                          children: i.fullTitle,
+                                      }),
+                                  }),
+                                  (0, l.jsx)(u.N, {
+                                      className: _().root,
+                                      containerClassName: _().content,
+                                      ref: E,
+                                      children: (0, l.jsxs)("div", {
+                                          className: _().carouselBlocks,
+                                          children: [
+                                              i.hasPlaylists &&
+                                                  (0, l.jsx)(f.FoH, {
+                                                      blockId:
+                                                          f.hf$
+                                                              .PLAYLISTS_CAROUSEL,
+                                                      blockType:
+                                                          f.hf$
+                                                              .PLAYLISTS_CAROUSEL,
+                                                      blockPosX: 1,
+                                                      blockPosY: 1,
+                                                      blockIdForFrom:
+                                                          f.hf$
+                                                              .PLAYLISTS_CAROUSEL,
+                                                      objectsCount:
+                                                          i.albums.length,
+                                                      children: (0, l.jsx)(
+                                                          y.EC,
+                                                          {
+                                                              isShimmerVisible:
+                                                                  i.isLoading,
+                                                              isShimmerActive:
+                                                                  !0,
+                                                              headerClassName:
+                                                                  (0, s.$)(
+                                                                      _()
+                                                                          .carouselBlockHeader,
+                                                                      _()
+                                                                          .carouselBlock,
+                                                                  ),
+                                                              containerClassName:
+                                                                  _()
+                                                                      .carouselBlock,
+                                                              playlists:
+                                                                  i.playlists,
+                                                              title: T({
+                                                                  id: "entity-names.popular-playlists",
+                                                              }),
+                                                              viewAllActionLink:
+                                                                  "/genre/".concat(
+                                                                      i.id,
+                                                                      "/playlists",
+                                                                  ),
+                                                          },
+                                                      ),
+                                                  }),
+                                              i.hasAlbums &&
+                                                  (0, l.jsx)(f.FoH, {
+                                                      blockId:
+                                                          f.hf$.ALBUMS_CAROUSEL,
+                                                      blockType:
+                                                          f.hf$.ALBUMS_CAROUSEL,
+                                                      blockPosX: 1,
+                                                      blockPosY: 2,
+                                                      blockIdForFrom:
+                                                          f.hf$.ALBUMS_CAROUSEL,
+                                                      objectsCount:
+                                                          i.albums.length,
+                                                      children: (0, l.jsx)(
+                                                          c.pZ,
+                                                          {
+                                                              isShimmerVisible:
+                                                                  i.isLoading,
+                                                              isShimmerActive:
+                                                                  !0,
+                                                              headerClassName:
+                                                                  (0, s.$)(
+                                                                      _()
+                                                                          .carouselBlockHeader,
+                                                                      _()
+                                                                          .carouselBlock,
+                                                                  ),
+                                                              containerClassName:
+                                                                  _()
+                                                                      .carouselBlock,
+                                                              albums: i.albums,
+                                                              title: T({
+                                                                  id: "entity-names.new-albums",
+                                                              }),
+                                                              viewAllActionLink:
+                                                                  "/genre/".concat(
+                                                                      i.id,
+                                                                      "/albums",
+                                                                  ),
+                                                          },
+                                                      ),
+                                                  }),
+                                              i.hasArtists &&
+                                                  (0, l.jsx)(f.FoH, {
+                                                      blockId:
+                                                          f.hf$
+                                                              .ARTISTS_CAROUSEL,
+                                                      blockType:
+                                                          f.hf$
+                                                              .ARTISTS_CAROUSEL,
+                                                      blockPosX: 1,
+                                                      blockPosY: 3,
+                                                      blockIdForFrom:
+                                                          f.hf$
+                                                              .ARTISTS_CAROUSEL,
+                                                      objectsCount:
+                                                          i.albums.length,
+                                                      children: (0, l.jsx)(
+                                                          N.OY,
+                                                          {
+                                                              isShimmerVisible:
+                                                                  i.isLoading,
+                                                              isShimmerActive:
+                                                                  !0,
+                                                              headerClassName:
+                                                                  (0, s.$)(
+                                                                      _()
+                                                                          .carouselBlockHeader,
+                                                                      _()
+                                                                          .carouselBlock,
+                                                                  ),
+                                                              containerClassName:
+                                                                  _()
+                                                                      .carouselBlock,
+                                                              title: T({
+                                                                  id: "entity-names.popular-artists",
+                                                              }),
+                                                              viewAllActionLink:
+                                                                  "/genre/".concat(
+                                                                      i.id,
+                                                                      "/artists",
+                                                                  ),
+                                                              children:
+                                                                  i.artists.map(
+                                                                      (e) =>
+                                                                          (0,
+                                                                          l.jsx)(
+                                                                              m.ao,
+                                                                              {
+                                                                                  artist: e,
+                                                                                  contentLinesCount: 3,
+                                                                              },
+                                                                              e.id,
+                                                                          ),
+                                                                  ),
+                                                          },
+                                                      ),
+                                                  }),
+                                          ],
+                                      }),
+                                  }),
+                              ],
+                          }),
+                      });
+            });
+        },
+    },
+]);

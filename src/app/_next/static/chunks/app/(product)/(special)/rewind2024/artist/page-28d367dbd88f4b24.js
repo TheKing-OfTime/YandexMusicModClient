@@ -1,0 +1,1064 @@
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [3222],
+    {
+        4585: (e, t, i) => {
+            "use strict";
+            i.d(t, { T: () => a });
+            var s = function () {
+                    return (s =
+                        Object.assign ||
+                        function (e) {
+                            for (var t, i = 1, s = arguments.length; i < s; i++)
+                                for (var a in (t = arguments[i]))
+                                    Object.prototype.hasOwnProperty.call(
+                                        t,
+                                        a,
+                                    ) && (e[a] = t[a]);
+                            return e;
+                        }).apply(this, arguments);
+                },
+                a = (function () {
+                    function e(e, t, i) {
+                        var a = this;
+                        (this.endVal = t),
+                            (this.options = i),
+                            (this.version = "2.8.1"),
+                            (this.defaults = {
+                                startVal: 0,
+                                decimalPlaces: 0,
+                                duration: 2,
+                                useEasing: !0,
+                                useGrouping: !0,
+                                useIndianSeparators: !1,
+                                smartEasingThreshold: 999,
+                                smartEasingAmount: 333,
+                                separator: ",",
+                                decimal: ".",
+                                prefix: "",
+                                suffix: "",
+                                enableScrollSpy: !1,
+                                scrollSpyDelay: 200,
+                                scrollSpyOnce: !1,
+                            }),
+                            (this.finalEndVal = null),
+                            (this.useEasing = !0),
+                            (this.countDown = !1),
+                            (this.error = ""),
+                            (this.startVal = 0),
+                            (this.paused = !0),
+                            (this.once = !1),
+                            (this.count = function (e) {
+                                a.startTime || (a.startTime = e);
+                                var t = e - a.startTime;
+                                (a.remaining = a.duration - t),
+                                    a.useEasing
+                                        ? a.countDown
+                                            ? (a.frameVal =
+                                                  a.startVal -
+                                                  a.easingFn(
+                                                      t,
+                                                      0,
+                                                      a.startVal - a.endVal,
+                                                      a.duration,
+                                                  ))
+                                            : (a.frameVal = a.easingFn(
+                                                  t,
+                                                  a.startVal,
+                                                  a.endVal - a.startVal,
+                                                  a.duration,
+                                              ))
+                                        : (a.frameVal =
+                                              a.startVal +
+                                              (a.endVal - a.startVal) *
+                                                  (t / a.duration));
+                                var i = a.countDown
+                                    ? a.frameVal < a.endVal
+                                    : a.frameVal > a.endVal;
+                                (a.frameVal = i ? a.endVal : a.frameVal),
+                                    (a.frameVal = Number(
+                                        a.frameVal.toFixed(
+                                            a.options.decimalPlaces,
+                                        ),
+                                    )),
+                                    a.printValue(a.frameVal),
+                                    t < a.duration
+                                        ? (a.rAF = requestAnimationFrame(
+                                              a.count,
+                                          ))
+                                        : null !== a.finalEndVal
+                                          ? a.update(a.finalEndVal)
+                                          : a.options.onCompleteCallback &&
+                                            a.options.onCompleteCallback();
+                            }),
+                            (this.formatNumber = function (e) {
+                                var t,
+                                    i,
+                                    s,
+                                    n = (
+                                        Math.abs(e).toFixed(
+                                            a.options.decimalPlaces,
+                                        ) + ""
+                                    ).split(".");
+                                if (
+                                    ((t = n[0]),
+                                    (i =
+                                        n.length > 1
+                                            ? a.options.decimal + n[1]
+                                            : ""),
+                                    a.options.useGrouping)
+                                ) {
+                                    s = "";
+                                    for (
+                                        var o = 3, r = 0, l = 0, u = t.length;
+                                        l < u;
+                                        ++l
+                                    )
+                                        a.options.useIndianSeparators &&
+                                            4 === l &&
+                                            ((o = 2), (r = 1)),
+                                            0 !== l &&
+                                                r % o == 0 &&
+                                                (s = a.options.separator + s),
+                                            r++,
+                                            (s = t[u - l - 1] + s);
+                                    t = s;
+                                }
+                                return (
+                                    a.options.numerals &&
+                                        a.options.numerals.length &&
+                                        ((t = t.replace(/[0-9]/g, function (e) {
+                                            return a.options.numerals[+e];
+                                        })),
+                                        (i = i.replace(/[0-9]/g, function (e) {
+                                            return a.options.numerals[+e];
+                                        }))),
+                                    (e < 0 ? "-" : "") +
+                                        a.options.prefix +
+                                        t +
+                                        i +
+                                        a.options.suffix
+                                );
+                            }),
+                            (this.easeOutExpo = function (e, t, i, s) {
+                                return (
+                                    (i *
+                                        (1 - Math.pow(2, (-10 * e) / s)) *
+                                        1024) /
+                                        1023 +
+                                    t
+                                );
+                            }),
+                            (this.options = s(s({}, this.defaults), i)),
+                            (this.formattingFn = this.options.formattingFn
+                                ? this.options.formattingFn
+                                : this.formatNumber),
+                            (this.easingFn = this.options.easingFn
+                                ? this.options.easingFn
+                                : this.easeOutExpo),
+                            (this.startVal = this.validateValue(
+                                this.options.startVal,
+                            )),
+                            (this.frameVal = this.startVal),
+                            (this.endVal = this.validateValue(t)),
+                            (this.options.decimalPlaces = Math.max(
+                                this.options.decimalPlaces,
+                            )),
+                            this.resetDuration(),
+                            (this.options.separator = String(
+                                this.options.separator,
+                            )),
+                            (this.useEasing = this.options.useEasing),
+                            "" === this.options.separator &&
+                                (this.options.useGrouping = !1),
+                            (this.el =
+                                "string" == typeof e
+                                    ? document.getElementById(e)
+                                    : e),
+                            this.el
+                                ? this.printValue(this.startVal)
+                                : (this.error =
+                                      "[CountUp] target is null or undefined"),
+                            "undefined" != typeof window &&
+                                this.options.enableScrollSpy &&
+                                (this.error
+                                    ? console.error(this.error, e)
+                                    : ((window.onScrollFns =
+                                          window.onScrollFns || []),
+                                      window.onScrollFns.push(function () {
+                                          return a.handleScroll(a);
+                                      }),
+                                      (window.onscroll = function () {
+                                          window.onScrollFns.forEach(
+                                              function (e) {
+                                                  return e();
+                                              },
+                                          );
+                                      }),
+                                      this.handleScroll(this)));
+                    }
+                    return (
+                        (e.prototype.handleScroll = function (e) {
+                            if (e && window && !e.once) {
+                                var t = window.innerHeight + window.scrollY,
+                                    i = e.el.getBoundingClientRect(),
+                                    s = i.top + window.pageYOffset,
+                                    a = i.top + i.height + window.pageYOffset;
+                                a < t && a > window.scrollY && e.paused
+                                    ? ((e.paused = !1),
+                                      setTimeout(function () {
+                                          return e.start();
+                                      }, e.options.scrollSpyDelay),
+                                      e.options.scrollSpyOnce && (e.once = !0))
+                                    : (window.scrollY > a || s > t) &&
+                                      !e.paused &&
+                                      e.reset();
+                            }
+                        }),
+                        (e.prototype.determineDirectionAndSmartEasing =
+                            function () {
+                                var e = this.finalEndVal
+                                    ? this.finalEndVal
+                                    : this.endVal;
+                                if (
+                                    ((this.countDown = this.startVal > e),
+                                    Math.abs(e - this.startVal) >
+                                        this.options.smartEasingThreshold &&
+                                        this.options.useEasing)
+                                ) {
+                                    this.finalEndVal = e;
+                                    var t = this.countDown ? 1 : -1;
+                                    (this.endVal =
+                                        e + t * this.options.smartEasingAmount),
+                                        (this.duration = this.duration / 2);
+                                } else
+                                    (this.endVal = e),
+                                        (this.finalEndVal = null);
+                                null !== this.finalEndVal
+                                    ? (this.useEasing = !1)
+                                    : (this.useEasing = this.options.useEasing);
+                            }),
+                        (e.prototype.start = function (e) {
+                            this.error ||
+                                (this.options.onStartCallback &&
+                                    this.options.onStartCallback(),
+                                e && (this.options.onCompleteCallback = e),
+                                this.duration > 0
+                                    ? (this.determineDirectionAndSmartEasing(),
+                                      (this.paused = !1),
+                                      (this.rAF = requestAnimationFrame(
+                                          this.count,
+                                      )))
+                                    : this.printValue(this.endVal));
+                        }),
+                        (e.prototype.pauseResume = function () {
+                            this.paused
+                                ? ((this.startTime = null),
+                                  (this.duration = this.remaining),
+                                  (this.startVal = this.frameVal),
+                                  this.determineDirectionAndSmartEasing(),
+                                  (this.rAF = requestAnimationFrame(
+                                      this.count,
+                                  )))
+                                : cancelAnimationFrame(this.rAF),
+                                (this.paused = !this.paused);
+                        }),
+                        (e.prototype.reset = function () {
+                            cancelAnimationFrame(this.rAF),
+                                (this.paused = !0),
+                                this.resetDuration(),
+                                (this.startVal = this.validateValue(
+                                    this.options.startVal,
+                                )),
+                                (this.frameVal = this.startVal),
+                                this.printValue(this.startVal);
+                        }),
+                        (e.prototype.update = function (e) {
+                            cancelAnimationFrame(this.rAF),
+                                (this.startTime = null),
+                                (this.endVal = this.validateValue(e)),
+                                this.endVal !== this.frameVal &&
+                                    ((this.startVal = this.frameVal),
+                                    null == this.finalEndVal &&
+                                        this.resetDuration(),
+                                    (this.finalEndVal = null),
+                                    this.determineDirectionAndSmartEasing(),
+                                    (this.rAF = requestAnimationFrame(
+                                        this.count,
+                                    )));
+                        }),
+                        (e.prototype.printValue = function (e) {
+                            var t;
+                            if (this.el) {
+                                var i = this.formattingFn(e);
+                                (
+                                    null == (t = this.options.plugin)
+                                        ? void 0
+                                        : t.render
+                                )
+                                    ? this.options.plugin.render(this.el, i)
+                                    : "INPUT" === this.el.tagName
+                                      ? (this.el.value = i)
+                                      : "text" === this.el.tagName ||
+                                          "tspan" === this.el.tagName
+                                        ? (this.el.textContent = i)
+                                        : (this.el.innerHTML = i);
+                            }
+                        }),
+                        (e.prototype.ensureNumber = function (e) {
+                            return "number" == typeof e && !isNaN(e);
+                        }),
+                        (e.prototype.validateValue = function (e) {
+                            var t = Number(e);
+                            return this.ensureNumber(t)
+                                ? t
+                                : ((this.error =
+                                      "[CountUp] invalid start or end value: ".concat(
+                                          e,
+                                      )),
+                                  null);
+                        }),
+                        (e.prototype.resetDuration = function () {
+                            (this.startTime = null),
+                                (this.duration =
+                                    1e3 * Number(this.options.duration)),
+                                (this.remaining = this.duration);
+                        }),
+                        e
+                    );
+                })();
+        },
+        5884: (e, t, i) => {
+            "use strict";
+            Object.defineProperty(t, "__esModule", { value: !0 }),
+                Object.defineProperty(t, "default", {
+                    enumerable: !0,
+                    get: function () {
+                        return a;
+                    },
+                });
+            let s = i(473)._(i(16092));
+            function a(e, t) {
+                var i;
+                let a = {};
+                "function" == typeof e && (a.loader = e);
+                let n = { ...a, ...t };
+                return (0, s.default)({
+                    ...n,
+                    modules:
+                        null == (i = n.loadableGenerated) ? void 0 : i.modules,
+                });
+            }
+            ("function" == typeof t.default ||
+                ("object" == typeof t.default && null !== t.default)) &&
+                void 0 === t.default.__esModule &&
+                (Object.defineProperty(t.default, "__esModule", { value: !0 }),
+                Object.assign(t.default, t),
+                (e.exports = t.default));
+        },
+        16092: (e, t, i) => {
+            "use strict";
+            Object.defineProperty(t, "__esModule", { value: !0 }),
+                Object.defineProperty(t, "default", {
+                    enumerable: !0,
+                    get: function () {
+                        return l;
+                    },
+                });
+            let s = i(33008),
+                a = i(66268),
+                n = i(52283);
+            function o(e) {
+                return { default: e && "default" in e ? e.default : e };
+            }
+            i(81382);
+            let r = {
+                    loader: () => Promise.resolve(o(() => null)),
+                    loading: null,
+                    ssr: !0,
+                },
+                l = function (e) {
+                    let t = { ...r, ...e },
+                        i = (0, a.lazy)(() => t.loader().then(o)),
+                        l = t.loading;
+                    function u(e) {
+                        let o = l
+                                ? (0, s.jsx)(l, {
+                                      isLoading: !0,
+                                      pastDelay: !0,
+                                      error: null,
+                                  })
+                                : null,
+                            r = !t.ssr || !!t.loading,
+                            u = r ? a.Suspense : a.Fragment,
+                            d = t.ssr
+                                ? (0, s.jsxs)(s.Fragment, {
+                                      children: [null, (0, s.jsx)(i, { ...e })],
+                                  })
+                                : (0, s.jsx)(n.BailoutToCSR, {
+                                      reason: "next/dynamic",
+                                      children: (0, s.jsx)(i, { ...e }),
+                                  });
+                        return (0, s.jsx)(u, {
+                            ...(r ? { fallback: o } : {}),
+                            children: d,
+                        });
+                    }
+                    return (u.displayName = "LoadableComponent"), u;
+                };
+        },
+        34965: (e) => {
+            e.exports = {
+                root: "SliderControls_root__v_ofj",
+                control: "SliderControls_control__E3joM",
+                top: "SliderControls_top__HN5gZ",
+            };
+        },
+        35233: (e, t, i) => {
+            "use strict";
+            i.d(t, { M: () => s.NotFound });
+            var s = i(27618);
+        },
+        40178: (e, t, i) => {
+            "use strict";
+            var s;
+            i.d(t, { b: () => s }),
+                (function (e) {
+                    (e.Album = "album"),
+                        (e.Artist = "artist"),
+                        (e.Playlist = "playlist"),
+                        (e.Radio = "fm_radio"),
+                        (e.Other = "other"),
+                        (e.Search = "search");
+                })(s || (s = {}));
+        },
+        46066: (e, t, i) => {
+            "use strict";
+            i.r(t), i.d(t, { default: () => l });
+            var s = i(33008),
+                a = i(17846),
+                n = i(56984),
+                o = i(70175),
+                r = i(65958);
+            let l = () => {
+                let e = (0, a.useSearchParams)().get("artistId");
+                return (
+                    e || (0, a.notFound)(),
+                    (0, s.jsx)(n.ZH, {
+                        withRedirectToMainPage: !1,
+                        children: (0, s.jsx)(o.C, {
+                            slidesConsumer: r.z6.ARTIST,
+                            artistId: e,
+                        }),
+                    })
+                );
+            };
+        },
+        56984: (e, t, i) => {
+            "use strict";
+            i.d(t, { ZH: () => s.WithAuth });
+            var s = i(22818);
+            i(80099),
+                i(66764),
+                i(87264),
+                i(90958),
+                i(65892),
+                i(74375).default.default(
+                    async () =>
+                        Promise.all([i.e(8387), i.e(9366)]).then(
+                            i.bind(i, 99366),
+                        ),
+                    { ssr: !1 },
+                );
+        },
+        67220: (e) => {
+            e.exports = {
+                root: "SlidesPage_root__URM_B",
+                header: "SlidesPage_header__pnBx9",
+                slidesResult: "SlidesPage_slidesResult__neqIE",
+                counterActiveItem: "SlidesPage_counterActiveItem__Y_K9I",
+                counterItem: "SlidesPage_counterItem__3CqZW",
+                button: "SlidesPage_button__s9V8y",
+                volumeButton: "SlidesPage_volumeButton__HfFCM",
+                desktopBackButton: "SlidesPage_desktopBackButton__ae1Uj",
+                mobileBackButton: "SlidesPage_mobileBackButton__MwOgB",
+            };
+        },
+        70175: (e, t, i) => {
+            "use strict";
+            i.d(t, { C: () => s.SlidesPage }), i(33008), i(35233), i(96798);
+            var s = i(91396);
+        },
+        70272: (e) => {
+            e.exports = {
+                root: "Slide_root__x5JEM",
+                root_isActive: "Slide_root_isActive__CKUSv",
+            };
+        },
+        74375: (e, t, i) => {
+            "use strict";
+            i.d(t, { default: () => a.a });
+            var s = i(5884),
+                a = i.n(s);
+        },
+        75305: (e, t, i) => {
+            "use strict";
+            var s;
+            i.d(t, { R: () => s }),
+                (function (e) {
+                    (e.Music = "music"),
+                        (e.DownloadedMusic = "downloadedMusic"),
+                        (e.VibeTrack = "vibeTrack"),
+                        (e.Generative = "generative"),
+                        (e.Unknown = "unknown"),
+                        (e.SmartPreview = "smartPreview"),
+                        (e.Clip = "clip"),
+                        (e.Radio = "fm_radio");
+                })(s || (s = {}));
+        },
+        90720: (e) => {
+            e.exports = {
+                root: "Slider_root__T7EOX",
+                root_visible: "Slider_root_visible__b3Kqx",
+                fade: "Slider_fade__V7FGV",
+                container: "Slider_container__tZ0VH",
+            };
+        },
+        91396: (e, t, i) => {
+            "use strict";
+            i.d(t, { SlidesPage: () => D });
+            var s = i(33008),
+                a = i(85896),
+                n = i(97531),
+                o = i(17846),
+                r = i(66268),
+                l = i(73827),
+                u = i(96560),
+                d = i(18064),
+                c = i(42213),
+                h = i(44189),
+                p = i(78016),
+                m = i(93134),
+                f = i(77868),
+                g = i(53555),
+                v = i(19391),
+                S = i(8461),
+                _ = i(45415),
+                x = i(65958),
+                b = i(79169),
+                V = i(34965),
+                E = i.n(V);
+            let I = (e) => {
+                let { isFirstSlide: t, isLastSlide: i, style: a } = e,
+                    n = (0, S.Mn)(),
+                    { formatMessage: o } = (0, l.A)(),
+                    u = (0, r.useCallback)(() => {
+                        n.slidePrev();
+                    }, [n]),
+                    d = (0, r.useCallback)(() => {
+                        n.slideNext();
+                    }, [n]);
+                return (0, s.jsxs)("div", {
+                    className: E().root,
+                    style: a,
+                    children: [
+                        (0, s.jsx)(h.Button, {
+                            variant: "outline",
+                            iconClassName: E().top,
+                            size: "m",
+                            radius: "round",
+                            onClick: u,
+                            disabled: t,
+                            icon: (0, s.jsx)(
+                                p.Icon,
+                                { variant: "arrowDown", size: "xxs" },
+                                "prevIcon",
+                            ),
+                            withRipple: !1,
+                            "aria-label": o({ id: "slider.prev-slide" }),
+                            className: E().control,
+                        }),
+                        (0, s.jsx)(h.Button, {
+                            variant: "outline",
+                            size: "m",
+                            radius: "round",
+                            onClick: d,
+                            disabled: i,
+                            icon: (0, s.jsx)(
+                                p.Icon,
+                                { variant: "arrowDown", size: "xxs" },
+                                "nextIcon",
+                            ),
+                            withRipple: !1,
+                            "aria-label": o({ id: "slider.next-slide" }),
+                            className: E().control,
+                        }),
+                    ],
+                });
+            };
+            var y = i(48509),
+                A = i(40178),
+                w = i(54487),
+                C = i(70272),
+                P = i.n(C);
+            let j = (e) => {
+                var t;
+                let { slide: i, isVisible: n } = e,
+                    o = (0, b.eGp)(),
+                    { from: l } = (0, b.fyy)({
+                        pageId: b._Q$.TRAILER_OF_THE_YEAR,
+                        blockId: b.UfI.DEFAULT,
+                    }),
+                    { isActive: u } = (0, S.JO)();
+                (0, b.GWZ)(n);
+                let d =
+                        null == o
+                            ? void 0
+                            : o.getState(b.V_r.TRAILER).queueState.entityList
+                                  .value,
+                    c = (0, r.useMemo)(
+                        () =>
+                            i.entitiesData &&
+                            d &&
+                            i.entitiesData.every((e, t) => {
+                                var i;
+                                return (
+                                    e.meta.id ===
+                                    (null == (i = d[t])
+                                        ? void 0
+                                        : i.entity.data.meta.id)
+                                );
+                            }),
+                        [i.entitiesData, d],
+                    ),
+                    h =
+                        n &&
+                        i.hasTrailer &&
+                        (!c ||
+                            (null == o
+                                ? void 0
+                                : o.getState(b.V_r.TRAILER).playerState.status
+                                      .value) !== g.MT.PLAYING),
+                    p =
+                        h &&
+                        (null == o ||
+                        null ==
+                            (t = o.getState(b.V_r.TRAILER).currentContext.value)
+                            ? void 0
+                            : t.data.meta.id) === i.id;
+                return (
+                    (0, r.useEffect)(() => {
+                        if (p)
+                            return void o.restartContext(
+                                {
+                                    playAfterRestart: !0,
+                                    queueParams: { index: 0 },
+                                    entitiesData: i.entitiesData,
+                                },
+                                b.V_r.TRAILER,
+                            );
+                        h &&
+                            (null == o ||
+                                o.playContext(
+                                    {
+                                        contextData: {
+                                            type: y.K.Various,
+                                            overrideContextType: A.b.Other,
+                                            trailer: !0,
+                                            meta: { id: i.id },
+                                            from: l,
+                                        },
+                                        queueParams: { index: 0 },
+                                        entitiesData: i.entitiesData,
+                                        loadContextMeta: !1,
+                                    },
+                                    b.V_r.TRAILER,
+                                ));
+                    }, [l, h, p, i.entitiesData, i.id, o]),
+                    (0, s.jsx)(w.Paper, {
+                        className: (0, a.$)(P().root, {
+                            [P().root_isActive]: u,
+                        }),
+                        radius: "l",
+                        tabIndex: 0,
+                        children: (0, s.jsx)(x.AR, { slide: i, isActive: u }),
+                    })
+                );
+            };
+            var k = i(90720),
+                T = i.n(k);
+            let F = (0, n.PA)((e) => {
+                let { items: t } = e,
+                    {
+                        settings: { isMobile: i },
+                        slides: n,
+                    } = (0, b.Pjs)(),
+                    { formatMessage: o } = (0, l.A)(),
+                    { state: u, toggleTrue: d } = (0, _.e)(!1),
+                    c = (0, S.Mn)(),
+                    [h, p] = (0, r.useState)(!0),
+                    [m, f] = (0, r.useState)(!1);
+                (0, r.useEffect)(
+                    () => (
+                        d(),
+                        () => {
+                            null == c || c.slideTo(0), n.setActiveSlide(0);
+                        }
+                    ),
+                    [d, c, n],
+                );
+                let g = (0, r.useCallback)(
+                    (e) => {
+                        p(e.isBeginning),
+                            f(e.isEnd),
+                            n.setActiveSlide(e.activeIndex);
+                    },
+                    [n],
+                );
+                return (0, s.jsx)("div", {
+                    className: (0, a.$)(T().root, { [T().root_visible]: u }),
+                    children: (0, s.jsxs)(S.RC, {
+                        direction: "vertical",
+                        centeredSlides: !i,
+                        slidesPerView: "auto",
+                        spaceBetween: 16,
+                        className: T().container,
+                        keyboard: { enabled: !0 },
+                        modules: [v.s3, v.Jq, v.FJ],
+                        onActiveIndexChange: g,
+                        a11y: {
+                            enabled: !0,
+                            containerMessage: o({
+                                id: "page.results-of-the-year",
+                            }),
+                        },
+                        mousewheel: { thresholdDelta: 30, thresholdTime: 500 },
+                        children: [
+                            t.map((e, i) =>
+                                (0, s.jsx)(
+                                    S.qr,
+                                    {
+                                        children: (0, s.jsx)(b.Rau, {
+                                            slidesType: (0, x.tS)(n.consumer),
+                                            slideId: e.id,
+                                            slidesCount: t.length,
+                                            slidePos: i + 1,
+                                            videoId: e.background.videoUrl,
+                                            artistId: n.artistId,
+                                            children: (0, s.jsx)(j, {
+                                                isVisible: n.activeSlide === i,
+                                                slide: e,
+                                            }),
+                                        }),
+                                    },
+                                    e.id,
+                                ),
+                            ),
+                            (0, s.jsx)(I, { isFirstSlide: h, isLastSlide: m }),
+                        ],
+                    }),
+                });
+            });
+            var N = i(67220),
+                R = i.n(N);
+            function L(e, t) {
+                return (
+                    (e === b.GuX.RESOLVE || e === b.GuX.REJECT) &&
+                    0 === t.length
+                );
+            }
+            let D = (0, n.PA)((e) => {
+                var t;
+                let {
+                        slidesConsumer: i,
+                        artistId: n,
+                        podcastId: v,
+                        campaignId: S,
+                    } = e,
+                    { formatMessage: _ } = (0, l.A)(),
+                    {
+                        slides: V,
+                        experiments: E,
+                        sonataState: I,
+                        settings: y,
+                    } = (0, b.Pjs)(),
+                    A = (0, b.eGp)(),
+                    w =
+                        E.checkExperiment(b.zal.WebNextRewind2024, "on") ||
+                        E.checkExperiment(b.zal.WebNextMusicBirthday2025, "on"),
+                    C =
+                        !(null == (t = y.browserInfo) ? void 0 : t.isMobile) ||
+                        !y.browserInfo.isTouch,
+                    P = null == A ? void 0 : A.getState(b.V_r.TRAILER),
+                    j = (0, c.c)((e) => {
+                        null == A || A.setExponentVolume(e, b.V_r.TRAILER);
+                    });
+                (0, r.useEffect)(() => {
+                    j(1), V.setIsMuted(!1);
+                }, [j, V, A]);
+                let { moveBack: k } = (0, b.JD0)(b.Zyd.main.href);
+                (0, r.useEffect)(
+                    () => () => {
+                        V.resetUser(),
+                            V.resetArtist(),
+                            V.resetPodcast(),
+                            V.resetSpecial(),
+                            null == A || A.pause(b.V_r.TRAILER);
+                    },
+                    [V, A],
+                ),
+                    w || (0, o.notFound)(),
+                    (0, b.gnQ)((0, x.tS)(i)),
+                    (0, b.Ocn)({
+                        isLoaded: V.isLoaded,
+                        slidesType: (0, x.tS)(i),
+                    }),
+                    (0, r.useEffect)(() => {
+                        I.status === g.MT.PLAYING &&
+                            (null == A || A.togglePause());
+                    }, [A, I.status]);
+                let T = (0, r.useMemo)(() => {
+                    switch (i) {
+                        case x.z6.USER:
+                            return V.userItems;
+                        case x.z6.ARTIST:
+                            return V.artistItems;
+                        case x.z6.PODCAST:
+                            return V.podcastItems;
+                        case x.z6.SPECIAL:
+                            return V.specialItems;
+                    }
+                }, [
+                    V.artistItems,
+                    V.podcastItems,
+                    V.specialItems,
+                    V.userItems,
+                    i,
+                ]);
+                (0, r.useEffect)(() => {
+                    if (w)
+                        switch (i) {
+                            case x.z6.USER:
+                                L(V.userSlidesLoadingState, T) &&
+                                    (0, o.notFound)();
+                                break;
+                            case x.z6.ARTIST:
+                                L(V.artistSlidesLoadingState, T) &&
+                                    (0, o.notFound)();
+                                break;
+                            case x.z6.PODCAST:
+                                L(V.podcastSlidesLoadingState, T) &&
+                                    (0, o.notFound)();
+                                break;
+                            case x.z6.SPECIAL:
+                                L(V.specialSlidesLoadingState, T) &&
+                                    (0, o.notFound)();
+                        }
+                    else (0, o.notFound)();
+                }, [
+                    E,
+                    w,
+                    T,
+                    T.length,
+                    V.artistSlidesLoadingState,
+                    V.podcastSlidesLoadingState,
+                    V.userSlidesLoadingState,
+                    V.specialSlidesLoadingState,
+                    i,
+                ]),
+                    (0, b.NBO)(!0);
+                let N = (0, r.useMemo)(() => {
+                        var e;
+                        let t,
+                            i =
+                                null == (e = T[V.activeSlide])
+                                    ? void 0
+                                    : e.slideColor;
+                        if (i) {
+                            let { r: e, g: s, b: a } = (0, b.E2N)(i);
+                            t = "rgba("
+                                .concat(e, ", ")
+                                .concat(s, ", ")
+                                .concat(a, ", 0.5)");
+                        }
+                        return {
+                            "--card-color-enabled_variant": i,
+                            "--card-color-enabled": t,
+                            "--logo-color": i,
+                        };
+                    }, [T, T.length, V.activeSlide]),
+                    D = (0, r.useCallback)(() => {
+                        V.toggleMute(),
+                            (null == P
+                                ? void 0
+                                : P.playerState.exponentVolume.value) !== 0
+                                ? j(0)
+                                : j(1);
+                    }, [
+                        j,
+                        V,
+                        null == P ? void 0 : P.playerState.exponentVolume.value,
+                    ]),
+                    M = V.isMuted ? "volumeOff" : "volume",
+                    B = _(
+                        V.isMuted
+                            ? { id: "player-actions.volume-off" }
+                            : { id: "player-actions.volume-on" },
+                    );
+                switch (i) {
+                    case x.z6.USER:
+                        V.userSlidesLoadingState === b.GuX.IDLE &&
+                            (0, r.use)(V.getUserSlides());
+                        break;
+                    case x.z6.ARTIST:
+                        n &&
+                            V.artistSlidesLoadingState === b.GuX.IDLE &&
+                            (0, r.use)(V.getArtistSlides({ artistId: n }));
+                        break;
+                    case x.z6.PODCAST:
+                        v &&
+                            V.podcastSlidesLoadingState === b.GuX.IDLE &&
+                            (0, r.use)(
+                                V.getPodcastSlides({ podcastId: Number(v) }),
+                            );
+                        break;
+                    case x.z6.SPECIAL:
+                        S &&
+                            V.specialSlidesLoadingState === b.GuX.IDLE &&
+                            (0, r.use)(V.getSpecialSlides({ campaignId: S }));
+                }
+                return (0, s.jsxs)("div", {
+                    className: R().root,
+                    style: N,
+                    ...(0, d.Am)(d.Xk.slides.SLIDES_PAGE),
+                    children: [
+                        (0, s.jsx)(m.q, {
+                            children: (0, s.jsx)(f.Heading, {
+                                variant: "h1",
+                                children: (0, s.jsx)(u.A, {
+                                    id: "page.results-of-the-year",
+                                }),
+                            }),
+                        }),
+                        (0, s.jsxs)("header", {
+                            className: R().header,
+                            children: [
+                                (null == T ? void 0 : T.length) > 0 &&
+                                    (0, s.jsxs)("div", {
+                                        className: R().slidesResult,
+                                        children: [
+                                            (0, s.jsx)(f.Caption, {
+                                                variant: "span",
+                                                className:
+                                                    R().counterActiveItem,
+                                                type: "text",
+                                                size: "l",
+                                                weight: "medium",
+                                                children:
+                                                    Number(V.activeSlide) + 1,
+                                            }),
+                                            (0, s.jsx)(f.Caption, {
+                                                variant: "span",
+                                                type: "text",
+                                                size: "l",
+                                                weight: "medium",
+                                                className: R().counterItem,
+                                                children: "/",
+                                            }),
+                                            (0, s.jsx)(f.Caption, {
+                                                variant: "span",
+                                                type: "text",
+                                                size: "l",
+                                                weight: "medium",
+                                                className: R().counterItem,
+                                                children:
+                                                    null == T
+                                                        ? void 0
+                                                        : T.length,
+                                            }),
+                                        ],
+                                    }),
+                                C &&
+                                    (0, s.jsx)(h.Button, {
+                                        "aria-label": B,
+                                        variant: "text",
+                                        radius: "round",
+                                        size: "xxxs",
+                                        icon: (0, s.jsx)(p.Icon, {
+                                            size: "xs",
+                                            className: R().icon,
+                                            variant: M,
+                                        }),
+                                        onClick: D,
+                                        className: (0, a.$)(
+                                            R().button,
+                                            R().volumeButton,
+                                        ),
+                                        withRipple: !1,
+                                    }),
+                                (0, s.jsx)(h.Button, {
+                                    "aria-label": _({
+                                        id: "navigation.go-back",
+                                    }),
+                                    radius: "round",
+                                    size: "xs",
+                                    icon: (0, s.jsx)(
+                                        p.Icon,
+                                        { size: "xs", variant: "close" },
+                                        "handleBackIcon",
+                                    ),
+                                    onClick: k,
+                                    className: (0, a.$)(
+                                        R().button,
+                                        R().desktopBackButton,
+                                    ),
+                                    role: "link",
+                                }),
+                                (0, s.jsx)(h.Button, {
+                                    variant: "text",
+                                    "aria-label": _({
+                                        id: "navigation.go-back",
+                                    }),
+                                    radius: "round",
+                                    size: "xs",
+                                    icon: (0, s.jsx)(
+                                        p.Icon,
+                                        { size: "xs", variant: "arrowLeft" },
+                                        "handleBackIcon",
+                                    ),
+                                    onClick: k,
+                                    className: (0, a.$)(
+                                        R().button,
+                                        R().mobileBackButton,
+                                    ),
+                                    role: "link",
+                                }),
+                            ],
+                        }),
+                        (0, s.jsx)(F, { items: T }),
+                    ],
+                });
+            });
+        },
+        96798: (e) => {
+            e.exports = {
+                root: "SlidesNotFoundPage_root__bmv9K",
+                important: "SlidesNotFoundPage_important__VELWc",
+            };
+        },
+        98616: (e, t, i) => {
+            Promise.resolve().then(i.bind(i, 46066));
+        },
+    },
+    (e) => {
+        e.O(
+            0,
+            [
+                9712, 7098, 8282, 5271, 6071, 7245, 8387, 9775, 1311, 7764,
+                6706, 996, 4236, 7508, 5675, 3576, 9169, 8740, 9615, 7747, 3984,
+                3477, 5939, 5958, 9902, 5598, 7358,
+            ],
+            () => e((e.s = 98616)),
+        ),
+            (_N_E = e.O());
+    },
+]);

@@ -34,6 +34,6 @@ const stringifyPayloadData = ({ user, service, payload, dateTime }) => {
       return key + "=" + encodeURIComponent(chunk).replace(/\*/g, "%2A");
     })
     .join(",");
-  return `/path=${config_js_1.config.errorBooster.clickErrorCounter}/vars=${vars}/cts=${dateTime}/*`;
+  return `/path=${config_js_1.config.app.errorBooster.clickErrorCounter}/vars=${vars}/cts=${dateTime}/*`;
 };
 exports.stringifyPayloadData = stringifyPayloadData;

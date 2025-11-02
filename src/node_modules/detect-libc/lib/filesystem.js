@@ -19,7 +19,7 @@ const readFileSync = (path) => {
   const fd = fs.openSync(path, 'r');
   const buffer = Buffer.alloc(MAX_LENGTH);
   const bytesRead = fs.readSync(fd, buffer, 0, MAX_LENGTH, 0);
-  fs.close(fd);
+  fs.close(fd, () => {});
   return buffer.subarray(0, bytesRead);
 };
 

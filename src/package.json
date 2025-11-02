@@ -6,37 +6,75 @@
   "author": "Яндекс Музыка <music@support.yandex.ru>",
   "homepage": "https://music.yandex.ru/download/",
   "main": "main/index.js",
+  "scripts": {
+    "build": "cd main && tsc",
+    "package": "npm run package:macos && npm run package:windows && npm run package:linux",
+    "package:linux": "electron-builder --publish always --linux --config builder.config.cjs",
+    "package:macos": "electron-builder --publish always --mac --config builder.config.cjs",
+    "package:windows": "electron-builder --publish always --win --config builder.config.cjs"
+  },
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "~2.7.8",
+    "@formatjs/icu-messageformat-parser": "~2.11.2",
+    "electron-log": "~5.3.3",
+    "electron-store": "~8.2.0",
+    "electron-updater": "~6.6.2",
+    "intl-messageformat": "~10.7.16",
+    "node-cron": "~3.0.3",
+    "semver": "~7.7.1",
+    "uuid": "~11.1.0",
     "@img/sharp-win32-x64": "^0.34.4",
     "axios": "^1.7.9",
     "discord-rpc": "^4.0.1",
     "electron-is-accelerator": "^0.2.0",
-    "electron-log": "~5.2.0",
-    "electron-store": "~8.2.0",
-    "electron-updater": "~6.3.4",
     "fast-uri": "^3.0.2",
     "ffmpeg-static": "^5.2.0",
-    "intl-messageformat": "~10.5.14",
-    "node-cron": "~3.0.3",
     "node-id3": "^0.2.9",
     "original-fs": "^1.2.0",
-    "semver": "~7.6.3",
-    "sharp": "^0.34.4",
-    "uuid": "~9.0.1"
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@electron/fuses": "~1.8.0",
-    "@electron/notarize": "~2.4.0",
+    "@electron/notarize": "~2.5.0",
     "@types/node-cron": "~3.0.11",
-    "@types/semver": "~7.5.8",
+    "@types/semver": "~7.7.0",
     "@yandex-chats/signer": "~0.0.3",
-    "electron": "~32.1.0",
+    "dmg-builder": "~26.0.12",
+    "electron": "~36.4.0",
+    "electron-builder": "~26.0.12",
+    "electron-builder-squirrel-windows": "~26.0.12",
     "js-yaml": "~4.1.0"
   },
+  "appConfig": {
+    "enableDevTools": true,
+    "enableWebSecurity": true,
+    "enableAutoUpdate": true,
+    "enableUpdateByProbability": false,
+    "bypassCSP": true,
+    "buildPath": "app",
+    "appProtocol": "music-application",
+    "appHostname": "desktop",
+    "metrikaCounters": [
+      95673848,
+      95673843,
+      98548790
+    ],
+    "deeplinkProtocol": "yandexmusic",
+    "errorBooster": {
+      "project": "'music.frontend.desktop'",
+      "clickUrl": "https://yandex.ru/clck/click",
+      "clickErrorCounter": "690.2354"
+    },
+    "systemDefaultLanguage": "en",
+    "systemLanguages": [
+      "ru",
+      "en",
+      "kk",
+      "uz"
+    ]
+  },
   "modification": {
-    "version": "1.38.1",
-    "realYMVersion": "5.57.0",
+    "version": "1.39.0",
+    "realYMVersion": "5.75.2",
     "lastfm": {
       "apikey": "2b9046ddec8c00edcd0144b3abbea4ba",
       "sharedSecret": "b36604de5a2cb86870c1caefa307c373",
@@ -63,13 +101,7 @@
     "APP_ID": "ru.yandex.desktop.music",
     "COPYRIGHT": "Яндекс Музыка",
     "TRADEMARK": "Яндекс Музыка",
-    "DEEPLINK_PROTOCOL": "yandexmusic",
-    "SYSTEM_MENU_DEFAULT_LANGUAGE": "en",
-    "SYSTEM_MENU_LANGUAGES": [
-      "ru",
-      "en",
-      "kk",
-      "uz"
-    ]
+    "DESCRIPTION": "Personal recommendations, mixes for any occasion and the latest musical releases",
+    "DESCRIPTION_LOCALIZED": "Персональные рекомендации, подборки на любой случай и музыкальные новинки"
   }
 }

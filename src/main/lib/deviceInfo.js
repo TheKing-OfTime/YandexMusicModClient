@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDeviceInfo =
+exports.getDeviceHostname = exports.getDeviceInfo =
   exports.logSystemMetrics =
   exports.logHardwareInfo =
   exports.logSoftwareInfo =
@@ -186,3 +186,7 @@ const getDeviceInfo = () => {
   };
 };
 exports.getDeviceInfo = getDeviceInfo;
+const getDeviceHostname = () => {
+    return (0, node_os_1.hostname)().slice(0, 50).trim();
+};
+exports.getDeviceHostname = getDeviceHostname;

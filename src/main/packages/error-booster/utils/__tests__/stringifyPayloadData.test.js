@@ -36,7 +36,7 @@ const service = {
         dateTime,
       }),
     ).toBe(
-      `/path=${config_js_1.config.errorBooster.clickErrorCounter}/vars=-region=region,-yandexid=yandexId,-loggedin=true,-project=project,-env=env,-platform=platform,-version=version,-page=page,-msg=message,-level=error,-stack=stack,-sourceMethod=sourceMethod,-source=source,-additional=%7B%22test%22%3A%22test%22%7D/cts=${dateTime}/*`,
+      `/path=${config_js_1.config.app.errorBooster.clickErrorCounter}/vars=-region=region,-yandexid=yandexId,-loggedin=true,-project=project,-env=env,-platform=platform,-version=version,-page=page,-msg=message,-level=error,-stack=stack,-sourceMethod=sourceMethod,-source=source,-additional=%7B%22test%22%3A%22test%22%7D/cts=${dateTime}/*`,
     );
   });
 });

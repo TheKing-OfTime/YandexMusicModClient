@@ -82,19 +82,11 @@ const cachedStore = new CachedStore();
 
 let defaultExperimentOverrides = {
   WebNextPromoVeryBestRecommendations: 'off',
-  WebNextUGC: 'on',
-  WebNextEnableDownloadControls: 'on',
-  WebNextLanguageSwitcher: 'on',
-  WebNextClipsArtist: 'on',
-  WebNextClipsCollection: 'on',
-  WebNextClipsMain: 'on',
-  WebNextClipsSearch: 'on',
-  WebNextClipsTrackContextMenu: 'default',
-  WebNextEnableUpdatedForwardSkipInWave: 'on',
-  WebNextNotSendDuplicatedFeedbacks: 'on',
-  WebNextSearchBestResults: 'on',
-  WebNextLimitTracksFromYnison: 'on',
-  WebNextPlayerBarBackgroundProgress: 'on',
+  WebNextYnisonActivityInterception: 'on',
+  WebNextPlayerBarYellowButton: 'off',
+  WebNextCrossMediaPlayer: 'on',
+  WebNextTracksPreload: 'on',
+  WebNextGetFileInfoPreload: 'on',
 };
 
 const useCachedValue = (key) => {
@@ -170,6 +162,7 @@ const init = () => {
       invertSliderOnScrollDelta: true,
       disablePerTrackColors: false,
       alwaysWideBar: false,
+      whitePlayButton: true,
     },
     windowBehavior: {
       saveWindowDimensionsOnRestart: true,
@@ -410,10 +403,14 @@ const fetchDefaultExperimentOverrides = async () => {
 exports.fetchDefaultExperimentOverrides = fetchDefaultExperimentOverrides;
 
 const getDefaultExperimentOverrides = () => {
-  return (
-    getStore(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ??
-    defaultExperimentOverrides
-  );
+
+  const data = getStore(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES) ?? defaultExperimentOverrides
+
+  data.WebNextYnisonActivityInterception = (getStore(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL) ? 'on' : 'off');
+  data.WebNextPlayerBarYellowButton = (getStore(store_js_1.StoreKeys.MOD_FEATURES).playerBarEnhancement.whitePlayButton ? 'off' : 'on');
+  data.WebNextDisableNonMusic = (getStore(store_js_1.StoreKeys.MOD_FEATURES).showNonMusicPage ? 'off' : 'on');
+
+  return data
 };
 exports.getDefaultExperimentOverrides = getDefaultExperimentOverrides;
 

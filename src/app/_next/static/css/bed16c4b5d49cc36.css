@@ -1,0 +1,24 @@
+.ConcertDate_root__xnVG1 {
+    align-items: center;
+    border-radius: var(--ym-radius-size-m);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    padding: var(--ym-spacer-size-xxxs);
+}
+.ConcertDate_month__ti5Na {
+    text-transform: uppercase;
+}
+.ConcertDate_day__YibpP {
+    font-family: var(--ym-font-heading);
+    font-size: var(--ym-font-size-headline-l);
+    font-style: normal;
+    font-weight: var(--ym-font-weight-bold);
+    letter-spacing: var(--ym-letter-spacing-m);
+    line-height: var(--ym-font-line-height-headline-l);
+}
+.ConcertDate_weekday__fBZXo {
+    color: var(--ym-controls-color-primary-text-enabled);
+    text-transform: uppercase;
+}

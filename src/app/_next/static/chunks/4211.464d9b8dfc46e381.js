@@ -1,0 +1,952 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [4211],
+    {
+        17872: (e) => {
+            var t = Object.prototype.hasOwnProperty,
+                r = "~";
+            function n() {}
+            function o(e, t, r) {
+                (this.fn = e), (this.context = t), (this.once = r || !1);
+            }
+            function i(e, t, n, i, a) {
+                if ("function" != typeof n)
+                    throw TypeError("The listener must be a function");
+                var s = new o(n, i || e, a),
+                    l = r ? r + t : t;
+                return (
+                    e._events[l]
+                        ? e._events[l].fn
+                            ? (e._events[l] = [e._events[l], s])
+                            : e._events[l].push(s)
+                        : ((e._events[l] = s), e._eventsCount++),
+                    e
+                );
+            }
+            function a(e, t) {
+                0 == --e._eventsCount
+                    ? (e._events = new n())
+                    : delete e._events[t];
+            }
+            function s() {
+                (this._events = new n()), (this._eventsCount = 0);
+            }
+            Object.create &&
+                ((n.prototype = Object.create(null)),
+                new n().__proto__ || (r = !1)),
+                (s.prototype.eventNames = function () {
+                    var e,
+                        n,
+                        o = [];
+                    if (0 === this._eventsCount) return o;
+                    for (n in (e = this._events))
+                        t.call(e, n) && o.push(r ? n.slice(1) : n);
+                    return Object.getOwnPropertySymbols
+                        ? o.concat(Object.getOwnPropertySymbols(e))
+                        : o;
+                }),
+                (s.prototype.listeners = function (e) {
+                    var t = r ? r + e : e,
+                        n = this._events[t];
+                    if (!n) return [];
+                    if (n.fn) return [n.fn];
+                    for (var o = 0, i = n.length, a = Array(i); o < i; o++)
+                        a[o] = n[o].fn;
+                    return a;
+                }),
+                (s.prototype.listenerCount = function (e) {
+                    var t = r ? r + e : e,
+                        n = this._events[t];
+                    return n ? (n.fn ? 1 : n.length) : 0;
+                }),
+                (s.prototype.emit = function (e, t, n, o, i, a) {
+                    var s = r ? r + e : e;
+                    if (!this._events[s]) return !1;
+                    var l,
+                        u,
+                        h = this._events[s],
+                        c = arguments.length;
+                    if (h.fn) {
+                        switch (
+                            (h.once && this.removeListener(e, h.fn, void 0, !0),
+                            c)
+                        ) {
+                            case 1:
+                                return h.fn.call(h.context), !0;
+                            case 2:
+                                return h.fn.call(h.context, t), !0;
+                            case 3:
+                                return h.fn.call(h.context, t, n), !0;
+                            case 4:
+                                return h.fn.call(h.context, t, n, o), !0;
+                            case 5:
+                                return h.fn.call(h.context, t, n, o, i), !0;
+                            case 6:
+                                return h.fn.call(h.context, t, n, o, i, a), !0;
+                        }
+                        for (u = 1, l = Array(c - 1); u < c; u++)
+                            l[u - 1] = arguments[u];
+                        h.fn.apply(h.context, l);
+                    } else {
+                        var f,
+                            d = h.length;
+                        for (u = 0; u < d; u++)
+                            switch (
+                                (h[u].once &&
+                                    this.removeListener(e, h[u].fn, void 0, !0),
+                                c)
+                            ) {
+                                case 1:
+                                    h[u].fn.call(h[u].context);
+                                    break;
+                                case 2:
+                                    h[u].fn.call(h[u].context, t);
+                                    break;
+                                case 3:
+                                    h[u].fn.call(h[u].context, t, n);
+                                    break;
+                                case 4:
+                                    h[u].fn.call(h[u].context, t, n, o);
+                                    break;
+                                default:
+                                    if (!l)
+                                        for (
+                                            f = 1, l = Array(c - 1);
+                                            f < c;
+                                            f++
+                                        )
+                                            l[f - 1] = arguments[f];
+                                    h[u].fn.apply(h[u].context, l);
+                            }
+                    }
+                    return !0;
+                }),
+                (s.prototype.on = function (e, t, r) {
+                    return i(this, e, t, r, !1);
+                }),
+                (s.prototype.once = function (e, t, r) {
+                    return i(this, e, t, r, !0);
+                }),
+                (s.prototype.removeListener = function (e, t, n, o) {
+                    var i = r ? r + e : e;
+                    if (!this._events[i]) return this;
+                    if (!t) return a(this, i), this;
+                    var s = this._events[i];
+                    if (s.fn)
+                        s.fn !== t ||
+                            (o && !s.once) ||
+                            (n && s.context !== n) ||
+                            a(this, i);
+                    else {
+                        for (var l = 0, u = [], h = s.length; l < h; l++)
+                            (s[l].fn !== t ||
+                                (o && !s[l].once) ||
+                                (n && s[l].context !== n)) &&
+                                u.push(s[l]);
+                        u.length
+                            ? (this._events[i] = 1 === u.length ? u[0] : u)
+                            : a(this, i);
+                    }
+                    return this;
+                }),
+                (s.prototype.removeAllListeners = function (e) {
+                    var t;
+                    return (
+                        e
+                            ? ((t = r ? r + e : e),
+                              this._events[t] && a(this, t))
+                            : ((this._events = new n()),
+                              (this._eventsCount = 0)),
+                        this
+                    );
+                }),
+                (s.prototype.off = s.prototype.removeListener),
+                (s.prototype.addListener = s.prototype.on),
+                (s.prefixed = r),
+                (s.EventEmitter = s),
+                (e.exports = s);
+        },
+        21971: (e, t, r) => {
+            Object.defineProperty(t, "__esModule", { value: !0 }),
+                (t.MemoryStorage =
+                    t.CookieStorage =
+                    t.isSupported =
+                    t.storage =
+                        void 0);
+            var n = a(r(76825)),
+                o = a(r(27016)),
+                i = a(r(50455));
+            function a(e) {
+                return e && e.__esModule ? e : { default: e };
+            }
+            var s = null;
+            (0, n.default)("localStorage")
+                ? (t.storage = s = window.localStorage)
+                : (0, n.default)("sessionStorage")
+                  ? (t.storage = s = window.sessionStorage)
+                  : (0, n.default)("cookieStorage")
+                    ? (t.storage = s = new o.default())
+                    : (t.storage = s = new i.default()),
+                (t.default = s),
+                (t.storage = s),
+                (t.isSupported = n.default),
+                (t.CookieStorage = o.default),
+                (t.MemoryStorage = i.default);
+        },
+        27016: (e, t, r) => {
+            Object.defineProperty(t, "__esModule", { value: !0 });
+            var n = (function () {
+                function e(e, t) {
+                    for (var r = 0; r < t.length; r++) {
+                        var n = t[r];
+                        (n.enumerable = n.enumerable || !1),
+                            (n.configurable = !0),
+                            "value" in n && (n.writable = !0),
+                            Object.defineProperty(e, n.key, n);
+                    }
+                }
+                return function (t, r, n) {
+                    return r && e(t.prototype, r), n && e(t, n), t;
+                };
+            })();
+            t.hasCookies = function () {
+                var e = new a();
+                try {
+                    var t = "__test";
+                    e.setItem(t, "1");
+                    var r = e.getItem(t);
+                    return e.removeItem(t), "1" === r;
+                } catch (e) {
+                    return !1;
+                }
+            };
+            var o = (function (e) {
+                    return e && e.__esModule ? e : { default: e };
+                })(r(63564)),
+                i = "lS_",
+                a = (function () {
+                    function e() {
+                        var t =
+                            arguments.length > 0 && void 0 !== arguments[0]
+                                ? arguments[0]
+                                : {};
+                        if (!(this instanceof e))
+                            throw TypeError(
+                                "Cannot call a class as a function",
+                            );
+                        (this.cookieOptions = Object.assign({ path: "/" }, t)),
+                            (i = void 0 === t.prefix ? i : t.prefix);
+                    }
+                    return (
+                        n(e, [
+                            {
+                                key: "getItem",
+                                value: function (e) {
+                                    var t = o.default.parse(document.cookie);
+                                    return t && t.hasOwnProperty(i + e)
+                                        ? t[i + e]
+                                        : null;
+                                },
+                            },
+                            {
+                                key: "setItem",
+                                value: function (e, t) {
+                                    return (
+                                        (document.cookie = o.default.serialize(
+                                            i + e,
+                                            t,
+                                            this.cookieOptions,
+                                        )),
+                                        t
+                                    );
+                                },
+                            },
+                            {
+                                key: "removeItem",
+                                value: function (e) {
+                                    var t = Object.assign(
+                                        {},
+                                        this.cookieOptions,
+                                        { maxAge: -1 },
+                                    );
+                                    return (
+                                        (document.cookie = o.default.serialize(
+                                            i + e,
+                                            "",
+                                            t,
+                                        )),
+                                        null
+                                    );
+                                },
+                            },
+                            {
+                                key: "clear",
+                                value: function () {
+                                    var e = o.default.parse(document.cookie);
+                                    for (var t in e)
+                                        0 === t.indexOf(i) &&
+                                            this.removeItem(t.substr(i.length));
+                                    return null;
+                                },
+                            },
+                        ]),
+                        e
+                    );
+                })();
+            t.default = a;
+        },
+        34211: (e, t, r) => {
+            r.r(t),
+                r.d(t, {
+                    VHPlayerCoreAdapter: () => S,
+                    loadVHPlayerSdk: () => y,
+                });
+            var n,
+                o,
+                i = r(62205);
+            let a = "__VPUID_INLINE__",
+                s = "vpuid";
+            var l = r(21971);
+            let u = {
+                getItem(e) {
+                    try {
+                        return l.getItem(e);
+                    } catch {
+                        return null;
+                    }
+                },
+                setItem(e, t) {
+                    try {
+                        l.setItem(e, t);
+                    } catch {}
+                },
+                removeItem(e) {
+                    try {
+                        l.removeItem(e);
+                    } catch {}
+                },
+                clear() {
+                    try {
+                        l.clear();
+                    } catch {}
+                },
+            };
+            var h = r(34340);
+            let c = "qwertyuiopasdfghjklzxcvbnm0123456789",
+                f =
+                    -1 === a.indexOf("__VPUID")
+                        ? a
+                        : (u.getItem(s) ??
+                          (function () {
+                              let e = [];
+                              for (let t = 0; t < 10; t++)
+                                  e.push(c[Math.floor((0, h.y)() * c.length)]);
+                              return e.join("");
+                          })());
+            async function d(e) {
+                let t = [
+                    ["vpuid", f],
+                    ["version", e?.version],
+                    ["testid", isFinite(e.testid) ? String(e.testid) : void 0],
+                    ["bundleurl", e?.bundleUrl],
+                ]
+                    .filter(([e, t]) => !!t)
+                    .map((e) => e.join("="))
+                    .join("&");
+                try {
+                    var r, n;
+                    let o = e.hostname || "frontend.vh.yandex.ru",
+                        a = t ? `?${t}` : "";
+                    await ((r = `https://${o}/get_player/${e.file}${a}`),
+                    (n = e.checkLoad),
+                    (0, i.I)({
+                        src: r,
+                        async: !1,
+                        retries: 3,
+                        dropCacheOnRetry: !0,
+                        onBeforeLoad: (e) => {
+                            e.crossOrigin = "use-credentials";
+                        },
+                        checkLoad: n,
+                    }));
+                } catch (e) {
+                    throw e;
+                }
+            }
+            function p(e) {
+                try {
+                    return e();
+                } catch {
+                    return;
+                }
+            }
+            u.setItem(s, f);
+            let m = (0, r(63782).x)();
+            async function g(e) {
+                if (p(() => m.Ya.playerSdk)?.init) return Promise.resolve();
+                await d({
+                    file: "player-sdk.js",
+                    version: e?.version,
+                    checkLoad: () => !!p(() => m.Ya.playerSdk)?.preloadScripts,
+                }),
+                    await m.Ya.playerSdk.preloadScripts();
+            }
+            function y(e) {
+                return g({ version: e });
+            }
+            var v = r(86211),
+                C = r(83995);
+            !(function (e) {
+                (e.SourceChange = "SourceChange"),
+                    (e.StatusChange = "StatusChange"),
+                    (e.ErrorChange = "ErrorChange"),
+                    (e.CurrentTimeChange = "CurrentTimeChange"),
+                    (e.DurationChange = "DurationChange"),
+                    (e.UtcStartTimeChange = "UtcStartTimeChange"),
+                    (e.VideoTypeChange = "VideoTypeChange"),
+                    (e.MutedChange = "MutedChange"),
+                    (e.VolumeChange = "VolumeChange");
+            })(n || (n = {})),
+                (function (e) {
+                    (e.idle = "idle"),
+                        (e.init = "init"),
+                        (e.buffering = "buffering"),
+                        (e.play = "play"),
+                        (e.pause = "pause"),
+                        (e.end = "end"),
+                        (e.fatal = "fatal"),
+                        (e.broken = "broken"),
+                        (e.destroyed = "destroyed"),
+                        (e.cancelled = "cancelled"),
+                        (e.preparing = "preparing"),
+                        (e.finished = "finished");
+                })(o || (o = {}));
+            class S {
+                statusChangeHandler() {
+                    let { status: e } = this.player.getState();
+                    switch (e) {
+                        case "end":
+                            this.emitter.emit("end");
+                            break;
+                        case "play":
+                            this.emitter.emit("play");
+                            break;
+                        case "pause":
+                            this.emitter.emit("pause");
+                    }
+                }
+                currentTimeChangeHandler() {
+                    let { duration: e, currentTime: t } =
+                        this.player.getState();
+                    this.emitter.emit("currentTimeChange", {
+                        duration: e,
+                        position: t,
+                        loaded: 0,
+                    });
+                }
+                volumeChangeHandler() {
+                    let { volume: e } = this.player.getState();
+                    this.emitter.emit("volumeChange", e);
+                }
+                errorChangeHandler() {
+                    let { error: e } = this.player.getState();
+                    e instanceof Error && this.emitter.emit("errorChange", e);
+                }
+                subscribePlayerEvents() {
+                    this.player &&
+                        (this.player.on(
+                            n.StatusChange,
+                            this.statusChangeHandler,
+                        ),
+                        this.player.on(
+                            n.CurrentTimeChange,
+                            this.currentTimeChangeHandler,
+                        ),
+                        this.player.on(
+                            n.VolumeChange,
+                            this.volumeChangeHandler,
+                        ),
+                        this.player.on(n.ErrorChange, this.errorChangeHandler));
+                }
+                unsubscribePlayerEvents() {
+                    this.player &&
+                        (this.player.off(
+                            n.StatusChange,
+                            this.statusChangeHandler,
+                        ),
+                        this.player.off(
+                            n.CurrentTimeChange,
+                            this.currentTimeChangeHandler,
+                        ),
+                        this.player.off(
+                            n.VolumeChange,
+                            this.volumeChangeHandler,
+                        ),
+                        this.player.off(
+                            n.ErrorChange,
+                            this.errorChangeHandler,
+                        ));
+                }
+                get adConfig() {
+                    if (this.hideAds) return { adBreaks: [] };
+                }
+                initPlayer(e) {
+                    let { src: t, autoplay: r, container: n } = e;
+                    (this.player = window.Ya.playerSdk.init({
+                        element: n,
+                        source: t,
+                        hiddenControls: "*",
+                        autoplay: r,
+                        adConfig: this.adConfig,
+                    })),
+                        this.subscribePlayerEvents(),
+                        null !== this.storedVolume &&
+                            (this.player.setVolume(this.storedVolume),
+                            (this.storedVolume = null));
+                }
+                play(e) {
+                    let { source: t } = e;
+                    return this.internalSetSrc({ source: t, autoplay: !0 });
+                }
+                setSrc(e) {
+                    let { source: t } = e;
+                    this.internalSetSrc({ source: t, autoplay: !1 });
+                }
+                internalSetSrc(e) {
+                    let { source: t, autoplay: r } = e;
+                    if (this.player)
+                        return this.player
+                            .setSource({
+                                source: t.src,
+                                autoplay: r,
+                                adConfig: this.adConfig,
+                            })
+                            .then(() => {
+                                if (null !== this.storedVolume) {
+                                    var e;
+                                    null == (e = this.player) ||
+                                        e.setVolume(this.storedVolume),
+                                        (this.storedVolume = null);
+                                }
+                            });
+                    try {
+                        return (
+                            this.container &&
+                                this.initPlayer({
+                                    src: t.src,
+                                    autoplay: r,
+                                    container: this.container,
+                                }),
+                            Promise.resolve()
+                        );
+                    } catch (e) {
+                        return Promise.reject(e);
+                    }
+                }
+                pause() {
+                    var e;
+                    return (
+                        null == (e = this.player) || e.pause(),
+                        Promise.resolve()
+                    );
+                }
+                resume() {
+                    return this.player ? this.player.play() : Promise.resolve();
+                }
+                setProgress(e) {
+                    var t;
+                    return (
+                        null == (t = this.player) || t.seek(e),
+                        Promise.resolve(e)
+                    );
+                }
+                setVolume(e) {
+                    var t;
+                    return (
+                        (this.storedVolume = e),
+                        null == (t = this.player) || t.setVolume(e),
+                        Promise.resolve(e)
+                    );
+                }
+                setSpeed(e) {
+                    return Promise.resolve(e);
+                }
+                stop() {
+                    return Promise.resolve();
+                }
+                destroy() {
+                    return (this.unsubscribePlayerEvents(), this.player)
+                        ? this.player.destroy().finally(() => {
+                              (this.player = null), (this.container = null);
+                          })
+                        : Promise.resolve();
+                }
+                setContainer(e) {
+                    this.container = e;
+                }
+                setVideoQuality() {}
+                onEnd(e) {
+                    this.emitter.on("end", e);
+                }
+                onPaused(e) {
+                    this.emitter.on("pause", e);
+                }
+                onUpdatingProgress(e) {
+                    this.emitter.on("currentTimeChange", e);
+                }
+                onPlaying(e) {
+                    this.emitter.on("play", e);
+                }
+                onError(e) {
+                    this.emitter.on("errorChange", e);
+                }
+                onVolumeChange(e) {
+                    this.emitter.on("volumeChange", e);
+                }
+                onSpeedChange() {}
+                onResume() {}
+                onSeeked() {}
+                onSeeking() {}
+                onStalled() {}
+                onCanplay() {}
+                onWaiting() {}
+                offEnd(e) {
+                    this.emitter.off("end", e);
+                }
+                offPaused(e) {
+                    this.emitter.off("pause", e);
+                }
+                offUpdatingProgress(e) {
+                    this.emitter.off("currentTimeChange", e);
+                }
+                offPlaying(e) {
+                    this.emitter.off("play", e);
+                }
+                offError(e) {
+                    this.emitter.off("errorChange", e);
+                }
+                offVolumeChange(e) {
+                    this.emitter.off("volumeChange", e);
+                }
+                offSpeedChange() {}
+                offResume() {}
+                offSeeked() {}
+                offSeeking() {}
+                offStalled() {}
+                offCanplay() {}
+                offWaiting() {}
+                constructor(e) {
+                    (0, v._)(this, "player", null),
+                        (0, v._)(this, "container", null),
+                        (0, v._)(this, "emitter", new C.b()),
+                        (0, v._)(this, "hideAds", void 0),
+                        (0, v._)(this, "storedVolume", null),
+                        (this.hideAds = !!e.hideAds),
+                        (this.statusChangeHandler =
+                            this.statusChangeHandler.bind(this)),
+                        (this.currentTimeChangeHandler =
+                            this.currentTimeChangeHandler.bind(this)),
+                        (this.volumeChangeHandler =
+                            this.volumeChangeHandler.bind(this)),
+                        (this.errorChangeHandler =
+                            this.errorChangeHandler.bind(this));
+                }
+            }
+        },
+        50455: (e, t) => {
+            Object.defineProperty(t, "__esModule", { value: !0 });
+            var r = (function () {
+                function e(e, t) {
+                    for (var r = 0; r < t.length; r++) {
+                        var n = t[r];
+                        (n.enumerable = n.enumerable || !1),
+                            (n.configurable = !0),
+                            "value" in n && (n.writable = !0),
+                            Object.defineProperty(e, n.key, n);
+                    }
+                }
+                return function (t, r, n) {
+                    return r && e(t.prototype, r), n && e(t, n), t;
+                };
+            })();
+            t.default = (function () {
+                function e() {
+                    if (!(this instanceof e))
+                        throw TypeError("Cannot call a class as a function");
+                    this._data = {};
+                }
+                return (
+                    r(e, [
+                        {
+                            key: "getItem",
+                            value: function (e) {
+                                return this._data.hasOwnProperty(e)
+                                    ? this._data[e]
+                                    : null;
+                            },
+                        },
+                        {
+                            key: "setItem",
+                            value: function (e, t) {
+                                return (this._data[e] = String(t));
+                            },
+                        },
+                        {
+                            key: "removeItem",
+                            value: function (e) {
+                                return delete this._data[e];
+                            },
+                        },
+                        {
+                            key: "clear",
+                            value: function () {
+                                return (this._data = {});
+                            },
+                        },
+                    ]),
+                    e
+                );
+            })();
+        },
+        62205: (e, t, r) => {
+            r.d(t, { I: () => i });
+            let n = () => {},
+                o = (e) => !0;
+            function i(e) {
+                return new Promise((t, r) => {
+                    !(function (e) {
+                        let {
+                            dropCacheOnRetry: t = !1,
+                            onBeforeLoad: r = n,
+                            retries: i = 0,
+                        } = e;
+                        if (e.checkLoad && e.checkLoad()) {
+                            e.onLoad && e.onLoad();
+                            return;
+                        }
+                        let a = r,
+                            s = 0;
+                        t &&
+                            i > 0 &&
+                            (a = (e) => {
+                                if ((r(e), s > 0)) {
+                                    var t;
+                                    let r,
+                                        n =
+                                            -1 === e.src.indexOf("?")
+                                                ? "?"
+                                                : "&",
+                                        o =
+                                            ((t = s),
+                                            Number.isFinite(
+                                                (r =
+                                                    Math.floor(
+                                                        1e9 * Math.random(),
+                                                    ) % 1e9),
+                                            ) || (r = 0),
+                                            (r += Date.now() % 1e9),
+                                            String(t) + r.toString(36));
+                                    e.src += n + o;
+                                }
+                                s++;
+                            }),
+                            (function e(t) {
+                                let {
+                                        src: r,
+                                        win: i = window,
+                                        charset: a = "utf-8",
+                                        async: s = !0,
+                                        retries: l = 0,
+                                        onRetry: u = n,
+                                        retryDelay: h = 0,
+                                        checkLoad: c = o,
+                                        onBeforeLoad: f = n,
+                                        onLoad: d = n,
+                                        onError: p = n,
+                                    } = t,
+                                    m = i.document.createElement("script"),
+                                    g = (n) => {
+                                        l > 0
+                                            ? (u(n),
+                                              e({
+                                                  ...t,
+                                                  src: r,
+                                                  retries: l - 1,
+                                              }))
+                                            : p(n),
+                                            m.parentNode?.removeChild(m);
+                                    };
+                                (m.type = "text/javascript"),
+                                    (m.async = s),
+                                    (m.onload = () =>
+                                        c(m)
+                                            ? d()
+                                            : g(
+                                                  Error(
+                                                      `checkLoad for ${r} failed`,
+                                                  ),
+                                              )),
+                                    (m.onerror = (e) => {
+                                        try {
+                                            i.setTimeout(() => {
+                                                g(e);
+                                            }, h);
+                                        } catch {}
+                                    }),
+                                    (m.src = r),
+                                    (m.charset = a),
+                                    f(m),
+                                    (function (e) {
+                                        let t = e.document,
+                                            r =
+                                                t.getElementsByTagName(
+                                                    "head",
+                                                )[0];
+                                        return (
+                                            r ||
+                                                ((r = t.createElement("head")),
+                                                t.documentElement.appendChild(
+                                                    r,
+                                                )),
+                                            r
+                                        );
+                                    })(i).appendChild(m);
+                            })({ ...e, onBeforeLoad: a });
+                    })({ ...e, onLoad: t, onError: r });
+                });
+            }
+        },
+        63564: (e, t) => {
+            (t.parse = function (e, t) {
+                if ("string" != typeof e)
+                    throw TypeError("argument str must be a string");
+                for (
+                    var n = {},
+                        i = e.split(o),
+                        a = (t || {}).decode || r,
+                        s = 0;
+                    s < i.length;
+                    s++
+                ) {
+                    var l = i[s],
+                        u = l.indexOf("=");
+                    if (!(u < 0)) {
+                        var h = l.substr(0, u).trim(),
+                            c = l.substr(++u, l.length).trim();
+                        '"' == c[0] && (c = c.slice(1, -1)),
+                            void 0 == n[h] &&
+                                (n[h] = (function (e, t) {
+                                    try {
+                                        return t(e);
+                                    } catch (t) {
+                                        return e;
+                                    }
+                                })(c, a));
+                    }
+                }
+                return n;
+            }),
+                (t.serialize = function (e, t, r) {
+                    var o = r || {},
+                        a = o.encode || n;
+                    if ("function" != typeof a)
+                        throw TypeError("option encode is invalid");
+                    if (!i.test(e)) throw TypeError("argument name is invalid");
+                    var s = a(t);
+                    if (s && !i.test(s))
+                        throw TypeError("argument val is invalid");
+                    var l = e + "=" + s;
+                    if (null != o.maxAge) {
+                        var u = o.maxAge - 0;
+                        if (isNaN(u)) throw Error("maxAge should be a Number");
+                        l += "; Max-Age=" + Math.floor(u);
+                    }
+                    if (o.domain) {
+                        if (!i.test(o.domain))
+                            throw TypeError("option domain is invalid");
+                        l += "; Domain=" + o.domain;
+                    }
+                    if (o.path) {
+                        if (!i.test(o.path))
+                            throw TypeError("option path is invalid");
+                        l += "; Path=" + o.path;
+                    }
+                    if (o.expires) {
+                        if ("function" != typeof o.expires.toUTCString)
+                            throw TypeError("option expires is invalid");
+                        l += "; Expires=" + o.expires.toUTCString();
+                    }
+                    if (
+                        (o.httpOnly && (l += "; HttpOnly"),
+                        o.secure && (l += "; Secure"),
+                        o.sameSite)
+                    )
+                        switch (
+                            "string" == typeof o.sameSite
+                                ? o.sameSite.toLowerCase()
+                                : o.sameSite
+                        ) {
+                            case !0:
+                            case "strict":
+                                l += "; SameSite=Strict";
+                                break;
+                            case "lax":
+                                l += "; SameSite=Lax";
+                                break;
+                            default:
+                                throw TypeError("option sameSite is invalid");
+                        }
+                    return l;
+                });
+            var r = decodeURIComponent,
+                n = encodeURIComponent,
+                o = /; */,
+                i = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+        },
+        63782: (e, t, r) => {
+            r.d(t, { x: () => n });
+            function n() {
+                return "object" == typeof self
+                    ? self
+                    : "object" == typeof window
+                      ? window
+                      : globalThis;
+            }
+        },
+        76825: (e, t, r) => {
+            Object.defineProperty(t, "__esModule", { value: !0 }),
+                (t.default = function () {
+                    var e =
+                            arguments.length > 0 && void 0 !== arguments[0]
+                                ? arguments[0]
+                                : "localStorage",
+                        t = String(e)
+                            .replace(/storage$/i, "")
+                            .toLowerCase();
+                    if ("local" === t) return i("localStorage");
+                    if ("session" === t) return i("sessionStorage");
+                    if ("cookie" === t) return (0, n.hasCookies)();
+                    if ("memory" === t) return !0;
+                    throw Error(
+                        "Storage method `" +
+                            e +
+                            "` is not available.\n    Please use one of the following: localStorage, sessionStorage, cookieStorage, memoryStorage.",
+                    );
+                });
+            var n = r(27016),
+                o = "__test";
+            function i(e) {
+                try {
+                    var t = window[e];
+                    return t.setItem(o, "1"), t.removeItem(o), !0;
+                } catch (e) {
+                    return !1;
+                }
+            }
+        },
+        83995: (e, t, r) => {
+            r.d(t, { b: () => n });
+            var n = r(17872);
+        },
+    },
+]);

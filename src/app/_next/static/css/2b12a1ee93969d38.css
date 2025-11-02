@@ -1,267 +1,267 @@
 .CommonLayout_root__WC_W1 {
-  display: grid;
-  position: relative;
-  grid-column-gap: var(--ym-spacer-size-m);
-  background-color: var(--ym-background-color-primary-enabled-basic);
-  box-sizing: border-box;
-  column-gap: var(--ym-spacer-size-m);
-  height: 100%;
-  padding-block-end: var(--ym-spacer-size-m);
-  padding-block-start: var(--ym-spacer-size-m);
-  padding-inline-end: var(--ym-spacer-size-m);
-  padding-inline-start: var(--ym-spacer-size-xs);
+    display: grid;
+    position: relative;
+    grid-column-gap: var(--ym-spacer-size-m);
+    background-color: var(--ym-background-color-primary-enabled-basic);
+    box-sizing: border-box;
+    column-gap: var(--ym-spacer-size-m);
+    height: 100%;
+    padding-block-end: var(--ym-spacer-size-m);
+    padding-block-start: var(--ym-spacer-size-m);
+    padding-inline-end: var(--ym-spacer-size-m);
+    padding-inline-start: var(--ym-spacer-size-xs);
 }
 @media only screen and (max-width: 767.98px) {
-  .CommonLayout_root__WC_W1 {
-    height: auto;
-    padding: 0;
-  }
+    .CommonLayout_root__WC_W1 {
+        height: auto;
+        padding: 0;
+    }
 }
 .CommonLayout_content__zy_Ja {
-  grid-area: content;
-  position: relative;
+    grid-area: content;
+    position: relative;
 }
 .CommonLayout_content_withPlayerBar__wTpoS {
-  margin-block-end: 8.125rem;
+    margin-block-end: 8.125rem;
 }
 .CommonLayout_playerBar__zXRxq {
-  grid-area: playerbar;
+    grid-area: playerbar;
 }
 .CommonLayout_compositePlayerBar__hjZRp {
-  background-color: var(--ym-background-color-primary-enabled-basic);
-  border-radius: var(--ym-radius-size-xl) var(--ym-radius-size-xl) 0 0;
-  display: flex;
-  flex-direction: column;
-  inset-block-end: 0;
-  position: fixed;
-  width: 100%;
-  z-index: var(--ym-z-index-player);
+    background-color: var(--ym-background-color-primary-enabled-basic);
+    border-radius: var(--ym-radius-size-xl) var(--ym-radius-size-xl) 0 0;
+    display: flex;
+    flex-direction: column;
+    inset-block-end: 0;
+    position: fixed;
+    width: 100%;
+    z-index: var(--ym-z-index-player);
 }
 .LayoutNotificationContainers_root__5HClw {
-  inset-block-end: var(--ym-spacer-size-m);
-  position: absolute;
+    inset-block-end: var(--ym-spacer-size-m);
+    position: absolute;
 }
 @media only screen and (max-width: 767.98px) {
-  .LayoutNotificationContainers_root__5HClw {
-    inset-block-end: calc(var(--ym-spacer-size-xxxxxl) * 3);
-    position: fixed;
-  }
+    .LayoutNotificationContainers_root__5HClw {
+        inset-block-end: calc(var(--ym-spacer-size-xxxxxl) * 3);
+        position: fixed;
+    }
 }
 .DefaultLayout_root__7J0wo {
-  grid-template: "navbar content" 1fr "navbar playerbar" auto "navbar barBelow" auto/auto 1fr;
-  transition: grid-template var(--ym-duration-transition);
+    grid-template: "navbar content" 1fr "navbar playerbar" auto "navbar barBelow" auto/auto 1fr;
+    transition: grid-template var(--ym-duration-transition);
 }
 .DefaultLayout_root_applicationPreserveTitleBar__ygJtq {
-  padding-block-start: var(--ym-spacer-size-xxxl);
+    padding-block-start: var(--ym-spacer-size-xxxl);
 }
 @media only screen and (max-width: 1080px) {
-  .DefaultLayout_root__7J0wo {
-    grid-template: "navbar content" minmax(
-        auto,
-        calc(100% - var(--player-bar-height) - var(--ym-spacer-size-m))
-      ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
-  }
-  .DefaultLayout_root_withBarBelow__jPsaV {
-    grid-template: "navbar content" minmax(
-        auto,
-        calc(
-          100% - var(--player-bar-height) - var(--balbelow-height) -
-            var(--ym-spacer-size-m) * 2
-        )
-      ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
-  }
+    .DefaultLayout_root__7J0wo {
+        grid-template: "navbar content" minmax(
+                auto,
+                calc(100% - var(--player-bar-height) - var(--ym-spacer-size-m))
+            ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
+    }
+    .DefaultLayout_root_withBarBelow__jPsaV {
+        grid-template: "navbar content" minmax(
+                auto,
+                calc(
+                    100% - var(--player-bar-height) - var(--balbelow-height) -
+                        var(--ym-spacer-size-m) * 2
+                )
+            ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
+    }
 }
 @media only screen and (max-width: 767.98px) {
-  .DefaultLayout_root__7J0wo {
-    grid-template: "content" 1fr "playerbar" auto "barBelow" auto "navbar" auto/1fr;
-  }
-  .desktop .DefaultLayout_root__7J0wo {
-    grid-template: "navbar content" 1fr "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
-  }
+    .DefaultLayout_root__7J0wo {
+        grid-template: "content" 1fr "playerbar" auto "barBelow" auto "navbar" auto/1fr;
+    }
+    .desktop .DefaultLayout_root__7J0wo {
+        grid-template: "navbar content" 1fr "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr;
+    }
 }
 @media (prefers-reduced-motion: reduce) {
-  .DefaultLayout_root__7J0wo {
-    transition: none;
-  }
+    .DefaultLayout_root__7J0wo {
+        transition: none;
+    }
 }
 .DefaultLayout_barBelow__y6PFU {
-  grid-area: barBelow;
+    grid-area: barBelow;
 }
 .DefaultLayout_navbar__LIQWG {
-  grid-area: navbar;
+    grid-area: navbar;
 }
 .DefaultLayout_navbar_application_macos__9dj3u {
-  margin-block-start: var(--ym-spacer-size-xxl);
+    margin-block-start: var(--ym-spacer-size-xxl);
 }
 .DefaultLayout_navbar_application_linux__ejlGn,
 .DefaultLayout_navbar_application_windows__3hDQ_ {
-  margin-block-start: calc(var(--ym-spacer-size-l) * -1);
+    margin-block-start: calc(var(--ym-spacer-size-l) * -1);
 }
 .TopAdvertBanner_root__aAZ0o {
-  background-color: var(--ym-background-color-primary-enabled-content);
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  transition: scrollbar-color 0.2s ease-in-out;
-  --scrollbar-hidden: transparent;
+    background-color: var(--ym-background-color-primary-enabled-content);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    transition: scrollbar-color 0.2s ease-in-out;
+    --scrollbar-hidden: transparent;
 }
 .TopAdvertBanner_root_hidden__l3FTx {
-  display: none;
+    display: none;
 }
 .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar-thumb {
-  background-clip: content-box;
-  border: 0.5rem solid transparent;
-  border-radius: var(--ym-radius-size-l);
-  min-height: 3.125rem;
+    background-clip: content-box;
+    border: 0.5rem solid transparent;
+    border-radius: var(--ym-radius-size-l);
+    min-height: 3.125rem;
 }
 .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar {
-  display: none;
-  height: 0;
-  width: 0;
+    display: none;
+    height: 0;
+    width: 0;
 }
 @supports selector(scrollbar-width:auto) {
-  .TopAdvertBanner_root__aAZ0o {
-    scrollbar-color: var(--scrollbar-hidden) transparent;
-    scrollbar-gutter: stable;
-  }
+    .TopAdvertBanner_root__aAZ0o {
+        scrollbar-color: var(--scrollbar-hidden) transparent;
+        scrollbar-gutter: stable;
+    }
 }
 @supports selector(::-webkit-scrollbar) {
-  .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-hidden);
-  }
+    .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-hidden);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
-  .TopAdvertBanner_root__aAZ0o {
-    transition: none;
-  }
+    .TopAdvertBanner_root__aAZ0o {
+        transition: none;
+    }
 }
 @media only screen and (max-width: 1024px) {
-  .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar-thumb {
-    border: 0.1875rem solid transparent;
-  }
+    .TopAdvertBanner_root__aAZ0o::-webkit-scrollbar-thumb {
+        border: 0.1875rem solid transparent;
+    }
 }
 .TopAdvertBanner_advert__LjAj_ {
-  display: block;
-  height: 100%;
-  margin-inline-end: auto;
-  margin-inline-start: auto;
-  width: 100%;
+    display: block;
+    height: 100%;
+    margin-inline-end: auto;
+    margin-inline-start: auto;
+    width: 100%;
 }
 .WithTopBanner_root__P__x3 {
-  --max-banner-height: 18.375rem;
-  --hide-banner-delay: 2s;
-  display: grid;
-  grid-template: "banner" auto "content" 1fr;
-  height: 100vh;
-  overflow: hidden;
+    --max-banner-height: 18.375rem;
+    --hide-banner-delay: 2s;
+    display: grid;
+    grid-template: "banner" auto "content" 1fr;
+    height: 100vh;
+    overflow: hidden;
 }
 @media only screen and (max-width: 767.98px) {
-  .WithTopBanner_root__P__x3 {
-    height: auto;
-  }
+    .WithTopBanner_root__P__x3 {
+        height: auto;
+    }
 }
 .WithTopBanner_banner__x1Ia2 {
-  grid-area: banner;
-  max-height: 0;
-  transition: max-height var(--ym-duration-transition);
-  transition-delay: var(--hide-banner-delay);
+    grid-area: banner;
+    max-height: 0;
+    transition: max-height var(--ym-duration-transition);
+    transition-delay: var(--hide-banner-delay);
 }
 .WithTopBanner_banner_canShow__5KA30 {
-  max-height: var(--max-banner-height);
-  transition-delay: 0s;
+    max-height: var(--max-banner-height);
+    transition-delay: 0s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .WithTopBanner_banner__x1Ia2 {
-    transition-duration: 0s;
-  }
+    .WithTopBanner_banner__x1Ia2 {
+        transition-duration: 0s;
+    }
 }
 .WithTopBanner_content__6Vh7a {
-  grid-area: content;
-  height: auto;
-  overflow: hidden;
+    grid-area: content;
+    height: auto;
+    overflow: hidden;
 }
 
 .modFeatures_alwaysWideBar {
-  grid-template: "navbar content" minmax(
+    grid-template: "navbar content" minmax(
       auto,
       calc(100% - var(--player-bar-height) - var(--ym-spacer-size-m))
     ) "playerbar playerbar" auto "barBelow barBelow" auto/auto 1fr !important;
 }
 
 .PromoLandingLayout_root__nFZZ7 {
-  grid-template: "content" 1fr "playerbar" auto/1fr;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+    grid-template: "content" 1fr "playerbar" auto/1fr;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
 }
 @media only screen and (max-width: 767.98px) {
-  .PromoLandingLayout_root__nFZZ7 {
-    height: auto;
-  }
+    .PromoLandingLayout_root__nFZZ7 {
+        height: auto;
+    }
 }
 .PromoLandingLayout_playerBar__7tyD3 {
-  overflow: hidden;
-  width: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 .PromoLandingLayout_animatedPlayer_enter__0MM1u {
-  opacity: 0;
-  transform: translateY(15%);
+    opacity: 0;
+    transform: translateY(15%);
 }
 .PromoLandingLayout_animatedPlayer_enter_active__mEGFp {
-  animation:
-    PromoLandingLayout_enter-fade__fGSAV 0.19s ease-out forwards,
-    PromoLandingLayout_enter-move__800PQ
-      var(--promo-landing-layout-transition-duration) ease-out forwards;
+    animation:
+        PromoLandingLayout_enter-fade__fGSAV 0.19s ease-out forwards,
+        PromoLandingLayout_enter-move__800PQ
+            var(--promo-landing-layout-transition-duration) ease-out forwards;
 }
 @media (prefers-reduced-motion: reduce) {
-  .PromoLandingLayout_animatedPlayer_enter_active__mEGFp {
-    animation: none;
-  }
+    .PromoLandingLayout_animatedPlayer_enter_active__mEGFp {
+        animation: none;
+    }
 }
 .PromoLandingLayout_animatedPlayer_exit__D9q3r {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 .PromoLandingLayout_animatedPlayer_exit_active__VnBYL {
-  animation:
-    PromoLandingLayout_exit-fade__4rLUP 0.19s ease-out forwards,
-    PromoLandingLayout_exit-move__cg_8c
-      var(--promo-landing-layout-transition-duration) ease-out forwards;
+    animation:
+        PromoLandingLayout_exit-fade__4rLUP 0.19s ease-out forwards,
+        PromoLandingLayout_exit-move__cg_8c
+            var(--promo-landing-layout-transition-duration) ease-out forwards;
 }
 @media (prefers-reduced-motion: reduce) {
-  .PromoLandingLayout_animatedPlayer_exit_active__VnBYL {
-    animation: none;
-  }
+    .PromoLandingLayout_animatedPlayer_exit_active__VnBYL {
+        animation: none;
+    }
 }
 @keyframes PromoLandingLayout_enter-fade__fGSAV {
-  0% {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 @keyframes PromoLandingLayout_exit-fade__4rLUP {
-  0% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+    0% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 @keyframes PromoLandingLayout_enter-move__800PQ {
-  0% {
-    transform: translateY(15%);
-  }
-  to {
-    transform: translateY(0);
-  }
+    0% {
+        transform: translateY(15%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 @keyframes PromoLandingLayout_exit-move__cg_8c {
-  0% {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(15%);
-  }
+    0% {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(15%);
+    }
 }

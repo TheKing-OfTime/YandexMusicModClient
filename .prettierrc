@@ -1,4 +1,19 @@
 {
+  "bracketSpacing": true,
+  "jsxSingleQuote": false,
+  "semi": true,
   "tabWidth": 4,
-  "useTabs": false
+  "trailingComma": "all",
+  "printWidth": 170,
+  "endOfLine": "lf",
+  "arrowParens": "always",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "options": {
+        "parser": "babel"
+      }
+    }
+  ]
 }

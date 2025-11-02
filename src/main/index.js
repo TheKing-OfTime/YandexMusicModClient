@@ -10,23 +10,18 @@ global.requireIfExists = (path) => {
 };
 
 const electron_1 = require("electron");
-const path = require("path");
-const fs = require("fs");
 const config_js_1 = require("./config.js");
 const platform_js_1 = require("./types/platform.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const systemMenu_js_1 = require("./lib/systemMenu.js");
 const tray_js_1 = require("./lib/tray.js");
-const store_js_1 = require("./lib/store.js");
-const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const singleInstance_js_1 = require("./lib/singleInstance.js");
-const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
-const createWindow_js_1 = require("./lib/createWindow.js");
+const createWindow_js_1 = require("./lib/window/createWindow.js");
 const updater_js_1 = require("./lib/updater.js");
-const modUpdater_js_1 = require("./lib/modUpdater.js");
 const events_js_1 = require("./events.js");
 const customTitleBar_js_1 = require("./lib/customTitleBar.js");
 const loadURL_js_1 = require("./lib/loadURL.js");
+const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const safeRedirects_js_1 = require("./lib/safeRedirects.js");
 const handleCrash_js_1 = require("./lib/handlers/handleCrash.js");
 const handleExternalLink_js_1 = require("./lib/handlers/handleExternalLink.js");
@@ -37,6 +32,12 @@ const handleWindowSessionEvents_js_1 = require("./lib/handlers/handleWindowSessi
 const handleWindowReady_js_1 = require("./lib/handlers/handleWindowReady.js");
 const handleHeadersReceived_js_1 = require("./lib/handlers/handleHeadersReceived/handleHeadersReceived.js");
 const handleBackgroundTasks_js_1 = require("./lib/handlers/handleBackgroundTasks.js");
+
+const path = require("path");
+const fs = require("fs");
+const store_js_1 = require("./lib/store.js");
+const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
+const modUpdater_js_1 = require("./lib/modUpdater.js");
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
@@ -160,9 +161,9 @@ initSessionStoragePath();
 
   logger.log('Electron.app is ready');
 
-  (0, systemMenu_js_1.setupSystemMenu)();
   const window = await (0, createWindow_js_1.createWindow)();
-  if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.WINDOWS) {
+  (0, systemMenu_js_1.setupSystemMenu)(window);
+  if ([platform_js_1.Platform.WINDOWS, platform_js_1.Platform.LINUX].includes(deviceInfo_js_1.devicePlatform)) {
     (0, tray_js_1.setupTray)(window);
   }
   (0, deviceInfo_js_1.updateMaxDisplayFrameRateRefresh)();

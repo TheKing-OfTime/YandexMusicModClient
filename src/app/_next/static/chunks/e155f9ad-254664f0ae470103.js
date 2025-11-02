@@ -1,0 +1,6956 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [1311],
+    {
+        41028: (e, t, r) => {
+            r.d(t, {
+                L3: () => ez,
+                Nh: () => P,
+                Yo: () => S,
+                Zn: () => j,
+                _$: () => T,
+                _n: () => A,
+                dV: () => O,
+                gK: () => tT,
+                o8: () => _,
+                wg: () => E,
+                zr: () => I,
+            });
+            var n,
+                i,
+                a,
+                o,
+                l,
+                u,
+                c,
+                s,
+                p = r(29318),
+                f = r(49124);
+            !(function (e) {
+                (e.afterCreate = "afterCreate"),
+                    (e.afterAttach = "afterAttach"),
+                    (e.afterCreationFinalization = "afterCreationFinalization"),
+                    (e.beforeDetach = "beforeDetach"),
+                    (e.beforeDestroy = "beforeDestroy");
+            })(n || (n = {}));
+            var b = function (e, t) {
+                return (b =
+                    Object.setPrototypeOf ||
+                    ({ __proto__: [] } instanceof Array &&
+                        function (e, t) {
+                            e.__proto__ = t;
+                        }) ||
+                    function (e, t) {
+                        for (var r in t)
+                            Object.prototype.hasOwnProperty.call(t, r) &&
+                                (e[r] = t[r]);
+                    })(e, t);
+            };
+            function h(e, t) {
+                if ("function" != typeof t && null !== t)
+                    throw TypeError(
+                        "Class extends value " +
+                            String(t) +
+                            " is not a constructor or null",
+                    );
+                function r() {
+                    this.constructor = e;
+                }
+                b(e, t),
+                    (e.prototype =
+                        null === t
+                            ? Object.create(t)
+                            : ((r.prototype = t.prototype), new r()));
+            }
+            var d = function () {
+                return (d =
+                    Object.assign ||
+                    function (e) {
+                        for (var t, r = 1, n = arguments.length; r < n; r++)
+                            for (var i in (t = arguments[r]))
+                                Object.prototype.hasOwnProperty.call(t, i) &&
+                                    (e[i] = t[i]);
+                        return e;
+                    }).apply(this, arguments);
+            };
+            function y(e) {
+                var t = "function" == typeof Symbol && Symbol.iterator,
+                    r = t && e[t],
+                    n = 0;
+                if (r) return r.call(e);
+                if (e && "number" == typeof e.length)
+                    return {
+                        next: function () {
+                            return (
+                                e && n >= e.length && (e = void 0),
+                                { value: e && e[n++], done: !e }
+                            );
+                        },
+                    };
+                throw TypeError(
+                    t
+                        ? "Object is not iterable."
+                        : "Symbol.iterator is not defined.",
+                );
+            }
+            function v(e, t) {
+                var r = "function" == typeof Symbol && e[Symbol.iterator];
+                if (!r) return e;
+                var n,
+                    i,
+                    a = r.call(e),
+                    o = [];
+                try {
+                    for (; (void 0 === t || t-- > 0) && !(n = a.next()).done; )
+                        o.push(n.value);
+                } catch (e) {
+                    i = { error: e };
+                } finally {
+                    try {
+                        n && !n.done && (r = a.return) && r.call(a);
+                    } finally {
+                        if (i) throw i.error;
+                    }
+                }
+                return o;
+            }
+            function g(e, t, r) {
+                if (r || 2 == arguments.length)
+                    for (var n, i = 0, a = t.length; i < a; i++)
+                        (!n && i in t) ||
+                            (n || (n = Array.prototype.slice.call(t, 0, i)),
+                            (n[i] = t[i]));
+                return e.concat(n || Array.prototype.slice.call(t));
+            }
+            function m(e) {
+                return ei(e, 1), ea(e).type;
+            }
+            function w(e, t) {
+                ei(e, 1),
+                    eV(
+                        t,
+                        function (e) {
+                            return "object" == typeof e;
+                        },
+                        "object or array",
+                        2,
+                    ),
+                    ea(e).applyPatches(ev(t));
+            }
+            function P(e, t) {
+                return ei(e, 1), ea(e).applySnapshot(t);
+            }
+            function O(e, t) {
+                void 0 === t && (t = !0), ei(e, 1);
+                var r = ea(e);
+                return t ? r.snapshot : eP(r.type.getSnapshot(r, !1));
+            }
+            function j(e) {
+                return ei(e, 1), ea(e).root.storedValue;
+            }
+            function _(e, t) {
+                void 0 === t && (t = !0), ei(e, 1);
+                var r = ea(e);
+                return r.type.create(
+                    r.snapshot,
+                    !0 === t ? r.root.environment : !1 === t ? void 0 : t,
+                );
+            }
+            function S(e) {
+                return ei(e, 1), ea(e).detach(), e;
+            }
+            function I(e) {
+                ei(e, 1);
+                var t = ea(e);
+                t.isRoot ? t.die() : t.parent.removeChild(t.subpath);
+            }
+            function A(e) {
+                return ei(e, 1), ea(e).observableIsAlive;
+            }
+            function T(e) {
+                ei(e, 1);
+                var t = ea(e),
+                    r = t.root.environment;
+                if (!r)
+                    throw new eb(
+                        "Failed to find the environment of "
+                            .concat(t, " ")
+                            .concat(t.path),
+                    );
+                return r;
+            }
+            function E(e) {
+                return e;
+            }
+            "function" == typeof SuppressedError && SuppressedError;
+            var C = (function () {
+                    function e(e, t, r, n) {
+                        Object.defineProperty(this, "type", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: e,
+                        }),
+                            Object.defineProperty(this, "environment", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: n,
+                            }),
+                            Object.defineProperty(this, "_escapedSubpath", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "_subpath", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "_subpathUponDeath", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "_pathUponDeath", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "storedValue", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "aliveAtom", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "_state", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: c.INITIALIZING,
+                            }),
+                            Object.defineProperty(this, "_hookSubscribers", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "_parent", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "pathAtom", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            (this.environment = n),
+                            this.baseSetParent(t, r);
+                    }
+                    return (
+                        Object.defineProperty(e.prototype, "subpath", {
+                            get: function () {
+                                return this._subpath;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "subpathUponDeath", {
+                            get: function () {
+                                return this._subpathUponDeath;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "pathUponDeath", {
+                            get: function () {
+                                return this._pathUponDeath;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "value", {
+                            get: function () {
+                                return this.type.getValue(this);
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "state", {
+                            get: function () {
+                                return this._state;
+                            },
+                            set: function (e) {
+                                var t = this.isAlive;
+                                this._state = e;
+                                var r = this.isAlive;
+                                this.aliveAtom &&
+                                    t !== r &&
+                                    this.aliveAtom.reportChanged();
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "fireInternalHook", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this._hookSubscribers &&
+                                    this._hookSubscribers.emit(e, this, e);
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "registerHook", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return (
+                                    this._hookSubscribers ||
+                                        (this._hookSubscribers = new eA()),
+                                    this._hookSubscribers.register(e, t)
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "parent", {
+                            get: function () {
+                                return this._parent;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(
+                            e.prototype,
+                            "getReconciliationType",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    return this.type;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(e.prototype, "baseSetParent", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                (this._parent = e),
+                                    (this._subpath = t),
+                                    (this._escapedSubpath = void 0),
+                                    this.pathAtom &&
+                                        this.pathAtom.reportChanged();
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "path", {
+                            get: function () {
+                                return this.getEscapedPath(!0);
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "getEscapedPath", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return (e &&
+                                    (this.pathAtom ||
+                                        (this.pathAtom = (0, p.MN)("path")),
+                                    this.pathAtom.reportObserved()),
+                                this.parent)
+                                    ? (void 0 === this._escapedSubpath &&
+                                          (this._escapedSubpath = this._subpath
+                                              ? eR(this._subpath)
+                                              : ""),
+                                      this.parent.getEscapedPath(e) +
+                                          "/" +
+                                          this._escapedSubpath)
+                                    : "";
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "isRoot", {
+                            get: function () {
+                                return null === this.parent;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "isAlive", {
+                            get: function () {
+                                return this.state !== c.DEAD;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "isDetaching", {
+                            get: function () {
+                                return this.state === c.DETACHING;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(
+                            e.prototype,
+                            "observableIsAlive",
+                            {
+                                get: function () {
+                                    return (
+                                        this.aliveAtom ||
+                                            (this.aliveAtom = (0, p.MN)(
+                                                "alive",
+                                            )),
+                                        this.aliveAtom.reportObserved(),
+                                        this.isAlive
+                                    );
+                                },
+                                enumerable: !1,
+                                configurable: !0,
+                            },
+                        ),
+                        Object.defineProperty(
+                            e.prototype,
+                            "baseFinalizeCreation",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    0;
+                                    if (this.state === c.CREATED) {
+                                        if (this.parent) {
+                                            if (
+                                                this.parent.state !==
+                                                c.FINALIZED
+                                            )
+                                                return;
+                                            this.fireHook(n.afterAttach);
+                                        }
+                                        (this.state = c.FINALIZED), e && e();
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            e.prototype,
+                            "baseFinalizeDeath",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    this._hookSubscribers &&
+                                        this._hookSubscribers.clearAll(),
+                                        (this._subpathUponDeath =
+                                            this._subpath),
+                                        (this._pathUponDeath =
+                                            this.getEscapedPath(!1)),
+                                        this.baseSetParent(null, ""),
+                                        (this.state = c.DEAD);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(e.prototype, "baseAboutToDie", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.fireHook(n.beforeDestroy);
+                            },
+                        }),
+                        e
+                    );
+                })(),
+                N = (function (e) {
+                    function t(t, r, n, i, a) {
+                        var o = e.call(this, t, r, n, i) || this;
+                        try {
+                            o.storedValue = t.createNewInstance(a);
+                        } catch (e) {
+                            throw ((o.state = c.DEAD), e);
+                        }
+                        return (o.state = c.CREATED), o.finalizeCreation(), o;
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "root", {
+                            get: function () {
+                                if (!this.parent)
+                                    throw new eb(
+                                        "This scalar node is not part of a tree",
+                                    );
+                                return this.parent.root;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "setParent", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this.parent !== e,
+                                    n = this.subpath !== t;
+                                if (r || n) {
+                                    0;
+                                    (this.environment = void 0),
+                                        this.baseSetParent(this.parent, t);
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "snapshot", {
+                            get: function () {
+                                return eP(this.getSnapshot());
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.type.getSnapshot(this);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "toString", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e =
+                                    (this.isAlive
+                                        ? this.path
+                                        : this.pathUponDeath) || "<root>";
+                                return ""
+                                    .concat(this.type.name, "@")
+                                    .concat(e)
+                                    .concat(this.isAlive ? "" : " [dead]");
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "die", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.isAlive &&
+                                    this.state !== c.DETACHING &&
+                                    (this.aboutToDie(), this.finalizeDeath());
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "finalizeCreation", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.baseFinalizeCreation();
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "aboutToDie", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.baseAboutToDie();
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "finalizeDeath", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.baseFinalizeDeath();
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "fireHook", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.fireInternalHook(e);
+                            },
+                        }),
+                        t
+                    );
+                })(C);
+            N.prototype.die = (0, p.XI)(N.prototype.die);
+            var V = 1;
+            !(function (e) {
+                (e[(e.UNINITIALIZED = 0)] = "UNINITIALIZED"),
+                    (e[(e.CREATING = 1)] = "CREATING"),
+                    (e[(e.CREATED = 2)] = "CREATED");
+            })(i || (i = {})),
+                (function (e) {
+                    (e.Dispose = "dispose"),
+                        (e.Patch = "patch"),
+                        (e.Snapshot = "snapshot");
+                })(a || (a = {}));
+            var D = {
+                    onError: function (e) {
+                        throw e;
+                    },
+                },
+                x = (function (e) {
+                    function t(t, r, n, a, o) {
+                        var l = e.call(this, t, r, n, a) || this;
+                        if (
+                            (Object.defineProperty(l, "nodeId", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: ++V,
+                            }),
+                            Object.defineProperty(l, "identifierAttribute", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "identifier", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "unnormalizedIdentifier", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "identifierCache", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "isProtectionEnabled", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !0,
+                            }),
+                            Object.defineProperty(l, "middlewares", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(
+                                l,
+                                "hasSnapshotPostProcessor",
+                                {
+                                    enumerable: !0,
+                                    configurable: !0,
+                                    writable: !0,
+                                    value: !1,
+                                },
+                            ),
+                            Object.defineProperty(l, "_applyPatches", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_applySnapshot", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_autoUnbox", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !0,
+                            }),
+                            Object.defineProperty(l, "_isRunningAction", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !1,
+                            }),
+                            Object.defineProperty(l, "_hasSnapshotReaction", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !1,
+                            }),
+                            Object.defineProperty(
+                                l,
+                                "_observableInstanceState",
+                                {
+                                    enumerable: !0,
+                                    configurable: !0,
+                                    writable: !0,
+                                    value: i.UNINITIALIZED,
+                                },
+                            ),
+                            Object.defineProperty(l, "_childNodes", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_initialSnapshot", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_cachedInitialSnapshot", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(
+                                l,
+                                "_cachedInitialSnapshotCreated",
+                                {
+                                    enumerable: !0,
+                                    configurable: !0,
+                                    writable: !0,
+                                    value: !1,
+                                },
+                            ),
+                            Object.defineProperty(l, "_snapshotComputed", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_snapshotUponDeath", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(l, "_internalEvents", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            (l._snapshotComputed = (0, p.EW)(function () {
+                                return eP(l.getSnapshot());
+                            })),
+                            (l.unbox = l.unbox.bind(l)),
+                            (l._initialSnapshot = eP(o)),
+                            (l.identifierAttribute = t.identifierAttribute),
+                            r || (l.identifierCache = new ee()),
+                            (l._childNodes = t.initializeChildNodes(
+                                l,
+                                l._initialSnapshot,
+                            )),
+                            (l.identifier = null),
+                            (l.unnormalizedIdentifier = null),
+                            l.identifierAttribute && l._initialSnapshot)
+                        ) {
+                            var u = l._initialSnapshot[l.identifierAttribute];
+                            if (void 0 === u) {
+                                var c = l._childNodes[l.identifierAttribute];
+                                c && (u = c.value);
+                            }
+                            if ("string" != typeof u && "number" != typeof u)
+                                throw new eb(
+                                    "Instance identifier '"
+                                        .concat(
+                                            l.identifierAttribute,
+                                            "' for type '",
+                                        )
+                                        .concat(
+                                            l.type.name,
+                                            "' must be a string or a number",
+                                        ),
+                                );
+                            (l.identifier = "" + u),
+                                (l.unnormalizedIdentifier = u);
+                        }
+                        return (
+                            r
+                                ? r.root.identifierCache.addNodeToCache(l)
+                                : l.identifierCache.addNodeToCache(l),
+                            l
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "applyPatches", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.createObservableInstanceIfNeeded(),
+                                    this._applyPatches(e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "applySnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.createObservableInstanceIfNeeded(),
+                                    this._applySnapshot(e);
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "createObservableInstanceIfNeeded",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    void 0 === e && (e = !0),
+                                        this._observableInstanceState ===
+                                            i.UNINITIALIZED &&
+                                            this.createObservableInstance(e);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "createObservableInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    void 0 === e && (e = !0), 0;
+                                    this._observableInstanceState = i.CREATING;
+                                    for (
+                                        var t, r, a, o, l = [], u = this.parent;
+                                        u &&
+                                        u._observableInstanceState ===
+                                            i.UNINITIALIZED;
+
+                                    )
+                                        l.unshift(u), (u = u.parent);
+                                    try {
+                                        for (
+                                            var s = y(l), p = s.next();
+                                            !p.done;
+                                            p = s.next()
+                                        ) {
+                                            var f = p.value;
+                                            f.createObservableInstanceIfNeeded(
+                                                !1,
+                                            );
+                                        }
+                                    } catch (e) {
+                                        t = { error: e };
+                                    } finally {
+                                        try {
+                                            p &&
+                                                !p.done &&
+                                                (r = s.return) &&
+                                                r.call(s);
+                                        } finally {
+                                            if (t) throw t.error;
+                                        }
+                                    }
+                                    var b = this.type;
+                                    try {
+                                        (this.storedValue = b.createNewInstance(
+                                            this._childNodes,
+                                        )),
+                                            this.preboot(),
+                                            (this._isRunningAction = !0),
+                                            b.finalizeNewInstance(
+                                                this,
+                                                this.storedValue,
+                                            );
+                                    } catch (e) {
+                                        throw ((this.state = c.DEAD), e);
+                                    } finally {
+                                        this._isRunningAction = !1;
+                                    }
+                                    if (
+                                        ((this._observableInstanceState =
+                                            i.CREATED),
+                                        this._snapshotComputed.trackAndCompute(),
+                                        this.isRoot &&
+                                            this._addSnapshotReaction(),
+                                        (this._childNodes = ep),
+                                        (this.state = c.CREATED),
+                                        e)
+                                    ) {
+                                        this.fireHook(n.afterCreate),
+                                            this.finalizeCreation();
+                                        try {
+                                            for (
+                                                var h = y(l.reverse()),
+                                                    d = h.next();
+                                                !d.done;
+                                                d = h.next()
+                                            ) {
+                                                var f = d.value;
+                                                f.fireHook(n.afterCreate),
+                                                    f.finalizeCreation();
+                                            }
+                                        } catch (e) {
+                                            a = { error: e };
+                                        } finally {
+                                            try {
+                                                d &&
+                                                    !d.done &&
+                                                    (o = h.return) &&
+                                                    o.call(h);
+                                            } finally {
+                                                if (a) throw a.error;
+                                            }
+                                        }
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "root", {
+                            get: function () {
+                                var e = this.parent;
+                                return e ? e.root : this;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "clearParent", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                if (this.parent) {
+                                    this.fireHook(n.beforeDetach);
+                                    var e = this.state;
+                                    this.state = c.DETACHING;
+                                    var t = this.root,
+                                        r = t.environment,
+                                        i = t.identifierCache.splitCache(this);
+                                    try {
+                                        this.parent.removeChild(this.subpath),
+                                            this.baseSetParent(null, ""),
+                                            (this.environment = r),
+                                            (this.identifierCache = i);
+                                    } finally {
+                                        this.state = e;
+                                    }
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "setParent", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = e !== this.parent,
+                                    i = t !== this.subpath;
+                                if (r || i) {
+                                    0;
+                                    r
+                                        ? ((this.environment = void 0),
+                                          e.root.identifierCache.mergeCache(
+                                              this,
+                                          ),
+                                          this.baseSetParent(e, t),
+                                          this.fireHook(n.afterAttach))
+                                        : i &&
+                                          this.baseSetParent(this.parent, t);
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "fireHook", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                this.fireInternalHook(e);
+                                var r =
+                                    this.storedValue &&
+                                    "object" == typeof this.storedValue &&
+                                    this.storedValue[e];
+                                "function" == typeof r &&
+                                    (p._t
+                                        ? (0, p._t)(function () {
+                                              r.apply(t.storedValue);
+                                          })
+                                        : r.apply(this.storedValue));
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "snapshot", {
+                            get: function () {
+                                return (
+                                    this.hasSnapshotPostProcessor &&
+                                        this.createObservableInstanceIfNeeded(),
+                                    this._snapshotComputed.get()
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.isAlive
+                                    ? this._observableInstanceState ===
+                                      i.CREATED
+                                        ? this._getActualSnapshot()
+                                        : this._getCachedInitialSnapshot()
+                                    : this._snapshotUponDeath;
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_getActualSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    return this.type.getSnapshot(this);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_getCachedInitialSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    if (!this._cachedInitialSnapshotCreated) {
+                                        var e = this.type,
+                                            t = this._childNodes,
+                                            r = this._initialSnapshot;
+                                        (this._cachedInitialSnapshot =
+                                            e.processInitialSnapshot(t, r)),
+                                            (this._cachedInitialSnapshotCreated =
+                                                !0);
+                                    }
+                                    return this._cachedInitialSnapshot;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "isRunningAction", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return (
+                                    !!this._isRunningAction ||
+                                    (!this.isRoot &&
+                                        this.parent.isRunningAction())
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "assertAlive", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (!this.isAlive) {
+                                    var t = this._getAssertAliveError(e);
+                                    eN(t);
+                                }
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_getAssertAliveError",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t =
+                                            this.getEscapedPath(!1) ||
+                                            this.pathUponDeath ||
+                                            "",
+                                        r = (e.subpath && eR(e.subpath)) || "",
+                                        n = e.actionContext || u;
+                                    n &&
+                                        "action" !== n.type &&
+                                        n.parentActionEvent &&
+                                        (n = n.parentActionEvent);
+                                    var i = "";
+                                    if (n && null != n.name) {
+                                        var a,
+                                            o =
+                                                (n &&
+                                                    n.context &&
+                                                    (ei((a = n.context), 1),
+                                                    ea(a).path)) ||
+                                                t;
+                                        i = ""
+                                            .concat(o, ".")
+                                            .concat(n.name, "()");
+                                    }
+                                    return "You are trying to read or write to an object that is no longer part of a state tree. (Object type: '"
+                                        .concat(
+                                            this.type.name,
+                                            "', Path upon death: '",
+                                        )
+                                        .concat(t, "', Subpath: '")
+                                        .concat(r, "', Action: '")
+                                        .concat(
+                                            i,
+                                            "'). Either detach nodes first, or don't use objects after removing / replacing them in the tree.",
+                                        );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "getChildNode", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.assertAlive({ subpath: e }),
+                                    (this._autoUnbox = !1);
+                                try {
+                                    return this._observableInstanceState ===
+                                        i.CREATED
+                                        ? this.type.getChildNode(this, e)
+                                        : this._childNodes[e];
+                                } finally {
+                                    this._autoUnbox = !0;
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildren", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.assertAlive(ep), (this._autoUnbox = !1);
+                                try {
+                                    return this._observableInstanceState ===
+                                        i.CREATED
+                                        ? this.type.getChildren(this)
+                                        : eu(this._childNodes);
+                                } finally {
+                                    this._autoUnbox = !0;
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildType", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this.type.getChildType(e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isProtected", {
+                            get: function () {
+                                return this.root.isProtectionEnabled;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "assertWritable", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (
+                                    (this.assertAlive(e),
+                                    !this.isRunningAction() && this.isProtected)
+                                )
+                                    throw new eb(
+                                        "Cannot modify '".concat(
+                                            this,
+                                            "', the object is protected and can only be modified by using an action.",
+                                        ),
+                                    );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "removeChild", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.type.removeChild(this, e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "unbox", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return e
+                                    ? (this.assertAlive({
+                                          subpath:
+                                              e.subpath || e.subpathUponDeath,
+                                      }),
+                                      this._autoUnbox ? e.value : e)
+                                    : e;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "toString", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e =
+                                        (this.isAlive
+                                            ? this.path
+                                            : this.pathUponDeath) || "<root>",
+                                    t = this.identifier
+                                        ? "(id: ".concat(this.identifier, ")")
+                                        : "";
+                                return ""
+                                    .concat(this.type.name, "@")
+                                    .concat(e)
+                                    .concat(t)
+                                    .concat(this.isAlive ? "" : " [dead]");
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "finalizeCreation", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e = this;
+                                this.baseFinalizeCreation(function () {
+                                    var t, r;
+                                    try {
+                                        for (
+                                            var i = y(e.getChildren()),
+                                                a = i.next();
+                                            !a.done;
+                                            a = i.next()
+                                        )
+                                            a.value.finalizeCreation();
+                                    } catch (e) {
+                                        t = { error: e };
+                                    } finally {
+                                        try {
+                                            a &&
+                                                !a.done &&
+                                                (r = i.return) &&
+                                                r.call(i);
+                                        } finally {
+                                            if (t) throw t.error;
+                                        }
+                                    }
+                                    e.fireInternalHook(
+                                        n.afterCreationFinalization,
+                                    );
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "detach", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                if (!this.isAlive)
+                                    throw new eb(
+                                        "Error while detaching, node is not alive.",
+                                    );
+                                this.clearParent();
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "preboot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e = this;
+                                (this._applyPatches = G(
+                                    this.storedValue,
+                                    "@APPLY_PATCHES",
+                                    function (t) {
+                                        t.forEach(function (t) {
+                                            if (!t.path)
+                                                return void e.type.applySnapshot(
+                                                    e,
+                                                    t.value,
+                                                );
+                                            var r = (function (e) {
+                                                var t = e.split("/").map(eF);
+                                                if (
+                                                    !(
+                                                        "" === e ||
+                                                        "." === e ||
+                                                        ".." === e ||
+                                                        eE(e, "/") ||
+                                                        eE(e, "./") ||
+                                                        eE(e, "../")
+                                                    )
+                                                )
+                                                    throw new eb(
+                                                        "a json path must be either rooted, empty or relative, but got '".concat(
+                                                            e,
+                                                            "'",
+                                                        ),
+                                                    );
+                                                return (
+                                                    "" === t[0] && t.shift(), t
+                                                );
+                                            })(t.path);
+                                            (function (e, t, r) {
+                                                void 0 === r && (r = !0);
+                                                var n = e;
+                                                try {
+                                                    for (
+                                                        var i = 0;
+                                                        i < t.length;
+                                                        i++
+                                                    ) {
+                                                        var a = t[i];
+                                                        if (".." === a) {
+                                                            if ((n = n.parent))
+                                                                continue;
+                                                        } else if ("." === a)
+                                                            continue;
+                                                        else if (n) {
+                                                            if (
+                                                                n instanceof N
+                                                            ) {
+                                                                var o = n.value;
+                                                                en(o) &&
+                                                                    (n = ea(o));
+                                                            }
+                                                            if (
+                                                                n instanceof
+                                                                    x &&
+                                                                n.getChildType(
+                                                                    a,
+                                                                ) &&
+                                                                (n =
+                                                                    n.getChildNode(
+                                                                        a,
+                                                                    ))
+                                                            )
+                                                                continue;
+                                                        }
+                                                        throw new eb(
+                                                            "Could not resolve '"
+                                                                .concat(
+                                                                    a,
+                                                                    "' in path '",
+                                                                )
+                                                                .concat(
+                                                                    eH(
+                                                                        t.slice(
+                                                                            0,
+                                                                            i,
+                                                                        ),
+                                                                    ) || "/",
+                                                                    "' while resolving '",
+                                                                )
+                                                                .concat(
+                                                                    eH(t),
+                                                                    "'",
+                                                                ),
+                                                        );
+                                                    }
+                                                } catch (e) {
+                                                    if (!r) return;
+                                                    throw e;
+                                                }
+                                                return n;
+                                            })(
+                                                e,
+                                                r.slice(0, -1),
+                                            ).applyPatchLocally(
+                                                r[r.length - 1],
+                                                t,
+                                            );
+                                        });
+                                    },
+                                )),
+                                    (this._applySnapshot = G(
+                                        this.storedValue,
+                                        "@APPLY_SNAPSHOT",
+                                        function (t) {
+                                            if (t !== e.snapshot)
+                                                return e.type.applySnapshot(
+                                                    e,
+                                                    t,
+                                                );
+                                        },
+                                    )),
+                                    eS(this.storedValue, "$treenode", this),
+                                    eS(this.storedValue, "toJSON", el);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "die", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.isAlive &&
+                                    this.state !== c.DETACHING &&
+                                    (this.aboutToDie(), this.finalizeDeath());
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "aboutToDie", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this._observableInstanceState !==
+                                    i.UNINITIALIZED &&
+                                    (this.getChildren().forEach(function (e) {
+                                        e.aboutToDie();
+                                    }),
+                                    this.baseAboutToDie(),
+                                    this._internalEventsEmit(a.Dispose),
+                                    this._internalEventsClear(a.Dispose));
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "finalizeDeath", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.getChildren().forEach(function (e) {
+                                    e.finalizeDeath();
+                                }),
+                                    this.root.identifierCache.notifyDied(this);
+                                var e = this.snapshot;
+                                (this._snapshotUponDeath = e),
+                                    this._internalEventsClearAll(),
+                                    this.baseFinalizeDeath();
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "onSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return (
+                                    this._addSnapshotReaction(),
+                                    this._internalEventsRegister(a.Snapshot, e)
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "emitSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this._internalEventsEmit(a.Snapshot, e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "onPatch", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this._internalEventsRegister(a.Patch, e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "emitPatch", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (
+                                    this._internalEventsHasSubscribers(a.Patch)
+                                ) {
+                                    var r =
+                                            t.path.substr(this.path.length) +
+                                            (e.path ? "/" + e.path : ""),
+                                        n = v(
+                                            (function (e) {
+                                                if (!("oldValue" in e))
+                                                    throw new eb(
+                                                        "Patches without `oldValue` field cannot be inversed",
+                                                    );
+                                                return [
+                                                    (function (e) {
+                                                        switch (e.op) {
+                                                            case "add":
+                                                                return {
+                                                                    op: "add",
+                                                                    path: e.path,
+                                                                    value: e.value,
+                                                                };
+                                                            case "remove":
+                                                                return {
+                                                                    op: "remove",
+                                                                    path: e.path,
+                                                                };
+                                                            case "replace":
+                                                                return {
+                                                                    op: "replace",
+                                                                    path: e.path,
+                                                                    value: e.value,
+                                                                };
+                                                        }
+                                                    })(e),
+                                                    (function (e) {
+                                                        switch (e.op) {
+                                                            case "add":
+                                                                return {
+                                                                    op: "remove",
+                                                                    path: e.path,
+                                                                };
+                                                            case "remove":
+                                                                return {
+                                                                    op: "add",
+                                                                    path: e.path,
+                                                                    value: e.oldValue,
+                                                                };
+                                                            case "replace":
+                                                                return {
+                                                                    op: "replace",
+                                                                    path: e.path,
+                                                                    value: e.oldValue,
+                                                                };
+                                                        }
+                                                    })(e),
+                                                ];
+                                            })(
+                                                (function (e) {
+                                                    for (
+                                                        var t = [], r = 1;
+                                                        r < arguments.length;
+                                                        r++
+                                                    )
+                                                        t[r - 1] = arguments[r];
+                                                    for (
+                                                        var n = 0;
+                                                        n < t.length;
+                                                        n++
+                                                    ) {
+                                                        var i = t[n];
+                                                        for (var a in i)
+                                                            e[a] = i[a];
+                                                    }
+                                                    return e;
+                                                })({}, e, { path: r }),
+                                            ),
+                                            2,
+                                        ),
+                                        i = n[0],
+                                        o = n[1];
+                                    this._internalEventsEmit(a.Patch, i, o);
+                                }
+                                this.parent && this.parent.emitPatch(e, t);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "hasDisposer", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this._internalEventsHas(a.Dispose, e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "addDisposer", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (!this.hasDisposer(e))
+                                    return void this._internalEventsRegister(
+                                        a.Dispose,
+                                        e,
+                                        !0,
+                                    );
+                                throw new eb(
+                                    "cannot add a disposer when it is already registered for execution",
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "removeDisposer", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (!this._internalEventsHas(a.Dispose, e))
+                                    throw new eb(
+                                        "cannot remove a disposer which was never registered for execution",
+                                    );
+                                this._internalEventsUnregister(a.Dispose, e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "removeMiddleware", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (this.middlewares) {
+                                    var t = this.middlewares.indexOf(e);
+                                    t >= 0 && this.middlewares.splice(t, 1);
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "addMiddleWare", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this;
+                                void 0 === t && (t = !0);
+                                var n = { handler: e, includeHooks: t };
+                                return (
+                                    this.middlewares
+                                        ? this.middlewares.push(n)
+                                        : (this.middlewares = [n]),
+                                    function () {
+                                        r.removeMiddleware(n);
+                                    }
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "applyPatchLocally",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    this.assertWritable({ subpath: e }),
+                                        this.createObservableInstanceIfNeeded(),
+                                        this.type.applyPatchLocally(this, e, t);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_addSnapshotReaction",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    var e = this;
+                                    if (!this._hasSnapshotReaction) {
+                                        var t = (0, p.mJ)(
+                                            function () {
+                                                return e.snapshot;
+                                            },
+                                            function (t) {
+                                                return e.emitSnapshot(t);
+                                            },
+                                            D,
+                                        );
+                                        this.addDisposer(t),
+                                            (this._hasSnapshotReaction = !0);
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsHasSubscribers",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return (
+                                        !!this._internalEvents &&
+                                        this._internalEvents.hasSubscribers(e)
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsRegister",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t, r) {
+                                    return (
+                                        void 0 === r && (r = !1),
+                                        this._internalEvents ||
+                                            (this._internalEvents = new eA()),
+                                        this._internalEvents.register(e, t, r)
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsHas",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    return (
+                                        !!this._internalEvents &&
+                                        this._internalEvents.has(e, t)
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsUnregister",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    this._internalEvents &&
+                                        this._internalEvents.unregister(e, t);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsEmit",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    for (
+                                        var t, r = [], n = 1;
+                                        n < arguments.length;
+                                        n++
+                                    )
+                                        r[n - 1] = arguments[n];
+                                    this._internalEvents &&
+                                        (t = this._internalEvents).emit.apply(
+                                            t,
+                                            g([e], v(r), !1),
+                                        );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsClear",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    this._internalEvents &&
+                                        this._internalEvents.clear(e);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_internalEventsClearAll",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    this._internalEvents &&
+                                        this._internalEvents.clearAll();
+                                },
+                            },
+                        ),
+                        t
+                    );
+                })(C);
+            (x.prototype.createObservableInstance = (0, p.XI)(
+                x.prototype.createObservableInstance,
+            )),
+                (x.prototype.detach = (0, p.XI)(x.prototype.detach)),
+                (x.prototype.die = (0, p.XI)(x.prototype.die)),
+                (function (e) {
+                    (e[(e.String = 1)] = "String"),
+                        (e[(e.Number = 2)] = "Number"),
+                        (e[(e.Boolean = 4)] = "Boolean"),
+                        (e[(e.Date = 8)] = "Date"),
+                        (e[(e.Literal = 16)] = "Literal"),
+                        (e[(e.Array = 32)] = "Array"),
+                        (e[(e.Map = 64)] = "Map"),
+                        (e[(e.Object = 128)] = "Object"),
+                        (e[(e.Frozen = 256)] = "Frozen"),
+                        (e[(e.Optional = 512)] = "Optional"),
+                        (e[(e.Reference = 1024)] = "Reference"),
+                        (e[(e.Identifier = 2048)] = "Identifier"),
+                        (e[(e.Late = 4096)] = "Late"),
+                        (e[(e.Refinement = 8192)] = "Refinement"),
+                        (e[(e.Union = 16384)] = "Union"),
+                        (e[(e.Null = 32768)] = "Null"),
+                        (e[(e.Undefined = 65536)] = "Undefined"),
+                        (e[(e.Integer = 131072)] = "Integer"),
+                        (e[(e.Custom = 262144)] = "Custom"),
+                        (e[(e.SnapshotProcessor = 524288)] =
+                            "SnapshotProcessor"),
+                        (e[(e.Lazy = 1048576)] = "Lazy"),
+                        (e[(e.Finite = 2097152)] = "Finite"),
+                        (e[(e.Float = 4194304)] = "Float");
+                })(l || (l = {}));
+            var k = "cannotDetermine",
+                z = Symbol("$type"),
+                R = (function () {
+                    function e(e) {
+                        Object.defineProperty(this, o, {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: void 0,
+                        }),
+                            Object.defineProperty(this, "C", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "S", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "T", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "N", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "isType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !0,
+                            }),
+                            Object.defineProperty(this, "name", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            (this.name = e);
+                    }
+                    return (
+                        Object.defineProperty(e.prototype, "create", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return (
+                                    q(this, e),
+                                    this.instantiate(null, "", t, e).value
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                throw new eb("unimplemented method");
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return e === this;
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "validate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (eo(e)) {
+                                    var r = m(e);
+                                    return this.isAssignableFrom(r)
+                                        ? es
+                                        : J(t, e);
+                                }
+                                return this.isValidSnapshot(e, t);
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "is", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return (
+                                    0 ===
+                                    this.validate(e, [{ path: "", type: this }])
+                                        .length
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "Type", {
+                            get: function () {
+                                throw new eb(
+                                    "Factory.Type should not be actually called. It is just a Type signature that can be used at compile time with Typescript, by using `typeof type.Type`",
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "TypeWithoutSTN", {
+                            get: function () {
+                                throw new eb(
+                                    "Factory.TypeWithoutSTN should not be actually called. It is just a Type signature that can be used at compile time with Typescript, by using `typeof type.TypeWithoutSTN`",
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "SnapshotType", {
+                            get: function () {
+                                throw new eb(
+                                    "Factory.SnapshotType should not be actually called. It is just a Type signature that can be used at compile time with Typescript, by using `typeof type.SnapshotType`",
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "CreationType", {
+                            get: function () {
+                                throw new eb(
+                                    "Factory.CreationType should not be actually called. It is just a Type signature that can be used at compile time with Typescript, by using `typeof type.CreationType`",
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        e
+                    );
+                })();
+            (o = z), (R.prototype.create = (0, p.XI)(R.prototype.create));
+            var F = (function (e) {
+                function t(t) {
+                    var r = e.call(this, t) || this;
+                    return (
+                        Object.defineProperty(r, "identifierAttribute", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: void 0,
+                        }),
+                        r
+                    );
+                }
+                return (
+                    h(t, e),
+                    Object.defineProperty(t.prototype, "create", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (t, r) {
+                            return (
+                                void 0 === t && (t = this.getDefaultSnapshot()),
+                                e.prototype.create.call(this, t, r)
+                            );
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getValue", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return (
+                                e.createObservableInstanceIfNeeded(),
+                                e.storedValue
+                            );
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "isMatchingSnapshotId", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            return (
+                                !e.identifierAttribute ||
+                                e.identifier === "" + t[e.identifierAttribute]
+                            );
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "tryToReconcileNode", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            return (
+                                !e.isDetaching &&
+                                (!!(
+                                    e.snapshot === t ||
+                                    (en(t) && ea(t) === e)
+                                ) ||
+                                    (!!(
+                                        e.type === this &&
+                                        em(t) &&
+                                        !en(t) &&
+                                        this.isMatchingSnapshotId(e, t)
+                                    ) &&
+                                        (e.applySnapshot(t), !0)))
+                            );
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "reconcile", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            if (this.tryToReconcileNode(e, t))
+                                return e.setParent(r, n), e;
+                            if (
+                                (e.die(), en(t) && this.isAssignableFrom(m(t)))
+                            ) {
+                                var i = ea(t);
+                                return i.setParent(r, n), i;
+                            }
+                            return this.instantiate(r, n, void 0, t);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getSubTypes", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return null;
+                        },
+                    }),
+                    t
+                );
+            })(R);
+            F.prototype.create = (0, p.XI)(F.prototype.create);
+            var H = (function (e) {
+                function t() {
+                    return (null !== e && e.apply(this, arguments)) || this;
+                }
+                return (
+                    h(t, e),
+                    Object.defineProperty(t.prototype, "createNewInstance", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return e;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getValue", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return e.storedValue;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return e.storedValue;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "reconcile", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            if (
+                                !e.isDetaching &&
+                                e.type === this &&
+                                e.storedValue === t
+                            )
+                                return e;
+                            var i = this.instantiate(r, n, void 0, t);
+                            return e.die(), i;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getSubTypes", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return null;
+                        },
+                    }),
+                    t
+                );
+            })(R);
+            function M(e) {
+                return "object" == typeof e && e && !0 === e.isType;
+            }
+            function L(e, t) {
+                eV(e, M, "mobx-state-tree type", t);
+            }
+            !(function () {
+                function e(e, t) {
+                    Object.defineProperty(this, "hooks", {
+                        enumerable: !0,
+                        configurable: !0,
+                        writable: !0,
+                        value: e,
+                    }),
+                        Object.defineProperty(this, "call", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: t,
+                        }),
+                        Object.defineProperty(this, "flowsPending", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: 0,
+                        }),
+                        Object.defineProperty(this, "running", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: !0,
+                        }),
+                        e && e.onStart(t);
+                }
+                Object.defineProperty(e.prototype, "finish", {
+                    enumerable: !1,
+                    configurable: !0,
+                    writable: !0,
+                    value: function (e) {
+                        this.running &&
+                            ((this.running = !1),
+                            this.hooks && this.hooks.onFinish(this.call, e));
+                    },
+                }),
+                    Object.defineProperty(e.prototype, "incFlowsPending", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            this.flowsPending++;
+                        },
+                    }),
+                    Object.defineProperty(e.prototype, "decFlowsPending", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            this.flowsPending--;
+                        },
+                    }),
+                    Object.defineProperty(e.prototype, "hasFlowsPending", {
+                        get: function () {
+                            return this.flowsPending > 0;
+                        },
+                        enumerable: !1,
+                        configurable: !0,
+                    });
+            })();
+            var U = 1;
+            function Z(e, t) {
+                var r = ea(e.context);
+                "action" === e.type && r.assertAlive({ actionContext: e });
+                var i = r._isRunningAction;
+                r._isRunningAction = !0;
+                var a = u;
+                u = e;
+                try {
+                    var o = r,
+                        l = e,
+                        c = t,
+                        s = new $(o, c);
+                    if (s.isEmpty) return (0, p.XI)(c).apply(null, l.args);
+                    var f = null;
+                    return (function e(t) {
+                        var r = s.getNextMiddleware(),
+                            i = r && r.handler;
+                        if (!i) return (0, p.XI)(c).apply(null, t.args);
+                        if (!r.includeHooks && n[t.name]) return e(t);
+                        var a = !1,
+                            o = !1;
+                        if (
+                            (i(
+                                t,
+                                function (t, r) {
+                                    (a = !0), (f = e(t)), r && (f = r(f));
+                                },
+                                function (e) {
+                                    (o = !0), (f = e);
+                                },
+                            ),
+                            (function () {
+                                return !1;
+                            })())
+                        )
+                            if (a || o) {
+                                if (a && o) {
+                                    var l = ea(t.tree);
+                                    throw new eb(
+                                        "The next() and abort() callback within the middleware "
+                                            .concat(
+                                                i.name,
+                                                ' for the action: "',
+                                            )
+                                            .concat(t.name, '" on the node: ')
+                                            .concat(
+                                                l.type.name,
+                                                " were invoked.",
+                                            ),
+                                    );
+                                }
+                            } else {
+                                var l = ea(t.tree);
+                                throw new eb(
+                                    "Neither the next() nor the abort() callback within the middleware "
+                                        .concat(i.name, ' for the action: "')
+                                        .concat(t.name, '" on the node: ')
+                                        .concat(l.type.name, " was invoked."),
+                                );
+                            }
+                        return f;
+                    })(l);
+                } finally {
+                    (u = a), (r._isRunningAction = i);
+                }
+            }
+            function W(e) {
+                if (e) return "action" === e.type ? e : e.parentActionEvent;
+            }
+            function G(e, t, r) {
+                var n = function () {
+                    var n = U++,
+                        i = u,
+                        a = W(i);
+                    return Z(
+                        {
+                            type: "action",
+                            name: t,
+                            id: n,
+                            args: eT(arguments),
+                            context: e,
+                            tree: j(e),
+                            rootId: i ? i.rootId : n,
+                            parentId: i ? i.id : 0,
+                            allParentIds: i
+                                ? g(g([], v(i.allParentIds), !1), [i.id], !1)
+                                : [],
+                            parentEvent: i,
+                            parentActionEvent: a,
+                        },
+                        r,
+                    );
+                };
+                return (
+                    (n._isMSTAction = !0),
+                    (n._isFlowAction = r._isFlowAction),
+                    n
+                );
+            }
+            var $ = (function () {
+                function e(e, t) {
+                    Object.defineProperty(this, "arrayIndex", {
+                        enumerable: !0,
+                        configurable: !0,
+                        writable: !0,
+                        value: 0,
+                    }),
+                        Object.defineProperty(this, "inArrayIndex", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: 0,
+                        }),
+                        Object.defineProperty(this, "middlewares", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: [],
+                        }),
+                        t.$mst_middleware &&
+                            this.middlewares.push(t.$mst_middleware);
+                    for (var r = e; r; )
+                        r.middlewares && this.middlewares.push(r.middlewares),
+                            (r = r.parent);
+                }
+                return (
+                    Object.defineProperty(e.prototype, "isEmpty", {
+                        get: function () {
+                            return this.middlewares.length <= 0;
+                        },
+                        enumerable: !1,
+                        configurable: !0,
+                    }),
+                    Object.defineProperty(e.prototype, "getNextMiddleware", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            var e = this.middlewares[this.arrayIndex];
+                            if (e) {
+                                var t = e[this.inArrayIndex++];
+                                return (
+                                    t ||
+                                    (this.arrayIndex++,
+                                    (this.inArrayIndex = 0),
+                                    this.getNextMiddleware())
+                                );
+                            }
+                        },
+                    }),
+                    e
+                );
+            })();
+            function X(e) {
+                return "function" == typeof e
+                    ? "<function".concat(e.name ? " " + e.name : "", ">")
+                    : en(e)
+                      ? "<".concat(e, ">")
+                      : "`".concat(
+                            (function (e) {
+                                try {
+                                    return JSON.stringify(e);
+                                } catch (e) {
+                                    return "<Unserializable: ".concat(e, ">");
+                                }
+                            })(e),
+                            "`",
+                        );
+            }
+            function Y(e) {
+                var t,
+                    r = e.value,
+                    n = e.context[e.context.length - 1].type,
+                    i = e.context
+                        .map(function (e) {
+                            return e.path;
+                        })
+                        .filter(function (e) {
+                            return e.length > 0;
+                        })
+                        .join("/"),
+                    a = i.length > 0 ? 'at path "/'.concat(i, '" ') : "",
+                    o = en(r)
+                        ? "value of type ".concat(ea(r).type.name, ":")
+                        : ew(r)
+                          ? "value"
+                          : "snapshot",
+                    u = n && en(r) && n.is(ea(r).snapshot);
+                return (
+                    ""
+                        .concat(a)
+                        .concat(o, " ")
+                        .concat(X(r), " is not assignable ")
+                        .concat(n ? "to type: `".concat(n.name, "`") : "") +
+                    (e.message ? " (".concat(e.message, ")") : "") +
+                    (n
+                        ? (M((t = n)) &&
+                              (t.flags &
+                                  (l.String |
+                                      l.Number |
+                                      l.Integer |
+                                      l.Boolean |
+                                      l.Date)) >
+                                  0) ||
+                          ew(r)
+                            ? "."
+                            : ", expected an instance of `"
+                                  .concat(n.name, "` or a snapshot like `")
+                                  .concat(n.describe(), "` instead.") +
+                              (u
+                                  ? " (Note that a snapshot of the provided value is compatible with the targeted type)"
+                                  : "")
+                        : ".")
+                );
+            }
+            function B(e, t, r) {
+                return e.concat([{ path: t, type: r }]);
+            }
+            function J(e, t, r) {
+                return [{ context: e, value: t, message: r }];
+            }
+            function K(e) {
+                return e.reduce(function (e, t) {
+                    return e.concat(t);
+                }, []);
+            }
+            function q(e, t) {
+                ((function () {
+                    return !1;
+                })() ||
+                    (void 0 !== f &&
+                        f.env &&
+                        "true" === f.env.ENABLE_TYPE_CHECK)) &&
+                    (function (e, t) {
+                        var r = e.validate(t, [{ path: "", type: e }]);
+                        if (r.length > 0)
+                            throw new eb(
+                                (function (e, t, r) {
+                                    if (0 !== r.length) {
+                                        var n;
+                                        return (
+                                            "Error while converting "
+                                                .concat(
+                                                    (n = X(t)).length < 280
+                                                        ? n
+                                                        : ""
+                                                              .concat(
+                                                                  n.substring(
+                                                                      0,
+                                                                      272,
+                                                                  ),
+                                                                  "......",
+                                                              )
+                                                              .concat(
+                                                                  n.substring(
+                                                                      n.length -
+                                                                          8,
+                                                                  ),
+                                                              ),
+                                                    " to `",
+                                                )
+                                                .concat(e.name, "`:\n\n    ") +
+                                            r.map(Y).join("\n    ")
+                                        );
+                                    }
+                                })(e, t, r),
+                            );
+                    })(e, t);
+            }
+            var Q = 0,
+                ee = (function () {
+                    function e() {
+                        Object.defineProperty(this, "cacheId", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: Q++,
+                        }),
+                            Object.defineProperty(this, "cache", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: p.sH.map(),
+                            }),
+                            Object.defineProperty(
+                                this,
+                                "lastCacheModificationPerId",
+                                {
+                                    enumerable: !0,
+                                    configurable: !0,
+                                    writable: !0,
+                                    value: p.sH.map(),
+                                },
+                            );
+                    }
+                    return (
+                        Object.defineProperty(
+                            e.prototype,
+                            "updateLastCacheModificationPerId",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t =
+                                        this.lastCacheModificationPerId.get(e);
+                                    this.lastCacheModificationPerId.set(
+                                        e,
+                                        void 0 === t ? 1 : t + 1,
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            e.prototype,
+                            "getLastCacheModificationPerId",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t =
+                                        this.lastCacheModificationPerId.get(
+                                            e,
+                                        ) || 0;
+                                    return ""
+                                        .concat(this.cacheId, "-")
+                                        .concat(t);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(e.prototype, "addNodeToCache", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (
+                                    (void 0 === t && (t = !0),
+                                    e.identifierAttribute)
+                                ) {
+                                    var r = e.identifier;
+                                    this.cache.has(r) ||
+                                        this.cache.set(r, p.sH.array([], ef));
+                                    var n = this.cache.get(r);
+                                    if (-1 !== n.indexOf(e))
+                                        throw new eb("Already registered");
+                                    n.push(e),
+                                        t &&
+                                            this.updateLastCacheModificationPerId(
+                                                r,
+                                            );
+                                }
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "mergeCache", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                (0, p.zu)(e.identifierCache.cache).forEach(
+                                    function (e) {
+                                        return e.forEach(function (e) {
+                                            t.addNodeToCache(e);
+                                        });
+                                    },
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "notifyDied", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (e.identifierAttribute) {
+                                    var t = e.identifier,
+                                        r = this.cache.get(t);
+                                    r &&
+                                        (r.remove(e),
+                                        r.length || this.cache.delete(t),
+                                        this.updateLastCacheModificationPerId(
+                                            e.identifier,
+                                        ));
+                                }
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "splitCache", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t) {
+                                var r = this,
+                                    n = new e(),
+                                    i = t.path + "/";
+                                return (
+                                    (0, p.jO)(this.cache).forEach(function (e) {
+                                        for (
+                                            var a = v(e, 2),
+                                                o = a[0],
+                                                l = a[1],
+                                                u = !1,
+                                                c = l.length - 1;
+                                            c >= 0;
+                                            c--
+                                        ) {
+                                            var s = l[c];
+                                            (s === t ||
+                                                0 === s.path.indexOf(i)) &&
+                                                (n.addNodeToCache(s, !1),
+                                                l.splice(c, 1),
+                                                l.length || r.cache.delete(o),
+                                                (u = !0));
+                                        }
+                                        u &&
+                                            r.updateLastCacheModificationPerId(
+                                                o,
+                                            );
+                                    }),
+                                    n
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "has", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this.cache.get(t);
+                                return (
+                                    !!r &&
+                                    r.some(function (t) {
+                                        return e.isAssignableFrom(t.type);
+                                    })
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "resolve", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this.cache.get(t);
+                                if (!r) return null;
+                                var n = r.filter(function (t) {
+                                    return e.isAssignableFrom(t.type);
+                                });
+                                switch (n.length) {
+                                    case 0:
+                                        return null;
+                                    case 1:
+                                        return n[0];
+                                    default:
+                                        throw new eb(
+                                            "Cannot resolve a reference to type '"
+                                                .concat(e.name, "' with id: '")
+                                                .concat(
+                                                    t,
+                                                    "' unambigously, there are multiple candidates: ",
+                                                )
+                                                .concat(
+                                                    n
+                                                        .map(function (e) {
+                                                            return e.path;
+                                                        })
+                                                        .join(", "),
+                                                ),
+                                        );
+                                }
+                            },
+                        }),
+                        e
+                    );
+                })();
+            function et(e, t, r, n, i) {
+                var a = eo(i);
+                if (a) {
+                    if (a.parent)
+                        throw new eb(
+                            "Cannot add an object to a state tree if it is already part of the same or another state tree. Tried to assign an object to '"
+                                .concat(t ? t.path : "", "/")
+                                .concat(r, "', but it lives already at '")
+                                .concat(a.path, "'"),
+                        );
+                    return t && a.setParent(t, r), a;
+                }
+                return new x(e, t, r, n, i);
+            }
+            function er(e, t, r, n, i) {
+                return new N(e, t, r, n, i);
+            }
+            function en(e) {
+                return !!(e && e.$treenode);
+            }
+            function ei(e, t) {
+                eV(e, en, "mobx-state-tree node", t);
+            }
+            function ea(e) {
+                if (!en(e)) throw new eb("Value ".concat(e, " is no MST Node"));
+                return e.$treenode;
+            }
+            function eo(e) {
+                return (e && e.$treenode) || null;
+            }
+            function el() {
+                return ea(this).snapshot;
+            }
+            function eu(e) {
+                if (!e) return es;
+                var t = Object.keys(e);
+                if (!t.length) return es;
+                var r = Array(t.length);
+                return (
+                    t.forEach(function (t, n) {
+                        r[n] = e[t];
+                    }),
+                    r
+                );
+            }
+            !(function (e) {
+                (e[(e.INITIALIZING = 0)] = "INITIALIZING"),
+                    (e[(e.CREATED = 1)] = "CREATED"),
+                    (e[(e.FINALIZED = 2)] = "FINALIZED"),
+                    (e[(e.DETACHING = 3)] = "DETACHING"),
+                    (e[(e.DEAD = 4)] = "DEAD");
+            })(c || (c = {}));
+            var ec = Object.toString(),
+                es = Object.freeze([]),
+                ep = Object.freeze({}),
+                ef = (0, p.sG)().useProxies
+                    ? { deep: !1 }
+                    : { deep: !1, proxy: !1 };
+            Object.freeze(ef);
+            var eb = (function (e) {
+                function t(t) {
+                    return (
+                        void 0 === t && (t = "Illegal state"),
+                        e.call(this, "[mobx-state-tree] ".concat(t)) || this
+                    );
+                }
+                return h(t, e), t;
+            })(Error);
+            function eh(e) {
+                return e;
+            }
+            var ed = Number.isInteger;
+            function ey(e) {
+                return Array.isArray(e) || (0, p.Fq)(e);
+            }
+            function ev(e) {
+                return e ? (ey(e) ? e : [e]) : es;
+            }
+            function eg(e) {
+                if (null === e || "object" != typeof e) return !1;
+                var t,
+                    r = Object.getPrototypeOf(e);
+                return (
+                    null == r ||
+                    (null == (t = r.constructor) ? void 0 : t.toString()) === ec
+                );
+            }
+            function em(e) {
+                return (
+                    null !== e &&
+                    "object" == typeof e &&
+                    !(e instanceof Date) &&
+                    !(e instanceof RegExp)
+                );
+            }
+            function ew(e, t) {
+                return (
+                    void 0 === t && (t = !0),
+                    null == e ||
+                        "string" == typeof e ||
+                        "number" == typeof e ||
+                        "boolean" == typeof e ||
+                        (t && e instanceof Date)
+                );
+            }
+            function eP(e) {
+                return e;
+            }
+            function eO(e) {
+                return e;
+            }
+            function ej(e) {
+                return "function" != typeof e;
+            }
+            function e_(e, t, r) {
+                (0, p.OB)(e)
+                    ? (0, p.n8)(e, t, r)
+                    : Object.defineProperty(e, t, r);
+            }
+            function eS(e, t, r) {
+                e_(e, t, {
+                    enumerable: !1,
+                    writable: !1,
+                    configurable: !0,
+                    value: r,
+                });
+            }
+            var eI = (function () {
+                    function e() {
+                        Object.defineProperty(this, "handlers", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: [],
+                        });
+                    }
+                    return (
+                        Object.defineProperty(e.prototype, "hasSubscribers", {
+                            get: function () {
+                                return this.handlers.length > 0;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(e.prototype, "register", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this;
+                                return (
+                                    void 0 === t && (t = !1),
+                                    t
+                                        ? this.handlers.unshift(e)
+                                        : this.handlers.push(e),
+                                    function () {
+                                        r.unregister(e);
+                                    }
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "has", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this.handlers.indexOf(e) >= 0;
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "unregister", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this.handlers.indexOf(e);
+                                t >= 0 && this.handlers.splice(t, 1);
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "clear", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.handlers.length = 0;
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "emit", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                for (
+                                    var e = [], t = 0;
+                                    t < arguments.length;
+                                    t++
+                                )
+                                    e[t] = arguments[t];
+                                this.handlers.slice().forEach(function (t) {
+                                    return t.apply(void 0, g([], v(e), !1));
+                                });
+                            },
+                        }),
+                        e
+                    );
+                })(),
+                eA = (function () {
+                    function e() {
+                        Object.defineProperty(this, "eventHandlers", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: void 0,
+                        });
+                    }
+                    return (
+                        Object.defineProperty(e.prototype, "hasSubscribers", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t =
+                                    this.eventHandlers && this.eventHandlers[e];
+                                return !!t && t.hasSubscribers;
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "register", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r) {
+                                void 0 === r && (r = !1),
+                                    this.eventHandlers ||
+                                        (this.eventHandlers = {});
+                                var n = this.eventHandlers[e];
+                                return (
+                                    n || (n = this.eventHandlers[e] = new eI()),
+                                    n.register(t, r)
+                                );
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "has", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r =
+                                    this.eventHandlers && this.eventHandlers[e];
+                                return !!r && r.has(t);
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "unregister", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r =
+                                    this.eventHandlers && this.eventHandlers[e];
+                                r && r.unregister(t);
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "clear", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                this.eventHandlers &&
+                                    delete this.eventHandlers[e];
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "clearAll", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                this.eventHandlers = void 0;
+                            },
+                        }),
+                        Object.defineProperty(e.prototype, "emit", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                for (
+                                    var t = [], r = 1;
+                                    r < arguments.length;
+                                    r++
+                                )
+                                    t[r - 1] = arguments[r];
+                                var n =
+                                    this.eventHandlers && this.eventHandlers[e];
+                                n && n.emit.apply(n, g([], v(t), !1));
+                            },
+                        }),
+                        e
+                    );
+                })();
+            function eT(e) {
+                for (var t = Array(e.length), r = 0; r < e.length; r++)
+                    t[r] = e[r];
+                return t;
+            }
+            function eE(e, t) {
+                return 0 === e.indexOf(t);
+            }
+            var eC = function (e, t) {};
+            function eN(e) {
+                console.warn(Error("[mobx-state-tree] ".concat(e)));
+            }
+            function eV(e, t, r, n) {}
+            function eD(e, t) {
+                eV(
+                    e,
+                    function (e) {
+                        return "function" == typeof e;
+                    },
+                    "function",
+                    t,
+                );
+            }
+            function ex(e, t, r) {
+                void 0 === r && (r = !0),
+                    eV(
+                        e,
+                        function (e) {
+                            return "string" == typeof e;
+                        },
+                        "string",
+                        t,
+                    ),
+                    r ||
+                        eV(
+                            e,
+                            function (e) {
+                                return "" !== e;
+                            },
+                            "not empty string",
+                            t,
+                        );
+            }
+            function ek(e) {
+                "function" == typeof queueMicrotask
+                    ? queueMicrotask(e)
+                    : "function" == typeof setImmediate
+                      ? setImmediate(e)
+                      : setTimeout(e, 1);
+            }
+            function ez(e) {
+                var t, r, n;
+                return (
+                    (t = e.name),
+                    (r = e),
+                    ((n = function () {
+                        var e = U++,
+                            i = u;
+                        if (!i)
+                            throw new eb(
+                                "a mst flow must always have a parent context",
+                            );
+                        var a = W(i);
+                        if (!a)
+                            throw new eb(
+                                "a mst flow must always have a parent action context",
+                            );
+                        var o = {
+                                name: t,
+                                id: e,
+                                tree: i.tree,
+                                context: i.context,
+                                parentId: i.id,
+                                allParentIds: g(
+                                    g([], v(i.allParentIds), !1),
+                                    [i.id],
+                                    !1,
+                                ),
+                                rootId: i.rootId,
+                                parentEvent: i,
+                                parentActionEvent: a,
+                            },
+                            l = arguments;
+                        function c(e, t, r) {
+                            return (
+                                (e.$mst_middleware = n.$mst_middleware),
+                                Z(d(d({}, o), { type: t, args: [r] }), e)
+                            );
+                        }
+                        return new Promise(function (e, t) {
+                            var i,
+                                a = function () {
+                                    (i = r.apply(null, arguments)), u(void 0);
+                                };
+                            function u(e) {
+                                var r;
+                                try {
+                                    var n = c(
+                                        function (e) {
+                                            r = i.next(e);
+                                        },
+                                        "flow_resume",
+                                        e,
+                                    );
+                                    n instanceof Error && (r = i.throw(n));
+                                } catch (e) {
+                                    ek(function () {
+                                        c(
+                                            function (r) {
+                                                t(e);
+                                            },
+                                            "flow_throw",
+                                            e,
+                                        );
+                                    });
+                                    return;
+                                }
+                                p(r);
+                            }
+                            function s(e) {
+                                var r;
+                                try {
+                                    c(
+                                        function (e) {
+                                            r = i.throw(e);
+                                        },
+                                        "flow_resume_error",
+                                        e,
+                                    );
+                                } catch (e) {
+                                    ek(function () {
+                                        c(
+                                            function (r) {
+                                                t(e);
+                                            },
+                                            "flow_throw",
+                                            e,
+                                        );
+                                    });
+                                    return;
+                                }
+                                p(r);
+                            }
+                            function p(t) {
+                                if (t.done)
+                                    return void ek(function () {
+                                        c(
+                                            function (t) {
+                                                e(t);
+                                            },
+                                            "flow_return",
+                                            t.value,
+                                        );
+                                    });
+                                if (
+                                    !t.value ||
+                                    "function" != typeof t.value.then
+                                )
+                                    throw new eb(
+                                        "Only promises can be yielded to `async`, got: " +
+                                            t,
+                                    );
+                                return t.value.then(u, s);
+                            }
+                            (a.$mst_middleware = n.$mst_middleware),
+                                Z(
+                                    d(d({}, o), {
+                                        type: "flow_spawn",
+                                        args: eT(l),
+                                    }),
+                                    a,
+                                );
+                        });
+                    })._isFlowAction = !0),
+                    n
+                );
+            }
+            function eR(e) {
+                return !0 == ("number" == typeof e)
+                    ? "" + e
+                    : -1 === e.indexOf("/") && -1 === e.indexOf("~")
+                      ? e
+                      : e.replace(/~/g, "~0").replace(/\//g, "~1");
+            }
+            function eF(e) {
+                return e.replace(/~1/g, "/").replace(/~0/g, "~");
+            }
+            function eH(e) {
+                if (0 === e.length) return "";
+                var t = function (e) {
+                    return e.map(eR).join("/");
+                };
+                return "." === e[0] || ".." === e[0] ? t(e) : "/" + t(e);
+            }
+            eC.ids = {};
+            var eM = Symbol("$preProcessorFailed"),
+                eL = (function (e) {
+                    function t(t, r, n) {
+                        var i = e.call(this, n || t.name) || this;
+                        return (
+                            Object.defineProperty(i, "_subtype", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: t,
+                            }),
+                            Object.defineProperty(i, "_processors", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            i
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "flags", {
+                            get: function () {
+                                return (
+                                    this._subtype.flags | l.SnapshotProcessor
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return "snapshotProcessor(".concat(
+                                    this._subtype.describe(),
+                                    ")",
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "preProcessSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return this._processors.preProcessor
+                                        ? this._processors.preProcessor.call(
+                                              null,
+                                              e,
+                                          )
+                                        : e;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "preProcessSnapshotSafe",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    try {
+                                        return this.preProcessSnapshot(e);
+                                    } catch (e) {
+                                        return eM;
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "postProcessSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    return this._processors.postProcessor
+                                        ? this._processors.postProcessor.call(
+                                              null,
+                                              e,
+                                              t.storedValue,
+                                          )
+                                        : e;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "_fixNode", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t,
+                                    r = this;
+                                (function (e, t) {
+                                    for (
+                                        var r, n, i = [], a = 2;
+                                        a < arguments.length;
+                                        a++
+                                    )
+                                        i[a - 2] = arguments[a];
+                                    try {
+                                        for (
+                                            var o = y(i), l = o.next();
+                                            !l.done;
+                                            l = o.next()
+                                        ) {
+                                            var u = l.value;
+                                            e[u] = t[u].bind(t);
+                                        }
+                                    } catch (e) {
+                                        r = { error: e };
+                                    } finally {
+                                        try {
+                                            l &&
+                                                !l.done &&
+                                                (n = o.return) &&
+                                                n.call(o);
+                                        } finally {
+                                            if (r) throw r.error;
+                                        }
+                                    }
+                                })(e.type, this, "create"),
+                                    e instanceof x &&
+                                        (e.hasSnapshotPostProcessor =
+                                            !!this._processors.postProcessor);
+                                var n = e.getSnapshot;
+                                (e.getSnapshot = function () {
+                                    return r.postProcessSnapshot(n.call(e), e);
+                                }),
+                                    (M((t = this._subtype)) &&
+                                        (t.flags & l.Union) > 0) ||
+                                        (e.getReconciliationType = function () {
+                                            return r;
+                                        });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = en(n) ? n : this.preProcessSnapshot(n),
+                                    a = this._subtype.instantiate(e, t, r, i);
+                                return this._fixNode(a), a;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = this._subtype.reconcile(
+                                    e,
+                                    en(t) ? t : this.preProcessSnapshot(t),
+                                    r,
+                                    n,
+                                );
+                                return i !== e && this._fixNode(i), i;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                void 0 === t && (t = !0);
+                                var r = this._subtype.getSnapshot(e);
+                                return t ? this.postProcessSnapshot(r, e) : r;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this.preProcessSnapshotSafe(e);
+                                return r === eM
+                                    ? J(t, e, "Failed to preprocess value")
+                                    : this._subtype.validate(r, t);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSubTypes", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this._subtype;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "is", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = M(e)
+                                    ? this._subtype
+                                    : en(e)
+                                      ? e
+                                      : this.preProcessSnapshotSafe(e);
+                                return (
+                                    t !== eM &&
+                                    0 ===
+                                        this._subtype.validate(t, [
+                                            { path: "", type: this._subtype },
+                                        ]).length
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this._subtype.isAssignableFrom(e);
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "isMatchingSnapshotId",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    if (!(this._subtype instanceof F))
+                                        return !1;
+                                    var r = this.preProcessSnapshot(t);
+                                    return this._subtype.isMatchingSnapshotId(
+                                        e,
+                                        r,
+                                    );
+                                },
+                            },
+                        ),
+                        t
+                    );
+                })(R),
+                eU =
+                    "Map.put can only be used to store complex values that have an identifier type attribute";
+            !(function (e) {
+                (e[(e.UNKNOWN = 0)] = "UNKNOWN"),
+                    (e[(e.YES = 1)] = "YES"),
+                    (e[(e.NO = 2)] = "NO");
+            })(s || (s = {}));
+            var eZ = (function (e) {
+                    function t(t, r) {
+                        return e.call(this, t, p.sH.ref.enhancer, r) || this;
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "get", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t) {
+                                return e.prototype.get.call(this, "" + t);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "has", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t) {
+                                return e.prototype.has.call(this, "" + t);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "delete", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t) {
+                                return e.prototype.delete.call(this, "" + t);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "set", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t, r) {
+                                return e.prototype.set.call(this, "" + t, r);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "put", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (!e)
+                                    throw new eb(
+                                        "Map.put cannot be used to set empty values",
+                                    );
+                                if (en(e)) {
+                                    var t = ea(e);
+                                    if (null === t.identifier) throw new eb(eU);
+                                    return this.set(t.identifier, e), e;
+                                }
+                                if (em(e)) {
+                                    var r = ea(this),
+                                        n = r.type;
+                                    if (n.identifierMode !== s.YES)
+                                        throw new eb(eU);
+                                    var i = e[n.mapIdentifierAttribute];
+                                    if (!tI(i)) {
+                                        var a = this.put(
+                                            n
+                                                .getChildType()
+                                                .create(e, r.environment),
+                                        );
+                                        return this.put(O(a));
+                                    }
+                                    var o = "" + i;
+                                    return this.set(o, e), this.get(o);
+                                }
+                                throw new eb(
+                                    "Map.put can only be used to store complex values",
+                                );
+                            },
+                        }),
+                        t
+                    );
+                })(p.Es),
+                eW = (function (e) {
+                    function t(t, r, n) {
+                        void 0 === n && (n = []);
+                        var i = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(i, "_subType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(i, "identifierMode", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: s.UNKNOWN,
+                            }),
+                            Object.defineProperty(i, "mapIdentifierAttribute", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(i, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Map,
+                            }),
+                            Object.defineProperty(i, "hookInitializers", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: [],
+                            }),
+                            i._determineIdentifierMode(),
+                            (i.hookInitializers = n),
+                            i
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "hooks", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var r =
+                                    this.hookInitializers.length > 0
+                                        ? this.hookInitializers.concat(e)
+                                        : [e];
+                                return new t(this.name, this._subType, r);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return (
+                                    this._determineIdentifierMode(),
+                                    et(this, e, t, r, n)
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_determineIdentifierMode",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    if (this.identifierMode === s.UNKNOWN) {
+                                        var e = [];
+                                        if (
+                                            (function e(t, r) {
+                                                var n,
+                                                    i,
+                                                    a = t.getSubTypes();
+                                                if (a === k) return !1;
+                                                if (a) {
+                                                    var o = ev(a);
+                                                    try {
+                                                        for (
+                                                            var l = y(o),
+                                                                u = l.next();
+                                                            !u.done;
+                                                            u = l.next()
+                                                        ) {
+                                                            var c = u.value;
+                                                            if (!e(c, r))
+                                                                return !1;
+                                                        }
+                                                    } catch (e) {
+                                                        n = { error: e };
+                                                    } finally {
+                                                        try {
+                                                            u &&
+                                                                !u.done &&
+                                                                (i =
+                                                                    l.return) &&
+                                                                i.call(l);
+                                                        } finally {
+                                                            if (n)
+                                                                throw n.error;
+                                                        }
+                                                    }
+                                                }
+                                                return (
+                                                    t instanceof eQ &&
+                                                        r.push(t),
+                                                    !0
+                                                );
+                                            })(this._subType, e)
+                                        ) {
+                                            var t = e.reduce(
+                                                function (e, t) {
+                                                    if (!t.identifierAttribute)
+                                                        return e;
+                                                    if (
+                                                        e &&
+                                                        e !==
+                                                            t.identifierAttribute
+                                                    )
+                                                        throw new eb(
+                                                            "The objects in a map should all have the same identifier attribute, expected '"
+                                                                .concat(
+                                                                    e,
+                                                                    "', but child of type '",
+                                                                )
+                                                                .concat(
+                                                                    t.name,
+                                                                    "' declared attribute '",
+                                                                )
+                                                                .concat(
+                                                                    t.identifierAttribute,
+                                                                    "' as identifier",
+                                                                ),
+                                                        );
+                                                    return t.identifierAttribute;
+                                                },
+                                                void 0,
+                                            );
+                                            t
+                                                ? ((this.identifierMode =
+                                                      s.YES),
+                                                  (this.mapIdentifierAttribute =
+                                                      t))
+                                                : (this.identifierMode = s.NO);
+                                        }
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "initializeChildNodes",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    void 0 === t && (t = {});
+                                    var r = e.type._subType,
+                                        n = {};
+                                    return (
+                                        Object.keys(t).forEach(function (i) {
+                                            n[i] = r.instantiate(
+                                                e,
+                                                i,
+                                                void 0,
+                                                t[i],
+                                            );
+                                        }),
+                                        n
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "createNewInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return new eZ(e, this.name);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "finalizeNewInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    (0, p.pA)(t, e.unbox),
+                                        e.type.hookInitializers.forEach(
+                                            function (e) {
+                                                var r = e(t);
+                                                Object.keys(r).forEach(
+                                                    function (e) {
+                                                        var n = r[e],
+                                                            i = G(t, e, n);
+                                                        eS(t, e, i);
+                                                    },
+                                                );
+                                            },
+                                        ),
+                                        (0, p.Zc)(t, this.willChange),
+                                        (0, p.lB)(t, this.didChange);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.name;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildren", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return (0, p.zu)(e.storedValue);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildNode", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = e.storedValue.get("" + t);
+                                if (!r) throw new eb("Not a child " + t);
+                                return r;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "willChange", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = ea(e.object),
+                                    r = e.name;
+                                t.assertWritable({ subpath: r });
+                                var n = t.type,
+                                    i = n._subType;
+                                switch (e.type) {
+                                    case "update":
+                                        var a = e.newValue;
+                                        if (a === e.object.get(r)) return null;
+                                        q(i, a),
+                                            (e.newValue = i.reconcile(
+                                                t.getChildNode(r),
+                                                e.newValue,
+                                                t,
+                                                r,
+                                            )),
+                                            n.processIdentifier(r, e.newValue);
+                                        break;
+                                    case "add":
+                                        q(i, e.newValue),
+                                            (e.newValue = i.instantiate(
+                                                t,
+                                                r,
+                                                void 0,
+                                                e.newValue,
+                                            )),
+                                            n.processIdentifier(r, e.newValue);
+                                }
+                                return e;
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "processIdentifier",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    if (
+                                        this.identifierMode === s.YES &&
+                                        t instanceof x
+                                    ) {
+                                        var r = t.identifier;
+                                        if (r !== e)
+                                            throw new eb(
+                                                "A map of objects containing an identifier should always store the object under their own identifier. Trying to store key '"
+                                                    .concat(
+                                                        r,
+                                                        "', but expected: '",
+                                                    )
+                                                    .concat(e, "'"),
+                                            );
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = {};
+                                return (
+                                    e.getChildren().forEach(function (e) {
+                                        t[e.subpath] = e.snapshot;
+                                    }),
+                                    t
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "processInitialSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = {};
+                                    return (
+                                        Object.keys(e).forEach(function (r) {
+                                            t[r] = e[r].getSnapshot();
+                                        }),
+                                        t
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "didChange", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = ea(e.object);
+                                switch (e.type) {
+                                    case "update":
+                                        return void t.emitPatch(
+                                            {
+                                                op: "replace",
+                                                path: eR(e.name),
+                                                value: e.newValue.snapshot,
+                                                oldValue: e.oldValue
+                                                    ? e.oldValue.snapshot
+                                                    : void 0,
+                                            },
+                                            t,
+                                        );
+                                    case "add":
+                                        return void t.emitPatch(
+                                            {
+                                                op: "add",
+                                                path: eR(e.name),
+                                                value: e.newValue.snapshot,
+                                                oldValue: void 0,
+                                            },
+                                            t,
+                                        );
+                                    case "delete":
+                                        var r = e.oldValue.snapshot;
+                                        return (
+                                            e.oldValue.die(),
+                                            void t.emitPatch(
+                                                {
+                                                    op: "remove",
+                                                    path: eR(e.name),
+                                                    oldValue: r,
+                                                },
+                                                t,
+                                            )
+                                        );
+                                }
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "applyPatchLocally",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t, r) {
+                                    var n = e.storedValue;
+                                    switch (r.op) {
+                                        case "add":
+                                        case "replace":
+                                            n.set(t, r.value);
+                                            break;
+                                        case "remove":
+                                            n.delete(t);
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "applySnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                q(this, t);
+                                var r = e.storedValue,
+                                    n = {};
+                                if (
+                                    (Array.from(r.keys()).forEach(function (e) {
+                                        n[e] = !1;
+                                    }),
+                                    t)
+                                )
+                                    for (var i in t)
+                                        r.set(i, t[i]), (n["" + i] = !0);
+                                Object.keys(n).forEach(function (e) {
+                                    !1 === n[e] && r.delete(e);
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildType", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this._subType;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this;
+                                return eg(e)
+                                    ? K(
+                                          Object.keys(e).map(function (n) {
+                                              return r._subType.validate(
+                                                  e[n],
+                                                  B(t, n, r._subType),
+                                              );
+                                          }),
+                                      )
+                                    : J(t, e, "Value is not a plain object");
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "getDefaultSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    return ep;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "removeChild", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                e.storedValue.delete(t);
+                            },
+                        }),
+                        t
+                    );
+                })(F);
+            eW.prototype.applySnapshot = (0, p.XI)(eW.prototype.applySnapshot);
+            var eG = (function (e) {
+                function t(t, r, n) {
+                    void 0 === n && (n = []);
+                    var i = e.call(this, t) || this;
+                    return (
+                        Object.defineProperty(i, "_subType", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: r,
+                        }),
+                        Object.defineProperty(i, "flags", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: l.Array,
+                        }),
+                        Object.defineProperty(i, "hookInitializers", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: [],
+                        }),
+                        (i.hookInitializers = n),
+                        i
+                    );
+                }
+                return (
+                    h(t, e),
+                    Object.defineProperty(t.prototype, "hooks", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            var r =
+                                this.hookInitializers.length > 0
+                                    ? this.hookInitializers.concat(e)
+                                    : [e];
+                            return new t(this.name, this._subType, r);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "instantiate", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            return et(this, e, t, r, n);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "initializeChildNodes", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            void 0 === t && (t = []);
+                            var r = e.type._subType,
+                                n = {};
+                            return (
+                                t.forEach(function (t, i) {
+                                    var a = "" + i;
+                                    n[a] = r.instantiate(e, a, void 0, t);
+                                }),
+                                n
+                            );
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "createNewInstance", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            var t = d(d({}, ef), { name: this.name });
+                            return p.sH.array(eu(e), t);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "finalizeNewInstance", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            ((0, p.Mr)(t).dehancer = e.unbox),
+                                e.type.hookInitializers.forEach(function (e) {
+                                    var r = e(t);
+                                    Object.keys(r).forEach(function (e) {
+                                        var n = r[e],
+                                            i = G(t, e, n);
+                                        eS(t, e, i);
+                                    });
+                                }),
+                                (0, p.Zc)(t, this.willChange),
+                                (0, p.lB)(t, this.didChange);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "describe", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return this.name;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getChildren", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return e.storedValue.slice();
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getChildNode", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            var r = Number(t);
+                            if (r < e.storedValue.length)
+                                return e.storedValue[r];
+                            throw new eb("Not a child: " + t);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "willChange", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            var t = ea(e.object);
+                            t.assertWritable({ subpath: "" + e.index });
+                            var r = t.type._subType,
+                                n = t.getChildren();
+                            switch (e.type) {
+                                case "update":
+                                    if (e.newValue === e.object[e.index])
+                                        return null;
+                                    var i = e$(
+                                        t,
+                                        r,
+                                        [n[e.index]],
+                                        [e.newValue],
+                                        [e.index],
+                                    );
+                                    if (!i) return null;
+                                    e.newValue = i[0];
+                                    break;
+                                case "splice":
+                                    var a = e.index,
+                                        o = e.removedCount,
+                                        l = e.added,
+                                        u = e$(
+                                            t,
+                                            r,
+                                            n.slice(a, a + o),
+                                            l,
+                                            l.map(function (e, t) {
+                                                return a + t;
+                                            }),
+                                        );
+                                    if (!u) return null;
+                                    e.added = u;
+                                    for (var c = a + o; c < n.length; c++)
+                                        n[c].setParent(
+                                            t,
+                                            "" + (c + l.length - o),
+                                        );
+                            }
+                            return e;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return e.getChildren().map(function (e) {
+                                return e.snapshot;
+                            });
+                        },
+                    }),
+                    Object.defineProperty(
+                        t.prototype,
+                        "processInitialSnapshot",
+                        {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = [];
+                                return (
+                                    Object.keys(e).forEach(function (r) {
+                                        t.push(e[r].getSnapshot());
+                                    }),
+                                    t
+                                );
+                            },
+                        },
+                    ),
+                    Object.defineProperty(t.prototype, "didChange", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            var t = ea(e.object);
+                            switch (e.type) {
+                                case "update":
+                                    return void t.emitPatch(
+                                        {
+                                            op: "replace",
+                                            path: "" + e.index,
+                                            value: e.newValue.snapshot,
+                                            oldValue: e.oldValue
+                                                ? e.oldValue.snapshot
+                                                : void 0,
+                                        },
+                                        t,
+                                    );
+                                case "splice":
+                                    if (
+                                        e.removedCount &&
+                                        e.addedCount === e.object.length
+                                    )
+                                        return void t.emitPatch(
+                                            {
+                                                op: "replace",
+                                                path: "",
+                                                value: t.snapshot,
+                                                oldValue: e.removed.map(
+                                                    function (e) {
+                                                        return e.snapshot;
+                                                    },
+                                                ),
+                                            },
+                                            t,
+                                        );
+                                    for (
+                                        var r = e.removedCount - 1;
+                                        r >= 0;
+                                        r--
+                                    )
+                                        t.emitPatch(
+                                            {
+                                                op: "remove",
+                                                path: "" + (e.index + r),
+                                                oldValue: e.removed[r].snapshot,
+                                            },
+                                            t,
+                                        );
+                                    for (var r = 0; r < e.addedCount; r++)
+                                        t.emitPatch(
+                                            {
+                                                op: "add",
+                                                path: "" + (e.index + r),
+                                                value: e.added[r].snapshot,
+                                                oldValue: void 0,
+                                            },
+                                            t,
+                                        );
+                                    return;
+                            }
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "applyPatchLocally", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r) {
+                            var n = e.storedValue,
+                                i = "-" === t ? n.length : Number(t);
+                            switch (r.op) {
+                                case "replace":
+                                    n[i] = r.value;
+                                    break;
+                                case "add":
+                                    n.splice(i, 0, r.value);
+                                    break;
+                                case "remove":
+                                    n.splice(i, 1);
+                            }
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "applySnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            q(this, t), e.storedValue.replace(t);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getChildType", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return this._subType;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "isValidSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            var r = this;
+                            return ey(e)
+                                ? K(
+                                      e.map(function (e, n) {
+                                          return r._subType.validate(
+                                              e,
+                                              B(t, "" + n, r._subType),
+                                          );
+                                      }),
+                                  )
+                                : J(t, e, "Value is not an array");
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getDefaultSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return es;
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "removeChild", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            e.storedValue.splice(Number(t), 1);
+                        },
+                    }),
+                    t
+                );
+            })(F);
+            function e$(e, t, r, n, i) {
+                for (var a = !0, o = 0; ; o++) {
+                    var l,
+                        u = o <= n.length - 1,
+                        c = r[o],
+                        s = u ? n[o] : void 0,
+                        p = "" + i[o];
+                    if (
+                        (((l = s) instanceof N || l instanceof x) &&
+                            (s = s.storedValue),
+                        c || u)
+                    )
+                        if (u)
+                            if (c)
+                                if (eY(c, s)) r[o] = eX(t, e, p, s, c);
+                                else {
+                                    for (
+                                        var f = void 0, b = o;
+                                        b < r.length;
+                                        b++
+                                    )
+                                        if (eY(r[b], s)) {
+                                            f = r.splice(b, 1)[0];
+                                            break;
+                                        }
+                                    a = !1;
+                                    var h = eX(t, e, p, s, f);
+                                    r.splice(o, 0, h);
+                                }
+                            else {
+                                if (en(s) && ea(s).parent === e)
+                                    throw new eb(
+                                        "Cannot add an object to a state tree if it is already part of the same or another state tree. Tried to assign an object to '"
+                                            .concat(e.path, "/")
+                                            .concat(
+                                                p,
+                                                "', but it lives already at '",
+                                            )
+                                            .concat(ea(s).path, "'"),
+                                    );
+                                a = !1;
+                                var h = eX(t, e, p, s);
+                                r.splice(o, 0, h);
+                            }
+                        else
+                            (a = !1),
+                                r.splice(o, 1),
+                                c instanceof x &&
+                                    c.createObservableInstanceIfNeeded(),
+                                c.die(),
+                                o--;
+                    else break;
+                }
+                return a ? null : r;
+            }
+            function eX(e, t, r, n, i) {
+                q(e, n);
+                var a = (function () {
+                    if (en(n)) {
+                        var a = ea(n);
+                        if (
+                            (a.assertAlive(ep),
+                            null !== a.parent && a.parent === t)
+                        )
+                            return a.setParent(t, r), a;
+                    }
+                    return i
+                        ? e.reconcile(i, n, t, r)
+                        : e.instantiate(t, r, void 0, n);
+                })();
+                return (
+                    i &&
+                        i !== a &&
+                        (i instanceof x && i.createObservableInstanceIfNeeded(),
+                        i.die()),
+                    a
+                );
+            }
+            function eY(e, t) {
+                if (!e.isAlive) return !1;
+                if (en(t)) {
+                    var r = ea(t);
+                    return r.isAlive && r === e;
+                }
+                if (e.snapshot === t) return !0;
+                if (!(e instanceof x)) return !1;
+                var n = e.getReconciliationType();
+                return (
+                    null !== e.identifier &&
+                    e.identifierAttribute &&
+                    eg(t) &&
+                    n.is(t) &&
+                    n.isMatchingSnapshotId(e, t)
+                );
+            }
+            eG.prototype.applySnapshot = (0, p.XI)(eG.prototype.applySnapshot);
+            var eB = "preProcessSnapshot",
+                eJ = "postProcessSnapshot";
+            function eK() {
+                return ea(this).toString();
+            }
+            var eq = {
+                    name: "AnonymousModel",
+                    properties: {},
+                    initializers: es,
+                },
+                eQ = (function (e) {
+                    function t(t) {
+                        var r,
+                            i,
+                            a,
+                            o = e.call(this, t.name || eq.name) || this;
+                        return (
+                            Object.defineProperty(o, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Object,
+                            }),
+                            Object.defineProperty(o, "initializers", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(o, "properties", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(o, "preProcessor", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(o, "postProcessor", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(o, "propertyNames", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(o, "named", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return o.cloneAndEnhance({ name: e });
+                                },
+                            }),
+                            Object.defineProperty(o, "props", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return o.cloneAndEnhance({ properties: e });
+                                },
+                            }),
+                            Object.defineProperty(o, "preProcessSnapshot", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = o.preProcessor;
+                                    return t
+                                        ? o.cloneAndEnhance({
+                                              preProcessor: function (r) {
+                                                  return t(e(r));
+                                              },
+                                          })
+                                        : o.cloneAndEnhance({
+                                              preProcessor: e,
+                                          });
+                                },
+                            }),
+                            Object.defineProperty(o, "postProcessSnapshot", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = o.postProcessor;
+                                    return t
+                                        ? o.cloneAndEnhance({
+                                              postProcessor: function (r) {
+                                                  return e(t(r));
+                                              },
+                                          })
+                                        : o.cloneAndEnhance({
+                                              postProcessor: e,
+                                          });
+                                },
+                            }),
+                            Object.assign(o, eq, t),
+                            (i = Object.keys((r = o.properties))),
+                            (a = new Set()),
+                            i.forEach(function (e) {
+                                if (a.has(e))
+                                    throw new eb(
+                                        "".concat(
+                                            e,
+                                            " is declared twice in the model. Model should not contain the same keys",
+                                        ),
+                                    );
+                                a.add(e);
+                            }),
+                            (o.properties = i.reduce(
+                                function (e, t) {
+                                    if (t in n)
+                                        throw new eb(
+                                            "Hook '".concat(
+                                                t,
+                                                "' was defined as property. Hooks should be defined as part of the actions",
+                                            ),
+                                        );
+                                    var i = Object.getOwnPropertyDescriptor(
+                                        r,
+                                        t,
+                                    );
+                                    if ("get" in i)
+                                        throw new eb(
+                                            "Getters are not supported as properties. Please use views instead",
+                                        );
+                                    var a = i.value;
+                                    if (null == a)
+                                        throw new eb(
+                                            "The default value of an attribute cannot be null or undefined as the type cannot be inferred. Did you mean `types.maybe(someType)`?",
+                                        );
+                                    if (ew(a))
+                                        e[t] = to(
+                                            (function (e) {
+                                                switch (typeof e) {
+                                                    case "string":
+                                                        return e1;
+                                                    case "number":
+                                                        return e2;
+                                                    case "boolean":
+                                                        return e6;
+                                                    case "object":
+                                                        if (e instanceof Date)
+                                                            return e9;
+                                                }
+                                                throw new eb(
+                                                    "Cannot determine primitive type from value " +
+                                                        e,
+                                                );
+                                            })(a),
+                                            a,
+                                        );
+                                    else if (a instanceof eW) e[t] = to(a, {});
+                                    else if (a instanceof eG) e[t] = to(a, []);
+                                    else if (M(a));
+                                    else if (1)
+                                        if (1)
+                                            throw new eb(
+                                                "Invalid type definition for property '"
+                                                    .concat(
+                                                        t,
+                                                        "', cannot infer a type from a value like '",
+                                                    )
+                                                    .concat(a, "' (")
+                                                    .concat(typeof a, ")"),
+                                            );
+                                        else
+                                            throw new eb(
+                                                "Invalid type definition for property '".concat(
+                                                    t,
+                                                    "', it looks like you passed an object. Try passing another model type or a types.frozen.",
+                                                ),
+                                            );
+                                    else
+                                        throw new eb(
+                                            "Invalid type definition for property '".concat(
+                                                t,
+                                                "', it looks like you passed a function. Did you forget to invoke it, or did you intend to declare a view / action?",
+                                            ),
+                                        );
+                                    return e;
+                                },
+                                d({}, r),
+                            )),
+                            eP(o.properties),
+                            (o.propertyNames = Object.keys(o.properties)),
+                            (o.identifierAttribute =
+                                o._getIdentifierAttribute()),
+                            o
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(
+                            t.prototype,
+                            "_getIdentifierAttribute",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    var e = void 0;
+                                    return (
+                                        this.forAllProps(function (t, r) {
+                                            if (r.flags & l.Identifier) {
+                                                if (e)
+                                                    throw new eb(
+                                                        "Cannot define property '"
+                                                            .concat(
+                                                                t,
+                                                                "' as object identifier, property '",
+                                                            )
+                                                            .concat(
+                                                                e,
+                                                                "' is already defined as identifier property",
+                                                            ),
+                                                    );
+                                                e = t;
+                                            }
+                                        }),
+                                        e
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "cloneAndEnhance", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return new t({
+                                    name: e.name || this.name,
+                                    properties: Object.assign(
+                                        {},
+                                        this.properties,
+                                        e.properties,
+                                    ),
+                                    initializers: this.initializers.concat(
+                                        e.initializers || [],
+                                    ),
+                                    preProcessor:
+                                        e.preProcessor || this.preProcessor,
+                                    postProcessor:
+                                        e.postProcessor || this.postProcessor,
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "actions", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                return this.cloneAndEnhance({
+                                    initializers: [
+                                        function (r) {
+                                            return (
+                                                t.instantiateActions(r, e(r)), r
+                                            );
+                                        },
+                                    ],
+                                });
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "instantiateActions",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    var r = this;
+                                    if (!eg(t))
+                                        throw new eb(
+                                            "actions initializer should return a plain object containing actions",
+                                        );
+                                    Object.getOwnPropertyNames(t).forEach(
+                                        function (i) {
+                                            if (i in r.properties)
+                                                throw new eb(
+                                                    "'".concat(
+                                                        i,
+                                                        "' is a property and cannot be declared as an action",
+                                                    ),
+                                                );
+                                            if (i === eB)
+                                                throw new eb(
+                                                    "Cannot define action '".concat(
+                                                        eB,
+                                                        "', it should be defined using 'type.preProcessSnapshot(fn)' instead",
+                                                    ),
+                                                );
+                                            if (i === eJ)
+                                                throw new eb(
+                                                    "Cannot define action '".concat(
+                                                        eJ,
+                                                        "', it should be defined using 'type.postProcessSnapshot(fn)' instead",
+                                                    ),
+                                                );
+                                            var a = t[i],
+                                                o = e[i];
+                                            if (i in n && o) {
+                                                var l = a;
+                                                a = function () {
+                                                    o.apply(null, arguments),
+                                                        l.apply(
+                                                            null,
+                                                            arguments,
+                                                        );
+                                                };
+                                            }
+                                            var u = a.$mst_middleware,
+                                                c = a.bind(t);
+                                            (c._isFlowAction =
+                                                a._isFlowAction || !1),
+                                                (c.$mst_middleware = u);
+                                            var s = G(e, i, c);
+                                            (t[i] = s), eS(e, i, s);
+                                        },
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "volatile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                if ("function" != typeof e)
+                                    throw new eb(
+                                        "You passed an ".concat(
+                                            typeof e,
+                                            " to volatile state as an argument, when function is expected",
+                                        ),
+                                    );
+                                return this.cloneAndEnhance({
+                                    initializers: [
+                                        function (r) {
+                                            return (
+                                                t.instantiateVolatileState(
+                                                    r,
+                                                    e(r),
+                                                ),
+                                                r
+                                            );
+                                        },
+                                    ],
+                                });
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "instantiateVolatileState",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    var r = this;
+                                    if (!eg(t))
+                                        throw new eb(
+                                            "volatile state initializer should return a plain object containing state",
+                                        );
+                                    Object.getOwnPropertyNames(t).forEach(
+                                        function (n) {
+                                            if (n in r.properties)
+                                                throw new eb(
+                                                    "'".concat(
+                                                        n,
+                                                        "' is a property and cannot be declared as volatile state",
+                                                    ),
+                                                );
+                                            (0, p.hZ)(e, n, t[n]);
+                                        },
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "extend", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                return this.cloneAndEnhance({
+                                    initializers: [
+                                        function (r) {
+                                            var n = e(r),
+                                                i = n.actions,
+                                                a = n.views,
+                                                o = n.state,
+                                                l = (function (e, t) {
+                                                    var r = {};
+                                                    for (var n in e)
+                                                        Object.prototype.hasOwnProperty.call(
+                                                            e,
+                                                            n,
+                                                        ) &&
+                                                            0 > t.indexOf(n) &&
+                                                            (r[n] = e[n]);
+                                                    if (
+                                                        null != e &&
+                                                        "function" ==
+                                                            typeof Object.getOwnPropertySymbols
+                                                    )
+                                                        for (
+                                                            var i = 0,
+                                                                n =
+                                                                    Object.getOwnPropertySymbols(
+                                                                        e,
+                                                                    );
+                                                            i < n.length;
+                                                            i++
+                                                        )
+                                                            0 >
+                                                                t.indexOf(
+                                                                    n[i],
+                                                                ) &&
+                                                                Object.prototype.propertyIsEnumerable.call(
+                                                                    e,
+                                                                    n[i],
+                                                                ) &&
+                                                                (r[n[i]] =
+                                                                    e[n[i]]);
+                                                    return r;
+                                                })(n, [
+                                                    "actions",
+                                                    "views",
+                                                    "state",
+                                                ]);
+                                            for (var u in l)
+                                                throw new eb(
+                                                    "The `extend` function should return an object with a subset of the fields 'actions', 'views' and 'state'. Found invalid key '".concat(
+                                                        u,
+                                                        "'",
+                                                    ),
+                                                );
+                                            return (
+                                                o &&
+                                                    t.instantiateVolatileState(
+                                                        r,
+                                                        o,
+                                                    ),
+                                                a && t.instantiateViews(r, a),
+                                                i && t.instantiateActions(r, i),
+                                                r
+                                            );
+                                        },
+                                    ],
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "views", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                return this.cloneAndEnhance({
+                                    initializers: [
+                                        function (r) {
+                                            return (
+                                                t.instantiateViews(r, e(r)), r
+                                            );
+                                        },
+                                    ],
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiateViews", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this;
+                                if (!eg(t))
+                                    throw new eb(
+                                        "views initializer should return a plain object containing views",
+                                    );
+                                Object.getOwnPropertyNames(t).forEach(
+                                    function (n) {
+                                        if (n in r.properties)
+                                            throw new eb(
+                                                "'".concat(
+                                                    n,
+                                                    "' is a property and cannot be declared as a view",
+                                                ),
+                                            );
+                                        var i,
+                                            a = Object.getOwnPropertyDescriptor(
+                                                t,
+                                                n,
+                                            );
+                                        if ("get" in a)
+                                            (0, p.n8)(e, n, a),
+                                                (0, p.Gn)(
+                                                    e,
+                                                    (((i = {})[n] = p.EW), i),
+                                                );
+                                        else if ("function" == typeof a.value)
+                                            eS(e, n, a.value);
+                                        else
+                                            throw new eb(
+                                                "A view member should either be a function or getter based property",
+                                            );
+                                    },
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return et(
+                                    this,
+                                    e,
+                                    t,
+                                    r,
+                                    en(n)
+                                        ? n
+                                        : this.applySnapshotPreProcessor(n),
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "initializeChildNodes",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    void 0 === t && (t = {});
+                                    var r = e.type,
+                                        n = {};
+                                    return (
+                                        r.forAllProps(function (r, i) {
+                                            n[r] = i.instantiate(
+                                                e,
+                                                r,
+                                                void 0,
+                                                t[r],
+                                            );
+                                        }),
+                                        n
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "createNewInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = d(d({}, ef), { name: this.name });
+                                    return p.sH.object(e, ep, t);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "finalizeNewInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    eS(t, "toString", eK),
+                                        this.forAllProps(function (r) {
+                                            (0, p.pA)(t, r, e.unbox);
+                                        }),
+                                        this.initializers.reduce(function (
+                                            e,
+                                            t,
+                                        ) {
+                                            return t(e);
+                                        }, t),
+                                        (0, p.Zc)(t, this.willChange),
+                                        (0, p.lB)(t, this.didChange);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "willChange", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = ea(e.object),
+                                    r = e.name;
+                                t.assertWritable({ subpath: r });
+                                var n = t.type.properties[r];
+                                return (
+                                    n &&
+                                        (q(n, e.newValue),
+                                        (e.newValue = n.reconcile(
+                                            t.getChildNode(r),
+                                            e.newValue,
+                                            t,
+                                            r,
+                                        ))),
+                                    e
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "didChange", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = ea(e.object);
+                                if (t.type.properties[e.name]) {
+                                    var r = e.oldValue
+                                        ? e.oldValue.snapshot
+                                        : void 0;
+                                    t.emitPatch(
+                                        {
+                                            op: "replace",
+                                            path: eR(e.name),
+                                            value: e.newValue.snapshot,
+                                            oldValue: r,
+                                        },
+                                        t,
+                                    );
+                                }
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildren", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this,
+                                    r = [];
+                                return (
+                                    this.forAllProps(function (n) {
+                                        r.push(t.getChildNode(e, n));
+                                    }),
+                                    r
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getChildNode", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (!(t in this.properties))
+                                    throw new eb("Not a value property: " + t);
+                                var r,
+                                    n = (0, p.Mr)(e.storedValue, t),
+                                    i =
+                                        null == (r = n.raw)
+                                            ? void 0
+                                            : r.call(n);
+                                if (!i)
+                                    throw new eb(
+                                        "Node not available for property " + t,
+                                    );
+                                return i;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this;
+                                void 0 === t && (t = !0);
+                                var n = {};
+                                return (this.forAllProps(function (t, i) {
+                                    (0, p.go)(
+                                        e.storedValue,
+                                        t,
+                                    ).reportObserved(),
+                                        (n[t] = r.getChildNode(e, t).snapshot);
+                                }),
+                                t)
+                                    ? this.applySnapshotPostProcessor(n)
+                                    : n;
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "processInitialSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = {};
+                                    return (
+                                        Object.keys(e).forEach(function (r) {
+                                            t[r] = e[r].getSnapshot();
+                                        }),
+                                        this.applySnapshotPostProcessor(t)
+                                    );
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "applyPatchLocally",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t, r) {
+                                    if ("replace" !== r.op && "add" !== r.op)
+                                        throw new eb(
+                                            "object does not support operation ".concat(
+                                                r.op,
+                                            ),
+                                        );
+                                    e.storedValue[t] = r.value;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "applySnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                q(this, t);
+                                var r = this.applySnapshotPreProcessor(t);
+                                this.forAllProps(function (t) {
+                                    e.storedValue[t] = r[t];
+                                });
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "applySnapshotPreProcessor",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = this.preProcessor;
+                                    return t ? t.call(null, e) : e;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "applySnapshotPostProcessor",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = this.postProcessor;
+                                    return t ? t.call(null, e) : e;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "getChildType", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return ex(e, 1), this.properties[e];
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this,
+                                    n = this.applySnapshotPreProcessor(e);
+                                return eg(n)
+                                    ? K(
+                                          this.propertyNames.map(function (e) {
+                                              return r.properties[e].validate(
+                                                  n[e],
+                                                  B(t, e, r.properties[e]),
+                                              );
+                                          }),
+                                      )
+                                    : J(t, n, "Value is not a plain object");
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "forAllProps", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this;
+                                this.propertyNames.forEach(function (r) {
+                                    return e(r, t.properties[r]);
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e = this;
+                                return (
+                                    "{ " +
+                                    this.propertyNames
+                                        .map(function (t) {
+                                            return (
+                                                t +
+                                                ": " +
+                                                e.properties[t].describe()
+                                            );
+                                        })
+                                        .join("; ") +
+                                    " }"
+                                );
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "getDefaultSnapshot",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function () {
+                                    return ep;
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "removeChild", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                e.storedValue[t] = void 0;
+                            },
+                        }),
+                        t
+                    );
+                })(F);
+            eQ.prototype.applySnapshot = (0, p.XI)(eQ.prototype.applySnapshot);
+            var e0 = (function (e) {
+                    function t(t, r, n, i) {
+                        void 0 === i && (i = eh);
+                        var a = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(a, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(a, "checker", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: n,
+                            }),
+                            Object.defineProperty(a, "initializer", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: i,
+                            }),
+                            (a.flags = r),
+                            a
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.name;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return er(this, e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "createNewInstance",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    return this.initializer(e);
+                                },
+                            },
+                        ),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (ew(e) && this.checker(e)) return es;
+                                var r =
+                                    "Date" === this.name
+                                        ? "Date or a unix milliseconds timestamp"
+                                        : this.name;
+                                return J(t, e, "Value is not a ".concat(r));
+                            },
+                        }),
+                        t
+                    );
+                })(H),
+                e1 = new e0("string", l.String, function (e) {
+                    return "string" == typeof e;
+                }),
+                e2 = new e0("number", l.Number, function (e) {
+                    return "number" == typeof e;
+                }),
+                e4 = new e0("integer", l.Integer, function (e) {
+                    return ed(e);
+                }),
+                e8 = new e0("float", l.Float, function (e) {
+                    return Number(e) === e && e % 1 != 0;
+                }),
+                e3 = new e0("finite", l.Finite, function (e) {
+                    return Number.isFinite(e);
+                }),
+                e6 = new e0("boolean", l.Boolean, function (e) {
+                    return "boolean" == typeof e;
+                }),
+                e5 = new e0("null", l.Null, function (e) {
+                    return null === e;
+                }),
+                e7 = new e0("undefined", l.Undefined, function (e) {
+                    return void 0 === e;
+                }),
+                e9 = new e0(
+                    "Date",
+                    l.Date,
+                    function (e) {
+                        return "number" == typeof e || e instanceof Date;
+                    },
+                    function (e) {
+                        return e instanceof Date ? e : new Date(e);
+                    },
+                );
+            e9.getSnapshot = function (e) {
+                return e.storedValue.getTime();
+            };
+            var te = (function (e) {
+                function t(t) {
+                    var r = e.call(this, JSON.stringify(t)) || this;
+                    return (
+                        Object.defineProperty(r, "value", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: void 0,
+                        }),
+                        Object.defineProperty(r, "flags", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: l.Literal,
+                        }),
+                        (r.value = t),
+                        r
+                    );
+                }
+                return (
+                    h(t, e),
+                    Object.defineProperty(t.prototype, "instantiate", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            return er(this, e, t, r, n);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "describe", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return JSON.stringify(this.value);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "isValidSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            return ew(e) && e === this.value
+                                ? es
+                                : J(
+                                      t,
+                                      e,
+                                      "Value is not a literal ".concat(
+                                          JSON.stringify(this.value),
+                                      ),
+                                  );
+                        },
+                    }),
+                    t
+                );
+            })(H);
+            function tt(e) {
+                return eV(e, ew, "primitive", 1), new te(e);
+            }
+            var tr = (function (e) {
+                    function t(t, r, n, i) {
+                        var a = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(a, "_subtype", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(a, "_predicate", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: n,
+                            }),
+                            Object.defineProperty(a, "_message", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: i,
+                            }),
+                            a
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "flags", {
+                            get: function () {
+                                return this._subtype.flags | l.Refinement;
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.name;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return this._subtype.instantiate(e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this._subtype.isAssignableFrom(e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this._subtype.validate(e, t);
+                                if (r.length > 0) return r;
+                                var n = en(e) ? ea(e).snapshot : e;
+                                return this._predicate(n)
+                                    ? es
+                                    : J(t, e, this._message(e));
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return this._subtype.reconcile(e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSubTypes", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this._subtype;
+                            },
+                        }),
+                        t
+                    );
+                })(R),
+                tn = (function (e) {
+                    function t(t, r, n) {
+                        var i = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(i, "_types", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(i, "_dispatcher", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(i, "_eager", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: !0,
+                            }),
+                            (i._dispatcher = (n = d(
+                                { eager: !0, dispatcher: void 0 },
+                                n,
+                            )).dispatcher),
+                            n.eager || (i._eager = !1),
+                            i
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "flags", {
+                            get: function () {
+                                var e = l.Union;
+                                return (
+                                    this._types.forEach(function (t) {
+                                        e |= t.flags;
+                                    }),
+                                    e
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this._types.some(function (t) {
+                                    return t.isAssignableFrom(e);
+                                });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return (
+                                    "(" +
+                                    this._types
+                                        .map(function (e) {
+                                            return e.describe();
+                                        })
+                                        .join(" | ") +
+                                    ")"
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = this.determineType(n, void 0);
+                                if (!i)
+                                    throw new eb(
+                                        "No matching type for union " +
+                                            this.describe(),
+                                    );
+                                return i.instantiate(e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = this.determineType(
+                                    t,
+                                    e.getReconciliationType(),
+                                );
+                                if (!i)
+                                    throw new eb(
+                                        "No matching type for union " +
+                                            this.describe(),
+                                    );
+                                return i.reconcile(e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "determineType", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return this._dispatcher
+                                    ? this._dispatcher(e)
+                                    : t
+                                      ? t.is(e)
+                                          ? t
+                                          : this._types
+                                                .filter(function (e) {
+                                                    return e !== t;
+                                                })
+                                                .find(function (t) {
+                                                    return t.is(e);
+                                                })
+                                      : this._types.find(function (t) {
+                                            return t.is(e);
+                                        });
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (this._dispatcher)
+                                    return this._dispatcher(e).validate(e, t);
+                                for (
+                                    var r = [], n = 0, i = 0;
+                                    i < this._types.length;
+                                    i++
+                                ) {
+                                    var a = this._types[i].validate(e, t);
+                                    if (0 === a.length)
+                                        if (this._eager) return es;
+                                        else n++;
+                                    else r.push(a);
+                                }
+                                return 1 === n
+                                    ? es
+                                    : J(
+                                          t,
+                                          e,
+                                          "No type is applicable for the union",
+                                      ).concat(K(r));
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSubTypes", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this._types;
+                            },
+                        }),
+                        t
+                    );
+                })(R);
+            function ti(e) {
+                for (var t = [], r = 1; r < arguments.length; r++)
+                    t[r - 1] = arguments[r];
+                var n = M(e) ? void 0 : e,
+                    i = M(e) ? g([e], v(t), !1) : t;
+                return new tn(
+                    "(" +
+                        i
+                            .map(function (e) {
+                                return e.name;
+                            })
+                            .join(" | ") +
+                        ")",
+                    i,
+                    n,
+                );
+            }
+            var ta = (function (e) {
+                function t(t, r, n) {
+                    var i = e.call(this, t.name) || this;
+                    return (
+                        Object.defineProperty(i, "_subtype", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: t,
+                        }),
+                        Object.defineProperty(i, "_defaultValue", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: r,
+                        }),
+                        Object.defineProperty(i, "optionalValues", {
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0,
+                            value: n,
+                        }),
+                        i
+                    );
+                }
+                return (
+                    h(t, e),
+                    Object.defineProperty(t.prototype, "flags", {
+                        get: function () {
+                            return this._subtype.flags | l.Optional;
+                        },
+                        enumerable: !1,
+                        configurable: !0,
+                    }),
+                    Object.defineProperty(t.prototype, "describe", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return this._subtype.describe() + "?";
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "instantiate", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            if (this.optionalValues.indexOf(n) >= 0) {
+                                var i = this.getDefaultInstanceOrSnapshot();
+                                return this._subtype.instantiate(e, t, r, i);
+                            }
+                            return this._subtype.instantiate(e, t, r, n);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "reconcile", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t, r, n) {
+                            return this._subtype.reconcile(
+                                e,
+                                0 > this.optionalValues.indexOf(t) &&
+                                    this._subtype.is(t)
+                                    ? t
+                                    : this.getDefaultInstanceOrSnapshot(),
+                                r,
+                                n,
+                            );
+                        },
+                    }),
+                    Object.defineProperty(
+                        t.prototype,
+                        "getDefaultInstanceOrSnapshot",
+                        {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e =
+                                    "function" == typeof this._defaultValue
+                                        ? this._defaultValue()
+                                        : this._defaultValue;
+                                return (
+                                    "function" == typeof this._defaultValue &&
+                                        q(this, e),
+                                    e
+                                );
+                            },
+                        },
+                    ),
+                    Object.defineProperty(t.prototype, "isValidSnapshot", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e, t) {
+                            return this.optionalValues.indexOf(e) >= 0
+                                ? es
+                                : this._subtype.validate(e, t);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "isAssignableFrom", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function (e) {
+                            return this._subtype.isAssignableFrom(e);
+                        },
+                    }),
+                    Object.defineProperty(t.prototype, "getSubTypes", {
+                        enumerable: !1,
+                        configurable: !0,
+                        writable: !0,
+                        value: function () {
+                            return this._subtype;
+                        },
+                    }),
+                    t
+                );
+            })(R);
+            function to(e, t, r) {
+                if ("function" != typeof t && en(t))
+                    throw new eb(
+                        "default value cannot be an instance, pass a snapshot or a function that creates an instance/snapshot instead",
+                    );
+                return L(e, 1), new ta(e, t, r || tl);
+            }
+            var tl = [void 0],
+                tu = to(e7, void 0),
+                tc = to(e5, null);
+            function ts(e) {
+                return L(e, 1), ti(e, tu);
+            }
+            var tp = (function (e) {
+                    function t(t, r) {
+                        var n = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(n, "_definition", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(n, "_subType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            n
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "flags", {
+                            get: function () {
+                                return (
+                                    (this._subType ? this._subType.flags : 0) |
+                                    l.Late
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        Object.defineProperty(t.prototype, "getSubType", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (!this._subType) {
+                                    var t = void 0;
+                                    try {
+                                        t = this._definition();
+                                    } catch (e) {
+                                        if (e instanceof ReferenceError)
+                                            t = void 0;
+                                        else throw e;
+                                    }
+                                    if (e && void 0 === t)
+                                        throw new eb(
+                                            "Late type seems to be used too early, the definition (still) returns undefined",
+                                        );
+                                    t && (this._subType = t);
+                                }
+                                return this._subType;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return this.getSubType(!0).instantiate(
+                                    e,
+                                    t,
+                                    r,
+                                    n,
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return this.getSubType(!0).reconcile(
+                                    e,
+                                    t,
+                                    r,
+                                    n,
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                var e = this.getSubType(!1);
+                                return e ? e.name : "<uknown late type>";
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                var r = this.getSubType(!1);
+                                return r ? r.validate(e, t) : es;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                var t = this.getSubType(!1);
+                                return !!t && t.isAssignableFrom(e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSubTypes", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.getSubType(!1) || k;
+                            },
+                        }),
+                        t
+                    );
+                })(R),
+                tf = (function (e) {
+                    function t(t, r) {
+                        var n = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(n, "options", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(n, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Lazy,
+                            }),
+                            Object.defineProperty(n, "loadedType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: null,
+                            }),
+                            Object.defineProperty(n, "pendingNodeList", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: p.sH.array(),
+                            }),
+                            (0, p.z7)(
+                                function () {
+                                    return (
+                                        n.pendingNodeList.length > 0 &&
+                                        n.pendingNodeList.some(function (e) {
+                                            return (
+                                                e.isAlive &&
+                                                n.options.shouldLoadPredicate(
+                                                    e.parent
+                                                        ? e.parent.value
+                                                        : null,
+                                                )
+                                            );
+                                        })
+                                    );
+                                },
+                                function () {
+                                    n.options.loadType().then(
+                                        (0, p.XI)(function (e) {
+                                            (n.loadedType = e),
+                                                n.pendingNodeList.forEach(
+                                                    function (e) {
+                                                        e.parent &&
+                                                            n.loadedType &&
+                                                            e.parent.applyPatches(
+                                                                [
+                                                                    {
+                                                                        op: "replace",
+                                                                        path: "/".concat(
+                                                                            e.subpath,
+                                                                        ),
+                                                                        value: e.snapshot,
+                                                                    },
+                                                                ],
+                                                            );
+                                                    },
+                                                );
+                                        }),
+                                    );
+                                },
+                            ),
+                            n
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return "<lazy ".concat(this.name, ">");
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = this;
+                                if (this.loadedType)
+                                    return this.loadedType.instantiate(
+                                        e,
+                                        t,
+                                        r,
+                                        n,
+                                    );
+                                var a = er(this, e, t, r, eO(n));
+                                return (
+                                    this.pendingNodeList.push(a),
+                                    (0, p.z7)(
+                                        function () {
+                                            return !a.isAlive;
+                                        },
+                                        function () {
+                                            return i.pendingNodeList.splice(
+                                                i.pendingNodeList.indexOf(a),
+                                                1,
+                                            );
+                                        },
+                                    ),
+                                    a
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return this.loadedType
+                                    ? this.loadedType.validate(e, t)
+                                    : ej(e)
+                                      ? es
+                                      : J(
+                                            t,
+                                            e,
+                                            "Value is not serializable and cannot be lazy",
+                                        );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (t, r, n, i) {
+                                return this.loadedType
+                                    ? (t.die(),
+                                      this.loadedType.instantiate(
+                                          n,
+                                          i,
+                                          n.environment,
+                                          r,
+                                      ))
+                                    : e.prototype.reconcile.call(
+                                          this,
+                                          t,
+                                          r,
+                                          n,
+                                          i,
+                                      );
+                            },
+                        }),
+                        t
+                    );
+                })(H),
+                tb = (function (e) {
+                    function t(t) {
+                        var r =
+                            e.call(
+                                this,
+                                t ? "frozen(".concat(t.name, ")") : "frozen",
+                            ) || this;
+                        return (
+                            Object.defineProperty(r, "subType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: t,
+                            }),
+                            Object.defineProperty(r, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Frozen,
+                            }),
+                            r
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return "<any immutable value>";
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                return er(this, e, t, r, eO(n));
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return ej(e)
+                                    ? this.subType
+                                        ? this.subType.validate(e, t)
+                                        : es
+                                    : J(
+                                          t,
+                                          e,
+                                          "Value is not serializable and cannot be frozen",
+                                      );
+                            },
+                        }),
+                        t
+                    );
+                })(H),
+                th = new tb(),
+                td = (function () {
+                    function e(e, t) {
+                        if (
+                            (Object.defineProperty(this, "targetType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: t,
+                            }),
+                            Object.defineProperty(this, "identifier", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "node", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            Object.defineProperty(this, "resolvedReference", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: void 0,
+                            }),
+                            tI(e))
+                        )
+                            this.identifier = e;
+                        else if (en(e)) {
+                            var r = ea(e);
+                            if (!r.identifierAttribute)
+                                throw new eb(
+                                    "Can only store references with a defined identifier attribute.",
+                                );
+                            var n = r.unnormalizedIdentifier;
+                            if (null == n)
+                                throw new eb(
+                                    "Can only store references to tree nodes with a defined identifier.",
+                                );
+                            this.identifier = n;
+                        } else
+                            throw new eb(
+                                "Can only store references to tree nodes or identifiers, got: '".concat(
+                                    e,
+                                    "'",
+                                ),
+                            );
+                    }
+                    return (
+                        Object.defineProperty(
+                            e.prototype,
+                            "updateResolvedReference",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e) {
+                                    var t = "" + this.identifier,
+                                        r = e.root,
+                                        n =
+                                            r.identifierCache.getLastCacheModificationPerId(
+                                                t,
+                                            );
+                                    if (
+                                        !this.resolvedReference ||
+                                        this.resolvedReference
+                                            .lastCacheModification !== n
+                                    ) {
+                                        var i = this.targetType,
+                                            a = r.identifierCache.resolve(i, t);
+                                        if (!a)
+                                            throw new ty(
+                                                "[mobx-state-tree] Failed to resolve reference '"
+                                                    .concat(
+                                                        this.identifier,
+                                                        "' to type '",
+                                                    )
+                                                    .concat(
+                                                        this.targetType.name,
+                                                        "' (from node: ",
+                                                    )
+                                                    .concat(e.path, ")"),
+                                            );
+                                        this.resolvedReference = {
+                                            node: a,
+                                            lastCacheModification: n,
+                                        };
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(e.prototype, "resolvedValue", {
+                            get: function () {
+                                return (
+                                    this.updateResolvedReference(this.node),
+                                    this.resolvedReference.node.value
+                                );
+                            },
+                            enumerable: !1,
+                            configurable: !0,
+                        }),
+                        e
+                    );
+                })(),
+                ty = (function (e) {
+                    function t(r) {
+                        var n = e.call(this, r) || this;
+                        return Object.setPrototypeOf(n, t.prototype), n;
+                    }
+                    return h(t, e), t;
+                })(Error),
+                tv = (function (e) {
+                    function t(t, r) {
+                        var n =
+                            e.call(this, "reference(".concat(t.name, ")")) ||
+                            this;
+                        return (
+                            Object.defineProperty(n, "targetType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: t,
+                            }),
+                            Object.defineProperty(n, "onInvalidated", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(n, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Reference,
+                            }),
+                            n
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.name;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isAssignableFrom", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this.targetType.isAssignableFrom(e);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return tI(e)
+                                    ? es
+                                    : J(
+                                          t,
+                                          e,
+                                          "Value is not a valid identifier, which is a string or a number",
+                                      );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "fireInvalidated", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = t.parent;
+                                if (i && i.isAlive) {
+                                    var a = i.storedValue;
+                                    a &&
+                                        this.onInvalidated({
+                                            cause: e,
+                                            parent: a,
+                                            invalidTarget: n
+                                                ? n.storedValue
+                                                : void 0,
+                                            invalidId: r,
+                                            replaceRef: function (e) {
+                                                w(t.root.storedValue, {
+                                                    op: "replace",
+                                                    value: e,
+                                                    path: t.path,
+                                                });
+                                            },
+                                            removeRef: function () {
+                                                var e;
+                                                M((e = i.type)) &&
+                                                (e.flags & l.Object) > 0
+                                                    ? this.replaceRef(void 0)
+                                                    : w(t.root.storedValue, {
+                                                          op: "remove",
+                                                          path: t.path,
+                                                      });
+                                            },
+                                        });
+                                }
+                            },
+                        }),
+                        Object.defineProperty(
+                            t.prototype,
+                            "addTargetNodeWatcher",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t) {
+                                    var r = this,
+                                        i = this.getValue(e);
+                                    if (i) {
+                                        var a = ea(i),
+                                            o = function (i, o) {
+                                                var l = (function (e) {
+                                                    switch (e) {
+                                                        case n.beforeDestroy:
+                                                            return "destroy";
+                                                        case n.beforeDetach:
+                                                            return "detach";
+                                                        default:
+                                                            return;
+                                                    }
+                                                })(o);
+                                                l &&
+                                                    r.fireInvalidated(
+                                                        l,
+                                                        e,
+                                                        t,
+                                                        a,
+                                                    );
+                                            },
+                                            l = a.registerHook(
+                                                n.beforeDetach,
+                                                o,
+                                            ),
+                                            u = a.registerHook(
+                                                n.beforeDestroy,
+                                                o,
+                                            );
+                                        return function () {
+                                            l(), u();
+                                        };
+                                    }
+                                },
+                            },
+                        ),
+                        Object.defineProperty(
+                            t.prototype,
+                            "watchTargetNodeForInvalidations",
+                            {
+                                enumerable: !1,
+                                configurable: !0,
+                                writable: !0,
+                                value: function (e, t, r) {
+                                    var i,
+                                        a = this;
+                                    if (this.onInvalidated) {
+                                        e.registerHook(
+                                            n.beforeDestroy,
+                                            function () {
+                                                i && i();
+                                            },
+                                        );
+                                        var o = function (n) {
+                                            i && i();
+                                            var o = e.parent,
+                                                l = o && o.storedValue;
+                                            o &&
+                                                o.isAlive &&
+                                                l &&
+                                                ((
+                                                    r
+                                                        ? !!r.get(t, l)
+                                                        : e.root.identifierCache.has(
+                                                              a.targetType,
+                                                              "" + t,
+                                                          )
+                                                )
+                                                    ? (i =
+                                                          a.addTargetNodeWatcher(
+                                                              e,
+                                                              t,
+                                                          ))
+                                                    : n ||
+                                                      a.fireInvalidated(
+                                                          "invalidSnapshotReference",
+                                                          e,
+                                                          t,
+                                                          null,
+                                                      ));
+                                        };
+                                        e.state === c.FINALIZED
+                                            ? o(!0)
+                                            : (e.isRoot ||
+                                                  e.root.registerHook(
+                                                      n.afterCreationFinalization,
+                                                      function () {
+                                                          e.parent &&
+                                                              e.parent.createObservableInstanceIfNeeded();
+                                                      },
+                                                  ),
+                                              e.registerHook(
+                                                  n.afterAttach,
+                                                  function () {
+                                                      o(!1);
+                                                  },
+                                              ));
+                                    }
+                                },
+                            },
+                        ),
+                        t
+                    );
+                })(H),
+                tg = (function (e) {
+                    function t(t, r) {
+                        return e.call(this, t, r) || this;
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "getValue", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (e.isAlive)
+                                    return e.storedValue.resolvedValue;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return e.storedValue.identifier;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = en(n)
+                                        ? (ei(n, 1), ea(n).identifier)
+                                        : n,
+                                    a = new td(n, this.targetType),
+                                    o = er(this, e, t, r, a);
+                                return (
+                                    (a.node = o),
+                                    this.watchTargetNodeForInvalidations(
+                                        o,
+                                        i,
+                                        void 0,
+                                    ),
+                                    o
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                if (!e.isDetaching && e.type === this) {
+                                    var i = en(t),
+                                        a = e.storedValue;
+                                    if (
+                                        (!i && a.identifier === t) ||
+                                        (i && a.resolvedValue === t)
+                                    )
+                                        return e.setParent(r, n), e;
+                                }
+                                var o = this.instantiate(r, n, void 0, t);
+                                return e.die(), o;
+                            },
+                        }),
+                        t
+                    );
+                })(tv),
+                tm = (function (e) {
+                    function t(t, r, n) {
+                        var i = e.call(this, t, n) || this;
+                        return (
+                            Object.defineProperty(i, "options", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            i
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "getValue", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                if (e.isAlive)
+                                    return this.options.get(
+                                        e.storedValue,
+                                        e.parent ? e.parent.storedValue : null,
+                                    );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return e.storedValue;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = en(n)
+                                        ? this.options.set(
+                                              n,
+                                              e ? e.storedValue : null,
+                                          )
+                                        : n,
+                                    a = er(this, e, t, r, i);
+                                return (
+                                    this.watchTargetNodeForInvalidations(
+                                        a,
+                                        i,
+                                        this.options,
+                                    ),
+                                    a
+                                );
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = en(t)
+                                    ? this.options.set(
+                                          t,
+                                          e ? e.storedValue : null,
+                                      )
+                                    : t;
+                                if (
+                                    !e.isDetaching &&
+                                    e.type === this &&
+                                    e.storedValue === i
+                                )
+                                    return e.setParent(r, n), e;
+                                var a = this.instantiate(r, n, void 0, i);
+                                return e.die(), a;
+                            },
+                        }),
+                        t
+                    );
+                })(tv);
+            function tw(e, t) {
+                L(e, 1);
+                var r = t || void 0,
+                    n = t ? t.onInvalidated : void 0;
+                return r && (r.get || r.set)
+                    ? new tm(e, { get: r.get, set: r.set }, n)
+                    : new tg(e, n);
+            }
+            var tP = (function (e) {
+                    function t(t, r) {
+                        var n = e.call(this, t) || this;
+                        return (
+                            Object.defineProperty(n, "validType", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: r,
+                            }),
+                            Object.defineProperty(n, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Identifier,
+                            }),
+                            n
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                if (!e || !(e.type instanceof eQ))
+                                    throw new eb(
+                                        "Identifier types can only be instantiated as direct child of a model type",
+                                    );
+                                return er(this, e, t, r, n);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                if (e.storedValue !== t)
+                                    throw new eb(
+                                        "Tried to change identifier from '"
+                                            .concat(e.storedValue, "' to '")
+                                            .concat(
+                                                t,
+                                                "'. Changing identifiers is not allowed.",
+                                            ),
+                                    );
+                                return e.setParent(r, n), e;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                return typeof e !== this.validType
+                                    ? J(
+                                          t,
+                                          e,
+                                          "Value is not a valid "
+                                              .concat(
+                                                  this.describe(),
+                                                  ", expected a ",
+                                              )
+                                              .concat(this.validType),
+                                      )
+                                    : es;
+                            },
+                        }),
+                        t
+                    );
+                })(H),
+                tO = (function (e) {
+                    function t() {
+                        var t = e.call(this, "identifier", "string") || this;
+                        return (
+                            Object.defineProperty(t, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Identifier,
+                            }),
+                            t
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return "identifier";
+                            },
+                        }),
+                        t
+                    );
+                })(tP),
+                tj = (function (e) {
+                    function t() {
+                        return (
+                            e.call(this, "identifierNumber", "number") || this
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return e.storedValue;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return "identifierNumber";
+                            },
+                        }),
+                        t
+                    );
+                })(tP),
+                t_ = new tO(),
+                tS = new tj();
+            function tI(e) {
+                return "string" == typeof e || "number" == typeof e;
+            }
+            var tA = (function (e) {
+                    function t(t) {
+                        var r = e.call(this, t.name) || this;
+                        return (
+                            Object.defineProperty(r, "options", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: t,
+                            }),
+                            Object.defineProperty(r, "flags", {
+                                enumerable: !0,
+                                configurable: !0,
+                                writable: !0,
+                                value: l.Custom,
+                            }),
+                            r
+                        );
+                    }
+                    return (
+                        h(t, e),
+                        Object.defineProperty(t.prototype, "describe", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function () {
+                                return this.name;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "isValidSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t) {
+                                if (this.options.isTargetType(e)) return es;
+                                var r = this.options.getValidationMessage(e);
+                                return r
+                                    ? J(
+                                          t,
+                                          e,
+                                          "Invalid value for type '"
+                                              .concat(this.name, "': ")
+                                              .concat(r),
+                                      )
+                                    : es;
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "getSnapshot", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e) {
+                                return this.options.toSnapshot(e.storedValue);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "instantiate", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = this.options.isTargetType(n)
+                                    ? n
+                                    : this.options.fromSnapshot(
+                                          n,
+                                          e && e.root.environment,
+                                      );
+                                return er(this, e, t, r, i);
+                            },
+                        }),
+                        Object.defineProperty(t.prototype, "reconcile", {
+                            enumerable: !1,
+                            configurable: !0,
+                            writable: !0,
+                            value: function (e, t, r, n) {
+                                var i = !this.options.isTargetType(t);
+                                if (
+                                    !e.isDetaching &&
+                                    e.type === this &&
+                                    (i ? t === e.snapshot : t === e.storedValue)
+                                )
+                                    return e.setParent(r, n), e;
+                                var a = i
+                                        ? this.options.fromSnapshot(
+                                              t,
+                                              r.root.environment,
+                                          )
+                                        : t,
+                                    o = this.instantiate(r, n, void 0, a);
+                                return e.die(), o;
+                            },
+                        }),
+                        t
+                    );
+                })(H),
+                tT = {
+                    enumeration: function (e, t) {
+                        var r = ti.apply(
+                            void 0,
+                            g(
+                                [],
+                                v(
+                                    ("string" == typeof e ? t : e).map(
+                                        function (e) {
+                                            return tt("" + e);
+                                        },
+                                    ),
+                                ),
+                                !1,
+                            ),
+                        );
+                        return "string" == typeof e && (r.name = e), r;
+                    },
+                    model: function () {
+                        for (var e = [], t = 0; t < arguments.length; t++)
+                            e[t] = arguments[t];
+                        return new eQ({
+                            name:
+                                "string" == typeof e[0]
+                                    ? e.shift()
+                                    : "AnonymousModel",
+                            properties: e.shift() || {},
+                        });
+                    },
+                    compose: function () {
+                        for (var e = [], t = 0; t < arguments.length; t++)
+                            e[t] = arguments[t];
+                        var r = "string" == typeof e[0],
+                            n = r ? e[0] : "AnonymousModel";
+                        return (
+                            r && e.shift(),
+                            e
+                                .reduce(function (e, t) {
+                                    return e.cloneAndEnhance({
+                                        name: e.name + "_" + t.name,
+                                        properties: t.properties,
+                                        initializers: t.initializers,
+                                        preProcessor: function (r) {
+                                            return t.applySnapshotPreProcessor(
+                                                e.applySnapshotPreProcessor(r),
+                                            );
+                                        },
+                                        postProcessor: function (r) {
+                                            return t.applySnapshotPostProcessor(
+                                                e.applySnapshotPostProcessor(r),
+                                            );
+                                        },
+                                    });
+                                })
+                                .named(n)
+                        );
+                    },
+                    custom: function (e) {
+                        return new tA(e);
+                    },
+                    reference: tw,
+                    safeReference: function (e, t) {
+                        var r = tw(
+                            e,
+                            d(d({}, t), {
+                                onInvalidated: function (e) {
+                                    t && t.onInvalidated && t.onInvalidated(e),
+                                        e.removeRef();
+                                },
+                            }),
+                        );
+                        return t && !1 === t.acceptsUndefined ? r : ts(r);
+                    },
+                    union: ti,
+                    optional: to,
+                    literal: tt,
+                    maybe: ts,
+                    maybeNull: function (e) {
+                        return L(e, 1), ti(e, tc);
+                    },
+                    refinement: function () {
+                        for (var e = [], t = 0; t < arguments.length; t++)
+                            e[t] = arguments[t];
+                        var r =
+                                "string" == typeof e[0]
+                                    ? e.shift()
+                                    : M(e[0])
+                                      ? e[0].name
+                                      : null,
+                            n = e[0],
+                            i = e[1],
+                            a = e[2]
+                                ? e[2]
+                                : function (e) {
+                                      return "Value does not respect the refinement predicate";
+                                  };
+                        return (
+                            L(n, [1, 2]),
+                            ex(r, 1),
+                            eD(i, [2, 3]),
+                            eD(a, [3, 4]),
+                            new tr(r, n, i, a)
+                        );
+                    },
+                    string: e1,
+                    boolean: e6,
+                    number: e2,
+                    integer: e4,
+                    float: e8,
+                    finite: e3,
+                    Date: e9,
+                    map: function (e) {
+                        return new eW("Map<string, ".concat(e.name, ">"), e);
+                    },
+                    array: function (e) {
+                        return L(e, 1), new eG("".concat(e.name, "[]"), e);
+                    },
+                    frozen: function (e) {
+                        return 0 == arguments.length
+                            ? th
+                            : M(e)
+                              ? new tb(e)
+                              : to(th, e);
+                    },
+                    identifier: t_,
+                    identifierNumber: tS,
+                    late: function (e, t) {
+                        var r =
+                                "string" == typeof e
+                                    ? e
+                                    : "late(".concat(e.toString(), ")"),
+                            n = "string" == typeof e ? t : e;
+                        return new tp(r, n);
+                    },
+                    lazy: function (e, t) {
+                        return new tf(e, t);
+                    },
+                    undefined: e7,
+                    null: e5,
+                    snapshotProcessor: function (e, t, r) {
+                        return L(e, 1), new eL(e, t, r);
+                    },
+                };
+        },
+    },
+]);

@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendRefreshRepositoryMeta =
     exports.sendRefreshTracksAvailability =
@@ -14,25 +17,38 @@ exports.sendRefreshRepositoryMeta =
         void 0;
 const electron_1 = require("electron");
 const events_js_1 = require("./types/events.js");
-const playerActions_js_1 = require("./types/playerActions.js");
+const cookies_js_1 = require("./constants/cookies.js");
 const Logger_js_1 = require("./packages/logger/Logger.js");
 const updater_js_1 = require("./lib/updater.js");
 const tray_js_1 = require("./lib/tray.js");
 const appSuspension_js_1 = require("./lib/appSuspension.js");
-const discordRichPresence_js_1 = require("./lib/discordRichPresence.js");
-const trackDownloader_js_1 = require("./lib/trackDownloader/trackDownloader.js");
-const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
-const cookies_js_1 = require("./constants/cookies.js");
 const store_js_1 = require("./lib/store.js");
 const state_js_1 = require("./lib/state.js");
-const createWindow_js_1 = require("./lib/createWindow.js");
+const toggleWindowVisibility_js_1 = require("./lib/window/toggleWindowVisibility.js");
+const toggleMaximize_js_1 = require("./lib/window/toggleMaximize.js");
+const minimize_js_1 = require("./lib/window/minimize.js");
 const handleDeeplink_js_1 = require("./lib/handlers/handleDeeplink.js");
 const loadReleaseNotes_js_1 = require("./lib/loadReleaseNotes.js");
 const deviceInfo_js_1 = require("./lib/deviceInfo.js");
 const platform_js_1 = require("./types/platform.js");
+const config_js_1 = require("./config.js");
+const getSortedDescReleaseNotesKeys_js_1 = require("./lib/releaseNotes/getSortedDescReleaseNotesKeys.js");
+const removeNewerReleaseNotes_js_1 = require("./lib/releaseNotes/removeNewerReleaseNotes.js");
+const formatters_js_1 = require("./lib/i18n/formatters.js");
+const stringToAST_js_1 = require("./lib/i18n/stringToAST.js");
+const gt_js_1 = __importDefault(require("semver/functions/gt.js"));
+const valid_js_1 = __importDefault(require("semver/functions/valid.js"));
+const i18nKeys_js_1 = require("./constants/i18nKeys.js");
+const dateToDDMonthYYYYProps_js_1 = require("./lib/date/dateToDDMonthYYYYProps.js");
+
+const discordRichPresence_js_1 = require("./lib/discordRichPresence.js");
+const trackDownloader_js_1 = require("./lib/trackDownloader/trackDownloader.js");
+const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
 const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
+const playerActions_js_1 = require("./types/playerActions.js");
+
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
     return typeof value === "boolean";
@@ -124,27 +140,28 @@ const handleApplicationEvents = (window) => {
     });
     electron_1.ipcMain.on(events_js_1.Events.WINDOW_MINIMIZE, () => {
         eventsLogger.info("Event received", events_js_1.Events.WINDOW_MINIMIZE);
-        window.minimize();
-        (0, tray_js_1.updateTrayMenu)(window);
+        (0, minimize_js_1.minimize)(window);
     });
     electron_1.ipcMain.on(events_js_1.Events.WINDOW_MAXIMIZE, () => {
         eventsLogger.info("Event received", events_js_1.Events.WINDOW_MAXIMIZE);
-        if (window.isMaximized()) {
-            window.unmaximize();
-        } else {
-            window.maximize();
-        }
-        (0, tray_js_1.updateTrayMenu)(window);
+        (0, toggleMaximize_js_1.toggleMaximize)(window);
     });
     electron_1.ipcMain.on(events_js_1.Events.WINDOW_CLOSE, () => {
         eventsLogger.info("Event received", events_js_1.Events.WINDOW_CLOSE);
         if (
-            (store_js_1.getModFeatures()?.windowBehavior
-                ?.minimizeToTrayOnWindowClose ??
-                state_js_1.state.player.isPlaying) &&
-            platform_js_1.Platform.WINDOWS === deviceInfo_js_1.devicePlatform
+            [
+                platform_js_1.Platform.WINDOWS,
+                platform_js_1.Platform.LINUX,
+            ].includes(deviceInfo_js_1.devicePlatform)
         ) {
-            (0, createWindow_js_1.toggleWindowVisibility)(window, false);
+            if (store_js_1.getModFeatures()?.windowBehavior?.minimizeToTrayOnWindowClose ?? state_js_1.state.player.isPlaying) {
+                (0, toggleWindowVisibility_js_1.toggleWindowVisibility)(
+                    window,
+                    false,
+                );
+            } else {
+                electron_1.app.quit();
+            }
         } else {
             electron_1.app.quit();
         }
@@ -195,15 +212,63 @@ const handleApplicationEvents = (window) => {
                 }, 4000);
             }
 
+            const version = electron_1.app.getVersion();
             const releaseNotes = await (0,
             loadReleaseNotes_js_1.loadReleaseNotes)(language);
-            if (releaseNotes) {
-                (0, exports.sendLoadReleaseNotes)(
-                    window,
-                    (0, store_js_1.needToShowReleaseNotes)(),
-                    releaseNotes,
+            if (!releaseNotes) {
+                return;
+            }
+            const {
+                [`${i18nKeys_js_1.KEY_DESKTOP_RELEASE_NOTES_DEFAULT}`]:
+                    defaultReleaseNote,
+                ...otherNotes
+            } = releaseNotes;
+            let translationsReleaseNotes = (0,
+            removeNewerReleaseNotes_js_1.removeNewerReleaseNotes)(
+                otherNotes,
+                version,
+            );
+            const sortedDescReleaseNotesKeys = (0,
+            getSortedDescReleaseNotesKeys_js_1.getSortedDescReleaseNotesKeys)(
+                translationsReleaseNotes,
+            );
+            const latestVersion = sortedDescReleaseNotesKeys[0];
+            if (!latestVersion) {
+                return;
+            }
+            const extractedVersion = (0,
+            getSortedDescReleaseNotesKeys_js_1.extractVersion)(latestVersion);
+            if (
+                (0, valid_js_1.default)(extractedVersion) &&
+                (0, valid_js_1.default)(version) &&
+                (0, gt_js_1.default)(version, extractedVersion) &&
+                Array.isArray(defaultReleaseNote)
+            ) {
+                const dateString = `<date>${(0, formatters_js_1.formatDate)({
+                    date: config_js_1.config.buildInfo.BUILD_TIME,
+                    options: (0,
+                    dateToDDMonthYYYYProps_js_1.dateToDDMonthYYYYProps)(),
+                    language,
+                })}</date>\n`;
+                const dateAST = (0, stringToAST_js_1.stringToAST)(dateString);
+                translationsReleaseNotes = {
+                    ...translationsReleaseNotes,
+                    [`${i18nKeys_js_1.RELEASE_NOTES_KEY_PREFIX}${version}`]: [
+                        ...dateAST,
+                        ...defaultReleaseNote,
+                    ],
+                };
+                sortedDescReleaseNotesKeys.unshift(
+                    `${i18nKeys_js_1.RELEASE_NOTES_KEY_PREFIX}${version}`,
                 );
             }
+            (0, exports.sendLoadReleaseNotes)({
+                    window,
+                needToShowReleaseNotes: (0,
+                store_js_1.needToShowReleaseNotes)(),
+                sortedDescReleaseNotesKeys,
+                translationsReleaseNotes,
+            });
         },
     );
     electron_1.ipcMain.on(
@@ -346,7 +411,24 @@ const handleApplicationEvents = (window) => {
             }
         },
     );
+    electron_1.ipcMain.handle(events_js_1.Events.GET_YANDEX_UID, async () => {
+        eventsLogger.info("Event handle", events_js_1.Events.GET_YANDEX_UID);
+        try {
+            const cookie = await electron_1.session.defaultSession.cookies.get({
+                name: cookies_js_1.YANDEX_ID,
+                domain: cookies_js_1.PASSPORT_LOGIN_DOMAIN,
+            });
+            return cookie?.[0]?.value;
+        } catch (error) {
+            eventsLogger.error(
+                `${events_js_1.Events.GET_YANDEX_UID} event failed.`,
+                error,
+            );
+            return;
+        }
+    });
 };
+exports.handleApplicationEvents = handleApplicationEvents;
 electron_1.ipcMain.handle("openConfigFile", async () => {
     return await electron_1.shell.openPath(
         electron_1.app.getPath("userData") + "/config.json",
@@ -405,8 +487,6 @@ electron_1.ipcMain.handle(
     },
 );
 
-exports.handleApplicationEvents = handleApplicationEvents;
-
 const sendNativeStoreUpdate = (key, value, window = undefined) => {
     (window ?? mainWindow)?.webContents.send(
         events_js_1.Events.NATIVE_STORE_UPDATE,
@@ -453,12 +533,17 @@ const sendProbabilityBucket = (window, bucket) => {
     );
 };
 exports.sendProbabilityBucket = sendProbabilityBucket;
-const sendLoadReleaseNotes = (window, needToShowReleaseNotes, releaseNotes) => {
-    window.webContents.send(
-        events_js_1.Events.LOAD_RELEASE_NOTES,
+const sendLoadReleaseNotes = ({
+    window,
+    needToShowReleaseNotes,
+    sortedDescReleaseNotesKeys,
+    translationsReleaseNotes,
+}) => {
+    window.webContents.send(events_js_1.Events.LOAD_RELEASE_NOTES, {
         needToShowReleaseNotes,
-        releaseNotes,
-    );
+        sortedDescReleaseNotesKeys,
+        translationsReleaseNotes,
+    });
     eventsLogger.info("Event sent", events_js_1.Events.LOAD_RELEASE_NOTES);
 };
 exports.sendLoadReleaseNotes = sendLoadReleaseNotes;

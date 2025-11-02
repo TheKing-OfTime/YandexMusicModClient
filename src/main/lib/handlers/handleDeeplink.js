@@ -13,7 +13,7 @@ const events_js_1 = require("../../events.js");
 let deeplinkUrl = null;
 const deeplinkLogger = new Logger_js_1.Logger("Deeplink");
 const transformUrlToInternal = (url) => {
-  return url.replace(`${config_js_1.config.deeplinkProtocol}://`, "/");
+    return url.replace(`${config_js_1.config.app.deeplinkProtocol}://`, "/");
 };
 const checkIsDeeplink = (value) => {
   const deeplinkRegexp = /yandexmusic:\/\/.*/;
@@ -40,10 +40,12 @@ const handleDeeplinkOnApplicationStartup = () => {
     state_js_1.state.deeplink = lastArgFromProccessArgs;
   }
   if (
-    !electron_1.app.isDefaultProtocolClient(config_js_1.config.deeplinkProtocol)
+        !electron_1.app.isDefaultProtocolClient(
+            config_js_1.config.app.deeplinkProtocol,
+        )
   ) {
     electron_1.app.setAsDefaultProtocolClient(
-      config_js_1.config.deeplinkProtocol,
+            config_js_1.config.app.deeplinkProtocol,
     );
   }
   electron_1.app.on("open-url", (event, url) => {

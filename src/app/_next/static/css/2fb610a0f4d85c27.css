@@ -1,0 +1,22 @@
+.UgcUploadCenterNotification_root__K_U0z {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.UgcUploadCenterNotification_root__K_U0z,
+.UgcUploadCenterNotification_title__s3yTL {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+}
+.UgcUploadCenterNotification_title__s3yTL {
+    max-width: 7.5rem;
+}
+.UgcUploadCenterNotification_link__NPz6r {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    display: inline-flex;
+}
+.UgcUploadCenterNotification_link__NPz6r:focus-visible
+    .UgcUploadCenterNotification_title__s3yTL,
+.UgcUploadCenterNotification_link__NPz6r:hover
+    .UgcUploadCenterNotification_title__s3yTL {
+    color: var(--ym-controls-color-primary-text-hovered);
+}
