@@ -1302,27 +1302,27 @@
                     onSwapDislikeToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.playerBarEnhancement.showDislikeButton toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.playerBarEnhancement.showDislikeButton', e);
-                        window.forcePlayerBarRerender?.();
+                        setTimeout(()=>{window.forcePlayerBarRerender?.()}, 100); // Dirty workaround
                     }, []),
                     onShowRepeatButtonOnVibe = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.playerBarEnhancement.showRepeatButtonOnVibe toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.playerBarEnhancement.showRepeatButtonOnVibe', e);
-                        window.forcePlayerBarRerender?.();
+                        setTimeout(()=>{window.forcePlayerBarRerender?.()}, 100); // Dirty workaround
                     }, []),
                     onShowCodecToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark', e);
-                        window.forcePlayerBarRerender?.();
+                        setTimeout(()=>{window.forcePlayerBarRerender?.()}, 100); // Dirty workaround
                     }, []),
                     onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps toggled. Value: ', e);
-                        window.forcePlayerBarRerender?.();
                         window.nativeSettings.set('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps', e);
+                        setTimeout(()=>{window.forcePlayerBarRerender?.()}, 100); // Dirty workaround
                     }, []),
                     onDisablePerTrackColorsToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.playerBarEnhancement.disablePerTrackColors toggled. Value: ', e);
-                        window.forcePlayerBarRerender?.();
                         window.nativeSettings.set('modFeatures.playerBarEnhancement.disablePerTrackColors', e);
+                        setTimeout(()=>{window.forcePlayerBarRerender?.()}, 100); // Dirty workaround
                     }, []),
                     onAlwaysWideBarToggle = (0, d.useCallback)(
                         async (e) => {
@@ -1396,6 +1396,15 @@
                                     description: 'Отображает временные метки независимо от положения курсора',
                                     onChange: onAlwaysShowPlayerTimestampsToggle,
                                     isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отключить цвета треков',
+                                    description: 'Панель перестанет перекрашиваться под каждый трек',
+                                    onChange: onDisablePerTrackColorsToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.disablePerTrackColors'),
                                 }),
                             }),
                             (0, i.jsx)('li', {
