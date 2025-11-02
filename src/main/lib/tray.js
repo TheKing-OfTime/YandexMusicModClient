@@ -177,7 +177,7 @@ const createContextMenu = (window) => {
             role: "quit",
         },
     ];
-    if (config_js_1.config.app.enableDevTools || store_js_1.getDevtoolsEnabled()) {
+    if (config_js_1.config.app.enableDevTools || Boolean(store_js_1.getDevtoolsEnabled())) {
         template.unshift({
             label: "Debug",
             submenu: [

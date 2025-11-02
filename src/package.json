@@ -45,7 +45,7 @@
     "js-yaml": "~4.1.0"
   },
   "appConfig": {
-    "enableDevTools": true,
+    "enableDevTools": false,
     "enableWebSecurity": true,
     "enableAutoUpdate": true,
     "enableUpdateByProbability": false,
