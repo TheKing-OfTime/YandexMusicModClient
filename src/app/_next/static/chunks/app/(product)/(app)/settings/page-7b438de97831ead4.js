@@ -207,6 +207,7 @@
                         n = (0, _.jRO)(),
                         s = (0, d.useCallback)(() => {
                             n.clearAll().then(() => {
+                                window.onDownloadedTracksDeleted();
                                 t.close(),
                                     o(
                                         (0, i.jsx)(m.$W, {
@@ -515,7 +516,16 @@
             };
 
             let toggleBarWithPathChooser = (e) => {
-                let { title: t, onChange: o, isChecked: isChecked, description: r, placeholder: placeholder, disabled: disabled, inputValue: inputValue, onClick: onClick } = e,
+                let {
+                        title: t,
+                        onChange: o,
+                        isChecked: isChecked,
+                        description: r,
+                        placeholder: placeholder,
+                        disabled: disabled,
+                        inputValue: inputValue,
+                        onClick: onClick,
+                    } = e,
                     l = (0, d.useId)();
                 return (0, i.jsxs)('div', {
                     style: {
@@ -551,7 +561,7 @@
                                             }),
                                     ],
                                 }),
-                                (0, i.jsx)(L.Z, {
+                                (0, i.jsx)(O.l, {
                                     isChecked: isChecked,
                                     'aria-describedby': l,
                                     onChange: o,
@@ -835,17 +845,20 @@
                         window.nativeSettings.set('modFeatures.discordRPC.statusDisplayType', e);
                         setStatusDisplayType(e);
                     }, []),
-                    onApplicationIDForRPCChange = (0, d.useCallback)(async (e) => {
-                        console.log('applicationIDForRPC changed. Value: ', e);
-                        window.nativeSettings.set('modFeatures.discordRPC.applicationIDForRPC', e);
-                        setApplicationIDForRPC(e);
-                        j(
-                            (0, i.jsx)(m.hT, {
-                                error: 'Для применения этой настройки требуется перезапуск приложения',
-                            }),
-                            { containerId: _.FlZ.ERROR },
-                        );
-                    }, []);
+                    onApplicationIDForRPCChange = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('applicationIDForRPC changed. Value: ', e);
+                            window.nativeSettings.set('modFeatures.discordRPC.applicationIDForRPC', e);
+                            setApplicationIDForRPC(e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    );
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
                     style: { 'max-width': '500px' },
@@ -873,7 +886,7 @@
                             (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: ['Использовать Ynison', (0, i.jsx)(labeledBubble, { label: 'ALPHA', disabled: !isDiscordStatusEnabled })],
+                                    title: ['Использовать Ynison', (0, i.jsx)(labeledBubble, { label: 'BETA', disabled: !isDiscordStatusEnabled })],
                                     description: 'Использует данные о воспроизведении с других устройств',
                                     onChange: onDiscordFromYnisonToggle,
                                     isChecked: window.nativeSettings.get('modFeatures.discordRPC.fromYnison'),
@@ -1002,6 +1015,976 @@
                 });
             });
 
+            let downloaderSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { downloaderSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [useMP3, setUseMP3] = (0, d.useState)(window.nativeSettings?.get('modFeatures.downloader.useMP3') ?? false),
+                    [useCustomPathForSessionStorage, setUseCustomPathForSessionStorage] = (0, d.useState)(
+                        window.nativeSettings?.get('modFeatures.downloader.useCustomPathForSessionStorage') ?? false,
+                    ),
+                    [useDefaultPath, setUseDefaultPath] = (0, d.useState)(window.nativeSettings?.get('modFeatures.downloader.useDefaultPath') ?? false),
+                    [customPathForSessionStorage, setCustomPathForSessionStorage] = (0, d.useState)(
+                        window.nativeSettings?.get('modFeatures.downloader.customPathForSessionStorage') ?? '',
+                    ),
+                    [defaultPath, setDefaultPath] = (0, d.useState)(window.nativeSettings?.get('modFeatures.downloader.defaultPath') ?? ''),
+                    onUseDefaultPathToggle = (0, d.useCallback)(async (e) => {
+                        console.log('useDefaultPath toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.downloader.useDefaultPath', e);
+                        setUseDefaultPath(e);
+                    }, []),
+                    onDefaultPathExploreClick = (0, d.useCallback)(async (e) => {
+                        window.nativeSettings?.setPathWithNativeDialog('modFeatures.downloader.defaultPath', undefined, ['openDirectory', 'showHiddenFiles']);
+                    }, []),
+                    onUseMP3Toggle = (0, d.useCallback)(async (e) => {
+                        console.log('useMP3 toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.downloader.useMP3', e);
+                        setUseMP3(e);
+                    }, []),
+                    onUseSyncLyricsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('useSyncLyrics toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.downloader.useSyncLyrics', e);
+                    }, []),
+                    onUseCustomPathForSessionStorageToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('useCustomPathForSessionStorage toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.downloader.useCustomPathForSessionStorage', e);
+                            setUseCustomPathForSessionStorage(e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onCustomPathForSessionStorageExploreClick = (0, d.useCallback)(async (e) => {
+                        window.nativeSettings?.setPathWithNativeDialog('modFeatures.downloader.customPathForSessionStorage', undefined, [
+                            'openDirectory',
+                            'showHiddenFiles',
+                        ]);
+                    }, []);
+                return (
+                    (0, d.useEffect)(() => {
+                        window.desktopEvents?.on('NATIVE_STORE_UPDATE', (event, key, value) => {
+                            if (key === 'modFeatures.downloader.defaultPath') {
+                                setDefaultPath(value);
+                            } else if (key === 'modFeatures.downloader.customPathForSessionStorage') {
+                                setCustomPathForSessionStorage(value);
+                                j(
+                                    (0, i.jsx)(m.hT, {
+                                        error: 'Для применения этой настройки требуется перезапуск приложения',
+                                    }),
+                                    { containerId: _.uQT.ERROR },
+                                );
+                            }
+                        });
+                    }, [j]),
+                    (0, i.jsxs)(p.a, {
+                        className: H().root,
+                        style: { 'max-width': '550px', height: 'auto' },
+                        title: 'Скачивание треков',
+                        headerClassName: H().modalHeader,
+                        contentClassName: H().modalContent,
+                        open: t.isOpened,
+                        onOpenChange: t.onOpenChange,
+                        onClose: t.close,
+                        size: 'fitContent',
+                        placement: 'center',
+                        labelClose: e({ id: 'interface-actions.close' }),
+                        children: (0, i.jsxs)('ul', {
+                            className: B().root,
+                            style: { width: '514px', gap: 0 },
+                            children: [
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(toggleBarWithPathChooser, {
+                                        title: 'Путь для кеша',
+                                        description: useCustomPathForSessionStorage
+                                            ? 'Использовать путь ниже для кеша (в т.ч. ванильного скачивания треков)'
+                                            : 'Использовать путь по умолчанию для кеша (в т.ч. ванильного скачивания треков)',
+                                        onChange: onUseCustomPathForSessionStorageToggle,
+                                        isChecked: useCustomPathForSessionStorage,
+                                        placeholder: 'Укажите путь кнопкой справа',
+                                        inputValue: customPathForSessionStorage,
+                                        onClick: onCustomPathForSessionStorageExploreClick,
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: 'Скачивать только в MP3',
+                                        description: useMP3 ? 'Треки скачиваются только в MP3' : 'Треки скачиваются в оригинальном формате',
+                                        onChange: onUseMP3Toggle,
+                                        isChecked: useMP3,
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: 'Скачивать текстомузыку',
+                                        description: 'Если возможно, записывать синхронный текст трека в метаданные файла',
+                                        onChange: onUseSyncLyricsToggle,
+                                        isChecked: window.nativeSettings.get('modFeatures.downloader.useSyncLyrics'),
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(toggleBarWithPathChooser, {
+                                        title: 'Путь для файлов по умолчанию',
+                                        description: useDefaultPath
+                                            ? 'Использовать путь по умолчанию для скачивания треков в файл'
+                                            : 'Спрашивать путь при каждом скачивании трека',
+                                        onChange: onUseDefaultPathToggle,
+                                        isChecked: useDefaultPath,
+                                        placeholder: 'Укажите путь кнопкой справа',
+                                        inputValue: defaultPath,
+                                        onClick: onDefaultPathExploreClick,
+                                    }),
+                                }),
+                            ],
+                        }),
+                    })
+                );
+            });
+            let scrobblersSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { scrobblersSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [userInfo, setUserInfo] = (0, d.useState)(null),
+                    [unauthorizedProbe, setUnauthorizedProbe] = (0, d.useState)(false),
+                    [isLastFmEnabled, setIsLastFmEnabled] = (0, d.useState)(window.nativeSettings.get('modFeatures.scrobblers.lastfm.enable')),
+                    onLastFMLoginClick = (0, d.useCallback)(async (e) => {
+                        console.log('scrobble-lastfm-login triggered.');
+                        await window.scrobble.lastfmLogin();
+                    }, []),
+                    onLastFMLogoutClick = (0, d.useCallback)(async (e) => {
+                        console.log('scrobble-lastfm-logout triggered.');
+                        await window.scrobble.lastfmLogout();
+                    }, []),
+                    onLastFmScrobblingToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.scrobblers.lastfm.enable toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.scrobblers.lastfm.enable', e);
+                        setIsLastFmEnabled(e);
+                    }, []),
+                    onLastFmAutoLikesToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.scrobblers.lastfm.autoLike toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.scrobblers.lastfm.autoLike', e);
+                    }, []),
+                    onLastFmFromYnisonToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.scrobblers.lastfm.fromYnison toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.scrobblers.lastfm.fromYnison', e);
+                    }, []);
+                return (
+                    (0, d.useEffect)(() => {
+                        window.scrobble?.lastfmGetUser().then((e) => {
+                            setUserInfo(e);
+                        });
+                        fetch('https://api.music.yandex.net/tracks/138005337:36143630').then((response) => {
+                            setUnauthorizedProbe(response.ok);
+                        });
+                    }, [t.isOpened]),
+                    (0, d.useEffect)(() => {
+                        window.desktopEvents?.on('LASTFM_USERINFO_UPDATE', (event, e) => {
+                            setUserInfo(e);
+                        });
+                    }, []),
+                    (0, i.jsxs)(p.a, {
+                        className: H().root,
+                        title: 'Скробблинг',
+                        headerClassName: H().modalHeader,
+                        contentClassName: H().modalContent,
+                        open: t.isOpened,
+                        onOpenChange: t.onOpenChange,
+                        onClose: t.close,
+                        size: 'fitContent',
+                        placement: 'center',
+                        style: { height: 'auto' },
+                        labelClose: e({ id: 'interface-actions.close' }),
+                        children: (0, i.jsxs)('ul', {
+                            className: `${B().root} ${H().list}`,
+                            style: { width: '-webkit-fill-available', gap: 0 },
+                            children: [
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    ...(userInfo?.user?.image
+                                        ? {
+                                              style: {
+                                                  display: 'flex',
+                                                  alignItems: 'center',
+                                                  gap: '16px',
+                                              },
+                                          }
+                                        : {}),
+                                    children: [
+                                        (0, i.jsx)('div', {
+                                            children: userInfo?.user?.image?.[0]?.['#text']
+                                                ? (0, i.jsx)('img', {
+                                                      src: (
+                                                          userInfo.user.image?.find((img) => img.size === 'medium')?.['#text'] || userInfo.user.image?.[0]?.['#text']
+                                                      ).replace('64s', 'avatar'), // Dirty workaround
+                                                      alt: 'Аватар',
+                                                      style: {
+                                                          width: 46,
+                                                          height: 46,
+                                                          borderRadius: '50%',
+                                                      },
+                                                  })
+                                                : null,
+                                        }),
+                                        (0, i.jsx)(S, {
+                                            title: userInfo ? `${userInfo.user.name} (${Number(userInfo.user.playcount).toLocaleString()})`.replace(' ', ',') : 'LastFM',
+                                            description: userInfo ? 'Выйти из LastFM' : 'Авторизоваться в LastFM',
+                                            onClick: userInfo ? onLastFMLogoutClick : onLastFMLoginClick,
+                                        }),
+                                    ],
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: 'Скробблинг в LastFM',
+                                        disabled: !userInfo,
+                                        onChange: onLastFmScrobblingToggle,
+                                        isChecked: isLastFmEnabled,
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: 'Синхронизировать лайки',
+                                        description: 'Автоматически лайкает/анлайкает треки в LastFM',
+                                        disabled: !(userInfo && isLastFmEnabled),
+                                        onChange: onLastFmAutoLikesToggle,
+                                        isChecked: window.nativeSettings.get('modFeatures.scrobblers.lastfm.autoLike'),
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: [
+                                            'Использовать Ynison',
+                                            (0, i.jsx)(labeledBubble, { label: 'BETA', disabled: !(userInfo && isLastFmEnabled && unauthorizedProbe) }),
+                                        ],
+                                        description: unauthorizedProbe ? 'Скробблить проигрывания даже с других устройств' : 'Недоступно в вашем регионе или включён VPN',
+                                        disabled: !(userInfo && isLastFmEnabled && unauthorizedProbe),
+                                        onChange: onLastFmFromYnisonToggle,
+                                        isChecked: window.nativeSettings.get('modFeatures.scrobblers.lastfm.fromYnison'),
+                                    }),
+                                }),
+                            ],
+                        }),
+                    })
+                );
+            });
+
+            let playerBarEnhancementsSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { playerBarEnhancementsSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    onWhitePlayButtonToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.whitePlayButton toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.whitePlayButton', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j]),
+                    onSwapDislikeToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.showDislikeButton toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.showDislikeButton', e);
+                        window.forcePlayerBarRerender?.();
+                    }, []),
+                    onShowRepeatButtonOnVibe = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.showRepeatButtonOnVibe toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.showRepeatButtonOnVibe', e);
+                        window.forcePlayerBarRerender?.();
+                    }, []),
+                    onShowCodecToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark', e);
+                        window.forcePlayerBarRerender?.();
+                    }, []),
+                    onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps toggled. Value: ', e);
+                        window.forcePlayerBarRerender?.();
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps', e);
+                    }, []),
+                    onDisablePerTrackColorsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.playerBarEnhancement.disablePerTrackColors toggled. Value: ', e);
+                        window.forcePlayerBarRerender?.();
+                        window.nativeSettings.set('modFeatures.playerBarEnhancement.disablePerTrackColors', e);
+                    }, []),
+                    onAlwaysWideBarToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('modFeatures.playerBarEnhancement.alwaysWideBar toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.playerBarEnhancement.alwaysWideBar', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    );
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '500px' },
+                    title: 'Панель плеера',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '466px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Вернуть белую кнопку Play',
+                                    description: 'Иначе кнопка будет жёлтой',
+                                    onChange: onWhitePlayButtonToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.whitePlayButton'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Поменять местами Дизлайк и Лайк',
+                                    description: 'Чтобы их положение соответствовало остальным платформам',
+                                    onChange: onSwapDislikeToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.showDislikeButton'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Повтор трека в Моей Волне',
+                                    description: 'Кнопка повтора будет доступна даже если играет Волна',
+                                    onChange: onShowRepeatButtonOnVibe,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.showRepeatButtonOnVibe'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать кодек',
+                                    description: 'Отображает кодек вместо качества трека',
+                                    onChange: onShowCodecToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Всегда отображать временные метки',
+                                    description: 'Отображает временные метки независимо от положения курсора',
+                                    onChange: onAlwaysShowPlayerTimestampsToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Всегда расширенная',
+                                    description: 'Панель будет всегда широкой, независимо от размера окна приложения',
+                                    onChange: onAlwaysWideBarToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.playerBarEnhancement.alwaysWideBar'),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+            let windowBehaviorSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { windowBehaviorSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [isTaskbarExtensionsEnabled, setIsTaskbarExtensionsEnabled] = (0, d.useState)(window.nativeSettings.get('modFeatures.taskBarExtensions.enable')),
+                    onSaveWindowDimensionsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('saveWindowDimensionsOnRestart toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.windowBehavior.saveWindowDimensionsOnRestart', e);
+                    }, []),
+                    onSaveWindowPositionToggle = (0, d.useCallback)(async (e) => {
+                        console.log('saveWindowPositionOnRestart toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.windowBehavior.saveWindowPositionOnRestart', e);
+                    }, []),
+                    onMinimizeToTrayOnWindowCloseToggle = (0, d.useCallback)(async (e) => {
+                        console.log('minimizeToTrayOnWindowClose toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.windowBehavior.minimizeToTrayOnWindowClose', e);
+                    }, []),
+                    onTaskbarExtensionsEnableToggle = (0, d.useCallback)(async (e) => {
+                        console.log('taskBarExtensions.enable toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.taskBarExtensions.enable', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        setIsTaskbarExtensionsEnabled(e);
+                    }, [j]),
+                    onTaskbarExtensionsCoverAsThumbnailToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('taskBarExtensions.coverAsThumbnail toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.taskBarExtensions.coverAsThumbnail', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    );
+                const [startupPage, setStartupPage] = (0, d.useState)(window.nativeSettings.get('modFeatures.windowBehavior.startupPage') ?? '/');
+                const onStartupPageChange = (0, d.useCallback)(async (e) => {
+                    console.log('startupPage changed. Value: ', e);
+                    window.nativeSettings.set('modFeatures.windowBehavior.startupPage', e);
+                    setStartupPage(e);
+                }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '550px' },
+                    title: 'Поведение окна',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithDropdown, {
+                                    title: 'Стартовая страница',
+                                    description: 'Страница по умолчанию при запуске',
+                                    onChange: onStartupPageChange,
+                                    value: startupPage,
+                                    direction: 'bottom',
+                                    options: [
+                                        { value: '/', label: 'Главная' },
+                                        { value: '/search', label: 'Поиск' },
+                                        { value: '/non-music', label: 'Подкасты и книги' },
+                                        { value: '/collection', label: 'Коллекция' },
+                                    ],
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Сохранять размер окна',
+                                    description: 'Сохраняет размер окна при перезапуске',
+                                    onChange: onSaveWindowDimensionsToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.saveWindowDimensionsOnRestart'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Сохранять положение окна',
+                                    description: 'Сохраняет положение окна при перезапуске',
+                                    onChange: onSaveWindowPositionToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.saveWindowPositionOnRestart'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Сворачивать в трей по "крестику"',
+                                    description: 'Если включено, свернётся в трей. Иначе приложение закроется полностью',
+                                    onChange: onMinimizeToTrayOnWindowCloseToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.minimizeToTrayOnWindowClose'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Включить улучшенное превью окна на панели задач',
+                                    description: 'Добавляет кнопки управления воспроизведением на превью окна в панели задач',
+                                    onChange: onTaskbarExtensionsEnableToggle,
+                                    isChecked: isTaskbarExtensionsEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Использовать обложку трека в превью окна',
+                                    description: 'Если трек играет, заменяет динамичное превью на картинку обложки трека',
+                                    onChange: onTaskbarExtensionsCoverAsThumbnailToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.taskBarExtensions.coverAsThumbnail'),
+                                    disabled: !isTaskbarExtensionsEnabled,
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
+            let vibeBehaviorEnhancementsSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { vibeBehaviorEnhancementsSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    onAutoLaunchOnAppStartup = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup', e);
+                    }, []),
+                    onEnableEndlessMusicToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.enableEndlessMusic toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.enableEndlessMusic', e);
+                    }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '550px', height: 'auto', },
+                    title: 'Поведение Моей Волны',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Запускать воспроизведение трека при старте приложения',
+                                    description: 'Запустит последний играющий трек сразу после старта приложения',
+                                    onChange: onAutoLaunchOnAppStartup,
+                                    isChecked: window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Музыка без остановки',
+                                    description: 'После окончания воспроизведения очереди, запуститься волна',
+                                    onChange: onEnableEndlessMusicToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.enableEndlessMusic'),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
+            let vibeAnimationEnhancementsSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { vibeAnimationEnhancementsSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [maxFps, setMaxFPS] = (0, d.useState)(window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.maxFPS')),
+                    [isRenderingDisabled, setIsRenderingDisabled] = (0, d.useState)(window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.disableRendering')),
+                    [useDynamicEnergy, setUseDynamicEnergy] = (0, d.useState)(window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.useDynamicEnergy')),
+                    [smoothDynamicEnergy, setSmoothDynamicEnergy] = (0, d.useState)(
+                        window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy'),
+                    ),
+                    [intensityCoefficient, setIntensityCoefficient] = (0, d.useState)(
+                        window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.intensityCoefficient'),
+                    ),
+                    [smoothDynamicEnergyCoefficient, setSmoothDynamicEnergyCoefficient] = (0, d.useState)(
+                        window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient'),
+                    ),
+                    onDisableVibeRenderingToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.disableRendering toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.disableRendering', e);
+                        setIsRenderingDisabled(e);
+                    }, []),
+                    onMaxFPSchange = (0, d.useCallback)(async (e) => {
+                        let value = Math.max(e, 1);
+                        setMaxFPS(value);
+                        console.log('modFeatures.vibeAnimationEnhancement.maxFPS changed. Value: ', value);
+
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.maxFPS', value);
+                    }, []),
+                    onIntensityCoefficientChange = (0, d.useCallback)(async (e) => {
+                        let value = Math.min(Math.max(e, 0), 2.5);
+                        setIntensityCoefficient(value);
+                        console.log('modFeatures.vibeAnimationEnhancement.intensityCoefficient changed. Value: ', value);
+
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.intensityCoefficient', value);
+                    }, []),
+                    onSmoothDynamicEnergyCoefficientChange = (0, d.useCallback)(async (e) => {
+                        let value = Math.min(Math.max(e, 0.01), 1);
+                        setSmoothDynamicEnergyCoefficient(value);
+                        console.log('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient changed. Value: ', value);
+
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient', value);
+                    }, []),
+                    onPlayOnAnyEntityToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.playOnAnyEntity. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.playOnAnyEntity', e);
+                    }, []),
+                    onEnableUseDynamicEnergy = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.useDynamicEnergy toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.useDynamicEnergy', e);
+                        setUseDynamicEnergy(e);
+                    }, []),
+                    onEnableSmoothDynamicEnergy = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.vibeAnimationEnhancement.smoothDynamicEnergy', e);
+                        setSmoothDynamicEnergy(e);
+                    }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '550px' },
+                    title: 'Анимация Моей Волны',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отключить отрисовку анимации Волны',
+                                    description: 'Значительно увеличивает производительность на слабом железе',
+                                    onChange: onDisableVibeRenderingToggle,
+                                    isChecked: isRenderingDisabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Реакция анимации Волны на любые треки',
+                                    description: 'Анимация будет реагировать на треки запущенные не через Мою Волну',
+                                    onChange: onPlayOnAnyEntityToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.vibeAnimationEnhancement.playOnAnyEntity'),
+                                    disabled: !!isRenderingDisabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithSlider, {
+                                    title: 'Ограничение FPS',
+                                    description: 'Верхняя граница FPS. Чем больше, тем плавнее анимация',
+                                    onChange: onMaxFPSchange,
+                                    value: maxFps,
+                                    maxValue: Math.max(window?.DISPLAY_MAX_FPS ?? 60, maxFps),
+                                    minValue: 1,
+                                    step: 1,
+                                    disabled: !!isRenderingDisabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithSlider, {
+                                    title: 'Интенсивность реакции на трек',
+                                    description: 'Чем больше, тем сильнее анимация ускоряется под трек',
+                                    onChange: onIntensityCoefficientChange,
+                                    value: intensityCoefficient,
+                                    maxValue: 2.5,
+                                    minValue: 0,
+                                    step: 0.1,
+                                    disabled: !!isRenderingDisabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Подстраивать скорость анимации под Энергию трека',
+                                    description: 'Анимация будет подстраивать скорость под Энергию трека в реальном времени',
+                                    onChange: onEnableUseDynamicEnergy,
+                                    isChecked: useDynamicEnergy,
+                                    disabled: !!isRenderingDisabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Смягчать динамическую энергию',
+                                    description: 'Изменения скорости трека будут более плавными',
+                                    onChange: onEnableSmoothDynamicEnergy,
+                                    isChecked: smoothDynamicEnergy,
+                                    disabled: !(!isRenderingDisabled && useDynamicEnergy),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithSlider, {
+                                    title: 'Коэффициент смягчения энергии',
+                                    description: 'Чем меньше, тем сильнее сглаживаются изменения скорости анимации',
+                                    onChange: onSmoothDynamicEnergyCoefficientChange,
+                                    value: smoothDynamicEnergyCoefficient,
+                                    maxValue: 1,
+                                    minValue: 0.01,
+                                    step: 0.01,
+                                    disabled: !(!isRenderingDisabled && useDynamicEnergy && smoothDynamicEnergy),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
+            let appUpdatesSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { appUpdatesSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [enableAppAutoUpdate, setEnableAppAutoUpdate] = (0, d.useState)(window.nativeSettings.get('modFeatures.appAutoUpdates.enableAppAutoUpdate')),
+                    onModAutoUpdateToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('enableModAutoUpdate toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.appAutoUpdates.enableModAutoUpdate', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onAppAutoUpdateByProbabilityToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('enableAppAutoUpdateByProbability toggled. Value: ', !e);
+                            window.nativeSettings.set('modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability', !e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onAppAutoUpdateToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('enableAppAutoUpdate toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.appAutoUpdates.enableAppAutoUpdate', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    );
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '550px', height: 'auto' },
+                    title: 'Обновления',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '514px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Проверять обновления приложения',
+                                    description: 'Проверять ли наличие обновлений приложения автоматически',
+                                    onChange: onAppAutoUpdateToggle,
+                                    isChecked: enableAppAutoUpdate,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Получать обновления приложения сразу же',
+                                    description: 'Выключает участие в получении обновлений волнами',
+                                    onChange: onAppAutoUpdateByProbabilityToggle,
+                                    isChecked: !window.nativeSettings.get('modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability'),
+                                    disabled: !enableAppAutoUpdate,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Проверять обновления модификации',
+                                    description: 'Проверять ли наличие обновлений мода автоматически',
+                                    onChange: onModAutoUpdateToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.appAutoUpdates.enableModAutoUpdate'),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
+            let systemSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { systemSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    onPreventDisplaySleepToggle = (0, d.useCallback)((e) => {
+                        console.log('preventDisplaySleep toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.windowBehavior.preventDisplaySleep', e);
+                    }, []),
+                    onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(
+                        (e) => {
+                            console.log('autoLaunchOnSystemStartup toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.windowBehavior.autoLaunchOnSystemStartup', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onStartMinimizedToggle = (0, d.useCallback)((e) => {
+                        console.log('startMinimized toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.windowBehavior.startMinimized', e);
+                    }, []),
+                    onTryEnableSurroundAudioToggle = (0, d.useCallback)(
+                        (e) => {
+                            console.log('tryEnableSurroundAudio toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.tryEnableSurroundAudio', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onEnableHardwareAccelerationToggle = (0, d.useCallback)(
+                        (e) => {
+                            console.log('enableHardwareAcceleration toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.enableHardwareAcceleration', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [j],
+                    ),
+                    onToggleGlobalShortcuts = (0, d.useCallback)((e) => {
+                        console.log('globalShortcuts.enable toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.globalShortcuts.enable', e);
+                    }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '570px', height: 'auto' },
+                    title: 'Системные настройки',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: B().root,
+                        style: { width: '536px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Включить аппаратное ускорение',
+                                    description: 'Настоятельно рекомендуется не выключать. Отключайте только в крайнем случае',
+                                    onChange: onEnableHardwareAccelerationToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.enableHardwareAcceleration'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Предотвращать отключение монитора',
+                                    description: 'Если включено и окно ЯМ видно на экране, монитор не уйдёт в сон от бездействия',
+                                    onChange: onPreventDisplaySleepToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.preventDisplaySleep'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: ['Пространственный звук', (0, i.jsx)(labeledBubble, { label: 'ALPHA' })],
+                                    description: 'Включает поддержку систем 5.1 / 7.1 (Учтите что звук останется в стерео)',
+                                    onChange: onTryEnableSurroundAudioToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.tryEnableSurroundAudio'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Запускать приложение при старте системы',
+                                    onChange: onAutoLaunchOnSystemStartupToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.autoLaunchOnSystemStartup'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Запускать свернутым',
+                                    description: 'Если включено, приложение запустится свернутым в трей',
+                                    onChange: onStartMinimizedToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.windowBehavior.startMinimized'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Глобальные горячие клавиши',
+                                    description: 'Настроить комбинации можно в Настройки -> Остальные настройки',
+                                    onChange: onToggleGlobalShortcuts,
+                                    isChecked: window.nativeSettings.get('modFeatures.globalShortcuts.enable'),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
             var F = o(89468),
                 B = o.n(F);
             let W = (0, n.PA)(() => {
@@ -1043,7 +2026,10 @@
                     M = p.hasPlus,
                     w = a.checkExperiment(_.zal.WebNextLiteVersion, 'on') && h.isLiteVersionModeAvailableForToggle && !0,
                     E = v.isEnabled ? C({ id: 'equalizer.enabled' }) : C({ id: 'equalizer.disabled' }),
-                    T = (0, d.useMemo)(() => `${C({ id: 'desktop.app-version-short' }, { version: e })} / Мод ${window.MOD_VERSION} / Хост ${window.HOST_VERSION}`, [!0, C, e]),
+                    T = (0, d.useMemo)(
+                        () => `${C({ id: 'desktop.app-version-short' }, { version: e })} / Мод ${window.MOD_VERSION} / Хост ${window.HOST_VERSION}`,
+                        [!0, C, e],
+                    ),
                     O = (0, d.useCallback)(
                         async (e) => {
                             (await p.setSettings({ isChildModeEnabled: e })) === _.FlZ.ERROR &&
@@ -1126,11 +2112,11 @@
                     'boolean' == typeof e && g.setCrossFadeMode(e);
                 }, [g, t]);
                 let H = (0, d.useCallback)(
-                    (e) => {
-                        g.setCrossFadeMode(e);
-                    },
-                    [g],
-                ),
+                        (e) => {
+                            g.setCrossFadeMode(e);
+                        },
+                        [g],
+                    ),
                     formatBytes = (n) => {
                         if (typeof n !== 'number' || n < 0) {
                             return '0 B';
@@ -1164,227 +2150,317 @@
                             return 'треков';
                         }
                     };
-                return ((0, d.useEffect)(() => {
-                    let callfunc = async () => {
-                        const getDownloadedTracksSize = async (t) => {
-                            let forkSize = 0;
-                            for await (let r of t.values()) {
-                                if ('directory' === r.kind) {
-                                    forkSize += await getDownloadedTracksSize(r);
-                                } else if ('file' === r.kind) {
-                                    try {
-                                        let t = await r.getFile();
-                                        forkSize += t.size;
-                                    } catch (e) {
-                                        console.warn('Track file is in use. Skipping...', e);
+                return (
+                    (0, d.useEffect)(() => {
+                        let callfunc = async () => {
+                            const getDownloadedTracksSize = async (t) => {
+                                let forkSize = 0;
+                                for await (let r of t.values()) {
+                                    if ('directory' === r.kind) {
+                                        forkSize += await getDownloadedTracksSize(r);
+                                    } else if ('file' === r.kind) {
+                                        try {
+                                            let t = await r.getFile();
+                                            forkSize += t.size;
+                                        } catch (e) {
+                                            console.warn('Track file is in use. Skipping...', e);
+                                        }
                                     }
                                 }
-                            }
-                            return forkSize;
-                        };
+                                return forkSize;
+                            };
 
-                        const getDownloadedTracksCount = async (t) => {
-                            let trackCount = 0;
-                            for await (let r of t.values()) {
-                                if ('directory' === r.kind && r.name === 'tracks') {
-                                    trackCount = await getDownloadedTracksCount(r);
-                                } else if ('file' === r.kind && !r.name.endsWith('.crswap')) {
-                                    trackCount += 1;
+                            const getDownloadedTracksCount = async (t) => {
+                                let trackCount = 0;
+                                for await (let r of t.values()) {
+                                    if ('directory' === r.kind && r.name === 'tracks') {
+                                        trackCount = await getDownloadedTracksCount(r);
+                                    } else if ('file' === r.kind && !r.name.endsWith('.crswap')) {
+                                        trackCount += 1;
+                                    }
                                 }
-                            }
-                            return trackCount;
+                                return trackCount;
+                            };
+
+                            const fileStorage = await window.navigator.storage.getDirectory();
+
+                            setDownloadedTracksInfo({
+                                tracksCount: await getDownloadedTracksCount(fileStorage),
+                                tracksSize: await getDownloadedTracksSize(fileStorage),
+                            });
                         };
 
-                        const fileStorage = await window.navigator.storage.getDirectory();
+                        window.onDownloadedTracksDeleted = () =>
+                            // That's a bad solution to update the info on clear memory modal close
+                            setDownloadedTracksInfo({
+                                tracksCount: 0,
+                                tracksSize: 0,
+                            });
 
-                        setDownloadedTracksInfo({
-                            tracksCount: await getDownloadedTracksCount(fileStorage),
-                            tracksSize: await getDownloadedTracksSize(fileStorage),
-                        });
-                    };
-
-                    window.onDownloadedTracksDeleted = () =>
-                        // That's a bad solution to update the info on clear memory modal close
-                        setDownloadedTracksInfo({
-                            tracksCount: 0,
-                            tracksSize: 0,
-                        });
-
-                    callfunc();
-                }, []),
+                        callfunc();
+                    }, []),
                     (0, i.jsxs)('ul', {
-                    className: B().root,
-                    ...(0, s.Am)(s.e8.settings.SETTINGS_LIST),
-                    children: [
-                        M &&
-                            (0, i.jsx)('li', {
-                                className: B().item,
-                                children: (0, i.jsx)(P, {
-                                    title: C({ id: 'offline.offline-mode' }),
-                                    description: C({
-                                        id: 'offline.offline-mode-description',
-                                    }),
-                                    onChange: z,
-                                    isChecked: x.isOfflineModeEnabled,
-                                }),
-                            }),
-                        M &&
-                            (0, i.jsxs)('li', {
-                                className: B().item,
-                                children: [
-                                    (0, i.jsx)(S, {
-                                        title: C({
-                                            id: 'offline.clear-memory',
-                                        }),
-                                        description: `Скачан${downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? '' : 'о'} ${downloadedTracksInfo.tracksCount ?? '0'} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
-                                        onClick: L,
-                                    }),
-                                    (0, i.jsx)(y, {}),
-                                ],
-                            }),
-                        w &&
-                            (0, i.jsx)('li', {
-                                className: B().item,
-                                children: (0, i.jsx)(P, {
-                                    title: C({ id: 'lite-version.title' }),
-                                    description: C({
-                                        id: 'lite-version.description',
-                                    }),
-                                    onChange: R,
-                                    isChecked: h.isLiteVersionModeEnabled,
-                                }),
-                            }),
-                        N &&
-                            (0, i.jsxs)('li', {
-                                className: B().item,
-                                children: [
-                                    (0, i.jsx)(S, {
-                                        title: C({ id: 'equalizer.title' }),
-                                        description: E,
-                                        onClick: v.modal.open,
-                                        descriptionProps: (0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON_DESCRIPTION),
-                                        ...(0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON),
-                                    }),
-                                    (0, i.jsx)(u.MZ, {}),
-                                ],
-                            }),
-                        (0, i.jsx)(m.aQ, {
-                            fallback: (0, i.jsx)('li', {
-                                className: B().item,
-                                children: (0, i.jsx)(S, {
-                                    title: C({ id: 'settings.preferences' }),
-                                    description: C({
-                                        id: 'settings.preferences-description',
-                                    }),
-                                    onClick: c.modal.open,
-                                }),
-                            }),
-                        }),
-                        (0, i.jsx)(m.aQ, {
-                            fallback: (0, i.jsx)('li', {
-                                className: B().item,
-                                children: (0, i.jsx)(A, {
-                                    title: C({ id: 'settings.import-media' }),
-                                    description: C({
-                                        id: 'settings.import-media-description',
-                                    }),
-                                    link: b,
-                                }),
-                            }),
-                        }),
-                        (0, i.jsx)(m.aQ, {
-                            fallback:
-                                !a.checkExperiment(_.zal.WebNextDisableKids, 'on') &&
+                        className: B().root,
+                        ...(0, s.Am)(s.e8.settings.SETTINGS_LIST),
+                        children: [
+                            M &&
                                 (0, i.jsx)('li', {
                                     className: B().item,
                                     children: (0, i.jsx)(P, {
-                                        title: C({
-                                            id: 'settings.show-child-section',
+                                        title: C({ id: 'offline.offline-mode' }),
+                                        description: C({
+                                            id: 'offline.offline-mode-description',
                                         }),
-                                        onChange: O,
-                                        isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
+                                        onChange: z,
+                                        isChecked: x.isOfflineModeEnabled,
                                     }),
                                 }),
-                        }),
-                        (0, i.jsx)('li', {
-                            className: B().item,
-                            children: (0, i.jsx)(P, {
-                                title: 'Показывать раздел «Подкасты и книги»',
-                                onChange: onShowNonMusicToggle,
-                                isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
-                            }),
-                        }),
-                        (0, i.jsxs)('li', {
-                            className: B().item,
-                            children: [
-                                (0, i.jsx)(S, {
-                                    title: C({ id: 'settings.shortcuts' }),
-                                    onClick: o.open,
+                            M &&
+                                (0, i.jsxs)('li', {
+                                    className: B().item,
+                                    children: [
+                                        (0, i.jsx)(S, {
+                                            title: C({
+                                                id: 'offline.clear-memory',
+                                            }),
+                                            description: `Скачан${downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? '' : 'о'} ${downloadedTracksInfo.tracksCount ?? '0'} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
+                                            onClick: L,
+                                        }),
+                                        (0, i.jsx)(y, {}),
+                                    ],
                                 }),
-                                (0, i.jsx)(I, {}),
-                            ],
-                        }),
-                        T &&
+                            w &&
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: C({ id: 'lite-version.title' }),
+                                        description: C({
+                                            id: 'lite-version.description',
+                                        }),
+                                        onChange: R,
+                                        isChecked: h.isLiteVersionModeEnabled,
+                                    }),
+                                }),
+                            N &&
+                                (0, i.jsxs)('li', {
+                                    className: B().item,
+                                    children: [
+                                        (0, i.jsx)(S, {
+                                            title: C({ id: 'equalizer.title' }),
+                                            description: E,
+                                            onClick: v.modal.open,
+                                            descriptionProps: (0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON_DESCRIPTION),
+                                            ...(0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON),
+                                        }),
+                                        (0, i.jsx)(u.MZ, {}),
+                                    ],
+                                }),
+                            (0, i.jsx)(m.aQ, {
+                                fallback: (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(S, {
+                                        title: C({ id: 'settings.preferences' }),
+                                        description: C({
+                                            id: 'settings.preferences-description',
+                                        }),
+                                        onClick: c.modal.open,
+                                    }),
+                                }),
+                            }),
+                            (0, i.jsx)(m.aQ, {
+                                fallback: (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(A, {
+                                        title: C({ id: 'settings.import-media' }),
+                                        description: C({
+                                            id: 'settings.import-media-description',
+                                        }),
+                                        link: b,
+                                    }),
+                                }),
+                            }),
+                            (0, i.jsx)(m.aQ, {
+                                fallback:
+                                    !a.checkExperiment(_.zal.WebNextDisableKids, 'on') &&
+                                    (0, i.jsx)('li', {
+                                        className: B().item,
+                                        children: (0, i.jsx)(P, {
+                                            title: C({
+                                                id: 'settings.show-child-section',
+                                            }),
+                                            onChange: O,
+                                            isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
+                                        }),
+                                    }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Показывать раздел «Подкасты и книги»',
+                                    onChange: onShowNonMusicToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
+                                }),
+                            }),
                             (0, i.jsxs)('li', {
                                 className: B().item,
                                 children: [
                                     (0, i.jsx)(S, {
-                                        title: C({ id: 'settings.about-app' }),
-                                        description: T,
-                                        onClick: n.open,
+                                        title: C({ id: 'settings.shortcuts' }),
+                                        onClick: o.open,
                                     }),
-                                    (0, i.jsx)(f, {}),
+                                    (0, i.jsx)(I, {}),
                                 ],
                             }),
-                        k &&
+                            T &&
+                                (0, i.jsxs)('li', {
+                                    className: B().item,
+                                    children: [
+                                        (0, i.jsx)(S, {
+                                            title: C({ id: 'settings.about-app' }),
+                                            description: T,
+                                            onClick: n.open,
+                                        }),
+                                        (0, i.jsx)(f, {}),
+                                    ],
+                                }),
+                            k &&
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(P, {
+                                        title: C({ id: 'settings.crossfade' }),
+                                        onChange: H,
+                                        isChecked: g.isCrossFadeEnabled,
+                                    }),
+                                }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Discord RPC',
+                                        description: 'Настройки интеграции с Discord',
+                                        onClick: discordRpcSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(discordRpcSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Анимация Моей Волны',
+                                        description: 'Настройка анимации Моей Волны',
+                                        onClick: vibeAnimationEnhancementsSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(vibeAnimationEnhancementsSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Поведение Моей Волны',
+                                        description: 'Настройка анимации Моей Волны',
+                                        onClick: vibeBehaviorEnhancementsSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(vibeBehaviorEnhancementsSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Панель плеера',
+                                        description: 'Настройки элементов на панели плеера',
+                                        onClick: playerBarEnhancementsSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(playerBarEnhancementsSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Поведение окна',
+                                        description: 'Настройки поведения окна приложения',
+                                        onClick: windowBehaviorSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(windowBehaviorSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Скробблинг',
+                                        description: 'Авторизация в Last.fm и другие настройки',
+                                        onClick: scrobblersSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(scrobblersSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Скачивание треков',
+                                        description: 'Настройки оффлайн прослушивания, а также скачивания в файл',
+                                        onClick: downloaderSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(downloaderSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Системные настройки',
+                                        description: 'Автозапуск, аппаратное ускорение и т.п.',
+                                        onClick: systemSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(systemSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Обновления',
+                                        description: 'Настройки обновлений как программы, так и модификации',
+                                        onClick: appUpdatesSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(appUpdatesSettings, {}),
+                                ],
+                            }),
                             (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: C({ id: 'settings.crossfade' }),
-                                    onChange: H,
-                                    isChecked: g.isCrossFadeEnabled,
+                                    title: ['Ynison Remote', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
+                                    description: 'Даст возможность управлять этим плеером с других устройств',
+                                    onChange: onEnableYnisonRemoteControlToggle,
+                                    isChecked: window.nativeSettings.get('enableYnisonRemoteControl'),
                                 }),
                             }),
-                        (0, i.jsx)('li', {
-                            className: B().item,
-                            children: [
-                                (0, i.jsx)(S, {
-                                    title: 'Discord RPC',
-                                    description: 'Настройки интеграции с Discord',
-                                    onClick: discordRpcSettingsModal.open,
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Режим разработчика',
+                                    onChange: onDevtoolsToggle,
+                                    isChecked: window.nativeSettings.get('enableDevTools'),
                                 }),
-                                (0, i.jsx)(discordRpcSettings, {}),
-                            ],
-                        }),
-                        (0, i.jsx)('li', {
-                            className: B().item,
-                            children: (0, i.jsx)(P, {
-                                title: ['Ynison Remote', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
-                                description: 'Даст возможность управлять этим плеером с других устройств',
-                                onChange: onEnableYnisonRemoteControlToggle,
-                                isChecked: window.nativeSettings.get('enableYnisonRemoteControl'),
                             }),
-                        }),
-                        (0, i.jsx)('li', {
-                            className: B().item,
-                            children: (0, i.jsx)(P, {
-                                title: 'Режим разработчика',
-                                onChange: onDevtoolsToggle,
-                                isChecked: window.nativeSettings.get('enableDevTools'),
+                            (0, i.jsxs)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Остальные настройки',
+                                        description: 'Откроется config.json',
+                                        onClick: onOpenMoreSettings,
+                                    }),
+                                ],
                             }),
-                        }),
-                        (0, i.jsxs)('li', {
-                            className: B().item,
-                            children: [
-                                (0, i.jsx)(S, {
-                                    title: 'Остальные настройки',
-                                    description: 'Откроется config.json',
-                                    onClick: onOpenMoreSettings,
-                                }),
-                            ],
-                        }),
-                    ],
-                }));
+                        ],
+                    })
+                );
             });
             var q = o(64143),
                 D = o(38046),
