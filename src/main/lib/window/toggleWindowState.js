@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.toggleWindowState = void 0;
 const state_js_1 = require("../state.js");
 const tray_js_1 = require("../tray.js");
-const toggleWindowVisibility_js_1 = require("../taskBarExtension/taskBarExtension.js");
+const taskBarExtension_js_1 = require("../taskBarExtension/taskBarExtension.js");
+const toggleWindowVisibility_js_1 = require("./toggleWindowVisibility.js");
 const toggleWindowState = (window) => {
     if (state_js_1.state.isWindowHidden) {
         (0, toggleWindowVisibility_js_1.toggleWindowVisibility)(window, true);
