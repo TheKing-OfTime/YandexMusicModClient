@@ -82,6 +82,8 @@
                     onDislikeClick = (0, feedbackApi.mW)(sonataState.entityMeta);
                 let s = (0, n.useCallback)(
                     (s, o, nonce = 1) => {
+                        if (window.playerActionEventDedupeNonce === nonce) return;
+                        if (nonce) window.playerActionEventDedupeNonce = nonce;
                         switch (o) {
                             case "PLAY":
                             case "PAUSE":
