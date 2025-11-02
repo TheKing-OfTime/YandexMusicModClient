@@ -408,6 +408,7 @@ const getDefaultExperimentOverrides = () => {
 
   data.WebNextYnisonActivityInterception = (getStore(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL) ? 'on' : 'off');
   data.WebNextPlayerBarYellowButton = (getStore(store_js_1.StoreKeys.MOD_FEATURES).playerBarEnhancement.whitePlayButton ? 'off' : 'on');
+  data.WebNextDisableNonMusic = (getStore(store_js_1.StoreKeys.MOD_FEATURES).showNonMusicPage ? 'off' : 'on');
 
   return data
 };

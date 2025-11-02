@@ -2,7 +2,7 @@
     [4398],
     {
         21348: (e, t, o) => {
-            "use strict";
+            'use strict';
             o.d(t, { SettingsPage: () => Y });
             var i = o(33008),
                 n = o(97531),
@@ -31,101 +31,113 @@
                     className: h().root,
                     headerClassName: h().modalHeader,
                     contentClassName: h().modalContent,
-                    title: e({ id: "settings.about-app" }),
+                    title: e({ id: 'settings.about-app' }),
                     open: o.isOpened,
                     onOpenChange: o.onOpenChange,
                     onClose: o.close,
-                    size: "fitContent",
-                    placement: "center",
-                    overlayColor: "full",
-                    labelClose: e({ id: "interface-actions.close" }),
+                    size: 'fitContent',
+                    placement: 'center',
+                    overlayColor: 'full',
+                    labelClose: e({ id: 'interface-actions.close' }),
                     children: [
-                        (0, i.jsxs)("ul", {
+                        (0, i.jsxs)('ul', {
                             className: h().list,
                             children: [
-                                (0, i.jsx)("li", {
+                                (0, i.jsx)('li', {
                                     className: h().item,
                                     children: (0, i.jsx)(m.N_, {
                                         className: h().link,
-                                        target: "_blank",
-                                        href: "https://yandex."
-                                            .concat(
-                                                t.tld,
-                                                "/support/music/performers-and-copyright-holders.html?lang=",
-                                            )
-                                            .concat(a),
+                                        target: '_blank',
+                                        href: 'https://yandex.'.concat(t.tld, '/support/music/performers-and-copyright-holders.html?lang=').concat(a),
                                         children: (0, i.jsx)(c.Caption, {
-                                            type: "controls",
-                                            variant: "span",
-                                            size: "l",
-                                            weight: "medium",
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
                                             children: (0, i.jsx)(l.A, {
-                                                id: "footer.links-copyright-holders",
+                                                id: 'footer.links-copyright-holders',
                                             }),
                                         }),
                                     }),
                                 }),
-                                (0, i.jsx)("li", {
+                                (0, i.jsx)('li', {
                                     className: h().item,
                                     children: (0, i.jsx)(m.N_, {
                                         className: h().link,
-                                        target: "_blank",
-                                        href: "https://yandex."
-                                            .concat(
-                                                t.tld,
-                                                "/legal/music_mobile_agreement?lang=",
-                                            )
-                                            .concat(a),
+                                        target: '_blank',
+                                        href: 'https://yandex.'.concat(t.tld, '/legal/music_mobile_agreement?lang=').concat(a),
                                         children: (0, i.jsx)(c.Caption, {
-                                            type: "controls",
-                                            variant: "span",
-                                            size: "l",
-                                            weight: "medium",
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
                                             children: (0, i.jsx)(l.A, {
-                                                id: "footer.links-terms",
+                                                id: 'footer.links-terms',
                                             }),
                                         }),
                                     }),
                                 }),
-                                (0, i.jsx)("li", {
+                                (0, i.jsx)('li', {
                                     className: h().item,
                                     children: (0, i.jsx)(m.N_, {
                                         className: h().link,
-                                        target: "_blank",
-                                        href: "https://music.yandex.".concat(
-                                            t.tld,
-                                            "/legal/recommendations/ru/#music",
-                                        ),
+                                        target: '_blank',
+                                        href: 'https://music.yandex.'.concat(t.tld, '/legal/recommendations/ru/#music'),
                                         children: (0, i.jsx)(c.Caption, {
-                                            type: "controls",
-                                            variant: "span",
-                                            size: "l",
-                                            weight: "medium",
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
                                             children: (0, i.jsx)(l.A, {
-                                                id: "footer.links-recommendation-rules",
+                                                id: 'footer.links-recommendation-rules',
                                             }),
                                         }),
                                     }),
                                 }),
-                                (0, i.jsx)("li", {
+                                (0, i.jsx)('li', {
                                     className: h().item,
                                     children: (0, i.jsx)(m.N_, {
                                         className: h().link,
-                                        target: "_blank",
-                                        href: "https://yandex."
-                                            .concat(
-                                                t.tld,
-                                                "/support/music/index.html?lang=",
-                                            )
-                                            .concat(a),
+                                        target: '_blank',
+                                        href: 'https://yandex.'.concat(t.tld, '/support/music/index.html?lang=').concat(a),
                                         children: (0, i.jsx)(c.Caption, {
-                                            type: "controls",
-                                            variant: "span",
-                                            size: "l",
-                                            weight: "medium",
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
                                             children: (0, i.jsx)(l.A, {
-                                                id: "footer.links-help",
+                                                id: 'footer.links-help',
                                             }),
+                                        }),
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: h().item,
+                                    children: (0, i.jsx)(m.N_, {
+                                        className: h().link,
+                                        target: '_blank',
+                                        href: 'https://github.com/TheKing-OfTime/YandexMusicModClient',
+                                        children: (0, i.jsx)(c.Caption, {
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
+                                            children: 'Репозиторий модификации на GitHub',
+                                        }),
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: h().item,
+                                    children: (0, i.jsx)(m.N_, {
+                                        className: h().link,
+                                        target: '_blank',
+                                        href: 'https://boosty.to/thekingoftime/donate',
+                                        children: (0, i.jsx)(c.Caption, {
+                                            type: 'controls',
+                                            variant: 'span',
+                                            size: 'l',
+                                            weight: 'medium',
+                                            children: 'Поддержать автора модификации',
                                         }),
                                     }),
                                 }),
@@ -133,42 +145,50 @@
                         }),
                         (0, i.jsx)(c.Caption, {
                             className: h().explicitText,
-                            type: "controls",
-                            variant: "div",
-                            size: "xs",
-                            weight: "medium",
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
+                            weight: 'medium',
                             dangerouslySetInnerHTML: {
-                                __html: e({ id: "about-app.explicit-content" }),
+                                __html: e({ id: 'about-app.explicit-content' }),
                             },
                         }),
                         (0, i.jsx)(c.Caption, {
                             className: h().companyText,
-                            type: "controls",
-                            variant: "div",
-                            size: "xs",
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
                             children: (0, i.jsx)(l.A, {
-                                id: "about-app.app-name",
+                                id: 'about-app.app-name',
                             }),
                         }),
                         (0, i.jsx)(c.Caption, {
                             className: h().versionText,
-                            type: "controls",
-                            variant: "div",
-                            size: "xs",
-                            children: e(
-                                { id: "desktop.app-version-short" },
-                                { version: n },
-                            ),
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
+                            children: e({ id: 'desktop.app-version-short' }, { version: n }),
                         }),
                         (0, i.jsx)(c.Caption, {
                             className: h().versionText,
-                            type: "controls",
-                            variant: "div",
-                            size: "xs",
-                            children: e(
-                                { id: "desktop.app-revision" },
-                                { revision: s },
-                            ),
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
+                            children: e({ id: 'desktop.app-revision' }, { revision: s }),
+                        }),
+                        (0, i.jsx)(c.Caption, {
+                            className: h().versionText,
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
+                            children: 'YandexMusicModClient ' + window.MOD_VERSION,
+                        }),
+                        (0, i.jsx)(c.Caption, {
+                            className: h().versionText,
+                            type: 'controls',
+                            variant: 'div',
+                            size: 'xs',
+                            children: 'Host ' + window.HOST_VERSION,
                         }),
                     ],
                 });
@@ -177,7 +197,7 @@
                 v = o(52756),
                 j = o(30768),
                 C = o.n(j);
-            let b = { src: "/_next/static/media/clearMemory.33a5df30.png" },
+            let b = { src: '/_next/static/media/clearMemory.33a5df30.png' },
                 y = (0, n.PA)(() => {
                     let { formatMessage: e } = (0, r.A)(),
                         {
@@ -192,11 +212,11 @@
                                         (0, i.jsx)(m.$W, {
                                             message: (0, i.jsx)(c.Caption, {
                                                 className: C().message,
-                                                variant: "div",
-                                                type: "controls",
-                                                size: "m",
+                                                variant: 'div',
+                                                type: 'controls',
+                                                size: 'm',
                                                 children: (0, i.jsx)(l.A, {
-                                                    id: "offline.memory-cleared",
+                                                    id: 'offline.memory-cleared',
                                                 }),
                                             }),
                                         }),
@@ -211,33 +231,33 @@
                         open: t.isOpened,
                         onOpenChange: t.onOpenChange,
                         onClose: t.close,
-                        size: "fitContent",
-                        placement: "center",
-                        labelClose: e({ id: "interface-actions.close" }),
+                        size: 'fitContent',
+                        placement: 'center',
+                        labelClose: e({ id: 'interface-actions.close' }),
                         children: [
                             (0, i.jsx)(v.Image, {
                                 src: b.src,
                                 className: C().image,
-                                fit: "contain",
-                                "aria-hidden": !0,
+                                fit: 'contain',
+                                'aria-hidden': !0,
                             }),
                             (0, i.jsx)(c.Caption, {
                                 className: C().description,
-                                type: "text",
-                                variant: "div",
-                                size: "l",
-                                weight: "normal",
+                                type: 'text',
+                                variant: 'div',
+                                size: 'l',
+                                weight: 'normal',
                                 children: (0, i.jsx)(l.A, {
-                                    id: "offline.clear-memory-description",
+                                    id: 'offline.clear-memory-description',
                                 }),
                             }),
                             (0, i.jsx)(g.Button, {
-                                color: "primary",
-                                radius: "xxxl",
-                                size: "default",
+                                color: 'primary',
+                                radius: 'xxxl',
+                                size: 'default',
                                 onClick: s,
                                 children: (0, i.jsx)(l.A, {
-                                    id: "interface-actions.clear",
+                                    id: 'interface-actions.clear',
                                 }),
                             }),
                         ],
@@ -248,46 +268,40 @@
                 M = o(71154),
                 w = o.n(M);
             let S = (e) => {
-                let {
-                    title: t,
-                    description: o,
-                    onClick: n,
-                    descriptionProps: r,
-                    ...l
-                } = e;
+                let { title: t, description: o, onClick: n, descriptionProps: r, ...l } = e;
                 return (0, i.jsx)(g.Button, {
                     className: (0, N.$)(w().root, w().important),
                     contentContainerClassName: w().contentContainer,
                     icon: (0, i.jsx)(k.Icon, {
                         className: w().icon,
-                        size: "xs",
-                        variant: "arrowRight",
+                        size: 'xs',
+                        variant: 'arrowRight',
                     }),
-                    iconPosition: "right",
+                    iconPosition: 'right',
                     onClick: n,
                     isBlock: !0,
                     withRipple: !1,
                     withHover: !1,
-                    variant: "text",
-                    size: "xs",
+                    variant: 'text',
+                    size: 'xs',
                     ...l,
-                    children: (0, i.jsxs)("div", {
+                    children: (0, i.jsxs)('div', {
                         className: w().content,
                         children: [
                             (0, i.jsx)(c.Caption, {
                                 className: w().title,
-                                variant: "div",
-                                size: "l",
-                                weight: "bold",
+                                variant: 'div',
+                                size: 'l',
+                                weight: 'bold',
                                 lineClamp: 1,
                                 children: t,
                             }),
                             o &&
                                 (0, i.jsx)(c.Caption, {
-                                    variant: "div",
-                                    type: "text",
-                                    size: "xs",
-                                    weight: "medium",
+                                    variant: 'div',
+                                    type: 'text',
+                                    size: 'xs',
+                                    weight: 'medium',
                                     className: w().description,
                                     ...r,
                                     children: o,
@@ -306,27 +320,27 @@
                     textClassName: T().linkText,
                     icon: (0, i.jsx)(k.Icon, {
                         className: T().icon,
-                        size: "xs",
-                        variant: "arrowRight",
+                        size: 'xs',
+                        variant: 'arrowRight',
                     }),
-                    iconPosition: "right",
+                    iconPosition: 'right',
                     href: t,
                     ...(r ? { target: r } : {}),
                     children: [
                         (0, i.jsx)(c.Caption, {
                             className: T().title,
-                            variant: "div",
-                            size: "l",
-                            weight: "bold",
+                            variant: 'div',
+                            size: 'l',
+                            weight: 'bold',
                             lineClamp: 1,
                             children: o,
                         }),
                         n &&
                             (0, i.jsx)(c.Caption, {
-                                variant: "div",
-                                type: "text",
-                                size: "xs",
-                                weight: "medium",
+                                variant: 'div',
+                                type: 'text',
+                                size: 'xs',
+                                weight: 'medium',
                                 className: T().description,
                                 children: n,
                             }),
@@ -335,45 +349,335 @@
             };
             var O = o(76469),
                 z = o(43726),
+                sliderComponent = o(98316),
+                inputComponent = o(21949),
+                buttonComponent = o(44189),
                 L = o.n(z);
             let P = (e) => {
-                let { title: t, onChange: o, isChecked: n, description: r } = e,
+                let { title: t, onChange: o, isChecked: n, description: r, disabled: disabled = false } = e,
                     l = (0, d.useId)();
-                return (0, i.jsxs)("div", {
+                return (0, i.jsxs)('div', {
                     className: L().root,
                     children: [
-                        (0, i.jsxs)("div", {
+                        (0, i.jsxs)('div', {
                             className: L().textContainer,
                             children: [
                                 (0, i.jsx)(c.Caption, {
-                                    className: L().title,
+                                    className: disabled ? L().titleDisabled : L().title,
                                     id: l,
-                                    variant: "div",
-                                    size: "l",
-                                    weight: "bold",
+                                    variant: 'div',
+                                    size: 'l',
+                                    weight: 'bold',
                                     lineClamp: 1,
-                                    "aria-hidden": !0,
+                                    'aria-hidden': !0,
                                     children: t,
                                 }),
                                 r &&
                                     (0, i.jsx)(c.Caption, {
-                                        variant: "div",
-                                        type: "text",
-                                        size: "xs",
-                                        weight: "medium",
-                                        className: L().description,
+                                        variant: 'div',
+                                        type: 'text',
+                                        size: 'xs',
+                                        weight: 'medium',
+                                        className: disabled ? L().descriptionDisabled : L().description,
                                         children: r,
                                     }),
                             ],
                         }),
                         (0, i.jsx)(O.l, {
                             isChecked: n,
-                            "aria-describedby": l,
+                            'aria-describedby': l,
                             onChange: o,
+                            disabled: disabled,
                         }),
                     ],
                 });
             };
+
+            const settingBarWithDropdown = ({ title, description, onChange, value, options, direction = 'bottom', disabled: disabled = false }) => {
+                const [isOpen, setIsOpen] = d.useState(false);
+                const [menuWidth, setMenuWidth] = d.useState(160);
+                const triggerRef = d.useRef(null);
+
+                const handleSelect = d.useCallback(
+                    (val) => {
+                        onChange(val);
+                        setIsOpen(false);
+                    },
+                    [onChange, setIsOpen],
+                );
+
+                const handleClickOutside = d.useCallback(
+                    (event) => {
+                        if (isOpen && event.target !== triggerRef.current) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            setIsOpen(false);
+                        }
+                    },
+                    [isOpen],
+                );
+
+                d.useEffect(() => {
+                    document.addEventListener('click', handleClickOutside);
+                    return () => {
+                        document.removeEventListener('click', handleClickOutside);
+                    };
+                }, [handleClickOutside]);
+
+                d.useEffect(() => {
+                    const element = triggerRef.current;
+                    if (!element) return;
+
+                    const observer = new ResizeObserver(([entry]) => {
+                        setMenuWidth(entry.borderBoxSize[0].inlineSize);
+                    });
+
+                    observer.observe(element);
+
+                    return () => observer.disconnect();
+                }, []);
+
+                return i.jsxs('div', {
+                    className: L().root,
+                    children: [
+                        i.jsxs('div', {
+                            className: L().textContainer,
+                            children: [
+                                i.jsx(c.Caption, {
+                                    className: disabled ? L().titleDisabled : L().title,
+                                    variant: 'div',
+                                    size: 'l',
+                                    weight: 'bold',
+                                    lineClamp: 1,
+                                    'aria-hidden': true,
+                                    children: title,
+                                }),
+                                description &&
+                                    i.jsx(c.Caption, {
+                                        variant: 'div',
+                                        type: 'text',
+                                        size: 'xs',
+                                        weight: 'medium',
+                                        className: disabled ? L().descriptionDisabled : L().description,
+                                        children: description,
+                                    }),
+                            ],
+                        }),
+                        i.jsx('div', {
+                            ref: triggerRef,
+                            onClick: () =>
+                                setIsOpen((prevValue) => {
+                                    return disabled ? false : !prevValue;
+                                }),
+                            className: `${disabled ? 'settingBarWithDropdown_button__disabled' : 'settingBarWithDropdown_button'} Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx`,
+                            children: [
+                                options.find((opt) => opt.value === value)?.label || 'Select...',
+                                i.jsx('ul', {
+                                    role: 'menu',
+                                    className: 'settingBarWithDropdown_menu',
+                                    style: {
+                                        display: isOpen ? 'flex' : 'none',
+                                        flexDirection: 'column',
+                                        width: `${menuWidth}px`,
+                                        top: direction === 'bottom' ? '120%' : 'unset',
+                                        bottom: direction === 'top' ? '120%' : 'unset',
+                                    },
+                                    children: options.map((opt) =>
+                                        i.jsx('li', {
+                                            role: 'menuitem',
+                                            className: 'settingBarWithDropdown_menuItem',
+                                            id: opt.value,
+                                            'aria-selected': value === opt.value,
+                                            onClick: (e) => {
+                                                e.stopPropagation();
+                                                handleSelect(opt.value);
+                                            },
+                                            children: [
+                                                i.jsx('span', { children: opt.label }),
+                                                value === opt.value &&
+                                                    i.jsx('svg', {
+                                                        width: '16',
+                                                        height: '16',
+                                                        fill: 'currentColor',
+                                                        xmlns: 'http://www.w3.org/2000/svg',
+                                                        children: i.jsx('path', {
+                                                            d: 'M6.5 11.5l-3.5-3.5 1.4-1.4L6.5 8.7l5.1-5.1 1.4 1.4z',
+                                                        }),
+                                                    }),
+                                            ],
+                                        }),
+                                    ),
+                                }),
+                            ],
+                        }),
+                    ],
+                });
+            };
+
+            let toggleBarWithPathChooser = (e) => {
+                let { title: t, onChange: o, isChecked: isChecked, description: r, placeholder: placeholder, disabled: disabled, inputValue: inputValue, onClick: onClick } = e,
+                    l = (0, d.useId)();
+                return (0, i.jsxs)('div', {
+                    style: {
+                        'flex-direction': 'column',
+                        display: 'flex',
+                        gap: '5px',
+                    },
+                    children: [
+                        (0, i.jsxs)('div', {
+                            className: L().root,
+                            children: [
+                                (0, i.jsxs)('div', {
+                                    className: L().textContainer,
+                                    children: [
+                                        (0, i.jsx)(c.Caption, {
+                                            className: disabled ? L().titleDisabled : L().title,
+                                            id: l,
+                                            variant: 'div',
+                                            size: 'l',
+                                            weight: 'bold',
+                                            lineClamp: 1,
+                                            'aria-hidden': !0,
+                                            children: t,
+                                        }),
+                                        r &&
+                                            (0, i.jsx)(c.Caption, {
+                                                variant: 'div',
+                                                type: 'text',
+                                                size: 'xs',
+                                                weight: 'medium',
+                                                className: disabled ? L().descriptionDisabled : L().description,
+                                                children: r,
+                                            }),
+                                    ],
+                                }),
+                                (0, i.jsx)(L.Z, {
+                                    isChecked: isChecked,
+                                    'aria-describedby': l,
+                                    onChange: o,
+                                }),
+                            ],
+                        }),
+                        (0, i.jsxs)('div', {
+                            className: L().root,
+                            style: { 'justify-content': 'unset', 'align-items': 'unset' },
+                            children: [
+                                (0, i.jsx)(inputComponent.p, {
+                                    containerClassName: 'ToggleBarWithPathChooser_input',
+                                    value: inputValue,
+                                    placeholder: placeholder,
+                                    disabled: true,
+                                }),
+                                (0, i.jsx)(buttonComponent.Button, {
+                                    radius: 'xxxl',
+                                    color: 'secondary',
+                                    size: 'm',
+                                    onClick: onClick,
+                                    children: 'Обзор',
+                                    disabled: disabled,
+                                }),
+                            ],
+                        }),
+                    ],
+                });
+            };
+
+            let settingBarWithSlider = (e) => {
+                let { title: t, onChange: o, value: value, minValue: minValue, maxValue: maxValue, step: step, description: r, disabled: disabled } = e,
+                    l = (0, d.useId)();
+                return (0, i.jsxs)('div', {
+                    className: L().root,
+                    style: {
+                        'flex-direction': 'column',
+                        'align-items': 'start',
+                    },
+                    children: [
+                        (0, i.jsxs)('div', {
+                            className: L().textContainer,
+                            children: [
+                                (0, i.jsx)(c.Caption, {
+                                    className: disabled ? L().titleDisabled : L().title,
+                                    id: l,
+                                    variant: 'div',
+                                    size: 'l',
+                                    weight: 'bold',
+                                    lineClamp: 1,
+                                    'aria-hidden': !0,
+                                    children: t,
+                                }),
+                                r &&
+                                    (0, i.jsx)(c.Caption, {
+                                        variant: 'div',
+                                        type: 'text',
+                                        size: 'xs',
+                                        weight: 'medium',
+                                        className: disabled ? L().descriptionDisabled : L().description,
+                                        children: r,
+                                    }),
+                            ],
+                        }),
+                        (0, i.jsxs)('div', {
+                            style: {
+                                width: '-webkit-fill-available',
+                            },
+                            children: [
+                                (0, i.jsx)(c.Caption, {
+                                    style: {
+                                        'text-align': 'end',
+                                    },
+                                    variant: 'div',
+                                    type: 'text',
+                                    size: 'xs',
+                                    weight: 'medium',
+                                    className: disabled ? L().descriptionDisabled : L().description,
+                                    children: value,
+                                }),
+                                (0, i.jsx)(sliderComponent.A, {
+                                    thumbSize: 's',
+                                    trackSize: 's',
+                                    value: value,
+                                    minValue: minValue ?? 0,
+                                    maxValue: maxValue ?? 2,
+                                    secondaryValue: maxValue ?? 1,
+                                    step: step ?? 0.01,
+                                    onChange: o,
+                                    disabled: disabled,
+                                }),
+                            ],
+                        }),
+                    ],
+                });
+            };
+            var Tooltip = o(18740);
+            let labeledBubble = (e) => {
+                let {
+                    label: label,
+                    color: color = 'var(--ym-controls-color-primary-default-enabled)',
+                    tooltip: tooltip = {
+                        title: 'Экспериментально',
+                        description: 'Может работать некорректно',
+                    },
+                    disabled: disabled,
+                    ...other
+                } = e;
+                return (0, i.jsx)(Tooltip.hj, {
+                    title: tooltip.title,
+                    description: tooltip.description,
+                    children: (0, i.jsxs)('div', {
+                        style: {
+                            'margin-inline': '5px',
+                            'background-color': color,
+                            color: 'black',
+                            'border-radius': '50px',
+                            'padding-inline': '6px',
+                            transition: 'opacity var(--ym-duration-transition)',
+                            ...(disabled ? { opacity: 0.3 } : {}),
+                        },
+                        children: label,
+                    }),
+                });
+            };
+
             var R = o(28486),
                 H = o.n(R);
             let I = (0, n.PA)(() => {
@@ -386,28 +690,28 @@
                             c.Caption,
                             {
                                 className: H().text,
-                                variant: "div",
-                                type: "text",
-                                size: "xs",
-                                weight: "normal",
+                                variant: 'div',
+                                type: 'text',
+                                size: 'xs',
+                                weight: 'normal',
                                 children: (0, i.jsx)(l.A, {
-                                    id: "shortcuts.or",
+                                    id: 'shortcuts.or',
                                 }),
                             },
-                            "or",
+                            'or',
                         );
                         return _.bNV.map((t) => {
                             let { shortcutsAction: o, formattedMessage: n } = t,
                                 r = _.MHd[o].map((e, t) =>
                                     (0, i.jsx)(
-                                        "div",
+                                        'div',
                                         {
                                             className: H().button,
                                             children: (0, i.jsx)(c.Caption, {
-                                                variant: "div",
-                                                type: "text",
-                                                size: "xs",
-                                                weight: "normal",
+                                                variant: 'div',
+                                                type: 'text',
+                                                size: 'xs',
+                                                weight: 'normal',
                                                 children: e,
                                             }),
                                         },
@@ -417,20 +721,20 @@
                             return (
                                 r.length > 1 && r.splice(1, 0, e),
                                 (0, i.jsx)(
-                                    "li",
+                                    'li',
                                     {
-                                        children: (0, i.jsxs)("div", {
+                                        children: (0, i.jsxs)('div', {
                                             className: H().content,
                                             children: [
                                                 (0, i.jsx)(c.Caption, {
                                                     className: H().text,
-                                                    variant: "div",
-                                                    type: "text",
-                                                    size: "xs",
-                                                    weight: "normal",
+                                                    variant: 'div',
+                                                    type: 'text',
+                                                    size: 'xs',
+                                                    weight: 'normal',
                                                     children: n,
                                                 }),
-                                                (0, i.jsx)("div", {
+                                                (0, i.jsx)('div', {
                                                     className: H().buttons,
                                                     children: r,
                                                 }),
@@ -446,20 +750,258 @@
                     className: H().root,
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
-                    title: t({ id: "settings.shortcuts" }),
+                    title: t({ id: 'settings.shortcuts' }),
                     open: e.isOpened,
                     onOpenChange: e.onOpenChange,
                     onClose: e.close,
-                    size: "fitContent",
-                    placement: "center",
-                    overlayColor: "full",
-                    labelClose: t({ id: "interface-actions.close" }),
-                    children: (0, i.jsx)("ul", {
+                    size: 'fitContent',
+                    placement: 'center',
+                    overlayColor: 'full',
+                    labelClose: t({ id: 'interface-actions.close' }),
+                    children: (0, i.jsx)('ul', {
                         className: H().list,
                         children: o,
                     }),
                 });
             });
+
+            let discordRpcSettings = (0, n.PA)(() => {
+                const [statusDisplayType, setStatusDisplayType] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.statusDisplayType') ?? 0);
+                const [applicationIDForRPC, setApplicationIDForRPC] = (0, d.useState)(
+                    window.nativeSettings.get('modFeatures.discordRPC.applicationIDForRPC') ?? '1124055337234858005',
+                );
+
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { discordRpcSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [afkTimeout, setAfkTimeout] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.afkTimeout')),
+                    [reconnectInterval, setReconnectInterval] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.reconnectInterval')),
+                    [isExperimentOverriden, setIsExperimentOverriden] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.overrideDeepLinksExperiment')),
+                    [showButtons, setShowButtons] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.showButtons')),
+                    [isDiscordStatusEnabled, setIsDiscordStatusEnabled] = (0, d.useState)(window.nativeSettings.get('modFeatures.discordRPC.enable')),
+                    onAfkTimeoutChange = (0, d.useCallback)(async (e) => {
+                        let value = Math.min(Math.max(e, 1), 30);
+                        setAfkTimeout(value);
+                        console.log('modFeatures.discordRPC.afkTimeout changed. Value: ', value);
+
+                        window.nativeSettings.set('modFeatures.discordRPC.afkTimeout', value);
+                    }, []),
+                    onReconnectIntervalChange = (0, d.useCallback)(async (e) => {
+                        let value = Math.min(Math.max(e, 0), 300);
+                        setReconnectInterval(value);
+                        console.log('modFeatures.discordRPC.reconnectInterval changed. Value: ', value);
+
+                        window.nativeSettings.set('modFeatures.discordRPC.reconnectInterval', value);
+                    }, []),
+                    onDiscordStatusToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.enable toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.enable', e);
+                        setIsDiscordStatusEnabled(e);
+                    }, []),
+                    onDiscordFromYnisonToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.fromYnison toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.fromYnison', e);
+                    }, []),
+                    onDiscordShowButtonsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.showButtons toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.showButtons', e);
+                        setShowButtons(e);
+                    }, []),
+                    onDiscordOverrideDeepLinksExperimentToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.overrideDeepLinksExperiment toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.overrideDeepLinksExperiment', e);
+                        setIsExperimentOverriden(e);
+                    }, []),
+                    onDiscordShowGitHubButtonToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.showGitHubButton toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.showGitHubButton', e);
+                    }, []),
+                    onDiscordShowSmallIconToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.showSmallIcon toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.showSmallIcon', e);
+                    }, []),
+                    onDiscordShowAlbumToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.showAlbum toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.showAlbum', e);
+                    }, []),
+                    onDiscordShowVersionToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.discordRPC.showVersion toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.showVersion', e);
+                    }, []),
+                    onStatusDisplayTypeChange = (0, d.useCallback)(async (e) => {
+                        console.log('statusDisplayType changed. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.statusDisplayType', e);
+                        setStatusDisplayType(e);
+                    }, []),
+                    onApplicationIDForRPCChange = (0, d.useCallback)(async (e) => {
+                        console.log('applicationIDForRPC changed. Value: ', e);
+                        window.nativeSettings.set('modFeatures.discordRPC.applicationIDForRPC', e);
+                        setApplicationIDForRPC(e);
+                        j(
+                            (0, i.jsx)(m.hT, {
+                                error: 'Для применения этой настройки требуется перезапуск приложения',
+                            }),
+                            { containerId: _.FlZ.ERROR },
+                        );
+                    }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '500px' },
+                    title: 'Discord RPC',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '466px', 'max-height': '600px', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Включить интеграцию с Discord',
+                                    onChange: onDiscordStatusToggle,
+                                    isChecked: isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: ['Использовать Ynison', (0, i.jsx)(labeledBubble, { label: 'ALPHA', disabled: !isDiscordStatusEnabled })],
+                                    description: 'Использует данные о воспроизведении с других устройств',
+                                    onChange: onDiscordFromYnisonToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.discordRPC.fromYnison'),
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithDropdown, {
+                                    title: 'Тип отображения статуса',
+                                    description: 'Что будет отображаться в коротком статусе',
+                                    onChange: onStatusDisplayTypeChange,
+                                    value: statusDisplayType,
+                                    direction: 'bottom',
+                                    options: [
+                                        { value: 0, label: 'Платформа' },
+                                        { value: 1, label: 'Артист' },
+                                        { value: 2, label: 'Трек' },
+                                    ],
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithDropdown, {
+                                    title: 'Локализация платформы в статусе',
+                                    description: applicationIDForRPC === '1290778445370097674' ? 'Слушает Яндекс Музыку' : 'Listening to Yandex Music',
+                                    onChange: onApplicationIDForRPCChange,
+                                    value: applicationIDForRPC,
+                                    direction: 'bottom',
+                                    options: [
+                                        { value: '1124055337234858005', label: 'Английский' },
+                                        { value: '1290778445370097674', label: 'Русский' },
+                                    ],
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать Альбом',
+                                    description: 'Отображать ли название альбома в статусе',
+                                    onChange: onDiscordShowAlbumToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.discordRPC.showAlbum'),
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать Версию трека',
+                                    description: 'Отображать ли версию трека в статусе',
+                                    onChange: onDiscordShowVersionToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.discordRPC.showVersion'),
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать маленькую иконку',
+                                    description: 'Отображать ли иконку статуса воспроизведения (Playing, Paused)',
+                                    onChange: onDiscordShowSmallIconToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.discordRPC.showSmallIcon'),
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать кнопки',
+                                    description: 'Отображает кнопки-ссылки в статусе',
+                                    onChange: onDiscordShowButtonsToggle,
+                                    isChecked: showButtons,
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Переопределить эксперимент Глубоких ссылок',
+                                    description: 'Уберёт ссылку открывающую приложение т.к. это сделает ссылка на сайт',
+                                    onChange: onDiscordOverrideDeepLinksExperimentToggle,
+                                    isChecked: isExperimentOverriden,
+                                    disabled: !(isDiscordStatusEnabled && showButtons),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отображать кнопку на Гитхаб',
+                                    description: 'Отображает кнопку установки мода',
+                                    onChange: onDiscordShowGitHubButtonToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.discordRPC.showGitHubButton'),
+                                    disabled: !(isDiscordStatusEnabled && showButtons && isExperimentOverriden),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithSlider, {
+                                    title: 'Таймер бездействия',
+                                    description: 'Через сколько в минутах активность автоматически отчистится',
+                                    onChange: onAfkTimeoutChange,
+                                    value: afkTimeout,
+                                    maxValue: 30,
+                                    minValue: 1,
+                                    step: 1,
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(settingBarWithSlider, {
+                                    title: 'Повторное подключение к Discord',
+                                    description: 'Интервал повторных попыток подключения к Discord при потере соединения (в секундах, 0 — отключает)',
+                                    onChange: onReconnectIntervalChange,
+                                    value: reconnectInterval,
+                                    maxValue: 300,
+                                    minValue: 0,
+                                    step: 5,
+                                    disabled: !isDiscordStatusEnabled,
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
             var F = o(89468),
                 B = o.n(F);
             let W = (0, n.PA)(() => {
@@ -470,6 +1012,15 @@
                             shortcutsModal: o,
                             aboutAppModal: n,
                             clearMemoryModal: l,
+                            discordRpcSettingsModal: discordRpcSettingsModal,
+                            vibeBehaviorEnhancementsSettingsModal: vibeBehaviorEnhancementsSettingsModal,
+                            vibeAnimationEnhancementsSettingsModal: vibeAnimationEnhancementsSettingsModal,
+                            playerBarEnhancementsSettingsModal: playerBarEnhancementsSettingsModal,
+                            windowBehaviorSettingsModal: windowBehaviorSettingsModal,
+                            appUpdatesSettingsModal: appUpdatesSettingsModal,
+                            scrobblersSettingsModal: scrobblersSettingsModal,
+                            downloaderSettingsModal: downloaderSettingsModal,
+                            systemSettingsModal: systemSettingsModal,
                         },
                         experiments: a,
                         wizard: c,
@@ -485,42 +1036,21 @@
                         let e = (0, _.NFA)().get(_.twC),
                             t = (0, _._lF)(e.oldWebHost),
                             { language: o } = (0, _.h6b)();
-                        return "https://"
-                            .concat(t, "/newimport?lang=")
-                            .concat(o);
+                        return 'https://'.concat(t, '/newimport?lang=').concat(o);
                     })(),
                     N = v.isAvailable && !h.isMobile,
-                    k =
-                        a.checkExperiment(
-                            _.zal.WebNextCrossMediaPlayer,
-                            "on",
-                        ) &&
-                        !h.browserInfo.isSafari &&
-                        h.browserInfo.OSFamily !== _.jwH.IOS,
+                    k = a.checkExperiment(_.zal.WebNextCrossMediaPlayer, 'on') && !h.browserInfo.isSafari && h.browserInfo.OSFamily !== _.jwH.IOS,
                     M = p.hasPlus,
-                    w =
-                        a.checkExperiment(_.zal.WebNextLiteVersion, "on") &&
-                        h.isLiteVersionModeAvailableForToggle &&
-                        !0,
-                    E = v.isEnabled
-                        ? C({ id: "equalizer.enabled" })
-                        : C({ id: "equalizer.disabled" }),
-                    T = (0, d.useMemo)(
-                        () =>
-                            C(
-                                { id: "desktop.app-version-short" },
-                                { version: e },
-                            ),
-                        [!0, C, e],
-                    ),
+                    w = a.checkExperiment(_.zal.WebNextLiteVersion, 'on') && h.isLiteVersionModeAvailableForToggle && !0,
+                    E = v.isEnabled ? C({ id: 'equalizer.enabled' }) : C({ id: 'equalizer.disabled' }),
+                    T = (0, d.useMemo)(() => `${C({ id: 'desktop.app-version-short' }, { version: e })} / Мод ${window.MOD_VERSION} / Хост ${window.HOST_VERSION}`, [!0, C, e]),
                     O = (0, d.useCallback)(
                         async (e) => {
-                            (await p.setSettings({ isChildModeEnabled: e })) ===
-                                _.FlZ.ERROR &&
+                            (await p.setSettings({ isChildModeEnabled: e })) === _.FlZ.ERROR &&
                                 j(
                                     (0, i.jsx)(m.hT, {
                                         error: C({
-                                            id: "settings.failed-to-change-child-mode",
+                                            id: 'settings.failed-to-change-child-mode',
                                         }),
                                     }),
                                     { containerId: _.uQT.ERROR },
@@ -528,6 +1058,53 @@
                         },
                         [p, C, j],
                     ),
+                    onShowNonMusicToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('taskBarExtensions.enable toggled. Value: ', e);
+                            window.nativeSettings.set('modFeatures.showNonMusicPage', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    ),
+                    onEnableYnisonRemoteControlToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('Ynison Remote Control toggled. Value: ', e);
+                            window.nativeSettings.set('enableYnisonRemoteControl', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    ),
+                    onDevtoolsToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('devtools toggled. Value: ', e);
+                            window.nativeSettings.set('enableDevTools', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    ),
+                    onOpenMoreSettings = (0, d.useCallback)(async (e) => {
+                        console.log('User navigated to config.json', e);
+                        window.openConfigFile();
+                    }, []),
+                    [downloadedTracksInfo, setDownloadedTracksInfo] = (0, d.useState)({
+                        tracksCount: undefined,
+                        tracksSize: undefined,
+                    }),
                     z = (0, d.useCallback)(
                         (e) => {
                             x.setOfflineMode(e);
@@ -539,105 +1116,177 @@
                     }, [l]),
                     R = (0, d.useCallback)(
                         (e) => {
-                            if (e)
-                                return void h.setLiteVersionMode(
-                                    _.wv5.ENABLED,
-                                    !0,
-                                );
+                            if (e) return void h.setLiteVersionMode(_.wv5.ENABLED, !0);
                             h.setLiteVersionMode(_.wv5.DISABLED, !0);
                         },
                         [h],
                     );
                 (0, d.useLayoutEffect)(() => {
                     let e = t.get(_.cYZ.CrossFadeMode);
-                    "boolean" == typeof e && g.setCrossFadeMode(e);
+                    'boolean' == typeof e && g.setCrossFadeMode(e);
                 }, [g, t]);
                 let H = (0, d.useCallback)(
                     (e) => {
                         g.setCrossFadeMode(e);
                     },
                     [g],
-                );
-                return (0, i.jsxs)("ul", {
+                ),
+                    formatBytes = (n) => {
+                        if (typeof n !== 'number' || n < 0) {
+                            return '0 B';
+                        }
+
+                        const units = ['B', 'KB', 'MB', 'GB'];
+                        let index = 0;
+
+                        while (n >= 1024 && index < units.length - 1) {
+                            n /= 1024;
+                            index++;
+                        }
+
+                        return `${n.toFixed(2)} ${units[index]}`;
+                    },
+                    getTrackWordForm = (number) => {
+                        if (typeof number !== 'number' || number < 0 || !Number.isInteger(number)) {
+                            return 'треков';
+                        }
+
+                        const remainder10 = number % 10;
+                        const remainder100 = number % 100;
+
+                        if (remainder100 >= 11 && remainder100 <= 19) {
+                            return 'треков';
+                        } else if (remainder10 === 1) {
+                            return 'трек';
+                        } else if (remainder10 >= 2 && remainder10 <= 4) {
+                            return 'трека';
+                        } else {
+                            return 'треков';
+                        }
+                    };
+                return ((0, d.useEffect)(() => {
+                    let callfunc = async () => {
+                        const getDownloadedTracksSize = async (t) => {
+                            let forkSize = 0;
+                            for await (let r of t.values()) {
+                                if ('directory' === r.kind) {
+                                    forkSize += await getDownloadedTracksSize(r);
+                                } else if ('file' === r.kind) {
+                                    try {
+                                        let t = await r.getFile();
+                                        forkSize += t.size;
+                                    } catch (e) {
+                                        console.warn('Track file is in use. Skipping...', e);
+                                    }
+                                }
+                            }
+                            return forkSize;
+                        };
+
+                        const getDownloadedTracksCount = async (t) => {
+                            let trackCount = 0;
+                            for await (let r of t.values()) {
+                                if ('directory' === r.kind && r.name === 'tracks') {
+                                    trackCount = await getDownloadedTracksCount(r);
+                                } else if ('file' === r.kind && !r.name.endsWith('.crswap')) {
+                                    trackCount += 1;
+                                }
+                            }
+                            return trackCount;
+                        };
+
+                        const fileStorage = await window.navigator.storage.getDirectory();
+
+                        setDownloadedTracksInfo({
+                            tracksCount: await getDownloadedTracksCount(fileStorage),
+                            tracksSize: await getDownloadedTracksSize(fileStorage),
+                        });
+                    };
+
+                    window.onDownloadedTracksDeleted = () =>
+                        // That's a bad solution to update the info on clear memory modal close
+                        setDownloadedTracksInfo({
+                            tracksCount: 0,
+                            tracksSize: 0,
+                        });
+
+                    callfunc();
+                }, []),
+                    (0, i.jsxs)('ul', {
                     className: B().root,
                     ...(0, s.Am)(s.e8.settings.SETTINGS_LIST),
                     children: [
                         M &&
-                            (0, i.jsx)("li", {
+                            (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: C({ id: "offline.offline-mode" }),
+                                    title: C({ id: 'offline.offline-mode' }),
                                     description: C({
-                                        id: "offline.offline-mode-description",
+                                        id: 'offline.offline-mode-description',
                                     }),
                                     onChange: z,
                                     isChecked: x.isOfflineModeEnabled,
                                 }),
                             }),
                         M &&
-                            (0, i.jsxs)("li", {
+                            (0, i.jsxs)('li', {
                                 className: B().item,
                                 children: [
                                     (0, i.jsx)(S, {
                                         title: C({
-                                            id: "offline.clear-memory",
+                                            id: 'offline.clear-memory',
                                         }),
+                                        description: `Скачан${downloadedTracksInfo.tracksCount % 10 === 1 && downloadedTracksInfo.tracksCount % 100 !== 11 ? '' : 'о'} ${downloadedTracksInfo.tracksCount ?? '0'} ${getTrackWordForm(downloadedTracksInfo.tracksCount)} (${formatBytes(downloadedTracksInfo.tracksSize)})`,
                                         onClick: L,
                                     }),
                                     (0, i.jsx)(y, {}),
                                 ],
                             }),
                         w &&
-                            (0, i.jsx)("li", {
+                            (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: C({ id: "lite-version.title" }),
+                                    title: C({ id: 'lite-version.title' }),
                                     description: C({
-                                        id: "lite-version.description",
+                                        id: 'lite-version.description',
                                     }),
                                     onChange: R,
                                     isChecked: h.isLiteVersionModeEnabled,
                                 }),
                             }),
                         N &&
-                            (0, i.jsxs)("li", {
+                            (0, i.jsxs)('li', {
                                 className: B().item,
                                 children: [
                                     (0, i.jsx)(S, {
-                                        title: C({ id: "equalizer.title" }),
+                                        title: C({ id: 'equalizer.title' }),
                                         description: E,
                                         onClick: v.modal.open,
-                                        descriptionProps: (0, s.Am)(
-                                            s.e8.settings
-                                                .SETTINGS_EQUALIZER_BUTTON_DESCRIPTION,
-                                        ),
-                                        ...(0, s.Am)(
-                                            s.e8.settings
-                                                .SETTINGS_EQUALIZER_BUTTON,
-                                        ),
+                                        descriptionProps: (0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON_DESCRIPTION),
+                                        ...(0, s.Am)(s.e8.settings.SETTINGS_EQUALIZER_BUTTON),
                                     }),
                                     (0, i.jsx)(u.MZ, {}),
                                 ],
                             }),
                         (0, i.jsx)(m.aQ, {
-                            fallback: (0, i.jsx)("li", {
+                            fallback: (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(S, {
-                                    title: C({ id: "settings.preferences" }),
+                                    title: C({ id: 'settings.preferences' }),
                                     description: C({
-                                        id: "settings.preferences-description",
+                                        id: 'settings.preferences-description',
                                     }),
                                     onClick: c.modal.open,
                                 }),
                             }),
                         }),
                         (0, i.jsx)(m.aQ, {
-                            fallback: (0, i.jsx)("li", {
+                            fallback: (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(A, {
-                                    title: C({ id: "settings.import-media" }),
+                                    title: C({ id: 'settings.import-media' }),
                                     description: C({
-                                        id: "settings.import-media-description",
+                                        id: 'settings.import-media-description',
                                     }),
                                     link: b,
                                 }),
@@ -645,38 +1294,42 @@
                         }),
                         (0, i.jsx)(m.aQ, {
                             fallback:
-                                !a.checkExperiment(
-                                    _.zal.WebNextDisableKids,
-                                    "on",
-                                ) &&
-                                (0, i.jsx)("li", {
+                                !a.checkExperiment(_.zal.WebNextDisableKids, 'on') &&
+                                (0, i.jsx)('li', {
                                     className: B().item,
                                     children: (0, i.jsx)(P, {
                                         title: C({
-                                            id: "settings.show-child-section",
+                                            id: 'settings.show-child-section',
                                         }),
                                         onChange: O,
-                                        isChecked:
-                                            p.settings.isChildModeEnabled,
+                                        isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
                                     }),
                                 }),
                         }),
-                        (0, i.jsxs)("li", {
+                        (0, i.jsx)('li', {
+                            className: B().item,
+                            children: (0, i.jsx)(P, {
+                                title: 'Показывать раздел «Подкасты и книги»',
+                                onChange: onShowNonMusicToggle,
+                                isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
+                            }),
+                        }),
+                        (0, i.jsxs)('li', {
                             className: B().item,
                             children: [
                                 (0, i.jsx)(S, {
-                                    title: C({ id: "settings.shortcuts" }),
+                                    title: C({ id: 'settings.shortcuts' }),
                                     onClick: o.open,
                                 }),
                                 (0, i.jsx)(I, {}),
                             ],
                         }),
                         T &&
-                            (0, i.jsxs)("li", {
+                            (0, i.jsxs)('li', {
                                 className: B().item,
                                 children: [
                                     (0, i.jsx)(S, {
-                                        title: C({ id: "settings.about-app" }),
+                                        title: C({ id: 'settings.about-app' }),
                                         description: T,
                                         onClick: n.open,
                                     }),
@@ -684,40 +1337,77 @@
                                 ],
                             }),
                         k &&
-                            (0, i.jsx)("li", {
+                            (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: C({ id: "settings.crossfade" }),
+                                    title: C({ id: 'settings.crossfade' }),
                                     onChange: H,
                                     isChecked: g.isCrossFadeEnabled,
                                 }),
                             }),
+                        (0, i.jsx)('li', {
+                            className: B().item,
+                            children: [
+                                (0, i.jsx)(S, {
+                                    title: 'Discord RPC',
+                                    description: 'Настройки интеграции с Discord',
+                                    onClick: discordRpcSettingsModal.open,
+                                }),
+                                (0, i.jsx)(discordRpcSettings, {}),
+                            ],
+                        }),
+                        (0, i.jsx)('li', {
+                            className: B().item,
+                            children: (0, i.jsx)(P, {
+                                title: ['Ynison Remote', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
+                                description: 'Даст возможность управлять этим плеером с других устройств',
+                                onChange: onEnableYnisonRemoteControlToggle,
+                                isChecked: window.nativeSettings.get('enableYnisonRemoteControl'),
+                            }),
+                        }),
+                        (0, i.jsx)('li', {
+                            className: B().item,
+                            children: (0, i.jsx)(P, {
+                                title: 'Режим разработчика',
+                                onChange: onDevtoolsToggle,
+                                isChecked: window.nativeSettings.get('enableDevTools'),
+                            }),
+                        }),
+                        (0, i.jsxs)('li', {
+                            className: B().item,
+                            children: [
+                                (0, i.jsx)(S, {
+                                    title: 'Остальные настройки',
+                                    description: 'Откроется config.json',
+                                    onClick: onOpenMoreSettings,
+                                }),
+                            ],
+                        }),
                     ],
-                });
+                }));
             });
             var q = o(64143),
                 D = o(38046),
                 U = o.n(D);
             let Y = (0, n.PA)(() => {
                 let { formatMessage: e } = (0, r.A)(),
-                    { contentScrollRef: t, setContentScrollRef: o } = (0,
-                    _.gKY)(),
+                    { contentScrollRef: t, setContentScrollRef: o } = (0, _.gKY)(),
                     n = (0, _.W6M)();
                 return (0, i.jsxs)(q.hO, {
                     scrollElement: t,
-                    outerTitle: e({ id: "page.settings" }),
+                    outerTitle: e({ id: 'page.settings' }),
                     children: [
                         (0, i.jsx)(m.Y9, {
                             variant: m.Vw.TEXT,
                             withForwardControl: !1,
                             withBackwardControl: n.canBack,
                             children: (0, i.jsx)(c.Heading, {
-                                variant: "h2",
-                                weight: "bold",
-                                size: "xl",
+                                variant: 'h2',
+                                weight: 'bold',
+                                size: 'xl',
                                 lineClamp: 1,
                                 children: (0, i.jsx)(l.A, {
-                                    id: "page.settings",
+                                    id: 'page.settings',
                                 }),
                             }),
                         }),
@@ -726,10 +1416,10 @@
                             className: U().root,
                             containerClassName: U().scrollableContainer,
                             ...(0, s.Am)(s.Xk.settings.SETTINGS_PAGE),
-                            children: (0, i.jsxs)("div", {
+                            children: (0, i.jsxs)('div', {
                                 className: U().container,
                                 children: [
-                                    (0, i.jsx)("div", {
+                                    (0, i.jsx)('div', {
                                         className: U().content,
                                         children: (0, i.jsx)(W, {}),
                                     }),
@@ -747,92 +1437,78 @@
         },
         28486: (e) => {
             e.exports = {
-                root: "ShortcutsModal_root__ro7m4",
-                modalHeader: "ShortcutsModal_modalHeader__IYJ9m",
-                modalContent: "ShortcutsModal_modalContent__SCpYX",
-                list: "ShortcutsModal_list__eS4ox",
-                text: "ShortcutsModal_text__5JJ0j",
-                content: "ShortcutsModal_content__Li9Ip",
-                buttons: "ShortcutsModal_buttons__o_xlC",
-                button: "ShortcutsModal_button__cTIee",
+                root: 'ShortcutsModal_root__ro7m4',
+                modalHeader: 'ShortcutsModal_modalHeader__IYJ9m',
+                modalContent: 'ShortcutsModal_modalContent__SCpYX',
+                list: 'ShortcutsModal_list__eS4ox',
+                text: 'ShortcutsModal_text__5JJ0j',
+                content: 'ShortcutsModal_content__Li9Ip',
+                buttons: 'ShortcutsModal_buttons__o_xlC',
+                button: 'ShortcutsModal_button__cTIee',
             };
         },
         30768: (e) => {
             e.exports = {
-                root: "ClearMemoryModal_root__gKdij",
-                modalHeader: "ClearMemoryModal_modalHeader__veasf",
-                modalContent: "ClearMemoryModal_modalContent__b7yHr",
-                image: "ClearMemoryModal_image__evvTq",
-                description: "ClearMemoryModal_description__ue94L",
-                message: "ClearMemoryModal_message__mYQpM",
+                root: 'ClearMemoryModal_root__gKdij',
+                modalHeader: 'ClearMemoryModal_modalHeader__veasf',
+                modalContent: 'ClearMemoryModal_modalContent__b7yHr',
+                image: 'ClearMemoryModal_image__evvTq',
+                description: 'ClearMemoryModal_description__ue94L',
+                message: 'ClearMemoryModal_message__mYQpM',
             };
         },
         38046: (e) => {
             e.exports = {
-                root: "SettingsPage_root__BB4lC",
-                scrollableContainer: "SettingsPage_scrollableContainer__qD32i",
-                container: "SettingsPage_container__bIwea",
-                content: "SettingsPage_content__cR6Ra",
-                footer: "SettingsPage_footer__QIqyx",
+                root: 'SettingsPage_root__BB4lC',
+                scrollableContainer: 'SettingsPage_scrollableContainer__qD32i',
+                container: 'SettingsPage_container__bIwea',
+                content: 'SettingsPage_content__cR6Ra',
+                footer: 'SettingsPage_footer__QIqyx',
             };
         },
         38850: (e) => {
             e.exports = {
-                icon: "SettingsListLinkItem_icon__p4P_V",
-                root: "SettingsListLinkItem_root__rTPC9",
-                container: "SettingsListLinkItem_container__k7bhS",
-                linkText: "SettingsListLinkItem_linkText__0PHlQ",
-                title: "SettingsListLinkItem_title__duJnL",
-                description: "SettingsListLinkItem_description__xWeAD",
+                icon: 'SettingsListLinkItem_icon__p4P_V',
+                root: 'SettingsListLinkItem_root__rTPC9',
+                container: 'SettingsListLinkItem_container__k7bhS',
+                linkText: 'SettingsListLinkItem_linkText__0PHlQ',
+                title: 'SettingsListLinkItem_title__duJnL',
+                description: 'SettingsListLinkItem_description__xWeAD',
             };
         },
         40258: (e, t, o) => {
-            "use strict";
+            'use strict';
             o.d(t, { L: () => d });
             var i,
                 n = o(93225),
                 r = o(66268),
                 l = {
                     6699: (e, t, o) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
-                            (t.useDebouncedToggle = void 0);
+                        Object.defineProperty(t, '__esModule', { value: !0 }), (t.useDebouncedToggle = void 0);
                         let i = o(352),
                             n = o(810);
                         t.useDebouncedToggle = (e) => {
-                            let {
-                                    delay: t,
-                                    initialState: o,
-                                    throttleTimeout: r,
-                                } = e,
+                            let { delay: t, initialState: o, throttleTimeout: r } = e,
                                 l = (0, n.useRef)(null),
                                 [s, a] = (0, n.useState)(!!o),
                                 c = (0, n.useMemo)(
                                     () =>
                                         (0, i.throttle)(() => {
                                             a(!o),
-                                                l.current &&
-                                                    window.clearTimeout(
-                                                        l.current,
-                                                    ),
-                                                (l.current = window.setTimeout(
-                                                    () => {
-                                                        a(!!o);
-                                                    },
-                                                    t,
-                                                ));
+                                                l.current && window.clearTimeout(l.current),
+                                                (l.current = window.setTimeout(() => {
+                                                    a(!!o);
+                                                }, t));
                                         }, r),
                                     [t, o, r],
                                 ),
                                 d = (0, n.useCallback)(() => {
-                                    a(!!o),
-                                        l.current &&
-                                            window.clearTimeout(l.current);
+                                    a(!!o), l.current && window.clearTimeout(l.current);
                                 }, [o]);
                             return (
                                 (0, n.useEffect)(
                                     () => () => {
-                                        l.current &&
-                                            window.clearTimeout(l.current);
+                                        l.current && window.clearTimeout(l.current);
                                     },
                                     [],
                                 ),
@@ -841,17 +1517,12 @@
                         };
                     },
                     361: (e, t) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
+                        Object.defineProperty(t, '__esModule', { value: !0 }),
                             (t.getElementFromRefOrElement = void 0),
                             (t.getElementFromRefOrElement = (e) => {
                                 if (void 0 !== e) {
-                                    if (null === e || e instanceof HTMLElement)
-                                        return e;
-                                    if (
-                                        null === e.current ||
-                                        e.current instanceof HTMLElement
-                                    )
-                                        return e.current;
+                                    if (null === e || e instanceof HTMLElement) return e;
+                                    if (null === e.current || e.current instanceof HTMLElement) return e.current;
                                 }
                             });
                     },
@@ -871,19 +1542,13 @@
             }
             var c = {};
             (() => {
-                Object.defineProperty(c, "__esModule", { value: !0 }),
-                    (c.useScroll = void 0);
+                Object.defineProperty(c, '__esModule', { value: !0 }), (c.useScroll = void 0);
                 let e = a(810),
                     t = a(361),
                     o = a(6699);
                 c.useScroll = (i) => {
-                    let {
-                            onScroll: n,
-                            listenIsScrolling: r,
-                            elementRef: l,
-                        } = i,
-                        { state: s, handleDebouncedToggle: a } = (0,
-                        o.useDebouncedToggle)({
+                    let { onScroll: n, listenIsScrolling: r, elementRef: l } = i,
+                        { state: s, handleDebouncedToggle: a } = (0, o.useDebouncedToggle)({
                             delay: 1e3,
                             throttleTimeout: 100,
                         }),
@@ -896,10 +1561,7 @@
                             if (null === e) return;
                             let o = null != e ? e : window,
                                 i = { capture: !0, passive: !0 };
-                            return (
-                                o.addEventListener("scroll", c, i),
-                                () => o.removeEventListener("scroll", c, i)
-                            );
+                            return o.addEventListener('scroll', c, i), () => o.removeEventListener('scroll', c, i);
                         }, [l, c]),
                         s
                     );
@@ -910,16 +1572,17 @@
         },
         43726: (e) => {
             e.exports = {
-                root: "SettingsListToggleItem_root__yEEYT",
-                textContainer: "SettingsListToggleItem_textContainer__tRjyt",
-                title: "SettingsListToggleItem_title__Xz8_Q",
-                description: "SettingsListToggleItem_description__JBOzV",
+                root: 'SettingsListToggleItem_root__yEEYT',
+                textContainer: 'SettingsListToggleItem_textContainer__tRjyt',
+                title: 'SettingsListToggleItem_title__Xz8_Q',
+                description: 'SettingsListToggleItem_description__JBOzV',
+                titleDisabled: 'SettingsListToggleItem_title__Xz8_Q_disabled',
+                descriptionDisabled: 'SettingsListToggleItem_description__JBOzV_disabled',
             };
         },
         64143: (e, t, o) => {
-            "use strict";
-            o.d(t, { hO: () => _, jr: () => m, jp: () => p, QZ: () => n }),
-                o(57323);
+            'use strict';
+            o.d(t, { hO: () => _, jr: () => m, jp: () => p, QZ: () => n }), o(57323);
             var i = o(66268);
             let n = (e, t, o) => {
                 let n = null != o && o;
@@ -929,18 +1592,12 @@
                         let o = n ? 93 : 17,
                             i = t - o;
                         return {
-                            "--average-color-background": e,
-                            transform: "translateY(".concat(
-                                t >= o ? 0 : i,
-                                "px)",
-                            ),
+                            '--average-color-background': e,
+                            transform: 'translateY('.concat(t >= o ? 0 : i, 'px)'),
                             opacity: 1,
                         };
                     }, [t, n, e]),
-                    headerStyle: (0, i.useMemo)(
-                        () => ({ "--average-color-background": e }),
-                        [e],
-                    ),
+                    headerStyle: (0, i.useMemo)(() => ({ '--average-color-background': e }), [e]),
                 };
             };
             var r = o(33008),
@@ -955,14 +1612,7 @@
                     return o + (i ? 60 : 76) >= t.offsetTop + n;
                 },
                 _ = (0, s.PA)((e) => {
-                    let {
-                            children: t,
-                            scrollElement: o,
-                            outerTitle: n = "",
-                            headerElement: s,
-                            headerThreshold: _,
-                            shouldHideHeader: m,
-                        } = e,
+                    let { children: t, scrollElement: o, outerTitle: n = '', headerElement: s, headerThreshold: _, shouldHideHeader: m } = e,
                         [p, x] = (0, i.useState)(n),
                         [h, f] = (0, i.useState)(null),
                         [g, v] = (0, i.useState)(null),
@@ -987,8 +1637,7 @@
                                 (null == h ? void 0 : h.current) &&
                                     y(
                                         u({
-                                            element:
-                                                null == h ? void 0 : h.current,
+                                            element: null == h ? void 0 : h.current,
                                             scrollTop: e,
                                             isMobile: T,
                                         }),
@@ -996,8 +1645,7 @@
                                 (null == g ? void 0 : g.current) &&
                                     k(
                                         u({
-                                            element:
-                                                null == g ? void 0 : g.current,
+                                            element: null == g ? void 0 : g.current,
                                             scrollTop: e,
                                             isMobile: T,
                                         }),
@@ -1006,17 +1654,9 @@
                         T ? i(window.scrollY) : o && i(o.scrollTop);
                     }, [_, s, T, m, h, g, o]);
                     (0, i.useEffect)(() => {
-                        T
-                            ? 0 === window.scrollY && w(!1)
-                            : (o && 0 !== o.scrollTop) || w(!1);
+                        T ? 0 === window.scrollY && w(!1) : (o && 0 !== o.scrollTop) || w(!1);
                     }, [o, null == o ? void 0 : o.scrollTop, T]);
-                    let O = (0, i.useMemo)(
-                        () =>
-                            T
-                                ? { onScroll: (0, l.A)(A, 200) }
-                                : { onScroll: (0, l.A)(A, 200), elementRef: o },
-                        [A, o, T],
-                    );
+                    let O = (0, i.useMemo)(() => (T ? { onScroll: (0, l.A)(A, 200) } : { onScroll: (0, l.A)(A, 200), elementRef: o }), [A, o, T]);
                     (0, a.L)(O);
                     let z = (0, i.useMemo)(
                         () => ({
@@ -1040,9 +1680,7 @@
                 }),
                 m = (e) => {
                     let { children: t, child: o, className: n } = e,
-                        { setChildElement: l, setChild: s } = (0, i.useContext)(
-                            d.B9,
-                        ),
+                        { setChildElement: l, setChild: s } = (0, i.useContext)(d.B9),
                         a = (0, i.useRef)(null);
                     return (
                         (0, i.useEffect)(() => {
@@ -1054,14 +1692,12 @@
                             },
                             [s],
                         ),
-                        (0, r.jsx)("div", { ref: a, className: n, children: t })
+                        (0, r.jsx)('div', { ref: a, className: n, children: t })
                     );
                 },
                 p = (e) => {
                     let { children: t, title: o, className: n } = e,
-                        { setTitleElement: l, setTitle: s } = (0, i.useContext)(
-                            d.B9,
-                        ),
+                        { setTitleElement: l, setTitle: s } = (0, i.useContext)(d.B9),
                         a = (0, i.useRef)(null);
                     return (
                         (0, i.useEffect)(() => {
@@ -1069,64 +1705,46 @@
                         }, [a, o, l, s]),
                         (0, i.useEffect)(
                             () => () => {
-                                s("");
+                                s('');
                             },
                             [s],
                         ),
-                        (0, r.jsx)("div", { ref: a, className: n, children: t })
+                        (0, r.jsx)('div', { ref: a, className: n, children: t })
                     );
                 };
         },
         71154: (e) => {
             e.exports = {
-                icon: "SettingsListButtonItem_icon__WULZ1",
-                root: "SettingsListButtonItem_root__3dtV2",
-                important: "SettingsListButtonItem_important__AcEon",
-                contentContainer:
-                    "SettingsListButtonItem_contentContainer__jqoKg",
-                content: "SettingsListButtonItem_content___Opuo",
-                title: "SettingsListButtonItem_title__npCza",
-                description: "SettingsListButtonItem_description__g8_Ba",
+                icon: 'SettingsListButtonItem_icon__WULZ1',
+                root: 'SettingsListButtonItem_root__3dtV2',
+                important: 'SettingsListButtonItem_important__AcEon',
+                contentContainer: 'SettingsListButtonItem_contentContainer__jqoKg',
+                content: 'SettingsListButtonItem_content___Opuo',
+                title: 'SettingsListButtonItem_title__npCza',
+                description: 'SettingsListButtonItem_description__g8_Ba',
             };
         },
         76469: (e, t, o) => {
-            "use strict";
+            'use strict';
             o.d(t, { l: () => c });
             var i,
                 n = o(66268),
                 r = {
                     5881: (e, t, o) => {
                         function i() {
-                            for (
-                                var e, t, o = 0, i = "";
-                                o < arguments.length;
-
-                            )
+                            for (var e, t, o = 0, i = ''; o < arguments.length; )
                                 (e = arguments[o++]) &&
                                     (t = (function e(t) {
                                         var o,
                                             i,
-                                            n = "";
-                                        if (
-                                            "string" == typeof t ||
-                                            "number" == typeof t
-                                        )
-                                            n += t;
-                                        else if ("object" == typeof t)
-                                            if (Array.isArray(t))
-                                                for (o = 0; o < t.length; o++)
-                                                    t[o] &&
-                                                        (i = e(t[o])) &&
-                                                        (n && (n += " "),
-                                                        (n += i));
-                                            else
-                                                for (o in t)
-                                                    t[o] &&
-                                                        (n && (n += " "),
-                                                        (n += o));
+                                            n = '';
+                                        if ('string' == typeof t || 'number' == typeof t) n += t;
+                                        else if ('object' == typeof t)
+                                            if (Array.isArray(t)) for (o = 0; o < t.length; o++) t[o] && (i = e(t[o])) && (n && (n += ' '), (n += i));
+                                            else for (o in t) t[o] && (n && (n += ' '), (n += o));
                                         return n;
                                     })(e)) &&
-                                    (i && (i += " "), (i += t));
+                                    (i && (i += ' '), (i += t));
                             return i;
                         }
                         o.r(t), o.d(t, { clsx: () => i, default: () => n });
@@ -1135,97 +1753,85 @@
                     1920: (e, t, o) => {
                         o.r(t), o.d(t, { default: () => i });
                         let i = {
-                            contentContainer: "JjlbHZ4FaP9EAcR_1DxF",
-                            contentContainer_block: "iOlzvyUREgDkthkrx7Sf",
-                            flexIcon: "WsKeF73pWotx9W1tWdYY",
-                            root: "cpeagBA1_PblpJn8Xgtv",
-                            root_withoutBorder: "qU2apWBO1yyEK0lZ3lPO",
-                            root_radius_xs: "MmZbSs387gu2qrJ1lDWd",
-                            root_radius_s: "mlcrraysn7mW6xrBXSBF",
-                            root_radius_m: "dgV08FKVLZKFsucuiryn",
-                            root_radius_l: "S97_5dtzhpxo_amtfYRg",
-                            root_radius_xl: "nNBJnDHRlyLTniWosJhk",
-                            root_radius_xxxl: "zIMibMuH7wcqUoW7KH1B",
-                            root_radius_round: "uwk3hfWzB2VT7kE13SQk",
-                            root_size: "IlG7b1K0AD7E7AMx6F5p",
-                            root_size_default: "C_QGmfTz6UFX93vfPt6Z",
-                            root_size_xxxs: "eQt33MLDiQ6DRSuLaYEp",
-                            root_size_xxs: "oR11LfCBVqMbUJiAgknd",
-                            root_size_xs: "j1jXIVckFgZECecFzZMe",
-                            root_size_s: "WtFdWDF44egSVM_YiMUX",
-                            root_size_m: "Y2uqxoU7xa_AZ8FUCVOW",
-                            root_size_l: "SGYcNjvjmMsXeEVGUV2Z",
-                            root_icon_left: "kc5CjvU5hT9KEj0iTt3C",
-                            root_icon_right: "et24Jf7pT_X9Fvc7TznR",
-                            root_primary: "fXlFz1qMkliFUWOkHo8T",
-                            root_primary_default: "_eTRQi5ADZCUvUKMZqJU",
-                            ripple: "spMT3NcRD9Yb0ntNaNct",
-                            root_primary_outline: "fCUSh2B0Ye9kEvceE8zc",
-                            root_primary_text: "qlPp6CSQQEMVZPqtqLiQ",
-                            root_primary_withHover: "KZF6_4K1p_Y_GMIAxaAn",
-                            root_primary_withHover_default:
-                                "rWukOKAJh5Ga7JuIp62L",
-                            root_primary_withHover_outline:
-                                "fdwWCJKgUqml5wNqrRcN",
-                            root_primary_withHover_text: "IgYbZLnYjW0nMahgpkus",
-                            root_secondary: "_T4p_w41oaq6L4sztSdw",
-                            root_secondary_default: "iJVAJMgccD4vj4E4o068",
-                            root_secondary_outline: "pnM3iSP9keZOELI2oohr",
-                            root_secondary_text: "UDMYhpDjiAFT3xUx268O",
-                            root_secondary_withHover: "qUbrkhZIOVrvM0roV1QF",
-                            root_secondary_withHover_default:
-                                "nHWc2sto1C6Gm0Dpw_l0",
-                            root_secondary_withHover_outline:
-                                "i5WuBm5mfG0mflk_1jH_",
-                            root_secondary_withHover_text:
-                                "HbaqudSqu7Q3mv3zMPGr",
-                            root_plus: "ixLRsIJ2FvXO2k04n_QY",
-                            root_plus_default: "yRHwHzEGfDgRXGzYJqw2",
-                            root_plus_outline: "e777irPFmyQFFrURLF_U",
-                            root_plus_text: "vRqDhvmt3gt8TFp45_Zw",
-                            root_plus_withHover: "TZif6q3I2RwBEYXwK_iA",
-                            root_plus_withHover_default: "k3DhvmzpnM_Fb9oFdE4q",
-                            root_plus_withHover_outline: "RiDWYwGIxqbrUPR699DM",
-                            root_plus_withHover_text: "hC_mMCzWjkTn2j9xZzGc",
-                            root_accent: "jqD2jMT6n7F0WKyqwMsn",
-                            root_accent_default: "bDp0r9MtoYECZ8ObMoCh",
-                            root_accent_outline: "rXNyGp8NBAw2MUjACZNj",
-                            root_accent_text: "hmV4ERaXWAJc4uPLZL30",
-                            root_accent_withHover: "uKuxXu1N4TP5cWaEK5Ke",
-                            root_accent_withHover_default:
-                                "t_hequUaUgAMhFuxizLb",
-                            root_accent_withHover_outline:
-                                "Oy9sPFTxNTo1_E29U4aF",
-                            root_accent_withHover_text: "LcKRSd3DLoh7k60Oqox8",
-                            root_withActiveSpinner: "nAGvO87rLs15SJgft6Hh",
-                            block: "BbCxxIjBGupN28bq2lSP",
-                            icon: "J9wTKytjOWG73QMoN5WP",
-                            icon_position_left: "elJfazUBui03YWZgHCbW",
-                            icon_position_right: "RBoEbyJKP5rEtLsXM1ji",
-                            icon_withButtonSize: "cE17_kCWJgx8kzQEkeVr",
-                            spinnerContainer: "STbBDGqYjUEcLuNvhu9w",
+                            contentContainer: 'JjlbHZ4FaP9EAcR_1DxF',
+                            contentContainer_block: 'iOlzvyUREgDkthkrx7Sf',
+                            flexIcon: 'WsKeF73pWotx9W1tWdYY',
+                            root: 'cpeagBA1_PblpJn8Xgtv',
+                            root_withoutBorder: 'qU2apWBO1yyEK0lZ3lPO',
+                            root_radius_xs: 'MmZbSs387gu2qrJ1lDWd',
+                            root_radius_s: 'mlcrraysn7mW6xrBXSBF',
+                            root_radius_m: 'dgV08FKVLZKFsucuiryn',
+                            root_radius_l: 'S97_5dtzhpxo_amtfYRg',
+                            root_radius_xl: 'nNBJnDHRlyLTniWosJhk',
+                            root_radius_xxxl: 'zIMibMuH7wcqUoW7KH1B',
+                            root_radius_round: 'uwk3hfWzB2VT7kE13SQk',
+                            root_size: 'IlG7b1K0AD7E7AMx6F5p',
+                            root_size_default: 'C_QGmfTz6UFX93vfPt6Z',
+                            root_size_xxxs: 'eQt33MLDiQ6DRSuLaYEp',
+                            root_size_xxs: 'oR11LfCBVqMbUJiAgknd',
+                            root_size_xs: 'j1jXIVckFgZECecFzZMe',
+                            root_size_s: 'WtFdWDF44egSVM_YiMUX',
+                            root_size_m: 'Y2uqxoU7xa_AZ8FUCVOW',
+                            root_size_l: 'SGYcNjvjmMsXeEVGUV2Z',
+                            root_icon_left: 'kc5CjvU5hT9KEj0iTt3C',
+                            root_icon_right: 'et24Jf7pT_X9Fvc7TznR',
+                            root_primary: 'fXlFz1qMkliFUWOkHo8T',
+                            root_primary_default: '_eTRQi5ADZCUvUKMZqJU',
+                            ripple: 'spMT3NcRD9Yb0ntNaNct',
+                            root_primary_outline: 'fCUSh2B0Ye9kEvceE8zc',
+                            root_primary_text: 'qlPp6CSQQEMVZPqtqLiQ',
+                            root_primary_withHover: 'KZF6_4K1p_Y_GMIAxaAn',
+                            root_primary_withHover_default: 'rWukOKAJh5Ga7JuIp62L',
+                            root_primary_withHover_outline: 'fdwWCJKgUqml5wNqrRcN',
+                            root_primary_withHover_text: 'IgYbZLnYjW0nMahgpkus',
+                            root_secondary: '_T4p_w41oaq6L4sztSdw',
+                            root_secondary_default: 'iJVAJMgccD4vj4E4o068',
+                            root_secondary_outline: 'pnM3iSP9keZOELI2oohr',
+                            root_secondary_text: 'UDMYhpDjiAFT3xUx268O',
+                            root_secondary_withHover: 'qUbrkhZIOVrvM0roV1QF',
+                            root_secondary_withHover_default: 'nHWc2sto1C6Gm0Dpw_l0',
+                            root_secondary_withHover_outline: 'i5WuBm5mfG0mflk_1jH_',
+                            root_secondary_withHover_text: 'HbaqudSqu7Q3mv3zMPGr',
+                            root_plus: 'ixLRsIJ2FvXO2k04n_QY',
+                            root_plus_default: 'yRHwHzEGfDgRXGzYJqw2',
+                            root_plus_outline: 'e777irPFmyQFFrURLF_U',
+                            root_plus_text: 'vRqDhvmt3gt8TFp45_Zw',
+                            root_plus_withHover: 'TZif6q3I2RwBEYXwK_iA',
+                            root_plus_withHover_default: 'k3DhvmzpnM_Fb9oFdE4q',
+                            root_plus_withHover_outline: 'RiDWYwGIxqbrUPR699DM',
+                            root_plus_withHover_text: 'hC_mMCzWjkTn2j9xZzGc',
+                            root_accent: 'jqD2jMT6n7F0WKyqwMsn',
+                            root_accent_default: 'bDp0r9MtoYECZ8ObMoCh',
+                            root_accent_outline: 'rXNyGp8NBAw2MUjACZNj',
+                            root_accent_text: 'hmV4ERaXWAJc4uPLZL30',
+                            root_accent_withHover: 'uKuxXu1N4TP5cWaEK5Ke',
+                            root_accent_withHover_default: 't_hequUaUgAMhFuxizLb',
+                            root_accent_withHover_outline: 'Oy9sPFTxNTo1_E29U4aF',
+                            root_accent_withHover_text: 'LcKRSd3DLoh7k60Oqox8',
+                            root_withActiveSpinner: 'nAGvO87rLs15SJgft6Hh',
+                            block: 'BbCxxIjBGupN28bq2lSP',
+                            icon: 'J9wTKytjOWG73QMoN5WP',
+                            icon_position_left: 'elJfazUBui03YWZgHCbW',
+                            icon_position_right: 'RBoEbyJKP5rEtLsXM1ji',
+                            icon_withButtonSize: 'cE17_kCWJgx8kzQEkeVr',
+                            spinnerContainer: 'STbBDGqYjUEcLuNvhu9w',
                         };
                     },
                     5682: (e, t, o) => {
                         o.r(t), o.d(t, { default: () => i });
                         let i = {
-                            root: "rqUESGQ8jp3tbDawOzuG",
-                            root_checked: "GJh5PwV9GyFuKhlG6pQz",
-                            icon: "aw9IoPC0GuAC7Hmf825u",
-                            icon_checked: "KC8t9NStVmQ1_VY54KH4",
+                            root: 'rqUESGQ8jp3tbDawOzuG',
+                            root_checked: 'GJh5PwV9GyFuKhlG6pQz',
+                            icon: 'aw9IoPC0GuAC7Hmf825u',
+                            icon_checked: 'KC8t9NStVmQ1_VY54KH4',
                         };
                     },
                     7327: (e, t) => {
-                        var o = Symbol.for("react.transitional.element");
+                        var o = Symbol.for('react.transitional.element');
                         function i(e, t, i) {
                             var n = null;
-                            if (
-                                (void 0 !== i && (n = "" + i),
-                                void 0 !== t.key && (n = "" + t.key),
-                                "key" in t)
-                            )
-                                for (var r in ((i = {}), t))
-                                    "key" !== r && (i[r] = t[r]);
+                            if ((void 0 !== i && (n = '' + i), void 0 !== t.key && (n = '' + t.key), 'key' in t))
+                                for (var r in ((i = {}), t)) 'key' !== r && (i[r] = t[r]);
                             else i = t;
                             return {
                                 $$typeof: o,
@@ -1235,71 +1841,52 @@
                                 props: i,
                             };
                         }
-                        (t.Fragment = Symbol.for("react.fragment")),
-                            (t.jsx = i),
-                            (t.jsxs = i);
+                        (t.Fragment = Symbol.for('react.fragment')), (t.jsx = i), (t.jsxs = i);
                     },
                     1082: (e, t, o) => {
                         e.exports = o(7327);
                     },
                     8796: (e, t) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
+                        Object.defineProperty(t, '__esModule', { value: !0 }),
                             (t.createRipple = void 0),
                             (t.createRipple = function (e, t, o) {
                                 let i = null != o ? o : e.currentTarget,
-                                    n = document.createElement("span"),
+                                    n = document.createElement('span'),
                                     r = Math.max(i.clientWidth, i.clientHeight),
                                     l = r / 2,
                                     s = i.getBoundingClientRect(),
-                                    a =
-                                        0 === e.clientX
-                                            ? Math.round(s.width / 2)
-                                            : e.clientX - s.left,
-                                    c =
-                                        0 === e.clientY
-                                            ? Math.round(s.height / 2)
-                                            : e.clientY - s.top;
-                                (n.style.width = "".concat(r, "px")),
-                                    (n.style.height = "".concat(r, "px")),
-                                    (n.style.left =
-                                        0 === e.clientX
-                                            ? "0px"
-                                            : "".concat(a - l, "px")),
-                                    (n.style.top = "".concat(c - l, "px")),
+                                    a = 0 === e.clientX ? Math.round(s.width / 2) : e.clientX - s.left,
+                                    c = 0 === e.clientY ? Math.round(s.height / 2) : e.clientY - s.top;
+                                (n.style.width = ''.concat(r, 'px')),
+                                    (n.style.height = ''.concat(r, 'px')),
+                                    (n.style.left = 0 === e.clientX ? '0px' : ''.concat(a - l, 'px')),
+                                    (n.style.top = ''.concat(c - l, 'px')),
                                     n.classList.add(t);
                                 let d = i.getElementsByClassName(t)[0];
-                                d && d.remove(),
-                                    i.insertBefore(n, i.firstChild);
+                                d && d.remove(), i.insertBefore(n, i.firstChild);
                             });
                     },
                     361: (e, t) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
+                        Object.defineProperty(t, '__esModule', { value: !0 }),
                             (t.getElementFromRefOrElement = void 0),
                             (t.getElementFromRefOrElement = (e) => {
                                 if (void 0 !== e) {
-                                    if (null === e || e instanceof HTMLElement)
-                                        return e;
-                                    if (
-                                        null === e.current ||
-                                        e.current instanceof HTMLElement
-                                    )
-                                        return e.current;
+                                    if (null === e || e instanceof HTMLElement) return e;
+                                    if (null === e.current || e.current instanceof HTMLElement) return e.current;
                                 }
                             });
                     },
                     8216: (e, t, o) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
-                            (t.getElementFromRefOrElement = t.createRipple =
-                                void 0);
+                        Object.defineProperty(t, '__esModule', { value: !0 }), (t.getElementFromRefOrElement = t.createRipple = void 0);
                         var i = o(8796);
-                        Object.defineProperty(t, "createRipple", {
+                        Object.defineProperty(t, 'createRipple', {
                             enumerable: !0,
                             get: function () {
                                 return i.createRipple;
                             },
                         });
                         var n = o(361);
-                        Object.defineProperty(t, "getElementFromRefOrElement", {
+                        Object.defineProperty(t, 'getElementFromRefOrElement', {
                             enumerable: !0,
                             get: function () {
                                 return n.getElementFromRefOrElement;
@@ -1312,8 +1899,7 @@
                             function (e) {
                                 return e && e.__esModule ? e : { default: e };
                             };
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
-                            (t.Button = void 0);
+                        Object.defineProperty(t, '__esModule', { value: !0 }), (t.Button = void 0);
                         let n = o(1082),
                             r = o(810),
                             l = o(5881),
@@ -1323,19 +1909,19 @@
                                 let {
                                         forwardRef: t,
                                         isBlock: o,
-                                        iconPosition: i = "left",
+                                        iconPosition: i = 'left',
                                         children: c,
                                         className: d,
-                                        color: u = "secondary",
+                                        color: u = 'secondary',
                                         flexIcon: _,
                                         icon: m,
                                         spinner: p,
                                         role: x,
                                         onClick: h,
-                                        radius: f = "m",
+                                        radius: f = 'm',
                                         size: g,
-                                        type: v = "button",
-                                        variant: j = "default",
+                                        type: v = 'button',
+                                        variant: j = 'default',
                                         withRipple: C = !0,
                                         withHover: b = !0,
                                         withBorder: y = !1,
@@ -1345,10 +1931,8 @@
                                         ...w
                                     } = e,
                                     S = (0, r.useId)(),
-                                    E =
-                                        !r.Children.toArray(c).filter(Boolean)
-                                            .length,
-                                    T = "left" === i,
+                                    E = !r.Children.toArray(c).filter(Boolean).length,
+                                    T = 'left' === i,
                                     A = null,
                                     O = (0, r.isValidElement)(p);
                                 if (m) {
@@ -1357,17 +1941,10 @@
                                         className: (0, l.clsx)(
                                             a.default.icon,
                                             {
-                                                [a.default[
-                                                    "icon_position_".concat(i)
-                                                ]]: i && !E,
-                                                [a.default.icon_withButtonSize]:
-                                                    !(null == (z = m.props)
-                                                        ? void 0
-                                                        : z.size),
+                                                [a.default['icon_position_'.concat(i)]]: i && !E,
+                                                [a.default.icon_withButtonSize]: !(null == (z = m.props) ? void 0 : z.size),
                                             },
-                                            null == (L = m.props)
-                                                ? void 0
-                                                : L.className,
+                                            null == (L = m.props) ? void 0 : L.className,
                                             k,
                                         ),
                                         key: S,
@@ -1376,10 +1953,8 @@
                                 let P = (0, r.useMemo)(
                                         () =>
                                             O
-                                                ? (0, n.jsx)("div", {
-                                                      className:
-                                                          a.default
-                                                              .spinnerContainer,
+                                                ? (0, n.jsx)('div', {
+                                                      className: a.default.spinnerContainer,
                                                       children: p,
                                                   })
                                                 : null,
@@ -1387,43 +1962,27 @@
                                     ),
                                     R = (0, r.useCallback)(
                                         (e) => {
-                                            O ||
-                                                (C &&
-                                                    (0, s.createRipple)(
-                                                        e,
-                                                        a.default.ripple,
-                                                    ),
-                                                null == h || h(e));
+                                            O || (C && (0, s.createRipple)(e, a.default.ripple), null == h || h(e));
                                         },
                                         [O, h, C],
                                     );
-                                return (0, n.jsx)("button", {
+                                return (0, n.jsx)('button', {
                                     ref: t,
                                     className: (0, l.clsx)(
                                         a.default.root,
-                                        a.default[
-                                            "root_".concat(u, "_").concat(j)
-                                        ],
-                                        a.default["root_radius_".concat(f)],
+                                        a.default['root_'.concat(u, '_').concat(j)],
+                                        a.default['root_radius_'.concat(f)],
                                         a.default.root_size,
                                         {
-                                            [a.default[
-                                                "root_"
-                                                    .concat(u, "_withHover_")
-                                                    .concat(j)
-                                            ]]: b && !N && !O,
-                                            [a.default["root_size_".concat(g)]]:
-                                                g,
+                                            [a.default['root_'.concat(u, '_withHover_').concat(j)]]: b && !N && !O,
+                                            [a.default['root_size_'.concat(g)]]: g,
                                             [a.default.root_withoutBorder]: !y,
-                                            [a.default.root_withActiveSpinner]:
-                                                O,
+                                            [a.default.root_withActiveSpinner]: O,
                                             [a.default.block]: o,
                                             [a.default.flexIcon]: _,
                                             [a.default.iconOnly]: E,
-                                            [a.default.root_icon_left]:
-                                                m && !E && T,
-                                            [a.default.root_icon_right]:
-                                                m && !E && !T,
+                                            [a.default.root_icon_left]: m && !E && T,
+                                            [a.default.root_icon_right]: m && !E && !T,
                                         },
                                         d,
                                     ),
@@ -1432,40 +1991,29 @@
                                     onClick: R,
                                     ...w,
                                     disabled: N,
-                                    "aria-live": O ? "polite" : "off",
-                                    "aria-busy": O,
+                                    'aria-live': O ? 'polite' : 'off',
+                                    'aria-busy': O,
                                     children:
                                         m || O
-                                            ? (0, n.jsxs)("span", {
+                                            ? (0, n.jsxs)('span', {
                                                   className: (0, l.clsx)(
-                                                      a.default
-                                                          .contentContainer,
+                                                      a.default.contentContainer,
                                                       {
-                                                          [a.default
-                                                              .contentContainer_block]:
-                                                              o,
+                                                          [a.default.contentContainer_block]: o,
                                                       },
                                                       M,
                                                   ),
-                                                  children: [
-                                                      m && T && A,
-                                                      !E && c,
-                                                      m && !T && A,
-                                                      P,
-                                                  ],
+                                                  children: [m && T && A, !E && c, m && !T && A, P],
                                               })
                                             : c,
                                 });
                             };
-                        t.Button = (0, r.forwardRef)((e, t) =>
-                            (0, n.jsx)(c, { forwardRef: t, ...e }),
-                        );
+                        t.Button = (0, r.forwardRef)((e, t) => (0, n.jsx)(c, { forwardRef: t, ...e }));
                     },
                     5928: (e, t, o) => {
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
-                            (t.Button = void 0);
+                        Object.defineProperty(t, '__esModule', { value: !0 }), (t.Button = void 0);
                         var i = o(8119);
-                        Object.defineProperty(t, "Button", {
+                        Object.defineProperty(t, 'Button', {
                             enumerable: !0,
                             get: function () {
                                 return i.Button;
@@ -1478,8 +2026,7 @@
                             function (e) {
                                 return e && e.__esModule ? e : { default: e };
                             };
-                        Object.defineProperty(t, "__esModule", { value: !0 }),
-                            (t.Toggle = void 0);
+                        Object.defineProperty(t, '__esModule', { value: !0 }), (t.Toggle = void 0);
                         let n = o(1082),
                             r = o(5881),
                             l = o(810),
@@ -1487,21 +2034,14 @@
                             a = i(o(5682)),
                             c = (e) => {
                                 let { isChecked: t } = e;
-                                return (0, n.jsx)("div", {
+                                return (0, n.jsx)('div', {
                                     className: (0, r.clsx)(a.default.icon, {
                                         [a.default.icon_checked]: t,
                                     }),
                                 });
                             };
                         t.Toggle = (e) => {
-                            let {
-                                    className: t,
-                                    isChecked: o = !1,
-                                    onChange: i,
-                                    "aria-label": d,
-                                    "aria-describedby": u,
-                                    ..._
-                                } = e,
+                            let { className: t, isChecked: o = !1, onChange: i, 'aria-label': d, 'aria-describedby': u, ..._ } = e,
                                 [m, p] = (0, l.useState)(o),
                                 x = (0, l.useCallback)(() => {
                                     let e = !m;
@@ -1512,22 +2052,18 @@
                                     p(o);
                                 }, [o]),
                                 (0, n.jsx)(s.Button, {
-                                    className: (0, r.clsx)(
-                                        a.default.root,
-                                        { [a.default.root_checked]: m },
-                                        t,
-                                    ),
-                                    radius: "xxxl",
-                                    variant: "default",
+                                    className: (0, r.clsx)(a.default.root, { [a.default.root_checked]: m }, t),
+                                    radius: 'xxxl',
+                                    variant: 'default',
                                     icon: (0, n.jsx)(c, { isChecked: m }),
                                     withRipple: !1,
                                     onClick: x,
-                                    role: "switch",
-                                    "aria-checked": m,
-                                    "aria-label": d,
-                                    "aria-describedby": u,
+                                    role: 'switch',
+                                    'aria-checked': m,
+                                    'aria-label': d,
+                                    'aria-describedby': u,
                                     ..._,
-                                    color: m ? "primary" : "secondary",
+                                    color: m ? 'primary' : 'secondary',
                                 })
                             );
                         };
@@ -1554,18 +2090,18 @@
             }),
                 (s.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
                 (s.r = (e) => {
-                    "undefined" != typeof Symbol &&
+                    'undefined' != typeof Symbol &&
                         Symbol.toStringTag &&
                         Object.defineProperty(e, Symbol.toStringTag, {
-                            value: "Module",
+                            value: 'Module',
                         }),
-                        Object.defineProperty(e, "__esModule", { value: !0 });
+                        Object.defineProperty(e, '__esModule', { value: !0 });
                 });
             var a = {};
             (() => {
-                Object.defineProperty(a, "X", { value: !0 }), (a.Z = void 0);
+                Object.defineProperty(a, 'X', { value: !0 }), (a.Z = void 0);
                 var e = s(7459);
-                Object.defineProperty(a, "Z", {
+                Object.defineProperty(a, 'Z', {
                     enumerable: !0,
                     get: function () {
                         return e.Toggle;
@@ -1577,20 +2113,20 @@
         },
         88652: (e) => {
             e.exports = {
-                root: "AboutAppModal_root__yBvgU",
-                modalHeader: "AboutAppModal_modalHeader__q1NPj",
-                modalContent: "AboutAppModal_modalContent__SHO_X",
-                list: "AboutAppModal_list__HfB82",
-                link: "AboutAppModal_link__i3P3P",
-                explicitText: "AboutAppModal_explicitText__29HUD",
-                companyText: "AboutAppModal_companyText__yroW0",
-                versionText: "AboutAppModal_versionText__iFb8L",
+                root: 'AboutAppModal_root__yBvgU',
+                modalHeader: 'AboutAppModal_modalHeader__q1NPj',
+                modalContent: 'AboutAppModal_modalContent__SHO_X',
+                list: 'AboutAppModal_list__HfB82',
+                link: 'AboutAppModal_link__i3P3P',
+                explicitText: 'AboutAppModal_explicitText__29HUD',
+                companyText: 'AboutAppModal_companyText__yroW0',
+                versionText: 'AboutAppModal_versionText__iFb8L',
             };
         },
         89468: (e) => {
             e.exports = {
-                root: "Settings_root__FVVrn",
-                item: "Settings_item__Ksa9h",
+                root: 'Settings_root__FVVrn',
+                item: 'Settings_item__Ksa9h',
             };
         },
         98284: (e, t, o) => {
@@ -1598,14 +2134,6 @@
         },
     },
     (e) => {
-        e.O(
-            0,
-            [
-                7098, 8282, 9712, 5271, 5691, 1311, 7764, 6706, 996, 4236, 9169,
-                8740, 9615, 7747, 7111, 3761, 9902, 5598, 7358,
-            ],
-            () => e((e.s = 98284)),
-        ),
-            (_N_E = e.O());
+        e.O(0, [7098, 8282, 9712, 5271, 5691, 1311, 7764, 6706, 996, 4236, 9169, 8740, 9615, 7747, 7111, 3761, 9902, 5598, 7358], () => e((e.s = 98284))), (_N_E = e.O());
     },
 ]);
