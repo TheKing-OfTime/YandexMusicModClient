@@ -2453,6 +2453,7 @@
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
                                     title: 'Режим разработчика',
+                                    description: 'Разблокирует Chromium Devtools и dev панель в правом нижнем углу',
                                     onChange: onDevtoolsToggle,
                                     isChecked: window.nativeSettings.get('enableDevTools'),
                                 }),
