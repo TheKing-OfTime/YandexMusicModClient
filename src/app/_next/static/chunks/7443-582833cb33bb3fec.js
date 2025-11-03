@@ -12319,7 +12319,9 @@
 
                     setTimeout(() => { // Dirty workaround
                         instance.yaspRequestDebugInfo().then((info) => {
-                            let bitrate = Math.round((Object.values(info.sources.find((src) => src.attached)?.abr.abrDecisionsLog?.tracks)?.[0]?.bitrate ?? 0) / 1000);
+                            const tracks = info.sources.find((src) => src.attached)?.abr?.abrDecisionsLog?.tracks
+                            if (!tracks) return;
+                            let bitrate = Math.round((Object.values(tracks)?.[0]?.bitrate ?? 0) / 1000);
 
                             setRealBitrate(bitrate);
                             console.debug('Bitrate Updated:', bitrate);
