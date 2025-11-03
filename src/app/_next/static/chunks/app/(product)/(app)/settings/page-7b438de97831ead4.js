@@ -1803,6 +1803,7 @@
                         async (e) => {
                             console.log('enableAppAutoUpdate toggled. Value: ', e);
                             window.nativeSettings.set('modFeatures.appAutoUpdates.enableAppAutoUpdate', e);
+                            setEnableAppAutoUpdate(e);
                             j(
                                 (0, i.jsx)(m.hT, {
                                     error: 'Для применения этой настройки требуется перезапуск приложения',
