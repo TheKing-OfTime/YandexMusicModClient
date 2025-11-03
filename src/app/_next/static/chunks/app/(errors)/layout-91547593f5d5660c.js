@@ -1463,10 +1463,10 @@
                 sb: () => P.useRefreshTracksAvailability,
                 sq: () => c.useReleaseNotes,
                 OM: () => u.useSendPlayerState,
-                sendDownloadTrack: (...args) => sendDownloadTrack(...args),
-                sendDownloadCurrentTrack: (...args) => sendDownloadCurrentTrack(...args),
-                sendDownloadTracks: (...args) => sendDownloadTracks(...args),
-                sendYnisonState: (...args) => sendYnisonState(...args),
+                sendDownloadTrack: () => sendDownloadTrack,
+                sendDownloadCurrentTrack: () => sendDownloadCurrentTrack,
+                sendDownloadTracks: () => sendDownloadTracks,
+                sendYnisonState: () => sendYnisonState,
             });
             let n = () => {
                 document.addEventListener("auxclick", (e) =>
