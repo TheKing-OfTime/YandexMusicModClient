@@ -691,7 +691,7 @@
                             disabled = false,
                         } = e,
                         [getProgress, setProgress] = (0, t.useState)(-1),
-                        b = (0, t.useMemo)(
+                        notifyBody = (0, t.useMemo)(
                             () =>
                                 (0, n.jsxs)("div", {
                                     className: m().message,
@@ -720,7 +720,7 @@
                                         }),
                                     ],
                                 }),
-                            [o, h, s, getProgress],
+                            [disabled, buttonLabel, message, onButtonClick],
                         ),
                         progressBarUpdate = (0, t.useCallback)(
                             (
@@ -770,7 +770,7 @@
                         }, [progressBarUpdate]),
                         (0, n.jsx)(v.$W, {
                             className: (0, l.$)(m().root, m().important),
-                            message: b,
+                            message: notifyBody,
                             children: [
                                 (0, n.jsx)("div", {
                                     className: "qaIScXjx1qyXuaIHXQIo",
@@ -831,7 +831,7 @@
                             window.desktopEvents?.send(i.lkh.APPLICATION_RESTART);
                         }, []),
                         onGPUStall = (0, t.useCallback)(
-                            (event, reason, dedupeTimestamp = 0) => {
+                            (event, reason='GPU_STALL', dedupeTimestamp = 0) => {
                                 if (
                                     window.onGPUStallEventDedupeNonce === dedupeTimestamp
                                 )

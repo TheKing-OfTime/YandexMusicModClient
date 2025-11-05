@@ -589,7 +589,7 @@
                                         }),
                                     ],
                                 }),
-                            [o, u, s, getProgress],
+                            [o, u, version, getProgress],
                         ),
                         progressBarUpdate = (0, a.useCallback)(
                             (event, elementType, progress, dedupeTimestamp = 0) => {
@@ -600,7 +600,7 @@
                                 if (dedupeTimestamp) window.dedupeNonces[elementType] = dedupeTimestamp;
                                 setProgress(progress);
                             },
-                            [setProgress],
+                            [],
                         );
 
                     return (
@@ -640,7 +640,7 @@
                 toastWithProgress = (e) => {
                     let { toastID, message, buttonLabel, onButtonClick, disabled = false } = e,
                         [getProgress, setProgress] = (0, a.useState)(-1),
-                        b = (0, a.useMemo)(
+                        notifyBody = (0, a.useMemo)(
                             () =>
                                 (0, s.jsxs)('div', {
                                     className: _().message,
@@ -652,7 +652,7 @@
                                             size: 'm',
                                             children: message,
                                         }),
-                                        (0, s.jsx)(d.Button, {
+                                        (0, s.jsx)(i.Button, {
                                             className: _().button,
                                             onClick: onButtonClick,
                                             variant: 'default',
@@ -680,7 +680,7 @@
                                 if (dedupeTimestamp) window.dedupeNonces[elementType] = dedupeTimestamp;
                                 setProgress(progress);
                             },
-                            [setProgress],
+                            [],
                         );
 
                     return (
@@ -696,7 +696,7 @@
                         }, [progressBarUpdate]),
                         (0, s.jsx)(c.$W, {
                             className: (0, r.$)(_().root, _().important),
-                            message: h,
+                            message: notifyBody,
                             children: [
                                 (0, s.jsx)('div', {
                                     className: 'qaIScXjx1qyXuaIHXQIo',
@@ -751,7 +751,7 @@
                             window.desktopEvents?.send(n.EE.APPLICATION_RESTART);
                         }, []),
                         onGPUStall = (0, a.useCallback)(
-                            (event, reason, dedupeTimestamp = 0) => {
+                            (event, reason='GPU_STALL', dedupeTimestamp = 0) => {
                                 if (window.onGPUStallEventDedupeNonce === dedupeTimestamp) return;
                                 if (dedupeTimestamp) window.onGPUStallEventDedupeNonce = dedupeTimestamp;
                                 gpuStallNotify(
