@@ -117,7 +117,7 @@ class TrackDownloader {
         const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
         const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
 
-        if (store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath){
+        if (data.subDirName && store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath){
             try {
                 await createDirIfNotExist(path.join(defaultDirPath, data.subDirName));
                 this.logger.warn("Created directory:", path.join(defaultDirPath, data.subDirName));
@@ -127,7 +127,7 @@ class TrackDownloader {
         }
 
         return store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath
-            ? path.join(defaultDirPath, `${data.subDirName}` ?? '' , defaultFilepath)
+            ? path.join(defaultDirPath, data.subDirName ?? '' , defaultFilepath)
             : await this.handleSaveDialog(data, defaultFilepath);
     }
 
