@@ -602,6 +602,17 @@
                             },
                             [],
                         );
+                    progressBarUpdate = (0, a.useCallback)(
+                        (event, elementType, progress, dedupeTimestamp = 0) => {
+                            if (elementType !== 'modUpdateToast') return;
+
+                            if (window.dedupeNonces && window.dedupeNonces[elementType] === dedupeTimestamp) return;
+                            if (!window.dedupeNonces) window.dedupeNonces = {};
+                            if (dedupeTimestamp) window.dedupeNonces[elementType] = dedupeTimestamp;
+                            setProgress(progress);
+                        },
+                        [],
+                    );
 
                     return (
                         (0, a.useEffect)(() => {
@@ -614,6 +625,16 @@
                                 }
                             );
                         }, [progressBarUpdate]),
+                            (0, a.useEffect)(() => {
+                                var e;
+                                return (
+                                    null == (e = window.desktopEvents) || e.on(n.EE.MOD_UPDATE_AVAILABLE, ()=>{l()}),
+                                        () => {
+                                            var e;
+                                            null == (e = window.desktopEvents) || e.off(n.EE.MOD_UPDATE_AVAILABLE, ()=>{l()});
+                                        }
+                                );
+                            }, [l]),
                         (0, s.jsx)(c.$W, {
                             className: (0, r.$)(_().root, _().important),
                             message: h,

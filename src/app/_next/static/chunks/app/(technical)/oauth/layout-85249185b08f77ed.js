@@ -546,6 +546,16 @@
                                 }
                             );
                         }, [progressBarUpdate]),
+                            (0, t.useEffect)(() => {
+                                    var e;
+                                    return (
+                                        null == (e = window.desktopEvents) || e.on(i.EE.MOD_UPDATE_AVAILABLE, ()=>{r()}),
+                                            () => {
+                                                var e;
+                                                null == (e = window.desktopEvents) || e.off(i.EE.MOD_UPDATE_AVAILABLE, ()=>{r()});
+                                            }
+                                    );
+                            }, [r]),
                         (0, n.jsx)(v.$W, {
                             className: (0, l.$)(m().root, m().important),
                             message: b,
