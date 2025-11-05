@@ -292,7 +292,7 @@ class TrackDownloader {
         const tempDirPath = await this.createTempDirPath(data);
         if (!tempDirPath) return;
 
-        const tempTrackPath = removeInvalidCharsFromFilename(path.join(tempDirPath, `${data.trackId}.${data.codec}`));
+        const tempTrackPath = path.join(tempDirPath, removeInvalidCharsFromFilename(`${data.trackId}.${data.codec}`));
 
         callback(0, 0);
 
