@@ -1719,7 +1719,7 @@
     border: none;
     cursor: pointer;
     outline: none;
-    overflow: hidden;
+    overflow: visible; /* Испраление перекртия названия трека его версией */
     position: relative;
     text-decoration: none;
 }
