@@ -523,7 +523,7 @@ ul {
         --ym-surface-color-primary-enabled-entity: rgba(77, 77, 77, 0.5);
         --ym-slider-color-primary-disabled: rgba(0, 0, 0, 0.08);
         --ym-slider-color-primary-progress: rgba(0, 0, 0, 0.16);
-        --ym-slider-color-primary-enabled: #e6e6e6;
+        --ym-slider-color-primary-enabled: #3b3b3b;
         --ym-shadow-xxs: rgba(0, 0, 0, 0.12);
         --ym-shadow-xs: hsla(0, 0%, 100%, 0.16);
         --ym-shadow-s: hsla(0, 0%, 100%, 0.24);
@@ -942,7 +942,7 @@ ul {
     --ym-surface-color-primary-enabled-entity: rgba(77, 77, 77, 0.5);
     --ym-slider-color-primary-disabled: rgba(0, 0, 0, 0.08);
     --ym-slider-color-primary-progress: rgba(0, 0, 0, 0.16);
-    --ym-slider-color-primary-enabled: #e6e6e6;
+    --ym-slider-color-primary-enabled: #3b3b3b;
     --ym-shadow-xxs: rgba(0, 0, 0, 0.12);
     --ym-shadow-xs: hsla(0, 0%, 100%, 0.16);
     --ym-shadow-s: hsla(0, 0%, 100%, 0.24);
