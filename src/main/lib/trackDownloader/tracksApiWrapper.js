@@ -184,7 +184,7 @@ class TracksApiWrapper {
         const signStr = "".concat(timestamp).concat(trackIds.join(",")).concat(quality).concat(codecs.join("")).concat(transports.join(""));
         const sign = await this.getSign(signStr);
 
-        return (await this.request("GET", "get-file-info", {
+        return (await this.request("GET", "get-file-info/batch", {
             searchParams: {
                 trackIds: trackIds.join(","),
                 ts: timestamp,

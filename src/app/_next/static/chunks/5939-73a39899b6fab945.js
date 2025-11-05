@@ -1189,9 +1189,9 @@
                     var t;
                     null === (t = window.desktopEvents) || void 0 === t || t.send(a.EE.DOWNLOAD_CURRENT_TRACK, trackId);
                 },
-                sendDownloadTracks = (trackIds) => {
+                sendDownloadTracks = (trackIds, dirType, dirName) => {
                     var t;
-                    null === (t = window.desktopEvents) || void 0 === t || t.send(a.EE.DOWNLOAD_TRACKS, trackIds);
+                    null === (t = window.desktopEvents) || void 0 === t || t.send(a.EE.DOWNLOAD_TRACKS, trackIds, dirType, dirName);
                 },
                 sendYnisonState = (e) => {
                     var t;

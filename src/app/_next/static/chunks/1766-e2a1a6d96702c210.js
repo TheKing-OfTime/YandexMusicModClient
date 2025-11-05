@@ -1177,6 +1177,38 @@
                 f = i(14829),
                 C = i(66098),
                 x = i(28996);
+
+            var electronBridge = i(77575),
+                cssDataData = i(42795),
+                icon = i(78016),
+                contextMenuItem = i(66098),
+                cssData = i.n(cssDataData);
+
+
+            let downloadTracksToFile = (0, s.PA)((e) => {
+                let { playlist: playlist, tracksIds: tracksIds } = e,
+
+                    trackName = (0, o.useMemo)(
+                        () => {
+                            return `${playlist.title}`;
+                        },
+                        [playlist],
+                    ),
+
+                    onClick = (0, o.useCallback)(() => {
+                        electronBridge.sendDownloadTracks(tracksIds, 'playlist', trackName);
+                    }, [trackName]);
+                return (0, r.jsx)(contextMenuItem.Dr, {
+                    onClick: onClick,
+                    icon: (0, r.jsx)(icon.Icon, {
+                        variant: "download",
+                        size: "xxs",
+                    }),
+                    className: cssData().root,
+                    children: 'Скачать в файл',
+                });
+            });
+
             let k = (0, s.PA)((e) => {
                 var t;
                 let { playlist: i, onOpenChange: n, open: s, ...o } = e,
@@ -1234,6 +1266,10 @@
                                 isLiked: i.isLiked,
                                 disabled: !P.isAuthorized,
                             }),
+                        (0, r.jsx)(downloadTracksToFile, {
+                            playlist: i,
+                            tracksIds: trackIds,
+                        }),
                         (null == (t = i.trailer) ? void 0 : t.isAvailable) &&
                             (0, r.jsx)(_.No, {
                                 onClick: L,

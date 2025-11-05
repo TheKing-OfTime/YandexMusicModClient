@@ -358,6 +358,37 @@
                 b = t(79169),
                 p = t(18740),
                 _ = t(70682);
+
+            var electronBridge = t(77575),
+                cssDataData = t(42795),
+                icon = t(78016),
+                cssData = t.n(cssDataData);
+
+
+            let downloadTracksToFile = (0, a.PA)((e) => {
+                let { album: album, tracksIds: tracksIds } = e,
+
+                    trackName = (0, s.useMemo)(
+                        () => {
+                            return `${album.artists.map(artist => artist.name).join(', ')} — ${album.title}`;
+                        },
+                        [album],
+                    ),
+
+                    o = (0, s.useCallback)(() => {
+                        electronBridge.sendDownloadTracks(tracksIds, 'album', trackName);
+                    }, [trackName]);
+                return (0, r.jsx)(d.Dr, {
+                    onClick: o,
+                    icon: (0, r.jsx)(icon.Icon, {
+                        variant: "download",
+                        size: "xxs",
+                    }),
+                    className: cssData().root,
+                    children: 'Скачать в файл',
+                });
+            });
+
             let A = (0, a.PA)((e) => {
                 var i, t;
                 let {
@@ -381,6 +412,9 @@
                             isPlusCPAEnabled: O,
                             isPlusCPAPlayerBarEnabled: I,
                         },
+                        album: {
+                            tracks: tracks
+                        }
                     } = (0, b.Pjs)(),
                     T = (0, m.KX)(a),
                     K = (0, m.A7)(a),
@@ -507,6 +541,10 @@
                             }),
                         V,
                         Z,
+                        (0, r.jsx)(downloadTracksToFile, {
+                            album: a,
+                            tracksIds: tracks.map((track) => track.id),
+                        }),
                         J,
                         X,
                         U &&

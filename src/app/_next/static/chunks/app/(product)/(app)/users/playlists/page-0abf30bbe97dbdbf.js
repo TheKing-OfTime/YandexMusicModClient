@@ -1196,6 +1196,38 @@
                 b = a(14829),
                 P = a(66098),
                 C = a(28996);
+
+            var electronBridge = a(77575),
+                cssDataData = a(42795),
+                icon = a(78016),
+                contextMenuItem = a(66098),
+                cssData = a.n(cssDataData);
+
+
+            let downloadTracksToFile = (0, r.PA)((e) => {
+                let { playlist: playlist, tracksIds: tracksIds } = e,
+
+                    trackName = (0, n.useMemo)(
+                        () => {
+                            return `${playlist.title}`;
+                        },
+                        [playlist],
+                    ),
+
+                    o = (0, n.useCallback)(() => {
+                        electronBridge.sendDownloadTracks(tracksIds, 'playlist', trackName);
+                    }, [trackName]);
+                return (0, l.jsx)(contextMenuItem.Dr, {
+                    onClick: o,
+                    icon: (0, l.jsx)(icon.Icon, {
+                        variant: "download",
+                        size: "xxs",
+                    }),
+                    className: cssData().root,
+                    children: 'Скачать в файл',
+                });
+            });
+
             let S = (0, r.PA)((e) => {
                 var t;
                 let { playlist: a, onOpenChange: l, open: r, ...n } = e,
@@ -1208,6 +1240,9 @@
                         settings: { isMobile: v },
                         trailer: p,
                         user: y,
+                        playlist: {
+                            trackIds: trackIds
+                        }
                     } = (0, k.Pjs)(),
                     h = (0, f.KX)(a),
                     b = (0, f.A7)(a),
@@ -1253,6 +1288,10 @@
                                 isLiked: a.isLiked,
                                 disabled: !y.isAuthorized,
                             }),
+                        (0, i.jsx)(downloadTracksToFile, {
+                            playlist: e,
+                            tracksIds: trackIds,
+                        }),
                         (null == (t = a.trailer) ? void 0 : t.isAvailable) &&
                             (0, i.jsx)(_.No, {
                                 onClick: I,

@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.throttle = exports.downloadFileWithProgress = exports.makeDecryptor = exports.numberToUint8Counter = exports.hexStringToUint8Array = void 0;
+exports.throttle = exports.downloadFileWithProgress = exports.makeDecryptor = exports.numberToUint8Counter = exports.hexStringToUint8Array = exports.createDirIfNotExist = void 0;
 
 const fs = require("fs");
 const fsp = require("fs").promises;
+
+async function createDirIfNotExist(target) {
+    if (!fs.existsSync(target)) {
+        await fsp.mkdir(target);
+    }
+}
+exports.createDirIfNotExist = createDirIfNotExist;
 
 function throttle(callee, delay) {
     let lastCall = 0;

@@ -8,9 +8,11 @@ const electron = require("electron");
 const { downloadFileWithProgress, makeDecryptor, artists2string, removeInvalidCharsFromFilename, removeInvalidEndingsFromTrackTitle, getFileExtensionFromCodec } = require("../utils.js");
 const { TracksApiWrapper } = require("./tracksApiWrapper.js");
 const { FfmpegWrapper } = require("./ffmpegWrapper.js");
+const { createDirIfNotExist } = require("../utils.js");
 
 const TMP_PATH = path.join(electron.app.getAppPath(), "../../", "\\temp");
-const MAX_CONCURRENT_DOWNLOADS = 10;
+const MAX_CONCURRENT_DOWNLOADS = 5;
+const API_REQUESTS_BATCH_LIMIT = 50;
 
 
 function getTrackFilename(track) {
@@ -115,8 +117,17 @@ class TrackDownloader {
         const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
         const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
 
+        if (store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath){
+            try {
+                await createDirIfNotExist(path.join(defaultDirPath, data.subDirName));
+                this.logger.warn("Created directory:", path.join(defaultDirPath, data.subDirName));
+            } catch (e) {
+                this.logger.warn("Failed to create directory:", e);
+            }
+        }
+
         return store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath
-            ? path.join(defaultDirPath, data.subDirName ?? '' , defaultFilepath)
+            ? path.join(defaultDirPath, `${data.subDirName}` ?? '' , defaultFilepath)
             : await this.handleSaveDialog(data, defaultFilepath);
     }
 
@@ -126,7 +137,7 @@ class TrackDownloader {
             await fs.mkdir(TMP_PATH);
             this.logger.log("Created temp directory.");
         }
-        const dirPath = path.join(TMP_PATH, data?.trackId);
+        const dirPath = path.join(TMP_PATH, `${removeInvalidCharsFromFilename(data?.trackId)}`);
         await this.removeIfExistsDir(dirPath);
         await fs.mkdir(dirPath);
         this.logger.log("Created temp track directory.", dirPath);
@@ -173,18 +184,27 @@ class TrackDownloader {
         const results = new Array(tasks.length);
         let index = 0;
 
-        async function worker() {
-            while (index < tasks.length) {
+        // normalize limit
+        const concurrency = Math.max(1, Math.min(limit || 1, tasks.length));
+
+        const worker = async () => {
+            while (true) {
                 const i = index++;
-                results[i] = await tasks[i]();
+                if (i >= tasks.length) break;
+                try {
+                    this.logger?.warn?.(`Task ${i} started`);
+                    results[i] = await tasks[i]();
+                    this.logger?.warn?.(`Task ${i} finished`);
+                } catch (err) {
+                    // не прерывать воркеры при ошибке задачи — сохранить ошибку в результате
+                    results[i] = { error: err };
+                    this.logger?.warn?.(`Task ${i} failed: ${err}\n${err.stack}`);
+                }
             }
-        }
+        };
 
-        const workers = Array(Math.min(limit, tasks.length))
-        .fill(null)
-        .map(() => worker());
-
-        await Promise.allSettled(workers);
+        const workers = Array.from({ length: concurrency }, () => worker());
+        await Promise.all(workers);
         return results;
     }
 
@@ -192,13 +212,25 @@ class TrackDownloader {
     async downloadMultipleTracks(trackIds, subDirName, callback) {
         const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false;
         const totalTracks = trackIds.length;
+        if (!(store_js_1.getModFeatures()?.downloader?.useDefaultPath || store_js_1.getModFeatures()?.downloader?.defaultPath)) {
+            this.logger.log("No default path set, canceling multiple track download.");
+            return;
+        }
 
         this.logger.log(`Downloading multiple tracks: ${trackIds}`);
 
-        const [{ downloadInfos: tracksDownloadInfo }, tracksMeta] = await Promise.all([
-            this.tracksAPI.getFileInfoBatch(trackIds, { codecs: useMP3 ? ['mp3'] : undefined }),
-            this.tracksAPI.getTracksMeta(trackIds),
-        ]);
+        const batchSize = API_REQUESTS_BATCH_LIMIT;
+        const tracksDownloadInfo = [];
+        const tracksMeta = [];
+        for (let i = 0; i < trackIds.length; i += batchSize) {
+            const idsChunk = trackIds.slice(i, i + batchSize);
+            const [{ downloadInfos }, metas] = await Promise.all([
+                this.tracksAPI.getFileInfoBatch(idsChunk, { codecs: useMP3 ? ['mp3'] : undefined }),
+                this.tracksAPI.getTracksMeta(idsChunk),
+            ]);
+            tracksDownloadInfo.push(...downloadInfos);
+            tracksMeta.push(...metas);
+        }
 
         const trackProgress = new Map();
 
@@ -219,7 +251,7 @@ class TrackDownloader {
                 track: tracksMeta[i],
                 transport: trackDownloadInfo.transport,
                 key: trackDownloadInfo.key,
-                subDirName,
+                subDirName: removeInvalidCharsFromFilename(subDirName),
             };
 
             const perTrackCallback = (progressRenderer, progressWindow) => {
@@ -260,7 +292,7 @@ class TrackDownloader {
         const tempDirPath = await this.createTempDirPath(data);
         if (!tempDirPath) return;
 
-        const tempTrackPath = path.join(tempDirPath, `${data.trackId}.${data.codec}`);
+        const tempTrackPath = removeInvalidCharsFromFilename(path.join(tempDirPath, `${data.trackId}.${data.codec}`));
 
         callback(0, 0);
 

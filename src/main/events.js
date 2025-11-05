@@ -141,6 +141,44 @@ const handleApplicationEvents = (window) => {
         },
     );
 
+    electron_1.ipcMain.on(
+        events_js_1.Events.DOWNLOAD_TRACKS,
+        async (event, trackIds, dirType=undefined, dirName=undefined) => {
+
+            const hash = trackIds.join('|');
+
+            let message = 'Загрузка треков...';
+            if (dirName) {
+                switch (dirType) {
+                    case 'album':
+                        message = dirName ? `Загрузка альбома: ${dirName}` : 'Загрузка альбома...';
+                        break;
+                    case 'playlist':
+                        message = dirName ? `Загрузка плейлиста: ${dirName}` : 'Загрузка плейлиста...';
+                        break;
+                    default:
+                        message = dirName ? `Загрузка треков: ${dirName}` : 'Загрузка треков...';
+                }
+            }
+
+            sendBasicToastCreate(window, `trackDownload|${hash}`, message, false);
+
+            let callback = (progressRenderer, progressWindow) => {
+                sendProgressBarChange(window, `trackDownload|${hash}`, progressRenderer * 100);
+                window.setProgressBar(progressWindow);
+            };
+
+            eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACKS);
+            try {
+                await trackDownloader.downloadMultipleTracks(trackIds, dirName, throttle(callback, PROGRESS_BAR_THROTTLE_MS));
+            } catch (e) {
+                eventsLogger.error("Error downloading multiple tracks:", e, e.stack);
+                setTimeout(()=> sendBasicToastDismiss(window, `trackDownload|${hash}`), 2000);
+            }
+            setTimeout(()=> sendBasicToastDismiss(window, `trackDownload|${hash}`), 2000);
+        },
+    );
+
     electron_1.app.on("will-quit", () => {
         electron_1.globalShortcut.unregisterAll();
     });

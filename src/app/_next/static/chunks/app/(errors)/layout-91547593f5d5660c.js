@@ -1569,11 +1569,11 @@
                         void 0 === s ||
                         s.send(t.EE.DOWNLOAD_CURRENT_TRACK, trackId);
                 },
-                sendDownloadTracks = (trackIds) => {
+                sendDownloadTracks = (trackIds, dirType, dirName) => {
                     var s;
                     null === (s = window.desktopEvents) ||
                         void 0 === s ||
-                        s.send(t.EE.DOWNLOAD_TRACKS, trackIds);
+                        s.send(t.EE.DOWNLOAD_TRACKS, trackIds, dirType, dirName);
                 },
                 sendYnisonState = (e) => {
                     var s;

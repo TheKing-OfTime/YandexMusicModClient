@@ -3909,6 +3909,40 @@
                 });
             });
             var ta = a(28996);
+
+
+            var electronBridge = a(77575),
+                cssDataData = a(42795),
+                icon = a(78016),
+                contextMenuItem = a(66098),
+                cssData = a.n(cssDataData);
+
+
+            let downloadTracksToFile = (0, l.PA)((e) => {
+                let { playlist: playlist, tracksIds: tracksIds } = e,
+
+                    trackName = (0, n.useMemo)(
+                        () => {
+                            return `${playlist.title}`;
+                        },
+                        [playlist],
+                    ),
+
+                    o = (0, n.useCallback)(() => {
+                        electronBridge.sendDownloadTracks(tracksIds, 'playlist', trackName);
+                    }, [trackName]);
+                return (0, r.jsx)(contextMenuItem.Dr, {
+                    onClick: o,
+                    icon: (0, r.jsx)(icon.Icon, {
+                        variant: "download",
+                        size: "xxs",
+                    }),
+                    className: cssData().root,
+                    children: 'Скачать в файл',
+                });
+            });
+
+
             let ti = (0, l.PA)((e) => {
                     var t, a, i, o;
                     let {
@@ -3930,6 +3964,7 @@
                                     activeFilter: g,
                                     analyticsParamsActiveFilterIndex: y,
                                 },
+                                trackIds: trackIds
                             },
                             user: b,
                             experiments: P,
@@ -4045,6 +4080,10 @@
                                     isLiked: l.isLiked,
                                     disabled: !b.isAuthorized,
                                 }),
+                            (0, r.jsx)(downloadTracksToFile, {
+                                playlist: l,
+                                tracksIds: trackIds,
+                            }),
                             (null == (i = l.trailer)
                                 ? void 0
                                 : i.isAvailable) &&
