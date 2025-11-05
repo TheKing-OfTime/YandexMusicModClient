@@ -4880,6 +4880,7 @@
                 et = i(73508),
                 ei = i(49444),
                 ea = i(42795),
+                electronBridge = i(77575),
                 el = i.n(ea);
             let er = (0, s.PA)((e) => {
                 let { track: t } = e,
@@ -4987,6 +4988,30 @@
                     className: el().root,
                     ...(0, u.Am)(u.S7.CONTEXT_MENU_DOWNLOAD_BUTTON),
                     children: d,
+                });
+            });
+            let downloadTrackToFile = (0, s.PA)((e) => {
+                let { track: track } = e,
+
+                    trackName = (0, n.useMemo)(
+                        () => {
+                            return `${track.artists.map(artist => artist.name).join(', ')} — ${track.title}`;
+                        },
+                        [track],
+                    ),
+
+                    o = (0, n.useCallback)(() => {
+                        electronBridge.sendDownloadTrack(track?.id, trackName);
+                    }, [trackName]);
+                return (0, a.jsx)(v.Dr, {
+                    onClick: o,
+                    icon: (0, a.jsx)(p.Icon, {
+                        variant: "download",
+                        size: "xxs",
+                    }),
+                    className: el().root,
+                    ...(0, u.Am)(u.S7.CONTEXT_MENU_DOWNLOAD_BUTTON),
+                    children: 'Скачать в файл',
                 });
             });
             var es = i(56863),
@@ -5345,6 +5370,7 @@
                                           }),
                                       }),
                                   eY && (0, a.jsx)(er, { track: $ }),
+                                  window?.DEVICE_INFO?.os === 'win32' && (0, a.jsx)(downloadTrackToFile, { track: $ }), // TODO Remove platform check
                                   tu &&
                                       (0, a.jsx)(v.Dr, {
                                           onClick: eN,

@@ -622,15 +622,15 @@
                                     className: 'qaIScXjx1qyXuaIHXQIo',
                                     style: {
                                         overflow: 'hidden',
-                                        'margin-left': '-16px',
-                                        'margin-top': '-6px',
+                                        left: '0',
+                                        top: '0',
                                         position: 'absolute',
-                                        width: (500 * getProgress) / 100 + 'px',
-                                        height: '50px',
+                                        width: getProgress + '%',
+                                        height: '100%',
                                         'background-color': 'rgb(255 255 255)',
                                         opacity: getProgress <= 100 ? 0.1 : 0,
                                         'z-index': 1,
-                                        transition: 'opacity 0.3s linear 0.5s',
+                                        transition: 'opacity 0.3s linear 0.5s, width 0.2s',
                                     },
                                 }),
                             ],
@@ -638,8 +638,18 @@
                     );
                 },
                 toastWithProgress = (e) => {
-                    let { toastID, message, buttonLabel, onButtonClick, disabled = false } = e,
+                    let { closeToast: closeToast, toastID, message, buttonLabel, onButtonClick, disabled = false, dismissOnButtonClick = false } = e,
                         [getProgress, setProgress] = (0, a.useState)(-1),
+
+                        onClick = (0, a.useCallback)(
+                            () => {
+                                onButtonClick?.();
+                                dismissOnButtonClick && closeToast?.();
+                            },
+                            [dismissOnButtonClick, onButtonClick, closeToast]),
+
+
+
                         notifyBody = (0, a.useMemo)(
                             () =>
                                 (0, s.jsxs)('div', {
@@ -652,9 +662,9 @@
                                             size: 'm',
                                             children: message,
                                         }),
-                                        (0, s.jsx)(i.Button, {
+                                        buttonLabel && (0, s.jsx)(i.Button, {
                                             className: _().button,
-                                            onClick: onButtonClick,
+                                            onClick: onClick,
                                             variant: 'default',
                                             color: 'secondary',
                                             size: 'xs',
@@ -669,7 +679,7 @@
                                         }),
                                     ],
                                 }),
-                            [disabled, buttonLabel, message, onButtonClick],
+                            [disabled, buttonLabel, message, onClick],
                         ),
                         progressBarUpdate = (0, a.useCallback)(
                             (event, elementType, progress, dedupeTimestamp = 0) => {
@@ -681,7 +691,19 @@
                                 setProgress(progress);
                             },
                             [],
-                        );
+                        ),
+                    onBasicToastDismiss = (0, a.useCallback)(
+                        (event, closeToastID, dedupeTimestamp = 0) => {
+                            if (window[`onBasicToastDismiss${toastID}`] === dedupeTimestamp) return;
+                            if (dedupeTimestamp) window[`onBasicToastDismiss${toastID}`] = dedupeTimestamp;
+
+                            if (closeToastID === toastID) {
+                                closeToast?.();
+                            }
+
+                        },
+                        [closeToast]
+                    );
 
                     return (
                         (0, a.useEffect)(() => {
@@ -694,6 +716,16 @@
                                 }
                             );
                         }, [progressBarUpdate]),
+                            (0, a.useEffect)(() => {
+                                var e;
+                                return (
+                                    null === (e = window.desktopEvents) || void 0 === e || e.on(n.EE.BASIC_TOAST_DISMISS, onBasicToastDismiss),
+                                        () => {
+                                            var e;
+                                            null === (e = window.desktopEvents) || void 0 === e || e.off(n.EE.BASIC_TOAST_DISMISS, onBasicToastDismiss);
+                                        }
+                                );
+                            }, [progressBarUpdate]),
                         (0, s.jsx)(c.$W, {
                             className: (0, r.$)(_().root, _().important),
                             message: notifyBody,
@@ -702,15 +734,15 @@
                                     className: 'qaIScXjx1qyXuaIHXQIo',
                                     style: {
                                         overflow: 'hidden',
-                                        'margin-left': '-16px',
-                                        'margin-top': '-6px',
+                                        left: '0',
+                                        top: '0',
                                         position: 'absolute',
-                                        width: (500 * getProgress) / 100 + 'px',
-                                        height: '50px',
+                                        width: getProgress + '%',
+                                        height: '100%',
                                         'background-color': 'rgb(255 255 255)',
                                         opacity: getProgress <= 100 ? 0.1 : 0,
                                         'z-index': 1,
-                                        transition: 'opacity 0.3s linear 0.5s',
+                                        transition: 'opacity 0.3s linear 0.5s, width 0.2s',
                                     },
                                 }),
                             ],
@@ -722,6 +754,7 @@
                         { notify: t } = (0, n.lkh)(),
                         { notify: modUpdateNotify, dismiss: modUpdateDismiss } = (0, n.lkh)(),
                         { notify: gpuStallNotify, dismiss: gpuStallDismiss } = (0, n.lkh)(),
+                        { notify: basicToastNotify } = (0, n.lkh)(),
                         o = (0, a.useRef)(''),
                         r = (0, a.useCallback)(
                             (a, l) => {
@@ -767,7 +800,35 @@
                                 );
                             },
                             [gpuStallNotify, gpuStallDismiss],
+                        ),
+                    onBasicToastCreate = (0, a.useCallback)(
+                        (event, toastID, message, dismissable, dedupeTimestamp = 0) => {
+                            if (window[`onBasicToastCreate${toastID}`] === dedupeTimestamp) return;
+                            if (dedupeTimestamp) window[`onBasicToastCreate${toastID}`] = dedupeTimestamp;
+                            basicToastNotify(
+                                (0, s.jsx)(toastWithProgress, {
+                                    toastID: toastID,
+                                    message: message,
+                                    buttonLabel: dismissable ? dismissable : undefined,
+                                    dismissOnButtonClick: !!dismissable,
+                                }),
+                                {
+                                    containerId: n.uQT.IMPORTANT,
+                                },
+                            );
+                        },
+                        [basicToastNotify],
+                    );
+                    (0, a.useEffect)(() => {
+                        var e;
+                        return (
+                            null == (e = window.desktopEvents) || e.on(n.EE.BASIC_TOAST_CREATE, onBasicToastCreate),
+                                () => {
+                                    var e;
+                                    null == (e = window.desktopEvents) || e.off(n.EE.BASIC_TOAST_CREATE, onBasicToastCreate);
+                                }
                         );
+                    }, [modUpdateCallback]);
                     (0, a.useEffect)(() => {
                         var e;
                         return (
@@ -1120,9 +1181,9 @@
                     var t;
                     null == (t = window.desktopEvents) || t.send(a.EE.APPLICATION_READY, e);
                 },
-                sendDownloadTrack = (trackId) => {
+                sendDownloadTrack = (trackId, trackName) => {
                     var t;
-                    null === (t = window.desktopEvents) || void 0 === t || t.send(a.EE.DOWNLOAD_TRACK, trackId);
+                    null === (t = window.desktopEvents) || void 0 === t || t.send(a.EE.DOWNLOAD_TRACK, trackId, trackName);
                 },
                 sendDownloadCurrentTrack = (trackId) => {
                     var t;

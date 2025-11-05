@@ -10,6 +10,7 @@ const { TracksApiWrapper } = require("./tracksApiWrapper.js");
 const { FfmpegWrapper } = require("./ffmpegWrapper.js");
 
 const TMP_PATH = path.join(electron.app.getAppPath(), "../../", "\\temp");
+const MAX_CONCURRENT_DOWNLOADS = 10;
 
 
 function getTrackFilename(track) {
@@ -110,6 +111,15 @@ class TrackDownloader {
         this.logger.log("Deleted temp track directory.", dirPath);
     }
 
+    async getFinalTrackPath(data, fileExtension) {
+        const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
+        const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
+
+        return store_js_1.getModFeatures()?.downloader?.useDefaultPath && defaultDirPath
+            ? path.join(defaultDirPath, data.subDirName ?? '' , defaultFilepath)
+            : await this.handleSaveDialog(data, defaultFilepath);
+    }
+
     async createTempDirPath(data) {
         if (!data?.trackId) return;
         if (!fsSync.existsSync(TMP_PATH)) {
@@ -123,7 +133,7 @@ class TrackDownloader {
         return dirPath;
     }
 
-    async downloadTrack(
+    async downloadSingleTrack(
         trackId,
         callback = (x, b) => {
             return null;
@@ -131,9 +141,8 @@ class TrackDownloader {
     ) {
 
         const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false
-        const useSyncLyrics = store_js_1.getModFeatures()?.downloader?.useSyncLyrics ?? true
 
-        this.logger.log(`Downloading track: ${trackId}`);
+        this.logger.log(`Downloading single track: ${trackId}`);
 
         const [{ downloadInfo: trackDownloadInfo }, tracksMeta] =
             await Promise.all([
@@ -141,13 +150,6 @@ class TrackDownloader {
                 this.tracksAPI.getTracksMeta(trackId),
             ]);
 
-        let lyricsMeta = undefined;
-
-        const fileExtension = getFileExtensionFromCodec(trackDownloadInfo.codec);
-
-        if (useSyncLyrics && tracksMeta[0]?.lyricsInfo?.hasAvailableSyncLyrics) {
-            lyricsMeta = await this.tracksAPI.getSyncLyrics(trackId);
-        }
 
         const data = {
             downloadURL: trackDownloadInfo.url,
@@ -157,37 +159,118 @@ class TrackDownloader {
             track: tracksMeta[0],
             transport: trackDownloadInfo.transport,
             key: trackDownloadInfo.key,
+            subDirName: undefined,
         };
 
-        const defaultFilepath = getTrackFilename(data.track) + "." + fileExtension;
-        const defaultDirPath = store_js_1.getModFeatures()?.downloader?.defaultPath;
+        await this.downloadTrack(data, callback);
 
-        const finalTrackPath =
-            store_js_1.getModFeatures()?.downloader?.useDefaultPath &&
-            defaultDirPath
-                ? path.join(defaultDirPath, defaultFilepath)
-                : await this.handleSaveDialog(data, defaultFilepath);
+        setTimeout(() => {
+            callback(-1.0, -1.0);
+        }, 1000);
+    }
+
+    async resolveInBatches(tasks, limit) {
+        const results = new Array(tasks.length);
+        let index = 0;
+
+        async function worker() {
+            while (index < tasks.length) {
+                const i = index++;
+                results[i] = await tasks[i]();
+            }
+        }
+
+        const workers = Array(Math.min(limit, tasks.length))
+        .fill(null)
+        .map(() => worker());
+
+        await Promise.allSettled(workers);
+        return results;
+    }
+
+
+    async downloadMultipleTracks(trackIds, subDirName, callback) {
+        const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false;
+        const totalTracks = trackIds.length;
+
+        this.logger.log(`Downloading multiple tracks: ${trackIds}`);
+
+        const [{ downloadInfos: tracksDownloadInfo }, tracksMeta] = await Promise.all([
+            this.tracksAPI.getFileInfoBatch(trackIds, { codecs: useMP3 ? ['mp3'] : undefined }),
+            this.tracksAPI.getTracksMeta(trackIds),
+        ]);
+
+        const trackProgress = new Map();
+
+        const updateTotalProgress = () => {
+            const total = Array.from(trackProgress.values()).reduce((a, b) => a + b, 0);
+            const overall = total / totalTracks;
+            callback(overall, overall);
+        };
+
+        const tasks = trackIds.map((trackId, i) => async () => {
+            const trackDownloadInfo = tracksDownloadInfo[i];
+
+            const data = {
+                downloadURL: trackDownloadInfo.url,
+                codec: trackDownloadInfo.codec,
+                bitrate: trackDownloadInfo.bitrate,
+                trackId,
+                track: tracksMeta[i],
+                transport: trackDownloadInfo.transport,
+                key: trackDownloadInfo.key,
+                subDirName,
+            };
+
+            const perTrackCallback = (progressRenderer, progressWindow) => {
+                trackProgress.set(trackId, Math.min(Math.max(progressRenderer, 0), 1));
+                updateTotalProgress();
+            };
+
+            await this.downloadTrack(data, perTrackCallback);
+
+            trackProgress.set(trackId, 1);
+            updateTotalProgress();
+        });
+
+        await this.resolveInBatches(tasks, MAX_CONCURRENT_DOWNLOADS);
+        this.logger.log("All tracks downloaded");
+
+
+        setTimeout(() => callback(-1, -1), 1000);
+
+
+    }
+
+    async downloadTrack(data, callback) {
+
+        const useSyncLyrics = store_js_1.getModFeatures()?.downloader?.useSyncLyrics ?? true
+
+        let lyricsMeta = undefined;
+
+        const fileExtension = getFileExtensionFromCodec(data.codec);
+
+        if (useSyncLyrics && data.track?.lyricsInfo?.hasAvailableSyncLyrics) {
+            lyricsMeta = await this.tracksAPI.getSyncLyrics(data.trackId);
+        }
+
+        const finalTrackPath = await this.getFinalTrackPath(data, fileExtension);
         if (!finalTrackPath) return;
 
         const tempDirPath = await this.createTempDirPath(data);
         if (!tempDirPath) return;
 
-        const tempTrackPath = path.join(
-            tempDirPath,
-            `${data.trackId}.${data.codec}`,
-        );
+        const tempTrackPath = path.join(tempDirPath, `${data.trackId}.${data.codec}`);
 
         callback(0, 0);
 
         await this.downloadTrackFile(data, tempTrackPath, callback);
 
         const coverBuffer = await this.tracksAPI.fetchTrackCover(data.track);
+
         this.logger.info("Got cover");
         if (coverBuffer) {
-            await fs.writeFile(
-                path.join(tempDirPath, "400x400.jpg"),
-                coverBuffer,
-            );
+            await fs.writeFile(path.join(tempDirPath, "400x400.jpg"), coverBuffer);
             this.logger.info("Cover saved to temp directory");
         }
 
@@ -205,10 +288,8 @@ class TrackDownloader {
 
         await this.removeIfExistsDir(tempDirPath);
 
-        setTimeout(() => {
-            callback(-1.0, -1.0);
-        }, 1000);
     }
+
 }
 
 exports.TrackDownloader = TrackDownloader;

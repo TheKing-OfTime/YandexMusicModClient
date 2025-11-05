@@ -48,11 +48,14 @@ const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
 const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
 const playerActions_js_1 = require("./types/playerActions.js");
+const { throttle } = require("./lib/utils.js");
 
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
     return typeof value === "boolean";
 };
+
+const PROGRESS_BAR_THROTTLE_MS = 200;
 
 let mainWindow = undefined;
 
@@ -104,7 +107,7 @@ const handleApplicationEvents = (window) => {
     electron_1.ipcMain.on(
         events_js_1.Events.DOWNLOAD_CURRENT_TRACK,
         async (event, trackId) => {
-            let callback = async (progressRenderer, progressWindow) => {
+            let callback = (progressRenderer, progressWindow) => {
                 sendProgressBarChange(
                     window,
                     "trackDownloadCurrent",
@@ -117,7 +120,24 @@ const handleApplicationEvents = (window) => {
                 "Event received",
                 events_js_1.Events.DOWNLOAD_CURRENT_TRACK,
             );
-            await trackDownloader.downloadTrack(trackId, callback);
+            await trackDownloader.downloadSingleTrack(trackId, throttle(callback, PROGRESS_BAR_THROTTLE_MS));
+        },
+    );
+
+    electron_1.ipcMain.on(
+        events_js_1.Events.DOWNLOAD_TRACK,
+        async (event, trackId, trackName='') => {
+
+            sendBasicToastCreate(window, `trackDownload|${trackId}`, trackName ? 'Загрузка трека: ' + trackName : 'Загрузка трека...', false);
+
+            let callback = (progressRenderer, progressWindow) => {
+                sendProgressBarChange(window, `trackDownload|${trackId}`, progressRenderer * 100);
+                window.setProgressBar(progressWindow);
+            };
+
+            eventsLogger.info("Event received", events_js_1.Events.DOWNLOAD_TRACK);
+            await trackDownloader.downloadSingleTrack(trackId, throttle(callback, PROGRESS_BAR_THROTTLE_MS));
+            setTimeout(()=> sendBasicToastDismiss(window, `trackDownload|${trackId}`), 2000);
         },
     );
 
@@ -347,7 +367,7 @@ const handleApplicationEvents = (window) => {
                 events_js_1.Events.DOWNLOAD_MOD_UPDATE,
             );
 
-            let callback = async (progressRenderer, progressWindow) => {
+            let callback = (progressRenderer, progressWindow) => {
                 sendProgressBarChange(
                     window,
                     "modUpdateToast",
@@ -356,7 +376,7 @@ const handleApplicationEvents = (window) => {
                 window.setProgressBar(progressWindow);
             };
             await (0, modUpdater_js_1.getModUpdater)().onUpdateDownload(
-                callback,
+                throttle(callback, PROGRESS_BAR_THROTTLE_MS),
             );
         },
     );
@@ -571,6 +591,33 @@ const sendModUpdateAvailable = (window, currVersion, newVersion) => {
     );
 };
 exports.sendModUpdateAvailable = sendModUpdateAvailable;
+const sendBasicToastCreate = (window, toastID, message, dismissable) => {
+    window.webContents.send(
+        events_js_1.Events.BASIC_TOAST_CREATE,
+        toastID,
+        message,
+        dismissable,
+        Date.now(),
+    );
+    eventsLogger.info(
+        "Event sent",
+        events_js_1.Events.BASIC_TOAST_CREATE,
+        toastID,
+        message,
+    );
+};
+const sendBasicToastDismiss = (window, toastID) => {
+    window.webContents.send(
+        events_js_1.Events.BASIC_TOAST_DISMISS,
+        toastID,
+        Date.now(),
+    );
+    eventsLogger.info(
+        "Event sent",
+        events_js_1.Events.BASIC_TOAST_DISMISS,
+        toastID,
+    );
+};
 const sendProgressBarChange = (window, elementType, progress) => {
     window.webContents.send(
         events_js_1.Events.PROGRESS_BAR_CHANGE,

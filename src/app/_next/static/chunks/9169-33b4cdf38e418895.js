@@ -2942,6 +2942,8 @@
                     (e.PROGRESS_BAR_CHANGE = "PROGRESS_BAR_CHANGE"),
                     (e.APPLICATION_RESTART = "APPLICATION_RESTART"),
                     (e.YNISON_STATE = "YNISON_STATE"),
+                    (e.BASIC_TOAST_CREATE = "BASIC_TOAST_CREATE"),
+                    (e.BASIC_TOAST_DISMISS = "BASIC_TOAST_DISMISS"),
                     e
                 );
             })({});
