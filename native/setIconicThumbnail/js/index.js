@@ -86,8 +86,6 @@ class DWMIconicThumbnail {
 
             this.setIconicLivePreviewBitmap(bitmap, { width, height });
         });
-
-        this.probe();
     }
 
     /**
