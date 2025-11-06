@@ -370,14 +370,17 @@
 
                     trackName = (0, s.useMemo)(
                         () => {
-                            return `${album.artists.map(artist => artist.name).join(', ')} — ${album.title}`;
+                            let artistsStr = album.artists.map(artist => artist.name).join(', ')
+                            const result = [album.title];
+                            if (['album', 'single'].includes(album.type ?? 'album')) result.unshift(artistsStr);
+                            return result.join(' — ');
                         },
                         [album],
                     ),
 
                     o = (0, s.useCallback)(() => {
-                        electronBridge.sendDownloadTracks(tracksIds, 'album', trackName);
-                    }, [trackName]);
+                        electronBridge.sendDownloadTracks(tracksIds, album.type ?? 'album', trackName);
+                    }, [trackName, album]);
                 return (0, r.jsx)(d.Dr, {
                     onClick: o,
                     icon: (0, r.jsx)(icon.Icon, {

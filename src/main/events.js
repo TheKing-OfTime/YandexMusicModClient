@@ -156,6 +156,15 @@ const handleApplicationEvents = (window) => {
                     case 'playlist':
                         message = dirName ? `Загрузка плейлиста: ${dirName}` : 'Загрузка плейлиста...';
                         break;
+                    case 'single':
+                        message = dirName ? `Загрузка сингла: ${dirName}` : 'Загрузка сингла...';
+                        break;
+                    case 'podcast':
+                        message = dirName ? `Загрузка подкаста: ${dirName}` : 'Загрузка подкаста...';
+                        break;
+                    case 'audiobook':
+                        message = dirName ? `Загрузка аудиокниги: ${dirName}` : 'Загрузка аудиокниги...';
+                        break;
                     default:
                         message = dirName ? `Загрузка треков: ${dirName}` : 'Загрузка треков...';
                 }
