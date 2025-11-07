@@ -487,6 +487,7 @@
     flex-shrink: 0;
     gap: var(--ym-spacer-size-xxxl);
     justify-content: center;
+    transition: gap 0.3s;
 }
 @media only screen and (max-width: 1280px) {
     .PlayerBarDesktopWithBackgroundProgressBar_sonata__mGFb_ {
@@ -496,6 +497,7 @@
 .PlayerBarDesktopWithBackgroundProgressBar_meta__FhKTC,
 .PlayerBarDesktopWithBackgroundProgressBar_sonataControls__rSmXQ.PlayerBarDesktopWithBackgroundProgressBar_important__HzXrK {
     gap: var(--ym-spacer-size-l);
+    transition: gap 0.3s;
 }
 .PlayerBarDesktopWithBackgroundProgressBar_meta__FhKTC {
     align-items: center;
@@ -504,6 +506,17 @@
     justify-content: flex-end;
     padding-inline-end: var(--ym-spacer-size-xs);
     padding-inline-start: var(--ym-spacer-size-l);
+}
+@media only screen and (max-width: 53.8rem) {
+    .PlayerBarDesktopWithBackgroundProgressBar_meta__FhKTC {
+        gap: 0.20rem;
+    }
+    .PlayerBarDesktopWithBackgroundProgressBar_sonataControls__rSmXQ.PlayerBarDesktopWithBackgroundProgressBar_important__HzXrK {
+        gap: 0.25rem;
+    }
+    .PlayerBarDesktopWithBackgroundProgressBar_sonata__mGFb_ {
+        gap: 0.25rem;
+    }
 }
 .PlayerBarDesktopWithBackgroundProgressBar_settingsButton__HnCgK {
     aspect-ratio: 1;
