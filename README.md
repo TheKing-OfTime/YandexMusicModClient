@@ -234,15 +234,20 @@ https://github.com/user-attachments/assets/b062a3ee-d05e-4cf3-8e03-b6f8bf66525c
 
 </details>
 
-### Скачивание текущего трека в файл
+### Скачивание треков в файл
 <details>
    <summary>Подробнее</summary>
 
-Позволяет скачать текущий трек вам на ПК.
+Позволяет скачать любой трек, альбом, плейлист, подкаст, аудиокнигу вам на ПК.
 
 ![image](https://github.com/user-attachments/assets/95a52251-401a-4071-9ee3-914b8c7b7c8f)
 
-![image](https://github.com/user-attachments/assets/aaf79024-34cb-4159-9790-501f21534e54)
+<img width="838" height="564" alt="image" src="https://github.com/user-attachments/assets/fa31d613-7d9f-4d6c-840e-b41c561f389f" />
+
+<img width="1266" height="105" alt="image" src="https://github.com/user-attachments/assets/b69ab3c6-7805-4a31-b703-5f48688f5284" />
+
+<img width="557" height="317" alt="image" src="https://github.com/user-attachments/assets/1402cdf1-ebe0-4168-9013-f900a3702951" />
+
 
 
 
