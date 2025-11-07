@@ -2542,7 +2542,295 @@
         it = (t) => t ?? 10,
         st = (t) => (t ? 'vec4' : 'vec3'),
         rt = (t, e) =>
-            `\nprecision highp float;\n\nuniform vec2 vScreenSize;\nuniform float vTime;\nuniform float vScale;\n\nuniform ${st(e)} vColorBackground;\n\nuniform vec3 vColor[6];\nuniform vec3 vRotation[3];\n\nuniform float vAudio[3];\nuniform float vReact[3];\n\nuniform vec2 vInteractionPoint;\nuniform float vInteraction;\n\n#define CIRCLE_WIDTH_BASE 0.8\n#define CIRCLE_WIDTH_STEP 0.2\n\n#define SPARK_STRENGTH_BASE 1.0\n#define SPARK_STRENGTH_STEP 0.3\n\n#define CIRCLE_RADIUS_BASE 0.95\n#define CIRCLE_RADIUS_STEP 0.15\n\n#define CIRCLE_OFFSET_BASE 0.0\n#define CIRCLE_OFFSET_STEP 1.57\n\nvec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}\n\nfloat snoise3(vec3 v) {\n  const vec2 C = vec2(0.1666667, 0.3333333); // vec2(1.0/6.0, 1.0/3.0)\n  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);\n\n  // First corner\n  vec3 i = floor(v + dot(v, C.yyy));\n  vec3 x0 = v - i + dot(i, C.xxx);\n\n  // Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min(g.xyz, l.zxy);\n  vec3 i2 = max(g.xyz, l.zxy);\n\n  // x0 = x0 - 0. + 0.0 * C\n  vec3 x1 = x0 - i1 + 1.0 * C.xxx;\n  vec3 x2 = x0 - i2 + 2.0 * C.xxx;\n  vec3 x3 = x0 - 1. + 3.0 * C.xxx;\n\n  // Permutations\n  i = mod(i, 289.0);\n  vec4 p = permute( permute( permute(\n             i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n           + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n           + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n  // Gradients ( N*N points uniformly over a square, mapped onto an octahedron.)\n  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3 ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z *ns.z); //  mod(p,N*N), N=7\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_); // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n  //Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n  // Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));\n}\n\nfloat tri(in float x){return abs(fract(x)-.5);}\nvec3 tri3(in vec3 p){return vec3( tri(p.z+tri(p.y*20.)), tri(p.z+tri(p.x*1.)), tri(p.y+tri(p.x*1.)));}\n\nfloat triNoise3D(in vec3 p, in float spd)\n{\n  float z=0.4;\n  float rz = 0.1;\n  vec3 bp = p;\n  for (float i=0.; i<=4.; i++ )\n  {\n    vec3 dg = tri3(bp*0.01); // Increase the scale factor to make noise less frequent\n    p += (dg+vTime*.1*spd);\n\n    bp *= 4.; // Increase the scale factor\n    z *= 0.9;\n    p *= 1.6; // Increase the scale factor\n\n    rz+= (tri(p.z+tri(0.6*p.x+0.1*tri(p.y))))/z;\n  }\n  return smoothstep(0.0, 8., rz + sin(rz + sin(z) * 2.8) * 2.2);\n}\n\nvec2 rotate(vec2 p, float a) {\n  float s = sin(a);\n  float c = cos(a);\n  return vec2(p.x * c - p.y * s, p.x * s + p.y * c);\n}\n\nfloat light(float intensity, float attenuation, float dist) {\n  return intensity / (1.0 + dist + dist * attenuation);\n}\n\nvec4 makeNoiseBlob2(vec2 uv, vec3 color1, vec3 color2, float strength, float offset) {\n  float len = length(uv);\n  float v0, v1, cl;\n  float r0, d0, n0;\n  float r, d;\n\n  n0 = snoise3( vec3(uv * 1.2 + offset, vTime * 0.5 + offset) ) * 0.5 + 0.5;\n  r0 = mix(0.0, 1.0, n0);\n  d0 = distance(uv, r0 / len * uv);\n  v0 = smoothstep(r0 + 0.1 + (sin(vTime + offset) + 1.0), r0, len);\n\n  v1 = light(0.15 * (1.0 + 1.5 * (-sin(vTime * 2. + offset * 0.5) * 0.5)) + 0.3 * strength, 10.0 , d0);\n\n  vec3 col = mix(color1, color2, uv.y * 2.);\n  col = col + v1;\n  col.rgb = clamp(col.rgb, 0.0, 1.0);\n  return vec4(col, v0);\n}\n\nvec4 makeBlob(vec2 uv,\n              float blob,\n              vec3 color1,\n              vec3 color2,\n              float width,\n              float baseReaction,\n              float likeReaction,\n              float audioStrength,\n              float offset,\n              vec2 noiseOffset) {\n  float len = length(uv);\n\n  float outerRadius = blob + width * 0.5 + baseReaction * (1.0 + max(likeReaction, audioStrength * 0.6) * 50. * baseReaction);\n\n  float strength = max(likeReaction, audioStrength);\n\n  vec4 noise = makeNoiseBlob2(uv * (1.0 - likeReaction * 0.5) + noiseOffset, color1, color2, strength, offset);\n  noise.a = mix(0.0, noise.a, smoothstep(outerRadius, 0.5, len));\n  noise.rgb += 0.6 * likeReaction * (1.0 - smoothstep(0.2, outerRadius * 0.8, len));\n\n  return noise;\n}\n\nvoid main() {\n  vec2 uv = gl_FragCoord.xy / vScreenSize.xy;\n\n  uv = uv * 2.0 - 1.0;\n  uv.y *= vScreenSize.y / min(vScreenSize.x, vScreenSize.y) / vScale;\n  uv.x *= vScreenSize.x / min(vScreenSize.x, vScreenSize.y) / vScale;\n\n  vec2 ruv = uv * 2.0;\n  float pr = length(ruv);\n  float pa = atan(ruv.y, ruv.x);\n\n  float idx = (pa/3.1415) / 2.0;   // 0 to 1\n\n  vec2 ruv1 = rotate(uv * 2.0, 3.1415);\n  float pa1 = atan(ruv1.y, ruv1.x);\n  float idx1 = (pa1/3.1415) / 2.0;   // 0 to 1\n  float idx21 = (pa1/3.1415 + 1.0) / 2.0 * 3.1415; // 0 to PI\n\n  float spark = triNoise3D(vec3(idx, 0.0, 0.0), 0.1);\n  spark = mix(spark, triNoise3D(vec3(idx1, 0.0, idx1), 0.1), smoothstep(0.9, 1.0, sin(idx21)));\n  spark = spark * 0.2 + pow(spark, 10.);\n  spark = smoothstep(0.0, spark, 0.3) * spark;\n\n  ${st(e)} color = vColorBackground;\n  vec4 blobColor;\n  float floatIndex;\n  float radius;\n\n  float n0 = snoise3(vec3(uv * 1.2, vTime * 0.5));\n\n  for (int i = 0; i < ${t}; i++) {\n    floatIndex = float(i);\n    radius = CIRCLE_RADIUS_BASE - CIRCLE_RADIUS_STEP * floatIndex;\n    blobColor = makeBlob(uv,\n                         mix(radius, radius + 0.3, n0),\n                         vColor[i],\n                         vColor[i+3],\n                         CIRCLE_WIDTH_BASE - CIRCLE_WIDTH_STEP * floatIndex,\n                         (SPARK_STRENGTH_BASE - SPARK_STRENGTH_STEP * floatIndex) * spark,\n                         vReact[i],\n                         vAudio[i],\n                         CIRCLE_OFFSET_BASE + CIRCLE_OFFSET_STEP * floatIndex,\n                         rotate(vRotation[i].xy, vTime * vRotation[i].z));\n\n\n    ${((t) => (t ? 'color.rgb = mix(color.rgb, blobColor.rgb, blobColor.a); color.a = max(blobColor.a, color.a);' : 'color = mix(color, blobColor.rgb, blobColor.a);'))(e)}\n  }\n\n  ${((t) => (t ? 'gl_FragColor = color;' : 'gl_FragColor = vec4(color, 1.0);'))(e)}\n}\n`;
+`
+precision highp float;
+
+uniform vec2 vScreenSize;
+uniform float vTime;
+uniform float vScale;
+
+uniform ${st(e)} vColorBackground;
+
+uniform vec3 vColor[6];
+uniform vec3 vRotation[3];
+
+uniform float vAudio[3];
+uniform float vReact[3];
+
+uniform vec2 vInteractionPoint;
+uniform float vInteraction;
+
+#define CIRCLE_WIDTH_BASE 0.8
+#define CIRCLE_WIDTH_STEP 0.2
+
+#define SPARK_STRENGTH_BASE 1.0
+#define SPARK_STRENGTH_STEP 0.3
+
+#define CIRCLE_RADIUS_BASE 0.95
+#define CIRCLE_RADIUS_STEP 0.15
+
+#define CIRCLE_OFFSET_BASE 0.0
+#define CIRCLE_OFFSET_STEP 1.57
+
+// --- existing permute/taylorInvSqrt/snoise3 kept as-is (for optional use) ---
+vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+
+float snoise3(vec3 v) {
+  const vec2 C = vec2(0.1666667, 0.3333333); // vec2(1.0/6.0, 1.0/3.0)
+  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+
+  // First corner
+  vec3 i = floor(v + dot(v, C.yyy));
+  vec3 x0 = v - i + dot(i, C.xxx);
+
+  // Other corners
+  vec3 g = step(x0.yzx, x0.xyz);
+  vec3 l = 1.0 - g;
+  vec3 i1 = min(g.xyz, l.zxy);
+  vec3 i2 = max(g.xyz, l.zxy);
+
+  // x0 = x0 - 0. + 0.0 * C
+  vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+  vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+  vec3 x3 = x0 - 1. + 3.0 * C.xxx;
+
+  // Permutations
+  i = mod(i, 289.0);
+  vec4 p = permute( permute( permute(
+             i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+           + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))
+           + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+
+  // Gradients ( N*N points uniformly over a square, mapped onto an octahedron.)
+  // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
+  float n_ = 0.142857142857; // 1.0/7.0
+  vec3 ns = n_ * D.wyz - D.xzx;
+
+  vec4 j = p - 49.0 * floor(p * ns.z *ns.z); //  mod(p,N*N), N=7
+
+  vec4 x_ = floor(j * ns.z);
+  vec4 y_ = floor(j - 7.0 * x_); // mod(j,N)
+
+  vec4 x = x_ *ns.x + ns.yyyy;
+  vec4 y = y_ *ns.x + ns.yyyy;
+  vec4 h = 1.0 - abs(x) - abs(y);
+
+  vec4 b0 = vec4( x.xy, y.xy );
+  vec4 b1 = vec4( x.zw, y.zw );
+
+  vec4 s0 = floor(b0)*2.0 + 1.0;
+  vec4 s1 = floor(b1)*2.0 + 1.0;
+  vec4 sh = -step(h, vec4(0.0));
+
+  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+
+  vec3 p0 = vec3(a0.xy,h.x);
+  vec3 p1 = vec3(a0.zw,h.y);
+  vec3 p2 = vec3(a1.xy,h.z);
+  vec3 p3 = vec3(a1.zw,h.w);
+
+  //Normalise gradients
+  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+  p0 *= norm.x;
+  p1 *= norm.y;
+  p2 *= norm.z;
+  p3 *= norm.w;
+
+  // Mix final noise value
+  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+  m = m * m;
+  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+}
+// --- end snoise3 ---
+
+// ---------- Interleaved Gradient Noise (2D) implementation ----------
+// lightweight gradient noise (Perlin-like) with interleaving by frame/coords
+float _rnd(in vec2 p) {
+  // cheap hash -> [0,1)
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+vec2 _grad(in vec2 p) {
+  float a = _rnd(p) * 6.283185307179586; // 2*pi*rand
+  return vec2(cos(a), sin(a));
+}
+
+// interleavedGradientNoise2D: p = position in noise space (can be uv*scale + offset),
+// frameHint = a float (vTime or frame index) to decorrelate across frames.
+float interleavedGradientNoise2D(in vec2 p, in float frameHint) {
+  // apply a tiny offset dependent on frameHint to interleave frames (decorrelation)
+  // scale down the frame influence so motion is not too strong
+  p += vec2(frameHint * 0.1234, frameHint * 0.4321) * 0.0001;
+
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+
+  // Smooth interpolation weights (Perlin fade)
+  vec2 w = f * f * (3.0 - 2.0 * f);
+
+  // Four corners
+  vec2 g00 = _grad(i + vec2(0.0, 0.0));
+  vec2 g10 = _grad(i + vec2(1.0, 0.0));
+  vec2 g01 = _grad(i + vec2(0.0, 1.0));
+  vec2 g11 = _grad(i + vec2(1.0, 1.0));
+
+  float n00 = dot(g00, f - vec2(0.0, 0.0));
+  float n10 = dot(g10, f - vec2(1.0, 0.0));
+  float n01 = dot(g01, f - vec2(0.0, 1.0));
+  float n11 = dot(g11, f - vec2(1.0, 1.0));
+
+  float nx0 = mix(n00, n10, w.x);
+  float nx1 = mix(n01, n11, w.x);
+  float nxy = mix(nx0, nx1, w.y);
+
+  // Normalize range approx to [-1,1] (empirical)
+  return nxy * 1.41421356; // *sqrt(2) to expand typical amplitude to ~[-1,1]
+}
+
+// convenience wrapper that returns [0,1]
+float IGN01(in vec2 p, in float frameHint) {
+  return interleavedGradientNoise2D(p, frameHint) * 0.5 + 0.5;
+}
+// -------------------------------------------------------------------
+
+
+float tri(in float x){return abs(fract(x)-.5);}
+vec3 tri3(in vec3 p){return vec3( tri(p.z+tri(p.y*20.)), tri(p.z+tri(p.x*1.)), tri(p.y+tri(p.x*1.)));}
+
+float triNoise3D(in vec3 p, in float spd)
+{
+  float z=0.4;
+  float rz = 0.1;
+  vec3 bp = p;
+  for (float i=0.; i<=4.; i++ )
+  {
+    vec3 dg = tri3(bp*0.01); // Increase the scale factor to make noise less frequent
+    p += (dg+vTime*.1*spd);
+
+    bp *= 4.; // Increase the scale factor
+    z *= 0.9;
+    p *= 1.6; // Increase the scale factor
+
+    rz+= (tri(p.z+tri(0.6*p.x+0.1*tri(p.y))))/z;
+  }
+  return smoothstep(0.0, 8., rz + sin(rz + sin(z) * 2.8) * 2.2);
+}
+
+vec2 rotate(vec2 p, float a) {
+  float s = sin(a);
+  float c = cos(a);
+  return vec2(p.x * c - p.y * s, p.x * s + p.y * c);
+}
+
+float light(float intensity, float attenuation, float dist) {
+  return intensity / (1.0 + dist + dist * attenuation);
+}
+
+vec4 makeNoiseBlob2(vec2 uv, vec3 color1, vec3 color2, float strength, float offset) {
+  float len = length(uv);
+  float v0, v1, cl;
+  float r0, d0, n0;
+  float r, d;
+
+  // --- replaced snoise3(...) with interleaved gradient noise ---
+  // build a 2D noise input from uv, offset and time for animated, decorrelated pattern
+  vec2 noiseInput = uv * 4.0 + vec2(offset, vTime * 0.25 + offset * 0.13);
+  n0 = IGN01(noiseInput, vTime * 0.5);
+
+  r0 = mix(0.0, 1.0, n0);
+  d0 = distance(uv, r0 / len * uv);
+  v0 = smoothstep(r0 + 0.1 + (sin(vTime + offset) + 1.0), r0, len);
+
+  v1 = light(0.15 * (1.0 + 1.5 * (-sin(vTime * 2. + offset * 0.5) * 0.5)) + 0.3 * strength, 10.0 , d0);
+
+  vec3 col = mix(color1, color2, uv.y * 2.);
+  col = col + v1;
+  col.rgb = clamp(col.rgb, 0.0, 1.0);
+  return vec4(col, v0);
+}
+
+vec4 makeBlob(vec2 uv,
+              float blob,
+              vec3 color1,
+              vec3 color2,
+              float width,
+              float baseReaction,
+              float likeReaction,
+              float audioStrength,
+              float offset,
+              vec2 noiseOffset) {
+  float len = length(uv);
+
+  float outerRadius = blob + width * 0.5 + baseReaction * (1.0 + max(likeReaction, audioStrength * 0.6) * 50. * baseReaction);
+
+  float strength = max(likeReaction, audioStrength);
+
+  // use IGN for cheap animated noise; noiseOffset rotated already passed in
+  vec2 ni = uv * (1.0 - likeReaction * 0.5) + noiseOffset;
+  // scale and add offset/time to create richer look
+  vec2 niScaled = ni * 3.0 + vec2(offset * 0.4, vTime * 0.2);
+  vec4 noise = makeNoiseBlob2(niScaled, color1, color2, strength, offset);
+  noise.a = mix(0.0, noise.a, smoothstep(outerRadius, 0.5, len));
+  noise.rgb += 0.6 * likeReaction * (1.0 - smoothstep(0.2, outerRadius * 0.8, len));
+
+  return noise;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / vScreenSize.xy;
+
+  uv = uv * 2.0 - 1.0;
+  uv.y *= vScreenSize.y / min(vScreenSize.x, vScreenSize.y) / vScale;
+  uv.x *= vScreenSize.x / min(vScreenSize.x, vScreenSize.y) / vScale;
+
+  vec2 ruv = uv * 2.0;
+  float pr = length(ruv);
+  float pa = atan(ruv.y, ruv.x);
+
+  float idx = (pa/3.1415) / 2.0;   // 0 to 1
+
+  vec2 ruv1 = rotate(uv * 2.0, 3.1415);
+  float pa1 = atan(ruv1.y, ruv1.x);
+  float idx1 = (pa1/3.1415) / 2.0;   // 0 to 1
+  float idx21 = (pa1/3.1415 + 1.0) / 2.0 * 3.1415; // 0 to PI
+
+  // --- spark: use IGN for cheap 1D/2D noise instead of triNoise3D for decorrelated result ---
+  float sparkA = IGN01(vec2(idx * 10.0, idx * 10.0), vTime * 0.7);
+  float sparkB = IGN01(vec2(idx1 * 10.0, idx1 * 10.0 + 17.3), vTime * 0.3);
+  float spark = mix(sparkA, sparkB, smoothstep(0.9, 1.0, sin(idx21)));
+  spark = spark * 0.2 + pow(spark, 10.0);
+  spark = smoothstep(0.0, spark, 0.3) * spark;
+
+  ${st(e)} color = vColorBackground;
+  vec4 blobColor;
+  float floatIndex;
+  float radius;
+
+  // another simple IGN usage to drive subtle variation (replaces earlier snoise3 call)
+  float n0 = IGN01(uv * 1.2 + vec2(vTime * 0.12), vTime * 0.5);
+
+  for (int i = 0; i < ${t}; i++) {
+    floatIndex = float(i);
+    radius = CIRCLE_RADIUS_BASE - CIRCLE_RADIUS_STEP * floatIndex;
+    blobColor = makeBlob(uv,
+                         mix(radius, radius + 0.3, n0),
+                         vColor[i],
+                         vColor[i+3],
+                         CIRCLE_WIDTH_BASE - CIRCLE_WIDTH_STEP * floatIndex,
+                         (SPARK_STRENGTH_BASE - SPARK_STRENGTH_STEP * floatIndex) * spark,
+                         vReact[i],
+                         vAudio[i],
+                         CIRCLE_OFFSET_BASE + CIRCLE_OFFSET_STEP * floatIndex,
+                         rotate(vRotation[i].xy, vTime * vRotation[i].z));
+
+
+    ${((t) => (t ? 'color.rgb = mix(color.rgb, blobColor.rgb, blobColor.a); color.a = max(blobColor.a, color.a);' : 'color = mix(color, blobColor.rgb, blobColor.a);'))(e)}
+  }
+
+  ${((t) => (t ? 'gl_FragColor = color;' : 'gl_FragColor = vec4(color, 1.0);'))(e)}
+}
+`;
     class nt {
         fps;
         render;
