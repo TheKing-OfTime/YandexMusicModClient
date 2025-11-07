@@ -861,7 +861,7 @@
                     );
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '500px' },
+                    style: { 'max-width': '31.25rem' },
                     title: 'Discord RPC',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -873,7 +873,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '466px', 'max-height': '600px', gap: 0 },
+                        style: { width: '29.125rem', 'max-height': '37.5rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1085,7 +1085,7 @@
                     }, [j]),
                     (0, i.jsxs)(p.a, {
                         className: H().root,
-                        style: { 'max-width': '550px', height: 'auto' },
+                        style: { 'max-width': '34.375rem', height: 'auto' },
                         title: 'Скачивание треков',
                         headerClassName: H().modalHeader,
                         contentClassName: H().modalContent,
@@ -1097,7 +1097,7 @@
                         labelClose: e({ id: 'interface-actions.close' }),
                         children: (0, i.jsxs)('ul', {
                             className: B().root,
-                            style: { width: '514px', gap: 0 },
+                            style: { width: '32.125rem', gap: 0 },
                             children: [
                                 (0, i.jsx)('li', {
                                     className: B().item,
@@ -1339,7 +1339,7 @@
                     );
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '500px' },
+                    style: { 'max-width': '31.25rem' },
                     title: 'Панель плеера',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1351,7 +1351,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '466px', gap: 0 },
+                        style: { width: '29.125rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1472,7 +1472,7 @@
                 }, []);
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '550px' },
+                    style: { 'max-width': '34.375rem' },
                     title: 'Поведение окна',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1484,7 +1484,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        style: { width: '32.125rem', 'max-height': '37.5rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1570,7 +1570,7 @@
                     }, []);
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '550px', height: 'auto', },
+                    style: { 'max-width': '34.375rem', height: 'auto', },
                     title: 'Поведение Моей Волны',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1582,7 +1582,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        style: { width: '32.125rem', 'max-height': '37.5rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1668,7 +1668,7 @@
                     }, []);
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '550px' },
+                    style: { 'max-width': '34.375rem' },
                     title: 'Анимация Моей Волны',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1680,7 +1680,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '514px', 'max-height': '600px', gap: 0 },
+                        style: { width: '32.125rem', 'max-height': '37.5rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1815,7 +1815,7 @@
                     );
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '550px', height: 'auto' },
+                    style: { 'max-width': '34.375rem', height: 'auto' },
                     title: 'Обновления',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1827,7 +1827,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: `${B().root} ${H().list}`,
-                        style: { width: '514px', gap: 0 },
+                        style: { width: '32.125rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
@@ -1922,7 +1922,7 @@
                     }, []);
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
-                    style: { 'max-width': '570px', height: 'auto' },
+                    style: { 'max-width': '35.625rem', height: 'auto' },
                     title: 'Системные настройки',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
@@ -1934,7 +1934,7 @@
                     labelClose: e({ id: 'interface-actions.close' }),
                     children: (0, i.jsxs)('ul', {
                         className: B().root,
-                        style: { width: '536px', gap: 0 },
+                        style: { width: '33.5rem', gap: 0 },
                         children: [
                             (0, i.jsx)('li', {
                                 className: B().item,
