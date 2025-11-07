@@ -2572,7 +2572,6 @@ uniform float vInteraction;
 #define CIRCLE_OFFSET_BASE 0.0
 #define CIRCLE_OFFSET_STEP 1.57
 
-// --- existing permute/taylorInvSqrt/snoise3 kept as-is (for optional use) ---
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
 
@@ -2643,57 +2642,6 @@ float snoise3(vec3 v) {
   m = m * m;
   return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
 }
-// --- end snoise3 ---
-
-// ---------- Interleaved Gradient Noise (2D) implementation ----------
-// lightweight gradient noise (Perlin-like) with interleaving by frame/coords
-float _rnd(in vec2 p) {
-  // cheap hash -> [0,1)
-  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
-}
-vec2 _grad(in vec2 p) {
-  float a = _rnd(p) * 6.283185307179586; // 2*pi*rand
-  return vec2(cos(a), sin(a));
-}
-
-// interleavedGradientNoise2D: p = position in noise space (can be uv*scale + offset),
-// frameHint = a float (vTime or frame index) to decorrelate across frames.
-float interleavedGradientNoise2D(in vec2 p, in float frameHint) {
-  // apply a tiny offset dependent on frameHint to interleave frames (decorrelation)
-  // scale down the frame influence so motion is not too strong
-  p += vec2(frameHint * 0.1234, frameHint * 0.4321) * 0.0001;
-
-  vec2 i = floor(p);
-  vec2 f = fract(p);
-
-  // Smooth interpolation weights (Perlin fade)
-  vec2 w = f * f * (3.0 - 2.0 * f);
-
-  // Four corners
-  vec2 g00 = _grad(i + vec2(0.0, 0.0));
-  vec2 g10 = _grad(i + vec2(1.0, 0.0));
-  vec2 g01 = _grad(i + vec2(0.0, 1.0));
-  vec2 g11 = _grad(i + vec2(1.0, 1.0));
-
-  float n00 = dot(g00, f - vec2(0.0, 0.0));
-  float n10 = dot(g10, f - vec2(1.0, 0.0));
-  float n01 = dot(g01, f - vec2(0.0, 1.0));
-  float n11 = dot(g11, f - vec2(1.0, 1.0));
-
-  float nx0 = mix(n00, n10, w.x);
-  float nx1 = mix(n01, n11, w.x);
-  float nxy = mix(nx0, nx1, w.y);
-
-  // Normalize range approx to [-1,1] (empirical)
-  return nxy * 1.41421356; // *sqrt(2) to expand typical amplitude to ~[-1,1]
-}
-
-// convenience wrapper that returns [0,1]
-float IGN01(in vec2 p, in float frameHint) {
-  return interleavedGradientNoise2D(p, frameHint) * 0.5 + 0.5;
-}
-// -------------------------------------------------------------------
-
 
 float tri(in float x){return abs(fract(x)-.5);}
 vec3 tri3(in vec3 p){return vec3( tri(p.z+tri(p.y*20.)), tri(p.z+tri(p.x*1.)), tri(p.y+tri(p.x*1.)));}
@@ -2733,11 +2681,7 @@ vec4 makeNoiseBlob2(vec2 uv, vec3 color1, vec3 color2, float strength, float off
   float r0, d0, n0;
   float r, d;
 
-  // --- replaced snoise3(...) with interleaved gradient noise ---
-  // build a 2D noise input from uv, offset and time for animated, decorrelated pattern
-  vec2 noiseInput = uv * 4.0 + vec2(offset, vTime * 0.25 + offset * 0.13);
-  n0 = IGN01(noiseInput, vTime * 0.5);
-
+  n0 = snoise3( vec3(uv * 1.2 + offset, vTime * 0.5 + offset) ) * 0.5 + 0.5;
   r0 = mix(0.0, 1.0, n0);
   d0 = distance(uv, r0 / len * uv);
   v0 = smoothstep(r0 + 0.1 + (sin(vTime + offset) + 1.0), r0, len);
@@ -2766,11 +2710,7 @@ vec4 makeBlob(vec2 uv,
 
   float strength = max(likeReaction, audioStrength);
 
-  // use IGN for cheap animated noise; noiseOffset rotated already passed in
-  vec2 ni = uv * (1.0 - likeReaction * 0.5) + noiseOffset;
-  // scale and add offset/time to create richer look
-  vec2 niScaled = ni * 3.0 + vec2(offset * 0.4, vTime * 0.2);
-  vec4 noise = makeNoiseBlob2(niScaled, color1, color2, strength, offset);
+  vec4 noise = makeNoiseBlob2(uv * (1.0 - likeReaction * 0.5) + noiseOffset, color1, color2, strength, offset);
   noise.a = mix(0.0, noise.a, smoothstep(outerRadius, 0.5, len));
   noise.rgb += 0.6 * likeReaction * (1.0 - smoothstep(0.2, outerRadius * 0.8, len));
 
@@ -2795,11 +2735,9 @@ void main() {
   float idx1 = (pa1/3.1415) / 2.0;   // 0 to 1
   float idx21 = (pa1/3.1415 + 1.0) / 2.0 * 3.1415; // 0 to PI
 
-  // --- spark: use IGN for cheap 1D/2D noise instead of triNoise3D for decorrelated result ---
-  float sparkA = IGN01(vec2(idx * 10.0, idx * 10.0), vTime * 0.7);
-  float sparkB = IGN01(vec2(idx1 * 10.0, idx1 * 10.0 + 17.3), vTime * 0.3);
-  float spark = mix(sparkA, sparkB, smoothstep(0.9, 1.0, sin(idx21)));
-  spark = spark * 0.2 + pow(spark, 10.0);
+  float spark = triNoise3D(vec3(idx, 0.0, 0.0), 0.1);
+  spark = mix(spark, triNoise3D(vec3(idx1, 0.0, idx1), 0.1), smoothstep(0.9, 1.0, sin(idx21)));
+  spark = spark * 0.2 + pow(spark, 10.);
   spark = smoothstep(0.0, spark, 0.3) * spark;
 
   ${st(e)} color = vColorBackground;
@@ -2807,8 +2745,7 @@ void main() {
   float floatIndex;
   float radius;
 
-  // another simple IGN usage to drive subtle variation (replaces earlier snoise3 call)
-  float n0 = IGN01(uv * 1.2 + vec2(vTime * 0.12), vTime * 0.5);
+  float n0 = snoise3(vec3(uv * 1.2, vTime * 0.5));
 
   for (int i = 0; i < ${t}; i++) {
     floatIndex = float(i);
