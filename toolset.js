@@ -511,12 +511,21 @@ async function buildNativeModule(moduleName) {
 
 async function buildNativeModules() {
     console.log('Собираю нативные модули');
+    // Пропуск сборки Windows модулей на других платформах
+    if (process.platform !== 'win32') {
+        console.log('Обнаружена система Linux/macOS - пропуск сборки Windows модулей.');
+        return;
+    }
     const nativeDir = path.join(__dirname, 'native');
-    const modules = (await fsp.readdir(nativeDir, {withFileTypes: true})).filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
+    const modules = (await fsp.readdir(nativeDir, { withFileTypes: true }))
+        .filter(dirent => dirent.isDirectory())
+        .map(dirent => dirent.name);
+
     for (const module of modules) {
-        await buildNativeModule(module)
+        await buildNativeModule(module);
     }
 }
+
 
 async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false, noNativeModules = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
     if (!noNativeModules) await buildNativeModules();
