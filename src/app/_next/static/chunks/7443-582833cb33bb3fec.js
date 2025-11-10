@@ -10748,6 +10748,18 @@
                 },
                 tg = (0, d.PA)(() => {
                     var e;
+                    const deviceTypeMap = {
+                        UNSPECIFIED: "Неизвестного устройства",
+                        WEB: "Сайта",
+                        ANDROID: "Android приложения",
+                        IOS: "IOS приложения",
+                        SMART_SPEAKER: "Умной колонки",
+                        WEB_TV: "ТВ",
+                        ANDROID_TV: "Android ТВ",
+                        APPLE_TV: "Apple ТВ",
+                        ANDROID_WEAR: "Android часов",
+                        WEB_DESKTOP: "ПК приложения",
+                    };
                     let { state: t, handleDebouncedToggle: a } = (0, V.F)({
                             delay: 150,
                             throttleTimeout: 100,
@@ -10878,7 +10890,7 @@
                                                 },
                                                 children: [
                                                     (0, s.jsxs)('span', {
-                                                        children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                                                        children: `Управление с ${deviceTypeMap?.[remoteDevice?.info?.type] ?? ''}: ${remoteDevice?.info?.title}`,
                                                     }),
                                                 ],
                                             }),
@@ -12303,6 +12315,20 @@
                     'he-aac-mp4': 'HE-AAC',
                     'flac-mp4': 'FLAC',
                 };
+
+                const deviceTypeMap = {
+                    UNSPECIFIED: "Неизвестного устройства",
+                    WEB: "Сайта",
+                    ANDROID: "Android приложения",
+                    IOS: "IOS приложения",
+                    SMART_SPEAKER: "Умной колонки",
+                    WEB_TV: "ТВ",
+                    ANDROID_TV: "Android ТВ",
+                    APPLE_TV: "Apple ТВ",
+                    ANDROID_WEAR: "Android часов",
+                    WEB_DESKTOP: "ПК приложения",
+                };
+
                 let theState = (0, n.eGp)();
                 let [downloadProgress, setDownloadProgress] = (0, u.useState)(0);
                 let [downloadInfo, setDownloadInfo] = (0, u.useState)(theState?.state?.queueState?.currentEntity?.value?.entity?.mediaSourceData?.data);
@@ -12524,7 +12550,7 @@
                                                         },
                                                         children: [
                                                             (0, s.jsxs)('span', {
-                                                                children: `Подключён удалённый плеер: ${remoteDevice?.info?.title}`,
+                                                                children: `Управление с ${deviceTypeMap?.[remoteDevice?.info?.type] ?? ''}: ${remoteDevice?.info?.title}`,
                                                             }),
                                                         ],
                                                     }),
