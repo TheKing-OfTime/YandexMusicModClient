@@ -49,6 +49,7 @@ const modUpdater_js_1 = require("./lib/modUpdater.js");
 const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
 const playerActions_js_1 = require("./types/playerActions.js");
 const { throttle } = require("./lib/utils.js");
+const crypto = require("crypto");
 
 const eventsLogger = new Logger_js_1.Logger("Events");
 const isBoolean = (value) => {
@@ -145,7 +146,7 @@ const handleApplicationEvents = (window) => {
         events_js_1.Events.DOWNLOAD_TRACKS,
         async (event, trackIds, dirType=undefined, dirName=undefined) => {
 
-            const hash = trackIds.join('|');
+            const hash = crypto.createHash('md5').update([dirType, ...trackIds].join('|')).digest('hex');
 
             let message = 'Загрузка треков...';
             if (dirName) {
