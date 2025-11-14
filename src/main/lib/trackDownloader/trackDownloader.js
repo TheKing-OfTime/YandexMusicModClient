@@ -11,8 +11,8 @@ const { FfmpegWrapper } = require("./ffmpegWrapper.js");
 const { createDirIfNotExist } = require("../utils.js");
 
 const TMP_PATH = path.join(electron.app.getAppPath(), "../../", "\\temp");
-const MAX_CONCURRENT_DOWNLOADS = 5;
-const API_REQUESTS_BATCH_LIMIT = 50;
+const MAX_CONCURRENT_DOWNLOADS = 3;
+const API_REQUESTS_BATCH_LIMIT = 100;
 
 
 function getTrackFilename(track) {
@@ -192,9 +192,9 @@ class TrackDownloader {
                 const i = index++;
                 if (i >= tasks.length) break;
                 try {
-                    this.logger?.warn?.(`Task ${i} started`);
+                    this.logger?.log?.(`Task ${i} started`);
                     results[i] = await tasks[i]();
-                    this.logger?.warn?.(`Task ${i} finished`);
+                    this.logger?.log?.(`Task ${i} finished`);
                 } catch (err) {
                     // не прерывать воркеры при ошибке задачи — сохранить ошибку в результате
                     results[i] = { error: err };
@@ -282,8 +282,12 @@ class TrackDownloader {
 
         const fileExtension = getFileExtensionFromCodec(data.codec);
 
-        if (useSyncLyrics && data.track?.lyricsInfo?.hasAvailableSyncLyrics) {
-            lyricsMeta = await this.tracksAPI.getSyncLyrics(data.trackId);
+        try {
+            if (useSyncLyrics && data.track?.lyricsInfo?.hasAvailableSyncLyrics) {
+                lyricsMeta = await this.tracksAPI.getSyncLyrics(data.trackId);
+            }
+        } catch (err) {
+            this.logger.warn(`Failed to fetch ${data.trackId} sync lyrics`, err);
         }
 
         const finalTrackPath = await this.getFinalTrackPath(data, fileExtension);
