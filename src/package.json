@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "YandexMusic",
-  "version": "5.75.2",
+  "version": "5.76.4",
   "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
   "author": "Яндекс Музыка <music@support.yandex.ru>",
   "homepage": "https://music.yandex.ru/download/",
@@ -73,7 +73,7 @@
     ]
   },
   "modification": {
-    "version": "1.40.2",
+    "version": "1.40.3",
     "realYMVersion": "5.75.2",
     "lastfm": {
       "apikey": "2b9046ddec8c00edcd0144b3abbea4ba",
@@ -82,9 +82,9 @@
     }
   },
   "buildInfo": {
-    "VERSION": "5.75.2",
-    "BRANCH": "1405000e73af70b55bf4650cfeab8c707210ddbb",
-    "BUILD_TIME": "2025-10-29T15:25:57Z"
+    "VERSION": "5.76.4",
+    "BRANCH": "f899b92a7e69523bbedd2e0635ddabe3e47ee7ce",
+    "BUILD_TIME": "2025-11-13T15:37:20Z"
   },
   "common": {
     "SHOW_RELEASE_NOTES": true,
