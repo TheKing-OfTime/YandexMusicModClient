@@ -399,6 +399,8 @@
                 const [menuWidth, setMenuWidth] = d.useState(160);
                 const triggerRef = d.useRef(null);
 
+                const currtentOption = options.find((opt) => opt.value === value);
+
                 const handleSelect = d.useCallback(
                     (val) => {
                         onChange(val);
@@ -453,14 +455,14 @@
                                     'aria-hidden': true,
                                     children: title,
                                 }),
-                                description &&
+                                (currtentOption?.description ?? description) &&
                                     i.jsx(c.Caption, {
                                         variant: 'div',
                                         type: 'text',
                                         size: 'xs',
                                         weight: 'medium',
                                         className: disabled ? L().descriptionDisabled : L().description,
-                                        children: description,
+                                        children: currtentOption?.description ?? description,
                                     }),
                             ],
                         }),
@@ -472,7 +474,7 @@
                                 }),
                             className: `${disabled ? 'settingBarWithDropdown_button__disabled' : 'settingBarWithDropdown_button'} Ai2iRN9elHpk_u5splD6 _3_Mxw7Si7j2g4kWjlpR _MWOVuZRvUQdXKTMcOPx`,
                             children: [
-                                options.find((opt) => opt.value === value)?.label || 'Select...',
+                                currtentOption?.label || 'Select...',
                                 i.jsx('ul', {
                                     role: 'menu',
                                     className: 'settingBarWithDropdown_menu',
@@ -1151,6 +1153,7 @@
                 );
             });
             let scrobblersSettings = (0, n.PA)(() => {
+
                 let { formatMessage: e } = (0, r.A)(),
                     {
                         modals: { scrobblersSettingsModal: t },
@@ -1159,6 +1162,7 @@
                     [userInfo, setUserInfo] = (0, d.useState)(null),
                     [unauthorizedProbe, setUnauthorizedProbe] = (0, d.useState)(false),
                     [isLastFmEnabled, setIsLastFmEnabled] = (0, d.useState)(window.nativeSettings.get('modFeatures.scrobblers.lastfm.enable')),
+                    [separatorType, setSeparatorType] = (0, d.useState)(window.nativeSettings.get('modFeatures.scrobblers.lastfm.separatorType')),
                     onLastFMLoginClick = (0, d.useCallback)(async (e) => {
                         console.log('scrobble-lastfm-login triggered.');
                         await window.scrobble.lastfmLogin();
@@ -1171,6 +1175,11 @@
                         console.log('modFeatures.scrobblers.lastfm.enable toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.scrobblers.lastfm.enable', e);
                         setIsLastFmEnabled(e);
+                    }, []),
+                    onSeparatorTypeChange = (0, d.useCallback)(async (e) => {
+                        console.log('separatorType changed. Value: ', e);
+                        window.nativeSettings.set('modFeatures.scrobblers.lastfm.separatorType', e);
+                        setSeparatorType(e);
                     }, []),
                     onLastFmAutoLikesToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.scrobblers.lastfm.autoLike toggled. Value: ', e);
@@ -1251,6 +1260,23 @@
                                         disabled: !userInfo,
                                         onChange: onLastFmScrobblingToggle,
                                         isChecked: isLastFmEnabled,
+                                    }),
+                                }),
+                                (0, i.jsx)('li', {
+                                    className: B().item,
+                                    children: (0, i.jsx)(settingBarWithDropdown, {
+                                        title: 'Разделитель',
+                                        description: 'Разделитель между артистами при скробблинге треков с несколькими артистами',
+                                        onChange: onSeparatorTypeChange,
+                                        value: separatorType,
+                                        direction: 'bottom',
+                                        options: [
+                                            { value: 0, label: 'Нет', description: 'Только первый артист' },
+                                            { value: 1, label: '" & "', description: 'Артист & артист' },
+                                            { value: 2, label: '" | "', description: 'Артист | артист' },
+                                            { value: 3, label: '", "', description: 'Артист, артист' },
+                                        ],
+                                        disabled: !isLastFmEnabled,
                                     }),
                                 }),
                                 (0, i.jsx)('li', {

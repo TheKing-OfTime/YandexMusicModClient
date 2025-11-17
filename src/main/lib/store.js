@@ -191,6 +191,7 @@ const init = () => {
         enable: true,
         fromYnison: false,
         autoLike: false,
+        separatorType: 1,
       },
     },
     downloader: {

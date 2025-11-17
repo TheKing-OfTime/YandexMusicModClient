@@ -1,5 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+
+const store = require("../../../../store.js");
+
+const separatorMap = {
+  0: null,
+  1: " & ",
+  2: " | ",
+  3: ", ",
+}
+
 exports.getTrackInfo = getTrackInfo;
 /**
  * Extracts Last.fm compatible track information from a track object
@@ -25,10 +35,14 @@ function getTrackInfo(track) {
 }
 
 const getArtists = (artistsArray) => {
+  const separatorType = store.getModFeatures()?.scrobblers?.lastfm?.separatorType;
+  const separator = separatorMap[parseInt(separatorType)] ?? " & ";
   let artistsLabel = artistsArray[0].name;
-  artistsArray.shift();
-  artistsArray.forEach((artist) => {
-    artistsLabel += " & " + artist.name;
-  });
+  if (separator) {
+      artistsArray.shift();
+      artistsArray.forEach((artist) => {
+          artistsLabel += separator + artist.name;
+      });
+  }
   return artistsLabel;
 };
