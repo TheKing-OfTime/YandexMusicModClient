@@ -12,7 +12,7 @@ const { createDirIfNotExist } = require("../utils.js");
 
 const TMP_PATH = path.join(electron.app.getAppPath(), "../../", "\\temp");
 const MAX_CONCURRENT_DOWNLOADS = 3;
-const API_REQUESTS_BATCH_LIMIT = 100;
+const API_REQUESTS_BATCH_LIMIT = 50;
 
 
 function getTrackFilename(track) {
@@ -211,7 +211,9 @@ class TrackDownloader {
 
     async downloadMultipleTracks(trackIds, subDirName, callback) {
         const useMP3 = store_js_1.getModFeatures()?.downloader?.useMP3 ?? false;
-        const totalTracks = trackIds.length;
+
+        let totalTracks = 0;
+
         if (!(store_js_1.getModFeatures()?.downloader?.useDefaultPath || store_js_1.getModFeatures()?.downloader?.defaultPath)) {
             this.logger.log("No default path set, canceling multiple track download.");
             return;
@@ -232,6 +234,14 @@ class TrackDownloader {
             tracksMeta.push(...metas);
         }
 
+        const requestedTracks = {};
+
+        tracksDownloadInfo.forEach((downloadInfo) => {
+            if(!downloadInfo.url) return;
+            requestedTracks[downloadInfo.trackId] = { downloadInfo, trackMeta: tracksMeta.find(track => track.id === downloadInfo.trackId) };
+            totalTracks++;
+        })
+
         const trackProgress = new Map();
 
         const updateTotalProgress = () => {
@@ -240,15 +250,16 @@ class TrackDownloader {
             callback(overall, overall);
         };
 
-        const tasks = trackIds.map((trackId, i) => async () => {
-            const trackDownloadInfo = tracksDownloadInfo[i];
+        const tasks = trackIds.map((trackId) => async () => {
+            const requestedTrack = requestedTracks[trackId.split(':')[0]];
+            const trackDownloadInfo = requestedTrack.downloadInfo;
 
             const data = {
                 downloadURL: trackDownloadInfo.url,
                 codec: trackDownloadInfo.codec,
                 bitrate: trackDownloadInfo.bitrate,
-                trackId,
-                track: tracksMeta[i],
+                trackId: trackDownloadInfo.trackId,
+                track: requestedTrack.trackMeta,
                 transport: trackDownloadInfo.transport,
                 key: trackDownloadInfo.key,
                 subDirName: removeInvalidCharsFromFilename(subDirName),
