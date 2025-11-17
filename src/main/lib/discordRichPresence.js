@@ -188,7 +188,7 @@ function compareActivities(newActivity) {
 
 const getArtist = (artistsArray) => {
   if (!artistsArray?.[0]?.name) return undefined;
-  let artistsLabel = (settings()?.statusDisplayType === 1 ? '' : "by ") + artistsArray[0].name;
+  let artistsLabel = artistsArray[0].name;
   artistsArray.shift();
   artistsArray.forEach((artist) => {
     artistsLabel += ", " + artist.name;
@@ -310,8 +310,6 @@ function buildActivityObject(playingState) {
   let album = playingState.track?.albums?.[0]?.title;
   if (title === album || album === undefined) {
     album = undefined;
-  } else if (isListeningType) {
-    album = "on " + album;
   }
 
   let albumArt = undefined;
