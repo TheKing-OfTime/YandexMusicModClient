@@ -152,29 +152,29 @@ const handleApplicationEvents = (window) => {
             if (dirName) {
                 switch (dirType) {
                     case 'album':
-                        message = dirName ? `Загрузка альбома: ${dirName}` : 'Загрузка альбома...';
+                        message = dirName ? `Загрузка альбома | #s | ${dirName}` : 'Загрузка альбома...';
                         break;
                     case 'playlist':
-                        message = dirName ? `Загрузка плейлиста: ${dirName}` : 'Загрузка плейлиста...';
+                        message = dirName ? `Загрузка плейлиста | #s | ${dirName}` : 'Загрузка плейлиста...';
                         break;
                     case 'single':
-                        message = dirName ? `Загрузка сингла: ${dirName}` : 'Загрузка сингла...';
+                        message = dirName ? `Загрузка сингла | #s | ${dirName}` : 'Загрузка сингла...';
                         break;
                     case 'podcast':
-                        message = dirName ? `Загрузка подкаста: ${dirName}` : 'Загрузка подкаста...';
+                        message = dirName ? `Загрузка подкаста | #s | ${dirName}` : 'Загрузка подкаста...';
                         break;
                     case 'audiobook':
-                        message = dirName ? `Загрузка аудиокниги: ${dirName}` : 'Загрузка аудиокниги...';
+                        message = dirName ? `Загрузка аудиокниги | #s | ${dirName}` : 'Загрузка аудиокниги...';
                         break;
                     default:
-                        message = dirName ? `Загрузка треков: ${dirName}` : 'Загрузка треков...';
+                        message = dirName ? `Загрузка треков | #s | ${dirName}` : 'Загрузка треков...';
                 }
             }
 
             sendBasicToastCreate(window, `trackDownload|${hash}`, message, false);
 
-            let callback = (progressRenderer, progressWindow) => {
-                sendProgressBarChange(window, `trackDownload|${hash}`, progressRenderer * 100);
+            let callback = (progressRenderer, progressWindow, statusLabel) => {
+                sendProgressBarChange(window, `trackDownload|${hash}`, progressRenderer * 100, statusLabel);
                 window.setProgressBar(progressWindow);
             };
 
@@ -666,12 +666,13 @@ const sendBasicToastDismiss = (window, toastID) => {
         toastID,
     );
 };
-const sendProgressBarChange = (window, elementType, progress) => {
+const sendProgressBarChange = (window, elementType, progress, statusLabel) => {
     window.webContents.send(
         events_js_1.Events.PROGRESS_BAR_CHANGE,
         elementType,
         progress,
         Date.now(),
+        statusLabel,
     );
     eventsLogger.info(
         "Event sent",

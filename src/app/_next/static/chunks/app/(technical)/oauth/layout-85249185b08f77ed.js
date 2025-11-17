@@ -582,6 +582,7 @@
                 toastWithProgress = (e) => {
                     let { closeToast: closeToast, toastID, message, buttonLabel, onButtonClick, disabled = false, dismissOnButtonClick = false } = e,
                         [getProgress, setProgress] = (0, t.useState)(-1),
+                        [statusLabel, setStatusLabel] = (0, t.useState)('Подготовка...'),
 
                         onClick = (0, t.useCallback)(
                             () => {
@@ -600,7 +601,7 @@
                                             variant: 'div',
                                             type: 'controls',
                                             size: 'm',
-                                            children: message,
+                                            children: message.replace('#s', statusLabel),
                                         }),
                                         buttonLabel && (0, n.jsx)(d.Button, {
                                             className: m().button,
@@ -619,18 +620,19 @@
                                         }),
                                     ],
                                 }),
-                            [disabled, buttonLabel, message, onClick],
+                            [disabled, buttonLabel, message, onClick, statusLabel],
                         ),
                         progressBarUpdate = (0, t.useCallback)(
-                            (event, elementType, progress, dedupeTimestamp = 0) => {
+                            (event, elementType, progress, dedupeTimestamp = 0, label=undefined) => {
                                 if (elementType !== toastID) return;
 
                                 if (window.dedupeNonces && window.dedupeNonces[elementType] === dedupeTimestamp) return;
                                 if (!window.dedupeNonces) window.dedupeNonces = {};
                                 if (dedupeTimestamp) window.dedupeNonces[elementType] = dedupeTimestamp;
                                 setProgress(progress);
+                                if (label) setStatusLabel(label);
                             },
-                            [setProgress],
+                            [setProgress, setStatusLabel],
                         ),
                         onBasicToastDismiss = (0, t.useCallback)(
                             (event, closeToastID, dedupeTimestamp = 0) => {

@@ -247,11 +247,12 @@ class TrackDownloader {
         const updateTotalProgress = () => {
             const total = Array.from(trackProgress.values()).reduce((a, b) => a + b, 0);
             const overall = total / totalTracks;
-            callback(overall, overall);
+            callback(overall, overall, `${Math.floor(total)} / ${totalTracks}`);
         };
 
         const tasks = trackIds.map((trackId) => async () => {
-            const requestedTrack = requestedTracks[trackId.split(':')[0]];
+            this.logger?.log?.(`Mapping track: ${trackId}`);
+            const requestedTrack = requestedTracks[`${trackId}`.split(':')[0]];
             const trackDownloadInfo = requestedTrack.downloadInfo;
 
             const data = {
@@ -279,10 +280,7 @@ class TrackDownloader {
         await this.resolveInBatches(tasks, MAX_CONCURRENT_DOWNLOADS);
         this.logger.log("All tracks downloaded");
 
-
-        setTimeout(() => callback(-1, -1), 1000);
-
-
+        setTimeout(() => callback(-1, -1), 5000);
     }
 
     async downloadTrack(data, callback) {
