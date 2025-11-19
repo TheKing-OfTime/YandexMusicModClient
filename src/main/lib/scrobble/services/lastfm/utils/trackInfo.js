@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const store = require("../../../../store.js");
 
 const separatorMap = {
-  0: null,
+  0: "", // Little hack. Only the first artist will be used.
   1: " & ",
   2: " | ",
   3: ", ",
