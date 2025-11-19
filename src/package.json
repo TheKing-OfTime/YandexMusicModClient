@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "YandexMusic",
-  "version": "5.76.4",
+  "version": "5.77.1",
   "description": "Персональные рекомендации, подборки на любой случай и музыкальные новинки",
   "author": "Яндекс Музыка <music@support.yandex.ru>",
   "homepage": "https://music.yandex.ru/download/",
@@ -73,7 +73,7 @@
     ]
   },
   "modification": {
-    "version": "1.41.0",
+    "version": "1.41.1",
     "realYMVersion": "5.75.2",
     "lastfm": {
       "apikey": "2b9046ddec8c00edcd0144b3abbea4ba",
