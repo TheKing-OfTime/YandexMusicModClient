@@ -646,13 +646,13 @@ async function patchExtractedBuild(extractedPath, options = { unlockDevtools: tr
 
     if (options.unlockDevtools) {
 
-        // Old way
-        // let configJs = await fsp.readFile(path.join(extractedPath, "/main/config.js"),"utf8",);
-        // configJs = configJs.replace(/enableDevTools: ?(false|true)/, "enableDevTools: true",);
-        // await fsp.writeFile(path.join(extractedPath, "/main/config.js"), configJs, "utf8",);
+        // Old way (Using it again because new YM version bundles all main files into main/index.js)
+        let indexJs = await fsp.readFile(path.join(extractedPath, "/main/index.js"),"utf8",);
+        indexJs = indexJs.replace(/devTools ?= ?(false|true)/, "devTools = true",);
+        await fsp.writeFile(path.join(extractedPath, "/main/index.js"), indexJs, "utf8",);
 
-        await modifyPackage({src: extractedPath, appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
-        console.log("Devtools Разблокированы", extractedPath);
+        // await modifyPackage({src: extractedPath, appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
+        // console.log("Devtools Разблокированы", extractedPath);
     }
 
     if (options.unlockDevPanel) {
