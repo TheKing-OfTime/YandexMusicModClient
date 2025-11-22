@@ -491,6 +491,7 @@ function compileMessages(messages) {
 }
 
 function createOutputJson(data, fileName) {
+    if (!data) return;
     try {
         fs.writeFileSync(path.join(OUTPUT, fileName), JSON.stringify(data, null, 2), "utf8");
         console.log(`💾 ${fileName} сохранён`);
@@ -631,17 +632,17 @@ function createOutputJson(data, fileName) {
         }
     }
 
-    console.log('Анализ файлов локализации...');
-
-    const raw = fs.readFileSync(path.join(MAIN_TRANSLATIONS_ROOT, 'ru.json'), 'utf8');
-    const messages = JSON.parse(raw);
-    const compiled = compileMessages(messages);
-
-    console.log('Анализ файлов локализации завершён...');
+    // console.log('Анализ файлов локализации...');
+    //
+    // const raw = fs.readFileSync(path.join(MAIN_TRANSLATIONS_ROOT, 'ru.json'), 'utf8');
+    // const messages = JSON.parse(raw);
+    // const compiled = compileMessages(messages);
+    //
+    // console.log('Анализ файлов локализации завершён...');
 
     console.log(`\n\n\n✅ Готово\n🌐 Роутов найдено: ${results.length}`);
     console.log(`🔬 Экспериментов найдено: ${experiments.length}`);
-    console.log(`💬 Локализованных сообщений: ${Object.keys(compiled).length}`);
+    // console.log(`💬 Локализованных сообщений: ${Object.keys(compiled).length}`);
 
     console.log(`\nСортирую результаты...`);
     console.time(`Сортировка завершена`);

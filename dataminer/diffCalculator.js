@@ -108,10 +108,14 @@ function getRoutesDiff(oldFolder, newFolder) {
 }
 
 function getRuLocalizationDiff(oldFolder, newFolder) {
-    const oldData = readJson(path.join(oldFolder, 'formatted_ru.json'));
-    const newData = readJson(path.join(newFolder, 'formatted_ru.json'));
+    try {
+        const oldData = readJson(path.join(oldFolder, 'formatted_ru.json'));
+        const newData = readJson(path.join(newFolder, 'formatted_ru.json'));
 
-    return calculateObjectDiff(oldData, newData);
+        return calculateObjectDiff(oldData, newData);
+    } catch (e) {
+        return { added: [], changed: [], removed: [] };
+    }
 }
 
 function getDiffTemplate(title, description, color = 0x378584) {
