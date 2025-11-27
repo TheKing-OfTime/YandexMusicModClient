@@ -648,7 +648,7 @@ async function patchExtractedBuild(extractedPath, options = { unlockDevtools: tr
 
         // Old way (Using it again because new YM version bundles all main files into main/index.js)
         let indexJs = await fsp.readFile(path.join(extractedPath, "/index.js"),"utf8",);
-        indexJs = indexJs.replace(/devTools ?= ?(false|true)/, "devTools = true",);
+        indexJs = indexJs.replace(/const\s?webPreferences\s?=\s?\{/i, "const webPreferences = { devTools: true,",);
         await fsp.writeFile(path.join(extractedPath, "/index.js"), indexJs, "utf8",);
 
         // await modifyPackage({src: extractedPath, appConfig: { enableDevTools: true, enableUpdateByProbability: false } });
