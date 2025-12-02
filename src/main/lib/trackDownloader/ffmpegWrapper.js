@@ -6,7 +6,7 @@ const fsSync = require("fs");
 const path = require("path");
 const { promisify } = require("util");
 const { exec } = require("child_process");
-const { artists2string, LRC2SYLT } = require("../utils.js");
+const { artists2string, LRC2SYLT, escapeRestrictedShellChars } = require("../utils.js");
 const NodeID3 = require('node-id3');
 
 const execPromise = promisify(exec);
@@ -77,10 +77,10 @@ class FfmpegWrapper {
                 ]
                 : []),
             ...(fileExtension !== "mp3" && data.track?.title
-                ? ["-metadata", `title="${data.track?.title}"`]
+                ? ["-metadata", `title="${escapeRestrictedShellChars(data.track?.title)}"`]
                 : []),
             ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.title
-                ? ["-metadata", `album="${data.track?.albums?.[0]?.title}"`]
+                ? ["-metadata", `album="${escapeRestrictedShellChars(data.track?.albums?.[0]?.title)}"`]
                 : []),
             ...(fileExtension !== "mp3" && data.track?.albums?.[0]?.year
                 ? ["-metadata", `year="${data.track?.albums?.[0]?.year}"`]

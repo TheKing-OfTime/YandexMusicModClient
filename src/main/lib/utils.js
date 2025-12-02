@@ -328,3 +328,10 @@ function LRC2SYLT(lrcString) {
 }
 
 exports.LRC2SYLT = LRC2SYLT;
+
+
+function escapeRestrictedShellChars(str) {
+    return str.replace(/(["\\])/g, '\\$1')
+}
+
+exports.escapeRestrictedShellChars = escapeRestrictedShellChars;
