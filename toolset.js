@@ -181,7 +181,7 @@ async function modifyPackage({src = SRC_PATH,  version=undefined, buildInfo=unde
     const oldVersion = packageJson.version;
 
     if (version) packageJson.version = version;
-    if (buildInfo) packageJson.buildInfo = buildInfo ?? { "VERSION": version, "BRANCH": "c3903938d4df76688c4639330c6834cd5ea664f2", "BUILD_TIME": "2025-11-13T15:37:20Z"}; // TODO: Поразмыслить как сделать по нормальному для сборки мейна через Роллап
+    packageJson.buildInfo = buildInfo ?? { "VERSION": version, "BRANCH": "c3903938d4df76688c4639330c6834cd5ea664f2", "BUILD_TIME": "2025-11-13T15:37:20Z"}; // TODO: Поразмыслить как сделать по нормальному для сборки мейна через Роллап
     if (modVersion) packageJson.modification.version = modVersion;
     if (appConfig) packageJson.appConfig = {...packageJson.appConfig, ...appConfig};
 
