@@ -10464,7 +10464,6 @@
                     });
 
                     e.state.playerState.event.onChange(() => {
-                        console.log(e.state.playerState.event.value);
                         if (
                             (e.state.playerState.event.value === O.Iu.UPDATING_PROGRESS) && !e.state.currentMediaPlayer.value.isCrossing.value
                         ) {
