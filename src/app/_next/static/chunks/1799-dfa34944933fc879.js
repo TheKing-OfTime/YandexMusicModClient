@@ -10277,97 +10277,76 @@
                                 case O.Iu.PAUSED:
                                     e.value.entity.saveTimeStageOfPlayback({
                                         stage: i.NOT_PLAYING,
-                                        reason: "event-".concat(O.Iu.PAUSED),
+                                        reason: 'event-'.concat(O.Iu.PAUSED),
                                     });
                                     break;
                                 case O.Iu.WAITING:
                                     e.value.entity.saveTimeStageOfPlayback({
                                         stage: i.NOT_PLAYING,
-                                        reason: "event-".concat(O.Iu.WAITING),
+                                        reason: 'event-'.concat(O.Iu.WAITING),
                                     });
                                     break;
                                 case O.Iu.PLAYING:
                                     e.value.entity.saveTimeStageOfPlayback({
                                         stage: i.PLAYING,
-                                        reason: "event-".concat(O.Iu.PLAYING),
+                                        reason: 'event-'.concat(O.Iu.PLAYING),
                                     });
                                     break;
                                 case O.Iu.MEDIA_ELEMENT_ERROR:
                                     e.value.entity.saveTimeStageOfPlayback({
                                         stage: i.NOT_PLAYING,
-                                        reason: "event-".concat(
-                                            O.Iu.MEDIA_ELEMENT_ERROR,
-                                        ),
+                                        reason: 'event-'.concat(O.Iu.MEDIA_ELEMENT_ERROR),
                                     });
                             }
                     }),
-                        a.beforeEntityPlayingProcessStart.tapPromise(
-                            "TotalPlayedTimePlugin",
-                            () => {
-                                let { currentEntity: e } = t.state.queueState;
-                                return (
-                                    e.value &&
-                                        e.value.entity.clearTimeStagesOfPlayback(),
-                                    Promise.resolve()
-                                );
-                            },
-                        ),
-                        a.afterMediaStartPlaying.tapPromise(
-                            "TotalPlayedTimePlugin",
-                            () => {
-                                let { currentEntity: e } = t.state.queueState;
-                                return (
-                                    e.value &&
-                                        e.value.entity.saveTimeStageOfPlayback({
-                                            stage: i.PLAYING,
-                                            reason: "hook-afterMediaStartPlaying",
-                                        }),
-                                    Promise.resolve()
-                                );
-                            },
-                        ),
-                        a.afterMediaEndPlaying.tapPromise(
-                            "TotalPlayedTimePlugin",
-                            () => {
-                                let { currentEntity: e } = t.state.queueState;
-                                return (
-                                    e.value &&
-                                        e.value.entity.saveTimeStageOfPlayback({
-                                            stage: i.NOT_PLAYING,
-                                            reason: "hook-afterMediaEndPlaying",
-                                        }),
-                                    Promise.resolve()
-                                );
-                            },
-                        ),
-                        a.beforeEntityChange.tapPromise(
-                            "TotalPlayedTimePlugin",
-                            () => {
-                                let { currentEntity: e } = t.state.queueState;
-                                return (
-                                    e.value &&
-                                        e.value.entity.saveTimeStageOfPlayback({
-                                            stage: i.NOT_PLAYING,
-                                            reason: "hook-beforeEntityChange",
-                                        }),
-                                    Promise.resolve()
-                                );
-                            },
-                        ),
-                        a.beforeContextSet.tapPromise(
-                            "TotalPlayedTimePlugin",
-                            () => {
-                                let { currentEntity: e } = t.state.queueState;
-                                return (
-                                    e.value &&
-                                        e.value.entity.saveTimeStageOfPlayback({
-                                            stage: i.NOT_PLAYING,
-                                            reason: "hook-beforeContextSet",
-                                        }),
-                                    Promise.resolve()
-                                );
-                            },
-                        );
+                        a.beforeEntityPlayingProcessStart.tapPromise('TotalPlayedTimePlugin', () => {
+                            let { currentEntity: e } = t.state.queueState;
+                            return e.value && e.value.entity.clearTimeStagesOfPlayback(), Promise.resolve();
+                        }),
+                        a.afterMediaStartPlaying.tapPromise('TotalPlayedTimePlugin', () => {
+                            let { currentEntity: e } = t.state.queueState;
+                            return (
+                                e.value &&
+                                    e.value.entity.saveTimeStageOfPlayback({
+                                        stage: i.PLAYING,
+                                        reason: 'hook-afterMediaStartPlaying',
+                                    }),
+                                Promise.resolve()
+                            );
+                        }),
+                        a.afterMediaEndPlaying.tapPromise('TotalPlayedTimePlugin', () => {
+                            let { currentEntity: e } = t.state.queueState;
+                            return (
+                                e.value &&
+                                    e.value.entity.saveTimeStageOfPlayback({
+                                        stage: i.NOT_PLAYING,
+                                        reason: 'hook-afterMediaEndPlaying',
+                                    }),
+                                Promise.resolve()
+                            );
+                        }),
+                        a.beforeEntityChange.tapPromise('TotalPlayedTimePlugin', () => {
+                            let { currentEntity: e } = t.state.queueState;
+                            return (
+                                e.value &&
+                                    e.value.entity.saveTimeStageOfPlayback({
+                                        stage: i.NOT_PLAYING,
+                                        reason: 'hook-beforeEntityChange',
+                                    }),
+                                Promise.resolve()
+                            );
+                        }),
+                        a.beforeContextSet.tapPromise('TotalPlayedTimePlugin', () => {
+                            let { currentEntity: e } = t.state.queueState;
+                            return (
+                                e.value &&
+                                    e.value.entity.saveTimeStageOfPlayback({
+                                        stage: i.NOT_PLAYING,
+                                        reason: 'hook-beforeContextSet',
+                                    }),
+                                Promise.resolve()
+                            );
+                        });
                 }
             }
             function t3(e) {
@@ -10465,18 +10444,29 @@
                     );
                 }
                 updateMetadata(e) {
-                    if (!e) return;
+                    if (!e) {
+                        window.navigator.mediaSession.metadata = null;
+                        return;
+                    }
                     let t = this.prepareMetadata(e);
-                    window.navigator.mediaSession.metadata = new MediaMetadata(
-                        t,
-                    );
+                    window.navigator.mediaSession.metadata = new MediaMetadata(t);
                 }
                 handlePlayerEvents(e) {
                     let t, a;
+
+                    e.state.currentMediaPlayer?.onChange((currentPlayer)=>{
+                        currentPlayer?.isCrossing.onChange((isCrossing)=>{
+                            if (!isCrossing) {
+                                this.updateMetadata();
+                                this.updateMetadata(e.state.queueState.currentEntity.value?.entity.data.meta);
+                            };
+                        });
+                    });
+
                     e.state.playerState.event.onChange(() => {
+                        console.log(e.state.playerState.event.value);
                         if (
-                            e.state.playerState.event.value ===
-                            O.Iu.UPDATING_PROGRESS
+                            (e.state.playerState.event.value === O.Iu.UPDATING_PROGRESS) && !e.state.currentMediaPlayer.value.isCrossing.value
                         ) {
                             var t, a;
                             this.updateMetadata(
