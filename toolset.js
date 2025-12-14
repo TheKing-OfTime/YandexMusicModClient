@@ -549,7 +549,7 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false, forceOp
 
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
 
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Dirty delay. To make sure YM is closed
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Dirty delay. To make sure YM is closed
 
     await bypassAsarIntegrity();
 
