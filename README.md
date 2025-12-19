@@ -407,6 +407,9 @@ node toolset.js rebuild
    <a href="https://github.com/ethermawe">
       <img width="50" alt="ethermawe" src="https://avatars.githubusercontent.com/u/173939481?v=4">
    </a>
+   <a href="https://github.com/mfoxru">
+      <img width="50" alt="mfoxru" src="https://avatars.githubusercontent.com/u/5925970?v=4">
+   </a>
 </p>
 
 > Список обновляется вручную
