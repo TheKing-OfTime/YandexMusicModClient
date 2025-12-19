@@ -549,7 +549,7 @@ async function buildDirectly(src, noMinify=false, noNativeModules=false, forceOp
 
     await build({srcPath: src, destDir: DIRECT_DIST_PATH, noMinify: noMinify, noNativeModules: noNativeModules });
 
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Dirty delay. To make sure YM is closed
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Dirty delay. To make sure YM is closed
 
     await bypassAsarIntegrity();
 
@@ -712,14 +712,14 @@ async function bypassWinAsarIntegrity(appPath) {
                 return console.log(`Файл не найден по пути: ${exePath}`);
             }
 
-            // 2) Создание резервной копии
-            const backupPath = exePath + '.backup';
-            if (!fs.existsSync(backupPath)) {
-                fs.copyFileSync(exePath, backupPath);
-                console.log(`Резервная копия создана: ${backupPath}`);
-            } else {
-                console.log(`Резервная копия уже существует: ${backupPath}`);
-            }
+            // // 2) Создание резервной копии
+            // const backupPath = exePath + '.backup';
+            // if (!fs.existsSync(backupPath)) {
+            //     fs.copyFileSync(exePath, backupPath);
+            //     console.log(`Резервная копия создана: ${backupPath}`);
+            // } else {
+            //     console.log(`Резервная копия уже существует: ${backupPath}`);
+            // }
 
             // 3) Шаблоны (ASCII‑hex)
             const oldHexStr = oldYMHashOverride ?? oldYMHash;
@@ -756,7 +756,6 @@ async function bypassWinAsarIntegrity(appPath) {
             } else {
                 fs.writeFileSync(exePath, fileBuf);
                 console.log(`Успешно заменено вхождений: ${count}.`);
-                fs.unlinkSync(backupPath);
             }
 
         } catch (err) {
