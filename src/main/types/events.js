@@ -40,4 +40,5 @@ var Events;
   Events["LASTFM_USERINFO_UPDATE"] = "LASTFM_USERINFO_UPDATE";
   Events["NATIVE_STORE_UPDATE"] = "NATIVE_STORE_UPDATE";
   Events["NATIVE_STORE_SET"] = "NATIVE_STORE_SET";
+  Events['TOGGLE_MINIPLAYER'] = 'TOGGLE_MINIPLAYER';
 })(Events || (exports.Events = Events = {}));

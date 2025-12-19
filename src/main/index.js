@@ -37,7 +37,8 @@ const path = require("path");
 const fs = require("fs");
 const store_js_1 = require("./lib/store.js");
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
-const modUpdater_js_1 = require("./lib/modUpdater.js");
+const modUpdater_js_1 = require('./lib/modUpdater.js');
+const miniPlayer_js_1 = require('./lib/miniplayer/miniplayer.js');
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
@@ -153,6 +154,7 @@ if (store_js_1.getModFeatures()?.tryEnableSurroundAudio ?? false) {
 }
 
 initSessionStoragePath();
+const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
 
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();

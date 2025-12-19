@@ -2944,6 +2944,7 @@
                     (e.YNISON_STATE = "YNISON_STATE"),
                     (e.BASIC_TOAST_CREATE = "BASIC_TOAST_CREATE"),
                     (e.BASIC_TOAST_DISMISS = "BASIC_TOAST_DISMISS"),
+                    (e.TOGGLE_MINIPLAYER = "TOGGLE_MINIPLAYER"),
                     e
                 );
             })({});

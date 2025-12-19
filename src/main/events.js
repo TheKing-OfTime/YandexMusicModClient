@@ -46,6 +46,7 @@ const trackDownloader_js_1 = require("./lib/trackDownloader/trackDownloader.js")
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const isAccelerator = require("electron-is-accelerator");
 const modUpdater_js_1 = require("./lib/modUpdater.js");
+const miniPlayer_js_1 = require('./lib/miniplayer/miniplayer.js');
 const scrobbleManager_js_1 = require("./lib/scrobble/index.js");
 const playerActions_js_1 = require("./types/playerActions.js");
 const { throttle } = require("./lib/utils.js");
@@ -59,6 +60,8 @@ const isBoolean = (value) => {
 const PROGRESS_BAR_THROTTLE_MS = 200;
 
 let mainWindow = undefined;
+
+const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
 
 const updateGlobalShortcuts = () => {
     eventsLogger.info("(GlobalShortcuts) Update triggered.");
@@ -399,6 +402,7 @@ const handleApplicationEvents = (window) => {
         (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
         (0, scrobbleManager_js_1.handlePlayingStateEvent)(data);
         (0, discordRichPresence_js_1.discordRichPresence)(data);
+        MiniPlayer.handlePlayerState(data);
     });
     electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
         eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
@@ -453,6 +457,11 @@ const handleApplicationEvents = (window) => {
             }
         },
     );
+
+    electron_1.ipcMain.on(events_js_1.Events.TOGGLE_MINIPLAYER, (event) => {
+        eventsLogger.info(`Event received`, events_js_1.Events.TOGGLE_MINIPLAYER);
+        MiniPlayer.toggle();
+    });
 
     electron_1.ipcMain.handle(
         events_js_1.Events.GET_PASSPORT_LOGIN,
@@ -781,3 +790,9 @@ electron_1.ipcMain.handle("zoom-out", zoomOut);
 electron_1.ipcMain.handle("reset-zoom", resetZoom);
 electron_1.ipcMain.handle("get-zoom-level", getZoomLevel);
 electron_1.ipcMain.handle("set-zoom-level", setZoomLevel);
+
+
+MiniPlayer.onPlayerAction((action, value) => {
+    sendPlayerAction(mainWindow, action, value);
+});
+
