@@ -12,3 +12,4 @@
 /native/*/node_modules/*
 /src/main/native_modules/
 /dataminer/output/
+/chunkDiff/
