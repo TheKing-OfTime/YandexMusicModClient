@@ -14227,7 +14227,8 @@
                     this.queueController.setShuffle(e);
                 }
                 setProgress(e) {
-                    return this.mediaController.setProgress(e);
+                    // Dirty workaround of Yasp bug with AAC traks
+                    return this.mediaController.setProgress(e === 60 ? 60.1 : e);
                 }
                 setVolume(e) {
                     return this.mediaController.setVolume(e);

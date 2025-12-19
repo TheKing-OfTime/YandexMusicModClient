@@ -26,4 +26,7 @@ var PlayerActions;
   PlayerActions["TOGGLE_SHUFFLE"] = "TOGGLE_SHUFFLE";
   PlayerActions["SHUFFLE"] = "SHUFFLE";                 // UNSUPPORTED
   PlayerActions["SHUFFLE_NONE"] = "SHUFFLE_NONE";       // UNSUPPORTED
+
+  PlayerActions["SET_VOLUME"] = "SET_VOLUME";         // PAYLOAD: volume (0-100)
+  PlayerActions["SET_PROGRESS"] = "SET_PROGRESS";
 })(PlayerActions || (exports.PlayerActions = PlayerActions = {}));

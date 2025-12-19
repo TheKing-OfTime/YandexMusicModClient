@@ -81,64 +81,67 @@
                     onLikeClick = (0, feedbackApi.KX)(sonataState.entityMeta),
                     onDislikeClick = (0, feedbackApi.mW)(sonataState.entityMeta);
                 let s = (0, n.useCallback)(
-                    (s, o, nonce = 1) => {
+                    (s, o, volume, nonce = 1) => {
                         if (window.playerActionEventDedupeNonce === nonce) return;
                         if (nonce) window.playerActionEventDedupeNonce = nonce;
                         switch (o) {
-                            case "PLAY":
-                            case "PAUSE":
-                            case "TOGGLE_PLAY":
+                            case 'PLAY':
+                            case 'PAUSE':
+                            case 'TOGGLE_PLAY':
                                 null == e || e.togglePause();
                                 break;
-                            case "MOVE_BACKWARD":
+                            case 'MOVE_BACKWARD':
                                 null == e || e.moveBackward();
                                 break;
-                            case "MOVE_FORWARD":
+                            case 'MOVE_FORWARD':
                                 null == e || e.moveForward();
                                 break;
-                            case "REPEAT_NONE":
-                                null == e || e.setRepeatMode("none");
+                            case 'REPEAT_NONE':
+                                null == e || e.setRepeatMode('none');
                                 break;
-                            case "REPEAT_CONTEXT":
-                                null == e || e.setRepeatMode("context");
+                            case 'REPEAT_CONTEXT':
+                                null == e || e.setRepeatMode('context');
                                 break;
-                            case "REPEAT_ONE":
-                                null == e || e.setRepeatMode("one");
+                            case 'REPEAT_ONE':
+                                null == e || e.setRepeatMode('one');
                                 break;
-                            case "TOGGLE_REPEAT":
-                                let nextMode = "none";
+                            case 'TOGGLE_REPEAT':
+                                let nextMode = 'none';
                                 switch (e?.state?.queueState?.repeat?.value) {
-                                    case "none":
-                                        nextMode =
-                                            e?.state?.currentContext?.value?.contextData?.type ===
-                                            "vibe"
-                                                ? "one"
-                                                : "context";
+                                    case 'none':
+                                        nextMode = e?.state?.currentContext?.value?.contextData?.type === 'vibe' ? 'one' : 'context';
                                         break;
-                                    case "context":
-                                        nextMode = "one";
+                                    case 'context':
+                                        nextMode = 'one';
                                         break;
-                                    case "one":
+                                    case 'one':
                                     default:
-                                        nextMode = "none";
+                                        nextMode = 'none';
                                         break;
                                 }
                                 null == e || e.setRepeatMode(nextMode);
                                 break;
-                            case "TOGGLE_SHUFFLE":
+                            case 'TOGGLE_SHUFFLE':
                                 null == e || e.toggleShuffle();
                                 break;
-                            case "TOGGLE_LIKE":
-                            case "LIKE":
-                            case "LIKE_NONE":
+                            case 'TOGGLE_LIKE':
+                            case 'LIKE':
+                            case 'LIKE_NONE':
                                 null == e || onLikeClick?.(sonataState.entityMeta, o);
                                 sendPlayerStateDefault?.(e);
                                 break;
-                            case "DISLIKE":
-                            case "DISLIKE_NONE":
-                            case "TOGGLE_DISLIKE":
+                            case 'DISLIKE':
+                            case 'DISLIKE_NONE':
+                            case 'TOGGLE_DISLIKE':
                                 null == e || onDislikeClick?.(sonataState.entityMeta, o);
                                 sendPlayerStateDefault?.(e);
+                                break;
+                            case 'SET_VOLUME':
+                                null == e || e.setExponentVolume(Math.min(Math.max(value, 0), 100));
+                                break;
+                            case 'SET_PROGRESS':
+                                console.log('e', e, 'value', value);
+                                null == e || e.setProgress(Math.max(value, 0));
                                 break;
                         }
                     },

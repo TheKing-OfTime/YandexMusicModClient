@@ -78,7 +78,7 @@
                     onLikeClick = (0, feedbackApi.KX)(sonataState.entityMeta),
                     onDislikeClick = (0, feedbackApi.mW)(sonataState.entityMeta);
                 let t = (0, s.useCallback)(
-                    (t, o, nonce = 1) => {
+                    (t, o, value, nonce = 1) => {
                         if (window.playerActionEventDedupeNonce === nonce) return;
                         if (nonce) window.playerActionEventDedupeNonce = nonce;
                         switch (o) {
@@ -132,6 +132,12 @@
                             case 'TOGGLE_DISLIKE':
                                 null == e || onDislikeClick?.(sonataState.entityMeta, o);
                                 sendPlayerStateDefault?.(e);
+                                break;
+                            case 'SET_VOLUME':
+                                null == e || e.setExponentVolume(Math.min(Math.max(value, 0), 100));
+                                break;
+                            case 'SET_PROGRESS':
+                                null == e || e.setProgress(Math.max(value, 0));
                                 break;
                         }
                     },

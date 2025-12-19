@@ -10465,7 +10465,7 @@
 
                     e.state.playerState.event.onChange(() => {
                         if (
-                            (e.state.playerState.event.value === O.Iu.UPDATING_PROGRESS) && !e.state.currentMediaPlayer.value.isCrossing.value
+                            (e.state.playerState.event.value === O.Iu.UPDATING_PROGRESS) && !e.state.currentMediaPlayer?.value.isCrossing?.value
                         ) {
                             var t, a;
                             this.updateMetadata(

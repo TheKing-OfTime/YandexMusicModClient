@@ -78,12 +78,10 @@ const updateGlobalShortcuts = () => {
 
             if (shortcut[1] && isAccelerator(shortcut[1])) {
                 electron_1.globalShortcut.register(shortcut[1], () => {
-                    const actions = shortcut[0].split(" ");
-                    actions.forEach((action) => {
-                        sendPlayerAction(
-                            mainWindow,
-                            playerActions_js_1.PlayerActions[action],
-                        );
+                    const commands = shortcut[0].split(" ");
+                    commands.forEach((command) => {
+                        const [action, value] = command.split('|');
+                        sendPlayerAction(mainWindow, playerActions_js_1.PlayerActions[action], value);
                     });
                 });
             } else {
@@ -684,7 +682,7 @@ const sendProgressBarChange = (window, elementType, progress, statusLabel) => {
 exports.sendProgressBarChange = sendProgressBarChange;
 const sendShowReleaseNotes = (window) => {
     window.webContents.send(events_js_1.Events.SHOW_RELEASE_NOTES);
-    eventsLogger.info("Event sent", events_js_1.Events.SHOW_RELEASE_NOTES);
+    eventsLogger.info('Event sent', events_js_1.Events.SHOW_RELEASE_NOTES);
 };
 exports.sendShowReleaseNotes = sendShowReleaseNotes;
 const sendRefreshApplicationData = (window) => {
@@ -695,16 +693,18 @@ const sendRefreshApplicationData = (window) => {
     );
 };
 exports.sendRefreshApplicationData = sendRefreshApplicationData;
-const sendPlayerAction = (window, action) => {
+const sendPlayerAction = (window, action, value) => {
     window.webContents.send(
         events_js_1.Events.PLAYER_ACTION,
         action,
+        value,
         Date.now(),
     );
     eventsLogger.info(
         "Event sent",
         events_js_1.Events.PLAYER_ACTION,
         action,
+        value,
         Date.now(),
     );
 };
