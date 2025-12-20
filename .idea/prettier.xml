@@ -3,6 +3,7 @@
   <component name="PrettierConfiguration">
     <option name="myConfigurationMode" value="MANUAL" />
     <option name="myRunOnReformat" value="true" />
+    <option name="runOnPaste" value="false" />
     <option name="codeStyleSettingsModifierEnabled" value="false" />
   </component>
 </project>
