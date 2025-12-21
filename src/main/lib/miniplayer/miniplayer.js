@@ -18,6 +18,9 @@ class MiniPlayer {
         electron.ipcMain.on('MINIPLAYER_PLAYER_ACTION', (event, action, value) => {
             this.onPlayerActionCallback?.(action, value);
         });
+        electron.ipcMain.on('MINIPLAYER_READY', (event) => {
+            this.window.webContents.send('MINIPLAYER_PLAYER_STATE', this.lastPlayerState);
+        });
     }
 
     createMiniPlayer() {
@@ -31,9 +34,10 @@ class MiniPlayer {
             height: 450,
             minWidth: 350,
             minHeight: 350,
-            alwaysOnTop: true,
+            backgroundColor: '#000000',
             frame: false,
             resizable: true,
+            minimizable: false,
             webPreferences: {
                 devTools: true,
                 webSecurity: true,
@@ -43,13 +47,12 @@ class MiniPlayer {
             },
         });
 
-        // Замените путь на ваш файл интерфейса миниплеера
-        //this.window.loadFile(path.join(__dirname, './miniplayer.html'));
+        // this.window.loadFile(path.join(__dirname, './miniplayer.html'));
         this.window.loadURL('http://localhost:5173/');
 
-        window.once('ready-to-show', () => {
+        this.window.once('ready-to-show', () => {
             this.window.show();
-            this.window.webContents.send('MINIPLAYER_PLAYER_STATE', this.lastPlayerState);
+            this.window.setAlwaysOnTop(true, "normal"); // Поверх всех окон. Даже фулскрин приложений
         });
 
         this.window.on('closed', () => {

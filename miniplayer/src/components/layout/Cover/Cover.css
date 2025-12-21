@@ -1,0 +1,30 @@
+.Cover_image {
+    aspect-ratio: 1;
+    width: 100%;
+}
+
+.Cover_image_placeholder {
+    aspect-ratio: 1;
+    width: 100%;
+    background-color: #262626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Cover_image_placeholder_icon {
+    color: #929292;
+}
+
+.Cover_container {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    width: 70vmin;
+
+    box-shadow: 0 0.5rem 0.75rem
+    0.25rem rgba(0, 0, 0, 0.24);;
+}

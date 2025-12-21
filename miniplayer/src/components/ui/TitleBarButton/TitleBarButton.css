@@ -1,0 +1,32 @@
+.TitleBar_icon {
+    color: #ffffff;
+}
+
+.TitleBar_Button, .TitleBar_QuitButton {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    width: 46px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    -webkit-app-region: no-drag;
+}
+
+.TitleBar_Button:hover {
+    background-color: #ffffff33;
+}
+
+.TitleBar_QuitButton:hover {
+    background-color: #f23f42ff
+}
