@@ -39,7 +39,7 @@ function App() {
         <>
             <TitleBar />
             <main className="main" style={bgColor}>
-                <Cover coverUri={playerState.track?.coverUri} />
+                <Cover coverUri={playerState.track?.coverUri} nextCoverUri={playerState.nextTrack?.coverUri} />
                 <TrackMeta track={playerState.track}/>
                 {/*<Controls />*/}
             </main>

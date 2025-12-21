@@ -1,6 +1,8 @@
 .Cover_image {
     aspect-ratio: 1;
     width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 
 .Cover_image_placeholder {
@@ -24,6 +26,8 @@
     align-items: center;
     aspect-ratio: 1;
     width: 70vmin;
+    min-width: 245px;
+    min-height: 245px;
 
     box-shadow: 0 0.5rem 0.75rem
     0.25rem rgba(0, 0, 0, 0.24);;
