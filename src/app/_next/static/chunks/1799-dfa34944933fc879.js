@@ -6218,7 +6218,7 @@
                     }
 
                     const meanSquare = sumSquares / bufferLength;
-                    const rawRMS = Math.sqrt(meanSquare);
+                    const rawRMS = Math.sqrt(meanSquare) * 2;
 
                     if (window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY?.() ?? false) {
                         const alpha = window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY_COEFFICENT?.() ?? 0.2;
@@ -6232,6 +6232,45 @@
 
                     return rawRMS;
                 }
+
+                getRMS2() {
+                    const { analyserNode } = this.currentGraph;
+
+                    // Частотные данные (ВАЖНО)
+                    const bufferLength = analyserNode.frequencyBinCount;
+                    const freqData = new Float32Array(bufferLength);
+                    analyserNode.getFloatFrequencyData(freqData); // в dB
+
+                    let sumSquares = 0;
+
+                    const stored = JSON.parse(window.localStorage.getItem(nVal.cYZ.YmPlayerVolume));
+                    const volume = this.getExponentialVolume(stored?.value ?? 1);
+
+                    for (let i = 0; i < bufferLength; i++) {
+                        const db = freqData[i];
+
+                        if (db === -Infinity) continue;
+
+                        const linear = ((volume !== 0) ? (Math.pow(10, db / 20) / volume) : 0);
+                        sumSquares += linear * linear;
+                    }
+
+                    const meanSquare = sumSquares / bufferLength;
+                    const rawEnergy = Math.sqrt(meanSquare) * 120;
+
+                    if (window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY?.() ?? false) {
+                        const alpha = window.VIBE_ANIMATION_SMOOTH_DYNAMIC_ENERGY_COEFFICENT?.() ?? 0.2;
+                        this._prevRms =
+                            this._prevRms !== undefined
+                                ? this._prevRms * (1 - alpha) + rawEnergy * alpha
+                                : rawEnergy;
+
+                        return this._prevRms;
+                    }
+
+                    return rawEnergy;
+                }
+
                 constructor({ currentAudioElement: e, graphs: t }) {
                     (0, w._)(this, "currentGraph", null),
                         (0, w._)(this, "graphs", void 0),

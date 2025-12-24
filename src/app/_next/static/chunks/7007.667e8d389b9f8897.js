@@ -406,8 +406,10 @@
                             { low: 400, high: 5e3 },
                             { low: 5e3, high: 20e3 },
                         ]);
+                        const rms = S.analyser.getRMS();
+                        const rms2 = S.analyser.getRMS2();
 
-                        const energy = S.analyser.getRMS() * 2 * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) + 0.3;
+                        const energy = (rms + rms2) / 2 * (window.VIBE_ANIMATION_INTENSITY_COEFFICIENT?.() ?? 1) + 0.3;
                         if (_ != null) _.updateEnergy(window.VIBE_ANIMATION_USE_DYNAMIC_ENERGY?.() ? energy : (j?.entityMeta?.trackParameters?.energy ?? 1));
 
                         null == _ ||
