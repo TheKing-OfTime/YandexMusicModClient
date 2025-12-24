@@ -30,7 +30,7 @@ async function drawThumbnail(width, height, previousTrack, currentTrack, nextTra
         layers.push({
             input: prevImg,
             top: Math.floor(height / 2) - Math.floor(smallSize / 2),
-            left: Math.floor(width / 2) - Math.floor(height / 2) - smallSize - gap
+            left: Math.floor(width / 2) - Math.floor((isPlaying ? height : smallSize) / 2) - smallSize - gap
         });
     if (currImg)
         layers.push({
@@ -42,7 +42,7 @@ async function drawThumbnail(width, height, previousTrack, currentTrack, nextTra
         layers.push({
             input: nextImg,
             top: Math.floor(height / 2) - Math.floor(smallSize / 2),
-            left: Math.floor(width / 2) + Math.floor(height / 2) + gap
+            left: Math.floor(width / 2) + Math.floor((isPlaying ? height : smallSize)  / 2) + gap
         });
 
     return await background.composite(layers).png().toBuffer();
