@@ -3,10 +3,15 @@
   inset: 0;
   display: flex;
   background-color: var(--player-bg-color, var(--default-bg-color));
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, gap 0.3s;;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1rem;
   padding-top: 32px;
+
+  @media (max-height: 437px) {
+    gap: 0.3rem;
+  }
+
 }

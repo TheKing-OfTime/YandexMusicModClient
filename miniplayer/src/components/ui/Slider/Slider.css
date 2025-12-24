@@ -1,0 +1,163 @@
+:root {
+  --track-size: 4px;
+  --thumb-size: 12px;
+  --track-color: #ffffff10;
+  --progress-color: #fff;
+  --seek-before-width: 0%;
+  --buffered-width: 0%;
+  --ym-radius-size-m: 0.25rem;
+  --ym-radius-size-round: 999px;
+  --ym-duration-transition: 0.3s;
+  --value: 0;
+  --thumb-border: 5px solid var(--player-bg-color);
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: var(--thumb-size);
+  display: flex;
+  align-items: center;
+}
+
+/* основной элемент input[type="range"] внутри контейнера .slider */
+.slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: var(--ym-radius-size-m);
+  outline: none;
+  position: relative;
+  width: 100%;
+  height: var(--thumb-size);
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+/* WebKit трек и большой градиент (буфер) */
+.slider input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(
+          to right,
+          var(--progress-color) var(--buffered-width),
+          var(--track-color) var(--buffered-width)
+  );
+  border-radius: var(--ym-radius-size-m);
+  cursor: pointer;
+  height: var(--track-size);
+  width: 100%;
+}
+
+/* WebKit ползунок */
+.slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--progress-color);
+  border-radius: var(--ym-radius-size-round);
+  border: 4px solid var(--player-bg-color, var(--default-bg-color));
+  box-sizing: content-box;
+  cursor: pointer;
+  z-index: 1;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  position: relative;
+  margin-top: calc((var(--track-size) - var(--thumb-size) - 8px) / 2);
+  -webkit-transition:
+          background-color var(--ym-duration-transition),
+          border-color var(--ym-duration-transition);
+  transition:
+          background-color var(--ym-duration-transition),
+          border-color var(--ym-duration-transition);
+}
+
+/* уменьшение анимаций для людей, у которых это настроено в системе */
+@media (prefers-reduced-motion: reduce) {
+  .slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+
+/* прячем ползунок, если контейнер не имеет класса .show-thumb */
+.slider:not(:hover) input[type="range"]::-webkit-slider-thumb {
+  opacity: 0;
+}
+
+/* индикатор прогресса (до позиции ползунка) — псевдоэлемент контейнера */
+.slider:after {
+  background-color: var(--progress-color);
+  border-radius: var(--ym-radius-size-m);
+  content: "";
+  cursor: pointer;
+  height: var(--track-size);
+  top: 50%;
+  left: 0;
+  position: absolute;
+  transform: translateY(-50%);
+  transition: background-color var(--ym-duration-transition);
+  width: calc(var(--value) * 1%);
+  max-width: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider:after {
+    transition: none;
+  }
+}
+
+/* Firefox */
+.slider input[type="range"]::-moz-range-track {
+  background: linear-gradient(
+          to right,
+          var(--progress-color) var(--buffered-width),
+          var(--track-color) var(--buffered-width)
+  );
+  border-radius: var(--ym-radius-size-m);
+  cursor: pointer;
+  width: 100%;
+  height: var(--track-size);
+}
+
+.slider input[type="range"]::-moz-range-progress {
+  border-radius: var(--ym-radius-size-m);
+  background-color: var(--progress-color);
+}
+
+.slider input[type="range"]::-moz-range-thumb {
+  border: none;
+  border-radius: var(--ym-radius-size-round);
+  cursor: pointer;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  background-color: var(--progress-color);
+  -moz-transition:
+          background-color var(--ym-duration-transition),
+          border-color var(--ym-duration-transition);
+  transition:
+          background-color var(--ym-duration-transition),
+          border-color var(--ym-duration-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider input[type="range"]::-moz-range-thumb {
+    -moz-transition: none;
+    transition: none;
+  }
+}
+
+.slider:not(.show-thumb) input[type="range"]::-moz-range-thumb {
+  opacity: 0;
+}
+
+/* состояние disabled контейнера */
+.slider.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* фокус input */
+.slider input[type="range"]:focus {
+  outline: none;
+}

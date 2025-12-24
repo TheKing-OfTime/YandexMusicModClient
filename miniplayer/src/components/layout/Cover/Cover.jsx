@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Icon from '../../ui/Icon.jsx';
 import getCoverUrls from '../../../utils/getCoverUrls.js';
@@ -10,16 +10,6 @@ export default function Cover({ coverUri, nextCoverUri=undefined }) {
     const nextUrls = getCoverUrls(nextCoverUri);
 
     useEffect(() => {
-
-        // Preload current cover
-        if (coverUri) {
-            const img = new Image();
-            img.src = urls.src;
-            img.sizes = '70vmin';
-            img.srcset = urls.srcSet;
-            img.decode?.().catch(() => {});
-        }
-
         // Preload next cover
         if (nextCoverUri) {
             const nextImg = new Image();

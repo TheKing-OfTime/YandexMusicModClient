@@ -4,7 +4,7 @@ import hex2hsl from './utils/hex2hsl.js';
 
 import TitleBar from './components/layout/TitleBar/TitleBar.jsx';
 import Cover from './components/layout/Cover/Cover.jsx';
-// import Controls from './components/Controls.jsx';
+import Controls from './components/layout/Controls/Controls.jsx';
 import TrackMeta from './components/layout/TrackMeta/TrackMeta.jsx';
 
 
@@ -41,7 +41,7 @@ function App() {
             <main className="main" style={bgColor}>
                 <Cover coverUri={playerState.track?.coverUri} nextCoverUri={playerState.nextTrack?.coverUri} />
                 <TrackMeta track={playerState.track}/>
-                {/*<Controls />*/}
+                <Controls playerState={playerState}/>
             </main>
         </>
     );

@@ -5,6 +5,12 @@
 }
 
 .TrackMeta_title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     font-family: YS Text, sans-serif;
     font-size: 1rem;
     font-style: normal;
@@ -17,6 +23,12 @@
 }
 
 .TrackMeta_artists {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     font-family: YS Text, sans-serif;
     font-size: 1rem;
     font-style: normal;
@@ -26,4 +38,8 @@
     color: #ffffff80;
     text-align: center;
     margin: 0;
+
+    @media (max-height: 380px) {
+        -webkit-line-clamp: 1;
+    }
 }
