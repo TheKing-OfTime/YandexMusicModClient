@@ -33,7 +33,7 @@ class MiniPlayer {
             width: 400,
             height: 450,
             minWidth: 275,
-            minHeight: 365,
+            minHeight: 380,
             backgroundColor: '#000000',
             frame: false,
             resizable: true,
