@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    aspect-ratio: 1;
     transition:
             background-color var(--ym-duration-transition),
             transform var(--ym-duration-transition),
@@ -50,6 +49,7 @@
 
 .PlayerActionButton_overlay {
     background-color: var(--controls-bg-color-enabled);
+    aspect-ratio: 1;
 }
 
 .PlayerActionButton_overlay:not(:disabled):focus-visible,
@@ -59,6 +59,7 @@
 }
 
 .PlayerActionButton_overlay_primary {
+    aspect-ratio: 1;
     color: var(--controls-primary-color-enabled);
     background-color: var(--controls-bg-color-enabled);
 }
