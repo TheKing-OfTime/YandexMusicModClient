@@ -1,4 +1,5 @@
 .ProgressBar_container {
-    width: 70vmin;
+    width: var(--cover-size);
+    transition: var(--cover-width-transition);
     min-width: 245px;
 }

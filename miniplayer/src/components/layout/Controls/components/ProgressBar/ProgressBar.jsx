@@ -32,7 +32,7 @@ export default function ProgressBar({ duration, initialProgress, isPlaying, onSe
                 className="ProgressBar_slider"
                 value={progress}
                 min={0}
-                max={Math.ceil(duration / 1000)}
+                max={duration / 1000}
                 step={1}
                 onChange={(value) => {
                     setProgress(value);

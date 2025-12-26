@@ -12,7 +12,7 @@ export default function Controls({ playerState }) {
     }, []);
 
     useEffect(() => {
-        if (playerState.status !== 'buffering') {
+        if (playerState.status !== 'buffering' && playerState.status !== 'loadingMediaSource') {
             setProgress(playerState.progress);
         }
     }, [playerState.progress, playerState.status]);

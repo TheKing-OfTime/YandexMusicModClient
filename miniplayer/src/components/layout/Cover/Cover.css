@@ -25,9 +25,11 @@
     justify-content: center;
     align-items: center;
     aspect-ratio: 1;
-    width: 70vmin;
+    width: var(--cover-size);
     min-width: 245px;
     min-height: 245px;
+
+    transition: var(--cover-width-transition);
 
     box-shadow: 0 0.5rem 0.75rem
     0.25rem rgba(0, 0, 0, 0.24);;

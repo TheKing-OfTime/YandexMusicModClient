@@ -1,3 +1,24 @@
+:root {
+  --cover-size: min(70vh, 90vw);
+
+  @media (min-height: 560px) {
+    --cover-size: min(55vh, 90vw);
+  }
+
+  @media (min-height: 535px) and (max-height: 549px) {
+    --cover-size: min(375px, 90vw);
+  }
+
+  @media (min-height: 550px) and (max-height: 565px) {
+    --cover-size: min(311px, 90vw);
+  }
+
+  @media (min-height: 540px) and (max-height: 560px) {
+    --cover-width-transition: width 0.1s;
+  }
+
+}
+
 .main {
   position: absolute;
   inset: 0;
