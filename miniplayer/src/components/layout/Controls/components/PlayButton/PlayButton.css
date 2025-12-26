@@ -1,0 +1,20 @@
+.PlayButton {
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    color: #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+            background-color var(--ym-duration-transition),
+            transform var(--ym-duration-transition),
+            color var(--ym-duration-transition);
+}
+.PlayButton:focus-visible,
+.PlayButton:hover {
+    transform: scale(1.05);
+}

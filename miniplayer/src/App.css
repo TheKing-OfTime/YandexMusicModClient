@@ -14,16 +14,18 @@
   }
 
   @media (min-height: 540px) and (max-height: 560px) {
-    --cover-width-transition: width 0.1s;
+    --cover-width-transition: width 0.2s;
   }
 
 }
 
 .main {
+  --player-color: var(--player-bg-color, var(--default-bg-color));
+
   position: absolute;
   inset: 0;
   display: flex;
-  background-color: var(--player-bg-color, var(--default-bg-color));
+  background-color: var(--player-color);
   transition: background-color 0.3s, gap 0.3s;;
   justify-content: center;
   align-items: center;

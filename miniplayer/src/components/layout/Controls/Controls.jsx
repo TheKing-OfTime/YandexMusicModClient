@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import ProgressBar from './components/ProgressBar/ProgressBar.jsx';
+import BottomActions from './components/BottomActions/BottomActions.jsx';
 
 import './Controls.css'
 
@@ -25,6 +26,7 @@ export default function Controls({ playerState }) {
                 isPlaying={playerState.isPlaying}
                 onSeeked={onSeeked}
             />
+            <BottomActions playerState={playerState} />
         </div>
     );
 }

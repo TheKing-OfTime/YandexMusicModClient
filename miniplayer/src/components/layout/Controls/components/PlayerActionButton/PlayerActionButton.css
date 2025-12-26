@@ -1,0 +1,46 @@
+.PlayerActionButton {
+
+    --controls-color-disabled: hsla(0, 0%, 100%, 0.08);
+    --controls-color-enabled: hsla(0, 0%, 100%, 0.5);
+
+
+    padding: 0.625rem;
+    margin: 0;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    color: var(--controls-color-enabled);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+            background-color var(--ym-duration-transition),
+            transform var(--ym-duration-transition),
+            color var(--ym-duration-transition),
+            padding-inline var(--ym-duration-transition);
+
+    @media (max-width: 335px) {
+        padding-inline: 0.375rem;
+
+    }
+}
+.PlayerActionButton:not(:disabled):focus-visible,
+.PlayerActionButton:not(:disabled):hover {
+    transform: scale(1.05);
+    color: #e6e6e6;
+}
+
+.PlayerActionButton:disabled {
+    cursor: default;
+    color: var(--controls-color-disabled);
+}
+
+.PlayerActionButton_secondary {
+    padding: 0.5rem;
+
+    @media (max-width: 320px) {
+        padding-inline: 0.15rem;
+
+    }
+}

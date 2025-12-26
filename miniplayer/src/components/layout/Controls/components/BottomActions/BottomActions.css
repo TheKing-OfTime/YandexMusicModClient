@@ -1,0 +1,16 @@
+.BottomPlayerActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+
+    transition: gap var(--ym-duration-transition);
+
+    @media (max-height: 550px) {
+        display: none;
+    }
+
+    @media (max-width: 375px) {
+        gap: 0;
+    }
+}

@@ -9,7 +9,7 @@
   --ym-radius-size-round: 999px;
   --ym-duration-transition: 0.3s;
   --value: 0;
-  --thumb-border: 5px solid var(--player-bg-color);
+  --thumb-border: 5px solid var(--player-color);
 }
 
 .slider {
@@ -54,7 +54,7 @@
   appearance: none;
   background-color: var(--progress-color);
   border-radius: var(--ym-radius-size-round);
-  border: 4px solid var(--player-bg-color, var(--default-bg-color));
+  border: 4px solid var(--player-color);
   box-sizing: content-box;
   cursor: pointer;
   z-index: 1;
