@@ -1,5 +1,8 @@
 const electron = require('electron');
 const path = require('path');
+const fs = require('fs');
+
+const IS_DEV = true
 
 class MiniPlayer {
     constructor() {
@@ -10,7 +13,9 @@ class MiniPlayer {
     }
 
     destroy() {
-        this.window.close();
+        if (this.window && !this.window.isDestroyed()) {
+            this.window.close();
+        }
         this.window = null;
     }
 
@@ -47,8 +52,16 @@ class MiniPlayer {
             },
         });
 
-        // this.window.loadFile(path.join(__dirname, './miniplayer.html'));
-        this.window.loadURL('http://localhost:5173/');
+        const devUrl = 'http://localhost:5173/';
+        const builtIndex = path.join(__dirname, 'renderer', 'index.html');
+
+        if (IS_DEV) {
+            this.window.loadURL(devUrl);
+        } else {
+            if (fs.existsSync(builtIndex)) {
+                this.window.loadFile(builtIndex);
+            }
+        }
 
         this.window.once('ready-to-show', () => {
             this.window.show();
