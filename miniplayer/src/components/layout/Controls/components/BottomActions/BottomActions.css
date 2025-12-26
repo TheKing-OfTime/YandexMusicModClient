@@ -6,7 +6,7 @@
 
     transition: gap var(--ym-duration-transition);
 
-    @media (max-height: 550px) {
+    @media (max-height: 549px) {
         display: none;
     }
 
