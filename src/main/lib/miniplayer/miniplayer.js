@@ -30,11 +30,11 @@ class MiniPlayer {
         }
 
         this.window = new electron.BrowserWindow({
-            width: 400,
-            height: 450,
+            width: 380,
+            height: 590,
             minWidth: 275,
             minHeight: 380,
-            backgroundColor: '#000000',
+            backgroundColor: '#141414',
             frame: false,
             resizable: true,
             minimizable: false,

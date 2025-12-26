@@ -39,7 +39,7 @@ function App() {
         <>
             <TitleBar />
             <main className="main" style={bgColor}>
-                <Cover coverUri={playerState.track?.coverUri} nextCoverUri={playerState.nextTrack?.coverUri} />
+                <Cover playerState={playerState} coverUri={playerState.track?.coverUri ?? playerState.track?.imageUrl} nextCoverUri={playerState.nextTrack?.coverUri} isGenerative={playerState.track?.id.startsWith("generative")} />
                 <TrackMeta track={playerState.track}/>
                 <Controls playerState={playerState}/>
             </main>

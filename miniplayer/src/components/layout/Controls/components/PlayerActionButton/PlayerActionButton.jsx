@@ -4,6 +4,14 @@ import Icon from '../../../../ui/Icon.jsx';
 import './PlayerActionButton.css'
 
 const actionMap = {
+    play: {
+        toggled: {
+            icon: 'pause_m',
+            color: '#e6e6e6',
+        },
+        icon: 'play_m',
+        action: 'TOGGLE_PLAY',
+    },
     forward: {
         icon: 'next_xxs',
         action: 'MOVE_FORWARD',
@@ -89,7 +97,7 @@ export default function PlayerActionButton({ value, active= true, name, size = 4
                 color: state.color,
             }}
         >
-            <Icon name={state.icon} size={size-20} />
+            <Icon name={state.icon} size={size-(type.startsWith('overlay') ? 24 : 20)} />
         </button>
     );
 }

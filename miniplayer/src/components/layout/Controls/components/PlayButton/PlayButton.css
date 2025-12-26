@@ -4,7 +4,7 @@
     border-radius: 50%;
     background: none;
     border: none;
-    color: #e6e6e6;
+    color: var(--controls-primary-color-enabled);
     display: flex;
     align-items: center;
     justify-content: center;

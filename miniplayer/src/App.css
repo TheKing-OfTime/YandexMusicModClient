@@ -20,7 +20,10 @@
 }
 
 .main {
+  --default-bg-color: #141414;
   --player-color: var(--player-bg-color, var(--default-bg-color));
+  --controls-yellow-play-color: #fed42b;
+  --controls-primary-color-enabled: #e6e6e6;
 
   position: absolute;
   inset: 0;

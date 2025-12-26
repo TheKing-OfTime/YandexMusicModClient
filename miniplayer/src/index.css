@@ -15,5 +15,4 @@ body {
   flex-direction: column;
   position: absolute;
   inset: 0;
-  --default-bg-color: #141414;
 }

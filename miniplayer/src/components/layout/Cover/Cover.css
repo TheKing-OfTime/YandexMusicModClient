@@ -19,6 +19,7 @@
 }
 
 .Cover_container {
+    position: relative;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -33,4 +34,8 @@
 
     box-shadow: 0 0.5rem 0.75rem
     0.25rem rgba(0, 0, 0, 0.24);;
+}
+
+.Cover_container_generative {
+    box-shadow: unset;
 }

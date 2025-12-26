@@ -1,0 +1,41 @@
+.OverlayPlayerActions {
+    padding: 15px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    transition: gap var(--ym-duration-transition),
+        background-color var(--ym-duration-transition),
+        opacity var(--ym-duration-transition);
+
+    @media (min-height: 549px) {
+        display: none;
+    }
+}
+
+.OverlayPlayerActions:hover {
+    opacity: 1;
+}
+
+.OverlayPlayerActions_sonata_row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.OverlayPlayerActions_feedback_row {
+    position: absolute;
+    width: calc(100% - 30px);
+    bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

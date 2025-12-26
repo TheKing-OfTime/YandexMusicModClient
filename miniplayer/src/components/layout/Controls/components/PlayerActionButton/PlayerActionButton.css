@@ -2,6 +2,8 @@
 
     --controls-color-disabled: hsla(0, 0%, 100%, 0.08);
     --controls-color-enabled: hsla(0, 0%, 100%, 0.5);
+    --controls-bg-color-enabled: rgba(26, 26, 26, 0.9);
+    --controls-bg-color-hovered: rgba(51, 51, 51, 0.9);
 
 
     padding: 0.625rem;
@@ -14,6 +16,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    aspect-ratio: 1;
     transition:
             background-color var(--ym-duration-transition),
             transform var(--ym-duration-transition),
@@ -28,7 +31,7 @@
 .PlayerActionButton:not(:disabled):focus-visible,
 .PlayerActionButton:not(:disabled):hover {
     transform: scale(1.05);
-    color: #e6e6e6;
+    color: var(--controls-primary-color-enabled);
 }
 
 .PlayerActionButton:disabled {
@@ -43,4 +46,25 @@
         padding-inline: 0.15rem;
 
     }
+}
+
+.PlayerActionButton_overlay {
+    background-color: var(--controls-bg-color-enabled);
+}
+
+.PlayerActionButton_overlay:not(:disabled):focus-visible,
+.PlayerActionButton_overlay:not(:disabled):hover {
+    background-color: var(--controls-bg-color-hovered);
+    );
+}
+
+.PlayerActionButton_overlay_primary {
+    color: var(--controls-primary-color-enabled);
+    background-color: var(--controls-bg-color-enabled);
+}
+
+.PlayerActionButton_overlay_primary:not(:disabled):focus-visible,
+.PlayerActionButton_overlay_primary:not(:disabled):hover {
+    background-color: var(--controls-bg-color-hovered);
+);
 }

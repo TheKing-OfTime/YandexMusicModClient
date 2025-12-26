@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import Icon from '../../ui/Icon.jsx';
 import getCoverUrls from '../../../utils/getCoverUrls.js';
 
+import OverlayActions from '../Controls/components/OverlayActions/OverlayActions.jsx';
+
 import './Cover.css'
 
-export default function Cover({ coverUri, nextCoverUri=undefined }) {
+export default function Cover({ playerState, coverUri, nextCoverUri= undefined, isGenerative= false }) {
     const urls = getCoverUrls(coverUri);
     const nextUrls = getCoverUrls(nextCoverUri);
 
@@ -30,15 +32,9 @@ export default function Cover({ coverUri, nextCoverUri=undefined }) {
     }
 
     return (
-        <div className="Cover_container">
-            <img
-                className="Cover_image"
-                src={urls.src}
-                srcSet={urls.srcSet}
-                alt=""
-                loading="lazy"
-                sizes='70vmin'
-            />
+        <div className={'Cover_container ' + (isGenerative ? ' Cover_container_generative' : '')}>
+            <img className="Cover_image" src={urls.src} srcSet={urls.srcSet} alt="" loading="lazy" sizes="70vmin" />
+            <OverlayActions playerState={playerState} />
         </div>
     );
 }
