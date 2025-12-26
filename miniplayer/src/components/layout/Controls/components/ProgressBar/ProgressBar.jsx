@@ -4,14 +4,14 @@ import Slider from '../../../../ui/Slider/Slider.jsx'
 
 import './ProgressBar.css'
 
-export default function ProgressBar({ duration, initialProgress, isPlaying, onSeeked= undefined }) {
+export default function ProgressBar({ duration, initialProgress, initialTimestamp, isPlaying, onSeeked= undefined }) {
 
     const [progress, setProgress] = useState(initialProgress)
-    const [trackBeganAt, setTrackBeganAt] = useState(Date.now())
+    const [trackBeganAt, setTrackBeganAt] = useState();
     const [isSeeking, setIsSeeking] = useState(false);
 
     useEffect(() => {
-        setTrackBeganAt(Date.now() - initialProgress * 1000);
+        setTrackBeganAt(prev => ((prev ? Date.now(): initialTimestamp) - initialProgress * 1000));
         setProgress(initialProgress);
     }, [initialProgress])
 

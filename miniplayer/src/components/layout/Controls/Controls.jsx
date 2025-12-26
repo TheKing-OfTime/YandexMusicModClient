@@ -23,6 +23,7 @@ export default function Controls({ playerState }) {
             <ProgressBar
                 duration={playerState.track?.durationMs}
                 initialProgress={progress}
+                initialTimestamp={playerState.timestamp}
                 isPlaying={playerState.isPlaying}
                 onSeeked={onSeeked}
             />

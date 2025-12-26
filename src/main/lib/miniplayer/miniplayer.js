@@ -2,7 +2,7 @@ const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-const IS_DEV = true
+const IS_DEV = false;
 
 class MiniPlayer {
     constructor() {
@@ -65,7 +65,7 @@ class MiniPlayer {
 
         this.window.once('ready-to-show', () => {
             this.window.show();
-            this.window.setAlwaysOnTop(true, "normal"); // Поверх всех окон. Даже фулскрин приложений
+            this.window.setAlwaysOnTop(true, "normal");
         });
 
         this.window.on('closed', () => {
@@ -78,6 +78,7 @@ class MiniPlayer {
     handlePlayerState(data) {
         this.window?.webContents.send('MINIPLAYER_PLAYER_STATE', data);
         this.lastPlayerState = data;
+        this.lastPlayerState.timestamp = Date.now();
     }
 
     onPlayerAction(callback) {
