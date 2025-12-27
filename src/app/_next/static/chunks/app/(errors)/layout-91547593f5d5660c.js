@@ -81,7 +81,7 @@
                     onLikeClick = (0, feedbackApi.KX)(sonataState.entityMeta),
                     onDislikeClick = (0, feedbackApi.mW)(sonataState.entityMeta);
                 let s = (0, n.useCallback)(
-                    (s, o, volume, nonce = 1) => {
+                    (s, o, value, nonce = 1) => {
                         if (window.playerActionEventDedupeNonce === nonce) return;
                         if (nonce) window.playerActionEventDedupeNonce = nonce;
                         switch (o) {
@@ -140,7 +140,6 @@
                                 null == e || e.setExponentVolume(Math.min(Math.max(value, 0), 100));
                                 break;
                             case 'SET_PROGRESS':
-                                console.log('e', e, 'value', value);
                                 null == e || e.setProgress(Math.max(value, 0));
                                 break;
                         }
