@@ -21,7 +21,7 @@ export default function ProgressBar({ duration, initialProgress, initialTimestam
             const now = Date.now();
             const newProgress = (now - trackBeganAt) / 1000;
             if (isPlaying && !isSeeking) setProgress(newProgress);
-        }, 1000);
+        }, 250);
 
         return () => clearInterval(intervalId);
 
@@ -29,7 +29,7 @@ export default function ProgressBar({ duration, initialProgress, initialTimestam
 
     return (
         <div className="ProgressBar_container">
-            <TimeStamp seconds={progress} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
+            <TimeStamp seconds={progress+1} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
             <Slider
                 className="ProgressBar_slider"
                 value={progress}
