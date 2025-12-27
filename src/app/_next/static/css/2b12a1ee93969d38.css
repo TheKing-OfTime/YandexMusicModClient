@@ -5,7 +5,7 @@
     background-color: var(--ym-background-color-primary-enabled-basic);
     box-sizing: border-box;
     column-gap: var(--ym-spacer-size-m);
-    height: 100%;
+    height: -webkit-fill-available;
     padding-block-end: var(--ym-spacer-size-m);
     padding-block-start: var(--ym-spacer-size-m);
     padding-inline-end: var(--ym-spacer-size-m);
