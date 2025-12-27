@@ -2393,7 +2393,7 @@
                                                 id: 'settings.show-child-section',
                                             }),
                                             onChange: O,
-                                            isChecked: window.nativeSettings.get('modFeatures.showNonMusicPage'),
+                                            isChecked: p.settings.isChildModeEnabled,
                                         }),
                                     }),
                             }),
