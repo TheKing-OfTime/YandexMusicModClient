@@ -137,6 +137,7 @@ const handleWindowLifecycleEvents = (window) => {
     );
     webContents.on("did-finish-load", () => {
         webContents.insertCSS(`
+                body {
                     .passp-page {
                         -webkit-app-region: drag;
                     }
