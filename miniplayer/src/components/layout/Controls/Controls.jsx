@@ -3,8 +3,11 @@ import ProgressBar from './components/ProgressBar/ProgressBar.jsx';
 import BottomActions from './components/BottomActions/BottomActions.jsx';
 
 import './Controls.css'
+import { usePlayer } from '../../../contexts/PlayerContext.jsx';
 
-export default function Controls({ playerState }) {
+export default function Controls() {
+
+    const { playerState, settingsState } = usePlayer();
 
     const [progress, setProgress] = useState(playerState.progress);
 
@@ -25,9 +28,10 @@ export default function Controls({ playerState }) {
                 initialProgress={progress}
                 initialTimestamp={playerState.timestamp}
                 isPlaying={playerState.isPlaying}
+                alwaysShowTimestamp={settingsState.playerBarEnhancement.alwaysShowPlayerTimestamps}
                 onSeeked={onSeeked}
             />
-            <BottomActions playerState={playerState} />
+            <BottomActions />
         </div>
     );
 }

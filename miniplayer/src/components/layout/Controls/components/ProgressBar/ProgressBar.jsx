@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import Slider from '../../../../ui/Slider/Slider.jsx'
 
 import './ProgressBar.css'
+import TimeStamp from '../TimeStamp/TimeStamp.jsx';
 
-export default function ProgressBar({ duration, initialProgress, initialTimestamp, isPlaying, onSeeked= undefined }) {
+export default function ProgressBar({ duration, initialProgress, initialTimestamp, isPlaying, onSeeked= undefined, alwaysShowTimestamp = false }) {
 
     const [progress, setProgress] = useState(initialProgress)
     const [trackBeganAt, setTrackBeganAt] = useState();
     const [isSeeking, setIsSeeking] = useState(false);
 
     useEffect(() => {
-        setTrackBeganAt(prev => ((prev ? Date.now(): initialTimestamp) - initialProgress * 1000));
+        setTrackBeganAt(initialTimestamp - initialProgress * 1000);
         setProgress(initialProgress);
-    }, [initialProgress])
+    }, [initialProgress, initialTimestamp])
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -28,11 +29,12 @@ export default function ProgressBar({ duration, initialProgress, initialTimestam
 
     return (
         <div className="ProgressBar_container">
+            <TimeStamp seconds={progress} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
             <Slider
                 className="ProgressBar_slider"
                 value={progress}
                 min={0}
-                max={duration / 1000}
+                max={(duration || Infinity) / 1000}
                 step={1}
                 onChange={(value) => {
                     setProgress(value);
@@ -45,6 +47,7 @@ export default function ProgressBar({ duration, initialProgress, initialTimestam
                     setIsSeeking(false);
                 }}
             />
+            <TimeStamp seconds={(duration || 0) / 1000} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
         </div>
     );
 }

@@ -18,3 +18,7 @@
 .PlayButton:hover {
     transform: scale(1.05);
 }
+
+.PlayButton_yellow {
+    color: var(--controls-yellow-play-color);
+}

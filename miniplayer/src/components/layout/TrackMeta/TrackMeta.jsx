@@ -1,7 +1,11 @@
 import { useMemo } from 'react';
 import './TrackMeta.css'
+import { usePlayer } from '../../../contexts/PlayerContext.jsx';
 
-export default function TrackMeta({track}) {
+export default function TrackMeta() {
+
+    const { playerState } = usePlayer();
+    const track = playerState.track;
 
     const artists = useMemo(() => {
         return track?.artists?.map(artist => artist.name).join(', ')

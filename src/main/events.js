@@ -63,6 +63,8 @@ let mainWindow = undefined;
 
 const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
 
+MiniPlayer.updateSettingsState(store_js_1.getModFeatures());
+
 const updateGlobalShortcuts = () => {
     eventsLogger.info("(GlobalShortcuts) Update triggered.");
     electron_1.globalShortcut.unregisterAll();
@@ -402,7 +404,7 @@ const handleApplicationEvents = (window) => {
         (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
         (0, scrobbleManager_js_1.handlePlayingStateEvent)(data);
         (0, discordRichPresence_js_1.discordRichPresence)(data);
-        MiniPlayer.handlePlayerState(data);
+        MiniPlayer.updatePlayerState(data);
     });
     electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
         eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
@@ -455,6 +457,7 @@ const handleApplicationEvents = (window) => {
             if (key === "modFeatures.globalShortcuts.enable") {
                 updateGlobalShortcuts();
             }
+            MiniPlayer.updateSettingsState(store_js_1.getModFeatures());
         },
     );
 
@@ -568,6 +571,7 @@ const sendNativeStoreUpdate = (key, value, window = undefined) => {
         key,
         value,
     );
+    MiniPlayer.updateSettingsState(store_js_1.getModFeatures());
     if (window ?? mainWindow) {
         eventsLogger.info(
             "Event send",

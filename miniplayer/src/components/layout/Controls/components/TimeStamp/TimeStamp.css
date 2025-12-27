@@ -1,0 +1,12 @@
+.TimeStamp_container {
+    display: inline-block;
+    font-family: YS Text, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: var(--controls-color-enabled);
+    text-align: center;
+    padding: 0;
+    user-select: none;
+    transition: opacity var(--ym-duration-transition);
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import hex2hsl from './utils/hex2hsl.js';
 
@@ -7,44 +7,39 @@ import Cover from './components/layout/Cover/Cover.jsx';
 import Controls from './components/layout/Controls/Controls.jsx';
 import TrackMeta from './components/layout/TrackMeta/TrackMeta.jsx';
 
+import { PlayerProvider, usePlayer } from './contexts/PlayerContext.jsx';
 
 import './App.css';
 
 function App() {
-    const [playerState, setPlayerState] = useState({});
+    const { playerState, settingsState } = usePlayer();
 
     const bgColor = useMemo(
         () =>
-            playerState.track?.derivedColors?.average
+            !settingsState.playerBarEnhancement.disablePerTrackColors && playerState.track?.derivedColors?.average
                 ? {
                       '--player-bg-color': hex2hsl(playerState.track.derivedColors.average, 20).css,
                   }
                 : undefined,
-        [playerState.track?.derivedColors?.average],
+        [playerState.track?.derivedColors?.average, settingsState.playerBarEnhancement.disablePerTrackColors],
     );
-
-    useEffect(() => {
-        const unsub = window.desktopEvents?.on('MINIPLAYER_PLAYER_STATE', (event, state) => {
-            setPlayerState(state);
-        });
-
-        window.desktopEvents.send('MINIPLAYER_READY');
-
-        return () => {
-            unsub && unsub();
-        };
-    }, []);
 
     return (
         <>
             <TitleBar />
             <main className="main" style={bgColor}>
-                <Cover playerState={playerState} coverUri={playerState.track?.coverUri ?? playerState.track?.imageUrl} nextCoverUri={playerState.nextTrack?.coverUri} isGenerative={playerState.track?.id.startsWith("generative")} />
-                <TrackMeta track={playerState.track}/>
-                <Controls playerState={playerState}/>
+                <Cover />
+                <TrackMeta />
+                <Controls />
             </main>
         </>
     );
 }
 
-export default App;
+export default function Main() {
+    return (
+        <PlayerProvider>
+            <App />
+        </PlayerProvider>
+    );
+}

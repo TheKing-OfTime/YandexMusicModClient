@@ -3,7 +3,7 @@ import Icon from '../../../../ui/Icon.jsx';
 
 import './PlayButton.css'
 
-export default function PlayButton({ isPlaying, size = 48 }) {
+export default function PlayButton({ isPlaying, size = 48, useYellowButton = false }) {
 
     const onClick = useCallback(() => {
         window.desktopEvents?.send('MINIPLAYER_PLAYER_ACTION', 'TOGGLE_PLAY');
@@ -15,7 +15,7 @@ export default function PlayButton({ isPlaying, size = 48 }) {
             onClick={onClick}
             aria-label={isPlaying ? 'Pause' : 'Play'}
             aria-pressed={!!isPlaying}
-            className='PlayButton'
+            className={'PlayButton ' + (useYellowButton ? 'PlayButton_yellow' : undefined)}
         >
             <Icon name={!isPlaying ? 'play_filled_l' : 'pause_filled_l'} size={size} />
         </button>

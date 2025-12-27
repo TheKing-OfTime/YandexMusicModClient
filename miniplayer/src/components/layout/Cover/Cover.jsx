@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Icon from '../../ui/Icon.jsx';
 import getCoverUrls from '../../../utils/getCoverUrls.js';
@@ -6,8 +6,15 @@ import getCoverUrls from '../../../utils/getCoverUrls.js';
 import OverlayActions from '../Controls/components/OverlayActions/OverlayActions.jsx';
 
 import './Cover.css'
+import { usePlayer } from '../../../contexts/PlayerContext.jsx';
 
-export default function Cover({ playerState, coverUri, nextCoverUri= undefined, isGenerative= false }) {
+export default function Cover() {
+    const { playerState } = usePlayer();
+
+    const coverUri = playerState.track?.coverUri ?? playerState.track?.imageUrl;
+    const nextCoverUri = playerState.nextTrack?.coverUri;
+    const isGenerative = !!playerState.track?.id?.startsWith?.('generative');
+
     const urls = getCoverUrls(coverUri);
     const nextUrls = getCoverUrls(nextCoverUri);
 
@@ -19,7 +26,7 @@ export default function Cover({ playerState, coverUri, nextCoverUri= undefined, 
             nextImg.srcset = nextUrls.srcSet;
             nextImg.decode?.().catch(() => {});
         }
-    });
+    }, [nextCoverUri, nextUrls]);
 
     if (!urls) {
         return (
@@ -34,7 +41,7 @@ export default function Cover({ playerState, coverUri, nextCoverUri= undefined, 
     return (
         <div className={'Cover_container ' + (isGenerative ? ' Cover_container_generative' : '')}>
             <img className="Cover_image" src={urls.src} srcSet={urls.srcSet} alt="" loading="lazy" sizes="70vmin" />
-            <OverlayActions playerState={playerState} />
+            <OverlayActions />
         </div>
     );
 }

@@ -1,11 +1,11 @@
-.PlayerActionButton {
-
+:root {
     --controls-color-disabled: hsla(0, 0%, 100%, 0.08);
     --controls-color-enabled: hsla(0, 0%, 100%, 0.5);
     --controls-bg-color-enabled: rgba(26, 26, 26, 0.9);
     --controls-bg-color-hovered: rgba(51, 51, 51, 0.9);
+}
 
-
+.PlayerActionButton {
     padding: 0.625rem;
     margin: 0;
     border-radius: 50%;

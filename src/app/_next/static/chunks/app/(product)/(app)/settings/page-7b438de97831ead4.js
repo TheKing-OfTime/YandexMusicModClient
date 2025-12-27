@@ -1580,6 +1580,73 @@
             });
 
 
+            let miniplayerSettings = (0, n.PA)(() => {
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { miniplayerSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    onSkipTaskbarToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.miniplayer.skipTaskbar toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.miniplayer.skipTaskbar', e);
+                    }, []),
+                    onSaveDimensionsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.miniplayer.saveDimensions toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.miniplayer.saveDimensions', e);
+                    }, []),
+                    onSavePositionToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.miniplayer.savePosition toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.miniplayer.savePosition', e);
+                    }, []);
+                return (0, i.jsxs)(p.a, {
+                    className: H().root,
+                    style: { 'max-width': '34.375rem', height: 'auto' },
+                    title: 'Миниплеер окна',
+                    headerClassName: H().modalHeader,
+                    contentClassName: H().modalContent,
+                    open: t.isOpened,
+                    onOpenChange: t.onOpenChange,
+                    onClose: t.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    labelClose: e({ id: 'interface-actions.close' }),
+                    children: (0, i.jsxs)('ul', {
+                        className: `${B().root} ${H().list}`,
+                        style: { width: '32.125rem', 'max-height': '37.5rem', gap: 0 },
+                        children: [
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Сохранять размер окна',
+                                    description: 'Сохраняет размер окна миниплеера при перезапуске',
+                                    onChange: onSaveDimensionsToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.miniplayer.saveDimensions'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Сохранять положение окна',
+                                    description: 'Сохраняет положение окна миниплеера при перезапуске',
+                                    onChange: onSavePositionToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.miniplayer.savePosition'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Не отображать окно в таскбаре',
+                                    description: 'Работает только если миниплеер закреплён поверх других окон',
+                                    onChange: onSkipTaskbarToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.miniplayer.skipTaskbar'),
+                                }),
+                            }),
+                        ],
+                    }),
+                });
+            });
+
+
             let vibeBehaviorEnhancementsSettings = (0, n.PA)(() => {
                 let { formatMessage: e } = (0, r.A)(),
                     {
@@ -2036,6 +2103,7 @@
                             vibeAnimationEnhancementsSettingsModal: vibeAnimationEnhancementsSettingsModal,
                             playerBarEnhancementsSettingsModal: playerBarEnhancementsSettingsModal,
                             windowBehaviorSettingsModal: windowBehaviorSettingsModal,
+                            miniplayerSettingsModal: miniplayerSettingsModal,
                             appUpdatesSettingsModal: appUpdatesSettingsModal,
                             scrobblersSettingsModal: scrobblersSettingsModal,
                             downloaderSettingsModal: downloaderSettingsModal,
@@ -2421,6 +2489,17 @@
                                         onClick: windowBehaviorSettingsModal.open,
                                     }),
                                     (0, i.jsx)(windowBehaviorSettings, {}),
+                                ],
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: 'Миниплеер',
+                                        description: 'Настройки поведения миниплеера',
+                                        onClick: miniplayerSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(miniplayerSettings, {}),
                                 ],
                             }),
                             (0, i.jsx)('li', {

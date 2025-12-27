@@ -14,3 +14,8 @@
     position: absolute;
     z-index: 10;
 }
+
+.TitleBar_button_container {
+    display: flex;
+    flex-direction: row;
+}

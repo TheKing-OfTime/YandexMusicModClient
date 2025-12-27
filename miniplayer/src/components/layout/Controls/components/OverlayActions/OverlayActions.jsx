@@ -1,8 +1,26 @@
 import PlayerActionButton from '../PlayerActionButton/PlayerActionButton.jsx';
 
 import './OverlayActions.css'
+import { usePlayer } from '../../../../../contexts/PlayerContext.jsx';
 
-export default function OverlayActions({ playerState }) {
+export default function OverlayActions() {
+    const { playerState, settingsState } = usePlayer();
+
+    function LeftFeedbackButton() {
+        if (settingsState.playerBarEnhancement.showDislikeButton) {
+            return <PlayerActionButton type='overlay_primary'  name='dislike' value={playerState.actionsStore?.isDisliked}/>
+        }
+
+        return <PlayerActionButton type='overlay_primary'  name='like' value={playerState.actionsStore?.isLiked}/>
+    }
+
+    function RightFeedbackButton() {
+        if (settingsState.playerBarEnhancement.showDislikeButton) {
+            return <PlayerActionButton type='overlay_primary'  name='like' value={playerState.actionsStore?.isLiked}/>
+        }
+
+        return <PlayerActionButton type='overlay_primary'  name='dislike' value={playerState.actionsStore?.isDisliked}/>
+    }
 
     return (
         <div className="OverlayPlayerActions">
@@ -14,8 +32,8 @@ export default function OverlayActions({ playerState }) {
                 <PlayerActionButton type='overlay' name='repeat' value={playerState.actionsStore?.repeat} active={playerState.availableActions?.repeat} size={38}/>
             </div>
             <div className='OverlayPlayerActions_feedback_row'>
-                <PlayerActionButton type='overlay_primary'  name='dislike' value={playerState.actionsStore?.isDisliked}/>
-                <PlayerActionButton type='overlay_primary'  name='like' value={playerState.actionsStore?.isLiked}/>
+                <LeftFeedbackButton />
+                <RightFeedbackButton />
             </div>
         </div>
     )
