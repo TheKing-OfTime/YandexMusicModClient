@@ -52,7 +52,8 @@
     transition: grid-template var(--ym-duration-transition);
 }
 .DefaultLayout_root_applicationPreserveTitleBar__ygJtq {
-    padding-block-start: var(--ym-spacer-size-xxxl);
+    margin-block-start: var(--ym-spacer-size-xxxl);
+    padding-block-start: 0;
 }
 @media only screen and (max-width: 1080px) {
     .DefaultLayout_root__7J0wo {
