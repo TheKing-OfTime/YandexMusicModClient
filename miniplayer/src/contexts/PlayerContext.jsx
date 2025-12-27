@@ -23,7 +23,6 @@ export function PlayerProvider({ children }) {
 
         const unsub2 = window.desktopEvents?.on('MINIPLAYER_SETTINGS_STATE', (_, state) => {
             setSettingsState(state);
-            console.log(state);
             gotSettings = true;
             if (gotPlayer) setReady(true);
         });
