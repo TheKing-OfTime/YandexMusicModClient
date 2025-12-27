@@ -2,13 +2,14 @@ const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-const IS_DEV = false;
+const IS_DEV = true;
 
 class MiniPlayer {
     constructor() {
         this.window = null;
         this.onPlayerActionCallback = null;
         this.lastPlayerState = null;
+        this.lastPlayerStateTimestamp = null;
         this.handleMiniPlayerEvents();
     }
 
@@ -24,6 +25,7 @@ class MiniPlayer {
             this.onPlayerActionCallback?.(action, value);
         });
         electron.ipcMain.on('MINIPLAYER_READY', (event) => {
+            this.lastPlayerState.timestamp = this.lastPlayerStateTimestamp;
             this.window.webContents.send('MINIPLAYER_PLAYER_STATE', this.lastPlayerState);
         });
     }
@@ -78,7 +80,7 @@ class MiniPlayer {
     handlePlayerState(data) {
         this.window?.webContents.send('MINIPLAYER_PLAYER_STATE', data);
         this.lastPlayerState = data;
-        this.lastPlayerState.timestamp = Date.now();
+        this.lastPlayerStateTimestamp = Date.now();
     }
 
     onPlayerAction(callback) {
