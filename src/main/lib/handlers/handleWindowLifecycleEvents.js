@@ -137,11 +137,6 @@ const handleWindowLifecycleEvents = (window) => {
     );
     webContents.on("did-finish-load", () => {
         webContents.insertCSS(`
-                body {
-                    a, button, input, textarea, select {
-                        -webkit-app-region: no-drag;
-                    }
-
                     .passp-page {
                         -webkit-app-region: drag;
                     }
