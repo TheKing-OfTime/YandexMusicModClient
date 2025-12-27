@@ -4,6 +4,7 @@
 
 .ProgressBar_slider {
     width: var(--cover-size);
+    transition: var(--cover-width-transition)
 }
 
 .ProgressBar_container {

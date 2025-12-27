@@ -14,7 +14,7 @@
         background-color var(--ym-duration-transition),
         opacity var(--ym-duration-transition);
 
-    @media (min-height: 549px) {
+    @media (min-height: 550px) {
         display: none;
     }
 }
