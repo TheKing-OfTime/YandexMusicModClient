@@ -55,7 +55,6 @@
 .PlayerActionButton_overlay:not(:disabled):focus-visible,
 .PlayerActionButton_overlay:not(:disabled):hover {
     background-color: var(--controls-bg-color-hovered);
-    );
 }
 
 .PlayerActionButton_overlay_primary {
@@ -67,5 +66,16 @@
 .PlayerActionButton_overlay_primary:not(:disabled):focus-visible,
 .PlayerActionButton_overlay_primary:not(:disabled):hover {
     background-color: var(--controls-bg-color-hovered);
-);
+}
+
+.PlayerActionButton_overlay_yellow {
+    aspect-ratio: 1;
+    color: var(--controls-bg-color-enabled);
+    background-color: var(--controls-yellow-play-color);
+}
+
+.PlayerActionButton_overlay_yellow:not(:disabled):focus-visible,
+.PlayerActionButton_overlay_yellow:not(:disabled):hover {
+    background-color: var(--controls-yellow-play-color);
+    color: var(--controls-bg-color-enabled);
 }

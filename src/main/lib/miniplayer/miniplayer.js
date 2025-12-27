@@ -60,7 +60,7 @@ class MiniPlayer {
         };
 
         let scaleFactor = 1;
-        if (position) {
+        if (position.x && position.y) {
             const primaryDisplay = electron.screen.getPrimaryDisplay(),
                 nearestDisplay = electron.screen.getDisplayNearestPoint(position);
 
@@ -77,7 +77,7 @@ class MiniPlayer {
             height: (dimensions?.height ?? 590) * scaleFactor,
             minWidth: 275,
             minHeight: 380,
-            ...(position ? { x: position.x, y: position.y } : { center: true }),
+            ...((position.x && position.y) ? { x: position.x, y: position.y } : { center: true }),
             backgroundColor: '#141414',
             frame: false,
             resizable: true,

@@ -7,7 +7,6 @@ const actionMap = {
     play: {
         toggled: {
             icon: 'pause_m',
-            color: '#e6e6e6',
         },
         icon: 'play_m',
         action: 'TOGGLE_PLAY',

@@ -28,7 +28,7 @@ export default function Controls() {
                 initialProgress={progress}
                 initialTimestamp={playerState.timestamp}
                 isPlaying={playerState.isPlaying}
-                alwaysShowTimestamp={settingsState.playerBarEnhancement.alwaysShowPlayerTimestamps}
+                alwaysShowTimestamp={settingsState.miniplayer.alwaysShowPlayerTimestamps ?? settingsState.playerBarEnhancement.alwaysShowPlayerTimestamps}
                 onSeeked={onSeeked}
             />
             <BottomActions />

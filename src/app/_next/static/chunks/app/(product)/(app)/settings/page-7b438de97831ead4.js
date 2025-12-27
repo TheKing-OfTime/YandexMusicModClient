@@ -1597,11 +1597,15 @@
                     onSavePositionToggle = (0, d.useCallback)(async (e) => {
                         console.log('modFeatures.miniplayer.savePosition toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.miniplayer.savePosition', e);
+                    }, []),
+                    onAlwaysShowPlayerTimestampsToggle = (0, d.useCallback)(async (e) => {
+                        console.log('modFeatures.miniplayer.alwaysShowPlayerTimestamps toggled. Value: ', e);
+                        window.nativeSettings.set('modFeatures.miniplayer.alwaysShowPlayerTimestamps', e);
                     }, []);
                 return (0, i.jsxs)(p.a, {
                     className: H().root,
                     style: { 'max-width': '34.375rem', height: 'auto' },
-                    title: 'Миниплеер окна',
+                    title: 'Миниплеер',
                     headerClassName: H().modalHeader,
                     contentClassName: H().modalContent,
                     open: t.isOpened,
@@ -1639,6 +1643,15 @@
                                     description: 'Работает только если миниплеер закреплён поверх других окон',
                                     onChange: onSkipTaskbarToggle,
                                     isChecked: window.nativeSettings.get('modFeatures.miniplayer.skipTaskbar'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Всегда отображать временные метки',
+                                    description: 'Отображает временные метки независимо от положения курсора',
+                                    onChange: onAlwaysShowPlayerTimestampsToggle,
+                                    isChecked: window.nativeSettings.get('modFeatures.miniplayer.alwaysShowPlayerTimestamps'),
                                 }),
                             }),
                         ],
