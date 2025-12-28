@@ -46,6 +46,7 @@
                         },
                         previousTrack,
                         nextTrack,
+                        volume: ve.state.playerState.exponentVolume.value,
                     });
             };
             var r = (function (e) {
@@ -870,6 +871,7 @@
                                 actionsStore: e.actionsStore,
                                 previousTrack: e.previousTrack,
                                 nextTrack: e.nextTrack,
+                                volume: e.volume,
                             });
                     }),
                     sendPlayerStateDefault = (ve) => {
@@ -908,6 +910,7 @@
                             },
                             previousTrack: previousTrack,
                             nextTrack: nextTrack,
+                            volume: ve.state.playerState.exponentVolume.value,
                         });
                     },
                     sendPlayerStatePlaying = (ve) => {
@@ -946,6 +949,7 @@
                             },
                             previousTrack: previousTrack,
                             nextTrack: nextTrack,
+                            volume: ve.state.playerState.exponentVolume.value,
                         });
                     };
                 (0, n.useEffect)(() => {
@@ -980,6 +984,9 @@
                         onShuffleChange = s?.state.queueState.shuffle?.onChange((e) => {
                             sendPlayerStateDefault(s);
                         }),
+                        onVolumeChange = s?.state.playerState.exponentVolume?.onChange((e) => {
+                            sendPlayerStateDefault(s);
+                        }),
                         i =
                             null == s
                                 ? void 0
@@ -1010,6 +1017,7 @@
                             null == onShuffleAvailableChange || onShuffleAvailableChange(),
                             null == onRepeatChange || onRepeatChange(),
                             null == onShuffleChange || onShuffleChange(),
+                            null == onVolumeChange || onVolumeChange(),
                             null == n || n(),
                             null == n || n();
                     };

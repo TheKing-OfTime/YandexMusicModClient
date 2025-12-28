@@ -5,7 +5,7 @@ import Slider from '../../../../ui/Slider/Slider.jsx'
 import './ProgressBar.css'
 import TimeStamp from '../TimeStamp/TimeStamp.jsx';
 
-export default function ProgressBar({ duration, initialProgress, initialTimestamp, isPlaying, onSeeked= undefined, alwaysShowTimestamp = false }) {
+export default function ProgressBar({ duration, initialProgress, initialTimestamp, isPlaying, onSeeked= undefined, alwaysShowTimestamp = false, style=undefined}) {
 
     const [progress, setProgress] = useState(initialProgress)
     const [trackBeganAt, setTrackBeganAt] = useState();
@@ -28,8 +28,8 @@ export default function ProgressBar({ duration, initialProgress, initialTimestam
     }, [trackBeganAt, isPlaying, isSeeking]);
 
     return (
-        <div className="ProgressBar_container">
-            <TimeStamp seconds={progress+1} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
+        <div className="ProgressBar_container" style={style}>
+            <TimeStamp seconds={progress + 1} className={!alwaysShowTimestamp ? 'ProgressBar_timestamp_hover' : undefined} />
             <Slider
                 className="ProgressBar_slider"
                 value={progress}

@@ -17,6 +17,10 @@
     max-width: 90vw;
     transition: var(--cover-width-transition);
     min-width: 245px;
+
+    @media (min-height: 550px) {
+        margin-bottom: 16px;
+    }
 }
 
 .ProgressBar_timestamp_hover {

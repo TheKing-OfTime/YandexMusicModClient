@@ -2,6 +2,7 @@ import PlayerActionButton from '../PlayerActionButton/PlayerActionButton.jsx';
 
 import './OverlayActions.css'
 import { usePlayer } from '../../../../../contexts/PlayerContext.jsx';
+import Volume from '../Volume/Volume.jsx';
 
 export default function OverlayActions() {
     const { playerState, settingsState } = usePlayer();
@@ -24,6 +25,9 @@ export default function OverlayActions() {
 
     return (
         <div className="OverlayPlayerActions">
+            <div className="OverlayPlayerActions_volume_row">
+                <Volume variant='overlay' value={playerState.volume}/>
+            </div>
             <div className="OverlayPlayerActions_sonata_row">
                 <PlayerActionButton type="overlay" name="shuffle" value={playerState.actionsStore?.shuffle} active={playerState.availableActions?.shuffle} size={38} />
                 <PlayerActionButton type="overlay_primary" name="backward" active={playerState.availableActions?.moveBackward} size={40} />

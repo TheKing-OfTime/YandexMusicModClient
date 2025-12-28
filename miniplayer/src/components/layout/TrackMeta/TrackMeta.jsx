@@ -13,8 +13,21 @@ export default function TrackMeta() {
 
     return (
         <div className="TrackMeta_container">
-            <div className="TrackMeta_title">{track?.title}</div>
-            <div className="TrackMeta_artists">{artists}</div>
+            <div className="TrackMeta_title_container">
+                <span className='TrackMeta_title' title={track?.title}>
+                    {track?.title}
+                </span>
+                {
+                    track?.version && <span className='TrackMeta_version' title={track.version}>
+                        {track.version}
+                    </span>
+                }
+            </div>
+            <div className="TrackMeta_artists_container">
+                <span className='TrackMeta_artists' title={artists}>
+                    {artists}
+                </span>
+            </div>
         </div>
     );
 }

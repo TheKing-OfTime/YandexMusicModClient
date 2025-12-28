@@ -4,12 +4,16 @@
     align-items: center;
 }
 
-.TrackMeta_title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+.TrackMeta_title_container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    max-width: 90vw;
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.TrackMeta_title {
+    white-space: nowrap;
 
     font-family: YS Text, sans-serif;
     font-size: 1rem;
@@ -42,4 +46,17 @@
     @media (max-height: 380px) {
         -webkit-line-clamp: 1;
     }
+}
+
+.TrackMeta_version {
+    white-space: nowrap;
+    font-family: YS Text, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: 1.5rem;
+    color: #ffffff80;
+    text-align: center;
+    margin: 0;
 }

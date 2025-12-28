@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Slider.css';
 
 export default function Slider({
@@ -18,42 +18,67 @@ export default function Slider({
     const [internal, setInternal] = useState(defaultValue);
     const ref = useRef(null);
 
-    useEffect(() => {
-        if (!isControlled) return;
-        // keep CSS custom property used for WebKit progress coloring in sync
-        if (ref.current) {
-            const percent = ((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100 || 0;
-            ref.current.style.setProperty('--value', String(percent));
-        }
-    }, [value, min, max, isControlled]);
-
-    useEffect(() => {
-        if (ref.current && !isControlled) {
-            const percent = ((Number(internal) - Number(min)) / (Number(max) - Number(min))) * 100 || 0;
-            ref.current.style.setProperty('--value', String(percent));
-        }
-    }, [internal, min, max, isControlled]);
-
-    const handleChange = (e) => {
-        const next = e.target.valueAsNumber ?? Number(e.target.value);
-        if (!isControlled) setInternal(next);
-        if (typeof onChange === 'function') onChange(next, e);
-        // update CSS var for visual progress
-        if (ref.current) {
-            const percent = ((Number(next) - Number(min)) / (Number(max) - Number(min))) * 100 || 0;
-            ref.current.style.setProperty('--value', String(percent));
-        }
-    };
-
     const currentValue = isControlled ? value : internal;
+
+    // dev warning: controlled vs uncontrolled
+    useEffect(() => {
+        if (process.env.NODE_ENV !== 'production') {
+            if (value !== undefined && defaultValue !== undefined) {
+                console.warn(
+                    'Slider: используйте либо value (controlled), либо defaultValue (uncontrolled), но не оба.'
+                );
+            }
+        }
+    }, []);
+
+    // sync defaultValue for uncontrolled mode
+    useEffect(() => {
+        if (!isControlled) {
+            setInternal(defaultValue);
+        }
+    }, [defaultValue, isControlled]);
+
+    const calcPercent = useCallback(
+        (val) => {
+            const range = Number(max) - Number(min);
+            if (range <= 0) return 0;
+            return ((Number(val) - Number(min)) / range) * 100;
+        },
+        [min, max]
+    );
+
+    // update CSS custom property
+    useEffect(() => {
+        if (!ref.current) return;
+        const percent = calcPercent(currentValue);
+        ref.current.style.setProperty('--value', String(percent));
+    }, [currentValue, calcPercent]);
+
+    const handleChange = useCallback(
+        (e) => {
+            const next = Number.isFinite(e.target.valueAsNumber)
+                ? e.target.valueAsNumber
+                : Number(e.target.value);
+
+            if (!isControlled) setInternal(next);
+            if (typeof onChange === 'function') onChange(next, e);
+        },
+        [isControlled, onChange]
+    );
+
     const baseClass = `slider ${orientation} ${disabled ? 'disabled' : ''} ${className}`.trim();
 
     return (
         <div
+            ref={ref}
             className={baseClass}
             style={style}
-            ref={ref}
+            role="slider"
             aria-orientation={orientation}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={currentValue}
+            aria-disabled={disabled}
         >
             <input
                 type="range"
@@ -63,9 +88,6 @@ export default function Slider({
                 value={currentValue}
                 onChange={handleChange}
                 disabled={disabled}
-                aria-valuemin={min}
-                aria-valuemax={max}
-                aria-valuenow={currentValue}
                 {...rest}
             />
         </div>

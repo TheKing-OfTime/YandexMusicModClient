@@ -1,0 +1,83 @@
+.Volume_MuteButton {
+    padding: 0.5rem;
+    padding-inline: 0;
+    margin: 0;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    color: var(--controls-color-enabled);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+            background-color var(--ym-duration-transition),
+            transform var(--ym-duration-transition),
+            color var(--ym-duration-transition),
+            opacity var(--ym-duration-transition);
+}
+.Volume_MuteButton:not(:disabled):focus-visible,
+.Volume_MuteButton:not(:disabled):hover {
+    transform: scale(1.05);
+    color: var(--controls-primary-color-enabled);
+}
+
+.Volume_slider {
+    width: var(--cover-size);
+    transition: var(--cover-width-transition)
+}
+
+.Volume_container {
+    gap: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.Volume_container_default {
+    transition: var(--cover-width-transition);
+    max-width: 90vw;
+    min-width: 245px;
+    @media (max-height: 549px) {
+        display: none;
+    }
+}
+
+.Volume_container_overlay {
+    transition: background-color var(--ym-duration-transition);
+    border-radius: 22px;
+    padding-inline: 12px;
+    background-color: var(--controls-bg-color-enabled);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Volume_container_overlay:hover {
+    background-color: var(--controls-bg-color-hovered);
+}
+
+.Volume_label {
+    width: 28px;
+    display: inline-block;
+    font-family: YS Text, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: var(--controls-color-enabled);
+    text-align: center;
+    padding: 0;
+    user-select: none;
+    transition: opacity var(--ym-duration-transition);
+}
+
+.Volume_hover {
+    opacity: 0;
+}
+
+.Volume_container:hover {
+    .Volume_hover {
+        opacity: 1;
+    }
+}

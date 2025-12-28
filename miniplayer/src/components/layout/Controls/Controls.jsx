@@ -4,12 +4,15 @@ import BottomActions from './components/BottomActions/BottomActions.jsx';
 
 import './Controls.css'
 import { usePlayer } from '../../../contexts/PlayerContext.jsx';
+import Volume from './components/Volume/Volume.jsx';
 
 export default function Controls() {
 
     const { playerState, settingsState } = usePlayer();
 
     const [progress, setProgress] = useState(playerState.progress);
+
+    const alwaysShow = settingsState.miniplayer.alwaysShowPlayerTimestamps ?? settingsState.playerBarEnhancement.alwaysShowPlayerTimestamps
 
     const onSeeked = useCallback((newProgress) => {
         window.desktopEvents?.send('MINIPLAYER_PLAYER_ACTION', 'SET_PROGRESS', newProgress);
@@ -28,10 +31,11 @@ export default function Controls() {
                 initialProgress={progress}
                 initialTimestamp={playerState.timestamp}
                 isPlaying={playerState.isPlaying}
-                alwaysShowTimestamp={settingsState.miniplayer.alwaysShowPlayerTimestamps ?? settingsState.playerBarEnhancement.alwaysShowPlayerTimestamps}
+                alwaysShowTimestamp={alwaysShow}
                 onSeeked={onSeeked}
             />
             <BottomActions />
+            <Volume style={{ marginTop: '8px' }} value={playerState.volume} alwaysShow={alwaysShow}/>
         </div>
     );
 }
