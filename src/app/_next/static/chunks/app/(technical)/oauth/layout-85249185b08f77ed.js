@@ -26,7 +26,7 @@
                         canMoveForward: ve.state.currentContext.value?.availableActions.moveForward.value,
                         canMoveBackward: ve.state.currentContext.value?.availableActions.moveBackward.value,
                         track: ve.state.queueState.currentEntity.value?.entity.entityData.meta,
-                        progress: ve.state.playerState.progress.value,
+                        progress: ve.state.playerState.progress.value?.position,
                         availableActions: {
                             moveBackward: ve.state.currentContext.value?.availableActions.moveBackward.value,
                             moveForward: ve.state.currentContext.value?.availableActions.moveForward.value,

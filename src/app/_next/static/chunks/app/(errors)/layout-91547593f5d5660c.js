@@ -34,7 +34,7 @@
                         .value,
                     track:
                     ve.state.queueState.currentEntity.value?.entity.entityData.meta,
-                    progress: ve.state.playerState.progress.value,
+                    progress: ve.state.playerState.progress.value?.position,
                     availableActions: {
                         moveBackward:
                         ve.state.currentContext.value?.availableActions.moveBackward
