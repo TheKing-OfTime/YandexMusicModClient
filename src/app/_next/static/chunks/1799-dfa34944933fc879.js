@@ -14679,14 +14679,15 @@
                                     let a = t.get(io.byd);
                                     if (e.isConnectionDisabled)
                                         return void a.connector.disconnect();
-                                    let i = () => {
-                                            document.hidden ||
+                                    let i = (ignoreVisibility= false) => {
+                                            if (!document.hidden || ignoreVisibility) {
                                                 a.connector.connect({
                                                     oauth: t.get(io.QGx).token,
                                                     multiAuthUserId: t
                                                         .get(io.WA$)
                                                         .getPassportUid(),
                                                 });
+                                            }
                                         },
                                         r = (e) => {
                                             a.isActive ||
@@ -14706,7 +14707,7 @@
                                             "visibilitychange",
                                             i,
                                         ),
-                                        i(),
+                                        i(true),
                                         () => {
                                             a.stateController.off(
                                                 A.p$.UPDATED,

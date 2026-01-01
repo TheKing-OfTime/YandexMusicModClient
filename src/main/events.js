@@ -60,6 +60,7 @@ const isBoolean = (value) => {
 const PROGRESS_BAR_THROTTLE_MS = 200;
 
 let mainWindow = undefined;
+let isPlayerReady = false;
 
 const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
 
@@ -248,6 +249,9 @@ const handleApplicationEvents = (window) => {
                 "Event received",
                 events_js_1.Events.APPLICATION_READY,
             );
+
+            isPlayerReady = false;
+
             (0, deviceInfo_js_1.logHardwareInfo)();
             if (state_js_1.state.deeplink) {
                 (0, handleDeeplink_js_1.navigateToDeeplink)(
@@ -268,20 +272,6 @@ const handleApplicationEvents = (window) => {
                 window,
                 updater.getProbabilityBucket(),
             );
-
-            if (
-                store_js_1.getModFeatures()?.vibeAnimationEnhancement
-                    ?.autoLaunchOnAppStartup
-            ) {
-                setTimeout(() => {
-                    if (!state_js_1.state.player.isPlaying) {
-                        exports.sendPlayerAction(
-                            window,
-                            playerActions_js_1.PlayerActions.TOGGLE_PLAY,
-                        );
-                    }
-                }, 4000);
-            }
 
             const version = electron_1.app.getVersion();
             const releaseNotes = await (0,
@@ -380,7 +370,7 @@ const handleApplicationEvents = (window) => {
         eventsLogger.info(
             `Event received`,
             events_js_1.Events.PLAYER_STATE,
-            data.isPlaying,
+            data.status,
             data.canMoveBackward,
             data.canMoveForward,
         );
@@ -403,7 +393,16 @@ const handleApplicationEvents = (window) => {
         (0, tray_js_1.updateTrayMenu)(window);
         (0, taskBarExtension_js_1.onPlayerStateChange)(window, data);
         (0, scrobbleManager_js_1.handlePlayingStateEvent)(data);
-        (0, discordRichPresence_js_1.discordRichPresence)(data);
+        if (isPlayerReady && data.status !== 'idle') {
+            (0, discordRichPresence_js_1.discordRichPresence)(data);
+        } else {
+            if (data.status === 'idle' && data.track) {
+                if (store_js_1.getModFeatures()?.vibeAnimationEnhancement?.autoLaunchOnAppStartup) {
+                    exports.sendPlayerAction(window, playerActions_js_1.PlayerActions.TOGGLE_PLAY);
+                }
+                isPlayerReady = true;
+            }
+        }
         MiniPlayer.updatePlayerState(data);
     });
     electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {

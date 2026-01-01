@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const store_js_1 = require('../store.js');
 
-const IS_DEV = false;
+const IS_DEV = true;
 
 class MiniPlayer {
     constructor() {
