@@ -95,6 +95,23 @@ https://github.com/user-attachments/assets/079f8b38-ca6b-4fef-b6a2-efa853fd583f
 
 </details>
 
+### Мини-плеер
+<details>
+   <summary>Подробнее</summary>
+
+Добавляет миниплеер. Отдельное окно которое отображает текущий трек и даёт возможность удобно управлять воспроизведением.
+
+Поддерживает широкий спектр размеров окна и плавно адапитируется к ним. Кроме того может быть закреплен поверх окон.
+
+<p align="left">
+	<img height="200" alt="Кнопка открытия миниплеера" src="https://github.com/user-attachments/assets/f8f6ae6b-8502-4935-82cb-0b4d610d41ec" />
+	<img height="200" alt="image" src="https://github.com/user-attachments/assets/ac2b86e6-c68e-41a0-aa59-758908ca2f14" />
+	<img height="400" alt="image" src="https://github.com/user-attachments/assets/58deb47c-d0e0-4c78-9e40-f0ab086dfd87" />
+	<img height="400" alt="image" src="https://github.com/user-attachments/assets/d0063404-baf1-4827-8d25-399f8a5e5fa9" />
+</p>
+
+</details>
+
 ### Настраиваемая папка кеша
 <details>
    <summary>Подробнее</summary>
