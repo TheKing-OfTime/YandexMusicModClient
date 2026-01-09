@@ -12,6 +12,7 @@ var StoreKeys;
   StoreKeys["DISPLAY_MAX_FPS"] = "displayMaxFps";
   StoreKeys["IS_DEVTOOLS_ENABLED"] = "enableDevTools";
   StoreKeys["ENABLE_YNISON_REMOTE_CONTROL"] = "enableYnisonRemoteControl";
+  StoreKeys["YNISON_INTERCEPT_PLAYBACK"] = "ynisonInterceptPlayback";
   StoreKeys["ENABLE_AUTO_UPDATES"] = "enableAutoUpdates";
   StoreKeys["DEFAULT_EXPERIMENT_OVERRIDES"] = "defaultExperimentOverrides";
   StoreKeys["DEVICE_ID"] = "deviceId";

@@ -1308,6 +1308,85 @@
                 );
             });
 
+            let ynisonSettings = (0, n.PA)(() => {
+
+                let { formatMessage: e } = (0, r.A)(),
+                    {
+                        modals: { ynisonSettingsModal: t },
+                    } = (0, _.Pjs)(),
+                    { notify: j } = (0, _.lkh)(),
+                    [enableYnisonRemote, setEnableYnisonRemote] = (0, d.useState)(window.ENABLE_YNISON_REMOTE_CONTROL ?? true),
+                    [interceptYnison, setInterceptYnison] = (0, d.useState)(window.YNISON_INTERCEPT_PLAYBACK ?? true),
+                    onEnableYnisonRemoteControlToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('Ynison Remote Control toggled. Value: ', e);
+                            window.nativeSettings.set('enableYnisonRemoteControl', e);
+                            setEnableYnisonRemote(e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    ),
+                    onYnisonInterceptPlaybackToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('Ynison intercept toggled. Value: ', e);
+                            window.nativeSettings.set('ynisonInterceptPlayback', e);
+                            setInterceptYnison(e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    );
+                return (
+                        (0, i.jsxs)(p.a, {
+                            className: H().root,
+                            title: 'Ynison Remote',
+                            headerClassName: H().modalHeader,
+                            contentClassName: H().modalContent,
+                            open: t.isOpened,
+                            onOpenChange: t.onOpenChange,
+                            onClose: t.close,
+                            size: 'fitContent',
+                            placement: 'center',
+                            style: { 'max-width': '34.375rem', height: 'auto' },
+                            labelClose: e({ id: 'interface-actions.close' }),
+                            children: (0, i.jsxs)('ul', {
+                                className: `${B().root} ${H().list}`,
+                                style: { width: '32.125rem', gap: 0 },
+                                children: [
+                                    (0, i.jsx)('li', {
+                                        className: B().item,
+                                        children: (0, i.jsx)(P, {
+                                            title: ['Удалённое управление', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
+                                            description: 'Даст возможность управлять этим плеером с других устройств',
+                                            onChange: onEnableYnisonRemoteControlToggle,
+                                            isChecked: enableYnisonRemote,
+                                        }),
+                                    }),
+                                    (0, i.jsx)('li', {
+                                        className: B().item,
+                                        children: (0, i.jsx)(P, {
+                                            title: ['Перехват Ynison', (0, i.jsx)(labeledBubble, { label: 'BETA', disabled: !enableYnisonRemote })],
+                                            description: 'Воспроизведение с других плееров будет автоматически переходить на этот плеер',
+                                            onChange: onYnisonInterceptPlaybackToggle,
+                                            isChecked: interceptYnison,
+                                            disabled: !enableYnisonRemote,
+                                        }),
+                                    }),
+                                ],
+                            }),
+                        })
+                );
+            });
+
             let playerBarEnhancementsSettings = (0, n.PA)(() => {
                 let { formatMessage: e } = (0, r.A)(),
                     {
@@ -2121,6 +2200,7 @@
                             scrobblersSettingsModal: scrobblersSettingsModal,
                             downloaderSettingsModal: downloaderSettingsModal,
                             systemSettingsModal: systemSettingsModal,
+                            ynisonSettingsModal: ynisonSettingsModal,
                         },
                         experiments: a,
                         wizard: c,
@@ -2178,6 +2258,19 @@
                         async (e) => {
                             console.log('Ynison Remote Control toggled. Value: ', e);
                             window.nativeSettings.set('enableYnisonRemoteControl', e);
+                            j(
+                                (0, i.jsx)(m.hT, {
+                                    error: 'Для применения этой настройки требуется перезапуск приложения',
+                                }),
+                                { containerId: _.uQT.ERROR },
+                            );
+                        },
+                        [g],
+                    ),
+                    onYnisonInterceptPlaybackToggle = (0, d.useCallback)(
+                        async (e) => {
+                            console.log('Ynison intercept toggled. Value: ', e);
+                            window.nativeSettings.set('ynisonInterceptPlayback', e);
                             j(
                                 (0, i.jsx)(m.hT, {
                                     error: 'Для применения этой настройки требуется перезапуск приложения',
@@ -2561,12 +2654,14 @@
                             }),
                             (0, i.jsx)('li', {
                                 className: B().item,
-                                children: (0, i.jsx)(P, {
-                                    title: ['Ynison Remote', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
-                                    description: 'Даст возможность управлять этим плеером с других устройств',
-                                    onChange: onEnableYnisonRemoteControlToggle,
-                                    isChecked: window.nativeSettings.get('enableYnisonRemoteControl'),
-                                }),
+                                children: [
+                                    (0, i.jsx)(S, {
+                                        title: ['Ynison Remote', (0, i.jsx)(labeledBubble, { label: 'BETA' })],
+                                        description: 'Настройки кроссплеерного управления',
+                                        onClick: ynisonSettingsModal.open,
+                                    }),
+                                    (0, i.jsx)(ynisonSettings, {}),
+                                ],
                             }),
                             (0, i.jsx)('li', {
                                 className: B().item,

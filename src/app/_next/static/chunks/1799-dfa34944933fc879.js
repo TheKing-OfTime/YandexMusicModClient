@@ -14679,8 +14679,8 @@
                                     let a = t.get(io.byd);
                                     if (e.isConnectionDisabled)
                                         return void a.connector.disconnect();
-                                    let i = (ignoreVisibility= false) => {
-                                            if (!document.hidden || ignoreVisibility) {
+                                    let i = () => {
+                                            if (!document.hidden) {
                                                 a.connector.connect({
                                                     oauth: t.get(io.QGx).token,
                                                     multiAuthUserId: t
@@ -14688,6 +14688,14 @@
                                                         .getPassportUid(),
                                                 });
                                             }
+                                        },
+                                        connect = () => {
+                                            a.connector.connect({
+                                                oauth: t.get(io.QGx).token,
+                                                multiAuthUserId: t
+                                                .get(io.WA$)
+                                                .getPassportUid(),
+                                            });
                                         },
                                         r = (e) => {
                                             a.isActive ||
@@ -14707,7 +14715,7 @@
                                             "visibilitychange",
                                             i,
                                         ),
-                                        i(true),
+                                        connect(),
                                         () => {
                                             a.stateController.off(
                                                 A.p$.UPDATED,
@@ -14793,7 +14801,7 @@
                                         null == (t = a.status)
                                             ? void 0
                                             : t.paused) === !1;
-                                    !e.isActive && i && e.interceptActivity();
+                                    !e.isActive && i && (window?.YNISON_INTERCEPT_PLAYBACK ?? false) && e.interceptActivity();
                                 };
                             return (
                                 e.stateController.on(A.p$.UPDATED, t, "App"),
@@ -22333,6 +22341,7 @@
                     scrobblersSettingsModal: {},
                     downloaderSettingsModal: {},
                     systemSettingsModal: {},
+                    ynisonSettingsModal: {},
                 },
                 landing: {
                     loadingState: u.GuX.IDLE,
@@ -23929,6 +23938,7 @@
                 scrobblersSettingsModal: S.qt,
                 downloaderSettingsModal: S.qt,
                 systemSettingsModal: S.qt,
+                ynisonSettingsModal: S.qt,
             });
             var e6 = a(22307),
                 e8 = a(44748),

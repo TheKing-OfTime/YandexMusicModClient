@@ -63,6 +63,10 @@ electron_1.contextBridge.exposeInMainWorld(
   Boolean(store_js_1.getEnableYnisonRemoteControl()),
 );
 electron_1.contextBridge.exposeInMainWorld(
+    "YNISON_INTERCEPT_PLAYBACK",
+    Boolean(store_js_1.getYnisonInterceptPlayback()),
+);
+electron_1.contextBridge.exposeInMainWorld(
   "VIBE_ANIMATION_INTENSITY_COEFFICIENT",
   () =>
     store_js_1.getModFeatures()?.vibeAnimationEnhancement?.intensityCoefficient,

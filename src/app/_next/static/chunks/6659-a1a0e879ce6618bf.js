@@ -2648,7 +2648,7 @@
                                 configurable: !0,
                                 writable: !0,
                                 value: function (e) {
-                                    return this.variables.isShadow
+                                    return this.variables.isShadow || !this.isActive
                                         ? H(H({}, e), { paused: !0 })
                                         : e;
                                 },
