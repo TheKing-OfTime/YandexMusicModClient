@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-height: 380px) {
+        align-items: start;
+    }
 }
 
 .TrackMeta_title_container {
@@ -45,6 +49,7 @@
 
     @media (max-height: 380px) {
         -webkit-line-clamp: 1;
+        text-align: left;
     }
 }
 

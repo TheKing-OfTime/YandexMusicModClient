@@ -10,6 +10,10 @@
         display: none;
     }
 
+    @media (max-height: 380px) {
+        display: flex;
+    }
+
     @media (max-width: 375px) {
         gap: 0;
     }

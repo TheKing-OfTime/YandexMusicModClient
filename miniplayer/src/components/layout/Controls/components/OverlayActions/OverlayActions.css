@@ -17,6 +17,10 @@
     @media (min-height: 550px) {
         display: none;
     }
+
+    @media (max-height: 380px) {
+        display: none;
+    }
 }
 
 .OverlayPlayerActions:hover {

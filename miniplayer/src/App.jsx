@@ -28,8 +28,10 @@ function App() {
         <>
             <TitleBar />
             <main className="main" style={bgColor}>
-                <Cover />
-                <TrackMeta />
+                <div className="Track_container">
+                    <Cover />
+                    <TrackMeta />
+                </div>
                 <Controls />
             </main>
         </>

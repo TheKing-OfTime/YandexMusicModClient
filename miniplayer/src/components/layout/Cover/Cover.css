@@ -33,7 +33,18 @@
     transition: var(--cover-width-transition);
 
     box-shadow: 0 0.5rem 0.75rem
-    0.25rem rgba(0, 0, 0, 0.24);;
+    0.25rem rgba(0, 0, 0, 0.24);
+
+    @media (max-height: 390px) {
+        transition: width 0.2s;
+    }
+
+    @media (max-height: 380px) {
+
+        min-width: 50px;
+        min-height: 50px;
+        width: 50px;
+    }
 }
 
 .Cover_container_generative {

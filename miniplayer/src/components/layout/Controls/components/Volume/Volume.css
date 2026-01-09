@@ -43,6 +43,15 @@
     @media (max-height: 549px) {
         display: none;
     }
+    @media (max-height: 380px) {
+        display: flex;
+    }
+    @media (max-height: 380px) {
+        display: flex;
+    }
+    @media (max-height: 270px) {
+        display: none;
+    }
 }
 
 .Volume_container_overlay {

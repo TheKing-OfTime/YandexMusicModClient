@@ -1,5 +1,6 @@
 :root {
   --cover-size: min(70vh, 90vw);
+  --cover-min-size: 240px;
 
   @media (min-height: 560px) {
     --cover-size: min(55vh, 90vw);
@@ -17,6 +18,10 @@
     --cover-width-transition: width 0.2s;
   }
 
+  @media (max-height: 380px) {
+    --cover-size: 245px;
+  }
+
 }
 
 .main {
@@ -29,7 +34,7 @@
   inset: 0;
   display: flex;
   background-color: var(--player-color);
-  transition: background-color 0.3s, gap 0.3s;;
+  transition: background-color 0.3s, gap 0.3s;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -40,4 +45,29 @@
     gap: 0.3rem;
   }
 
+}
+
+.Track_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: flex-direction 0.3s, gap 0.3s;
+  align-items: center;
+  max-width: var(--cover-size);
+
+
+  @media (max-height: 437px) {
+    gap: 0.3rem;
+  }
+
+  @media (max-height: 437px) {
+    gap: 0.3rem;
+  }
+
+  @media (max-height: 380px) {
+    gap: 0.6rem;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
 }

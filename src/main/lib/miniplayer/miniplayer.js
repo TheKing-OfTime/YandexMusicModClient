@@ -76,7 +76,7 @@ class MiniPlayer {
             width: (dimensions?.width ?? 380) * scaleFactor,
             height: (dimensions?.height ?? 590) * scaleFactor,
             minWidth: 275,
-            minHeight: 380,
+            minHeight: 200,
             ...((position?.x && position?.y) ? { x: position.x, y: position.y } : { center: true }),
             backgroundColor: '#141414',
             frame: false,

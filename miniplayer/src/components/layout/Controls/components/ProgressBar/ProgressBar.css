@@ -1,5 +1,6 @@
 :root {
     --progress-bar-gap: 10px;
+    --controls-gap: 0px;
 }
 
 .ProgressBar_slider {
@@ -17,9 +18,20 @@
     max-width: 90vw;
     transition: var(--cover-width-transition);
     min-width: 245px;
+    margin-bottom: var(--controls-gap);
 
     @media (min-height: 550px) {
-        margin-bottom: 16px;
+        --controls-gap: 16px;
+    }
+    @media (max-height: 380px) {
+        --controls-gap: 16px;
+        transition: margin-top 0.2s, margin-bottom 0.2s;
+        margin-top: var(--controls-gap);
+    }
+    @media (max-height: 270px) {
+        --controls-gap: 8px;
+        transition: margin-top 0.2s, margin-bottom 0.2s;
+        margin-top: var(--controls-gap);
     }
 }
 
