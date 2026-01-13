@@ -456,57 +456,112 @@ async function minifyDir(srcDir, destDir) {
         }
     }
 }
+    function hashDirFiltered(
+        dir,
+        ignore = [
+            'node_modules',
+            'dist',
+            'build',
+            '.build-meta.json',
+            '.git',
+            '.DS_Store'
+        ]
+    ) {
+        const hash = crypto.createHash('sha256');
+
+        function walk(p) {
+            const entries = fs.readdirSync(p, { withFileTypes: true });
+            for (const e of entries) {
+                if (ignore.includes(e.name)) continue;
+
+                const full = path.join(p, e.name);
+                if (e.isDirectory()) {
+                    walk(full);
+                } else {
+                    hash.update(e.name);
+                    hash.update(fs.readFileSync(full));
+                }
+            }
+        }
+
+        walk(dir);
+        return hash.digest('hex');
+    }
+
+
+
+function getNativeBuildKey(nativeDir) {
+    return crypto
+    .createHash('sha256')
+    .update(JSON.stringify({
+        sourcesHash: hashDirFiltered(nativeDir),
+        abi: process.versions.modules,
+        platform: process.platform,
+        arch: process.arch
+    }))
+    .digest('hex');
+}
 
 /**
  * Сборка и копирование нативного модуля
  * @param {string} moduleName - имя папки с модулем (например, setIconicThumbnail)
  */
 async function buildNativeModule(moduleName) {
-    console.log('Собираю нативный модуль:', moduleName);
     const nativeDir = path.join(__dirname, 'native', moduleName);
     const gypPath = path.join(nativeDir, 'binding.gyp');
     if (!fs.existsSync(gypPath)) throw new Error(`Не найден binding.gyp в ${nativeDir}`);
 
-    // Получаем имя таргета из binding.gyp
     const gyp = JSON.parse(
         fs.readFileSync(gypPath, 'utf8')
-            .replace(/\/\/.*$/mg, '') // убираем комментарии
-            .replace(/,\s*]/g, ']')   // убираем лишние запятые
-            .replace(/,\s*}/g, '}')
+        .replace(/\/\/.*$/mg, '')
+        .replace(/,\s*]/g, ']')
+        .replace(/,\s*}/g, '}')
     );
-    const targetName = gyp.targets?.[0]?.target_name;
-    if (!targetName) throw new Error('Не удалось получить target_name из binding.gyp');
-    console.log('binding.gyp.target_name:', targetName);
 
-    console.log('Запускаю компиляцию');
-    console.time('Компиляция завершена');
-    // Сборка модуля
-    execSync('npm run build', { cwd: nativeDir, stdio: 'inherit' });
-    console.timeEnd('Компиляция завершена');
-    console.log('Копирую модуль в проект');
-    // Копирование .node файла
-    const builtNode = path.join(nativeDir, 'build', 'Release', `${targetName}.node`);
+    const targetName = gyp.targets?.[0]?.target_name;
+    if (!targetName) throw new Error('Не удалось получить target_name');
+
     const destDir = path.join(__dirname, 'src', 'main', 'native_modules', targetName);
     const destNode = path.join(destDir, `${targetName}.node`);
+    const metaPath = path.join(destDir, '.build-meta.json');
+
+    const buildKey = getNativeBuildKey(nativeDir);
+
+    if (
+        fs.existsSync(destNode) &&
+        fs.existsSync(metaPath) &&
+        JSON.parse(fs.readFileSync(metaPath, 'utf8')).buildKey === buildKey
+    ) {
+        console.log(`⏩ Нативный модуль ${targetName} актуален — сборка пропущена`);
+        return;
+    }
+
+    console.log(`🔨 Сборка нативного модуля: ${targetName}`);
+    execSync('npm run build', { cwd: nativeDir, stdio: 'inherit' });
+
+    const builtNode = path.join(nativeDir, 'build', 'Release', `${targetName}.node`);
     await fsp.mkdir(destDir, { recursive: true });
     await fsp.copyFile(builtNode, destNode);
-    console.log('Модуль скопирован');
 
-    console.log('Копирую враппер');
-    // Копирование JS файлов
+    // JS wrapper
     const jsDir = path.join(nativeDir, 'js');
     if (fs.existsSync(jsDir)) {
-        const files = await fsp.readdir(jsDir);
-        for (const file of files) {
+        for (const file of await fsp.readdir(jsDir)) {
             await fsp.copyFile(
                 path.join(jsDir, file),
                 path.join(destDir, file)
             );
         }
     }
-    console.log('Враппер скопирован');
-    console.log(`Модуль ${targetName} собран и скопирован в ${destDir}`);
+
+    fs.writeFileSync(metaPath, JSON.stringify({
+        buildKey,
+        builtAt: new Date().toISOString()
+    }, null, 2));
+
+    console.log(`✅ Модуль ${targetName} собран`);
 }
+
 
 
 async function buildNativeModules() {
@@ -518,7 +573,59 @@ async function buildNativeModules() {
     }
 }
 
+    async function buildMiniPlayer(force = false) {
+        const miniPlayerDir = path.join(__dirname, 'miniplayer');
+        const metaPath = path.join(miniPlayerDir, '.build-meta.json');
+
+        if (!fs.existsSync(miniPlayerDir)) {
+            console.log('Миниплеер не найден, сборка пропущена');
+            return;
+        }
+
+        const buildKey = crypto
+        .createHash('sha256')
+        .update(JSON.stringify({
+            sourcesHash: hashDirFiltered(miniPlayerDir),
+            node: process.version,
+            platform: process.platform,
+            arch: process.arch
+        }))
+        .digest('hex');
+
+        if (
+            !force &&
+            fs.existsSync(metaPath)
+        ) {
+            const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+            if (meta.buildKey === buildKey) {
+                console.log('⏩ Миниплеер актуален — сборка пропущена');
+                return;
+            }
+        }
+
+        console.log('🎵 Сборка миниплеера...');
+        console.time('Миниплеер собран');
+
+        execSync('npm run build', {
+            cwd: miniPlayerDir,
+            stdio: 'inherit'
+        });
+
+        console.timeEnd('Миниплеер собран');
+
+        fs.writeFileSync(metaPath, JSON.stringify({
+            buildKey,
+            builtAt: new Date().toISOString()
+        }, null, 2));
+
+        console.log('✅ Миниплеер успешно собран');
+    }
+
+
 async function build({ srcPath = SRC_PATH, destDir = DEFAULT_DIST_PATH, noMinify = false, noNativeModules = false } = { srcPath: SRC_PATH, destDir: DEFAULT_DIST_PATH, noMinify: false }) {
+
+    await buildMiniPlayer();
+
     if (!noNativeModules) await buildNativeModules();
 
     if (!noMinify) {
