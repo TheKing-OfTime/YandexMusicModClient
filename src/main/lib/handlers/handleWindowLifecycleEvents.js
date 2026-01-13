@@ -25,16 +25,43 @@ const setBlurredTime = () => {
     state_js_1.state.lastWindowBlurredOrHiddenTime = Date.now();
 };
 
-const updateWindowDimensions = (window, skipResize = false) => {
-    const sizesBefore = window.getSize();
-    window.setSize(
-        Math.floor(sizesBefore[0] / 2) * 2,
-        Math.floor(sizesBefore[1] / 2) * 2,
-    ); // Это довольно сомнительная реализация
-    const sizes = skipResize
-        ? store_js_1.getWindowDimensions()
-        : window.getSize();
-    store_js_1.setWindowDimensions(sizes[0], sizes[1], window.isMaximized());
+let resizeCorrectionTimer = null;
+let isApplyingEvenCorrection = false;
+
+const updateWindowDimensions = (window) => {
+    const applyCorrection = () => {
+        const [w, h] = window.getSize();
+        const evenW = w & ~1;
+        const evenH = h & ~1;
+
+        if (w !== evenW || h !== evenH) {
+            isApplyingEvenCorrection = true;
+            window.setSize(evenW, evenH);
+            isApplyingEvenCorrection = false;
+        }
+
+        store_js_1.setWindowDimensions(
+            evenW,
+            evenH,
+            window.isMaximized(),
+        );
+    };
+
+
+    if (deviceInfo_js_1.devicePlatform === platform_js_1.Platform.LINUX) {
+        if (resizeCorrectionTimer) {
+            clearTimeout(resizeCorrectionTimer);
+        }
+
+        resizeCorrectionTimer = setTimeout(() => {
+            applyCorrection();
+            resizeCorrectionTimer = null;
+        }, 50);
+
+        return;
+    }
+
+    applyCorrection();
 };
 
 const handleWindowLifecycleEvents = (window) => {
@@ -76,7 +103,7 @@ const handleWindowLifecycleEvents = (window) => {
     });
     window.on("maximize", () => {
         checkAndUpdateApplicationData(window);
-        updateWindowDimensions(window, true);
+        updateWindowDimensions(window);
         state_js_1.state.isMinimized = false;
         (0, tray_js_1.updateTrayMenu)(window);
     });
@@ -91,6 +118,9 @@ const handleWindowLifecycleEvents = (window) => {
         (0, tray_js_1.updateTrayMenu)(window);
     });
     window.on("resized", () => {
+        if (isApplyingEvenCorrection) {
+            return;
+        }
         updateWindowDimensions(window);
     });
     window.on("moved", () => {
