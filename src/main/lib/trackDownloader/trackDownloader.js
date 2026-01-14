@@ -219,7 +219,9 @@ class TrackDownloader {
             return;
         }
 
-        this.logger.log(`Downloading multiple tracks: ${trackIds}`);
+        this.logger.log(`Downloading multiple tracks: ${trackIds?.length}`);
+
+        callback(0, 0, 'Подготовка...');
 
         const batchSize = API_REQUESTS_BATCH_LIMIT;
         const tracksDownloadInfo = [];

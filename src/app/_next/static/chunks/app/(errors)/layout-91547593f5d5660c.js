@@ -706,7 +706,7 @@
                             dismissOnButtonClick = false
                         } = e,
                         [getProgress, setProgress] = (0, t.useState)(-1),
-                        [statusLabel, setStatusLabel] = (0, t.useState)('Подготовка...'),
+                        [statusLabel, setStatusLabel] = (0, t.useState)('Ожидание...'),
 
 
                         onClick = (0, t.useCallback)(

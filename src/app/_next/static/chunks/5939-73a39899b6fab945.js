@@ -672,7 +672,7 @@
                 toastWithProgress = (e) => {
                     let { closeToast: closeToast, toastID, message, buttonLabel, onButtonClick, disabled = false, dismissOnButtonClick = false } = e,
                         [getProgress, setProgress] = (0, a.useState)(-1),
-                        [statusLabel, setStatusLabel] = (0, a.useState)('Подготовка...'),
+                        [statusLabel, setStatusLabel] = (0, a.useState)('Ожидание...'),
 
                         onClick = (0, a.useCallback)(
                             () => {
