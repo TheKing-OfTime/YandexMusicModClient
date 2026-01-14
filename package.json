@@ -7,13 +7,11 @@
     "@electron/asar": "^3.2.13",
     "@octokit/rest": "^21.1.1",
     "archiver": "^7.0.1",
-    "chalk": "^4.1.2",
     "dotenv": "^16.4.7",
     "electron": "^31.0.1",
     "fast-glob": "^3.3.3",
     "minimist": "^1.2.8",
     "node-gyp": "^11.2.0",
-    "ora": "^5.4.1",
     "plist": "^3.1.0",
     "semver": "^7.7.1",
     "terser": "^5.39.0"
