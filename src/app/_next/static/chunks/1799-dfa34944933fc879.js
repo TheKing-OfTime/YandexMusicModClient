@@ -6611,34 +6611,22 @@
             class eW {
                 connectNodes() {
                     let { useAnalyser: e, useGain: t } = this.config;
-                    t &&
-                        e &&
-                        (this.sourceNode.connect(this.gainNode),
-                        this.gainNode.connect(this.analyserNode),
-                        this.analyserNode.connect(this.context.destination)),
-                        t &&
-                            !e &&
-                            (this.sourceNode.connect(this.gainNode),
-                            this.gainNode.connect(this.context.destination)),
-                        !t &&
-                            e &&
-                            (this.sourceNode.connect(this.analyserNode),
-                            this.analyserNode.connect(
-                                this.context.destination,
-                            )),
-                        t ||
-                            e ||
-                            this.sourceNode.connect(this.context.destination);
+                    (this.sourceNode.connect(e ? this.analyserNode : this.r128GainNode),
+                        e && this.analyserNode.connect(this.r128GainNode),
+                        t && (this.r128GainNode.connect(this.gainNode), this.gainNode.connect(this.context.destination)),
+                        !t && this.r128GainNode.connect(this.context.destination));
                 }
                 connectEqualizer() {
                     let { useAnalyser: e, useGain: t } = this.config,
                         a = this.bands[this.bands.length - 1];
                     a &&
                         (this.sourceNode.disconnect(),
+                        this.r128GainNode.disconnect(),
                         this.sourceNode.connect(this.preamp),
-                        t && a.connect(this.gainNode),
-                        !t && e && a.connect(this.analyserNode),
-                        t || e || a.connect(this.context.destination));
+                        a.connect(e ? this.analyserNode : this.r128GainNode),
+                        e && this.analyserNode.connect(this.r128GainNode),
+                        t && (this.r128GainNode.connect(this.gainNode), this.gainNode.connect(this.context.destination)),
+                        !t && this.r128GainNode.connect(this.context.destination));
                 }
                 disconnectEqualizer() {
                     let { useAnalyser: e, useGain: t } = this.config,
@@ -6646,11 +6634,26 @@
                     a &&
                         (this.sourceNode.disconnect(),
                         a.disconnect(),
-                        t && this.sourceNode.connect(this.gainNode),
-                        !t && e && this.sourceNode.connect(this.analyserNode),
-                        t ||
-                            e ||
-                            this.sourceNode.connect(this.context.destination));
+                        this.r128GainNode.disconnect(),
+                        this.sourceNode.connect(e ? this.analyserNode : this.r128GainNode),
+                        e && this.analyserNode.connect(this.r128GainNode),
+                        t && (this.r128GainNode.connect(this.gainNode), this.gainNode.connect(this.context.destination)),
+                        !t && this.r128GainNode.connect(this.context.destination));
+                }
+                setR128Gain(e, t) {
+                    let a = -23,
+                        i = null == window || null == window.nativeSettings ? void 0 : window.nativeSettings.get('modFeatures.r128Normalization'),
+                        r = null != e ? e : this.lastR128,
+                        s = Number(null == r ? void 0 : r.i),
+                        l = 'boolean' == typeof t ? t : i;
+                    null != e && (this.lastR128 = e);
+                    if (!1 === l) return void this.r128GainNode.gain.setValueAtTime(1, this.context.currentTime);
+                    if (!Number.isFinite(s)) return void this.r128GainNode.gain.setValueAtTime(1, this.context.currentTime);
+                    let o = Number(null == r ? void 0 : r.tp),
+                        d = a - s;
+                    Number.isFinite(o) && (d = Math.min(d, -o));
+                    let u = Math.pow(10, d / 20);
+                    (Number.isFinite(u) && u > 0) || (u = 1), this.r128GainNode.gain.setValueAtTime(u, this.context.currentTime);
                 }
                 setBands(e) {
                     0 === this.bands.length
@@ -6745,33 +6748,30 @@
                         document.body.addEventListener("keydown", t, !0));
                 }
                 constructor(e, t) {
-                    (0, w._)(this, "audioElement", void 0),
-                        (0, w._)(this, "context", void 0),
-                        (0, w._)(this, "sourceNode", void 0),
-                        (0, w._)(this, "preamp", void 0),
-                        (0, w._)(this, "bands", []),
-                        (0, w._)(this, "analyserNode", void 0),
-                        (0, w._)(this, "bufferLength", 0),
-                        (0, w._)(this, "spectrum", new Uint8Array()),
-                        (0, w._)(this, "gainNode", void 0),
-                        (0, w._)(this, "config", void 0),
+                    ((0, w._)(this, 'audioElement', void 0),
+                        (0, w._)(this, 'context', void 0),
+                        (0, w._)(this, 'sourceNode', void 0),
+                        (0, w._)(this, 'preamp', void 0),
+                        (0, w._)(this, 'bands', []),
+                        (0, w._)(this, 'analyserNode', void 0),
+                        (0, w._)(this, 'bufferLength', 0),
+                        (0, w._)(this, 'spectrum', new Uint8Array()),
+                        (0, w._)(this, 'gainNode', void 0),
+                        (0, w._)(this, 'r128GainNode', void 0),
+                        (0, w._)(this, 'lastR128', null),
+                        (0, w._)(this, 'config', void 0),
                         (this.audioElement = e),
                         (this.context = new AudioContext()),
                         this.checkAndResumeAudioContext(this.context),
-                        (this.sourceNode =
-                            this.context.createMediaElementSource(
-                                this.audioElement,
-                            )),
-                        (this.analyserNode = this.createAnalyzerNode(
-                            this.context,
-                        )),
-                        (this.bufferLength =
-                            this.analyserNode.frequencyBinCount),
+                        (this.sourceNode = this.context.createMediaElementSource(this.audioElement)),
+                        (this.analyserNode = this.createAnalyzerNode(this.context)),
+                        (this.bufferLength = this.analyserNode.frequencyBinCount),
                         (this.spectrum = new Uint8Array(this.bufferLength)),
                         (this.gainNode = this.context.createGain()),
+                        (this.r128GainNode = this.context.createGain()),
                         (this.preamp = this.context.createGain()),
                         (this.config = t),
-                        this.connectNodes();
+                        this.connectNodes());
                 }
             }
             class ez {
@@ -6859,9 +6859,7 @@
                                         this.fade.disable();
                                 }
                         }),
-                        t.beforeMediaStartPlaying.tapPromise(
-                            "WebAudioPlugin",
-                            () => {
+                        t.beforeMediaStartPlaying.tapPromise('WebAudioPlugin', () => {
                                 var e, t, i;
                                 let r,
                                     s,
@@ -6885,13 +6883,18 @@
                                     (0, eK.b)(n) &&
                                         ((r = n.data.meta.fade),
                                         (s = n.data.meta.durationMs)),
+                                this.graphs.forEach((e) => {
+                                    var t;
+                                    let i = null == (t = a.state.mediaPlayersStore.value[F.e.AUDIO]) ? void 0 : t.currentAudioElement.value,
+                                        r = null == n ? void 0 : n.data.meta.r128;
+                                    (!i || e.audioElement === i) && e.setR128Gain(r);
+                                }),
                                     this.fade && this.fade.apply(r),
                                     this.smartPreview &&
                                         this.smartPreview.apply(s),
                                     Promise.resolve()
                                 );
-                            },
-                        );
+                        });
                 }
                 constructor(e) {
                     (0, w._)(this, "options", void 0),
@@ -22342,6 +22345,7 @@
                     downloaderSettingsModal: {},
                     systemSettingsModal: {},
                     ynisonSettingsModal: {},
+                    audioSettingsModal: {},
                 },
                 landing: {
                     loadingState: u.GuX.IDLE,
@@ -23939,6 +23943,7 @@
                 downloaderSettingsModal: S.qt,
                 systemSettingsModal: S.qt,
                 ynisonSettingsModal: S.qt,
+                audioSettingsModal: S.qt,
             });
             var e6 = a(22307),
                 e8 = a(44748),

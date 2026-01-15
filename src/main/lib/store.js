@@ -215,6 +215,7 @@ const init = () => {
         y: 0,
       }
     },
+    r128Normalization: false,
     tryEnableSurroundAudio: false,
     showNonMusicPage: true,
     enableHardwareAcceleration: true,
