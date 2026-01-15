@@ -6,7 +6,7 @@ on:
       ffmpeg_ref:
         description: "FFmpeg git ref (tag/commit/branch). Например: n6.1.1"
         required: false
-        default: "n6.1.1"
+        default: "n8.0.1"
 
 permissions:
   contents: write
@@ -33,9 +33,7 @@ env:
     --enable-avfilter
     --enable-swresample
     --enable-swscale
-    --enable-postproc
     --enable-avdevice
-    --enable-network
     --enable-gpl
     --enable-version3
     --enable-libmp3lame
@@ -45,11 +43,9 @@ env:
     --enable-libx264
     --enable-libx265
     --enable-libaom
-    --enable-libdav1d
     --enable-libass
     --enable-libfreetype
     --enable-libfribidi
-    --enable-openssl
 
 jobs:
   build:
