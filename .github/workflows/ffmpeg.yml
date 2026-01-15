@@ -18,7 +18,7 @@ concurrency:
 env:
   # Полноценная конфигурация, без SVT-AV1 и без --enable-postproc
   # Лицензия:
-  # --enable-gpl + libx264/libx265 => итоговый бинарник GPL.
+  # --enable-gpl + libx264 => итоговый бинарник GPL.
   FFMPEG_CONFIG_FLAGS: >-
     --disable-debug
     --disable-doc
@@ -34,7 +34,6 @@ env:
     --enable-swresample
     --enable-swscale
     --enable-avdevice
-    --enable-network
     --enable-gpl
     --enable-version3
     --enable-libmp3lame
@@ -42,13 +41,11 @@ env:
     --enable-libvorbis
     --enable-libvpx
     --enable-libx264
-    --enable-libx265
     --enable-libaom
     --enable-libdav1d
     --enable-libass
     --enable-libfreetype
     --enable-libfribidi
-    --enable-openssl
 
 jobs:
   build:
@@ -93,7 +90,6 @@ jobs:
             libvorbis-dev \
             libvpx-dev \
             libx264-dev \
-            libx265-dev \
             libaom-dev \
             libdav1d-dev \
             libass-dev \
@@ -107,7 +103,7 @@ jobs:
           brew update
           brew install \
             yasm nasm pkg-config cmake git \
-            lame opus libvorbis libvpx x264 x265 aom dav1d \
+            lame opus libvorbis libvpx x264 aom dav1d \
             libass freetype fribidi openssl@3 \
             zip
 
@@ -130,7 +126,6 @@ jobs:
             mingw-w64-x86_64-libvorbis
             mingw-w64-x86_64-libvpx
             mingw-w64-x86_64-x264
-            mingw-w64-x86_64-x265
             mingw-w64-x86_64-aom
             mingw-w64-x86_64-dav1d
             mingw-w64-x86_64-libass
@@ -165,24 +160,35 @@ jobs:
           EXTRA_CFLAGS=""
           EXTRA_LDFLAGS=""
           EXTRA_LIBS=""
+          PKGCFG='--pkg-config-flags="--static"'
 
           if [[ "${RUNNER_OS}" == "macOS" ]]; then
+            # На macOS pkg-config часто не видит Homebrew-префиксы без явного PKG_CONFIG_PATH,
+            # особенно на arm64 (/opt/homebrew).
+            BREW_PREFIX="$(brew --prefix)"
             OPENSSL_PREFIX="$(brew --prefix openssl@3)"
+
+            export PKG_CONFIG_PATH="${BREW_PREFIX}/lib/pkgconfig:${BREW_PREFIX}/share/pkgconfig:${OPENSSL_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+
+            # Для openssl headers/libs (если когда-то добавите --enable-openssl обратно)
             EXTRA_CFLAGS="-I${OPENSSL_PREFIX}/include"
             EXTRA_LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+
+            # На macOS --static через pkg-config часто ломает поиск/линковку brew-библиотек
+            PKGCFG=""
           fi
 
           ./configure \
             $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
-            --pkg-config-flags="--static" \
+            ${PKGCFG} \
             --extra-cflags="${EXTRA_CFLAGS}" \
             --extra-ldflags="${EXTRA_LDFLAGS}" \
             --extra-libs="${EXTRA_LIBS}"
 
           echo "---- configure OK ----"
-          tail -n 50 config.log || true
+          tail -n 80 ffbuild/config.log || tail -n 80 config.log || true
 
       - name: Configure (Windows / MSYS2)
         if: runner.os == 'Windows'
@@ -273,18 +279,15 @@ jobs:
           cp -f "FFmpeg/ffmpeg.exe"  "dist/ffmpeg-${{ matrix.target }}.exe"
           cp -f "FFmpeg/ffprobe.exe" "dist/ffprobe-${{ matrix.target }}.exe"
 
-          # Функция: извлекает зависимости DLL из PE файла (EXE/DLL)
           deps_of() {
             objdump -p "$1" 2>/dev/null | awk '/DLL Name/ {print $3}' | sort -u
           }
 
-          # Стартуем с зависимостей EXE
           : > dist/dlls.todo.txt
           deps_of "dist/ffmpeg-${{ matrix.target }}.exe"  >> dist/dlls.todo.txt
           deps_of "dist/ffprobe-${{ matrix.target }}.exe" >> dist/dlls.todo.txt
           sort -u dist/dlls.todo.txt -o dist/dlls.todo.txt
 
-          # Будем собирать до замыкания: копируем DLL и добавляем зависимости этих DLL
           : > dist/dlls.done.txt
           changed=1
           while [ "$changed" -eq 1 ]; do
@@ -294,14 +297,10 @@ jobs:
               [ -z "$dll" ] && continue
               grep -qi "^${dll}$" dist/dlls.done.txt && continue
 
-              # Помечаем как обработанную
               echo "$dll" >> dist/dlls.done.txt
 
-              # Если DLL есть в mingw64/bin — копируем рядом с exe
               if [ -f "/mingw64/bin/${dll}" ]; then
                 cp -f "/mingw64/bin/${dll}" dist/ || true
-
-                # Добавляем транзитивные зависимости этой DLL
                 deps_of "/mingw64/bin/${dll}" >> dist/dlls.todo.txt
                 changed=1
               fi
@@ -311,7 +310,6 @@ jobs:
             sort -u dist/dlls.done.txt -o dist/dlls.done.txt
           done
 
-          # Полезно видеть, что реально упаковали
           echo "Packed DLL count:"
           ls -1 dist/*.dll 2>/dev/null | wc -l || true
 
@@ -321,18 +319,15 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          # Не глушим вывод, чтобы при проблеме было видно сообщение загрузчика
           & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version
           & ".\dist\ffprobe-${{ matrix.target }}.exe" -version
 
-          # sha256 для всех файлов кроме zip
           $files = Get-ChildItem -Path dist -File | Where-Object { $_.Extension -ne ".zip" }
           foreach ($f in $files) {
             $hash = (Get-FileHash -Algorithm SHA256 $f.FullName).Hash.ToLower()
             "$hash  $($f.Name)" | Out-File -Encoding ascii -Append "dist\SHA256SUMS.txt"
           }
 
-          # zip
           $zipPath = "dist\ffmpeg-${{ matrix.target }}.zip"
           if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
           Compress-Archive -Path "dist\*" -DestinationPath $zipPath -Force
