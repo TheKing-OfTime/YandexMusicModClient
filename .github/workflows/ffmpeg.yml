@@ -119,11 +119,13 @@ jobs:
             --enable-decoder=aac,alac,flac,mp3,opus,vorbis,mjpeg \
             --enable-encoder=mjpeg,libmp3lame \
             --enable-libmp3lame \
-            --enable-bsfs \
+            --disable-bsfs \
             --enable-small \
             --disable-debug \
             --disable-doc \
-          "
+            --disable-programs \
+            --enable-ffmpeg \
+            "
 
           echo "FFMPEG_CONFIGURE_FLAGS=$COMMON_FLAGS" >> $GITHUB_ENV
 
