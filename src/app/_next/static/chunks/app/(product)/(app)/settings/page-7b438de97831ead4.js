@@ -672,7 +672,7 @@
                     disabled: disabled,
                     ...other
                 } = e;
-                return (0, i.jsx)(Tooltip.hj, {
+                return tooltip ? (0, i.jsx)(Tooltip.hj, {
                     title: tooltip.title,
                     description: tooltip.description,
                     children: (0, i.jsxs)('div', {
@@ -687,6 +687,17 @@
                         },
                         children: label,
                     }),
+                }) : (0, i.jsxs)('div', {
+                    style: {
+                        'margin-inline': '5px',
+                        'background-color': color,
+                        color: 'black',
+                        'border-radius': '50px',
+                        'padding-inline': '6px',
+                        transition: 'opacity var(--ym-duration-transition)',
+                        ...(disabled ? { opacity: 0.3 } : {}),
+                    },
+                    children: label,
                 });
             };
 
@@ -1589,7 +1600,7 @@
                             (0, i.jsx)('li', {
                                 className: B().item,
                                 children: (0, i.jsx)(P, {
-                                    title: 'Нормализация громкости (R128)',
+                                    title: ['Нормализация громкости', (0, i.jsx)(labeledBubble, { label: 'r128', tooltip: null })],
                                     description: 'Приводит громкость треков к единому уровню.',
                                     onChange: onR128NormalizationToggle,
                                     isChecked: window.nativeSettings.get('modFeatures.r128Normalization') ?? !0,

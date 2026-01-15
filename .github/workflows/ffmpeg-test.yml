@@ -30,13 +30,13 @@ jobs:
 
           # macOS native
           - name: macos-x86_64
-            runner: macos-13
+            runner: macos-15-intel
             target: macos
             arch: x86_64
             cross: false
 
           - name: macos-arm64
-            runner: macos-14
+            runner: macos-latest
             target: macos
             arch: arm64
             cross: false
@@ -113,8 +113,9 @@ jobs:
 
           echo "${PWD}/llvm-mingw/bin" >> "${GITHUB_PATH}"
 
-          # Quick sanity check
-          ls -la llvm-mingw/bin | head -n 50
+          # Quick sanity check (safe under pipefail)
+          echo "Toolchain bin dir:"
+          find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
 
       - name: Configure (default) + Build + Install (native)
         if: matrix.cross == false
