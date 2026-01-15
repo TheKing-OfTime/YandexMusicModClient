@@ -16,11 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Более полноценная конфигурация:
-  # - не отключаем "всё подряд"
-  # - включаем типовые подсистемы (filters/swscale/network/avdevice)
-  # - подключаем популярные внешние кодеки/библиотеки через pkg-config
-  #
+  # Более полноценная конфигурация, без SVT-AV1:
   # Примечание по лицензии:
   # --enable-gpl + libx264/libx265 => итоговый бинарник GPL.
   FFMPEG_CONFIG_FLAGS: >-
@@ -50,7 +46,6 @@ env:
     --enable-libx265
     --enable-libaom
     --enable-libdav1d
-    --enable-libsvtav1
     --enable-libass
     --enable-libfreetype
     --enable-libfribidi
@@ -102,7 +97,6 @@ jobs:
             libx265-dev \
             libaom-dev \
             libdav1d-dev \
-            libsvtav1-dev \
             libass-dev \
             libfreetype6-dev \
             libfribidi-dev
@@ -114,7 +108,7 @@ jobs:
           brew update
           brew install \
             yasm nasm pkg-config cmake git \
-            lame opus libvorbis libvpx x264 x265 aom dav1d svt-av1 \
+            lame opus libvorbis libvpx x264 x265 aom dav1d \
             libass freetype fribidi openssl@3 \
             zip
 
@@ -140,7 +134,6 @@ jobs:
             mingw-w64-x86_64-x265
             mingw-w64-x86_64-aom
             mingw-w64-x86_64-dav1d
-            mingw-w64-x86_64-svt-av1
             mingw-w64-x86_64-libass
             mingw-w64-x86_64-freetype
             mingw-w64-x86_64-fribidi
@@ -156,9 +149,6 @@ jobs:
           REF="${{ github.event.inputs.ffmpeg_ref }}"
           echo "FFmpeg ref: $REF"
 
-          # Универсальная схема:
-          # - клонируем без depth (иначе коммиты могут не подтянуться)
-          # - затем checkout на указанный ref
           git clone https://github.com/FFmpeg/FFmpeg.git
           cd FFmpeg
           git fetch --tags --force
@@ -177,7 +167,6 @@ jobs:
           EXTRA_LDFLAGS=""
           EXTRA_LIBS=""
 
-          # На macOS openssl@3 из brew иногда требует явных путей.
           if [[ "${RUNNER_OS}" == "macOS" ]]; then
             OPENSSL_PREFIX="$(brew --prefix openssl@3)"
             EXTRA_CFLAGS="-I${OPENSSL_PREFIX}/include"
@@ -203,9 +192,6 @@ jobs:
           set -euo pipefail
           cd FFmpeg
 
-          # Важно:
-          # --disable-shared/--enable-static относится к библиотекам FFmpeg.
-          # Для запуска на "чистой" Windows мы ниже упакуем нужные DLL автоматически.
           ./configure \
             $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
@@ -260,12 +246,10 @@ jobs:
           set -euo pipefail
           mkdir -p dist
 
-          # Бинарники
           cp -f "FFmpeg/ffmpeg"  "dist/ffmpeg-${{ matrix.target }}"
           cp -f "FFmpeg/ffprobe" "dist/ffprobe-${{ matrix.target }}"
           chmod +x "dist/ffmpeg-${{ matrix.target }}" "dist/ffprobe-${{ matrix.target }}"
 
-          # sha256
           if command -v sha256sum >/dev/null 2>&1; then
             (cd dist && sha256sum "ffmpeg-${{ matrix.target }}"  > "ffmpeg-${{ matrix.target }}.sha256")
             (cd dist && sha256sum "ffprobe-${{ matrix.target }}" > "ffprobe-${{ matrix.target }}.sha256")
@@ -289,12 +273,10 @@ jobs:
           cp -f "FFmpeg/ffmpeg.exe"  "dist/ffmpeg-${{ matrix.target }}.exe"
           cp -f "FFmpeg/ffprobe.exe" "dist/ffprobe-${{ matrix.target }}.exe"
 
-          # Собираем список DLL, от которых реально зависит ffmpeg/ffprobe
           objdump -p "dist/ffmpeg-${{ matrix.target }}.exe"  | awk '/DLL Name/ {print $3}' | sort -u > dist/ffmpeg.dlls.txt
           objdump -p "dist/ffprobe-${{ matrix.target }}.exe" | awk '/DLL Name/ {print $3}' | sort -u > dist/ffprobe.dlls.txt
           cat dist/ffmpeg.dlls.txt dist/ffprobe.dlls.txt | sort -u > dist/dlls.txt
 
-          # Копируем только те DLL, которые реально есть в /mingw64/bin
           while read -r dll; do
             if [ -f "/mingw64/bin/${dll}" ]; then
               cp -f "/mingw64/bin/${dll}" dist/
@@ -307,18 +289,15 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          # Проверка запуска (важно: должна находить DLL рядом)
           & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version | Out-Null
           & ".\dist\ffprobe-${{ matrix.target }}.exe" -version | Out-Null
 
-          # sha256 для всех файлов кроме zip
           $files = Get-ChildItem -Path dist -File | Where-Object { $_.Extension -ne ".zip" }
           foreach ($f in $files) {
             $hash = (Get-FileHash -Algorithm SHA256 $f.FullName).Hash.ToLower()
             "$hash  $($f.Name)" | Out-File -Encoding ascii -Append "dist\SHA256SUMS.txt"
           }
 
-          # zip
           $zipPath = "dist\ffmpeg-${{ matrix.target }}.zip"
           if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
           Compress-Archive -Path "dist\*" -DestinationPath $zipPath -Force
