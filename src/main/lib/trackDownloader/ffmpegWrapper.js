@@ -59,7 +59,7 @@ class FfmpegWrapper {
             ...(fileExtension === "mp3"
                 ? [
                     "-codec:a",
-                    "libmp3lame",
+                    "mp3",
                     "-id3v2_version",
                     "4",
                     "-b:a",

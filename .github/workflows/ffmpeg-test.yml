@@ -22,12 +22,6 @@ jobs:
             arch: x86_64
             cross: false
 
-          - name: linux-arm64
-            runner: ubuntu-24.04-arm64
-            target: linux
-            arch: arm64
-            cross: false
-
           # macOS native
           - name: macos-x86_64
             runner: macos-15-intel
@@ -46,13 +40,7 @@ jobs:
             runner: ubuntu-latest
             target: windows
             arch: x86_64
-            cross: true
-
-          - name: windows-arm64
-            runner: ubuntu-latest
-            target: windows
-            arch: arm64
-            cross: true
+            cross: false
 
     runs-on: ${{ matrix.runner }}
 
