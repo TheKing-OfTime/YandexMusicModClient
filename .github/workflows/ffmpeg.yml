@@ -51,18 +51,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             target: linux-x64
-            artifact_ext: ""
-          - os: windows-2022
+          - os: windows-latest
             target: win-x64
-            artifact_ext: ".exe"
-          - os: macos-13
+          - os: macos-15-intel
             target: macos-x64
-            artifact_ext: ""
-          - os: macos-14
+          - os: macos-latest
             target: macos-arm64
-            artifact_ext: ""
 
     steps:
       - name: Checkout
@@ -159,7 +155,8 @@ jobs:
           x86_64-w64-mingw32-strip ffmpeg.exe || true
 
       # ---------- package ----------
-      - name: Package
+      - name: Package (Linux/macOS)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
           set -euo pipefail
@@ -168,12 +165,8 @@ jobs:
           BIN="ffmpeg${{ matrix.artifact_ext }}"
           OUT="ffmpeg-${{ matrix.target }}${{ matrix.artifact_ext }}"
 
-          if [[ "${RUNNER_OS}" == "Windows" ]]; then
-            cp "FFmpeg/${BIN}" "dist/${OUT}"
-          else
-            cp "FFmpeg/${BIN}" "dist/${OUT}"
-            chmod +x "dist/${OUT}"
-          fi
+          cp "FFmpeg/${BIN}" "dist/${OUT}"
+          chmod +x "dist/${OUT}"
 
           # sha256
           if command -v sha256sum >/dev/null 2>&1; then
@@ -182,8 +175,26 @@ jobs:
             (cd dist && shasum -a 256 "${OUT}" > "${OUT}.sha256")
           fi
 
-          # zip
           (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" "${OUT}" "${OUT}.sha256")
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+
+          $out = "ffmpeg-${{ matrix.target }}.exe"
+          Copy-Item -Force "FFmpeg\ffmpeg.exe" "dist\$out"
+
+          # sha256
+          $hash = (Get-FileHash -Algorithm SHA256 "dist\$out").Hash.ToLower()
+          "$hash  $out" | Out-File -Encoding ascii -NoNewline "dist\$out.sha256"
+
+          # zip
+          if (Test-Path "dist\ffmpeg-${{ matrix.target }}.zip") { Remove-Item -Force "dist\ffmpeg-${{ matrix.target }}.zip" }
+          Compress-Archive -Path "dist\$out","dist\$out.sha256" -DestinationPath "dist\ffmpeg-${{ matrix.target }}.zip" -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
