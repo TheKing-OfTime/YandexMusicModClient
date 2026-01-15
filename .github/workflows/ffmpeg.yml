@@ -16,40 +16,45 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Под ваш реальный кейс:
-  # 1) input: MP4/MOV (mov demuxer)
-  # 2) cover: JPEG как attached_pic:
-  #    - image2 demuxer (чтение 400x400.jpg)
-  #    - mjpeg decoder (прочитать JPEG)
-  #    - mjpeg encoder (записать attached_pic)
-  # 3) output: MP4/MOV/IPOD + MP3/FLAC
-  # 4) mp3 encode: libmp3lame (как в вашем JS: -codec:a libmp3lame)
-  # 5) decode аудио из MP4 для mp3-конвертации: aac/alac/flac/mp3/opus/vorbis/pcm_s16le
+  # Более полноценная конфигурация:
+  # - не отключаем "всё подряд"
+  # - включаем типовые подсистемы (filters/swscale/network/avdevice)
+  # - подключаем популярные внешние кодеки/библиотеки через pkg-config
   #
-  # Важно: НЕ используем --disable-programs (чтобы гарантированно собрать ffmpeg),
-  # а просто выключаем лишние программы.
+  # Примечание по лицензии:
+  # --enable-gpl + libx264/libx265 => итоговый бинарник GPL.
   FFMPEG_CONFIG_FLAGS: >-
-    --disable-everything
+    --disable-debug
+    --disable-doc
+    --enable-stripping
+    --enable-runtime-cpudetect
+    --enable-pic
     --enable-ffmpeg
-    --disable-ffprobe
-    --disable-ffplay
+    --enable-ffprobe
     --enable-avcodec
     --enable-avformat
     --enable-avutil
+    --enable-avfilter
     --enable-swresample
-    --enable-protocol=file,pipe
-    --enable-demuxer=mov,image2
-    --enable-muxer=mp4,mov,ipod,mp3,flac
-    --enable-decoder=aac,alac,flac,mp3,opus,vorbis,pcm_s16le,mjpeg
-    --enable-encoder=libmp3lame,mjpeg,flac,aac
-    --enable-parser=aac,flac,mp3,opus,vorbis
+    --enable-swscale
+    --enable-postproc
+    --enable-avdevice
+    --enable-network
+    --enable-gpl
+    --enable-version3
     --enable-libmp3lame
-    --enable-bsf=aac_adtstoasc
-    --disable-doc
-    --disable-debug
-    --disable-network
-    --disable-autodetect
-    --enable-small
+    --enable-libopus
+    --enable-libvorbis
+    --enable-libvpx
+    --enable-libx264
+    --enable-libx265
+    --enable-libaom
+    --enable-libdav1d
+    --enable-libsvtav1
+    --enable-libass
+    --enable-libfreetype
+    --enable-libfribidi
+    --enable-openssl
 
 jobs:
   build:
@@ -60,14 +65,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-22.04
             target: linux-x64
+            artifact_ext: ""
           - os: windows-latest
             target: win-x64
+            artifact_ext: ".exe"
           - os: macos-15-intel
             target: macos-x64
+            artifact_ext: ""
           - os: macos-latest
             target: macos-arm64
+            artifact_ext: ""
 
     steps:
       - name: Checkout
@@ -76,21 +85,38 @@ jobs:
       # ---------- deps ----------
       - name: Install deps (Linux)
         if: runner.os == 'Linux'
-        shell: bash
         run: |
           set -euo pipefail
           sudo apt update
           sudo apt install -y \
-            yasm nasm pkg-config build-essential git curl zip \
-            libmp3lame-dev
+            autoconf automake libtool cmake make pkg-config git \
+            yasm nasm build-essential \
+            zip \
+            zlib1g-dev \
+            libssl-dev \
+            libmp3lame-dev \
+            libopus-dev \
+            libvorbis-dev \
+            libvpx-dev \
+            libx264-dev \
+            libx265-dev \
+            libaom-dev \
+            libdav1d-dev \
+            libsvtav1-dev \
+            libass-dev \
+            libfreetype6-dev \
+            libfribidi-dev
 
       - name: Install deps (macOS)
         if: runner.os == 'macOS'
-        shell: bash
         run: |
           set -euo pipefail
           brew update
-          brew install yasm nasm pkg-config lame zip
+          brew install \
+            yasm nasm pkg-config cmake git \
+            lame opus libvorbis libvpx x264 x265 aom dav1d svt-av1 \
+            libass freetype fribidi openssl@3 \
+            zip
 
       - name: Setup MSYS2 (Windows)
         if: runner.os == 'Windows'
@@ -103,18 +129,41 @@ jobs:
             mingw-w64-x86_64-yasm
             mingw-w64-x86_64-nasm
             mingw-w64-x86_64-pkgconf
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-zlib
+            mingw-w64-x86_64-openssl
             mingw-w64-x86_64-lame
+            mingw-w64-x86_64-opus
+            mingw-w64-x86_64-libvorbis
+            mingw-w64-x86_64-libvpx
+            mingw-w64-x86_64-x264
+            mingw-w64-x86_64-x265
+            mingw-w64-x86_64-aom
+            mingw-w64-x86_64-dav1d
+            mingw-w64-x86_64-svt-av1
+            mingw-w64-x86_64-libass
+            mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-fribidi
             make
             git
             zip
-            curl
 
       # ---------- source ----------
-      - name: Clone FFmpeg
+      - name: Clone FFmpeg (supports tag/branch/commit)
         shell: bash
         run: |
           set -euo pipefail
-          git clone --depth 1 --branch "${{ github.event.inputs.ffmpeg_ref }}" https://github.com/FFmpeg/FFmpeg.git
+          REF="${{ github.event.inputs.ffmpeg_ref }}"
+          echo "FFmpeg ref: $REF"
+
+          # Универсальная схема:
+          # - клонируем без depth (иначе коммиты могут не подтянуться)
+          # - затем checkout на указанный ref
+          git clone https://github.com/FFmpeg/FFmpeg.git
+          cd FFmpeg
+          git fetch --tags --force
+          git checkout --force "$REF"
+          git submodule update --init --recursive
 
       # ---------- configure/build ----------
       - name: Configure (Linux/macOS)
@@ -124,15 +173,28 @@ jobs:
           set -euo pipefail
           cd FFmpeg
 
+          EXTRA_CFLAGS=""
+          EXTRA_LDFLAGS=""
+          EXTRA_LIBS=""
+
+          # На macOS openssl@3 из brew иногда требует явных путей.
+          if [[ "${RUNNER_OS}" == "macOS" ]]; then
+            OPENSSL_PREFIX="$(brew --prefix openssl@3)"
+            EXTRA_CFLAGS="-I${OPENSSL_PREFIX}/include"
+            EXTRA_LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+          fi
+
           ./configure \
             $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
-            --pkg-config-flags="--static"
+            --pkg-config-flags="--static" \
+            --extra-cflags="${EXTRA_CFLAGS}" \
+            --extra-ldflags="${EXTRA_LDFLAGS}" \
+            --extra-libs="${EXTRA_LIBS}"
 
-          echo "=== Programs (sanity) ==="
-          # Показываем, что ffmpeg включён
-          grep -E "Programs:|ffmpeg" -n config.log || true
+          echo "---- configure OK ----"
+          tail -n 50 config.log || true
 
       - name: Configure (Windows / MSYS2)
         if: runner.os == 'Windows'
@@ -141,14 +203,17 @@ jobs:
           set -euo pipefail
           cd FFmpeg
 
+          # Важно:
+          # --disable-shared/--enable-static относится к библиотекам FFmpeg.
+          # Для запуска на "чистой" Windows мы ниже упакуем нужные DLL автоматически.
           ./configure \
             $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
             --pkg-config-flags="--static"
 
-          echo "=== Programs (sanity) ==="
-          grep -E "Programs:|ffmpeg" -n config.log || true
+          echo "---- configure OK ----"
+          tail -n 50 config.log || true
 
       - name: Build (Linux/macOS)
         if: runner.os != 'Windows'
@@ -157,9 +222,8 @@ jobs:
           set -euo pipefail
           cd FFmpeg
           make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
-
-          # Жёсткая проверка, чтобы сразу увидеть проблему
-          test -f ffmpeg
+          ./ffmpeg -version
+          ./ffprobe -version
 
       - name: Build (Windows / MSYS2)
         if: runner.os == 'Windows'
@@ -168,8 +232,8 @@ jobs:
           set -euo pipefail
           cd FFmpeg
           make -j"$(nproc)"
-
-          test -f ffmpeg.exe
+          ./ffmpeg.exe -version
+          ./ffprobe.exe -version
 
       # ---------- strip ----------
       - name: Strip (Linux/macOS)
@@ -178,7 +242,7 @@ jobs:
         run: |
           set -euo pipefail
           cd FFmpeg
-          strip ffmpeg || true
+          strip ffmpeg ffprobe || true
 
       - name: Strip (Windows / MSYS2)
         if: runner.os == 'Windows'
@@ -186,7 +250,7 @@ jobs:
         run: |
           set -euo pipefail
           cd FFmpeg
-          x86_64-w64-mingw32-strip ffmpeg.exe || true
+          x86_64-w64-mingw32-strip ffmpeg.exe ffprobe.exe || true
 
       # ---------- package ----------
       - name: Package (Linux/macOS)
@@ -195,35 +259,69 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p dist
-          OUT="ffmpeg-${{ matrix.target }}"
-          cp "FFmpeg/ffmpeg" "dist/${OUT}"
-          chmod +x "dist/${OUT}"
+
+          # Бинарники
+          cp -f "FFmpeg/ffmpeg"  "dist/ffmpeg-${{ matrix.target }}"
+          cp -f "FFmpeg/ffprobe" "dist/ffprobe-${{ matrix.target }}"
+          chmod +x "dist/ffmpeg-${{ matrix.target }}" "dist/ffprobe-${{ matrix.target }}"
 
           # sha256
           if command -v sha256sum >/dev/null 2>&1; then
-            (cd dist && sha256sum "${OUT}" > "${OUT}.sha256")
+            (cd dist && sha256sum "ffmpeg-${{ matrix.target }}"  > "ffmpeg-${{ matrix.target }}.sha256")
+            (cd dist && sha256sum "ffprobe-${{ matrix.target }}" > "ffprobe-${{ matrix.target }}.sha256")
           else
-            (cd dist && shasum -a 256 "${OUT}" > "${OUT}.sha256")
+            (cd dist && shasum -a 256 "ffmpeg-${{ matrix.target }}"  > "ffmpeg-${{ matrix.target }}.sha256")
+            (cd dist && shasum -a 256 "ffprobe-${{ matrix.target }}" > "ffprobe-${{ matrix.target }}.sha256")
           fi
 
-          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" "${OUT}" "${OUT}.sha256")
+          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" \
+            "ffmpeg-${{ matrix.target }}" \
+            "ffprobe-${{ matrix.target }}" \
+            "ffmpeg-${{ matrix.target }}.sha256" \
+            "ffprobe-${{ matrix.target }}.sha256")
+
+      - name: Collect runtime DLLs (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          cp -f "FFmpeg/ffmpeg.exe"  "dist/ffmpeg-${{ matrix.target }}.exe"
+          cp -f "FFmpeg/ffprobe.exe" "dist/ffprobe-${{ matrix.target }}.exe"
+
+          # Собираем список DLL, от которых реально зависит ffmpeg/ffprobe
+          objdump -p "dist/ffmpeg-${{ matrix.target }}.exe"  | awk '/DLL Name/ {print $3}' | sort -u > dist/ffmpeg.dlls.txt
+          objdump -p "dist/ffprobe-${{ matrix.target }}.exe" | awk '/DLL Name/ {print $3}' | sort -u > dist/ffprobe.dlls.txt
+          cat dist/ffmpeg.dlls.txt dist/ffprobe.dlls.txt | sort -u > dist/dlls.txt
+
+          # Копируем только те DLL, которые реально есть в /mingw64/bin
+          while read -r dll; do
+            if [ -f "/mingw64/bin/${dll}" ]; then
+              cp -f "/mingw64/bin/${dll}" dist/
+            fi
+          done < dist/dlls.txt
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          New-Item -ItemType Directory -Force -Path dist | Out-Null
-          $out = "ffmpeg-${{ matrix.target }}.exe"
-          Copy-Item -Force "FFmpeg\ffmpeg.exe" "dist\$out"
 
-          # sha256
-          $hash = (Get-FileHash -Algorithm SHA256 "dist\$out").Hash.ToLower()
-          "$hash  $out" | Out-File -Encoding ascii -NoNewline "dist\$out.sha256"
+          # Проверка запуска (важно: должна находить DLL рядом)
+          & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version | Out-Null
+          & ".\dist\ffprobe-${{ matrix.target }}.exe" -version | Out-Null
+
+          # sha256 для всех файлов кроме zip
+          $files = Get-ChildItem -Path dist -File | Where-Object { $_.Extension -ne ".zip" }
+          foreach ($f in $files) {
+            $hash = (Get-FileHash -Algorithm SHA256 $f.FullName).Hash.ToLower()
+            "$hash  $($f.Name)" | Out-File -Encoding ascii -Append "dist\SHA256SUMS.txt"
+          }
 
           # zip
-          if (Test-Path "dist\ffmpeg-${{ matrix.target }}.zip") { Remove-Item -Force "dist\ffmpeg-${{ matrix.target }}.zip" }
-          Compress-Archive -Path "dist\$out","dist\$out.sha256" -DestinationPath "dist\ffmpeg-${{ matrix.target }}.zip" -Force
+          $zipPath = "dist\ffmpeg-${{ matrix.target }}.zip"
+          if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
+          Compress-Archive -Path "dist\*" -DestinationPath $zipPath -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
