@@ -6,7 +6,7 @@ on:
       ffmpeg_ref:
         description: "FFmpeg git ref (tag/commit/branch). Например: n6.1.1"
         required: false
-        default: "n8.0.1"
+        default: "n6.1.1"
 
 permissions:
   contents: write
@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Более полноценная конфигурация, без SVT-AV1:
-  # Примечание по лицензии:
+  # Полноценная конфигурация, без SVT-AV1 и без --enable-postproc
+  # Лицензия:
   # --enable-gpl + libx264/libx265 => итоговый бинарник GPL.
   FFMPEG_CONFIG_FLAGS: >-
     --disable-debug
@@ -34,6 +34,7 @@ env:
     --enable-swresample
     --enable-swscale
     --enable-avdevice
+    --enable-network
     --enable-gpl
     --enable-version3
     --enable-libmp3lame
@@ -43,9 +44,11 @@ env:
     --enable-libx264
     --enable-libx265
     --enable-libaom
+    --enable-libdav1d
     --enable-libass
     --enable-libfreetype
     --enable-libfribidi
+    --enable-openssl
 
 jobs:
   build:
@@ -260,7 +263,8 @@ jobs:
             "ffmpeg-${{ matrix.target }}.sha256" \
             "ffprobe-${{ matrix.target }}.sha256")
 
-      - name: Collect runtime DLLs (Windows)
+      # ВАЖНО: рекурсивно собираем DLL (включая транзитивные зависимости)
+      - name: Collect runtime DLLs (Windows, recursive)
         if: runner.os == 'Windows'
         shell: msys2 {0}
         run: |
@@ -269,15 +273,47 @@ jobs:
           cp -f "FFmpeg/ffmpeg.exe"  "dist/ffmpeg-${{ matrix.target }}.exe"
           cp -f "FFmpeg/ffprobe.exe" "dist/ffprobe-${{ matrix.target }}.exe"
 
-          objdump -p "dist/ffmpeg-${{ matrix.target }}.exe"  | awk '/DLL Name/ {print $3}' | sort -u > dist/ffmpeg.dlls.txt
-          objdump -p "dist/ffprobe-${{ matrix.target }}.exe" | awk '/DLL Name/ {print $3}' | sort -u > dist/ffprobe.dlls.txt
-          cat dist/ffmpeg.dlls.txt dist/ffprobe.dlls.txt | sort -u > dist/dlls.txt
+          # Функция: извлекает зависимости DLL из PE файла (EXE/DLL)
+          deps_of() {
+            objdump -p "$1" 2>/dev/null | awk '/DLL Name/ {print $3}' | sort -u
+          }
 
-          while read -r dll; do
-            if [ -f "/mingw64/bin/${dll}" ]; then
-              cp -f "/mingw64/bin/${dll}" dist/
-            fi
-          done < dist/dlls.txt
+          # Стартуем с зависимостей EXE
+          : > dist/dlls.todo.txt
+          deps_of "dist/ffmpeg-${{ matrix.target }}.exe"  >> dist/dlls.todo.txt
+          deps_of "dist/ffprobe-${{ matrix.target }}.exe" >> dist/dlls.todo.txt
+          sort -u dist/dlls.todo.txt -o dist/dlls.todo.txt
+
+          # Будем собирать до замыкания: копируем DLL и добавляем зависимости этих DLL
+          : > dist/dlls.done.txt
+          changed=1
+          while [ "$changed" -eq 1 ]; do
+            changed=0
+
+            while read -r dll; do
+              [ -z "$dll" ] && continue
+              grep -qi "^${dll}$" dist/dlls.done.txt && continue
+
+              # Помечаем как обработанную
+              echo "$dll" >> dist/dlls.done.txt
+
+              # Если DLL есть в mingw64/bin — копируем рядом с exe
+              if [ -f "/mingw64/bin/${dll}" ]; then
+                cp -f "/mingw64/bin/${dll}" dist/ || true
+
+                # Добавляем транзитивные зависимости этой DLL
+                deps_of "/mingw64/bin/${dll}" >> dist/dlls.todo.txt
+                changed=1
+              fi
+            done < dist/dlls.todo.txt
+
+            sort -u dist/dlls.todo.txt -o dist/dlls.todo.txt
+            sort -u dist/dlls.done.txt -o dist/dlls.done.txt
+          done
+
+          # Полезно видеть, что реально упаковали
+          echo "Packed DLL count:"
+          ls -1 dist/*.dll 2>/dev/null | wc -l || true
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
@@ -285,15 +321,18 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version | Out-Null
-          & ".\dist\ffprobe-${{ matrix.target }}.exe" -version | Out-Null
+          # Не глушим вывод, чтобы при проблеме было видно сообщение загрузчика
+          & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version
+          & ".\dist\ffprobe-${{ matrix.target }}.exe" -version
 
+          # sha256 для всех файлов кроме zip
           $files = Get-ChildItem -Path dist -File | Where-Object { $_.Extension -ne ".zip" }
           foreach ($f in $files) {
             $hash = (Get-FileHash -Algorithm SHA256 $f.FullName).Hash.ToLower()
             "$hash  $($f.Name)" | Out-File -Encoding ascii -Append "dist\SHA256SUMS.txt"
           }
 
+          # zip
           $zipPath = "dist\ffmpeg-${{ matrix.target }}.zip"
           if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
           Compress-Archive -Path "dist\*" -DestinationPath $zipPath -Force
