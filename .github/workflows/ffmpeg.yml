@@ -1,0 +1,213 @@
+name: Build FFmpeg (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ffmpeg_ref:
+        description: "FFmpeg git ref (tag/commit/branch). Например: n6.1.1"
+        required: false
+        default: "n6.1.1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ffmpeg-build-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  # Минимальный набор возможностей под ваш кейс:
+  # - demux: mov (mp4/m4a)
+  # - audio: aac/mp3/flac/pcm_s16le decode
+  # - encode: mp3 (libmp3lame) / aac (native) / flac
+  # - mux: mp3/flac/mp4/ipod
+  # - bsf: aac_adtstoasc
+  FFMPEG_CONFIG_FLAGS: >-
+    --disable-everything
+    --enable-ffmpeg
+    --enable-avcodec
+    --enable-avformat
+    --enable-avutil
+    --enable-swresample
+    --enable-protocol=file
+    --enable-demuxer=mov
+    --enable-decoder=aac,mp3,flac,pcm_s16le
+    --enable-encoder=aac,mp3,flac
+    --enable-parser=aac,mp3,flac
+    --enable-muxer=mp3,flac,ipod,mp4
+    --enable-bsf=aac_adtstoasc
+    --disable-doc
+    --disable-debug
+    --disable-network
+    --disable-autodetect
+    --enable-small
+
+jobs:
+  build:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-20.04
+            target: linux-x64
+            artifact_ext: ""
+          - os: windows-2022
+            target: win-x64
+            artifact_ext: ".exe"
+          - os: macos-13
+            target: macos-x64
+            artifact_ext: ""
+          - os: macos-14
+            target: macos-arm64
+            artifact_ext: ""
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ---------- deps ----------
+      - name: Install deps (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install -y yasm nasm pkg-config build-essential
+
+      - name: Install deps (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install yasm nasm pkg-config
+
+      - name: Setup MSYS2 (Windows)
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-yasm
+            mingw-w64-x86_64-nasm
+            mingw-w64-x86_64-pkgconf
+            make
+            git
+
+      # ---------- source ----------
+      - name: Clone FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch "${{ github.event.inputs.ffmpeg_ref }}" https://github.com/FFmpeg/FFmpeg.git
+
+      # ---------- configure/build ----------
+      - name: Configure (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          ./configure \
+            $FFMPEG_CONFIG_FLAGS \
+            --disable-shared \
+            --enable-static \
+            --pkg-config-flags="--static"
+
+      - name: Configure (Windows / MSYS2)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          ./configure \
+            $FFMPEG_CONFIG_FLAGS \
+            --disable-shared \
+            --enable-static \
+            --pkg-config-flags="--static"
+
+      - name: Build (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
+
+      - name: Build (Windows / MSYS2)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          make -j"$(nproc)"
+
+      # ---------- strip ----------
+      - name: Strip (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cd FFmpeg
+          strip ffmpeg || true
+
+      - name: Strip (Windows / MSYS2)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          cd FFmpeg
+          x86_64-w64-mingw32-strip ffmpeg.exe || true
+
+      # ---------- package ----------
+      - name: Package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          BIN="ffmpeg${{ matrix.artifact_ext }}"
+          OUT="ffmpeg-${{ matrix.target }}${{ matrix.artifact_ext }}"
+
+          if [[ "${RUNNER_OS}" == "Windows" ]]; then
+            cp "FFmpeg/${BIN}" "dist/${OUT}"
+          else
+            cp "FFmpeg/${BIN}" "dist/${OUT}"
+            chmod +x "dist/${OUT}"
+          fi
+
+          # sha256
+          if command -v sha256sum >/dev/null 2>&1; then
+            (cd dist && sha256sum "${OUT}" > "${OUT}.sha256")
+          else
+            (cd dist && shasum -a 256 "${OUT}" > "${OUT}.sha256")
+          fi
+
+          # zip
+          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" "${OUT}" "${OUT}.sha256")
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ffmpeg-${{ matrix.target }}
+          path: dist/ffmpeg-${{ matrix.target }}.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    name: Publish release assets
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+
+      - name: Create / update release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ffmpeg-binaries
+          name: FFmpeg prebuilt binaries
+          prerelease: false
+          make_latest: false
+          fail_on_unmatched_files: true
+          files: |
+            ffmpeg-*/ffmpeg-*.zip
