@@ -117,11 +117,14 @@ jobs:
         run: |
           set -euo pipefail
           cd FFmpeg
+
           ./configure \
             $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
-            --pkg-config-flags="--static"
+            --pkg-config-flags="--static" \
+            --extra-ldflags="-static -static-libgcc -static-libstdc++" \
+            --extra-libs="-lwinpthread"
 
       - name: Build (Linux/macOS)
         if: runner.os != 'Windows'
