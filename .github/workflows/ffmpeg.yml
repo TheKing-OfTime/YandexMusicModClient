@@ -1,4 +1,4 @@
-name: Build FFmpeg (manual)
+name: Build minimal FFmpeg (audio+mp4) and attach to Release
 
 on:
   workflow_dispatch:
@@ -11,217 +11,247 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: ffmpeg-build-${{ github.ref }}
-  cancel-in-progress: false
-
 env:
-  # Минимальный набор возможностей под ваш кейс:
-  # - demux: mov (mp4/m4a)
-  # - audio: aac/mp3/flac/pcm_s16le decode
-  # - encode: mp3 (libmp3lame) / aac (native) / flac
-  # - mux: mp3/flac/mp4/ipod
-  # - bsf: aac_adtstoasc
-  FFMPEG_CONFIG_FLAGS: >-
-    --disable-everything
-    --enable-ffmpeg
-    --enable-avcodec
-    --enable-avformat
-    --enable-avutil
-    --enable-swresample
-    --enable-protocol=file
-    --enable-demuxer=mov
-    --enable-decoder=aac,mp3,flac,pcm_s16le
-    --enable-encoder=aac,mp3,flac
-    --enable-parser=aac,mp3,flac
-    --enable-muxer=mp3,flac,ipod,mp4
-    --enable-bsf=aac_adtstoasc
-    --disable-doc
-    --disable-debug
-    --disable-network
-    --disable-autodetect
-    --enable-small
+  # Для workflow_dispatch берём ввод, иначе fallback на 6.1.
+  # github.event.inputs существует только для workflow_dispatch, поэтому используем fallback через ||
+  FFMPEG_VERSION: ${{ github.event.inputs.ffmpeg_version || '6.1' }}
+  ASSET_PREFIX: "ffmpeg"
 
 jobs:
   build:
-    name: Build (${{ matrix.target }})
-    runs-on: ${{ matrix.os }}
-
+    name: Build (${{ matrix.os }} / ${{ matrix.arch }} on ${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
-            target: linux-x64
-          - os: windows-latest
-            target: win-x64
-          - os: macos-15-intel
-            target: macos-x64
-          - os: macos-latest
-            target: macos-arm64
+          - os: linux
+            runner: ubuntu-latest
+            arch: x86_64
+
+          - os: windows
+            runner: windows-latest
+            arch: x86_64
+
+          # macOS ARM64 (macos-latest сейчас ведёт на macos-15 и arm64) :contentReference[oaicite:2]{index=2}
+          - os: macos
+            runner: macos-latest
+            arch: arm64
+
+          # macOS Intel x86_64: отдельный label macos-15-intel :contentReference[oaicite:3]{index=3}
+          - os: macos
+            runner: macos-15-intel
+            arch: x86_64
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ---------- deps ----------
+      # ---------- Linux ----------
       - name: Install deps (Linux)
-        if: runner.os == 'Linux'
+        if: matrix.os == 'linux'
+        shell: bash
         run: |
-          sudo apt update
-          sudo apt install -y yasm nasm pkg-config build-essential
+          set -euxo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential pkg-config yasm nasm curl ca-certificates zip \
+            libmp3lame-dev
 
+      # ---------- macOS ----------
       - name: Install deps (macOS)
-        if: runner.os == 'macOS'
+        if: matrix.os == 'macos'
+        shell: bash
         run: |
+          set -euxo pipefail
           brew update
-          brew install yasm nasm pkg-config
+          brew install yasm nasm pkg-config coreutils gnu-tar zip lame
 
+      # ---------- Windows (MSYS2 MinGW64) ----------
       - name: Setup MSYS2 (Windows)
-        if: runner.os == 'Windows'
+        if: matrix.os == 'windows'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
           install: >-
+            base-devel
             mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-yasm
-            mingw-w64-x86_64-nasm
             mingw-w64-x86_64-pkgconf
-            make
+            mingw-w64-x86_64-nasm
+            mingw-w64-x86_64-yasm
+            mingw-w64-x86_64-make
+            mingw-w64-x86_64-lame
+            zip
             git
+            curl
 
-      # ---------- source ----------
-      - name: Clone FFmpeg
+      - name: Download FFmpeg source
         shell: bash
         run: |
-          set -euo pipefail
-          git clone --depth 1 --branch "${{ github.event.inputs.ffmpeg_ref }}" https://github.com/FFmpeg/FFmpeg.git
+          set -euxo pipefail
+          mkdir -p _src
+          cd _src
+          echo "Building FFmpeg version: ${FFMPEG_VERSION}"
+          curl -L -o "ffmpeg-${FFMPEG_VERSION}.tar.xz" "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz"
+          tar -xf "ffmpeg-${FFMPEG_VERSION}.tar.xz"
+          echo "FFMPEG_SRC_DIR=$PWD/ffmpeg-${FFMPEG_VERSION}" >> $GITHUB_ENV
 
-      # ---------- configure/build ----------
-      - name: Configure (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Set configure flags
         shell: bash
         run: |
-          set -euo pipefail
-          cd FFmpeg
+          set -euxo pipefail
+
+          # Минимум под ваш JS-код:
+          # - MP4/MOV mux/demux
+          # - JPEG обложка как attached_pic (image2 + mjpeg dec/enc)
+          # - MP3 encode через libmp3lame
+          # - Декодеры для типовых аудио в MP4, если вы конвертируете в mp3
+          COMMON_FLAGS="\
+            --disable-everything \
+            --enable-avcodec --enable-avformat --enable-avutil --enable-swresample \
+            --disable-avdevice --disable-postproc --disable-swscale --disable-avfilter \
+            --disable-network \
+            --enable-protocol=file,pipe \
+            --enable-demuxer=mov,image2 \
+            --enable-muxer=mp4,mov,ipod \
+            --enable-parser=aac,flac,mp3,opus,vorbis \
+            --enable-decoder=aac,alac,flac,mp3,opus,vorbis,mjpeg \
+            --enable-encoder=mjpeg,libmp3lame \
+            --enable-libmp3lame \
+            --enable-bsfs \
+            --enable-small \
+            --disable-debug \
+            --disable-doc \
+          "
+
+          echo "FFMPEG_CONFIGURE_FLAGS=$COMMON_FLAGS" >> $GITHUB_ENV
+
+      # ---------- Build Linux ----------
+      - name: Build (Linux)
+        if: matrix.os == 'linux'
+        shell: bash
+        run: |
+          set -euxo pipefail
+          cd "$FFMPEG_SRC_DIR"
+
+          PREFIX="$PWD/_install"
+          mkdir -p "$PREFIX"
+
           ./configure \
-            $FFMPEG_CONFIG_FLAGS \
+            $FFMPEG_CONFIGURE_FLAGS \
+            --prefix="$PREFIX" \
             --disable-shared \
             --enable-static \
-            --pkg-config-flags="--static"
+            --extra-cflags="-O2" \
+            --extra-ldflags=""
 
-      - name: Configure (Windows / MSYS2)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-
-          ./configure \
-            $FFMPEG_CONFIG_FLAGS \
-            --disable-shared \
-            --enable-static \
-            --pkg-config-flags="--static" \
-            --extra-ldflags="-static -static-libgcc -static-libstdc++" \
-            --extra-libs="-lwinpthread"
-
-      - name: Build (Linux/macOS)
-        if: runner.os != 'Windows'
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-          make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
-
-      - name: Build (Windows / MSYS2)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          cd FFmpeg
           make -j"$(nproc)"
+          make install
 
-      # ---------- strip ----------
-      - name: Strip (Linux/macOS)
-        if: runner.os != 'Windows'
+          mkdir -p "$GITHUB_WORKSPACE/_out"
+          cp -a "$PREFIX/bin/ffmpeg" "$GITHUB_WORKSPACE/_out/ffmpeg"
+          if [ -f "$PREFIX/bin/ffprobe" ]; then cp -a "$PREFIX/bin/ffprobe" "$GITHUB_WORKSPACE/_out/ffprobe"; fi
+          strip "$GITHUB_WORKSPACE/_out/ffmpeg" || true
+          strip "$GITHUB_WORKSPACE/_out/ffprobe" || true
+
+      # ---------- Build macOS (both runners) ----------
+      - name: Build (macOS)
+        if: matrix.os == 'macos'
         shell: bash
         run: |
-          cd FFmpeg
-          strip ffmpeg || true
+          set -euxo pipefail
+          cd "$FFMPEG_SRC_DIR"
 
-      - name: Strip (Windows / MSYS2)
-        if: runner.os == 'Windows'
+          PREFIX="$PWD/_install"
+          mkdir -p "$PREFIX"
+
+          ./configure \
+            $FFMPEG_CONFIGURE_FLAGS \
+            --prefix="$PREFIX" \
+            --disable-shared \
+            --enable-static \
+            --cc=clang \
+            --extra-cflags="-O2" \
+            --extra-ldflags=""
+
+          make -j"$(sysctl -n hw.ncpu)"
+          make install
+
+          mkdir -p "$GITHUB_WORKSPACE/_out"
+          cp -a "$PREFIX/bin/ffmpeg" "$GITHUB_WORKSPACE/_out/ffmpeg"
+          if [ -f "$PREFIX/bin/ffprobe" ]; then cp -a "$PREFIX/bin/ffprobe" "$GITHUB_WORKSPACE/_out/ffprobe"; fi
+          strip "$GITHUB_WORKSPACE/_out/ffmpeg" || true
+          strip "$GITHUB_WORKSPACE/_out/ffprobe" || true
+
+      # ---------- Build Windows (MSYS2) ----------
+      - name: Build (Windows)
+        if: matrix.os == 'windows'
         shell: msys2 {0}
         run: |
-          cd FFmpeg
-          x86_64-w64-mingw32-strip ffmpeg.exe || true
+          set -euxo pipefail
+          cd "$FFMPEG_SRC_DIR"
 
-      # ---------- package ----------
-      - name: Package (Linux/macOS)
-        if: runner.os != 'Windows'
+          PREFIX="$PWD/_install"
+          mkdir -p "$PREFIX"
+
+          ./configure \
+            $FFMPEG_CONFIGURE_FLAGS \
+            --prefix="$PREFIX" \
+            --disable-shared \
+            --enable-static \
+            --target-os=mingw32 \
+            --arch=x86_64 \
+            --cc=gcc \
+            --extra-cflags="-O2" \
+            --extra-ldflags=""
+
+          make -j"$(nproc)"
+          make install
+
+          mkdir -p "$GITHUB_WORKSPACE/_out"
+          cp -a "$PREFIX/bin/ffmpeg.exe" "$GITHUB_WORKSPACE/_out/ffmpeg.exe"
+          if [ -f "$PREFIX/bin/ffprobe.exe" ]; then cp -a "$PREFIX/bin/ffprobe.exe" "$GITHUB_WORKSPACE/_out/ffprobe.exe"; fi
+          strip "$GITHUB_WORKSPACE/_out/ffmpeg.exe" || true
+          strip "$GITHUB_WORKSPACE/_out/ffprobe.exe" || true
+
+      - name: Create ZIP asset
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p dist
+          set -euxo pipefail
+          cd "$GITHUB_WORKSPACE/_out"
+          ASSET_NAME="${ASSET_PREFIX}-${{ matrix.os }}-${{ matrix.arch }}.zip"
+          zip -9 -r "$GITHUB_WORKSPACE/$ASSET_NAME" .
+          echo "ASSET_NAME=$ASSET_NAME" >> $GITHUB_ENV
 
-          BIN="ffmpeg${{ matrix.artifact_ext }}"
-          OUT="ffmpeg-${{ matrix.target }}${{ matrix.artifact_ext }}"
-
-          cp "FFmpeg/${BIN}" "dist/${OUT}"
-          chmod +x "dist/${OUT}"
-
-          # sha256
-          if command -v sha256sum >/dev/null 2>&1; then
-            (cd dist && sha256sum "${OUT}" > "${OUT}.sha256")
-          else
-            (cd dist && shasum -a 256 "${OUT}" > "${OUT}.sha256")
-          fi
-
-          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" "${OUT}" "${OUT}.sha256")
-
-      - name: Package (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-
-          New-Item -ItemType Directory -Force -Path dist | Out-Null
-
-          $out = "ffmpeg-${{ matrix.target }}.exe"
-          Copy-Item -Force "FFmpeg\ffmpeg.exe" "dist\$out"
-
-          # sha256
-          $hash = (Get-FileHash -Algorithm SHA256 "dist\$out").Hash.ToLower()
-          "$hash  $out" | Out-File -Encoding ascii -NoNewline "dist\$out.sha256"
-
-          # zip
-          if (Test-Path "dist\ffmpeg-${{ matrix.target }}.zip") { Remove-Item -Force "dist\ffmpeg-${{ matrix.target }}.zip" }
-          Compress-Archive -Path "dist\$out","dist\$out.sha256" -DestinationPath "dist\ffmpeg-${{ matrix.target }}.zip" -Force
-
-      - name: Upload artifact
+      - name: Upload workflow artifact (for debugging / manual runs)
         uses: actions/upload-artifact@v4
         with:
-          name: ffmpeg-${{ matrix.target }}
-          path: dist/ffmpeg-${{ matrix.target }}.zip
-          if-no-files-found: error
-          retention-days: 14
+          name: ${{ env.ASSET_NAME }}
+          path: ${{ env.ASSET_NAME }}
 
   release:
-    name: Publish release assets
-    needs: build
+    name: Attach assets to GitHub Release
     runs-on: ubuntu-latest
-
+    needs: build
+    # Чтобы при ручном запуске не пытаться создавать релиз без тега проекта
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: _dl
 
-      - name: Create / update release
+      - name: Collect ZIPs
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p _release_assets
+          find _dl -type f -name "*.zip" -print -exec cp -a {} _release_assets/ \;
+          ls -la _release_assets
+
+      - name: Create/Update GitHub Release and upload assets
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ffmpeg-binaries
-          name: FFmpeg prebuilt binaries
-          prerelease: false
-          make_latest: false
-          fail_on_unmatched_files: true
-          files: |
-            ffmpeg-*/ffmpeg-*.zip
+          files: _release_assets/*.zip
+          generate_release_notes: true
