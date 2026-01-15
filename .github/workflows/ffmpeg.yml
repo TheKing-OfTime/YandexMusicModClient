@@ -1,282 +1,253 @@
-name: Build minimal FFmpeg (audio+mp4) and attach to Release
+name: Build FFmpeg (manual)
 
 on:
-  push:
-    tags:
-      - "v*"
   workflow_dispatch:
     inputs:
-      ffmpeg_version:
-        description: "FFmpeg release version (tag), e.g. 6.1, 6.1.1, 7.1"
+      ffmpeg_ref:
+        description: "FFmpeg git ref (tag/commit/branch). Например: n6.1.1"
         required: false
-        default: "6.1"
+        default: "n6.1.1"
 
 permissions:
   contents: write
 
+concurrency:
+  group: ffmpeg-build-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
-  FFMPEG_VERSION: ${{ github.event.inputs.ffmpeg_version || '6.1' }}
-  ASSET_PREFIX: "ffmpeg"
+  # Под ваш реальный кейс:
+  # 1) input: MP4/MOV (mov demuxer)
+  # 2) cover: JPEG как attached_pic:
+  #    - image2 demuxer (чтение 400x400.jpg)
+  #    - mjpeg decoder (прочитать JPEG)
+  #    - mjpeg encoder (записать attached_pic)
+  # 3) output: MP4/MOV/IPOD + MP3/FLAC
+  # 4) mp3 encode: libmp3lame (как в вашем JS: -codec:a libmp3lame)
+  # 5) decode аудио из MP4 для mp3-конвертации: aac/alac/flac/mp3/opus/vorbis/pcm_s16le
+  #
+  # Важно: НЕ используем --disable-programs (чтобы гарантированно собрать ffmpeg),
+  # а просто выключаем лишние программы.
+  FFMPEG_CONFIG_FLAGS: >-
+    --disable-everything
+    --enable-ffmpeg
+    --disable-ffprobe
+    --disable-ffplay
+    --enable-avcodec
+    --enable-avformat
+    --enable-avutil
+    --enable-swresample
+    --enable-protocol=file,pipe
+    --enable-demuxer=mov,image2
+    --enable-muxer=mp4,mov,ipod,mp3,flac
+    --enable-decoder=aac,alac,flac,mp3,opus,vorbis,pcm_s16le,mjpeg
+    --enable-encoder=libmp3lame,mjpeg,flac,aac
+    --enable-parser=aac,flac,mp3,opus,vorbis
+    --enable-libmp3lame
+    --enable-bsf=aac_adtstoasc
+    --disable-doc
+    --disable-debug
+    --disable-network
+    --disable-autodetect
+    --enable-small
 
 jobs:
   build:
-    name: Build (${{ matrix.os }} / ${{ matrix.arch }} on ${{ matrix.runner }})
-    runs-on: ${{ matrix.runner }}
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: linux
-            runner: ubuntu-latest
-            arch: x86_64
-
-          - os: windows
-            runner: windows-latest
-            arch: x86_64
-
-          - os: macos
-            runner: macos-latest
-            arch: arm64
-
-          - os: macos
-            runner: macos-15-intel
-            arch: x86_64
+          - os: ubuntu-latest
+            target: linux-x64
+          - os: windows-latest
+            target: win-x64
+          - os: macos-15-intel
+            target: macos-x64
+          - os: macos-latest
+            target: macos-arm64
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ---------- Linux ----------
+      # ---------- deps ----------
       - name: Install deps (Linux)
-        if: matrix.os == 'linux'
+        if: runner.os == 'Linux'
         shell: bash
         run: |
-          set -euxo pipefail
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            build-essential pkg-config yasm nasm curl ca-certificates zip \
+          set -euo pipefail
+          sudo apt update
+          sudo apt install -y \
+            yasm nasm pkg-config build-essential git curl zip \
             libmp3lame-dev
 
-      # ---------- macOS ----------
       - name: Install deps (macOS)
-        if: matrix.os == 'macos'
+        if: runner.os == 'macOS'
         shell: bash
         run: |
-          set -euxo pipefail
+          set -euo pipefail
           brew update
-          brew install yasm nasm pkg-config coreutils gnu-tar zip lame
+          brew install yasm nasm pkg-config lame zip
 
-      # ---------- Windows (MSYS2 MinGW64) ----------
       - name: Setup MSYS2 (Windows)
-        if: matrix.os == 'windows'
+        if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
           install: >-
-            base-devel
             mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-pkgconf
-            mingw-w64-x86_64-nasm
             mingw-w64-x86_64-yasm
-            mingw-w64-x86_64-make
+            mingw-w64-x86_64-nasm
+            mingw-w64-x86_64-pkgconf
             mingw-w64-x86_64-lame
-            zip
+            make
             git
+            zip
             curl
 
-      - name: Download FFmpeg source
+      # ---------- source ----------
+      - name: Clone FFmpeg
         shell: bash
         run: |
-          set -euxo pipefail
-          mkdir -p _src
-          cd _src
-          echo "Building FFmpeg version: ${FFMPEG_VERSION}"
-          curl -L -o "ffmpeg-${FFMPEG_VERSION}.tar.xz" "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz"
-          tar -xf "ffmpeg-${FFMPEG_VERSION}.tar.xz"
-          echo "FFMPEG_SRC_DIR=$PWD/ffmpeg-${FFMPEG_VERSION}" >> $GITHUB_ENV
+          set -euo pipefail
+          git clone --depth 1 --branch "${{ github.event.inputs.ffmpeg_ref }}" https://github.com/FFmpeg/FFmpeg.git
 
-      - name: Set configure flags
+      # ---------- configure/build ----------
+      - name: Configure (Linux/macOS)
+        if: runner.os != 'Windows'
         shell: bash
         run: |
-          set -euxo pipefail
-
-          # Минимум под ваш JS-код:
-          # - MP4/MOV mux/demux
-          # - JPEG обложка как attached_pic (image2 + mjpeg dec/enc)
-          # - MP3 encode через libmp3lame
-          # - Декодеры для типовых аудио в MP4 при конвертации в mp3
-          #
-          # Важно:
-          # - disable-bsfs, иначе легко подтянуть h264 bsfs и словить undefined refs
-          # - собираем только ffmpeg (без ffprobe)
-          COMMON_FLAGS="\
-            --disable-everything \
-            --enable-avcodec --enable-avformat --enable-avutil --enable-swresample \
-            --disable-avdevice --disable-postproc --disable-swscale --disable-avfilter \
-            --disable-network \
-            --enable-protocol=file,pipe \
-            --enable-demuxer=mov,image2 \
-            --enable-muxer=mp4,mov,ipod \
-            --enable-parser=aac,flac,mp3,opus,vorbis \
-            --enable-decoder=aac,alac,flac,mp3,opus,vorbis,mjpeg \
-            --enable-encoder=mjpeg,libmp3lame \
-            --enable-libmp3lame \
-            --disable-bsfs \
-            --enable-small \
-            --disable-debug \
-            --disable-doc \
-            --disable-programs \
-            --enable-ffmpeg \
-          "
-
-          echo "FFMPEG_CONFIGURE_FLAGS=$COMMON_FLAGS" >> $GITHUB_ENV
-
-      # ---------- Build Linux ----------
-      - name: Build (Linux)
-        if: matrix.os == 'linux'
-        shell: bash
-        run: |
-          set -euxo pipefail
-          cd "$FFMPEG_SRC_DIR"
-
-          PREFIX="$PWD/_install"
-          mkdir -p "$PREFIX"
+          set -euo pipefail
+          cd FFmpeg
 
           ./configure \
-            $FFMPEG_CONFIGURE_FLAGS \
-            --prefix="$PREFIX" \
+            $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
-            --extra-cflags="-O2" \
-            --extra-ldflags=""
+            --pkg-config-flags="--static"
 
-          make -j"$(nproc)"
-          make install
+          echo "=== Programs (sanity) ==="
+          # Показываем, что ffmpeg включён
+          grep -E "Programs:|ffmpeg" -n config.log || true
 
-          # НЕ полагаемся на $PREFIX/bin: берём бинарник из build tree
-          if [ ! -f "./ffmpeg" ]; then
-            echo "ffmpeg not found in build tree. Listing top-level files:"
-            ls -la
-            echo "Listing fftools:"
-            ls -la fftools || true
-            exit 1
-          fi
-
-          mkdir -p "$GITHUB_WORKSPACE/_out"
-          cp -a "./ffmpeg" "$GITHUB_WORKSPACE/_out/ffmpeg"
-          strip "$GITHUB_WORKSPACE/_out/ffmpeg" || true
-
-      # ---------- Build macOS ----------
-      - name: Build (macOS)
-        if: matrix.os == 'macos'
-        shell: bash
-        run: |
-          set -euxo pipefail
-          cd "$FFMPEG_SRC_DIR"
-
-          PREFIX="$PWD/_install"
-          mkdir -p "$PREFIX"
-
-          ./configure \
-            $FFMPEG_CONFIGURE_FLAGS \
-            --prefix="$PREFIX" \
-            --disable-shared \
-            --enable-static \
-            --cc=clang \
-            --extra-cflags="-O2" \
-            --extra-ldflags=""
-
-          make -j"$(sysctl -n hw.ncpu)"
-          make install
-
-          # НЕ полагаемся на $PREFIX/bin: берём бинарник из build tree
-          if [ ! -f "./ffmpeg" ]; then
-            echo "ffmpeg not found in build tree. Listing top-level files:"
-            ls -la
-            echo "Listing fftools:"
-            ls -la fftools || true
-            exit 1
-          fi
-
-          mkdir -p "$GITHUB_WORKSPACE/_out"
-          cp -a "./ffmpeg" "$GITHUB_WORKSPACE/_out/ffmpeg"
-          strip "$GITHUB_WORKSPACE/_out/ffmpeg" || true
-
-      # ---------- Build Windows ----------
-      - name: Build (Windows)
-        if: matrix.os == 'windows'
+      - name: Configure (Windows / MSYS2)
+        if: runner.os == 'Windows'
         shell: msys2 {0}
         run: |
-          set -euxo pipefail
-          cd "$FFMPEG_SRC_DIR"
-
-          PREFIX="$PWD/_install"
-          mkdir -p "$PREFIX"
+          set -euo pipefail
+          cd FFmpeg
 
           ./configure \
-            $FFMPEG_CONFIGURE_FLAGS \
-            --prefix="$PREFIX" \
+            $FFMPEG_CONFIG_FLAGS \
             --disable-shared \
             --enable-static \
-            --target-os=mingw32 \
-            --arch=x86_64 \
-            --cc=gcc \
-            --extra-cflags="-O2" \
-            --extra-ldflags=""
+            --pkg-config-flags="--static"
 
+          echo "=== Programs (sanity) ==="
+          grep -E "Programs:|ffmpeg" -n config.log || true
+
+      - name: Build (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
+
+          # Жёсткая проверка, чтобы сразу увидеть проблему
+          test -f ffmpeg
+
+      - name: Build (Windows / MSYS2)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd FFmpeg
           make -j"$(nproc)"
-          make install
 
-          # НЕ полагаемся на $PREFIX/bin: берём бинарник из build tree
-          if [ ! -f "./ffmpeg.exe" ]; then
-            echo "ffmpeg.exe not found in build tree. Listing top-level files:"
-            ls -la
-            echo "Listing fftools:"
-            ls -la fftools || true
-            exit 1
+          test -f ffmpeg.exe
+
+      # ---------- strip ----------
+      - name: Strip (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          strip ffmpeg || true
+
+      - name: Strip (Windows / MSYS2)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          cd FFmpeg
+          x86_64-w64-mingw32-strip ffmpeg.exe || true
+
+      # ---------- package ----------
+      - name: Package (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          OUT="ffmpeg-${{ matrix.target }}"
+          cp "FFmpeg/ffmpeg" "dist/${OUT}"
+          chmod +x "dist/${OUT}"
+
+          # sha256
+          if command -v sha256sum >/dev/null 2>&1; then
+            (cd dist && sha256sum "${OUT}" > "${OUT}.sha256")
+          else
+            (cd dist && shasum -a 256 "${OUT}" > "${OUT}.sha256")
           fi
 
-          mkdir -p "$GITHUB_WORKSPACE/_out"
-          cp -a "./ffmpeg.exe" "$GITHUB_WORKSPACE/_out/ffmpeg.exe"
-          strip "$GITHUB_WORKSPACE/_out/ffmpeg.exe" || true
+          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" "${OUT}" "${OUT}.sha256")
 
-      - name: Create ZIP asset
-        shell: bash
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: |
-          set -euxo pipefail
-          cd "$GITHUB_WORKSPACE/_out"
-          ASSET_NAME="${ASSET_PREFIX}-${{ matrix.os }}-${{ matrix.arch }}.zip"
-          zip -9 -r "$GITHUB_WORKSPACE/$ASSET_NAME" .
-          echo "ASSET_NAME=$ASSET_NAME" >> $GITHUB_ENV
+          $ErrorActionPreference = "Stop"
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          $out = "ffmpeg-${{ matrix.target }}.exe"
+          Copy-Item -Force "FFmpeg\ffmpeg.exe" "dist\$out"
 
-      - name: Upload workflow artifact (for debugging / manual runs)
+          # sha256
+          $hash = (Get-FileHash -Algorithm SHA256 "dist\$out").Hash.ToLower()
+          "$hash  $out" | Out-File -Encoding ascii -NoNewline "dist\$out.sha256"
+
+          # zip
+          if (Test-Path "dist\ffmpeg-${{ matrix.target }}.zip") { Remove-Item -Force "dist\ffmpeg-${{ matrix.target }}.zip" }
+          Compress-Archive -Path "dist\$out","dist\$out.sha256" -DestinationPath "dist\ffmpeg-${{ matrix.target }}.zip" -Force
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ASSET_NAME }}
-          path: ${{ env.ASSET_NAME }}
+          name: ffmpeg-${{ matrix.target }}
+          path: dist/ffmpeg-${{ matrix.target }}.zip
+          if-no-files-found: error
+          retention-days: 14
 
   release:
-    name: Attach assets to GitHub Release
-    runs-on: ubuntu-latest
+    name: Publish release assets
     needs: build
-    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: _dl
+      - uses: actions/download-artifact@v4
 
-      - name: Collect ZIPs
-        shell: bash
-        run: |
-          set -euxo pipefail
-          mkdir -p _release_assets
-          find _dl -type f -name "*.zip" -print -exec cp -a {} _release_assets/ \;
-          ls -la _release_assets
-
-      - name: Create/Update GitHub Release and upload assets
+      - name: Create / update release
         uses: softprops/action-gh-release@v2
         with:
-          files: _release_assets/*.zip
-          generate_release_notes: true
+          tag_name: ffmpeg-binaries
+          name: FFmpeg prebuilt binaries
+          prerelease: false
+          make_latest: false
+          fail_on_unmatched_files: true
+          files: |
+            ffmpeg-*/ffmpeg-*.zip
