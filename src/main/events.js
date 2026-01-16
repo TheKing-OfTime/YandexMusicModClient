@@ -45,6 +45,7 @@ const dateToDDMonthYYYYProps_js_1 = require('./lib/date/dateToDDMonthYYYYProps.j
 
 const discordRichPresence_js_1 = require('./lib/discordRichPresence.js');
 const trackDownloader_js_1 = require('./lib/trackDownloader/trackDownloader.js');
+const { getFfmpegUpdater } = require("./lib/ffmpegInstaller.js");
 const taskBarExtension_js_1 = require('./lib/taskBarExtension/taskBarExtension.js');
 const isAccelerator = require('electron-is-accelerator');
 const modUpdater_js_1 = require('./lib/modUpdater.js');
@@ -280,6 +281,23 @@ const handleApplicationEvents = (window) => {
             sortedDescReleaseNotesKeys,
             translationsReleaseNotes,
         });
+
+        const ffmpegInstaller = getFfmpegUpdater();
+
+        if (!await ffmpegInstaller.isInstalled()) {
+
+            sendBasicToastCreate(window, 'ffmpeg', 'Обновление компонента: ffmpeg', false);
+
+            let callback = (progressRenderer, progressWindow) => {
+                sendProgressBarChange(window, 'ffmpeg', progressRenderer * 100);
+                window.setProgressBar(progressWindow);
+            };
+            await ffmpegInstaller.ensureInstalled(throttle(callback, PROGRESS_BAR_THROTTLE_MS));
+            sendBasicToastDismiss(window, 'ffmpeg');
+        } else {
+
+        }
+
     });
     electron_1.ipcMain.on(events_js_1.Events.APPLICATION_THEME, (event, backgroundColor) => {
         eventsLogger.info('Event received', events_js_1.Events.APPLICATION_THEME);

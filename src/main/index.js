@@ -39,6 +39,7 @@ const store_js_1 = require("./lib/store.js");
 const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.js");
 const modUpdater_js_1 = require('./lib/modUpdater.js');
 const miniPlayer_js_1 = require('./lib/miniplayer/miniplayer.js');
+const { getFfmpegUpdater } = require("./lib/ffmpegInstaller.js");
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
@@ -159,6 +160,10 @@ const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
 (async () => {
   const updater = (0, updater_js_1.getUpdater)();
   const modUpdater = (0, modUpdater_js_1.getModUpdater)();
+  const ffmpegInstaller = getFfmpegUpdater({
+    repo: "TheKing-OfTime/YandexMusicModClient",
+    tagName: "ffmpeg-binaries",
+  });
   await electron_1.app.whenReady();
 
   logger.log('Electron.app is ready');
