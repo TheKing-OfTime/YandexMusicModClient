@@ -1,3 +1,5 @@
+"use strict";
+
 const fsPromise = require("fs").promises;
 const fs = require("original-fs");
 const path = require("path");
@@ -5,11 +7,9 @@ const https = require("https");
 const axios = require("axios");
 const electron = require("electron");
 const { spawn } = require("child_process");
-const promisify = require("util").promisify;
 const crypto = require("crypto");
+const { pipeline } = require("stream/promises");
 const Logger_js_1 = require("../packages/logger/Logger.js");
-
-const spawnAsync = promisify(spawn);
 
 function isProbablyAsarPath(p) {
     return typeof p === "string" && (p.endsWith(".asar") || p.includes(`${path.sep}app.asar`));
@@ -46,12 +46,9 @@ function mapArch(platform) {
             throw new Error(`Unsupported CPU arch: ${process.arch}`);
     }
 
-    // Your CI produces:
-    // - linux: x86_64 only
-    // - windows: x86_64 only
-    // - macos: x86_64 + arm64
+    // Ваш workflow: linux/windows только x86_64, macOS x86_64+arm64
     if ((platform === "linux" || platform === "windows") && arch !== "x86_64") {
-        throw new Error(`No FFmpeg prebuilt for ${platform}/${arch} in your current release set`);
+        throw new Error(`No FFmpeg prebuilt for ${platform}/${arch} in current release set`);
     }
 
     return arch;
@@ -78,19 +75,19 @@ async function deleteFile(p, logger) {
     try {
         if (await fileExists(p)) {
             await fsPromise.unlink(p);
-            logger && logger.log("Deleted:", p);
+            if (logger) logger.log("Deleted:", p);
         }
     } catch (e) {
-        logger && logger.error("Failed to delete:", p, e?.message || e);
+        if (logger) logger.error("Failed to delete:", p, e?.message || e);
     }
 }
 
 async function cleanupDir(p, logger) {
     try {
         await fsPromise.rm(p, { recursive: true, force: true });
-        logger && logger.log("Cleaned:", p);
+        if (logger) logger.log("Cleaned:", p);
     } catch (e) {
-        logger && logger.error("Failed to clean dir:", p, e?.message || e);
+        if (logger) logger.error("Failed to clean dir:", p, e?.message || e);
     }
 }
 
@@ -107,25 +104,43 @@ async function moveFileOverwrite(src, dst) {
     await fsPromise.rename(src, dst);
 }
 
-function runCommand(command, args, opts = {}) {
+function runCommandCapture(command, args, opts = {}) {
     return new Promise((resolve, reject) => {
-        const child = spawn(command, args, { stdio: "ignore", windowsHide: true, ...opts });
+        const child = spawn(command, args, {
+            windowsHide: true,
+            stdio: ["ignore", "pipe", "pipe"],
+            ...opts,
+        });
+
+        let stdout = "";
+        let stderr = "";
+
+        child.stdout.on("data", (d) => (stdout += d.toString()));
+        child.stderr.on("data", (d) => (stderr += d.toString()));
+
         child.on("error", reject);
         child.on("close", (code) => {
-            if (code === 0) resolve();
-            else reject(new Error(`Command failed: ${command} ${args.join(" ")} (exit ${code})`));
+            if (code === 0) resolve({ stdout, stderr });
+            else {
+                const err = new Error(`Command failed: ${command} ${args.join(" ")} (exit ${code})`);
+                err.stdout = stdout;
+                err.stderr = stderr;
+                err.exitCode = code;
+                reject(err);
+            }
         });
     });
 }
 
-async function unzipArchive(zipPath, outDir) {
+async function unzipArchive(zipPath, outDir, logger) {
     await ensureDir(outDir);
 
     if (process.platform === "win32") {
         const zp = zipPath.replace(/"/g, '""');
         const od = outDir.replace(/"/g, '""');
 
-        await runCommand("powershell.exe", [
+        // PowerShell Expand-Archive
+        await runCommandCapture("powershell.exe", [
             "-NoProfile",
             "-NonInteractive",
             "-ExecutionPolicy",
@@ -133,10 +148,26 @@ async function unzipArchive(zipPath, outDir) {
             "-Command",
             `Expand-Archive -LiteralPath "${zp}" -DestinationPath "${od}" -Force`,
         ]);
+
         return;
     }
 
-    await runCommand("unzip", ["-o", zipPath, "-d", outDir]);
+    if (process.platform === "darwin") {
+        // На macOS ditto обычно надёжнее unzip
+        try {
+            await runCommandCapture("ditto", ["-x", "-k", zipPath, outDir]);
+            return;
+        } catch (e) {
+            if (logger) {
+                logger.warn("ditto failed, falling back to unzip.");
+                logger.warn(String(e.stderr || e.message || e));
+            }
+            // fallback to unzip
+        }
+    }
+
+    // Linux (и fallback на macOS): unzip
+    await runCommandCapture("unzip", ["-o", zipPath, "-d", outDir]);
 }
 
 function extractFirstSha256(text) {
@@ -149,7 +180,6 @@ async function sha256File(filePath) {
     return new Promise((resolve, reject) => {
         const hash = crypto.createHash("sha256");
         const stream = fs.createReadStream(filePath);
-
         stream.on("error", reject);
         stream.on("data", (chunk) => hash.update(chunk));
         stream.on("end", () => resolve(hash.digest("hex")));
@@ -159,12 +189,10 @@ async function sha256File(filePath) {
 class FfmpegUpdater {
     logger;
 
-    // Config
     repo;
     tagName;
     requireHash;
 
-    // Derived paths
     baseDir;
     tempDir;
 
@@ -177,11 +205,10 @@ class FfmpegUpdater {
 
     installedBinPath;
 
-    // Cache
     _expectedHash = null;
     _expectedHashChecked = false;
 
-    constructor({ repo, tagName = "ffmpeg-binaries", requireHash = false }) {
+    constructor({ repo, tagName = "ffmpeg-binaries", requireHash = true } = {}) {
         if (typeof repo !== "string" || !repo.includes("/")) {
             throw new Error(`"repo" is required in form "OWNER/REPO"`);
         }
@@ -193,14 +220,17 @@ class FfmpegUpdater {
         this.requireHash = requireHash === true;
 
         this.baseDir = getBaseDirNearAsar();
-        this.tempDir = path.join(electron.app.getPath('temp'), "YandexMusicModClient", "ffmpeg");
+
+        // TEMP РЯДОМ С app.asar
+        this.tempDir = path.join(this.baseDir, "temp");
 
         this.platform = mapPlatform();
         this.arch = mapArch(this.platform);
+
         this.assetName = `ffmpeg-${this.platform}-${this.arch}.zip`;
 
         this.zipPath = path.join(this.tempDir, this.assetName);
-        this.extractDir = path.join(this.tempDir, `ffmpeg-extract`);
+        this.extractDir = path.join(this.tempDir, "ffmpeg-extract");
 
         this.installedBinPath = path.join(this.baseDir, getBinaryName(this.platform));
 
@@ -211,17 +241,18 @@ class FfmpegUpdater {
         this.logger.log("requireHash:", this.requireHash);
     }
 
+    getInstalledPath() {
+        return this.installedBinPath;
+    }
+
     getDownloadUrl() {
         return `https://github.com/${this.repo}/releases/download/${encodeURIComponent(this.tagName)}/${this.assetName}`;
     }
 
-    getHashCandidatesUrls() {
-        // Preferred: zip sidecar
+    // В вашем воркфлоу хеш публикуется как: ffmpeg-<platform>-<arch>.sha256 (SHA бинарника)
+    getHashUrl() {
         const base = `https://github.com/${this.repo}/releases/download/${encodeURIComponent(this.tagName)}/`;
-        return [
-            base + `${this.assetName}.sha256`,
-            base + `${this.assetName.replace(/\.zip$/i, "")}.sha256`,
-        ];
+        return base + `ffmpeg-${this.platform}-${this.arch}.sha256`;
     }
 
     async clearCaches() {
@@ -242,43 +273,35 @@ class FfmpegUpdater {
             keepAlive: true,
         });
 
-        const urls = this.getHashCandidatesUrls();
+        const url = this.getHashUrl();
 
-        for (const url of urls) {
-            try {
-                const resp = await axios.get(url, {
-                    httpsAgent,
-                    responseType: "text",
-                    headers: { "User-Agent": "Electron-FFmpeg-Updater" },
-                    maxRedirects: 10,
-                    validateStatus: (s) => (s >= 200 && s < 300) || s === 404,
-                });
+        try {
+            const resp = await axios.get(url, {
+                httpsAgent,
+                responseType: "text",
+                headers: { "User-Agent": "Electron-FFmpeg-Updater" },
+                maxRedirects: 10,
+                validateStatus: (s) => (s >= 200 && s < 300) || s === 404,
+            });
 
-                if (resp.status === 404) {
-                    continue;
-                }
-
-                const hash = extractFirstSha256(typeof resp.data === "string" ? resp.data : String(resp.data));
-                if (hash) {
-                    this._expectedHash = hash;
-                    this.logger.log("Expected SHA-256 fetched from:", url);
-                    this.logger.log("Expected SHA-256:", hash);
-                    return this._expectedHash;
-                }
-
-                this.logger.warn("Hash file fetched but no SHA-256 found in content:", url);
-            } catch (e) {
-                this.logger.warn("Failed to fetch hash file:", url, e?.message || e);
+            if (resp.status === 404) {
+                this.logger.warn("Expected hash file not found (404):", url);
+                return null;
             }
-        }
 
-        if (this.requireHash) {
-            this.logger.warn("Expected SHA-256 not found. requireHash=true => treating as not installed.");
-        } else {
-            this.logger.warn("Expected SHA-256 not found. Falling back to existence-only checks.");
-        }
+            const hash = extractFirstSha256(typeof resp.data === "string" ? resp.data : String(resp.data));
+            if (!hash) {
+                this.logger.warn("Hash file fetched but no SHA-256 found:", url);
+                return null;
+            }
 
-        return this._expectedHash;
+            this._expectedHash = hash;
+            this.logger.log("Expected SHA-256 fetched:", hash);
+            return hash;
+        } catch (e) {
+            this.logger.warn("Failed to fetch expected hash:", url, e?.message || e);
+            return null;
+        }
     }
 
     async getInstalledHash() {
@@ -286,32 +309,16 @@ class FfmpegUpdater {
         return await sha256File(this.installedBinPath);
     }
 
-    async hashesMatch() {
+    async isInstalled() {
+        if (!(await fileExists(this.installedBinPath))) return false;
+
         const expected = await this.fetchExpectedHash();
-        if (!expected) return this.requireHash ? false : null; // null => unknown (hash not available)
+        if (!expected) return this.requireHash ? false : true;
 
         const installed = await this.getInstalledHash();
         if (!installed) return false;
 
         return installed.toLowerCase() === expected.toLowerCase();
-    }
-
-    /**
-     * Returns true if ffmpeg is installed AND hash matches expected (when hash is available).
-     * If expected hash cannot be fetched:
-     *   - requireHash=false (default): returns true when file exists.
-     *   - requireHash=true: returns false (treat as not installed).
-     */
-    async isInstalled() {
-        if (!(await fileExists(this.installedBinPath))) return false;
-
-        const match = await this.hashesMatch();
-
-        if (match === true) return true;
-        if (match === false) return false;
-
-        // match === null => expected hash unavailable
-        return this.requireHash ? false : true;
     }
 
     async downloadFile(url, outPath, callback) {
@@ -322,16 +329,13 @@ class FfmpegUpdater {
 
         await ensureDir(path.dirname(outPath));
 
-        const writer = fs.createWriteStream(outPath);
-        let isFinished = false;
-        let isError = false;
+        // Если существует старый файл — удаляем перед скачиванием
+        await deleteFile(outPath, this.logger);
 
         const response = await axios.get(url, {
             httpsAgent,
             responseType: "stream",
-            headers: {
-                "User-Agent": "Electron-FFmpeg-Updater",
-            },
+            headers: { "User-Agent": "Electron-FFmpeg-Updater" },
             maxRedirects: 10,
             validateStatus: (s) => s >= 200 && s < 400,
         });
@@ -340,60 +344,41 @@ class FfmpegUpdater {
         let downloadedLength = 0;
 
         response.data.on("data", (chunk) => {
-            if (isFinished) return;
             downloadedLength += chunk.length;
-
             if (typeof callback === "function") {
                 const progress = totalLength > 0 ? downloadedLength / totalLength : 0;
                 callback(progress, progress);
             }
-
-            writer.write(chunk);
         });
 
-        response.data.on("end", () => {
-            if (isFinished) return;
-            isFinished = true;
-            writer.end();
-        });
+        const writer = fs.createWriteStream(outPath);
 
-        response.data.on("error", async (err) => {
-            if (isFinished) return;
-            isFinished = true;
-            isError = true;
-            writer.end();
+        try {
+            await pipeline(response.data, writer);
+        } catch (e) {
             await deleteFile(outPath, this.logger);
-            this.logger.error("Download error:", err?.message || err);
             if (typeof callback === "function") callback(-1, -1);
-        });
+            throw e;
+        }
 
-        writer.on("finish", async () => {
-            try {
-                if (!isFinished) return;
-                if (isError) return;
-
-                this.logger.log("Downloaded FFmpeg zip:", outPath);
-                if (typeof callback === "function") callback(1.1, -1);
-            } catch (e) {
-                await deleteFile(outPath, this.logger);
-                this.logger.error("Error writing file:", e?.message || e);
-                if (typeof callback === "function") callback(-1, -1);
-            }
-        });
-
-        writer.on("error", async (err) => {
+        // sanity: проверка размера
+        const st = await fsPromise.stat(outPath);
+        if (!st || st.size < 1024 * 1024) {
+            // 1MB — минимальная “защита” от HTML/ошибки/обрезка (ffmpeg zip обычно сильно больше)
             await deleteFile(outPath, this.logger);
-            this.logger.error("Writer error:", err?.message || err);
-            if (typeof callback === "function") callback(-1, -1);
-        });
+            throw new Error(`Downloaded file too small (${st?.size || 0} bytes). Likely not a valid zip.`);
+        }
+
+        if (typeof callback === "function") callback(1.1, -1);
+        this.logger.log("Downloaded zip:", outPath, "size:", st.size);
     }
 
     async extractAndInstall(force = false) {
-        // If already installed (hash-verified) and not forcing, do nothing.
+        // Если уже установлен и хеш совпадает — ничего не делаем
         if (!force) {
             const ok = await this.isInstalled();
             if (ok) {
-                this.logger.log("FFmpeg already installed (hash-verified when available):", this.installedBinPath);
+                this.logger.log("FFmpeg already installed (hash verified):", this.installedBinPath);
                 return this.installedBinPath;
             }
         }
@@ -403,82 +388,85 @@ class FfmpegUpdater {
         await ensureDir(this.extractDir);
 
         this.logger.log("Extracting zip:", this.zipPath);
-        await unzipArchive(this.zipPath, this.extractDir);
+
+        try {
+            await unzipArchive(this.zipPath, this.extractDir, this.logger);
+        } catch (e) {
+            // Очень частый кейс: zip битый/недокачанный. Делаем одну попытку перекачать и распаковать заново.
+            this.logger.error("Unzip failed.");
+            if (e.stderr) this.logger.error(String(e.stderr));
+            if (e.stdout) this.logger.warn(String(e.stdout));
+
+            this.logger.warn("Retrying: re-download and unzip once...");
+
+            await cleanupDir(this.extractDir, this.logger);
+            await ensureDir(this.extractDir);
+            await deleteFile(this.zipPath, this.logger);
+
+            await this.downloadFile(this.getDownloadUrl(), this.zipPath);
+
+            await unzipArchive(this.zipPath, this.extractDir, this.logger);
+        }
 
         const binName = getBinaryName(this.platform);
         const extractedBinPath = path.join(this.extractDir, binName);
 
         if (!(await fileExists(extractedBinPath))) {
             const entries = await this.listExtractDir();
-            throw new Error(
-                `Expected "${binName}" not found after unzip. Extract dir entries: ${entries.join(", ")}`
-            );
+            throw new Error(`Expected "${binName}" not found after unzip. Extract dir entries: ${entries.join(", ")}`);
         }
 
         this.logger.log("Installing to:", this.installedBinPath);
         await moveFileOverwrite(extractedBinPath, this.installedBinPath);
         await chmodExecutableIfNeeded(this.installedBinPath);
 
-        // Post-install hash verification (when available)
-        const match = await this.hashesMatch();
-        if (match === false) {
-            this.logger.error("Installed ffmpeg hash mismatch. Removing binary and treating as not installed.");
-            await deleteFile(this.installedBinPath, this.logger);
-            throw new Error("FFmpeg install failed: hash mismatch");
-        }
-
-        if (match === null) {
-            if (this.requireHash) {
-                this.logger.error("Expected hash unavailable and requireHash=true. Removing binary.");
+        // Пост-проверка по SHA (если доступен)
+        const expected = await this.fetchExpectedHash();
+        if (expected) {
+            const installed = await this.getInstalledHash();
+            if (!installed || installed.toLowerCase() !== expected.toLowerCase()) {
+                this.logger.error("Installed ffmpeg hash mismatch. Removing binary.");
                 await deleteFile(this.installedBinPath, this.logger);
-                throw new Error("FFmpeg install failed: expected hash unavailable");
-            } else {
-                this.logger.warn("Expected hash unavailable. Installed binary without hash verification.");
+                throw new Error("FFmpeg install failed: hash mismatch");
             }
-        } else {
             this.logger.log("Installed ffmpeg hash verified.");
+        } else if (this.requireHash) {
+            this.logger.error("Expected hash unavailable and requireHash=true. Removing binary.");
+            await deleteFile(this.installedBinPath, this.logger);
+            throw new Error("FFmpeg install failed: expected hash unavailable");
+        } else {
+            this.logger.warn("Expected hash unavailable. Installed without hash verification.");
         }
 
         return this.installedBinPath;
     }
 
-    /**
-     * Downloads the zip and ensures ffmpeg is installed next to app.asar.
-     *
-     * If hashes do not match (when expected hash is available), the binary is treated as NOT installed.
-     *
-     * @param {(progress:number)=>void} callback
-     * @param {Object} [opts]
-     * @param {boolean} [opts.force=false] - force reinstall
-     * @param {boolean} [opts.clearCacheFirst=false] - delete cached zip/extract before download
-     */
     async ensureInstalled(callback, { force = false, clearCacheFirst = false } = {}) {
         if (clearCacheFirst) {
             await this.clearCaches();
         }
 
-        // Reset hash cache for this run (in case tag content changed)
+        // Сбрасываем кэш хеша на запуск (на случай обновления релиза)
         this._expectedHash = null;
         this._expectedHashChecked = false;
 
-        // If installed and verified (when possible), skip download unless force
         if (!force) {
             const ok = await this.isInstalled();
             if (ok) {
                 this.logger.log("FFmpeg already installed; skipping download.");
                 return this.installedBinPath;
             }
-            this.logger.log("FFmpeg not installed (or hash mismatch). Will download and install.");
+            this.logger.log("FFmpeg not installed (missing or hash mismatch). Will download.");
         }
 
         const url = this.getDownloadUrl();
-
         this.logger.log("Downloading:", url);
-        await this.downloadFile(url, this.zipPath, callback);
 
+        await this.downloadFile(url, this.zipPath, callback);
         const installed = await this.extractAndInstall(force);
 
         await cleanupDir(this.extractDir, this.logger);
+        // zip можно удалять или кешировать; оставляю удаление, чтобы не копить мусор
         await deleteFile(this.zipPath, this.logger);
 
         this.logger.log("FFmpeg ready:", installed);
