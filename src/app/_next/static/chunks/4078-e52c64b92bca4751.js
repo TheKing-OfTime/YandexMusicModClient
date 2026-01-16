@@ -5370,7 +5370,7 @@
                                           }),
                                       }),
                                   eY && (0, a.jsx)(er, { track: $ }),
-                                  window?.DEVICE_INFO?.os === 'win32' && (0, a.jsx)(downloadTrackToFile, { track: $ }), // TODO Remove platform check
+                                  (0, a.jsx)(downloadTrackToFile, { track: $ }),
                                   tu &&
                                       (0, a.jsx)(v.Dr, {
                                           onClick: eN,
