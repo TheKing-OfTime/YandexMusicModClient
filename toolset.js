@@ -606,6 +606,11 @@ async function buildNativeModules() {
         console.log('🎵 Сборка миниплеера...');
         console.time('Миниплеер собран');
 
+        execSync('npm install', {
+            cwd: miniPlayerDir,
+            stdio: 'inherit'
+        });
+
         execSync('npm run build', {
             cwd: miniPlayerDir,
             stdio: 'inherit'
