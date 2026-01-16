@@ -109,17 +109,19 @@ jobs:
           echo "Toolchain bin dir:"
           find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
 
-      - name: Configure (default) + Build + Install (native)
+      - name: Configure + Build (native, no ffprobe) + Install
         if: matrix.cross == false
         run: |
           set -euo pipefail
           cd ffmpeg
           mkdir -p "${GITHUB_WORKSPACE}/dist"
-          ./configure --prefix="${GITHUB_WORKSPACE}/dist"
+          ./configure \
+            --prefix="${GITHUB_WORKSPACE}/dist" \
+            --disable-ffprobe
           make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Configure (default) + Build + Install (Windows cross)
+      - name: Configure + Build (Windows cross, no ffprobe) + Install
         if: matrix.cross == true
         run: |
           set -euo pipefail
@@ -146,18 +148,34 @@ jobs:
             --ar="${AR}" \
             --ranlib="${RANLIB}" \
             --strip="${STRIP}" \
-            --nm="${NM}"
+            --nm="${NM}" \
+            --disable-ffprobe
 
           make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Package artifact (zip)
+      - name: Package artifact (zip only ffmpeg binary)
         shell: bash
         run: |
           set -euo pipefail
           ARTIFACT="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
           mkdir -p out
-          (cd dist && zip -r "../out/${ARTIFACT}.zip" .)
+
+          if [ "${{ matrix.target }}" = "windows" ]; then
+            BIN="dist/bin/ffmpeg.exe"
+          else
+            BIN="dist/bin/ffmpeg"
+          fi
+
+          if [ ! -f "${BIN}" ]; then
+            echo "Expected binary not found: ${BIN}"
+            echo "dist tree:"
+            find dist -maxdepth 3 -type f -print
+            exit 1
+          fi
+
+          zip -j "out/${ARTIFACT}.zip" "${BIN}"
+
           echo "Created out/${ARTIFACT}.zip"
           ls -la out
 
