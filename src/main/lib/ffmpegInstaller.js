@@ -211,10 +211,6 @@ class FfmpegUpdater {
         this.logger.log("requireHash:", this.requireHash);
     }
 
-    getInstalledPath() {
-        return this.installedBinPath;
-    }
-
     getDownloadUrl() {
         return `https://github.com/${this.repo}/releases/download/${encodeURIComponent(this.tagName)}/${this.assetName}`;
     }
