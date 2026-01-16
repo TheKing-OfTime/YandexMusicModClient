@@ -8,6 +8,9 @@ on:
         required: false
         default: "n8.0.1"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: ${{ matrix.name }}
@@ -150,10 +153,7 @@ jobs:
           set -euo pipefail
           ARTIFACT="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
           mkdir -p out
-
-          # Zip dist/ contents (no tar.gz)
           (cd dist && zip -r "../out/${ARTIFACT}.zip" .)
-
           echo "Created out/${ARTIFACT}.zip"
           ls -la out
 
@@ -163,3 +163,22 @@ jobs:
           name: ffmpeg-${{ matrix.target }}-${{ matrix.arch }}
           path: out/*.zip
           if-no-files-found: error
+
+  release:
+    name: Publish release assets
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+
+      - name: Create / update release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ffmpeg-binaries
+          name: FFmpeg prebuilt binaries
+          prerelease: false
+          make_latest: false
+          fail_on_unmatched_files: true
+          files: |
+            ffmpeg-*/ffmpeg-*.zip
