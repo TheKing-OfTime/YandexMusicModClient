@@ -6,7 +6,7 @@ on:
       ffmpeg_ref:
         description: "Git ref/tag/branch for FFmpeg (e.g. n7.1.1, release/7.1, master)"
         required: false
-        default: "master"
+        default: "n8.0.1"
 
 jobs:
   build:
@@ -15,14 +15,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Linux native
+          # Linux native (x86_64 only)
           - name: linux-x86_64
             runner: ubuntu-latest
             target: linux
             arch: x86_64
             cross: false
 
-          # macOS native
+          # macOS native (arm64 + x86_64)
           - name: macos-x86_64
             runner: macos-15-intel
             target: macos
@@ -35,12 +35,12 @@ jobs:
             arch: arm64
             cross: false
 
-          # Windows via cross-compilation (llvm-mingw) on Ubuntu
+          # Windows via cross-compilation (x86_64 only)
           - name: windows-x86_64
             runner: ubuntu-latest
             target: windows
             arch: x86_64
-            cross: false
+            cross: true
 
     runs-on: ${{ matrix.runner }}
 
@@ -70,7 +70,8 @@ jobs:
             git \
             curl \
             xz-utils \
-            ca-certificates
+            ca-certificates \
+            zip
 
       - name: Install deps (macOS)
         if: runner.os == 'macOS'
@@ -91,16 +92,12 @@ jobs:
           set -euo pipefail
           TARBALL="llvm-mingw-${LLVM_MINGW_TAG}-ucrt-ubuntu-22.04-x86_64.tar.xz"
           URL="${LLVM_MINGW_BASEURL}/${LLVM_MINGW_TAG}/${TARBALL}"
-
           echo "Downloading: ${URL}"
           curl -L --retry 5 --retry-delay 2 -o "${TARBALL}" "${URL}"
-
           rm -rf llvm-mingw
           mkdir -p llvm-mingw
           tar -xJf "${TARBALL}" -C llvm-mingw --strip-components=1
-
           echo "${PWD}/llvm-mingw/bin" >> "${GITHUB_PATH}"
-
           # Quick sanity check (safe under pipefail)
           echo "Toolchain bin dir:"
           find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
@@ -110,9 +107,7 @@ jobs:
         run: |
           set -euo pipefail
           cd ffmpeg
-
           mkdir -p "${GITHUB_WORKSPACE}/dist"
-
           ./configure --prefix="${GITHUB_WORKSPACE}/dist"
           make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
@@ -122,19 +117,10 @@ jobs:
         run: |
           set -euo pipefail
           cd ffmpeg
-
           mkdir -p "${GITHUB_WORKSPACE}/dist"
 
-          if [ "${{ matrix.arch }}" = "x86_64" ]; then
-            HOST_TRIPLE="x86_64-w64-mingw32"
-            FFMPEG_ARCH="x86_64"
-          elif [ "${{ matrix.arch }}" = "arm64" ]; then
-            HOST_TRIPLE="aarch64-w64-mingw32"
-            FFMPEG_ARCH="aarch64"
-          else
-            echo "Unsupported arch: ${{ matrix.arch }}"
-            exit 1
-          fi
+          HOST_TRIPLE="x86_64-w64-mingw32"
+          FFMPEG_ARCH="x86_64"
 
           export CC="${HOST_TRIPLE}-clang"
           export CXX="${HOST_TRIPLE}-clang++"
@@ -158,22 +144,22 @@ jobs:
           make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Package artifact
+      - name: Package artifact (zip)
         shell: bash
         run: |
           set -euo pipefail
           ARTIFACT="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
           mkdir -p out
 
-          # Pack dist/ as tar.gz (works for all targets; Windows users can unpack with 7-Zip)
-          tar -czf "out/${ARTIFACT}.tar.gz" -C dist .
+          # Zip dist/ contents (no tar.gz)
+          (cd dist && zip -r "../out/${ARTIFACT}.zip" .)
 
-          echo "Created out/${ARTIFACT}.tar.gz"
+          echo "Created out/${ARTIFACT}.zip"
           ls -la out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ffmpeg-${{ matrix.target }}-${{ matrix.arch }}
-          path: out/*.tar.gz
+          path: out/*.zip
           if-no-files-found: error
