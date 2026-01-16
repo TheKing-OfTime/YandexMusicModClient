@@ -4,341 +4,169 @@ on:
   workflow_dispatch:
     inputs:
       ffmpeg_ref:
-        description: "FFmpeg git ref (tag/commit/branch). Например: n6.1.1"
+        description: "Git ref/tag/branch for FFmpeg (e.g. n7.1.1, release/7.1, master)"
         required: false
-        default: "n6.1.1"
+        default: "n8.0.1"
+
+concurrency:
+  group: ffmpeg-build-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
-concurrency:
-  group: ffmpeg-build-${{ github.ref }}
-  cancel-in-progress: false
-
-env:
-  # Полноценная конфигурация, без SVT-AV1 и без --enable-postproc
-  # Лицензия:
-  # --enable-gpl + libx264 => итоговый бинарник GPL.
-  FFMPEG_CONFIG_FLAGS: >-
-    --disable-debug
-    --disable-doc
-    --enable-stripping
-    --enable-runtime-cpudetect
-    --enable-pic
-    --enable-ffmpeg
-    --enable-ffprobe
-    --enable-avcodec
-    --enable-avformat
-    --enable-avutil
-    --enable-avfilter
-    --enable-swresample
-    --enable-swscale
-    --enable-avdevice
-    --enable-gpl
-    --enable-version3
-    --enable-libmp3lame
-    --enable-libopus
-    --enable-libvorbis
-    --enable-libvpx
-    --enable-libx264
-    --enable-libaom
-    --enable-libdav1d
-    --enable-libass
-    --enable-libfreetype
-    --enable-libfribidi
-
 jobs:
   build:
-    name: Build (${{ matrix.target }})
-    runs-on: ${{ matrix.os }}
-
+    name: ${{ matrix.name }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-22.04
-            target: linux-x64
-            artifact_ext: ""
-          - os: windows-latest
-            target: win-x64
-            artifact_ext: ".exe"
-          - os: macos-15-intel
-            target: macos-x64
-            artifact_ext: ""
-          - os: macos-latest
-            target: macos-arm64
-            artifact_ext: ""
+          # Linux native (x86_64 only)
+          - name: linux-x86_64
+            runner: ubuntu-latest
+            target: linux
+            arch: x86_64
+            cross: false
+
+          # macOS native (arm64 + x86_64)
+          - name: macos-x86_64
+            runner: macos-15-intel
+            target: macos
+            arch: x86_64
+            cross: false
+
+          - name: macos-arm64
+            runner: macos-latest
+            target: macos
+            arch: arm64
+            cross: false
+
+          # Windows via cross-compilation (x86_64 only)
+          - name: windows-x86_64
+            runner: ubuntu-latest
+            target: windows
+            arch: x86_64
+            cross: true
+
+    runs-on: ${{ matrix.runner }}
+
+    env:
+      # Pin llvm-mingw tag; update if you need newer toolchain
+      LLVM_MINGW_TAG: "20251216"
+      LLVM_MINGW_BASEURL: "https://github.com/mstorsjo/llvm-mingw/releases/download"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ---------- deps ----------
-      - name: Install deps (Linux)
+      - name: Install deps (Ubuntu)
         if: runner.os == 'Linux'
         run: |
           set -euo pipefail
-          sudo apt update
-          sudo apt install -y \
-            autoconf automake libtool cmake make pkg-config git \
-            yasm nasm build-essential \
-            zip \
-            zlib1g-dev \
-            libssl-dev \
-            libmp3lame-dev \
-            libopus-dev \
-            libvorbis-dev \
-            libvpx-dev \
-            libx264-dev \
-            libaom-dev \
-            libdav1d-dev \
-            libass-dev \
-            libfreetype6-dev \
-            libfribidi-dev
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            pkg-config \
+            yasm \
+            nasm \
+            autoconf \
+            automake \
+            libtool \
+            cmake \
+            git \
+            curl \
+            xz-utils \
+            ca-certificates \
+            zip
 
       - name: Install deps (macOS)
         if: runner.os == 'macOS'
         run: |
           set -euo pipefail
           brew update
-          brew install \
-            yasm nasm pkg-config cmake git \
-            lame opus libvorbis libvpx x264 aom dav1d \
-            libass freetype fribidi openssl@3 \
-            zip
+          brew install pkg-config yasm nasm
 
-      - name: Setup MSYS2 (Windows)
-        if: runner.os == 'Windows'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: >-
-            mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-yasm
-            mingw-w64-x86_64-nasm
-            mingw-w64-x86_64-pkgconf
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-zlib
-            mingw-w64-x86_64-openssl
-            mingw-w64-x86_64-lame
-            mingw-w64-x86_64-opus
-            mingw-w64-x86_64-libvorbis
-            mingw-w64-x86_64-libvpx
-            mingw-w64-x86_64-x264
-            mingw-w64-x86_64-aom
-            mingw-w64-x86_64-dav1d
-            mingw-w64-x86_64-libass
-            mingw-w64-x86_64-freetype
-            mingw-w64-x86_64-fribidi
-            make
-            git
-            zip
-
-      # ---------- source ----------
-      - name: Clone FFmpeg (supports tag/branch/commit)
-        shell: bash
+      - name: Fetch FFmpeg source
         run: |
           set -euo pipefail
-          REF="${{ github.event.inputs.ffmpeg_ref }}"
-          echo "FFmpeg ref: $REF"
+          rm -rf ffmpeg
+          git clone --depth 1 --branch "${{ inputs.ffmpeg_ref }}" https://git.ffmpeg.org/ffmpeg.git ffmpeg
 
-          git clone https://github.com/FFmpeg/FFmpeg.git
-          cd FFmpeg
-          git fetch --tags --force
-          git checkout --force "$REF"
-          git submodule update --init --recursive
-
-      # ---------- configure/build ----------
-      - name: Configure (Linux/macOS)
-        if: runner.os != 'Windows'
-        shell: bash
+      - name: Setup llvm-mingw (for Windows cross)
+        if: matrix.cross == true
         run: |
           set -euo pipefail
-          cd FFmpeg
+          TARBALL="llvm-mingw-${LLVM_MINGW_TAG}-ucrt-ubuntu-22.04-x86_64.tar.xz"
+          URL="${LLVM_MINGW_BASEURL}/${LLVM_MINGW_TAG}/${TARBALL}"
+          echo "Downloading: ${URL}"
+          curl -L --retry 5 --retry-delay 2 -o "${TARBALL}" "${URL}"
+          rm -rf llvm-mingw
+          mkdir -p llvm-mingw
+          tar -xJf "${TARBALL}" -C llvm-mingw --strip-components=1
+          echo "${PWD}/llvm-mingw/bin" >> "${GITHUB_PATH}"
+          # Quick sanity check (safe under pipefail)
+          echo "Toolchain bin dir:"
+          find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
 
-          EXTRA_CFLAGS=""
-          EXTRA_LDFLAGS=""
-          EXTRA_LIBS=""
-          PKGCFG='--pkg-config-flags="--static"'
+      - name: Configure (default) + Build + Install (native)
+        if: matrix.cross == false
+        run: |
+          set -euo pipefail
+          cd ffmpeg
+          mkdir -p "${GITHUB_WORKSPACE}/dist"
+          ./configure --prefix="${GITHUB_WORKSPACE}/dist"
+          make -j"$(getconf _NPROCESSORS_ONLN)"
+          make install
 
-          if [[ "${RUNNER_OS}" == "macOS" ]]; then
-            # На macOS pkg-config часто не видит Homebrew-префиксы без явного PKG_CONFIG_PATH,
-            # особенно на arm64 (/opt/homebrew).
-            BREW_PREFIX="$(brew --prefix)"
-            OPENSSL_PREFIX="$(brew --prefix openssl@3)"
+      - name: Configure (default) + Build + Install (Windows cross)
+        if: matrix.cross == true
+        run: |
+          set -euo pipefail
+          cd ffmpeg
+          mkdir -p "${GITHUB_WORKSPACE}/dist"
 
-            export PKG_CONFIG_PATH="${BREW_PREFIX}/lib/pkgconfig:${BREW_PREFIX}/share/pkgconfig:${OPENSSL_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+          HOST_TRIPLE="x86_64-w64-mingw32"
+          FFMPEG_ARCH="x86_64"
 
-            # Для openssl headers/libs (если когда-то добавите --enable-openssl обратно)
-            EXTRA_CFLAGS="-I${OPENSSL_PREFIX}/include"
-            EXTRA_LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-
-            # На macOS --static через pkg-config часто ломает поиск/линковку brew-библиотек
-            PKGCFG=""
-          fi
+          export CC="${HOST_TRIPLE}-clang"
+          export CXX="${HOST_TRIPLE}-clang++"
+          export AR="${HOST_TRIPLE}-ar"
+          export RANLIB="${HOST_TRIPLE}-ranlib"
+          export STRIP="${HOST_TRIPLE}-strip"
+          export NM="${HOST_TRIPLE}-nm"
 
           ./configure \
-            $FFMPEG_CONFIG_FLAGS \
-            --disable-shared \
-            --enable-static \
-            ${PKGCFG} \
-            --extra-cflags="${EXTRA_CFLAGS}" \
-            --extra-ldflags="${EXTRA_LDFLAGS}" \
-            --extra-libs="${EXTRA_LIBS}"
+            --prefix="${GITHUB_WORKSPACE}/dist" \
+            --target-os=mingw32 \
+            --arch="${FFMPEG_ARCH}" \
+            --enable-cross-compile \
+            --cc="${CC}" \
+            --cxx="${CXX}" \
+            --ar="${AR}" \
+            --ranlib="${RANLIB}" \
+            --strip="${STRIP}" \
+            --nm="${NM}"
 
-          echo "---- configure OK ----"
-          tail -n 80 ffbuild/config.log || tail -n 80 config.log || true
+          make -j"$(getconf _NPROCESSORS_ONLN)"
+          make install
 
-      - name: Configure (Windows / MSYS2)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-
-          ./configure \
-            $FFMPEG_CONFIG_FLAGS \
-            --disable-shared \
-            --enable-static \
-            --pkg-config-flags="--static"
-
-          echo "---- configure OK ----"
-          tail -n 50 config.log || true
-
-      - name: Build (Linux/macOS)
-        if: runner.os != 'Windows'
+      - name: Package artifact (zip)
         shell: bash
         run: |
           set -euo pipefail
-          cd FFmpeg
-          make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
-          ./ffmpeg -version
-          ./ffprobe -version
-
-      - name: Build (Windows / MSYS2)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-          make -j"$(nproc)"
-          ./ffmpeg.exe -version
-          ./ffprobe.exe -version
-
-      # ---------- strip ----------
-      - name: Strip (Linux/macOS)
-        if: runner.os != 'Windows'
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-          strip ffmpeg ffprobe || true
-
-      - name: Strip (Windows / MSYS2)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          cd FFmpeg
-          x86_64-w64-mingw32-strip ffmpeg.exe ffprobe.exe || true
-
-      # ---------- package ----------
-      - name: Package (Linux/macOS)
-        if: runner.os != 'Windows'
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p dist
-
-          cp -f "FFmpeg/ffmpeg"  "dist/ffmpeg-${{ matrix.target }}"
-          cp -f "FFmpeg/ffprobe" "dist/ffprobe-${{ matrix.target }}"
-          chmod +x "dist/ffmpeg-${{ matrix.target }}" "dist/ffprobe-${{ matrix.target }}"
-
-          if command -v sha256sum >/dev/null 2>&1; then
-            (cd dist && sha256sum "ffmpeg-${{ matrix.target }}"  > "ffmpeg-${{ matrix.target }}.sha256")
-            (cd dist && sha256sum "ffprobe-${{ matrix.target }}" > "ffprobe-${{ matrix.target }}.sha256")
-          else
-            (cd dist && shasum -a 256 "ffmpeg-${{ matrix.target }}"  > "ffmpeg-${{ matrix.target }}.sha256")
-            (cd dist && shasum -a 256 "ffprobe-${{ matrix.target }}" > "ffprobe-${{ matrix.target }}.sha256")
-          fi
-
-          (cd dist && zip -9 "ffmpeg-${{ matrix.target }}.zip" \
-            "ffmpeg-${{ matrix.target }}" \
-            "ffprobe-${{ matrix.target }}" \
-            "ffmpeg-${{ matrix.target }}.sha256" \
-            "ffprobe-${{ matrix.target }}.sha256")
-
-      # ВАЖНО: рекурсивно собираем DLL (включая транзитивные зависимости)
-      - name: Collect runtime DLLs (Windows, recursive)
-        if: runner.os == 'Windows'
-        shell: msys2 {0}
-        run: |
-          set -euo pipefail
-          mkdir -p dist
-          cp -f "FFmpeg/ffmpeg.exe"  "dist/ffmpeg-${{ matrix.target }}.exe"
-          cp -f "FFmpeg/ffprobe.exe" "dist/ffprobe-${{ matrix.target }}.exe"
-
-          deps_of() {
-            objdump -p "$1" 2>/dev/null | awk '/DLL Name/ {print $3}' | sort -u
-          }
-
-          : > dist/dlls.todo.txt
-          deps_of "dist/ffmpeg-${{ matrix.target }}.exe"  >> dist/dlls.todo.txt
-          deps_of "dist/ffprobe-${{ matrix.target }}.exe" >> dist/dlls.todo.txt
-          sort -u dist/dlls.todo.txt -o dist/dlls.todo.txt
-
-          : > dist/dlls.done.txt
-          changed=1
-          while [ "$changed" -eq 1 ]; do
-            changed=0
-
-            while read -r dll; do
-              [ -z "$dll" ] && continue
-              grep -qi "^${dll}$" dist/dlls.done.txt && continue
-
-              echo "$dll" >> dist/dlls.done.txt
-
-              if [ -f "/mingw64/bin/${dll}" ]; then
-                cp -f "/mingw64/bin/${dll}" dist/ || true
-                deps_of "/mingw64/bin/${dll}" >> dist/dlls.todo.txt
-                changed=1
-              fi
-            done < dist/dlls.todo.txt
-
-            sort -u dist/dlls.todo.txt -o dist/dlls.todo.txt
-            sort -u dist/dlls.done.txt -o dist/dlls.done.txt
-          done
-
-          echo "Packed DLL count:"
-          ls -1 dist/*.dll 2>/dev/null | wc -l || true
-
-      - name: Package (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-
-          & ".\dist\ffmpeg-${{ matrix.target }}.exe" -version
-          & ".\dist\ffprobe-${{ matrix.target }}.exe" -version
-
-          $files = Get-ChildItem -Path dist -File | Where-Object { $_.Extension -ne ".zip" }
-          foreach ($f in $files) {
-            $hash = (Get-FileHash -Algorithm SHA256 $f.FullName).Hash.ToLower()
-            "$hash  $($f.Name)" | Out-File -Encoding ascii -Append "dist\SHA256SUMS.txt"
-          }
-
-          $zipPath = "dist\ffmpeg-${{ matrix.target }}.zip"
-          if (Test-Path $zipPath) { Remove-Item -Force $zipPath }
-          Compress-Archive -Path "dist\*" -DestinationPath $zipPath -Force
+          ARTIFACT="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
+          mkdir -p out
+          (cd dist && zip -r "../out/${ARTIFACT}.zip" .)
+          echo "Created out/${ARTIFACT}.zip"
+          ls -la out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ffmpeg-${{ matrix.target }}
-          path: dist/ffmpeg-${{ matrix.target }}.zip
+          name: ffmpeg-${{ matrix.target }}-${{ matrix.arch }}
+          path: out/*.zip
           if-no-files-found: error
-          retention-days: 14
 
   release:
     name: Publish release assets
