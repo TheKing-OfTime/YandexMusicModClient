@@ -292,9 +292,14 @@ const handleApplicationEvents = (window) => {
                 sendProgressBarChange(window, 'ffmpeg', progressRenderer * 100);
                 window.setProgressBar(progressWindow);
             };
-            await ffmpegInstaller.ensureInstalled(throttle(callback, PROGRESS_BAR_THROTTLE_MS));
-            sendBasicToastDismiss(window, 'ffmpeg');
-        } else {
+            ffmpegInstaller.ensureInstalled(throttle(callback, PROGRESS_BAR_THROTTLE_MS))
+            .then(()=>{
+                sendBasicToastDismiss(window, 'ffmpeg');
+            }).catch((err) => {
+                sendProgressBarChange(window, 'ffmpeg', -1);
+                eventsLogger.error(err);
+                setTimeout(()=>{sendBasicToastDismiss(window, 'ffmpeg')}, 2500)
+            });
 
         }
 

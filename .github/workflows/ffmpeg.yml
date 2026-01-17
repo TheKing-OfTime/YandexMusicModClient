@@ -109,7 +109,10 @@ jobs:
               --target-os=mingw32 \
               --arch=x86_64 \
               --enable-cross-compile \
-              --disable-ffprobe
+              --disable-ffprobe \
+              --enable-w32threads \
+              --disable-pthreads
+  
           else
             ./configure \
               --prefix="${GITHUB_WORKSPACE}/dist" \
