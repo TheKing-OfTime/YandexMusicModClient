@@ -40,7 +40,7 @@ async function sha256File(p) {
 }
 
 class FfmpegUpdater {
-    constructor({ repo, tagName = "ffmpeg-binaries", requireHash = true }) {
+    constructor({ repo, tagName = "ffmpeg-binaries", requireHash = true } = {}) {
         if (typeof repo !== "string" || !repo.includes("/")) {
             throw new Error(`"repo" must be in form "OWNER/REPO"`);
         }
@@ -54,7 +54,7 @@ class FfmpegUpdater {
         this.arch = mapArch(this.platform);
 
         this.baseDir = getBaseDirNearAsar();
-        this.tempDir = path.join(this.baseDir, "temp");
+        this.tempDir = path.join(this.baseDir, "..", "temp");
 
         this.assetName = `ffmpeg-${this.platform}-${this.arch}.tar.gz`;
         this.archivePath = path.join(this.tempDir, this.assetName);
@@ -83,6 +83,34 @@ class FfmpegUpdater {
         } catch {
             return false;
         }
+    }
+
+    async deleteFileIfExists(p) {
+        try {
+            if (await this.fileExists(p)) {
+                await fsPromise.unlink(p);
+            }
+        } catch (e) {
+            this.logger.warn("Failed to delete file:", p, e?.message || e);
+        }
+    }
+
+    async cleanupDirIfExists(p) {
+        try {
+            await fsPromise.rm(p, { recursive: true, force: true });
+        } catch (e) {
+            this.logger.warn("Failed to cleanup dir:", p, e?.message || e);
+        }
+    }
+
+    /**
+     * Очистка кеша/временных файлов:
+     * - архив
+     * - директория распаковки
+     */
+    async clearCache() {
+        await this.deleteFileIfExists(this.archivePath);
+        await this.cleanupDirIfExists(this.extractDir);
     }
 
     async fetchExpectedHash() {
@@ -137,21 +165,59 @@ class FfmpegUpdater {
         return actual.toLowerCase() === expected.toLowerCase();
     }
 
-    async download(url, out) {
+    /**
+     * Скачивание с прогрессом (callback) как в старом скрипте:
+     * - callback(progress, progress) на чанках (0..1)
+     * - callback(-1, -1) при ошибке
+     * - callback(1.1, -1) после успешной загрузки
+     */
+    async download(url, out, callback) {
         await fsPromise.mkdir(path.dirname(out), { recursive: true });
+
+        // Удаляем старый файл перед скачиванием
+        await this.deleteFileIfExists(out);
 
         const agent = new https.Agent({ keepAlive: true });
         const resp = await axios.get(url, {
             responseType: "stream",
             httpsAgent: agent,
             headers: { "User-Agent": "Electron-FFmpeg-Updater" },
+            maxRedirects: 10,
+            validateStatus: (s) => s >= 200 && s < 400,
         });
 
-        await pipeline(resp.data, fs.createWriteStream(out));
+        const totalLength = parseInt(resp.headers["content-length"] || "0", 10);
+        let downloaded = 0;
+
+        resp.data.on("data", (chunk) => {
+            downloaded += chunk.length;
+            if (typeof callback === "function") {
+                const progress = totalLength > 0 ? downloaded / totalLength : 0;
+                callback(progress, progress);
+            }
+        });
+
+        try {
+            await pipeline(resp.data, fs.createWriteStream(out));
+        } catch (e) {
+            await this.deleteFileIfExists(out);
+            if (typeof callback === "function") callback(-1, -1);
+            throw e;
+        }
+
+        // sanity: минимальная проверка размера
+        const st = await fsPromise.stat(out).catch(() => null);
+        if (!st || st.size < 1024 * 1024) {
+            await this.deleteFileIfExists(out);
+            throw new Error(`Downloaded file too small (${st?.size || 0} bytes). Likely not a valid tar.gz.`);
+        }
+
+        if (typeof callback === "function") callback(1.1, -1);
+        this.logger.log("Downloaded tar.gz:", out, "size:", st.size);
     }
 
     async extract() {
-        await fsPromise.rm(this.extractDir, { recursive: true, force: true });
+        await this.cleanupDirIfExists(this.extractDir);
         await fsPromise.mkdir(this.extractDir, { recursive: true });
 
         await tar.x({
@@ -173,7 +239,13 @@ class FfmpegUpdater {
         }
     }
 
-    async ensureInstalled({ force = false } = {}) {
+    /**
+     * Совместимый интерфейс со старым скриптом:
+     * ensureInstalled(callback, { force })
+     *
+     * Добавлено: очистка кеша после успешной установки (и best-effort при ошибках).
+     */
+    async ensureInstalled(callback, { force = false } = {}) {
         if (!force) {
             const ok = await this.isInstalled();
             if (ok) {
@@ -182,26 +254,36 @@ class FfmpegUpdater {
             }
         }
 
-        this.logger.log("Downloading:", this.assetName);
-        await this.download(this.getDownloadUrl(), this.archivePath);
-        await this.extract();
-        await this.install();
+        try {
+            this.logger.log("Downloading:", this.assetName);
+            await this.download(this.getDownloadUrl(), this.archivePath, callback);
 
-        if (this.requireHash) {
-            const expected = await this.fetchExpectedHash();
-            if (!expected) {
-                await fsPromise.unlink(this.installPath);
-                throw new Error("Expected SHA-256 unavailable");
+            await this.extract();
+            await this.install();
+
+            if (this.requireHash) {
+                const expected = await this.fetchExpectedHash();
+                if (!expected) {
+                    await this.deleteFileIfExists(this.installPath);
+                    throw new Error("Expected SHA-256 unavailable");
+                }
+
+                const actual = await sha256File(this.installPath);
+                if (actual !== expected) {
+                    await this.deleteFileIfExists(this.installPath);
+                    throw new Error("SHA-256 mismatch");
+                }
             }
 
-            const actual = await sha256File(this.installPath);
-            if (actual !== expected) {
-                await fsPromise.unlink(this.installPath);
-                throw new Error("SHA-256 mismatch");
-            }
+            // ✅ Очистка кеша после успешной установки
+            await this.clearCache();
+
+            return this.installPath;
+        } catch (e) {
+            // Best-effort cleanup кеша при ошибках тоже
+            await this.clearCache();
+            throw e;
         }
-
-        return this.installPath;
     }
 }
 
