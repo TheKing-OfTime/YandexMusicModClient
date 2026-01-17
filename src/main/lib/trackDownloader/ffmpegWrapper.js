@@ -35,7 +35,7 @@ class FfmpegWrapper {
     constructor() {
         this.logger = new Logger_js_1.Logger("FfmpegWrapper");
         this._updater = getFfmpegUpdater(); // предполагается, что updater singleton
-        this.ffmpegPath = this._updater.installedBinPath;
+        this.ffmpegPath = this._updater.installPath;
     }
 
     async extractFromMp4(
