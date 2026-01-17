@@ -22,12 +22,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Linux native (x86_64 only)
           - name: linux-x86_64
             runner: ubuntu-latest
             target: linux
             arch: x86_64
             cross: false
 
+          # macOS native (arm64 + x86_64)
           - name: macos-x86_64
             runner: macos-15-intel
             target: macos
@@ -40,6 +42,7 @@ jobs:
             arch: arm64
             cross: false
 
+          # Windows via cross-compilation (x86_64 only)
           - name: windows-x86_64
             runner: ubuntu-latest
             target: windows
@@ -49,11 +52,13 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     env:
+      # Pin llvm-mingw tag; update if you need newer toolchain
       LLVM_MINGW_TAG: "20251216"
       LLVM_MINGW_BASEURL: "https://github.com/mstorsjo/llvm-mingw/releases/download"
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install deps (Ubuntu)
         if: runner.os == 'Linux'
@@ -61,8 +66,18 @@ jobs:
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            build-essential pkg-config yasm nasm autoconf automake libtool \
-            cmake git curl xz-utils ca-certificates
+            build-essential \
+            pkg-config \
+            yasm \
+            nasm \
+            autoconf \
+            automake \
+            libtool \
+            cmake \
+            git \
+            curl \
+            xz-utils \
+            ca-certificates
 
       - name: Install deps (macOS)
         if: runner.os == 'macOS'
@@ -75,79 +90,130 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf ffmpeg
-          git clone --depth 1 --branch "${{ inputs.ffmpeg_ref }}" \
-            https://git.ffmpeg.org/ffmpeg.git ffmpeg
+          git clone --depth 1 --branch "${{ inputs.ffmpeg_ref }}" https://git.ffmpeg.org/ffmpeg.git ffmpeg
 
-      - name: Setup llvm-mingw (Windows cross)
+      - name: Setup llvm-mingw (for Windows cross)
         if: matrix.cross == true
         run: |
           set -euo pipefail
           TARBALL="llvm-mingw-${LLVM_MINGW_TAG}-ucrt-ubuntu-22.04-x86_64.tar.xz"
-          curl -L -o "${TARBALL}" \
-            "${LLVM_MINGW_BASEURL}/${LLVM_MINGW_TAG}/${TARBALL}"
-          mkdir llvm-mingw
+          URL="${LLVM_MINGW_BASEURL}/${LLVM_MINGW_TAG}/${TARBALL}"
+          echo "Downloading: ${URL}"
+          curl -L --retry 5 --retry-delay 2 -o "${TARBALL}" "${URL}"
+          rm -rf llvm-mingw
+          mkdir -p llvm-mingw
           tar -xJf "${TARBALL}" -C llvm-mingw --strip-components=1
           echo "${PWD}/llvm-mingw/bin" >> "${GITHUB_PATH}"
+          # Quick sanity check (safe under pipefail)
+          echo "Toolchain bin dir:"
+          find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
 
-      - name: Build + Install
+      - name: Configure + Build (native, no ffprobe) + Install
+        if: matrix.cross == false
+        run: |
+          set -euo pipefail
+          cd ffmpeg
+          mkdir -p "${GITHUB_WORKSPACE}/dist"
+          ./configure \
+            --prefix="${GITHUB_WORKSPACE}/dist" \
+            --disable-ffprobe
+          make -j"$(getconf _NPROCESSORS_ONLN)"
+          make install
+
+      - name: Configure + Build (Windows cross, no ffprobe) + Install
+        if: matrix.cross == true
         run: |
           set -euo pipefail
           cd ffmpeg
           mkdir -p "${GITHUB_WORKSPACE}/dist"
 
-          if [ "${{ matrix.cross }}" = "true" ]; then
-            HOST=x86_64-w64-mingw32
-            export CC="${HOST}-clang"
-            export CXX="${HOST}-clang++"
-            export AR="${HOST}-ar"
-            export RANLIB="${HOST}-ranlib"
-            export STRIP="${HOST}-strip"
-            export NM="${HOST}-nm"
+          HOST_TRIPLE="x86_64-w64-mingw32"
+          FFMPEG_ARCH="x86_64"
 
-            ./configure \
-              --prefix="${GITHUB_WORKSPACE}/dist" \
-              --target-os=mingw32 \
-              --arch=x86_64 \
-              --enable-cross-compile \
-              --disable-ffprobe \
-              --enable-w32threads \
-              --disable-pthreads
-  
-          else
-            ./configure \
-              --prefix="${GITHUB_WORKSPACE}/dist" \
-              --disable-ffprobe
-          fi
+          export CC="${HOST_TRIPLE}-clang"
+          export CXX="${HOST_TRIPLE}-clang++"
+          export AR="${HOST_TRIPLE}-ar"
+          export RANLIB="${HOST_TRIPLE}-ranlib"
+          export STRIP="${HOST_TRIPLE}-strip"
+          export NM="${HOST_TRIPLE}-nm"
+
+          ./configure \
+            --prefix="${GITHUB_WORKSPACE}/dist" \
+            --target-os=mingw32 \
+            --arch="${FFMPEG_ARCH}" \
+            --enable-cross-compile \
+            --cc="${CC}" \
+            --cxx="${CXX}" \
+            --ar="${AR}" \
+            --ranlib="${RANLIB}" \
+            --strip="${STRIP}" \
+            --nm="${NM}" \
+            --disable-ffprobe
 
           make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Package artifact (tar.gz)
+      - name: Package artifact (tar.gz only ffmpeg binary) + sha256 of binary
+        shell: bash
         run: |
           set -euo pipefail
+          ARTIFACT="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
           mkdir -p out
-          ART="ffmpeg-${{ matrix.target }}-${{ matrix.arch }}"
-          BIN="dist/bin/ffmpeg"
-          [ "${{ matrix.target }}" = "windows" ] && BIN="${BIN}.exe"
 
-          sha256sum "${BIN}" | awk '{print $1}' > "out/${ART}.sha256"
-          tar -C dist/bin -czf "out/${ART}.tar.gz" "$(basename "${BIN}")"
+          if [ "${{ matrix.target }}" = "windows" ]; then
+            BIN="dist/bin/ffmpeg.exe"
+          else
+            BIN="dist/bin/ffmpeg"
+          fi
 
-      - uses: actions/upload-artifact@v4
+          if [ ! -f "${BIN}" ]; then
+            echo "Expected binary not found: ${BIN}"
+            echo "dist tree:"
+            find dist -maxdepth 3 -type f -print
+            exit 1
+          fi
+
+          TAR_PATH="out/${ARTIFACT}.tar.gz"
+          SHA_PATH="out/${ARTIFACT}.sha256"
+
+          # 1) sha256 of the binary itself (this is what your updater wants)
+          if command -v sha256sum >/dev/null 2>&1; then
+            sha256sum "${BIN}" | awk '{print $1}' > "${SHA_PATH}"
+          else
+            shasum -a 256 "${BIN}" | awk '{print $1}' > "${SHA_PATH}"
+          fi
+
+          # 2) tar.gz only the ffmpeg binary (no paths)
+          # Use -C to avoid embedding dist/bin path in the archive
+          tar -C "$(dirname "${BIN}")" -czf "${TAR_PATH}" "$(basename "${BIN}")"
+
+          echo "Created ${TAR_PATH}"
+          echo "Created ${SHA_PATH} (sha256 of binary)"
+          ls -la out
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: ffmpeg-${{ matrix.target }}-${{ matrix.arch }}
           path: out/*
+          if-no-files-found: error
 
   release:
+    name: Publish release assets
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/download-artifact@v4
 
-      - uses: softprops/action-gh-release@v2
+      - name: Create / update release
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ffmpeg-binaries
           name: FFmpeg prebuilt binaries
+          prerelease: false
+          make_latest: false
+          fail_on_unmatched_files: true
           files: |
             ffmpeg-*/ffmpeg-*.tar.gz
             ffmpeg-*/ffmpeg-*.sha256
