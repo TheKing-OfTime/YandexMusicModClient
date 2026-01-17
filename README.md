@@ -439,7 +439,7 @@ node toolset.js rebuild
       <img width="50" alt="mfoxru" src="https://avatars.githubusercontent.com/u/5925970?v=4">
    </a>
    <a href="https://github.com/aleks-fill">
-      <img width="50" alt="mfoxru" src="https://avatars.githubusercontent.com/u/3996988?v=4">
+      <img width="50" alt="aleks-fill" src="https://avatars.githubusercontent.com/u/3996988?v=4">
    </a>
 </p>
 
