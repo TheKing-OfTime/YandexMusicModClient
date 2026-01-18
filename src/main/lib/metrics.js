@@ -129,7 +129,12 @@ async function sendEvent({ endpointUrl, apiKey, payload, timeoutMs = 10_000, max
         } catch (e) {
             lastErr = e;
             const msg = String(e && e.message ? e.message : e);
-            const retryable = msg.includes("aborted") || msg.includes("AbortError") || msg.includes("network") || msg.includes("fetch");
+            const retryable =
+                msg.includes("aborted") ||
+                msg.includes("AbortError") ||
+                msg.toLowerCase().includes("network") ||
+                msg.toLowerCase().includes("fetch");
+
             if (attempt < maxRetries && retryable) {
                 attempt += 1;
                 await sleep(300 * Math.pow(3, attempt - 1));
@@ -150,35 +155,140 @@ function buildCommonPayload({ installId, appName, modVersion }) {
         install_id: installId,
         app_name: appName,
         app_version: app.getVersion(),
-        mod_version: modVersion || null, // NEW
+        mod_version: modVersion || null,
         platform: process.platform,
         arch: process.arch
     };
 }
 
+/* -------------------------
+ PERIODIC HEARTBEAT SCHEDULER
+ ------------------------- */
+
+// Глобальное состояние планировщика (на процесс)
+let heartbeatTimer = null;
+let heartbeatStopped = false;
+let heartbeatInFlight = false;
+let teardownBound = false;
+
+function stopHeartbeatScheduler() {
+    heartbeatStopped = true;
+    if (heartbeatTimer) {
+        clearTimeout(heartbeatTimer);
+        heartbeatTimer = null;
+    }
+}
+
+function bindTeardownOnce() {
+    if (teardownBound) return;
+    teardownBound = true;
+
+    // Electron lifecycle
+    app.on("before-quit", stopHeartbeatScheduler);
+    app.on("quit", stopHeartbeatScheduler);
+
+    // Node lifecycle
+    process.on("exit", stopHeartbeatScheduler);
+    process.on("SIGINT", stopHeartbeatScheduler);
+    process.on("SIGTERM", stopHeartbeatScheduler);
+}
+
+async function trySendHeartbeatOnce({
+    endpointUrl,
+    apiKey,
+    statePath,
+    installId,
+    appName,
+    modVersion,
+    heartbeatIntervalMs,
+    timeoutMs,
+    maxRetries
+}) {
+    if (heartbeatInFlight) return;
+    heartbeatInFlight = true;
+
+    try {
+        const state = (await readJsonSafe(statePath)) || {};
+        const lastSentAt = state.last_heartbeat_at_ms || 0;
+
+        if (!shouldSendHeartbeat(lastSentAt, heartbeatIntervalMs)) return;
+
+        const payload = {
+            event: "app_heartbeat",
+            ...buildCommonPayload({ installId, appName, modVersion })
+        };
+
+        await sendEvent({ endpointUrl, apiKey, payload, timeoutMs, maxRetries });
+
+        const newState = { ...state, last_heartbeat_at_ms: nowMs() };
+        await writeJsonAtomic(statePath, newState);
+    } catch {
+        // тихо
+    } finally {
+        heartbeatInFlight = false;
+    }
+}
+
+function scheduleNextTick(fn, delayMs) {
+    if (heartbeatStopped) return;
+    if (heartbeatTimer) clearTimeout(heartbeatTimer);
+    heartbeatTimer = setTimeout(fn, delayMs);
+}
+
+function startHeartbeatScheduler(params) {
+    // setTimeout-петля, чтобы не накапливать вызовы при лагах
+    const {
+        heartbeatIntervalMs
+    } = params;
+
+    const tick = async () => {
+        if (heartbeatStopped) return;
+
+        // если вкладка приложения "спит" (Windows), таймеры могут дрифтить — это ок:
+        // мы всё равно проверяем shouldSendHeartbeat по last_sent.
+        await trySendHeartbeatOnce(params);
+
+        // планируем следующий тик; можно ставить меньше интервала (например, interval/2),
+        // но в большинстве случаев достаточно равного интервалу.
+        scheduleNextTick(tick, heartbeatIntervalMs);
+    };
+
+    // Первый тик: через интервал (а не сразу), потому что "сразу" мы делаем в init
+    scheduleNextTick(tick, heartbeatIntervalMs);
+}
+
+/* -------------------------
+ INIT
+ ------------------------- */
+
 async function initUserCountMetric(options) {
     const {
         endpointUrl,
         apiKey = "",
-        heartbeatIntervalMs = 24 * 60 * 60 * 1000,
+        heartbeatIntervalMs = 60 * 60 * 1000,
         appName = app.getName(),
-        modVersion = "", // NEW: прокиньте сюда вашу версию мода
+        modVersion = "",
         timeoutMs = 10_000,
-        maxRetries = 2
+        maxRetries = 2,
+        enablePeriodicHeartbeat = true
     } = options || {};
 
     if (!endpointUrl) return;
 
     await app.whenReady();
 
+    bindTeardownOnce();
+
     const statePath = getMetricsStatePath();
     const { state, installId, isNew } = await getOrCreateInstallId(statePath);
 
+    // 1) install event (один раз)
     if (isNew && !state.install_event_sent) {
         const payload = {
             event: "app_install",
             ...buildCommonPayload({ installId, appName, modVersion })
         };
+
         try {
             await sendEvent({ endpointUrl, apiKey, payload, timeoutMs, maxRetries });
             const newState = { ...state, install_event_sent: true };
@@ -188,21 +298,40 @@ async function initUserCountMetric(options) {
         }
     }
 
-    const lastSentAt = state.last_heartbeat_at_ms || 0;
-    if (!shouldSendHeartbeat(lastSentAt, heartbeatIntervalMs)) return;
-
-    const payload = {
-        event: "app_heartbeat",
-        ...buildCommonPayload({ installId, appName, modVersion })
-    };
-
+    // 2) heartbeat на запуске (если пора)
     try {
-        await sendEvent({ endpointUrl, apiKey, payload, timeoutMs, maxRetries });
-        const newState = { ...state, last_heartbeat_at_ms: nowMs() };
-        await writeJsonAtomic(statePath, newState);
+        await trySendHeartbeatOnce({
+            endpointUrl,
+            apiKey,
+            statePath,
+            installId,
+            appName,
+            modVersion,
+            heartbeatIntervalMs,
+            timeoutMs,
+            maxRetries
+        });
     } catch {
         // тихо
     }
+
+    // 3) периодический heartbeat
+    if (enablePeriodicHeartbeat) {
+        startHeartbeatScheduler({
+            endpointUrl,
+            apiKey,
+            statePath,
+            installId,
+            appName,
+            modVersion,
+            heartbeatIntervalMs,
+            timeoutMs,
+            maxRetries
+        });
+    }
 }
 
-module.exports = { initUserCountMetric };
+module.exports = {
+    initUserCountMetric,
+    stopHeartbeatScheduler
+};
