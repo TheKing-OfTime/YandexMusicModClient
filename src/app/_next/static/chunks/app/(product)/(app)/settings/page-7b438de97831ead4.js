@@ -2150,6 +2150,16 @@
                         console.log('preventDisplaySleep toggled. Value: ', e);
                         window.nativeSettings.set('modFeatures.windowBehavior.preventDisplaySleep', e);
                     }, []),
+                    onSendAnonymizedMetricsToggle = (0, d.useCallback)((e) => {
+                        console.log('sendAnonymizedMetrics toggled. Value: ', e);
+                        window.nativeSettings.set('sendAnonymizedMetrics', e);
+                        j(
+                            (0, i.jsx)(m.hT, {
+                                error: 'Для применения этой настройки требуется перезапуск приложения',
+                            }),
+                            { containerId: _.uQT.ERROR },
+                        );
+                    }, []),
                     onAutoLaunchOnSystemStartupToggle = (0, d.useCallback)(
                         (e) => {
                             console.log('autoLaunchOnSystemStartup toggled. Value: ', e);
@@ -2242,6 +2252,15 @@
                                     description: 'Настроить комбинации можно в Настройки -> Остальные настройки',
                                     onChange: onToggleGlobalShortcuts,
                                     isChecked: window.nativeSettings.get('modFeatures.globalShortcuts.enable'),
+                                }),
+                            }),
+                            (0, i.jsx)('li', {
+                                className: B().item,
+                                children: (0, i.jsx)(P, {
+                                    title: 'Отправлять анонимную статистику',
+                                    description: 'Отключит отправку стаитстики Мода его разработчику. Не влияет на метрику Яндекса',
+                                    onChange: onSendAnonymizedMetricsToggle,
+                                    isChecked: window.nativeSettings.get('sendAnonymizedMetrics'),
                                 }),
                             }),
                         ],

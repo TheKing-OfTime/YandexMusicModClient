@@ -20,4 +20,5 @@ var StoreKeys;
   StoreKeys["DEVICE_CPU_REVISION"] = "deviceCpuRevision";
   StoreKeys["TRACKS_AVAILABILITY_UPDATED_AT"] = "tracksAvailabilityUpdatedAt";
   StoreKeys["REPOSITORY_META_UPDATED_AT"] = "repositoryMetaUpdatedAt";
+  StoreKeys["SEND_ANONYMIZED_METRICS"] = "sendAnonymizedMetrics";
 })(StoreKeys || (exports.StoreKeys = StoreKeys = {}));

@@ -222,6 +222,7 @@ const init = () => {
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
+  initField(store_js_1.StoreKeys.SEND_ANONYMIZED_METRICS, true);
   initField(store_js_1.StoreKeys.YNISON_INTERCEPT_PLAYBACK, false);
   initField(store_js_1.StoreKeys.DISPLAY_MAX_FPS, 60);
   initField(

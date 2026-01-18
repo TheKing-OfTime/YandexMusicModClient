@@ -40,11 +40,20 @@ const taskBarExtension_js_1 = require("./lib/taskBarExtension/taskBarExtension.j
 const modUpdater_js_1 = require('./lib/modUpdater.js');
 const miniPlayer_js_1 = require('./lib/miniplayer/miniplayer.js');
 const { getFfmpegUpdater } = require("./lib/ffmpegInstaller.js");
+const { initUserCountMetric } = require("./lib/metrics");
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
 
 logger.log('Application starting...');
+
+if (store_js_1.get('sendAnonymizedMetrics') ?? true) {
+    initUserCountMetric({
+        endpointUrl: 'https://ymmc-metrics.artem-matvienko0.workers.dev/metrics',
+        apiKey: 'tm3JDhHtl58Va8clKbuqdMEz_Gl9rQ5XRpsi0tV-H_4', // NOT A SECRET
+        modVersion: config_js_1.config.modification.version,
+    });
+}
 
 // Set the session storage (aka offline tracks, cache, etc) path to the custom path if requested
 function initSessionStoragePath() {
