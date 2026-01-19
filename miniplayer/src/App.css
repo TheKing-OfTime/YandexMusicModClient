@@ -21,6 +21,23 @@
   @media (max-height: 380px) {
     --cover-size: 245px;
   }
+  
+  
+  @media (max-height: 380px) and (max-width: 590px) {
+     .Cover_container {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(4px) brightness(0.75);
+        scale: 1.05; /* fix for "vignette" effect */
+		transition: scale 0.2s;
+        z-index: -1;
+    }
+    .main {--player-bg-color: transparent !important }
+  }
 
 }
 
