@@ -1,4 +1,4 @@
-name: Build FFmpeg (self-contained)
+name: Build FFmpeg (manual)
 
 on:
   workflow_dispatch:
@@ -77,31 +77,14 @@ jobs:
             git \
             curl \
             xz-utils \
-            ca-certificates \
-            libxml2-dev \
-            libssl-dev \
-            zlib1g-dev \
-            libmp3lame-dev \
-            libopus-dev \
-            libvorbis-dev \
-            libtheora-dev \
-            libvpx-dev \
-            libx264-dev \
-            libx265-dev \
-            libfreetype6-dev \
-            libfontconfig1-dev \
-            libfribidi-dev \
-            libass-dev \
-            libwebp-dev
+            ca-certificates
 
       - name: Install deps (macOS)
         if: runner.os == 'macOS'
         run: |
           set -euo pipefail
           brew update
-          brew install pkg-config yasm nasm libxml2 openssl zlib \
-            lame opus libvorbis theora libvpx x264 x265 freetype \
-            fontconfig libfribidi libass webp
+          brew install pkg-config yasm nasm
 
       - name: Fetch FFmpeg source
         run: |
@@ -121,49 +104,23 @@ jobs:
           mkdir -p llvm-mingw
           tar -xJf "${TARBALL}" -C llvm-mingw --strip-components=1
           echo "${PWD}/llvm-mingw/bin" >> "${GITHUB_PATH}"
+          # Quick sanity check (safe under pipefail)
+          echo "Toolchain bin dir:"
+          find llvm-mingw/bin -maxdepth 1 -type f -o -type l | sort | head -n 50
 
-      - name: Configure FFmpeg (native) - with audio/metadata codecs
+      - name: Configure + Build (native, no ffprobe) + Install
         if: matrix.cross == false
         run: |
           set -euo pipefail
           cd ffmpeg
           mkdir -p "${GITHUB_WORKSPACE}/dist"
-          
           ./configure \
             --prefix="${GITHUB_WORKSPACE}/dist" \
-            --enable-gpl \
-            --enable-libmp3lame \
-            --enable-libopus \
-            --enable-libvorbis \
-            --enable-libtheora \
-            --enable-libvpx \
-            --enable-libx264 \
-            --enable-libx265 \
-            --enable-libfreetype \
-            --enable-libfontconfig \
-            --enable-libfribidi \
-            --enable-libass \
-            --enable-libwebp \
-            --disable-ffprobe \
-            --disable-ffplay \
-            --disable-doc \
-            --disable-htmlpages \
-            --disable-manpages \
-            --disable-podpages \
-            --disable-txtpages \
-            --disable-network \
-            --disable-libxcb \
-            --disable-xlib
-
-      - name: Build + Install (native)
-        if: matrix.cross == false
-        run: |
-          set -euo pipefail
-          cd ffmpeg
-          make -j"$(getconf _NPROCESSORS_ONLN)" 2>&1 | tail -50
+            --disable-ffprobe
+          make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Configure FFmpeg (Windows cross) - with audio/metadata codecs
+      - name: Configure + Build (Windows cross, no ffprobe) + Install
         if: matrix.cross == true
         run: |
           set -euo pipefail
@@ -191,72 +148,12 @@ jobs:
             --ranlib="${RANLIB}" \
             --strip="${STRIP}" \
             --nm="${NM}" \
-            --enable-gpl \
-            --enable-libmp3lame \
-            --enable-libopus \
-            --enable-libvorbis \
-            --enable-libtheora \
-            --enable-libvpx \
-            --enable-libx264 \
-            --enable-libx265 \
-            --enable-libfreetype \
-            --enable-libfontconfig \
-            --enable-libfribidi \
-            --enable-libass \
-            --enable-libwebp \
-            --disable-ffprobe \
-            --disable-ffplay \
-            --disable-doc \
-            --disable-htmlpages \
-            --disable-manpages \
-            --disable-podpages \
-            --disable-txtpages \
-            --disable-network \
-            --disable-libxcb \
-            --disable-xlib
+            --disable-ffprobe
 
-      - name: Build + Install (Windows cross)
-        if: matrix.cross == true
-        run: |
-          set -euo pipefail
-          cd ffmpeg
-          make -j"$(getconf _NPROCESSORS_ONLN)" 2>&1 | tail -50
+          make -j"$(getconf _NPROCESSORS_ONLN)"
           make install
 
-      - name: Verify binary
-        run: |
-          set -euo pipefail
-          if [ "${{ matrix.target }}" = "windows" ]; then
-            BIN="dist/bin/ffmpeg.exe"
-          else
-            BIN="dist/bin/ffmpeg"
-          fi
-          
-          if [ ! -f "${BIN}" ]; then
-            echo "ERROR: Binary not found at ${BIN}"
-            ls -la dist/bin/
-            exit 1
-          fi
-          
-          echo "Binary size:"
-          ls -lh "${BIN}"
-          echo "Binary info:"
-          file "${BIN}"
-
-      - name: Strip binary (native only, not Windows cross)
-        if: matrix.cross == false
-        run: |
-          set -euo pipefail
-          if [ "${{ matrix.target }}" = "windows" ]; then
-            BIN="dist/bin/ffmpeg.exe"
-          else
-            BIN="dist/bin/ffmpeg"
-          fi
-          strip -s "${BIN}" || true
-          echo "After strip:"
-          ls -lh "${BIN}"
-
-      - name: Create distribution archive + sha256
+      - name: Package artifact (tar.gz only ffmpeg binary) + sha256 of binary
         shell: bash
         run: |
           set -euo pipefail
@@ -271,26 +168,28 @@ jobs:
 
           if [ ! -f "${BIN}" ]; then
             echo "Expected binary not found: ${BIN}"
+            echo "dist tree:"
+            find dist -maxdepth 3 -type f -print
             exit 1
           fi
 
           TAR_PATH="out/${ARTIFACT}.tar.gz"
           SHA_PATH="out/${ARTIFACT}.sha256"
 
-          # Calculate sha256 of the binary
+          # 1) sha256 of the binary itself (this is what your updater wants)
           if command -v sha256sum >/dev/null 2>&1; then
             sha256sum "${BIN}" | awk '{print $1}' > "${SHA_PATH}"
           else
             shasum -a 256 "${BIN}" | awk '{print $1}' > "${SHA_PATH}"
           fi
 
-          # Create tar.gz archive with the binary only
+          # 2) tar.gz only the ffmpeg binary (no paths)
+          # Use -C to avoid embedding dist/bin path in the archive
           tar -C "$(dirname "${BIN}")" -czf "${TAR_PATH}" "$(basename "${BIN}")"
 
-          echo "=== Artifact Info ==="
-          echo "Archive: ${TAR_PATH}"
-          ls -lh "${TAR_PATH}"
-          echo "SHA256: $(cat "${SHA_PATH}")"
+          echo "Created ${TAR_PATH}"
+          echo "Created ${SHA_PATH} (sha256 of binary)"
+          ls -la out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -311,7 +210,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ffmpeg-binaries
-          name: FFmpeg prebuilt binaries (self-contained)
+          name: FFmpeg prebuilt binaries
           prerelease: false
           make_latest: false
           fail_on_unmatched_files: true
