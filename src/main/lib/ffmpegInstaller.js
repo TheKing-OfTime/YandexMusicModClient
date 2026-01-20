@@ -53,8 +53,13 @@ class FfmpegUpdater {
         this.platform = mapPlatform();
         this.arch = mapArch(this.platform);
 
-        this.baseDir = getBaseDirNearAsar();
-        this.tempDir = path.join(this.baseDir, "..", "temp");
+        if (this.platform === 'linux') {
+            this.baseDir = path.join(electron.app.getPath("userData"), "ffmpeg");
+            this.tempDir = path.join(this.baseDir, "temp");
+        } else {
+            this.baseDir = getBaseDirNearAsar();
+            this.tempDir = path.join(this.baseDir, '..', 'temp');
+        }
 
         this.assetName = `ffmpeg-${this.platform}-${this.arch}.tar.gz`;
         this.archivePath = path.join(this.tempDir, this.assetName);
