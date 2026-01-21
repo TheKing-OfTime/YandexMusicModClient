@@ -41,6 +41,7 @@ const modUpdater_js_1 = require('./lib/modUpdater.js');
 const miniPlayer_js_1 = require('./lib/miniplayer/miniplayer.js');
 const { getFfmpegUpdater } = require("./lib/ffmpegInstaller.js");
 const { initUserCountMetric } = require("./lib/metrics");
+const { throttle } = require('./lib/utils.js');
 
 Logger_js_1.Logger.setupLogger();
 const logger = new Logger_js_1.Logger("Main");
@@ -215,6 +216,11 @@ const MiniPlayer = miniPlayer_js_1.getMiniPlayer();
   }
   modUpdater.onUpdateAvailable((currVersion, newVersion) => {
     (0, events_js_1.sendModUpdateAvailable)(window, currVersion, newVersion);
+    let callback = (progressRenderer, progressWindow) => {
+      events_js_1.sendProgressBarChange(window, 'modUpdateToast', progressRenderer * 100);
+      window.setProgressBar(progressWindow);
+    };
+    (0, modUpdater_js_1.getModUpdater)().onUpdateDownload(throttle(callback, 200));
   });
   if (
     store_js_1.getModFeatures()?.appAutoUpdates.enableModAutoUpdate &&
