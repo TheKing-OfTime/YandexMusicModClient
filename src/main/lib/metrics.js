@@ -265,7 +265,7 @@ async function initUserCountMetric(options) {
     const {
         endpointUrl,
         apiKey = "",
-        heartbeatIntervalMs = 60 * 60 * 1000,
+        heartbeatIntervalMs = 3 * 60 * 60 * 1000,
         appName = app.getName(),
         modVersion = "",
         timeoutMs = 10_000,
