@@ -25,7 +25,7 @@ console.log(`Используемые версии: ${versionList.join(', ')}`);
 
 const ROOT = process.argv[2] ?? (versionList?.[0] ? path.join(EXTRACTED, versionList?.[0]) : undefined ) ?? "./src"
 const APP_CHUNKS_ROOT = path.join(ROOT, "/app/_next/static/chunks");
-const MAIN_TRANSLATIONS_ROOT = path.join(ROOT, "/main/translations/compiled");
+const MAIN_INDEX_JS_PATH = path.join(ROOT, "/index.js");
 const OUTPUT = process.argv[3] ?? path.join(process.argv[1].replace('dataminer.js', ''), `./output/${process.argv[2]?.split('/')?.at(process.argv[2].endsWith('/') ? -2 : -1)?.replaceAll('.', '_') ?? (versionList?.[0] ? versionList?.[0].replaceAll('.', '_') : undefined ) ?? 'src'}`);
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options"];
@@ -632,17 +632,31 @@ function createOutputJson(data, fileName) {
         }
     }
 
-    // console.log('Анализ файлов локализации...');
-    //
-    // const raw = fs.readFileSync(path.join(MAIN_TRANSLATIONS_ROOT, 'ru.json'), 'utf8');
-    // const messages = JSON.parse(raw);
-    // const compiled = compileMessages(messages);
-    //
-    // console.log('Анализ файлов локализации завершён...');
+    let compiled = null;
+    try {
+        console.log('Анализ файлов локализации...');
+
+        const indexContent = fs.readFileSync(MAIN_INDEX_JS_PATH, 'utf8');
+        // Найти объявление const translationsRU = { ... }
+        const match = indexContent.match(/const\s+translationsRU\s*=\s*(\{[\s\S]*?\n\})/);
+
+        if (match) {
+            // Преобразуем найденный объект в JSON
+            const translationsCode = match[1];
+            // Используем eval в безопасном контексте (только для парсинга)
+            const translationsRU = eval('(' + translationsCode + ')');
+            compiled = compileMessages(translationsRU);
+            console.log('Анализ файлов локализации завершён...');
+        } else {
+            console.warn('⚠️  Не найдена локализация translationsRU в файле index.js');
+        }
+    } catch (err) {
+        console.warn(`⚠️  Ошибка при чтении локализации: ${err.message}`);
+    }
 
     console.log(`\n\n\n✅ Готово\n🌐 Роутов найдено: ${results.length}`);
     console.log(`🔬 Экспериментов найдено: ${experiments.length}`);
-    // console.log(`💬 Локализованных сообщений: ${Object.keys(compiled).length}`);
+    if (compiled) console.log(`💬 Локализованных сообщений: ${Object.keys(compiled).length}`);
 
     console.log(`\nСортирую результаты...`);
     console.time(`Сортировка завершена`);
@@ -658,7 +672,7 @@ function createOutputJson(data, fileName) {
         createOutputJson(results, 'detailedRoutes.json');
         createOutputJson(generateSimpleRoutesListFromResults(results), 'simpleRoutes.json');
         createOutputJson([...new Set(experiments)], 'experiments.json');
-        createOutputJson(compiled, 'formatted_ru.json');
+        if (compiled) createOutputJson(compiled, 'formatted_ru.json');
         console.log(`\n💾 Результаты сохранёны в ${OUTPUT}`);
     } catch (err) {
         console.error(`\n❌ Ошибка записи файла ${OUTPUT}: ${err.message}\n`);
