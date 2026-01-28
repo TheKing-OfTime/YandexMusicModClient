@@ -72,7 +72,7 @@ class FfmpegWrapper {
         if (fileExtension === "mp3") {
             args.push(
                 "-codec:a",
-                "mp3",
+                "libmp3lame",
                 "-id3v2_version",
                 "4",
                 "-b:a",
