@@ -20,7 +20,9 @@ exports.useCachedValue =
   exports.setWindowPosition =
   exports.getDevtoolsEnabled =
   exports.getModFeatures =
+  exports.getModSettings =
   exports.init =
+  exports.initNew =
   exports.set =
   exports.get =
     void 0;
@@ -113,6 +115,150 @@ const ignoreList = [
         keyListMode: 'whitelist', // 'whitelist' | 'blacklist' Режим работы keyList. Whitelist - только ключи из keyList будут инициализированы. Blacklist - все ключи кроме указанных в keyList будут инициализированы.
     }
 ];
+
+/**
+ * Миграция данных из старого формата (MOD_FEATURES) в новый (MOD_SETTINGS)
+ * Обеспечивает обратную совместимость при обновлении приложения
+ */
+const migrateStoreFormat = () => {
+  const oldModFeatures = store.get(store_js_1.StoreKeys.MOD_FEATURES);
+
+  if (!oldModFeatures) {
+    logger.log("No old MOD_FEATURES found, migration not needed");
+    return {};
+  }
+
+  const newModSettings = {};
+
+  // Миграция taskBarExtensions
+  if (oldModFeatures.taskBarExtensions) {
+    newModSettings.taskBarExtensions = {
+      enable: oldModFeatures.taskBarExtensions.enable ?? true,
+      coverAsThumbnail: oldModFeatures.taskBarExtensions.coverAsThumbnail ?? false,
+    };
+  }
+
+  // Миграция windowBehavior → window
+  if (oldModFeatures.windowBehavior) {
+    newModSettings.window = {
+      toTray: oldModFeatures.windowBehavior.minimizeToTrayOnWindowClose ?? false,
+      autoStartup: oldModFeatures.windowBehavior.autoLaunchOnSystemStartup ?? false,
+      minimizedStart: oldModFeatures.windowBehavior.startMinimized ?? false,
+      preventDisplaySleep: oldModFeatures.windowBehavior.preventDisplaySleep ?? false,
+      startupPage: oldModFeatures.windowBehavior.startupPage ?? '/',
+      saveWindowDimensionsOnRestart: oldModFeatures.windowBehavior.saveWindowDimensionsOnRestart ?? true,
+      saveWindowPositionOnRestart: oldModFeatures.windowBehavior.saveWindowPositionOnRestart ?? false,
+    };
+  }
+
+  // Миграция globalShortcuts
+  if (oldModFeatures.globalShortcuts) {
+    newModSettings.globalShortcuts = {
+      enable: oldModFeatures.globalShortcuts.enable ?? true,
+      TOGGLE_PLAY: oldModFeatures.globalShortcuts.TOGGLE_PLAY ?? 'Ctrl+/',
+      MOVE_FORWARD: oldModFeatures.globalShortcuts.MOVE_FORWARD ?? 'Ctrl+,',
+      MOVE_BACKWARD: oldModFeatures.globalShortcuts.MOVE_BACKWARD ?? 'Ctrl+.',
+      TOGGLE_REPEAT: oldModFeatures.globalShortcuts.TOGGLE_REPEAT ?? 'Ctrl+?',
+      TOGGLE_SHUFFLE: oldModFeatures.globalShortcuts.TOGGLE_SHUFFLE ?? "Ctrl+'",
+    };
+  }
+
+  // Миграция playerBarEnhancement
+  if (oldModFeatures.playerBarEnhancement) {
+    const playButtonType = oldModFeatures.playerBarEnhancement.whitePlayButton ? 'white' : 'yellow';
+    newModSettings.playerBarEnhancement = {
+      showCodecInsteadOfQualityMark: oldModFeatures.playerBarEnhancement.showCodecInsteadOfQualityMark ?? false,
+      alwaysShowTimestamps: oldModFeatures.playerBarEnhancement.alwaysShowPlayerTimestamps ?? false,
+      showRepeatButtonOnVibe: oldModFeatures.playerBarEnhancement.showRepeatButtonOnVibe ?? true,
+      changeDislikeButtonPos: oldModFeatures.playerBarEnhancement.showDislikeButton ?? true,
+      disablePerTrackColors: oldModFeatures.playerBarEnhancement.disablePerTrackColors ?? false,
+      alwaysWideBar: oldModFeatures.playerBarEnhancement.alwaysWideBar ?? false,
+      playButtonType: playButtonType,
+    };
+  }
+
+  // Миграция vibeAnimationEnhancement
+  if (oldModFeatures.vibeAnimationEnhancement) {
+    newModSettings.vibeAnimationEnhancement = {
+      maxFPS: oldModFeatures.vibeAnimationEnhancement.maxFPS ?? 25,
+      vibeIntensityCoefficient: oldModFeatures.vibeAnimationEnhancement.intensityCoefficient ?? 1.3,
+      useDynamicEnergy: oldModFeatures.vibeAnimationEnhancement.useDynamicEnergy ?? true,
+      smoothDynamicEnergy: oldModFeatures.vibeAnimationEnhancement.smoothDynamicEnergy ?? false,
+      smoothDynamicEnergyCoefficient: oldModFeatures.vibeAnimationEnhancement.smoothDynamicEnergyCoefficient ?? 0.2,
+      playVibeOnAnyEntity: oldModFeatures.vibeAnimationEnhancement.playOnAnyEntity ?? true,
+      disableRendering: oldModFeatures.vibeAnimationEnhancement.disableRendering ?? false,
+      autoLaunchOnAppStartup: oldModFeatures.vibeAnimationEnhancement.autoLaunchOnAppStartup ?? false,
+      enableEndlessMusic: oldModFeatures.vibeAnimationEnhancement.enableEndlessMusic ?? true,
+    };
+  }
+
+  // Миграция appAutoUpdates
+  if (oldModFeatures.appAutoUpdates) {
+    newModSettings.appAutoUpdates = {
+      enableAppAutoUpdate: oldModFeatures.appAutoUpdates.enableAppAutoUpdate ?? true,
+      enableAppAutoUpdateByProbability: oldModFeatures.appAutoUpdates.enableAppAutoUpdateByProbability ?? false,
+    };
+  }
+
+  // Миграция scrobblers
+  if (oldModFeatures.scrobblers) {
+    newModSettings.scrobblers = {
+      lastfm: {
+        enable: oldModFeatures.scrobblers.lastfm?.enable ?? true,
+        fromYnison: oldModFeatures.scrobblers.lastfm?.fromYnison ?? false,
+        autoLike: oldModFeatures.scrobblers.lastfm?.autoLike ?? false,
+        separatorType: oldModFeatures.scrobblers.lastfm?.separatorType ?? 1,
+      },
+    };
+  }
+
+  // Миграция downloader
+  if (oldModFeatures.downloader) {
+    newModSettings.downloader = {
+      useDefaultPath: oldModFeatures.downloader.useDefaultPath ?? false,
+      defaultPath: oldModFeatures.downloader.defaultPath ?? '',
+      useMP3: oldModFeatures.downloader.useMP3 ?? false,
+      useCustomPathForSessionStorage: oldModFeatures.downloader.useCustomPathForSessionStorage ?? false,
+      customPathForSessionStorage: oldModFeatures.downloader.customPathForSessionStorage ?? '',
+      useSyncLyrics: oldModFeatures.downloader.useSyncLyrics ?? true,
+    };
+  }
+
+  // Добавление новой секции lrclib (по умолчанию)
+  newModSettings.lrclib = {
+    useText: false,
+    syncLyricsTextFallback: false,
+    useTitleOnlyFallback: false,
+  };
+
+  // Миграция miniplayer
+  if (oldModFeatures.miniplayer) {
+    newModSettings.miniplayer = {
+      skipTaskbar: oldModFeatures.miniplayer.skipTaskbar ?? false,
+      savePosition: oldModFeatures.miniplayer.savePosition ?? false,
+      saveDimensions: oldModFeatures.miniplayer.saveDimensions ?? false,
+      alwaysShowPlayerTimestamps: oldModFeatures.miniplayer.alwaysShowPlayerTimestamps ?? false,
+      window: {
+        alwaysOnTop: oldModFeatures.miniplayer.window?.alwaysOnTop ?? false,
+        width: oldModFeatures.miniplayer.window?.width ?? 380,
+        height: oldModFeatures.miniplayer.window?.height ?? 590,
+        x: oldModFeatures.miniplayer.window?.x ?? 0,
+        y: oldModFeatures.miniplayer.window?.y ?? 0,
+      },
+    };
+  }
+
+  // Миграция простых булевых полей
+  newModSettings.r128Normalization = oldModFeatures.r128Normalization ?? true;
+  newModSettings.tryEnableSurroundAudio = oldModFeatures.tryEnableSurroundAudio ?? true;
+  newModSettings.showNonMusicPage = oldModFeatures.showNonMusicPage ?? true;
+  newModSettings.showConcertsTab = true; // Новое поле, устанавливаем по умолчанию
+  newModSettings.enableHardwareAcceleration = oldModFeatures.enableHardwareAcceleration ?? true;
+
+  logger.log("Store migration completed from MOD_FEATURES to MOD_SETTINGS");
+
+  return newModSettings;
+};
 
 const init = () => {
   initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
@@ -251,10 +397,140 @@ const init = () => {
       initField(store_js_1.StoreKeys.DEFAULT_EXPERIMENT_OVERRIDES, data, true);
   });
 
-
+  initNew();
 
 };
 exports.init = init;
+
+const initNew = () => {
+  initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
+    width: 1280,
+    height: 800,
+    maximized: false,
+  });
+  initField(store_js_1.StoreKeys.WINDOW_MONITOR_ID, null);
+
+  // Получаем мигрированные данные из старого формата
+  const migratedSettings = migrateStoreFormat();
+
+  initField(store_js_1.StoreKeys.MOD_SETTINGS, {
+    taskBarExtensions: migratedSettings?.taskBarExtensions ?? {
+      enable: true,
+      coverAsThumbnail: false,
+    },
+    window: migratedSettings?.window ?? {
+      toTray: false,
+      autoStartup: false,
+      minimizedStart: false,
+      preventDisplaySleep: false,
+      startupPage: '/',
+      saveWindowDimensionsOnRestart: false,
+      saveWindowPositionOnRestart: false,
+    },
+    globalShortcuts: migratedSettings?.globalShortcuts ?? {
+      enable: true,
+      TOGGLE_PLAY: 'Ctrl+/',
+      MOVE_FORWARD: 'Ctrl+,',
+      MOVE_BACKWARD: 'Ctrl+.',
+      TOGGLE_REPEAT: 'Ctrl+?',
+      TOGGLE_SHUFFLE: "Ctrl+'",
+    },
+    playerBarEnhancement: migratedSettings?.playerBarEnhancement ?? {
+      showCodecInsteadOfQualityMark: true,
+      alwaysShowTimestamps: false,
+      showRepeatButtonOnVibe: true,
+      changeDislikeButtonPos: true,
+      disablePerTrackColors: false,
+      alwaysWideBar: false,
+      playButtonType: 'yellow',
+    },
+    vibeAnimationEnhancement: migratedSettings?.vibeAnimationEnhancement ?? {
+      maxFPS: 25,
+      vibeIntensityCoefficient: 1.3,
+      useDynamicEnergy: true,
+      smoothDynamicEnergy: false,
+      smoothDynamicEnergyCoefficient: 0.2,
+      playVibeOnAnyEntity: true,
+      disableRendering: false,
+      autoLaunchOnAppStartup: false,
+      enableEndlessMusic: true,
+    },
+    appAutoUpdates: migratedSettings?.appAutoUpdates ?? {
+      enableAppAutoUpdate: store.get(store_js_1.StoreKeys.AUTO_UPDATES) ?? true,
+      enableAppAutoUpdateByProbability: false,
+    },
+    scrobblers: migratedSettings?.scrobblers ?? {
+      lastfm: {
+        enable: true,
+        fromYnison: false,
+        autoLike: false,
+        separatorType: 1,
+      },
+    },
+    downloader: migratedSettings?.downloader ?? {
+      useDefaultPath: false,
+      defaultPath: '',
+      useMP3: false,
+      useCustomPathForSessionStorage: false,
+      customPathForSessionStorage: '',
+      useSyncLyrics: true,
+    },
+    lrclib: migratedSettings?.lrclib ?? {
+      useText: false,
+      syncLyricsTextFallback: false,
+      useTitleOnlyFallback: false,
+    },
+    miniplayer: migratedSettings?.miniplayer ?? {
+      skipTaskbar: false,
+      savePosition: false,
+      saveDimensions: false,
+      alwaysShowPlayerTimestamps: store.get(store_js_1.StoreKeys.MOD_SETTINGS)?.playerBarEnhancement?.alwaysShowPlayerTimestamps ?? false,
+      window: {
+        alwaysOnTop: false,
+        width: 380,
+        height: 590,
+        x: 0,
+        y: 0,
+      },
+    },
+    r128Normalization: migratedSettings?.r128Normalization ?? true,
+    tryEnableSurroundAudio: migratedSettings?.tryEnableSurroundAudio ?? true,
+    showNonMusicPage: migratedSettings?.showNonMusicPage ?? true,
+    showConcertsTab: migratedSettings?.showConcertsTab ?? true,
+    enableHardwareAcceleration: migratedSettings?.enableHardwareAcceleration ?? true,
+  });
+
+  initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
+  initField(store_js_1.StoreKeys.SEND_ANONYMIZED_METRICS, true);
+  initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
+  initField(store_js_1.StoreKeys.YNISON_INTERCEPT_PLAYBACK, false);
+  initField(store_js_1.StoreKeys.ENABLE_YNISON_FOR_RPC, false);
+  initField(store_js_1.StoreKeys.DISPLAY_MAX_FPS, 60);
+
+  fetchDefaultExperimentOverrides().then((data) => {
+    if (data) initField(store_js_1.StoreKeys.DEFAULT_MUSIC_EXPERIMENT_OVERRIDES, data, true);
+  });
+
+  if (getModSettings()?.scrobblers?.lastfm?.enable === undefined)
+    initField(
+      `${store_js_1.StoreKeys.MOD_SETTINGS}.scrobblers`,
+      {
+        lastfm: {
+          enable: true,
+          fromYnison: false,
+          autoLike: false,
+        },
+      },
+      true,
+    );
+
+  cachedStore.setData(store.store);
+
+  fetchDefaultExperimentOverrides().then((data) => {
+    if (data) initField(store_js_1.StoreKeys.DEFAULT_MUSIC_EXPERIMENT_OVERRIDES, data, true);
+  });
+};
+exports.initNew = initNew;
 
 const initField = (fieldKey, defaultValue, force = false) => {
   if (
@@ -406,6 +682,12 @@ const getModFeatures = () => {
   return getStore(store_js_1.StoreKeys.MOD_FEATURES);
 };
 exports.getModFeatures = getModFeatures;
+
+const getModSettings = () => {
+  return getStore(store_js_1.StoreKeys.MOD_SETTINGS);
+};
+exports.getModSettings = getModSettings;
+
 const fetchDefaultExperimentOverrides = async () => {
   try {
     const remoteDefaultExperimentOverrides = await fetch(
