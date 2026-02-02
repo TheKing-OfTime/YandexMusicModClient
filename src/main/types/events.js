@@ -41,4 +41,7 @@ var Events;
   Events["NATIVE_STORE_UPDATE"] = "NATIVE_STORE_UPDATE";
   Events["NATIVE_STORE_SET"] = "NATIVE_STORE_SET";
   Events['TOGGLE_MINIPLAYER'] = 'TOGGLE_MINIPLAYER';
+  Events['PROJECT_MERGE_DECISION'] = 'PROJECT_MERGE_DECISION';
+  Events['SHOW_MERGE_MODAL'] = 'SHOW_MERGE_MODAL';
+
 })(Events || (exports.Events = Events = {}));

@@ -2915,6 +2915,8 @@
                     (e.WINDOW_CLOSE = "WINDOW_CLOSE"),
                     (e.INSTALL_UPDATE = "INSTALL_UPDATE"),
                     (e.UPDATE_AVAILABLE = "UPDATE_AVAILABLE"),
+                    (e.SHOW_MERGE_MODAL = "SHOW_MERGE_MODAL"),
+                    (e.PROJECT_MERGE_DECISION = "PROJECT_MERGE_DECISION"),
                     (e.APPLICATION_READY = "APPLICATION_READY"),
                     (e.GET_PASSPORT_LOGIN = "GET_PASSPORT_LOGIN"),
                     (e.GET_YANDEX_UID = "GET_YANDEX_UID"),

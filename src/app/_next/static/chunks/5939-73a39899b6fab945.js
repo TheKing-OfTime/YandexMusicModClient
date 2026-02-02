@@ -853,6 +853,17 @@
                         },
                         [basicToastNotify],
                     );
+                    let {
+                        migrationNote: { modal: migrationNoteModal },
+                    } = (0, n.Pjs)();
+                    let onShowMergeModal = (0, a.useCallback)(
+                        (event, dedupeTimestamp = 0) => {
+                            if (window[`onShowMergeModal`] === dedupeTimestamp) return;
+                            if (dedupeTimestamp) window[`onShowMergeModal`] = dedupeTimestamp;
+                            migrationNoteModal.open();
+                        },
+                        [],
+                    );
                     (0, a.useEffect)(() => {
                         var e;
                         return (
@@ -893,6 +904,16 @@
                             }
                         );
                     }, [r]);
+                    (0, a.useEffect)(() => {
+                        var e;
+                        return (
+                            null == (e = window.desktopEvents) || e.on(n.EE.SHOW_MERGE_MODAL, onShowMergeModal),
+                                () => {
+                                    var e;
+                                    null == (e = window.desktopEvents) || e.off(n.EE.SHOW_MERGE_MODAL, onShowMergeModal);
+                                }
+                        );
+                    }, [onShowMergeModal]);
                 };
         },
         51998: (e, t, o) => {
@@ -1210,6 +1231,7 @@
                 sendDownloadCurrentTrack: () => sendDownloadCurrentTrack,
                 sendDownloadTracks: () => sendDownloadTracks,
                 sendYnisonState: () => sendYnisonState,
+                migrationModal: () => g.migrationModal,
             });
             let s = () => {
                 document.addEventListener('auxclick', (e) => e.preventDefault()),
@@ -1862,7 +1884,7 @@
         },
         98185: (e, t, o) => {
             'use strict';
-            o.d(t, { ReleaseNotesModal: () => x });
+            o.d(t, { ReleaseNotesModal: () => x, migrationModal: () => migrationModal });
             var s = o(33008),
                 a = o(85896),
                 l = o(97531),
@@ -1950,6 +1972,62 @@
                                               ),
                                           ),
                             }),
+                        }),
+                    });
+                }),
+                migrationModal = (0, l.PA)(() => {
+                    let {
+                            migrationNote: { modal: o },
+                        } = (0, _.Pjs)(),
+                        { formatMessage: l } = (0, n.A)();
+                    return (0, s.jsx)(d.a, {
+                        title: 'Важное объявление',
+                        open: o.isOpened,
+                        onOpenChange: o.onOpenChange,
+                        closeOnOutsidePress: false,
+                        onClose: o.close,
+                        size: 'fitContent',
+                        placement: 'center',
+                        overlayColor: 'full',
+                        closeButtonProps: { style: {display: 'none'}},
+                        className: 'MergeNoteModal_root',
+                        headerClassName: p().modalHeader,
+                        contentClassName: 'MergeNoteModal_modalContent',
+                        children: (0, s.jsx)('div', {
+                            className: (0, a.$)(p().scrollableContent, p().important),
+                            children: [
+                                (0, s.jsx)('img', { alt: 'Баннер',
+                                    style: {
+                                        display: 'block',
+                                        width: '100%',
+                                        borderRadius: '10px',
+                                    },
+                                    src: 'https://pulsesync.dev/images/openGraphImage.png'
+                                }),
+                                (0, s.jsx)('div', {
+                                    style: {
+                                        display: 'flex',
+                                        width: '100%',
+                                        flexDirection: 'column',
+                                        alignItems: 'start',
+                                        marginTop: '20px',
+                                    },
+                                    children: [
+                                        (0, s.jsx)('span', { children: 'Слияние YMMC и PulseSync!', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', color: 'white', alignSelf: 'center' } }),
+                                        (0, s.jsx)('span', { children: 'После около одного года параллельной разработки я решил объединить два проекта в один. Что это меняет?', style: { marginBottom: '10px', color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Я присоединяюсь к команде PulseSync.', style: { marginBottom: '5px', color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Поддержка YMMC с этого момента прекращается.', style: { marginBottom: '5px', color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Все возможности YMMC уже доступны в PulseSync. И не только!', style: { color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Например в PulseSync реализована система аддонов. Которая позволяет расширять функционал стандартного мод клиента.', style: { marginBottom: '10px' }}),
+                                        (0, s.jsx)('span', { children: ['Подробности слияния можно прочитать тут: ', (0, s.jsx)('a', { children: 'https://pulsesync.dev/blog/merging-with-ymmc', href: 'https://pulsesync.dev/blog/merging-with-ymmc', target:"_blank", rel:"noreferrer noopener", className: 'buOTZq_TKQOVyjMLrXvB MergeNoteModal_link' })], style: { marginBottom: '10px', color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Вы можете:', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', color: 'white', alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'Перейти на PulseSync автоматически', style: {  fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'или', style: { alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'Отключить все обновления в YMMC', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '5px', color: 'white', alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'И продолжить использовать его пока инфраструктура ЯМ сильно не изменится.', style: { marginBottom: '10px', color: 'white' }}),
+                                    ]
+                                }),
+                            ],
                         }),
                     });
                 });
