@@ -2002,7 +2002,7 @@
                                         width: '100%',
                                         borderRadius: '10px',
                                     },
-                                    src: 'https://pulsesync.dev/images/openGraphImage.png'
+                                    src: '/media/image_2026-02-03_00-57-28.png'
                                 }),
                                 (0, s.jsx)('div', {
                                     style: {
@@ -2021,10 +2021,10 @@
                                         (0, s.jsx)('span', { children: 'Например в PulseSync реализована система аддонов. Которая позволяет расширять функционал стандартного мод клиента.', style: { marginBottom: '10px' }}),
                                         (0, s.jsx)('span', { children: ['Подробности слияния можно прочитать тут: ', (0, s.jsx)('a', { children: 'https://pulsesync.dev/blog/merging-with-ymmc', href: 'https://pulsesync.dev/blog/merging-with-ymmc', target:"_blank", rel:"noreferrer noopener", className: 'buOTZq_TKQOVyjMLrXvB MergeNoteModal_link' })], style: { marginBottom: '10px', color: 'white' }}),
                                         (0, s.jsx)('span', { children: 'Вы можете:', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', color: 'white', alignSelf: 'center' }}),
-                                        (0, s.jsx)('span', { children: 'Перейти на PulseSync автоматически', style: {  fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'Перейти на PulseSync автоматически', style: { fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
                                         (0, s.jsx)('span', { children: 'или', style: { alignSelf: 'center' }}),
-                                        (0, s.jsx)('span', { children: 'Отключить все обновления в YMMC', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '5px', color: 'white', alignSelf: 'center' }}),
-                                        (0, s.jsx)('span', { children: 'И продолжить использовать его пока инфраструктура ЯМ сильно не изменится.', style: { marginBottom: '10px', color: 'white' }}),
+                                        (0, s.jsx)('span', { children: 'Отключить все обновления в YMMC', style: { fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
+                                        (0, s.jsx)('span', { children: 'И продолжить использовать его пока инфраструктура ЯМ сильно не изменится.', style: { marginBottom: '10px' }}),
                                     ]
                                 }),
                             ],
