@@ -299,7 +299,7 @@
 }
 
 .MergeNoteModal_root {
-    height: 100%;
+    height: fit-content;
     max-height: 800px;
     max-width: 500px;
     width: 100%;
