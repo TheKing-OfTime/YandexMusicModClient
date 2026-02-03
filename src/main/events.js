@@ -118,6 +118,24 @@ const handleApplicationEvents = (window) => {
         await trackDownloader.downloadSingleTrack(trackId, throttle(callback, PROGRESS_BAR_THROTTLE_MS));
     });
 
+    electron_1.ipcMain.on(events_js_1.Events.PROJECT_MERGE_DECISION, async (event, decision) => {
+        eventsLogger.info('Event received', events_js_1.Events.PROJECT_MERGE_DECISION);
+
+        if (decision === 'migrate') {
+            sendBasicToastCreate(window, `migrationProcess`, 'Миграция на PulseSync', false);
+            let callback = (progressRenderer, progressWindow) => {
+                sendProgressBarChange(window, 'migrationProcess', progressRenderer * 100);
+                window.setProgressBar(progressWindow);
+            };
+            const modUpdater = (0, modUpdater_js_1.getModUpdater)();
+            await modUpdater.migrateToPulseSync(throttle(callback, PROGRESS_BAR_THROTTLE_MS));
+            setTimeout(() => modUpdater.onInstallUpdate(), 3000);
+        } else if (decision === 'stay') {
+            sendBasicToastCreate(window, `updatesDisabled`, 'Обновления отключены. Если передумаете, можете нажать на ! справа', false);
+            setTimeout(() => sendBasicToastDismiss(window, `updatesDisabled`), 5000);
+        }
+    });
+
     electron_1.ipcMain.on(events_js_1.Events.DOWNLOAD_TRACK, async (event, trackId, trackName = '') => {
         sendBasicToastCreate(window, `trackDownload|${trackId}`, trackName ? 'Загрузка трека: ' + trackName : 'Загрузка трека...', false);
 
