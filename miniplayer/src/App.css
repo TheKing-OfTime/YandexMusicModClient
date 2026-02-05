@@ -15,7 +15,11 @@
   }
 
   @media (min-height: 540px) and (max-height: 560px) {
-    --cover-width-transition: width 0.2s;
+    --cover-width-transition: width .2s, min-height .2s, min-width .2s, height .2s;
+  }
+
+  @media (max-height:400px) {
+    --cover-width-transition: width .2s, min-height .2s, min-width .2s, height .2s;
   }
 
   @media (max-height: 380px) {
