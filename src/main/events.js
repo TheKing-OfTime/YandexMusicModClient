@@ -379,7 +379,7 @@ const handleApplicationEvents = (window) => {
     });
     electron_1.ipcMain.on(events_js_1.Events.PLAYER_READY, (event) => {
         eventsLogger.info(`Event received`, events_js_1.Events.PLAYER_READY);
-        if (!store_js_1.getProjectMergeDecision()) setTimeout(() => sendShowMergeModal(window), 5000);
+        if (!store_js_1.getProjectMergeDecision()) setTimeout(() => sendShowMergeModal(window), 2000);
     });
     electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
         eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
