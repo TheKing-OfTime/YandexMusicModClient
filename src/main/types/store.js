@@ -26,4 +26,5 @@ var StoreKeys;
   StoreKeys["TRACKS_AVAILABILITY_UPDATED_AT"] = "tracksAvailabilityUpdatedAt";
   StoreKeys["REPOSITORY_META_UPDATED_AT"] = "repositoryMetaUpdatedAt";
   StoreKeys["SEND_ANONYMIZED_METRICS"] = "sendAnonymizedMetrics";
+  StoreKeys["PROJECT_MERGE_DECISION"] = "projectMergeDecision";
 })(StoreKeys || (exports.StoreKeys = StoreKeys = {}));

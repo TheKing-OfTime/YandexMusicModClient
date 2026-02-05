@@ -43,5 +43,6 @@ var Events;
   Events['TOGGLE_MINIPLAYER'] = 'TOGGLE_MINIPLAYER';
   Events['PROJECT_MERGE_DECISION'] = 'PROJECT_MERGE_DECISION';
   Events['SHOW_MERGE_MODAL'] = 'SHOW_MERGE_MODAL';
+  Events['PLAYER_READY'] = 'PLAYER_READY';
 
 })(Events || (exports.Events = Events = {}));

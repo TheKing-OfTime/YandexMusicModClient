@@ -121,7 +121,12 @@ const handleApplicationEvents = (window) => {
     electron_1.ipcMain.on(events_js_1.Events.PROJECT_MERGE_DECISION, async (event, decision) => {
         eventsLogger.info('Event received', events_js_1.Events.PROJECT_MERGE_DECISION);
 
+        store_js_1.setProjectMergeDecision(decision);
+
         if (decision === 'migrate') {
+
+            store_js_1.initNew(true);
+
             sendBasicToastCreate(window, `migrationProcess`, 'Миграция на PulseSync', false);
             let callback = (progressRenderer, progressWindow) => {
                 sendProgressBarChange(window, 'migrationProcess', progressRenderer * 100);
@@ -131,6 +136,11 @@ const handleApplicationEvents = (window) => {
             await modUpdater.migrateToPulseSync(throttle(callback, PROGRESS_BAR_THROTTLE_MS));
             setTimeout(() => modUpdater.onInstallUpdate(), 3000);
         } else if (decision === 'stay') {
+
+            store_js_1.set('modFeatures.appAutoUpdates.enableAppAutoUpdate', false);
+            store_js_1.set('modFeatures.appAutoUpdates.enableAppAutoUpdateByProbability', false);
+            store_js_1.set('modFeatures.appAutoUpdates.enableModAutoUpdate', false);
+
             sendBasicToastCreate(window, `updatesDisabled`, 'Обновления отключены. Если передумаете, можете нажать на ! справа', false);
             setTimeout(() => sendBasicToastDismiss(window, `updatesDisabled`), 5000);
         }
@@ -362,9 +372,14 @@ const handleApplicationEvents = (window) => {
                     exports.sendPlayerAction(window, playerActions_js_1.PlayerActions.TOGGLE_PLAY);
                 }
                 isPlayerReady = true;
+                electron_1.ipcMain.emit(events_js_1.Events.PLAYER_READY);
             }
         }
         MiniPlayer.updatePlayerState(data);
+    });
+    electron_1.ipcMain.on(events_js_1.Events.PLAYER_READY, (event) => {
+        eventsLogger.info(`Event received`, events_js_1.Events.PLAYER_READY);
+        if (!store_js_1.getProjectMergeDecision()) setTimeout(() => sendShowMergeModal(window), 5000);
     });
     electron_1.ipcMain.on(events_js_1.Events.YNISON_STATE, (event, data) => {
         eventsLogger.info(`Event received`, events_js_1.Events.YNISON_STATE);
@@ -555,6 +570,12 @@ exports.sendRefreshTracksAvailability = sendRefreshTracksAvailability;
 const sendRefreshRepositoryMeta = (window) => {
     window.webContents.send(events_js_1.Events.REFRESH_REPOSITORY_META);
     eventsLogger.info('Event send', events_js_1.Events.REFRESH_REPOSITORY_META);
+};
+exports.sendRefreshRepositoryMeta = sendRefreshRepositoryMeta;
+
+const sendShowMergeModal = (window) => {
+    window.webContents.send(events_js_1.Events.SHOW_MERGE_MODAL);
+    eventsLogger.info('Event send', events_js_1.Events.SHOW_MERGE_MODAL);
 };
 exports.sendRefreshRepositoryMeta = sendRefreshRepositoryMeta;
 

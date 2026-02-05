@@ -367,6 +367,7 @@ const init = () => {
     enableHardwareAcceleration: true,
   });
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
+  initField(store_js_1.StoreKeys.PROJECT_MERGE_DECISION, null);
   initField(store_js_1.StoreKeys.ENABLE_YNISON_REMOTE_CONTROL, true);
   initField(store_js_1.StoreKeys.SEND_ANONYMIZED_METRICS, true);
   initField(store_js_1.StoreKeys.YNISON_INTERCEPT_PLAYBACK, false);
@@ -402,17 +403,9 @@ const init = () => {
 };
 exports.init = init;
 
-const initNew = () => {
-  initField(store_js_1.StoreKeys.WINDOW_DIMENSIONS, {
-    width: 1280,
-    height: 800,
-    maximized: false,
-  });
-  initField(store_js_1.StoreKeys.WINDOW_MONITOR_ID, null);
-
+const initNew = (force) => {
   // Получаем мигрированные данные из старого формата
   const migratedSettings = migrateStoreFormat();
-
   initField(store_js_1.StoreKeys.MOD_SETTINGS, {
     taskBarExtensions: migratedSettings?.taskBarExtensions ?? {
       enable: true,
@@ -498,7 +491,7 @@ const initNew = () => {
     showNonMusicPage: migratedSettings?.showNonMusicPage ?? true,
     showConcertsTab: migratedSettings?.showConcertsTab ?? true,
     enableHardwareAcceleration: migratedSettings?.enableHardwareAcceleration ?? true,
-  });
+  }, force);
 
   initField(store_js_1.StoreKeys.IS_DEVTOOLS_ENABLED, false);
   initField(store_js_1.StoreKeys.SEND_ANONYMIZED_METRICS, true);
@@ -744,3 +737,19 @@ const setStore = (key, value) => {
   return result;
 };
 exports.set = setStore;
+
+const getProjectMergeDecision = () => {
+  return Boolean(getStore(store_js_1.StoreKeys.PROJECT_MERGE_DECISION));
+};
+exports.getProjectMergeDecision = getProjectMergeDecision;
+
+const setProjectMergeDecision = (value) => {
+
+  const allowedValues = {'migrate': 'migrate', 'stay': 'stay'};
+
+  return setStore(
+      store_js_1.StoreKeys.PROJECT_MERGE_DECISION,
+      allowedValues?.[value] ?? null,
+  );
+};
+exports.setProjectMergeDecision = setProjectMergeDecision;
