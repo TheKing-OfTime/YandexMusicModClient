@@ -330,6 +330,7 @@
 
 .MergeNoteModal_link {
     color: var(--ym-controls-color-primary-text-enabled_variant);
+    text-decoration: underline;
 }
 .MergeNoteModal_link:focus-visible,
 .MergeNoteModal_link:hover {

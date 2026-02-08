@@ -1,4 +1,9 @@
 # YandexMusicModClient
+
+> [!CAUTION]
+> ### The project has been archived in favor of merging with [PulseSync](https://pulsesync.dev).
+> Although the repository will remain available, it will no longer be maintained or updated. It is recommended to switch to PulseSync for new features and improvements.
+
 [![TotalDownloads](https://img.shields.io/github/downloads/TheKing-OfTime/YandexMusicModClient/total?label=Downloads)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download") [![OS - Windows](https://img.shields.io/badge/OS-Windows-blue?logo=windows&logoColor=white)](https://github.com/TheKing-OfTime/YandexMusicModClient/releases "Download")
 
 <p align="left">
