@@ -221,6 +221,20 @@
 .rWukOKAJh5Ga7JuIp62L:hover {
     background: var(--ym-controls-color-primary-default-hovered);
 }
+
+.migrationPrimaryButton {
+    background: #5a6ff7;
+    color: white;
+    outline: none;
+}
+.migrationPrimaryButton:disabled {
+    background: var(--ym-controls-color-primary-default-disabled);
+    color: var(--ym-controls-color-primary-on_default-disabled);
+}
+.migrationPrimaryButton:hover {
+    background: #677bff;
+}
+
 .rWukOKAJh5Ga7JuIp62L .spMT3NcRD9Yb0ntNaNct {
     animation: spMT3NcRD9Yb0ntNaNct 0.6s linear;
     background-color: var(--ym-controls-color-primary-default-pressed);

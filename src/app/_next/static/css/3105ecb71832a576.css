@@ -297,6 +297,14 @@
     max-width: 26.875rem;
     width: 100%;
 }
+
+.MergeNoteModal_root {
+    height: fit-content;
+    max-height: 800px;
+    max-width: 500px;
+    width: 100%;
+}
+
 @media only screen and (max-width: 767.98px) {
     .ReleaseNotesModal_root__RSw1p {
         position: fixed;
@@ -312,6 +320,23 @@
     padding-block-end: var(--ym-spacer-size-m);
     padding-inline-start: var(--ym-spacer-size-m);
 }
+
+.MergeNoteModal_modalContent {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0.75rem;
+}
+
+.MergeNoteModal_link {
+    color: var(--ym-controls-color-primary-text-enabled_variant);
+    text-decoration: underline;
+}
+.MergeNoteModal_link:focus-visible,
+.MergeNoteModal_link:hover {
+    color: var(--ym-controls-color-primary-text-hovered);
+}
+
 .ReleaseNotesModal_scrollableContent__zGdbH.ReleaseNotesModal_important__u8yP4 {
     padding: 0;
 }

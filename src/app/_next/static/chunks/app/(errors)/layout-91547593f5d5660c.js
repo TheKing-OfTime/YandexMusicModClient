@@ -455,7 +455,7 @@
         },
         38467: (e, s, o) => {
             "use strict";
-            o.d(s, { LO: () => r, N5: () => i, vZ: () => t, toggleMiniPlayer: () => toggleMiniPlayer });
+            o.d(s, { LO: () => r, N5: () => i, vZ: () => t, toggleMiniPlayer: () => toggleMiniPlayer, showMergeModal: () => showMergeModal });
             var n = o(79169);
             let t = () => {
                     var e;
@@ -472,6 +472,10 @@
                 toggleMiniPlayer = () => {
                     var e;
                     null == (e = window.desktopEvents) || e.send(n.EE.TOGGLE_MINIPLAYER);
+                },
+                showMergeModal = () => {
+                    var e;
+                    null == (e = window.desktopEvents) || e.emit(n.EE.SHOW_MERGE_MODAL, Date.now());
                 };
         },
         41121: (e, s, o) => {
@@ -1565,6 +1569,7 @@
                 sendDownloadCurrentTrack: () => sendDownloadCurrentTrack,
                 sendDownloadTracks: () => sendDownloadTracks,
                 sendYnisonState: () => sendYnisonState,
+                migrationModal: () => w.migrationModal,
             });
             let n = () => {
                 document.addEventListener("auxclick", (e) =>
@@ -1693,6 +1698,9 @@
                         { settings: o } = (0, d.Pjs)(),
                         r = o.isWindowsApplication || o.isLinuxApplication,
                         { formatMessage: v } = (0, l.A)(),
+                        onShowMergeModal = (0, i.useCallback)(() => {
+                            (0, a.showMergeModal)();
+                        }, []),
                         onMiniPlayerToggle = (0, i.useCallback)(() => {
                             (0, a.toggleMiniPlayer)();
                         }, []),
@@ -1712,6 +1720,30 @@
                             r &&
                             (0, n.jsxs)(n.Fragment, {
                                 children: [
+                                    (0, n.jsx)(m, {
+                                        onClick: onShowMergeModal,
+                                        ariaLabel: 'notice',
+                                        withSecondaryColor: s,
+                                        children: (0, n.jsx)('svg', {
+                                            width: '12',
+                                            height: '12',
+                                            viewBox: '0 0 12 12',
+                                            xmlns: 'http://www.w3.org/2000/svg',
+                                            className: (0, t.$)(h().icon, {
+                                                [h().icon_withSecondaryColor]: s,
+                                            }),
+                                            children: [
+                                                (0, n.jsx)('path', {
+                                                    d: 'M5 1.29883C5 1.25781 5.02602 1.21875 5.07805 1.18164C5.13008 1.14648 5.20163 1.11523 5.29268 1.08789C5.38374 1.06055 5.48781 1.03906 5.60488 1.02344C5.72845 1.00781 5.85854 1 5.99512 1C6.13171 1 6.25854 1.00781 6.37561 1.02344C6.49919 1.03906 6.6065 1.06055 6.69756 1.08789C6.79512 1.11523 6.86992 1.14648 6.92195 1.18164C6.97398 1.21875 7 1.25781 7 1.29883L7 6.70117C7 6.74219 6.97398 6.78027 6.92195 6.81543C6.86992 6.85254 6.79512 6.88476 6.69756 6.91211C6.6065 6.93945 6.49919 6.96094 6.37561 6.97656C6.25854 6.99219 6.13171 7 5.99512 7C5.85854 7 5.72845 6.99219 5.60488 6.97656C5.48781 6.96094 5.38374 6.93945 5.29268 6.91211C5.20163 6.88476 5.13008 6.85254 5.07805 6.81543C5.02602 6.78027 5 6.74219 5 6.70117L5 1.29883Z',
+                                                    fill: 'currentColor',
+                                                }),
+                                                (0, n.jsx)('path', {
+                                                    d: 'M6.90039 8C6.91406 8 6.92708 8.02602 6.93945 8.07805C6.95117 8.13008 6.96159 8.20162 6.9707 8.29268C6.97982 8.38374 6.98698 8.48781 6.99219 8.60488C6.9974 8.72845 7 8.85854 7 8.99512C7 9.13171 6.9974 9.25854 6.99219 9.37561C6.98698 9.49919 6.97982 9.6065 6.9707 9.69756C6.96159 9.79512 6.95117 9.86992 6.93945 9.92195C6.92708 9.97398 6.91406 10 6.90039 10L5.09961 10C5.08594 10 5.07324 9.97398 5.06152 9.92195C5.04915 9.86992 5.03841 9.79512 5.0293 9.69756C5.02018 9.6065 5.01302 9.49919 5.00781 9.37561C5.0026 9.25854 5 9.13171 5 8.99512C5 8.85854 5.0026 8.72845 5.00781 8.60488C5.01302 8.48781 5.02018 8.38374 5.0293 8.29268C5.03841 8.20163 5.04915 8.13008 5.06152 8.07805C5.07324 8.02602 5.08594 8 5.09961 8L6.90039 8Z',
+                                                    fill: 'currentColor',
+                                                }),
+                                            ],
+                                        }),
+                                    }),
                                     (0, n.jsx)(m, {
                                         onClick: onMiniPlayerToggle,
                                         ariaLabel: 'miniplayer',
@@ -1885,7 +1917,7 @@
         },
         98185: (e, s, o) => {
             "use strict";
-            o.d(s, { ReleaseNotesModal: () => u });
+            o.d(s, { ReleaseNotesModal: () => u, migrationModal: () => migrationModal });
             var n = o(33008),
                 t = o(85896),
                 r = o(97531),
@@ -1896,6 +1928,7 @@
                 v = o(57747),
                 h = o(77868),
                 m = o(79169),
+                React = o(66268),
                 b = o(64951),
                 P = o.n(b);
             let c = {
@@ -1996,7 +2029,110 @@
                             }),
                         }),
                     });
+                }),
+            migrationModal = (0, r.PA)(() => {
+                let {
+                        migrationNote: { modal: o },
+                    } = (0, m.Pjs)(),
+                    { formatMessage: l } = (0, i.A)(),
+
+                    onStayDecisionClick = React.useCallback(() => {
+                        var e;
+                        null == (e = window.desktopEvents) || e.send(m.EE.PROJECT_MERGE_DECISION, 'stay');
+                        o.close();
+                    }, []),
+                    onMigrateDecisionClick = React.useCallback(() => {
+                        var e;
+                        null == (e = window.desktopEvents) || e.send(m.EE.PROJECT_MERGE_DECISION, 'migrate');
+                        o.close();
+                    }, []);
+
+                return (0, n.jsx)(a.a, {
+                    title: 'Важное объявление',
+                    open: o.isOpened,
+                    onOpenChange: o.onOpenChange,
+                    closeOnOutsidePress: false,
+                    onClose: o.close,
+                    size: 'fitContent',
+                    placement: 'center',
+                    overlayColor: 'full',
+                    closeButtonProps: { style: { display: 'none' }},
+                    className: 'MergeNoteModal_root',
+                    headerClassName: P().modalHeader,
+                    contentClassName: 'MergeNoteModal_modalContent',
+                    children: (0, n.jsx)('div', {
+                        className: (0, t.$)(P().scrollableContent, P().important),
+                        children: [
+                            (0, n.jsx)('img', { alt: 'Баннер',
+                                style: {
+                                    display: 'block',
+                                    width: '100%',
+                                    borderRadius: '10px',
+                                },
+                                src: '/media/image_2026-02-03_00-57-28.png'
+                            }),
+                            (0, n.jsx)('div', {
+                                style: {
+                                    display: 'flex',
+                                    width: '100%',
+                                    flexDirection: 'column',
+                                    alignItems: 'start',
+                                    marginTop: '20px',
+                                },
+                                children: [
+                                    (0, n.jsx)('span', { children: 'Слияние YMMC и PulseSync!', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', color: 'white', alignSelf: 'center' } }),
+                                    (0, n.jsx)('span', { children: 'После около одного года параллельной разработки я решил объединить два проекта в один. Что это меняет?', style: { marginBottom: '10px', color: 'white' }}),
+                                    (0, n.jsx)('span', { children: 'Я присоединяюсь к команде PulseSync.', style: { marginBottom: '5px', color: 'white' }}),
+                                    (0, n.jsx)('span', { children: 'Поддержка YMMC с этого момента прекращается.', style: { marginBottom: '5px', color: 'white' }}),
+                                    (0, n.jsx)('span', { children: 'Все возможности YMMC уже доступны в PulseSync. И не только!', style: { color: 'white' }}),
+                                    (0, n.jsx)('span', { children: 'Например в PulseSync реализована система аддонов. Которая позволяет расширять функционал стандартного мод клиента.', style: { marginBottom: '10px' }}),
+                                    (0, n.jsx)('span', { children: ['Подробности слияния можно прочитать тут: ', (0, n.jsx)('a', { children: 'https://pulsesync.dev/news/merging-with-ymmc', href: 'https://pulsesync.dev/news/merging-with-ymmc', target:"_blank", rel:"noreferrer noopener", className: 'buOTZq_TKQOVyjMLrXvB MergeNoteModal_link' })], style: { marginBottom: '10px', color: 'white' }}),
+                                    (0, n.jsx)('span', { children: 'Вы можете:', style: { fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', color: 'white', alignSelf: 'center' }}),
+                                    (0, n.jsx)('span', { children: 'Перейти на PulseSync автоматически', style: { fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
+                                    (0, n.jsx)('span', { children: 'или', style: { alignSelf: 'center' }}),
+                                    (0, n.jsx)('span', { children: 'Отключить все обновления в YMMC', style: { fontWeight: 'bold', fontSize: '18px', color: 'white', alignSelf: 'center' }}),
+                                    (0, n.jsx)('span', { children: 'И продолжить использовать его пока инфраструктура ЯМ сильно не изменится.', style: { marginBottom: '20px' }}),
+                                    (0, n.jsx)('div', {
+                                        style: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' },
+                                        children: [
+                                            (0, n.jsx)('button', {
+                                                className: 'cpeagBA1_PblpJn8Xgtv iJVAJMgccD4vj4E4o068 zIMibMuH7wcqUoW7KH1B IlG7b1K0AD7E7AMx6F5p nHWc2sto1C6Gm0Dpw_l0 Y2uqxoU7xa_AZ8FUCVOW qU2apWBO1yyEK0lZ3lPO EditContentModal_button__usS1Z',
+                                                children: [
+                                                    (0, n.jsx)('span', { children: 'Остаться на YMMC',
+                                                        style: {
+                                                            alignSelf: 'center'
+                                                        }
+                                                    }),
+                                                ],
+                                                style: {
+                                                    borderRadius: '10px',
+                                                    transition: 'background-color 0.3s',
+                                                },
+                                                onClick: onStayDecisionClick,
+                                            }),
+                                            (0, n.jsx)('button', {
+                                                className: 'migrationPrimaryButton cpeagBA1_PblpJn8Xgtv _eTRQi5ADZCUvUKMZqJU zIMibMuH7wcqUoW7KH1B IlG7b1K0AD7E7AMx6F5p rWukOKAJh5Ga7JuIp62L Y2uqxoU7xa_AZ8FUCVOW qU2apWBO1yyEK0lZ3lPO EditContentModal_button__usS1Z',
+                                                children: [
+                                                    (0, n.jsx)('span', { children: 'Перейти на PulseSync',
+                                                        style: {
+                                                            alignSelf: 'center'
+                                                        }
+                                                    }),
+                                                ],
+                                                style: {
+                                                    borderRadius: '10px',
+                                                    transition: 'background-color 0.3s',
+                                                },
+                                                onClick: onMigrateDecisionClick,
+                                            }),
+                                        ]
+                                    }),
+                                ]
+                            }),
+                        ],
+                    }),
                 });
+            });
         },
         98258: () => {},
     },

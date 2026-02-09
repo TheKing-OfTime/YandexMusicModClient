@@ -4000,7 +4000,12 @@
                             t && ((0, l._E)(t), a.count(t, "appTheme"));
                         }, [t]);
                 }
-                return (0, i.jsx)(l.qw, {});
+                return (0, i.jsx)('div', {
+                    children: [
+                        (0, i.jsx)(l.qw, {}),
+                        (0, i.jsx)(l.migrationModal, {})
+                    ]
+                });
             };
         },
         58427: (e, t, a) => {
@@ -22394,6 +22399,7 @@
                 offers: { music: { loadingState: u.GuX.IDLE } },
                 quality: { modal: {} },
                 releaseNotes: { modal: {} },
+                migrationNote: { modal: {} },
                 slam: { networkStatus: {} },
                 favoriteTracks: { loadingState: u.GuX.IDLE },
                 track: {
@@ -24615,6 +24621,7 @@
                     fullscreenPlayer: e9.uZ,
                     fullscreenVideoPlayer: e5.bg,
                     releaseNotes: te._o,
+                    migrationNote: te._o,
                     trackLyrics: x.DP,
                     ugcUploadCenter: tm,
                     paymentWidgetModal: er.bo,
